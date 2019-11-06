@@ -23,7 +23,7 @@ namespace MainSystem
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<string> str = new List<string>();
+            //List<string> str = new List<string>();
             dbconnection.Open();
             dbconnection1.Open();
             //string query = "select Data_ID from table1";
@@ -39,38 +39,38 @@ namespace MainSystem
             string query = "insert into open_storage_account (Data_ID,Quantity,Store_ID,Store_Place_ID,Date,Note) values (@Data_ID,@Quantity,@Store_ID,@Store_Place_ID,@Date,@Note)";
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                    com.Parameters["@Data_ID"].Value = 10945;
+                    com.Parameters["@Data_ID"].Value = 10215;
                     com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
                     com.Parameters["@Quantity"].Value = 0;
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                    com.Parameters["@Store_ID"].Value = 3;
+                    com.Parameters["@Store_ID"].Value = 1;
                     com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                    com.Parameters["@Store_Place_ID"].Value = 14;
+                    com.Parameters["@Store_Place_ID"].Value = 8;
                     com.Parameters.Add("@Date", MySqlDbType.Date, 0);
                     com.Parameters["@Date"].Value = DateTime.Now.Date;
                     com.Parameters.Add("@Note", MySqlDbType.VarChar);
                     com.Parameters["@Note"].Value = "مرتجع عميل";
                     com.ExecuteNonQuery();
 
-                    string q = "select sum(TotalMeter) from customer_return_bill_details where Data_ID=" + 10945 + " and Store_ID=3 group by Data_ID";
-                    MySqlCommand c = new MySqlCommand(q, dbconnection1);
-                    double totalMetre = Convert.ToDouble(c.ExecuteScalar().ToString());
+                    //string q = "select sum(TotalMeter) from customer_return_bill_details where Data_ID=" + 10945 + " and Store_ID=3 group by Data_ID";
+                    //MySqlCommand c = new MySqlCommand(q, dbconnection1);
+                    //double totalMetre = Convert.ToDouble(c.ExecuteScalar().ToString());
 
                     //save to storage with gard value
                     query = "insert into storage (Store_ID,Type,Storage_Date,Data_ID,Store_Place_ID,Total_Meters,Note) values (@Store_ID,@Type,@Date,@Data_ID,@PlaceOfStore,@TotalOfMeters,@Note)";
                     com = new MySqlCommand(query, dbconnection1);
                     com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                    com.Parameters["@Store_ID"].Value = 3;
+                    com.Parameters["@Store_ID"].Value = 1;
                     com.Parameters.Add("@Type", MySqlDbType.VarChar);
                     com.Parameters["@Type"].Value = "بند";
                     com.Parameters.Add("@Date", MySqlDbType.Date, 0);
                     com.Parameters["@Date"].Value = DateTime.Now.Date;
                     com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                    com.Parameters["@Data_ID"].Value = 10945;
+                    com.Parameters["@Data_ID"].Value = 10215;
                     com.Parameters.Add("@PlaceOfStore", MySqlDbType.Int16);
-                    com.Parameters["@PlaceOfStore"].Value = 14;
+                    com.Parameters["@PlaceOfStore"].Value = 8;
                     com.Parameters.Add("@TotalOfMeters", MySqlDbType.Decimal);
-                    com.Parameters["@TotalOfMeters"].Value = totalMetre;
+                    com.Parameters["@TotalOfMeters"].Value = 1;
                     com.Parameters.Add("@Note", MySqlDbType.VarChar);
                     com.Parameters["@Note"].Value = "مرتجع عميل";
                     com.ExecuteNonQuery();

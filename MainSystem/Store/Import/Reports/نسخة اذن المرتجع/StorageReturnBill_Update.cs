@@ -61,7 +61,7 @@ namespace MainSystem
         {
             try
             {
-                DataHelper2 dh = new DataHelper2(DSparametr2.doubleDS);
+                DataHelperClassUpdate dh = new DataHelperClassUpdate(DSparametrUpdate.doubleDS);
                 gridControl2.DataSource = dh.DataSet;
                 gridControl2.DataMember = dh.DataMember;
                 gridView2.InitNewRow += GridView2_InitNewRow;
@@ -147,12 +147,13 @@ namespace MainSystem
                     radioButtonWithOutReturnPermission.Checked = true;
                     comStoreFilter.SelectedValue = storeIdd;
                 }
+                txtReason.Text = selrow["سبب الاسترجاع"].ToString();
 
                 dbconnection.Open();
                 if (radioButtonReturnPermission.Checked)
                 {
                     #region add with permission
-                    query = "SELECT import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',supplier_permission_details.Supplier_Permission_Details_ID,import_storage_return_supplier.Supplier_ID,import_storage_return_supplier.Supplier_Permission_Number as 'اذن استلام',supplier.Supplier_Name as 'المورد' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_storage_return.StorageImportPermission_ID INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID and import_supplier_permission.Supplier_ID = import_storage_return_supplier.Supplier_ID  AND import_supplier_permission.Supplier_Permission_Number = import_storage_return_supplier.Supplier_Permission_Number INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID and import_storage_return_details.Data_ID = supplier_permission_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
+                    query = "SELECT import_storage_return_details.ImportStorageReturnDetails_ID,import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',supplier_permission_details.Supplier_Permission_Details_ID,import_storage_return_supplier.Supplier_ID,import_storage_return_supplier.Supplier_Permission_Number as 'اذن استلام',supplier.Supplier_Name as 'المورد' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_storage_return.StorageImportPermission_ID INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID and import_supplier_permission.Supplier_ID = import_storage_return_supplier.Supplier_ID  AND import_supplier_permission.Supplier_Permission_Number = import_storage_return_supplier.Supplier_Permission_Number INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID and import_storage_return_details.Data_ID = supplier_permission_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
                     while (dr.Read())
@@ -161,19 +162,20 @@ namespace MainSystem
                         int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
                         if (gridView2.IsNewItemRow(rowHandle))
                         {
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], dr["Data_ID"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], dr["الكود"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], dr["النوع"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], dr["الاسم"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], dr["الكرتنة"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], dr["متر/قطعة"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], dr["عدد الكراتين"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], dr["عدد البلتات"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], dr["السبب"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], dr["Supplier_Permission_Details_ID"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], dr["Supplier_ID"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], dr["اذن استلام"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], dr["المورد"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], dr["ImportStorageReturnDetails_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], dr["Data_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], dr["الكود"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], dr["النوع"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], dr["الاسم"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], dr["الكرتنة"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], dr["متر/قطعة"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], dr["عدد الكراتين"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], dr["عدد البلتات"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], dr["السبب"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], dr["Supplier_Permission_Details_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], dr["Supplier_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], dr["اذن استلام"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[14], dr["المورد"].ToString());
                         }
                     }
                     dr.Close();
@@ -182,7 +184,7 @@ namespace MainSystem
                 else
                 {
                     #region without permission
-                    query = "SELECT import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',import_storage_return_supplier.Supplier_ID FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
+                    query = "SELECT import_storage_return_details.ImportStorageReturnDetails_ID,import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',import_storage_return_supplier.Supplier_ID FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
                     while (dr.Read())
@@ -193,20 +195,16 @@ namespace MainSystem
                         int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
                         if (gridView2.IsNewItemRow(rowHandle))
                         {
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], dr["Data_ID"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], dr["الكود"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], dr["النوع"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], dr["الاسم"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], dr["الكرتنة"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], dr["متر/قطعة"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], dr["عدد الكراتين"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], dr["عدد البلتات"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], dr["السبب"].ToString());
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], "0");
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], "0");
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], "0");
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], "0");
-                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], "");
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], dr["ImportStorageReturnDetails_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], dr["Data_ID"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], dr["الكود"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], dr["النوع"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], dr["الاسم"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], dr["الكرتنة"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], dr["متر/قطعة"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], dr["عدد الكراتين"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], dr["عدد البلتات"].ToString());
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], dr["السبب"].ToString());
                         }
                     }
                     dr.Close(); 
@@ -721,20 +719,20 @@ namespace MainSystem
                                 int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
                                 if (gridView2.IsNewItemRow(rowHandle) && row1 != null)
                                 {
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row1["Data_ID"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row1["الكود"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["النوع"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["الاسم"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], row1["الكرتنة"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtTotalMeter.Text);
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtCarton.Text);
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtBalat.Text);
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], txtItemReason.Text);
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], row1["Supplier_Permission_Details_ID"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], row1["Supplier_ID"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], row1["اذن استلام"].ToString());
-                                    //gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["Store_Place_ID"].ToString());
-                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], row1["المورد"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row1["Data_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["الكود"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["النوع"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], row1["الاسم"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], row1["الكرتنة"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtTotalMeter.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtCarton.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], txtBalat.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], txtItemReason.Text);
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], row1["Supplier_Permission_Details_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], row1["Supplier_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], row1["اذن استلام"].ToString());
+                                    //gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], row1["Store_Place_ID"].ToString());
+                                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[14], row1["المورد"].ToString());
                                 }
                                 DataRow row2 = gridView2.GetDataRow(rowHandle);
 
@@ -787,7 +785,7 @@ namespace MainSystem
                                     com.Parameters["@Carton_Balata"].Value = null;
                                 }
                                 com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                                com.Parameters["@Data_ID"].Value = row2[0].ToString();
+                                com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
                                 com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
                                 com.Parameters["@Total_Meters"].Value = row2["TotalQuantity"].ToString();
                                 com.Parameters.Add("@Reason", MySqlDbType.VarChar);
@@ -795,6 +793,12 @@ namespace MainSystem
                                 com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
                                 com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
                                 com.ExecuteNonQuery();
+
+                                query = "select ImportStorageReturnDetails_ID from import_storage_return_details order by ImportStorageReturnDetails_ID desc limit 1";
+                                com = new MySqlCommand(query, dbconnection);
+                                int ImportStorageReturnDetailsID = Convert.ToInt32(com.ExecuteScalar().ToString());
+
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], ImportStorageReturnDetailsID);
 
                                 query = "select Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/;
                                 com = new MySqlCommand(query, dbconnection);
@@ -813,12 +817,6 @@ namespace MainSystem
 
                                 dbconnection.Close();
                                 search();
-                                txtCode.Text = "";
-                                txtTotalMeter.Text = "0";
-                                txtCarton.Text = "0";
-                                txtBalat.Text = "0";
-                                txtReason.Text = "";
-                                txtItemReason.Text = "";
                             }
                             else
                             {
@@ -854,20 +852,15 @@ namespace MainSystem
                             int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
                             if (gridView2.IsNewItemRow(rowHandle) && row1 != null)
                             {
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row1["Data_ID"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row1["الكود"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["النوع"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["الاسم"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], row1["الكرتنة"].ToString());
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], txtTotalMeter.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtCarton.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtBalat.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], txtItemReason.Text);
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], "0");
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[10], "0");
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[11], "0");
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[12], "0");
-                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], "");
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row1["Data_ID"].ToString());
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row1["الكود"].ToString());
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row1["النوع"].ToString());
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], row1["الاسم"].ToString());
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], row1["الكرتنة"].ToString());
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], txtTotalMeter.Text);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtCarton.Text);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], txtBalat.Text);
+                                gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], txtItemReason.Text);
                             }
                             DataRow row2 = gridView2.GetDataRow(rowHandle);
 
@@ -920,7 +913,7 @@ namespace MainSystem
                                 com.Parameters["@Carton_Balata"].Value = null;
                             }
                             com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                            com.Parameters["@Data_ID"].Value = row2[0].ToString();
+                            com.Parameters["@Data_ID"].Value = row2["Data_ID"].ToString();
                             com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
                             com.Parameters["@Total_Meters"].Value = row2["TotalQuantity"].ToString();
                             com.Parameters.Add("@Reason", MySqlDbType.VarChar);
@@ -928,6 +921,12 @@ namespace MainSystem
                             com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
                             com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
                             com.ExecuteNonQuery();
+
+                            query = "select ImportStorageReturnDetails_ID from import_storage_return_details order by ImportStorageReturnDetails_ID desc limit 1";
+                            com = new MySqlCommand(query, dbconnection);
+                            int ImportStorageReturnDetailsID = Convert.ToInt32(com.ExecuteScalar().ToString());
+
+                            gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], ImportStorageReturnDetailsID);
 
                             double totalQuant = Convert.ToDouble(row2["TotalQuantity"].ToString());
 
@@ -977,18 +976,6 @@ namespace MainSystem
 
                             dbconnection.Close();
                             displayData();
-
-                            txtCode.Text = "";
-                            txtTotalMeter.Text = "0";
-                            txtCarton.Text = "0";
-                            txtBalat.Text = "0";
-                            txtReason.Text = "";
-                            txtItemReason.Text = "";
-                            for (int i = 0; i < gridView2.RowCount; i++)
-                            {
-                                int rowHandl = gridView2.GetRowHandle(i);
-                                gridView2.DeleteRow(rowHandl);
-                            }
                             #endregion
                         }
                         txtCode.Text = "";
@@ -1024,64 +1011,49 @@ namespace MainSystem
                 if (gridView2.GetSelectedRows().Length > 0)
                 {
                     dbconnection.Open();
-                    dbconnection2.Open();
-                    dbconnection3.Open();
-                    string q2 = "SELECT DISTINCT import_storage_return.ImportStorageReturn_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',import_storage_return_supplier.Supplier_Permission_Number as 'رقم اذن الاستلام',import_storage_return_supplier.ImportStorageReturnSupplier_ID as 'ID' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID where import_storage_return.ImportStorageReturn_ID=" + selrow["التسلسل"].ToString();
-                    MySqlCommand com2 = new MySqlCommand(q2, dbconnection2);
-                    MySqlDataReader dr2 = com2.ExecuteReader();
-                    while (dr2.Read())
+                    if (radioButtonReturnPermission.Checked)
                     {
-                        string q3 = "SELECT import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',import_storage_return_details.ImportStorageReturnDetails_ID FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where import_storage_return_supplier.ImportStorageReturnSupplier_ID=" + dr2["ID"].ToString()+ " and import_storage_return_details.Data_ID=" + gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "Data_ID");
-                        MySqlCommand com3 = new MySqlCommand(q3, dbconnection3);
-                        MySqlDataReader dr3 = com3.ExecuteReader();
-                        while (dr3.Read())
+                        string query = "select Total_Meters from storage where Store_ID=" + comStore.SelectedValue.ToString() + " and Data_ID=" + gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "Data_ID");
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
                         {
-                            string query = "select Total_Meters from storage where Store_ID=" + comStore.SelectedValue.ToString() + " and Data_ID=" + dr3["Data_ID"].ToString();
-                            MySqlCommand com = new MySqlCommand(query, dbconnection);
-                            if (com.ExecuteScalar() != null)
-                            {
-                                double totalf = Convert.ToInt32(com.ExecuteScalar());
-                                query = "update storage set Total_Meters=" + (totalf + Convert.ToDouble(dr3["متر/قطعة"].ToString())) + " where Store_ID=" + comStore.SelectedValue.ToString() + " and Data_ID=" + dr3["Data_ID"].ToString();
-                                com = new MySqlCommand(query, dbconnection);
-                                com.ExecuteNonQuery();
-                                UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(dr3["Data_ID"].ToString()), DateTime.Now, "تعديل مرتجع اذن مخزن", dbconnection);
-                            }
-                            /*else
-                            {
-                                query = "SELECT store_places.Store_Place_ID FROM store_places INNER JOIN store ON store_places.Store_ID = store.Store_ID where store_places.Store_ID=" + comStore.SelectedValue.ToString();
-                                com = new MySqlCommand(query, dbconnection);
-                                string storePlaceId = com.ExecuteScalar().ToString();
+                            double totalf = Convert.ToInt32(com.ExecuteScalar());
+                            query = "update storage set Total_Meters=" + (totalf + Convert.ToDouble(gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "TotalQuantity"))) + " where Store_ID=" + comStore.SelectedValue.ToString() + " and Data_ID=" + gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "Data_ID");
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                            UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "Data_ID")), DateTime.Now, "تعديل مرتجع اذن مخزن", dbconnection);
 
-                                query = "insert into storage (Store_ID,Store_Place_ID,Type,Storage_Date,Data_ID,Total_Meters,Note) values (@Store_ID,@Store_Place_ID,@Type,@Date,@Data_ID,@TotalOfMeters,@Note)";
-                                com = new MySqlCommand(query, dbconnection);
-                                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
-                                com.Parameters["@Store_ID"].Value = comStore.SelectedValue.ToString();
-                                com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                                com.Parameters["@Store_Place_ID"].Value = storePlaceId;
-                                com.Parameters.Add("@Type", MySqlDbType.VarChar);
-                                com.Parameters["@Type"].Value = "بند";
-                                com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-                                com.Parameters["@Date"].Value = DateTime.Now.ToString("yyyy-MM-dd");
-                                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
-                                com.Parameters["@Data_ID"].Value = dr3["Data_ID"].ToString();
-                                com.Parameters.Add("@TotalOfMeters", MySqlDbType.Decimal);
-                                com.Parameters["@TotalOfMeters"].Value = Convert.ToDecimal(dr3["متر/قطعة"].ToString());
-                                com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                                com.Parameters["@Note"].Value = "تعديل مرتجع اذن مخزن";
-                                com.ExecuteNonQuery();
-                                //UserControl.ItemRecord("storage", "اضافة", Convert.ToInt16(dr3["Data_ID"].ToString()), DateTime.Now, "تعديل مرتجع اذن مخزن", dbconnection);
-                            }*/
-                            string query2 = "delete from import_storage_return_details where ImportStorageReturnDetails_ID=" + dr3["ImportStorageReturnDetails_ID"].ToString();
-                            MySqlCommand com4 = new MySqlCommand(query2, dbconnection);
-                            com4.ExecuteNonQuery();
+                            query = "delete from import_storage_return_details where ImportStorageReturnDetails_ID=" + gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "ImportStorageReturnDetails_ID");
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+
+                            dbconnection.Close();
+                            search();
                         }
-                        dr3.Close();
                     }
-                    dr2.Close();
+                    else
+                    {
+                        string query = "select Total_Meters from storage where Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and Data_ID=" + gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "Data_ID");
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        if (com.ExecuteScalar() != null)
+                        {
+                            double totalf = Convert.ToInt32(com.ExecuteScalar());
+                            query = "update storage set Total_Meters=" + (totalf + Convert.ToDouble(gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "TotalQuantity"))) + " where Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and Data_ID=" + gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "Data_ID");
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                            UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "Data_ID")), DateTime.Now, "تعديل مرتجع اذن مخزن", dbconnection);
+
+                            query = "delete from import_storage_return_details where ImportStorageReturnDetails_ID=" + gridView2.GetRowCellDisplayText(gridView2.FocusedRowHandle, "ImportStorageReturnDetails_ID");
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+
+                            dbconnection.Close();
+                            displayData();
+                        }
+                    }
                     
                     GridView view = gridView2 as GridView;
                     int rowHandle = gridView2.GetRowHandle(gridView2.GetSelectedRows()[0]);
-                    //gridView2.DeleteRow(rowHandle);
                     view.DeleteSelectedRows();
                 }
             }
@@ -1101,7 +1073,12 @@ namespace MainSystem
                     dbconnection.Close();
 
                     search();
-                    
+
+                    for (int i = 0; i < gridView2.RowCount; i++)
+                    {
+                        int rowHandle = gridView2.GetRowHandle(i);
+                        gridView2.DeleteRow(rowHandle);
+                    }
                     txtCode.Text = "";
                     txtBalat.Text = "0";
                     txtCarton.Text = "0";
@@ -1313,17 +1290,9 @@ namespace MainSystem
                             suppliers_Name += "," + gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["Supplier_Name"]);
                         }
 
-                        Report_StorageReturn f = new Report_StorageReturn();
-                        f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, Convert.ToInt16(selrow["رقم اذن المرتجع"].ToString()), txtReason.Text, bi);
+                        Report_StorageReturnCopy f = new Report_StorageReturnCopy();
+                        f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, Convert.ToInt16(selrow["رقم اذن المرتجع"].ToString()), selrow["تاريخ الاسترجاع"].ToString(), txtReason.Text, bi);
                         f.ShowDialog();
-                        
-                        search();
-                        txtCode.Text = "";
-                        txtTotalMeter.Text = "0";
-                        txtCarton.Text = "0";
-                        txtBalat.Text = "0";
-                        txtReason.Text = "";
-                        txtItemReason.Text = "";
                     }
                     #endregion
 
@@ -1357,29 +1326,18 @@ namespace MainSystem
                                 quantity = Convert.ToDouble(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["TotalQuantity"]));
                             }
 
-                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = Convert.ToInt32(gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Supplier_Permission_Number"])), Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
+                            StorageReturn_Items item = new StorageReturn_Items() { Code = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["Code"]), Product_Type = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemType"]), Product_Name = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ItemName"]), Balatat = balate, Carton_Balata = carton, Total_Meters = quantity, Supplier_Permission_Number = 0, Reason = gridView2.GetRowCellDisplayText(rowHand, gridView2.Columns["ReturnItemReason"]) };
                             bi.Add(item);
                         }
 
-                        Report_StorageReturn f = new Report_StorageReturn();
-                        f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, Convert.ToInt16(selrow["رقم اذن المرتجع"].ToString()), txtReason.Text, bi);
+                        Report_StorageReturnCopy f = new Report_StorageReturnCopy();
+                        f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, Convert.ToInt16(selrow["رقم اذن المرتجع"].ToString()), selrow["تاريخ الاسترجاع"].ToString(), txtReason.Text, bi);
                         f.ShowDialog();
-
-                        displayData();
-
-                        txtCode.Text = "";
-                        txtTotalMeter.Text = "0";
-                        txtCarton.Text = "0";
-                        txtBalat.Text = "0";
-                        txtReason.Text = "";
-                        txtItemReason.Text = "";
-                        for (int i = 0; i < gridView2.RowCount; i++)
-                        {
-                            int rowHandle = gridView2.GetRowHandle(i);
-                            gridView2.DeleteRow(rowHandle);
-                        }
                     }
                     #endregion
+
+                    dbconnection.Close();
+                    this.Close();
                 }
                 else
                 {
@@ -1391,9 +1349,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-            dbconnection2.Close();
-            dbconnection3.Close();
-            dbconnection4.Close();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -1452,9 +1407,6 @@ namespace MainSystem
         {
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
-            //,supplier_permission_details.Store_Place_ID
-            // INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID
-            //,store_places.Store_Place_Code as 'مكان التخزين'
             string qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',(supplier_permission_details.Balatat-ifnull(import_storage_return_details.Balatat,0)) as 'عدد البلتات',(supplier_permission_details.Carton_Balata-ifnull(import_storage_return_details.Carton_Balata,0)) as 'عدد الكراتين',(supplier_permission_details.Total_Meters-ifnull(import_storage_return_details.Total_Meters,0)) as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,storage_import_permission.StorageImportPermission_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID LEFT JOIN import_storage_return ON import_storage_return.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID LEFT JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID LEFT JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID and supplier_permission_details.Data_ID = import_storage_return_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=0 and supplier_permission_details.Store_ID=0 group by data.Data_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
             DataTable dt = new DataTable();
@@ -1462,10 +1414,6 @@ namespace MainSystem
             gridControl1.DataSource = dt;
             
             dbconnection.Open();
-            //,supplier_permission_details.Store_Place_ID
-            //and supplier_permission_details.Store_Place_ID=storage.Store_Place_ID
-            //INNER JOIN store_places ON store_places.Store_Place_ID = supplier_permission_details.Store_Place_ID
-            //,store_places.Store_Place_Code as 'مكان التخزين'
             qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier.Supplier_Name as 'المورد',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية المتاحة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,storage_import_permission.StorageImportPermission_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID  INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + txtPermissionNum.Text + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
             MySqlCommand comand = new MySqlCommand(qq, dbconnection);
             MySqlDataReader dr = comand.ExecuteReader();
@@ -1544,35 +1492,12 @@ namespace MainSystem
             dr.Close();
             gridView1.Columns["Data_ID"].Visible = false;
             gridView1.Columns["Supplier_ID"].Visible = false;
-            //gridView1.Columns["Carton"].Visible = false;
             gridView1.Columns["Supplier_Permission_Details_ID"].Visible = false;
-            //gridView1.Columns["Store_Place_ID"].Visible = false;
             gridView1.Columns["StorageImportPermission_ID"].Visible = false;
             if (gridView1.IsLastVisibleRow)
             {
                 gridView1.FocusedRowHandle = gridView1.RowCount - 1;
             }
-
-            for (int i = 0; i < gridView2.RowCount; i++)
-            {
-                int rowHandle = gridView2.GetRowHandle(i);
-                gridView2.DeleteRow(rowHandle);
-            }
-            
-            /*qq = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_supplier.Supplier_Permission_Number as 'اذن استلام',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'التاريخ',store_places.Store_Place_Code as 'المكان',import_storage_return_details.Reason as 'السبب',import_storage_return_supplier.Supplier_ID,import_storage_return_details.ImportStorageReturnDetails_ID,import_storage_return_details.Store_Place_ID from import_storage_return_details INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN import_storage_return_supplier ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN import_storage_return ON import_storage_return.ImportStorageReturn_ID = import_storage_return_supplier.ImportStorageReturn_ID INNER JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where import_storage_return.Import_Permission_Number=" + txtPermissionNum.Text + " and import_storage_return_details.Store_ID=" + comStore.SelectedValue.ToString();
-            da = new MySqlDataAdapter(qq, dbconnection);
-            dt = new DataTable();
-            da.Fill(dt);
-            gridControl2.DataSource = dt;
-            gridView2.Columns["Data_ID"].Visible = false;
-            gridView2.Columns["Supplier_ID"].Visible = false;
-            gridView2.Columns["ImportStorageReturnDetails_ID"].Visible = false;
-            gridView2.Columns["Store_Place_ID"].Visible = false;
-
-            if (gridView2.IsLastVisibleRow)
-            {
-                gridView2.FocusedRowHandle = gridView2.RowCount - 1;
-            }*/
             dbconnection.Close();
         }
 
@@ -1580,16 +1505,7 @@ namespace MainSystem
         {
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
-
-            //for (int i = 0; i < gridView2.RowCount; i++)
-            //{
-            //    int rowHandle = gridView2.GetRowHandle(i);
-            //    gridView2.DeleteRow(rowHandle);
-            //}
             
-            //gridControl2.DataSource = null;
-            //gridView2.Columns.Clear();
-
             if (comStoreFilter.SelectedValue != null)
             {
                 string q1, q2, q3, q4, q5;

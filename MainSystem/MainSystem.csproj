@@ -689,6 +689,7 @@
     <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition.designer.cs">
       <DependentUpon>Print_AglTransition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\DataHelperClassUpdate.cs" />
     <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\Print_StorageReturnCopy.cs">
       <SubType>Component</SubType>
     </Compile>

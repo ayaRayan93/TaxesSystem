@@ -85,6 +85,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.ImportStorageReturnDetails_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Data_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemType = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -245,6 +246,7 @@
             // txtReason
             // 
             this.txtReason.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtReason.Enabled = false;
             this.txtReason.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReason.Location = new System.Drawing.Point(311, 10);
             this.txtReason.Multiline = true;
@@ -860,6 +862,7 @@
             this.gridView2.AppearancePrint.Row.Options.UseTextOptions = true;
             this.gridView2.AppearancePrint.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.ImportStorageReturnDetails_ID,
             this.Data_ID,
             this.Code,
             this.ItemType,
@@ -880,6 +883,12 @@
             this.gridView2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsBehavior.Editable = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // ImportStorageReturnDetails_ID
+            // 
+            this.ImportStorageReturnDetails_ID.Caption = "ImportStorageReturnDetails_ID";
+            this.ImportStorageReturnDetails_ID.FieldName = "ImportStorageReturnDetails_ID";
+            this.ImportStorageReturnDetails_ID.Name = "ImportStorageReturnDetails_ID";
             // 
             // Data_ID
             // 
@@ -1098,5 +1107,6 @@
         private System.Windows.Forms.ComboBox comSupplier;
         private System.Windows.Forms.GroupBox groupBox2;
         private DevExpress.XtraGrid.Columns.GridColumn ItemType;
+        private DevExpress.XtraGrid.Columns.GridColumn ImportStorageReturnDetails_ID;
     }
 }
