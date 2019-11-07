@@ -206,7 +206,7 @@ namespace MainSystem
 
                 pictureBoxBell.Visible = true;
             }
-            else if (UserControl.userType == 6 || UserControl.userType == 7)
+            else if (UserControl.userType == 6/* || UserControl.userType == 7*/)
             {
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
@@ -244,6 +244,23 @@ namespace MainSystem
                 }
                 navBarGroup13.Visible = false;
                 navBarGroup39.Visible = false;
+            }
+            else if (UserControl.userType == 7)
+            {
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+                navBarGroupProductsTicket.Visible = false;
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
+                navBarGroupSupplierPayments.Visible = false;
+                navBarGroup49.Visible = false;
+                navBarGroup47.Visible = false;
+                navBarGroup15.Visible = false;
+                navBarGroup16.Visible = false;
+                navBarGroup1.Visible = false;
+                //userAccess();
             }
             else if (UserControl.userType == 8)
             {
@@ -305,22 +322,17 @@ namespace MainSystem
             {
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
+                navBarGroup11.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
-                btnPOS.Enabled = true;
-                btnPOS.Checked = true;
-                navBarGroupReportPointSale.Visible = false;
-                pictureBoxBell.Visible = true;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
-                btnBank.Enabled = true;
-                btnBank.Checked = true;
-                btnReception.Enabled = true;
-                btnReception.Checked = true;
-                AccountingSystem.Enabled = true;
-                AccountingSystem.Checked = true;
                 navBarGroupSupplierPayments.Visible = false;
                 navBarGroup49.Visible = false;
                 navBarGroup47.Visible = false;
+                navBarGroup15.Visible = false;
+                navBarGroup16.Visible = false;
+                navBarGroup1.Visible = false;
+                navBarItemSalesTransitions.Visible = false;
                 //userAccess();
             }
             //شيخون

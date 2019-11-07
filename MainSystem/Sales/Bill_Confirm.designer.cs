@@ -62,6 +62,8 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDelegate = new System.Windows.Forms.TextBox();
             this.listBoxControlBranchID = new DevExpress.XtraEditors.ListBoxControl();
             this.checkBoxAdd = new System.Windows.Forms.CheckBox();
             this.listBoxControlBills = new DevExpress.XtraEditors.ListBoxControl();
@@ -72,8 +74,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtClientPhone = new System.Windows.Forms.TextBox();
             this.txtCustomerPhone = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtDelegate = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -592,6 +592,27 @@
             this.panel3.Size = new System.Drawing.Size(363, 121);
             this.panel3.TabIndex = 157;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label1.Location = new System.Drawing.Point(280, 77);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 17);
+            this.label1.TabIndex = 158;
+            this.label1.Text = "المندوب";
+            // 
+            // txtDelegate
+            // 
+            this.txtDelegate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDelegate.Enabled = false;
+            this.txtDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtDelegate.Location = new System.Drawing.Point(128, 73);
+            this.txtDelegate.Name = "txtDelegate";
+            this.txtDelegate.Size = new System.Drawing.Size(146, 24);
+            this.txtDelegate.TabIndex = 157;
+            // 
             // listBoxControlBranchID
             // 
             this.listBoxControlBranchID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -712,27 +733,6 @@
             this.txtCustomerPhone.Size = new System.Drawing.Size(140, 24);
             this.txtCustomerPhone.TabIndex = 146;
             this.txtCustomerPhone.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label1.Location = new System.Drawing.Point(280, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 17);
-            this.label1.TabIndex = 158;
-            this.label1.Text = "المندوب";
-            // 
-            // txtDelegate
-            // 
-            this.txtDelegate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDelegate.Enabled = false;
-            this.txtDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDelegate.Location = new System.Drawing.Point(128, 73);
-            this.txtDelegate.Name = "txtDelegate";
-            this.txtDelegate.Size = new System.Drawing.Size(146, 24);
-            this.txtDelegate.TabIndex = 157;
             // 
             // Bill_Confirm
             // 
