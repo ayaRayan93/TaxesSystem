@@ -349,5 +349,33 @@ namespace MainSystem
                 MessageBox.Show("يجب ان تختار عنصر للحذف");
             }
         }
+
+        private void txtClientPhone_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    DataSet sourceDataSet = new DataSet();
+                    MySqlDataAdapter adapterCustomer = new MySqlDataAdapter("SELECT customer1.Customer_ID as 'الكود',customer1.Customer_Name as 'الاسم',customer1.Customer_Address as 'العنوان',customer1.Customer_Start as 'تاريخ البداية',customer1.Customer_NationalID as 'الرقم القومى',customer1.Customer_Email as 'الايميل',customer1.Customer_Type as 'النوع',customer1.Type as 'كاش/اجل',customer2.Customer_Name as 'الضامن',customer1.Customer_OpenAccount as 'الرصيد الافتتاحي',customer1.Customer_Info as 'البيان' FROM customer AS customer1 LEFT JOIN custmer_client ON customer1.Customer_ID = custmer_client.Client_ID LEFT JOIN customer AS customer2 ON customer2.Customer_ID = custmer_client.Customer_ID inner join customer_phone on customer1.Customer_ID=customer_phone.Customer_ID where customer_phone.Phone like '" + txtClientPhone.Text + "%' ORDER BY customer1.Customer_ID", conn);
+                    MySqlDataAdapter adapterPhone = new MySqlDataAdapter("SELECT customer.Customer_ID as 'الكود',Phone as 'رقم التليفون' FROM customer_phone inner join customer on customer.Customer_ID=customer_phone.Customer_ID where customer_phone.Phone like '" + txtClientPhone.Text + "%'", conn);
+                    adapterCustomer.Fill(sourceDataSet, "customer");
+                    adapterPhone.Fill(sourceDataSet, "customer_phone");
+
+                    //Set up a master-detail relationship between the DataTables 
+                    DataColumn keyColumn = sourceDataSet.Tables["customer"].Columns["الكود"];
+                    DataColumn foreignKeyColumn = sourceDataSet.Tables["customer_phone"].Columns["الكود"];
+                    sourceDataSet.Relations.Add("ارقام التليفون", keyColumn, foreignKeyColumn);
+                    gridControl1.DataSource = sourceDataSet.Tables["customer"];
+
+                    gridView1.Columns["الرصيد الافتتاحي"].Visible = false;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn.Close();
+            }
+        }
     }
 }

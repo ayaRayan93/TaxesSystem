@@ -200,6 +200,22 @@ namespace MainSystem
             }
         }
 
+        private void btnUpdateBill_Click(object sender, EventArgs e)
+        {
+            /*try
+            {
+                if (row1 != null)
+                {
+                    SupplierReturnBill_Update form = new SupplierReturnBill_Update(this, row1);
+                    form.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
+        }
+
         public void search(int supplierId)
         {
             DateTime date = dateTimePicker1.Value.Date;

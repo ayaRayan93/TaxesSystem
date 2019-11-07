@@ -41,10 +41,11 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
+            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
+            this.btnUpdateBill = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -139,8 +140,8 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePicker2.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dateTimePicker2.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker2.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(270, 43);
             this.dateTimePicker2.Name = "dateTimePicker2";
@@ -163,8 +164,8 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(270, 10);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -193,13 +194,15 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel2.ColumnCount = 4;
+            this.tableLayoutPanel2.ColumnCount = 5;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.btnUpdate, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnReport, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnUpdateBill, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 609);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -223,12 +226,33 @@
             this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 18;
             this.btnUpdate.LabelText = "تعديل اسعار البنود";
-            this.btnUpdate.Location = new System.Drawing.Point(486, 4);
+            this.btnUpdate.Location = new System.Drawing.Point(536, 4);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(94, 46);
             this.btnUpdate.TabIndex = 0;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnReport
+            // 
+            this.btnReport.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnReport.ForeColor = System.Drawing.Color.White;
+            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.ImagePosition = 1;
+            this.btnReport.ImageZoom = 33;
+            this.btnReport.LabelPosition = 18;
+            this.btnReport.LabelText = "طباعة نسخة";
+            this.btnReport.Location = new System.Drawing.Point(445, 4);
+            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(76, 46);
+            this.btnReport.TabIndex = 5;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // gridControl1
             // 
@@ -290,28 +314,28 @@
             this.panel1.Size = new System.Drawing.Size(965, 74);
             this.panel1.TabIndex = 216;
             // 
-            // btnReport
+            // btnUpdateBill
             // 
-            this.btnReport.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
-            this.btnReport.ImagePosition = 1;
-            this.btnReport.ImageZoom = 33;
-            this.btnReport.LabelPosition = 18;
-            this.btnReport.LabelText = "طباعة نسخة";
-            this.btnReport.Location = new System.Drawing.Point(395, 4);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(76, 46);
-            this.btnReport.TabIndex = 5;
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            this.btnUpdateBill.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnUpdateBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnUpdateBill.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnUpdateBill.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnUpdateBill.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdateBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateBill.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateBill.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdateBill.ImagePosition = 1;
+            this.btnUpdateBill.ImageZoom = 25;
+            this.btnUpdateBill.LabelPosition = 18;
+            this.btnUpdateBill.LabelText = "تعديل";
+            this.btnUpdateBill.Location = new System.Drawing.Point(336, 4);
+            this.btnUpdateBill.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUpdateBill.Name = "btnUpdateBill";
+            this.btnUpdateBill.Size = new System.Drawing.Size(94, 46);
+            this.btnUpdateBill.TabIndex = 6;
+            this.btnUpdateBill.Click += new System.EventHandler(this.btnUpdateBill_Click);
             // 
-            // PurchaseBill_Report
+            // ReturnedPurchaseBill_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -319,7 +343,7 @@
             this.ClientSize = new System.Drawing.Size(971, 666);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
-            this.Name = "PurchaseBill_Report";
+            this.Name = "ReturnedPurchaseBill_Report";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.requestStored_Load);
@@ -352,6 +376,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnUpdate;
         private Bunifu.Framework.UI.BunifuTileButton btnReport;
+        private Bunifu.Framework.UI.BunifuTileButton btnUpdateBill;
     }
 }
 

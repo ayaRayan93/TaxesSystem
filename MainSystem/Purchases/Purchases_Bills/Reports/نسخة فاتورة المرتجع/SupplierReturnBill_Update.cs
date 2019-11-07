@@ -23,12 +23,14 @@ namespace MainSystem
         //int BillNo = 1;
         bool loadSup = false;
         bool loadSupPerm = false;
+        DataRow selrow = null;
 
-        public SupplierReturnBill_Update(MainForm mainForm)
+        public SupplierReturnBill_Update(ReturnedPurchaseBill_Report mainForm, DataRow SelRow)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             dbconnection2 = new MySqlConnection(connection.connectionString);
+            selrow = SelRow;
         }
         //events
         private void Supplier_Return_Bill_Load(object sender, EventArgs e)
@@ -43,7 +45,10 @@ namespace MainSystem
                 comStore.DataSource = dt;
                 comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
                 comStore.ValueMember = dt.Columns["Store_ID"].ToString();
-                comStore.Text = "";
+                comStore.SelectedIndex = -1;
+                comStore.Text = selrow["المخزن"].ToString();
+
+                txtBillNumber.Text = selrow["اذن المخزن"].ToString();
 
                 query = "select * from supplier";
                 da = new MySqlDataAdapter(query, dbconnection);
@@ -53,6 +58,9 @@ namespace MainSystem
                 comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
                 comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
                 comSupplier.SelectedIndex = -1;
+                comSupplier.Text = selrow["المورد"].ToString();
+
+                comSupPerm.Text = selrow["اذن الاستلام"].ToString();
                 loaded = true;
             }
             catch (Exception ex)
@@ -878,62 +886,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            /*try
-            {
-                int billNum = 0;
-                if (int.TryParse(txtBillNumber.Text, out billNum))
-                {
-                    if (BillNo > 0 && gridView2.RowCount > 0 && comStore.SelectedValue != null && comSupplier.SelectedValue != null)
-                    {
-                        dbconnection.Open();
-                        string query = "select Store_Name from store where Store_ID=" + comStore.SelectedValue.ToString();
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        string storeName = com.ExecuteScalar().ToString();
-
-                        double addabtiveTax = 0;
-                        List<SupplierReturnBill_Items> bi = new List<SupplierReturnBill_Items>();
-                        for (int i = 0; i < gridView2.RowCount; i++)
-                        {
-                            int rowHand = gridView2.GetRowHandle(i);
-                            if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نوع السعر"]) == "لستة")
-                            {
-                                //double lastPrice = 0;
-                                //lastPrice = (Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) * 100) / (100 - Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["خصم الشراء"])));
-                                SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
-                                bi.Add(item);
-                            }
-                            else if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["نوع السعر"]) == "قطعى")
-                            {
-                                SupplierReturnBill_Items item = new SupplierReturnBill_Items() { Code = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الكود"]), Product_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Product_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الاسم"]), Total_Meters = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["متر/قطعة"])), PriceB = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر"])), Discount = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["نسبة الخصم"])), Last_Price = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["السعر بالزيادة"])), Normal_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة العادية"])), Categorical_Increase = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["الزيادة القطعية"])), PriceA = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["سعر الشراء"])) };
-                                bi.Add(item);
-                            }
-                            //addabtiveTax += Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["ضريبة القيمة المضافة"]));
-                        }
-                        addabtiveTax = Convert.ToDouble(txtAllTax.Text);
-                        Report_SupplierReturnBill f = new Report_SupplierReturnBill();
-                        f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), comSupPerm.Text, Convert.ToDouble(labelTotalSafy.Text), addabtiveTax, bi);
-                        f.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("تاكد من البيانات");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("تاكد من رقم الاذن");
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();*/
-        }
-
+        
         //functions
         bool IsAdded()
         {
