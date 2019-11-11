@@ -936,13 +936,18 @@ namespace MainSystem
             DataTable dtSet = new DataTable();
             da.Fill(dtSet);
 
+            query = "select offer.Offer_ID as 'Data_ID',offer.Offer_ID as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + " " + " ' as 'الكمية المسلمة',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID where CustomerBill_ID=" + id + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+            da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtOffer = new DataTable();
+            da.Fill(dtOffer);
 
             dtAll = dtProduct.Copy();
             dtAll.Merge(dtSet, true, MissingSchemaAction.Ignore);
+            dtAll.Merge(dtOffer, true, MissingSchemaAction.Ignore);
             gridControl1.DataSource = dtAll;
             gridView1.Columns[0].Visible = false;
             gridView1.Columns["CustomerBill_ID"].Visible = false;
-            gridView1.Columns["الفئة"].Visible = false;
+            //gridView1.Columns["الفئة"].Visible = false;
             gridView1.Columns["الوصف"].Visible = false;
             gridView1.Columns["Delegate_Name"].Visible = false;
             gridView1.Columns["Store_ID"].Visible = false;
