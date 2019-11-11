@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.txtSetID = new System.Windows.Forms.TextBox();
             this.txtOfferID = new System.Windows.Forms.TextBox();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
@@ -94,7 +93,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
             this.tLPanCpntent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
