@@ -410,6 +410,10 @@ namespace MainSystem
                                 {
                                     getSetsComBox();
                                 }
+                                else if (radOffers.Checked)
+                                {
+                                    getOffersComBox();
+                                }
                                 comProduct.Text = "";
                                 txtCodeSearch4.Text = "";
                                 flagProduct = true;
@@ -424,7 +428,6 @@ namespace MainSystem
                                 txtSize.Text = "";
 
                                 comProduct.Focus();
-                           
                             }
                             break;
 
@@ -2132,6 +2135,53 @@ namespace MainSystem
             comProduct.DataSource = dt3;
             comProduct.DisplayMember = dt3.Columns["Set_Name"].ToString();
             comProduct.ValueMember = dt3.Columns["Set_ID"].ToString();
+            comProduct.Text = "";
+            txtCodeSearch4.Text = "";
+        }
+        public void getOffersComBox()
+        {
+            string q1, q2, q3, q4;
+            if (comType.Text == "")
+            {
+                q1 = "select Type_ID from type";
+            }
+            else
+            {
+                q1 = comType.SelectedValue.ToString();
+            }
+            if (comFactory.Text == "")
+            {
+                q2 = "select Factory_ID from factory";
+            }
+            else
+            {
+                q2 = comFactory.SelectedValue.ToString();
+            }
+            if (comProduct.Text == "")
+            {
+                q3 = "select Offer_ID from offer";
+            }
+            else
+            {
+                q3 = comProduct.SelectedValue.ToString();
+            }
+            if (comGroup.Text == "")
+            {
+                q4 = "select Group_ID from groupo";
+            }
+            else
+            {
+                q4 = comGroup.SelectedValue.ToString();
+            }
+
+            string query3 = "select distinct offer.Offer_ID,Offer_Name from offer inner join data on data.Data_ID=offer.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Group_ID IN(" + q4 + ") and offer.Offer_ID IN (" + q3 + ")";
+            MySqlDataAdapter da3 = new MySqlDataAdapter(query3, dbconnection);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            flagProduct = false;
+            comProduct.DataSource = dt3;
+            comProduct.DisplayMember = dt3.Columns["Offer_Name"].ToString();
+            comProduct.ValueMember = dt3.Columns["Offer_ID"].ToString();
             comProduct.Text = "";
             txtCodeSearch4.Text = "";
         }
