@@ -254,6 +254,9 @@ namespace MainSystem
                 btnSales.Checked = true;
                 AccountingSystem.Enabled = true;
                 AccountingSystem.Checked = true;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                navBarGroupBillRecord.Visible = false;
                 navBarGroupSupplierPayments.Visible = false;
                 navBarGroup49.Visible = false;
                 navBarGroup47.Visible = false;
@@ -330,6 +333,9 @@ namespace MainSystem
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
                 navBarGroupSupplierPayments.Visible = false;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                navBarGroupBillRecord.Visible = false;
                 navBarGroup49.Visible = false;
                 navBarGroup47.Visible = false;
                 navBarGroup15.Visible = false;
