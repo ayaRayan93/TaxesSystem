@@ -1325,7 +1325,17 @@ namespace MainSystem
                         {
                             tLPanCpntent.RowStyles[1].Height = 120;
                         }
-
+                        query = "select * from offer";
+                        da = new MySqlDataAdapter(query, dbconnection);
+                        dt = new DataTable();
+                        da.Fill(dt);
+                        flagProduct = false;
+                        comProduct.DataSource = dt;
+                        comProduct.DisplayMember = dt.Columns["Offer_Name"].ToString();
+                        comProduct.ValueMember = dt.Columns["Offer_ID"].ToString();
+                        comProduct.Text = "";
+                        txtCodeSearch4.Text = "";
+                        flagProduct = true;
                         break;
                 }
             }

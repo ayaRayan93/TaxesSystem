@@ -329,7 +329,6 @@
             this.radOffers.TabIndex = 0;
             this.radOffers.Text = "عروض";
             this.radOffers.UseVisualStyleBackColor = true;
-            this.radOffers.Visible = false;
             this.radOffers.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // radSets

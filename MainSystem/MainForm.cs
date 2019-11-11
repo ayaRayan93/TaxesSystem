@@ -211,8 +211,8 @@ namespace MainSystem
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
 
-                if (UserControl.userType == 6)
-                {
+                //if (UserControl.userType == 6)
+                //{
                     //pictureBoxSales.Visible = true;
                     btnTaswayAgalBills.Visible = false;
                     navBarItem153.Visible = false;
@@ -241,7 +241,7 @@ namespace MainSystem
                     navBarItemStoreReturn.Visible = false;
                     navBarItemConfirmTransferFromStore.Visible = false;
                     navBarItem17.Visible = false;
-                }
+                //}
                 navBarGroup13.Visible = false;
                 navBarGroup39.Visible = false;
             }
@@ -260,6 +260,9 @@ namespace MainSystem
                 navBarGroup15.Visible = false;
                 navBarGroup16.Visible = false;
                 navBarGroup1.Visible = false;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                navBarGroupBillRecord.Visible = false;
                 //userAccess();
             }
             else if (UserControl.userType == 8)
@@ -333,6 +336,9 @@ namespace MainSystem
                 navBarGroup16.Visible = false;
                 navBarGroup1.Visible = false;
                 navBarItemSalesTransitions.Visible = false;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                navBarGroupBillRecord.Visible = false;
                 //userAccess();
             }
             //شيخون
@@ -1149,7 +1155,7 @@ namespace MainSystem
     {
         static string supString = File.ReadAllText("IP_Address.txt");//'35.232.25.153'
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=newschematest;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
         //public static string connectionString = "SERVER=localhost;DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }
