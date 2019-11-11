@@ -299,6 +299,7 @@ namespace MainSystem
                 string query = "select Data_ID,Quantity from offer_details  where Offer_ID=" + offerID;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
+                dataGridView1.Rows.Clear();
                 while (dr.Read())
                 {
                     query = "select sum(Total_Meters) from storage where Data_ID='" + dr["Data_ID"].ToString() + "' group by Store_ID having Store_ID=" + txtStoreID.Text;
@@ -307,7 +308,7 @@ namespace MainSystem
                     double QuantityInOffer = Convert.ToDouble(dr["Quantity"].ToString());
                     double newQuantity = QuantityInStore - (QuantityInOffer * offerQuantity);
                     query = "SELECT data.Data_ID, data.Code as 'الكود',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  where Data_ID=" + dr["Data_ID"].ToString() + "";
-
+               
                     com = new MySqlCommand(query, dbconnection1);
                     MySqlDataReader dataReader1 = com.ExecuteReader();
                     while (dataReader1.Read())
@@ -335,7 +336,6 @@ namespace MainSystem
         //record to database
         public void RecordOfferQuantityInStorage(double minQuantity,int offerID)
         {
-
            string query = "select Total_Meters from storage where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
@@ -347,12 +347,10 @@ namespace MainSystem
             }
             else
             {
-                query = "insert into storage (Store_ID,Store_Name,Storage_Date,Total_Meters,Offer_ID,Type) values (@Store_ID,@Store_Name,@Storage_Date,@Total_Meters,@Offer_ID,@Type)";
+                query = "insert into storage (Store_ID,Storage_Date,Total_Meters,Offer_ID,Type) values (@Store_ID,@Storage_Date,@Total_Meters,@Offer_ID,@Type)";
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                 com.Parameters["@Store_ID"].Value = Convert.ToInt32(txtStoreID.Text);
-                com.Parameters.Add("@Store_Name", MySqlDbType.VarChar);
-                com.Parameters["@Store_Name"].Value = comStore.Text;
                 com.Parameters.Add("@Storage_Date", MySqlDbType.Date);
                 com.Parameters["@Storage_Date"].Value = DateTime.Now.ToString("yyyy-MM-dd");
                 com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
@@ -412,11 +410,11 @@ namespace MainSystem
                     dr2.Close();
                 }
                 dr.Close();
-                query = "select sum(Total_Meters),storage.Data_ID from storage inner join offer_details on storage.Data_ID=offer_details.Data_ID where storage.Offer_ID=" + offerID + " group by storage.Data_ID,Store_ID having Store_ID=" + txtStoreID.Text;
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dataGridView1.DataSource = dt;
+                //query = "select sum(Total_Meters),storage.Data_ID from storage inner join offer_details on storage.Data_ID=offer_details.Data_ID where storage.Offer_ID=" + offerID + " group by storage.Data_ID,Store_ID having Store_ID=" + txtStoreID.Text;
+                //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                //DataTable dt = new DataTable();
+                //da.Fill(dt);
+                //dataGridView1.DataSource = dt;
             }
             dbconnection1.Close();
             dbconnection2.Close();
