@@ -508,7 +508,8 @@ namespace MainSystem
                 dbconnection.Open();
                 if (e.KeyCode == Keys.Enter)
                 {
-                    displayBill();
+                    // displayBill();
+                    displayData1();
                 }
             }
             catch (Exception ex)
@@ -957,6 +958,72 @@ namespace MainSystem
                 gridControl1.DataSource = dt;
                 gridView1.Columns[0].Visible = false;
             }
+        }
+
+        public void displayData1()
+        {
+            string query = "select CustomerBill_ID,Type_Buy from customer_bill where Branch_BillNumber=" + txtBranchBillNum.Text + " and Branch_ID=" + txtBranch1.Text;
+
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            int id = -1;
+            while (dr.Read())
+            {
+                id = Convert.ToInt32(dr[0]);
+              //  TypeBuy = dr[1].ToString();
+            }
+            dr.Close();
+
+
+            displayCustomerData(id.ToString());
+            gridControl1.DataSource = null;
+            gridView1.Columns.Clear();
+            DataTable dtAll = new DataTable();
+            query = "select data.Data_ID,data.Code as 'الكود',concat(type.Type_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(data.Description,''),' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',data.Carton as 'الكرتنة',product_bill.Quantity as 'الكمية',(case  when data.Carton !=0 then (product_bill.Quantity /data.Carton) end ) as 'عدد الكراتين','" + " " + " ' as 'الكمية المسلمة',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID=" + id + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtProduct = new DataTable();
+            da.Fill(dtProduct);
+
+            query = "select sets.Set_ID as 'Data_ID',sets.Set_ID as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + " " + " ' as 'الكمية المسلمة',sets.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID where CustomerBill_ID=" + id + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+            da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtSet = new DataTable();
+            da.Fill(dtSet);
+
+            query = "select offer.Offer_ID as 'Data_ID',offer.Offer_ID as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + " " + " ' as 'الكمية المسلمة',offer.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID where CustomerBill_ID=" + id + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+            da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtOffer = new DataTable();
+            da.Fill(dtOffer);
+
+            dtAll = dtProduct.Copy();
+            dtAll.Merge(dtSet, true, MissingSchemaAction.Ignore);
+            dtAll.Merge(dtOffer, true, MissingSchemaAction.Ignore);
+            gridControl1.DataSource = dtAll;
+            gridView1.Columns[0].Visible = false;
+            gridView1.Columns["CustomerBill_ID"].Visible = false;
+            //gridView1.Columns["الفئة"].Visible = false;
+            gridView1.Columns["الوصف"].Visible = false;
+            gridView1.Columns["Delegate_Name"].Visible = false;
+            gridView1.Columns["Store_ID"].Visible = false;
+           // txtDelegate.Text = gridView1.GetDataRow(0)["Delegate_Name"].ToString();
+        }
+        public void displayCustomerData(string CustomerBill_ID)
+        {
+            string query = "select c1.Customer_ID,c1.Customer_Name,c2.Customer_ID,c2.Customer_Name,cc1.Phone,cc2.Phone,Bill_Date from customer_bill left join  customer as c1  on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID left join customer_phone as cc1 on cc1.Customer_ID=c1.Customer_ID left join customer_phone as cc2 on cc2.Customer_ID=c2.Customer_ID where CustomerBill_ID=" + CustomerBill_ID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                txtCustomerID.Text = dr[0].ToString();
+             //   txtCustomerName.Text = dr[1].ToString();
+                txtClientID.Text = dr[2].ToString();
+                txtClientName.Text = dr[3].ToString();
+                if (txtCustomerID.Text != "")
+                    txtPhone.Text = dr[4].ToString();
+                if (txtClientID.Text != "")
+                    txtPhone.Text = dr[5].ToString();
+                //labDate.Text = dr[6].ToString();
+            }
+            dr.Close();
         }
         public void addNewRow()
         {
