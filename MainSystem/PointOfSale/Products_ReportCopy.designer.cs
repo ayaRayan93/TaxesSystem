@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
+            this.components = new System.ComponentModel.Container();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.txtSetID = new System.Windows.Forms.TextBox();
             this.txtOfferID = new System.Windows.Forms.TextBox();
             this.tLPanCpntent = new System.Windows.Forms.TableLayoutPanel();
@@ -70,10 +71,8 @@
             this.comProduct = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.comFactory = new System.Windows.Forms.ComboBox();
             this.txtCodeSearch2 = new System.Windows.Forms.TextBox();
-            this.com = new System.Windows.Forms.ComboBox();
             this.comGroup = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCodeSearch3 = new System.Windows.Forms.TextBox();
@@ -93,7 +92,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.comStore = new System.Windows.Forms.ComboBox();
-            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.tLPanCpntent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -328,7 +327,6 @@
             this.radOffers.TabIndex = 0;
             this.radOffers.Text = "عروض";
             this.radOffers.UseVisualStyleBackColor = true;
-            this.radOffers.Visible = false;
             this.radOffers.CheckedChanged += new System.EventHandler(this.RadioButton_CheckedChanged);
             // 
             // radSets
@@ -373,10 +371,8 @@
             this.panel1.Controls.Add(this.comProduct);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.comFactory);
             this.panel1.Controls.Add(this.txtCodeSearch2);
-            this.panel1.Controls.Add(this.com);
             this.panel1.Controls.Add(this.comGroup);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.txtCodeSearch3);
@@ -414,9 +410,9 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(773, 15);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(128, 19);
+            this.label13.Size = new System.Drawing.Size(118, 19);
             this.label13.TabIndex = 175;
-            this.label13.Text = "البحث بكود الصنف";
+            this.label13.Text = "بحث بكود الصنف";
             // 
             // panSearchAddtionalTool
             // 
@@ -694,7 +690,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(325, 60);
+            this.label1.Location = new System.Drawing.Point(326, 64);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 16);
@@ -707,25 +703,12 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(325, 23);
+            this.label3.Location = new System.Drawing.Point(325, 24);
             this.label3.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 16);
             this.label3.TabIndex = 166;
             this.label3.Text = "المصنع";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label4.Location = new System.Drawing.Point(325, 23);
-            this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 17);
-            this.label4.TabIndex = 167;
-            this.label4.Text = "الصنف";
             // 
             // comFactory
             // 
@@ -735,7 +718,7 @@
             this.comFactory.BackColor = System.Drawing.Color.White;
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(147, 23);
+            this.comFactory.Location = new System.Drawing.Point(147, 20);
             this.comFactory.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comFactory.Name = "comFactory";
             this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -759,21 +742,6 @@
             this.txtCodeSearch2.TextChanged += new System.EventHandler(this.txtCodeSearch2_TextChanged);
             this.txtCodeSearch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
-            // com
-            // 
-            this.com.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.com.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.com.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.com.BackColor = System.Drawing.Color.White;
-            this.com.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.com.FormattingEnabled = true;
-            this.com.Location = new System.Drawing.Point(147, 23);
-            this.com.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.com.Name = "com";
-            this.com.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.com.Size = new System.Drawing.Size(175, 24);
-            this.com.TabIndex = 163;
-            // 
             // comGroup
             // 
             this.comGroup.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -782,7 +750,7 @@
             this.comGroup.BackColor = System.Drawing.Color.White;
             this.comGroup.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(379, 59);
+            this.comGroup.Location = new System.Drawing.Point(379, 60);
             this.comGroup.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comGroup.Name = "comGroup";
             this.comGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -796,7 +764,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label11.Location = new System.Drawing.Point(557, 59);
+            this.label11.Location = new System.Drawing.Point(557, 64);
             this.label11.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 16);
@@ -827,7 +795,7 @@
             this.comType.BackColor = System.Drawing.Color.White;
             this.comType.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comType.FormattingEnabled = true;
-            this.comType.Location = new System.Drawing.Point(379, 22);
+            this.comType.Location = new System.Drawing.Point(379, 20);
             this.comType.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comType.Name = "comType";
             this.comType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -857,7 +825,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label12.Location = new System.Drawing.Point(570, 24);
+            this.label12.Location = new System.Drawing.Point(568, 24);
             this.label12.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(36, 16);
@@ -1125,10 +1093,8 @@
         private System.Windows.Forms.ComboBox comProduct;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comFactory;
         private System.Windows.Forms.TextBox txtCodeSearch2;
-        private System.Windows.Forms.ComboBox com;
         private System.Windows.Forms.ComboBox comGroup;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtCodeSearch3;
