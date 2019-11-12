@@ -14,7 +14,7 @@ namespace MainSystem
 {
     public partial class BankDepositCash_Record : Form
     {
-        MySqlConnection dbconnection, myConnection, connectionReader, connectionReader1, connectionReader2, connectionReader3, connectionReader4;
+        MySqlConnection dbconnection, myConnection, connectionReader, connectionReader1, connectionReader2, connectionReader3, connectionReader4, connectionReader5;
         
         bool flag2 = false;
         int billNumber = 0;
@@ -58,6 +58,7 @@ namespace MainSystem
             connectionReader2 = new MySqlConnection(connection.connectionString);
             connectionReader3 = new MySqlConnection(connection.connectionString);
             connectionReader4 = new MySqlConnection(connection.connectionString);
+            connectionReader5 = new MySqlConnection(connection.connectionString);
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
@@ -835,6 +836,7 @@ namespace MainSystem
             connectionReader.Close();
             connectionReader3.Close();
             connectionReader4.Close();
+            connectionReader5.Close();
         }
         
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
@@ -1747,15 +1749,32 @@ namespace MainSystem
                 }
                 else if (dr["Type"].ToString() == "عرض")
                 {
+                    connectionReader5.Open();
                     string q = "SELECT offer.Offer_ID,offer.Offer_Name FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
                     MySqlCommand c = new MySqlCommand(q, connectionReader3);
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
+                        string itemName = "concat(product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+                        string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
+                        string query3 = "select Code as 'الكود'," + itemName + " from offer inner join offer_details on offer.Offer_ID=offer_details.Offer_ID inner join data on data.Data_ID=offer_details.Data_ID " + DataTableRelations + "  where offer.Offer_ID=" + dr1["Offer_ID"];
+                        MySqlCommand com3 = new MySqlCommand(query3, connectionReader5);
+                        MySqlDataReader dr3 = com3.ExecuteReader();
+                        string str = "";
+                        while (dr3.Read())
+                        {
+                            str += dr3[1].ToString() + " \n ";
+                        }
+                        dr3.Close();
+                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض"/*, Product_Name = dr1["Offer_Name"].ToString()*/, Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
+
+                        item.Product_Name = dr1["Offer_Name"].ToString() + " \n " + str;
+                        
                         bi.Add(item);
                     }
                     dr1.Close();
+
+                    connectionReader5.Close();
                 }
                 connectionReader3.Close();
             }

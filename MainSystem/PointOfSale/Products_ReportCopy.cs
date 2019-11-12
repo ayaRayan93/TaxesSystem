@@ -1447,7 +1447,7 @@ namespace MainSystem
                     //gridView1.Columns["Type"].Visible = false;
                     //gridView1.Columns[0].Visible = false;
 
-                    string query = "SELECT offer.Offer_ID as 'الكود','Type',offer.Offer_Name as 'الاسم',offer.Price as 'السعر',offer.Description as 'الوصف' FROM offer INNER JOIN offer_details ON offer_details.Offer_ID = offer.Offer_ID INNER JOIN data ON offer_details.Data_ID = data.Data_ID where offer.Offer_ID IN (" + q3 + ")";
+                    string query = "SELECT distinct offer.Offer_ID as 'الكود','Type',offer.Offer_Name as 'الاسم',offer.Price as 'السعر',offer.Description as 'الوصف' FROM offer INNER JOIN offer_details ON offer_details.Offer_ID = offer.Offer_ID INNER JOIN data ON offer_details.Data_ID = data.Data_ID where offer.Offer_ID IN (" + q3 + ")";
                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = comand.ExecuteReader();
                     while (dr.Read())
@@ -2709,7 +2709,7 @@ namespace MainSystem
             else if (productType == "عرض")
             {
                 #region عرض
-                string query = "select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية' from offer LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=" + loadedRow["الكود"].ToString() + " group by storage.Offer_ID";
+                string query = "select distinct offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'السعر',sum(storage.Total_Meters) as 'الكمية' from offer LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=" + loadedRow["الكود"].ToString() + " group by storage.Offer_ID";
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())

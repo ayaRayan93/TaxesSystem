@@ -1000,8 +1000,11 @@ namespace MainSystem
                     }
                     else if (info.Column.GetCaption() == "النسبة" || info.Column.GetCaption() == "بعد الخصم")
                     {
-                        PriceUpdateSales sd = new PriceUpdateSales(info.RowHandle, selrow1);
-                        sd.ShowDialog();
+                        if (selrow1["النوع"].ToString() == "بند")
+                        {
+                            PriceUpdateSales sd = new PriceUpdateSales(info.RowHandle, selrow1);
+                            sd.ShowDialog();
+                        }
                     }
                 }
             }
