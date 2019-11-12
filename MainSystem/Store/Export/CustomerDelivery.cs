@@ -374,9 +374,9 @@ namespace MainSystem
                 }
                 loaded = true;
             }
-            catch
+            catch(Exception ex)
             {
-               // MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
        
         }
@@ -480,6 +480,21 @@ namespace MainSystem
                             DeliveryPermissionClass deliveryPermissionClass = new DeliveryPermissionClass();
                             deliveryPermissionClass.Data_ID = (int)row1["Data_ID"];
                             deliveryPermissionClass.Code = row1[1].ToString();
+                            if (row1["الفئة"].ToString() == "عرض")
+                            {
+                                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+                                string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
+                                query = "select Code as'الكود'," + itemName + " from offer inner join offer_details on offer.Offer_ID=offer_details.Offer_ID inner join data on data.Data_ID=offer_details.Data_ID " + DataTableRelations + "  where offer.Offer_ID=" + (int)row1["Data_ID"];
+                                com = new MySqlCommand(query, dbconnection);
+                                MySqlDataReader dr = com.ExecuteReader();
+                                string str = "";
+                                while (dr.Read())
+                                {
+                                    str += dr[1].ToString() + "\n";
+                                }
+                                dr.Close();
+                                deliveryPermissionClass.ItemName = row1[2].ToString() + "\n" + str;
+                            }
                             deliveryPermissionClass.ItemName = row1[2].ToString();
                             deliveryPermissionClass.TotalQuantity = Convert.ToDouble(row1[3]);
                             if (row1[5].ToString() != "" && Convert.ToDouble(row1[5]) != 0)
@@ -682,8 +697,23 @@ namespace MainSystem
                        
                         DeliveryPermissionClass deliveryPermissionClass = new DeliveryPermissionClass();
                         deliveryPermissionClass.Data_ID = (int)row1["Data_ID"];
+                       
                         deliveryPermissionClass.Code = row1[1].ToString();
-                        deliveryPermissionClass.ItemName = row1[2].ToString();
+                        if (row1["الفئة"].ToString() == "عرض")
+                        {
+                            string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+                            string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
+                            string query = "select Code as'الكود'," + itemName + " from offer inner join offer_details on offer.Offer_ID=offer_details.Offer_ID inner join data on data.Data_ID=offer_details.Data_ID " + DataTableRelations + "  where offer.Offer_ID="+ (int)row1["Data_ID"];
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            MySqlDataReader dr = com.ExecuteReader();
+                            string str = "";
+                            while (dr.Read())
+                            {
+                                str += dr[1].ToString()+"\n";
+                            }
+                            dr.Close();
+                            deliveryPermissionClass.ItemName = row1[2].ToString()+"\n"+str;
+                        }
                         deliveryPermissionClass.TotalQuantity = Convert.ToDouble(row1[5]);
                         if (row1[4].ToString() != ""&& Convert.ToDouble(row1[4]) != 0)
                         {
@@ -874,9 +904,17 @@ namespace MainSystem
             foreach (DataRow item in dt.Rows)
             {
                 double itemCarton = Convert.ToDouble(item[5].ToString());
-                double carton = Convert.ToDouble(carton1);
-                if (item[0].ToString() == Data_ID && itemCarton == carton)
-                    return true;
+                if (carton1 != "")
+                {
+                    double carton = Convert.ToDouble(carton1);
+                    if (item[0].ToString() == Data_ID && itemCarton == carton)
+                        return true;
+                }
+                else
+                {
+                    if (item[0].ToString() == Data_ID )
+                        return true;
+                }
             }
             return false;
         }
@@ -920,7 +958,6 @@ namespace MainSystem
                TypeBuy = dr[1].ToString();
             }
             dr.Close();
-         
 
             displayCustomerData(id.ToString());
             gridControl1.DataSource = null;
@@ -936,13 +973,18 @@ namespace MainSystem
             DataTable dtSet = new DataTable();
             da.Fill(dtSet);
 
+            query = "select offer.Offer_ID as 'Data_ID',offer.Offer_ID as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + " " + " ' as 'الكمية المسلمة',offer.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID where CustomerBill_ID=" + id + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+            da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtOffer = new DataTable();
+            da.Fill(dtOffer);
 
             dtAll = dtProduct.Copy();
             dtAll.Merge(dtSet, true, MissingSchemaAction.Ignore);
+            dtAll.Merge(dtOffer, true, MissingSchemaAction.Ignore);
             gridControl1.DataSource = dtAll;
             gridView1.Columns[0].Visible = false;
             gridView1.Columns["CustomerBill_ID"].Visible = false;
-            gridView1.Columns["الفئة"].Visible = false;
+            //gridView1.Columns["الفئة"].Visible = false;
             gridView1.Columns["الوصف"].Visible = false;
             gridView1.Columns["Delegate_Name"].Visible = false;
             gridView1.Columns["Store_ID"].Visible = false;
@@ -988,7 +1030,6 @@ namespace MainSystem
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             int id = Convert.ToInt32(com.ExecuteScalar());
             displayCustomerData(id.ToString());
-
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
             DataTable dtAll = new DataTable();
@@ -1003,6 +1044,12 @@ namespace MainSystem
             da = new MySqlDataAdapter(query, dbconnection);
             DataTable dtper1 = new DataTable();
             da.Fill(dtper1);
+
+            query = "select offer.Offer_ID as 'Data_ID',offer.Offer_ID as 'الكود',offer.Offer_Name as 'الاسم',customer_permissions_details.ItemType as 'الفئة',customer_permissions_details.Carton as 'الكرتنة',customer_permissions_details.Quantity as 'الكمية',sum(customer_permissions_details.DeliveredQuantity) as 'الكمية المستلمة' from customer_permissions_details inner join offer on offer.Offer_ID=customer_permissions_details.Data_ID inner join customer_permissions on  customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where customer_permissions_details.ItemType='عرض' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text + " group by offer.Offer_ID";
+            da = new MySqlDataAdapter(query, dbconnection);
+            DataTable dtper2 = new DataTable();
+            da.Fill(dtper2);
+
             dtAll.Merge(dtper1, true, MissingSchemaAction.Ignore);
             string re = getDeliveredDataItems("بند");
             if (re != "")
@@ -1023,7 +1070,17 @@ namespace MainSystem
                 da.Fill(dtSet);
                 dtAll.Merge(dtSet, true, MissingSchemaAction.Ignore);
             }
-        
+
+            re = getDeliveredDataItems("عرض");
+            if (re != "")
+            {
+                query = "select offer.Offer_ID as 'Data_ID',offer.Offer_ID as 'الكود',offer.Offer_Name as 'الاسم',customer_permissions_details.ItemType as 'الفئة',customer_permissions_details.Carton as 'الكرتنة',customer_permissions_details.Quantity as 'الكمية',sum(customer_permissions_details.DeliveredQuantity) as 'الكمية المستلمة' from customer_permissions_details inner join offer on offer.Offer_ID=customer_permissions_details.Data_ID inner join customer_permissions on  customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where customer_permissions_details.ItemType='عرض' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text + " group by offer.Offer_ID";
+                da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dtOffer = new DataTable();
+                da.Fill(dtOffer);
+                dtAll.Merge(dtOffer, true, MissingSchemaAction.Ignore);
+            }
+
             gridControl1.DataSource = dtAll;
             gridView1.Columns[0].Visible = false;
             gridView1.Columns["الفئة"].Visible = false;

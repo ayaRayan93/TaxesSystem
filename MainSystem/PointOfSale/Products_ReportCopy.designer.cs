@@ -226,7 +226,7 @@
             this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(888, 35);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(63, 19);
+            this.label17.Size = new System.Drawing.Size(62, 19);
             this.label17.TabIndex = 13;
             this.label17.Text = "المندوب";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -238,7 +238,7 @@
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label6.Location = new System.Drawing.Point(303, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 19);
+            this.label6.Size = new System.Drawing.Size(50, 19);
             this.label6.TabIndex = 8;
             this.label6.Text = "العميل";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -250,7 +250,7 @@
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label5.Location = new System.Drawing.Point(573, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 19);
+            this.label5.Size = new System.Drawing.Size(60, 19);
             this.label5.TabIndex = 6;
             this.label5.Text = "التليفون";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -558,7 +558,7 @@
             this.label9.Location = new System.Drawing.Point(625, 45);
             this.label9.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 16);
+            this.label9.Size = new System.Drawing.Size(31, 16);
             this.label9.TabIndex = 144;
             this.label9.Text = "الفرز";
             // 
@@ -615,7 +615,7 @@
             this.labSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.labSearch.Location = new System.Drawing.Point(696, 85);
             this.labSearch.Name = "labSearch";
-            this.labSearch.Size = new System.Drawing.Size(126, 19);
+            this.labSearch.Size = new System.Drawing.Size(123, 19);
             this.labSearch.TabIndex = 173;
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
@@ -950,7 +950,7 @@
             this.label16.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label16.Location = new System.Drawing.Point(618, 11);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(85, 19);
+            this.label16.Size = new System.Drawing.Size(86, 19);
             this.label16.TabIndex = 16;
             this.label16.Text = "عدد الكراتين";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -974,7 +974,7 @@
             this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label15.Location = new System.Drawing.Point(835, 11);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(134, 19);
+            this.label15.Size = new System.Drawing.Size(132, 19);
             this.label15.TabIndex = 14;
             this.label15.Text = "عدد الامتار المطلوبة";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -997,7 +997,7 @@
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.label8.Location = new System.Drawing.Point(405, 11);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(101, 19);
+            this.label8.Size = new System.Drawing.Size(100, 19);
             this.label8.TabIndex = 9;
             this.label8.Text = "عدد متر/قطعة";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
