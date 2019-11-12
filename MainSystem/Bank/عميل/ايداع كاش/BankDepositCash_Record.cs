@@ -1763,12 +1763,12 @@ namespace MainSystem
                         string str = "";
                         while (dr3.Read())
                         {
-                            str += dr3[1].ToString() + " \n ";
+                            str += dr3[1].ToString() + "\n";
                         }
                         dr3.Close();
                         item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض"/*, Product_Name = dr1["Offer_Name"].ToString()*/, Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
 
-                        item.Product_Name = dr1["Offer_Name"].ToString() + " \n " + str;
+                        item.Product_Name = dr1["Offer_Name"].ToString() + "\n" + str;
                         
                         bi.Add(item);
                     }
