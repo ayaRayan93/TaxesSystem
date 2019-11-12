@@ -508,8 +508,8 @@ namespace MainSystem
                 dbconnection.Open();
                 if (e.KeyCode == Keys.Enter)
                 {
-                    // displayBill();
-                    displayData1();
+                    displayBill();
+                   // displayData1();
                 }
             }
             catch (Exception ex)
@@ -948,9 +948,9 @@ namespace MainSystem
             else
             {
                 dr.Close();
-                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة',Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
+                query = "select product_bill.Data_ID,case when product_bill.Type ='بند' then Code else product_bill.Data_ID end as'الكود', case when product_bill.Type ='بند' then " + itemName + " else (select Offer_Name from offer where Offer_ID=product_bill.Data_ID) end as 'البند' ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة',Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
 
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -973,8 +973,7 @@ namespace MainSystem
               //  TypeBuy = dr[1].ToString();
             }
             dr.Close();
-
-
+            
             displayCustomerData(id.ToString());
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
