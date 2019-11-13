@@ -717,7 +717,7 @@ namespace MainSystem
                                 cont++;
                             }
                             dr.Close();
-                            deliveryPermissionClass.ItemName = row1[2].ToString() + "\n" + str;
+                            deliveryPermissionClass.ItemName = "-" + row1[2].ToString() + "\n" + str;
                         }
                         else
                         {
