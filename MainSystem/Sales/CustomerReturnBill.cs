@@ -301,8 +301,14 @@ namespace MainSystem
                         DataTable dtSet = new DataTable();
                         da.Fill(dtSet);
 
+                        query = "select offer.Offer_ID as 'Data_ID',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',offer.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',product_bill.Delegate_ID,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + comBillNumber.SelectedValue + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                        da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dtOffer = new DataTable();
+                        da.Fill(dtOffer);
+
                         dtAll = dtProduct.Copy();
                         dtAll.Merge(dtSet);
+                        dtAll.Merge(dtOffer);
 
                         dataGridView1.DataSource = dtAll;
                         dataGridView1.Columns[0].Visible = false;
@@ -654,7 +660,14 @@ namespace MainSystem
                             com.Parameters["@priceBD"].Value = Convert.ToDouble(row2.Cells["priceBD"].Value);
                             com.Parameters["@PriceAD"].Value = Convert.ToDouble(row2.Cells["priceAD"].Value);
                             com.Parameters["@TotalAD"].Value = Convert.ToDouble(row2.Cells["totalAD"].Value);
-                            com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
+                            if (row2.Cells["Discount"].Value == null)
+                            {
+                                com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
+                            }
+                            else
+                            {
+                                com.Parameters["@SellDiscount"].Value = null;
+                            }
                             com.Parameters["@CustomerBill_ID"].Value = Convert.ToInt32(row2.Cells["CustomerBill_ID"].Value);
                             com.Parameters["@Delegate_ID"].Value = Convert.ToInt32(row2.Cells["Delegate_ID"].Value);
                             com.ExecuteNonQuery();

@@ -1435,7 +1435,7 @@ namespace MainSystem
             connectionReader2.Open();
             string q;
             int id;
-            bool flag = false;
+            //bool flag = false;
             double storageQ, productQ;
             // and customer_return_bill_details.CustomerBill_ID<>0
             string query = "select Data_ID,Type,TotalMeter,Store_ID from customer_return_bill_details where CustomerReturnBill_ID=" + billNumber + "";
@@ -1512,7 +1512,7 @@ namespace MainSystem
                 #endregion
 
                 #region طقم
-                if (dr["Type"].ToString() == "طقم")
+                else if (dr["Type"].ToString() == "طقم")
                 {
                     string query2 = "select Storage_ID,Total_Meters from storage where Set_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "' and Store_ID=" + dr["Store_ID"].ToString();
                     MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
@@ -1534,6 +1534,27 @@ namespace MainSystem
                     dr2.Close();
                 }
                 #endregion
+
+                else if (dr["Type"].ToString() == "عرض")
+                {
+                    string query2 = "select Storage_ID,Total_Meters from storage where Offer_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "' and Store_ID=" + dr["Store_ID"].ToString();
+                    MySqlCommand com2 = new MySqlCommand(query2, connectionReader2);
+                    MySqlDataReader dr2 = com2.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        storageQ = Convert.ToDouble(dr2["Total_Meters"]);
+                        productQ = Convert.ToDouble(dr["TotalMeter"]);
+
+                        storageQ += productQ;
+                        id = Convert.ToInt32(dr2["Storage_ID"]);
+                        q = "update storage set Total_Meters=" + storageQ + " where Storage_ID=" + id;
+                        MySqlCommand comm = new MySqlCommand(q, dbconnection);
+                        comm.ExecuteNonQuery();
+                        flag = true;
+                        break;
+                    }
+                    dr2.Close();
+                }
 
                 #region StorageTaxes
                 /*string query3 = "select StorageTaxesID,Total_Meters from storage_taxes where Data_ID=" + dr["Data_ID"].ToString() + " and Type='" + dr["Type"].ToString() + "'";
