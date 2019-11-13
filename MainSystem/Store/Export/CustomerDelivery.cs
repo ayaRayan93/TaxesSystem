@@ -706,7 +706,7 @@ namespace MainSystem
                         {
                             string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                             string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                            string query = "select Code as'الكود'," + itemName + " from offer inner join offer_details on offer.Offer_ID=offer_details.Offer_ID inner join data on data.Data_ID=offer_details.Data_ID " + DataTableRelations + "  where offer.Offer_ID="+ (int)row1["Data_ID"];
+                            string query = "select Code as'الكود'," + itemName + " from offer inner join offer_details on offer.Offer_ID=offer_details.Offer_ID inner join data on data.Data_ID=offer_details.Data_ID " + DataTableRelations + "  where offer.Offer_ID=" + (int)row1["Data_ID"];
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             MySqlDataReader dr = com.ExecuteReader();
                             string str = "";
@@ -717,7 +717,11 @@ namespace MainSystem
                                 cont++;
                             }
                             dr.Close();
-                            deliveryPermissionClass.ItemName = "-" + row1[2].ToString() + "\n" + str;
+                            deliveryPermissionClass.ItemName = row1[2].ToString() + "\n" + str;
+                        }
+                        else
+                        {
+                            deliveryPermissionClass.ItemName = row1[2].ToString();
                         }
                         deliveryPermissionClass.TotalQuantity = Convert.ToDouble(row1[5]);
                         if (row1[4].ToString() != ""&& Convert.ToDouble(row1[4]) != 0)
