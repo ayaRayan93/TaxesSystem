@@ -1649,12 +1649,12 @@ namespace MainSystem
                 }
                 else if (dr["Type"].ToString() == "عرض")
                 {
-                    string q = "SELECT offer.Offer_ID,offer.Offer_Name FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
+                    string q = "SELECT offer.Offer_ID,offer.Offer_Name,offer.Description FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
                     MySqlCommand c = new MySqlCommand(q, connectionReader3);
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
                     {
-                        item = new ReturnedBill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["TotalMeter"].ToString()), CostBD = Convert.ToDouble(dr["PriceBD"].ToString()), Cost = Convert.ToDouble(dr["PriceAD"].ToString()), Total_Cost = Convert.ToDouble(dr["PriceBD"].ToString()) * Convert.ToDouble(dr["TotalMeter"].ToString()), Discount = 0 };
+                        item = new ReturnedBill_Items() { Code = dr1["Offer_ID"].ToString(), Type = dr1["Description"].ToString(), Product_Type = "عرض", Product_Name = dr1["Offer_Name"].ToString(), Quantity = Convert.ToDouble(dr["TotalMeter"].ToString()), CostBD = Convert.ToDouble(dr["PriceBD"].ToString()), Cost = Convert.ToDouble(dr["PriceAD"].ToString()), Total_Cost = Convert.ToDouble(dr["PriceBD"].ToString()) * Convert.ToDouble(dr["TotalMeter"].ToString()), Discount = 0 };
                         bi.Add(item);
                     }
                     dr1.Close();

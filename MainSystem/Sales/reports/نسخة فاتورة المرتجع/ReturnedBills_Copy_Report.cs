@@ -356,7 +356,7 @@ namespace MainSystem
                         }
                         else if (dr["الفئة"].ToString() == "عرض")
                         {
-                            string q = "SELECT offer.Offer_ID as 'الكود',offer.Offer_Name as 'الاسم' FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
+                            string q = "SELECT offer.Offer_ID as 'الكود',offer.Offer_Name as 'الاسم',offer.Description as 'الوصف' FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
                             MySqlCommand c = new MySqlCommand(q, connectionReader1);
                             MySqlDataReader dr1 = c.ExecuteReader();
                             while (dr1.Read())
@@ -367,6 +367,7 @@ namespace MainSystem
                                 {
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكود"], dr1["الكود"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الفئة"], "عرض");
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr1["الوصف"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr1["الاسم"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], dr["الكمية"].ToString());
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["السعر"], dr["السعر"].ToString());

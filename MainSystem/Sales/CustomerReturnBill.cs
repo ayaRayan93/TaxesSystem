@@ -660,7 +660,7 @@ namespace MainSystem
                             com.Parameters["@priceBD"].Value = Convert.ToDouble(row2.Cells["priceBD"].Value);
                             com.Parameters["@PriceAD"].Value = Convert.ToDouble(row2.Cells["priceAD"].Value);
                             com.Parameters["@TotalAD"].Value = Convert.ToDouble(row2.Cells["totalAD"].Value);
-                            if (row2.Cells["Discount"].Value == null)
+                            if (row2.Cells["Discount"].Value.ToString() != "")
                             {
                                 com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
                             }
