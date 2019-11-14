@@ -1750,7 +1750,7 @@ namespace MainSystem
                 else if (dr["Type"].ToString() == "عرض")
                 {
                     connectionReader5.Open();
-                    string q = "SELECT offer.Offer_ID,offer.Offer_Name FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
+                    string q = "SELECT offer.Offer_ID,offer.Offer_Name,offer.Description FROM offer where Offer_ID=" + dr["Data_ID"].ToString();
                     MySqlCommand c = new MySqlCommand(q, connectionReader3);
                     MySqlDataReader dr1 = c.ExecuteReader();
                     while (dr1.Read())
@@ -1761,15 +1761,15 @@ namespace MainSystem
                         MySqlCommand com3 = new MySqlCommand(query3, connectionReader5);
                         MySqlDataReader dr3 = com3.ExecuteReader();
                         string str = "";
+                        int cont = 1;
                         while (dr3.Read())
                         {
-                            str += dr3[1].ToString() + "\n";
+                            str += cont + "-" + dr3[1].ToString() + "\n";
+                            cont++;
                         }
                         dr3.Close();
-                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Product_Type = "عرض"/*, Product_Name = dr1["Offer_Name"].ToString()*/, Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
-
-                        item.Product_Name = dr1["Offer_Name"].ToString() + "\n" + str;
-                        
+                        item = new Bill_Items() { Code = dr1["Offer_ID"].ToString(), Type = dr1["Description"].ToString(), Product_Type = "عرض"/*, Product_Name = dr1["Offer_Name"].ToString()*/, Quantity = Convert.ToDouble(dr["Quantity"].ToString()), Cost = Convert.ToDouble(dr["Price"].ToString()), Total_Cost = Convert.ToDouble(dr["Price"].ToString()) * Convert.ToDouble(dr["Quantity"].ToString()), Discount = 0, Store_Name = dr["Store_Name"].ToString(), Carton = Convert.ToInt32(dr["Cartons"].ToString()) };
+                        item.Product_Name = "-" + dr1["Offer_Name"].ToString() + "\n" + str;
                         bi.Add(item);
                     }
                     dr1.Close();

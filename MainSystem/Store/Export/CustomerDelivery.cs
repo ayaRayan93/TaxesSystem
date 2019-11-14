@@ -710,12 +710,14 @@ namespace MainSystem
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
                             MySqlDataReader dr = com.ExecuteReader();
                             string str = "";
+                            int cont = 1;
                             while (dr.Read())
                             {
-                                str += dr[1].ToString() + "\n";
+                                str += cont + "-" + dr[1].ToString()+"\n";
+                                cont++;
                             }
                             dr.Close();
-                            deliveryPermissionClass.ItemName = row1[2].ToString() + "\n" + str;
+                            deliveryPermissionClass.ItemName = "-" + row1[2].ToString() + "\n" + str;
                         }
                         else
                         {
