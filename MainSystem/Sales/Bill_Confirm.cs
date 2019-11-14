@@ -109,7 +109,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         //check type of customer if engineer,client or contract 
         private void radiotype_CheckedChanged(object sender, EventArgs e)
         {
@@ -180,7 +179,6 @@ namespace MainSystem
             }
             connectionReader3.Close();
         }
-
         //when select customer(مهندس,مقاول)display in comCustomer the all clients of th customer 
         private void comEngCon_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -222,7 +220,6 @@ namespace MainSystem
                 connectionReader2.Close();
             }
         }
-
         private void comClient_SelectedValueChanged(object sender, EventArgs e)
         {
             if (loaded)
@@ -243,7 +240,6 @@ namespace MainSystem
                 connectionReader2.Close();
             }
         }
-
         private void txtBox_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -316,7 +312,6 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
-
         //recived type checked
         private void radRecivedType_CheckedChanged(object sender, EventArgs e)
         {
@@ -341,7 +336,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void txtBillNo_KeyDown(object sender, KeyEventArgs e)
         {
             MySqlDataReader dataReader = null;
@@ -667,7 +661,6 @@ namespace MainSystem
                 connectionReader2.Close();
             }
         }
-
         private void rdbSoon_CheckedChanged(object sender, EventArgs e)
         {
             type = "آجل";

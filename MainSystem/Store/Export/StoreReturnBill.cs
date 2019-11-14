@@ -658,7 +658,7 @@ namespace MainSystem
                     for (int i = 0; i < gridView2.RowCount; i++)
                     {
                         DataRow row1 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
-                        query = "insert into customer_return_permission_details (CustomerReturnPermission_ID,Data_ID,Carton,NumOfCarton,TotalQuantity,ReturnItemReason,Store_ID) values (@CustomerReturnPermission_ID,@Data_ID,@Carton,@NumOfCarton,@TotalQuantity,@ReturnItemReason,@Store_ID)";
+                        query = "insert into customer_return_permission_details (CustomerReturnPermission_ID,Data_ID,Carton,NumOfCarton,TotalQuantity,ReturnItemReason,Store_ID,TypeItem) values (@CustomerReturnPermission_ID,@Data_ID,@Carton,@NumOfCarton,@TotalQuantity,@ReturnItemReason,@Store_ID,@TypeItem)";
                         com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@CustomerReturnPermission_ID", MySqlDbType.Int16);
@@ -666,16 +666,26 @@ namespace MainSystem
                    
                         com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                         com.Parameters["@Data_ID"].Value = row1[0].ToString();
+                        //if (row1[1].ToString() == "عرض")
+                        //{
+                        //    com.Parameters.Add("@Carton", MySqlDbType.Decimal);
+                        //    com.Parameters["@Carton"].Value = 0;
+                        //    com.Parameters.Add("@NumOfCarton", MySqlDbType.Decimal);
+                        //    com.Parameters["@NumOfCarton"].Value =0;
+                        //}
                         com.Parameters.Add("@Carton", MySqlDbType.Decimal);
                         com.Parameters["@Carton"].Value = row1[5].ToString();
                         com.Parameters.Add("@NumOfCarton", MySqlDbType.Decimal);
                         com.Parameters["@NumOfCarton"].Value = row1[6].ToString();
+
                         com.Parameters.Add("@TotalQuantity", MySqlDbType.Decimal);
                         com.Parameters["@TotalQuantity"].Value = row1[4].ToString();
                         com.Parameters.Add("@ReturnItemReason", MySqlDbType.VarChar);
                         com.Parameters["@ReturnItemReason"].Value = row1[7].ToString();
                         com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                         com.Parameters["@Store_ID"].Value = Convert.ToInt32(txtStore.Text);
+                        com.Parameters.Add("@TypeItem", MySqlDbType.VarChar);
+                        com.Parameters["@TypeItem"].Value = row1[1].ToString();
                         com.ExecuteNonQuery();
 
                         ReturnPermissionClass returnPermissionClass = new ReturnPermissionClass();
@@ -950,7 +960,7 @@ namespace MainSystem
                 dr.Close();
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID,case when product_bill.Type ='بند' then Code else product_bill.Data_ID end as'الكود', case when product_bill.Type ='بند' then " + itemName + " else (select Offer_Name from offer where Offer_ID=product_bill.Data_ID) end as 'البند' ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة',Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
+                query = "select product_bill.Data_ID,case when product_bill.Type ='بند' then Code else product_bill.Data_ID end as'الكود', case when product_bill.Type ='بند' then " + itemName + " else (select Offer_Name from offer where Offer_ID=product_bill.Data_ID) end as 'البند' ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة',case when product_bill.Type ='بند' then Carton else 0 end as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
 
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
