@@ -47,9 +47,11 @@ namespace MainSystem
                 comStore.ValueMember = dt.Columns["Store_ID"].ToString();
                 comStore.SelectedIndex = -1;
                 comStore.Text = selrow["المخزن"].ToString();
-
+                
                 txtBillNumber.Text = selrow["اذن المخزن"].ToString();
 
+                comSupplier.Text = selrow["المورد"].ToString();
+                /*dbconnection.Open();
                 query = "select * from supplier";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -57,8 +59,7 @@ namespace MainSystem
                 comSupplier.DataSource = dt;
                 comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
                 comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
-                comSupplier.SelectedIndex = -1;
-                comSupplier.Text = selrow["المورد"].ToString();
+                comSupplier.SelectedIndex = -1;*/
 
                 comSupPerm.Text = selrow["اذن الاستلام"].ToString();
                 loaded = true;
@@ -79,7 +80,7 @@ namespace MainSystem
                     int billNum = 0;
                     if (int.TryParse(txtBillNumber.Text, out billNum))
                     {
-                        dbconnection.Open();
+                        //dbconnection.Open();
                         newReturnBill();
 
                         string query = "select ImportStorageReturn_ID from import_storage_return where Store_ID=" + comStore.SelectedValue.ToString() + " and Returned_Permission_Number=" + billNum;
