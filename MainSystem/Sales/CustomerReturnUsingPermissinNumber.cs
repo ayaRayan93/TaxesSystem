@@ -89,7 +89,7 @@ namespace MainSystem
                     DataTable dtAll = new DataTable();
 
                     string relation = " LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID";
-                    string supQuery = "concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم'";
+                    string supQuery = "concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) ";
 
                     query = "select  IFNULL(Branch_BillNumber,''),IFNULL(customer_return_permission.Branch_ID,''),IFNULL(customer_return_permission.Branch_Name,''),ClientReturnName,ClientRetunPhone,Date from customer_return_permission left join customer_bill on customer_return_permission.CustomerBill_ID=customer_bill.CustomerBill_ID left join branch on branch.Branch_ID=customer_bill.Branch_ID where CustomerReturnPermission_ID=" + billNum;
                     com = new MySqlCommand(query, dbconnection);
@@ -124,11 +124,11 @@ namespace MainSystem
 
                     if (labBillNumber.Text != "")
                     {
-                        query = "select DISTINCT product_bill.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on product_bill.Data_ID=customer_return_permission_details.Data_ID inner join customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and customer_bill.Branch_BillNumber="+labBillNumber.Text+" and customer_bill.Branch_ID="+Branch_ID+" and product_bill.Type='بند' ";
+                        query = "select DISTINCT product_bill.Data_ID,case when product_bill.Type ='بند' then Code else product_bill.Data_ID end as'الكود',case when product_bill.Type ='بند' then " + supQuery + " else (select Offer_Name from offer where Offer_ID=product_bill.Data_ID) end as 'البند',customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on product_bill.Data_ID=customer_return_permission_details.Data_ID inner join customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and customer_bill.Branch_BillNumber="+labBillNumber.Text+" and customer_bill.Branch_ID="+Branch_ID+"  ";
                     }
                     else
                     {
-                        query = "select customer_return_permission_details.Data_ID,data.Code as 'الكود'," + supQuery + ",customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'"+ "بند" + "',customer_return_permission_details.Store_ID from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
+                        query = "select customer_return_permission_details.Data_ID,case when customer_return_permission_details.TypeItem ='بند' then Code else customer_return_permission_details.Data_ID end as'الكود',case when customer_return_permission_details.TypeItem ='بند' then " + supQuery + " else (select Offer_Name from offer where Offer_ID=customer_return_permission_details.Data_ID) end as 'البند',customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'" + "بند" + "',customer_return_permission_details.Store_ID from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
                     }
 
                     com = new MySqlCommand(query, dbconnection);
@@ -337,7 +337,14 @@ namespace MainSystem
                             com.Parameters["@priceBD"].Value = Convert.ToDouble(row2.Cells["priceBD"].Value);
                             com.Parameters["@PriceAD"].Value = Convert.ToDouble(row2.Cells["priceAD"].Value);
                             com.Parameters["@TotalAD"].Value = Convert.ToDouble(row2.Cells["totalAD"].Value);
-                            com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
+                            if (row2.Cells[11].Value.ToString() != "عرض")
+                            {
+                                com.Parameters["@SellDiscount"].Value = Convert.ToDouble(row2.Cells["Discount"].Value);
+                            }
+                            else
+                            {
+                                com.Parameters["@SellDiscount"].Value = 0;
+                            }
                             if (row2.Cells["CustomerBill_ID"].Value!= null && row2.Cells["Delegate_ID"].Value != null)
                             {
                                 com.Parameters["@CustomerBill_ID"].Value = Convert.ToInt32(row2.Cells["CustomerBill_ID"].Value);

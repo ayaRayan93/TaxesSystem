@@ -227,7 +227,7 @@ namespace MainSystem
                     dbconnection.Close();
                     dbconnection.Open();
                     MySqlDataAdapter adapterOffers = new MySqlDataAdapter(query, dbconnection);
-                    query = "SELECT offer.Offer_ID as 'كود العرض',data.Code as 'الكود',offer_details.Quantity as 'الكمية',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'صورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN offer_details on data.Data_ID=offer_details.Data_ID INNER JOIN offer on offer.Offer_ID=offer_details.Offer_ID left join data_photo on data_photo.Data_ID=data.Data_ID order by data.Code";
+                    query = "SELECT offer.Offer_ID as 'كود العرض',data.Code as 'الكود',offer_details.Quantity as 'الكمية',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'صورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN offer_details on data.Data_ID=offer_details.Data_ID INNER JOIN offer on offer.Offer_ID=offer_details.Offer_ID left join data_photo on data_photo.Data_ID=data.Data_ID inner join storage on storage.Offer_ID=offer.Offer_ID where offer.Offer_ID IN(" + q3 + ") and storage.Store_ID IN (" + q5 + ") order by data.Code";
                     MySqlDataAdapter AdapterProducts = new MySqlDataAdapter(query, dbconnection);
                     DataSet dataSet11 = new DataSet();
 
@@ -255,7 +255,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         
-    }
+        }
 
         public void deleteSet(int id)
         {
