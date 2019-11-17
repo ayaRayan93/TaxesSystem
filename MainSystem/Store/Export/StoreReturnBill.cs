@@ -530,16 +530,16 @@ namespace MainSystem
      
                 if (radioButtonReturnBill.Checked)
                 {
-                    txtCarton.Text = row[5].ToString();
-                    txtReturnedQuantity.Text = row[3].ToString();
+                    txtCarton.Text = row[6].ToString();
+                    txtReturnedQuantity.Text = row[4].ToString();
                 }
                 else
                 {
-                    txtCarton.Text = row[3].ToString();
+                    txtCarton.Text = row[4].ToString();
                 }
                 try
                 {
-                    txtNumOfCarton.Text = (Convert.ToDouble(row[3].ToString()) / Convert.ToDouble(row[5].ToString())).ToString();
+                    txtNumOfCarton.Text = (Convert.ToDouble(row[4].ToString()) / Convert.ToDouble(row[6].ToString())).ToString();
                 }
                 catch 
                 {
@@ -958,14 +958,30 @@ namespace MainSystem
             else
             {
                 dr.Close();
+                DataTable dtAll = new DataTable();
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID,case when product_bill.Type ='بند' then Code else product_bill.Data_ID end as'الكود', case when product_bill.Type ='بند' then " + itemName + " else (select Offer_Name from offer where Offer_ID=product_bill.Data_ID) end as 'البند' ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة',case when product_bill.Type ='بند' then Carton else 0 end as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
-
+                query = "select product_bill.Data_ID, product_bill.Type  as 'الفئة' ,Code  as'الكود', " + itemName + "  as 'البند' ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة', Carton  as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                ad.Fill(dt);
-                gridControl1.DataSource = dt;
+                DataTable dtProduct = new DataTable();
+
+                query = "select sets.Set_ID as 'Data_ID',concat(sets.Set_ID,' ') as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة','" + 0 + " ' as 'الكرتنة' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                ad = new MySqlDataAdapter(query, dbconnection);
+                DataTable dtSet = new DataTable();
+              
+
+                query = "select offer.Offer_ID as 'Data_ID',concat(offer.Offer_ID,' ') as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة','" + 0 + " ' as 'الكرتنة' from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                ad = new MySqlDataAdapter(query, dbconnection);
+                DataTable dtOffer = new DataTable();
+               
+
+                dtAll = dtProduct.Copy();
+                dtAll.Merge(dtSet);
+                dtAll.Merge(dtOffer);
+
+           
+                ad.Fill(dtAll);
+                gridControl1.DataSource = dtAll;
                 gridView1.Columns[0].Visible = false;
             }
         }
@@ -1046,7 +1062,7 @@ namespace MainSystem
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[1]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[2]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row[3]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row[4]);
 
                     double re = 0, carton = 0;
                     if (Convert.ToDouble(txtCarton.Text) != 0)

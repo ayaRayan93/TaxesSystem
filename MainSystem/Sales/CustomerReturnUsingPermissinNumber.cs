@@ -122,18 +122,19 @@ namespace MainSystem
                     }
                     dr.Close();
 
+                    #region بند
                     if (labBillNumber.Text != "")
                     {
-                        query = "select DISTINCT product_bill.Data_ID,case when product_bill.Type ='بند' then Code else product_bill.Data_ID end as'الكود',case when product_bill.Type ='بند' then " + supQuery + " else (select Offer_Name from offer where Offer_ID=product_bill.Data_ID) end as 'البند',customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on product_bill.Data_ID=customer_return_permission_details.Data_ID inner join customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and customer_bill.Branch_BillNumber="+labBillNumber.Text+" and customer_bill.Branch_ID="+Branch_ID+"  ";
+                        query = "select DISTINCT product_bill.Data_ID, Code  as'الكود', " + supQuery + " as 'البند',customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + relation + " inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on product_bill.Data_ID=customer_return_permission_details.Data_ID inner join customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and customer_bill.Branch_BillNumber=" + labBillNumber.Text + " and customer_bill.Branch_ID=" + Branch_ID + " and product_bill.Type='بند'";
                     }
                     else
                     {
-                        query = "select customer_return_permission_details.Data_ID,case when customer_return_permission_details.TypeItem ='بند' then Code else customer_return_permission_details.Data_ID end as'الكود',case when customer_return_permission_details.TypeItem ='بند' then " + supQuery + " else (select Offer_Name from offer where Offer_ID=customer_return_permission_details.Data_ID) end as 'البند',customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'" + "بند" + "',customer_return_permission_details.Store_ID from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
+                        query = "select customer_return_permission_details.Data_ID, Code  as'الكود'," + supQuery + "  as 'البند',customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'" + "بند" + "',customer_return_permission_details.Store_ID from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join data on data.Data_ID=customer_return_permission_details.Data_ID " + relation + " inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
                     }
 
                     com = new MySqlCommand(query, dbconnection);
                     dr = com.ExecuteReader();
-                  
+
                     load1 = false;
                     while (dr.Read())
                     {
@@ -153,6 +154,40 @@ namespace MainSystem
 
                     }
                     dr.Close();
+                    #endregion
+                    #region عرض
+                    if (labBillNumber.Text != "")
+                    {
+                        query = "select DISTINCT product_bill.Data_ID, product_bill.Data_ID  as'الكود', Offer_Name as 'البند',customer_return_permission_details.TotalQuantity as 'الكمية',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*product_bill.PriceAD) as 'الاجمالي',product_bill.Delegate_ID,product_bill.CustomerBill_ID ,product_bill.Type,product_bill.Store_ID from product_bill inner join customer_return_permission on customer_return_permission.CustomerBill_ID=product_bill.CustomerBill_ID inner join customer_return_permission_details on product_bill.Data_ID=customer_return_permission_details.Data_ID inner join customer_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join offer on offer.Offer_ID=product_bill.Data_ID  where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text + " and customer_bill.Branch_BillNumber=" + labBillNumber.Text + " and customer_bill.Branch_ID=" + Branch_ID + " and product_bill.Type='عرض' ";
+                    }
+                    else
+                    {
+                        query = "select customer_return_permission_details.Data_ID, product_bill.Data_ID  as'الكود',Offer_Name  as 'البند',customer_return_permission_details.TotalQuantity as 'الكمية',sellprice.Last_Price as 'السعر',sellprice.Sell_Discount as 'نسبة الخصم',sellprice.Sell_Price as 'السعر بعد الخصم',(customer_return_permission_details.TotalQuantity*sellprice.Sell_Price) as 'الاجمالي','','' ,'" + "عرض" + "',customer_return_permission_details.Store_ID from customer_return_permission  inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID inner join sellprice on sellprice.Data_ID=customer_return_permission_details.Data_ID inner join offer on offer.Offer_ID=product_bill.Data_ID where customer_return_permission_details.CustomerReturnPermission_ID=" + txtReturnPermission.Text;
+                    }
+
+                    com = new MySqlCommand(query, dbconnection);
+                    dr = com.ExecuteReader();
+
+                    load1 = false;
+                    while (dr.Read())
+                    {
+                        int n = dataGridView2.Rows.Add();
+                        dataGridView2.Rows[n].Cells[0].Value = dr[0].ToString();
+                        dataGridView2.Rows[n].Cells[1].Value = dr[1].ToString();
+                        dataGridView2.Rows[n].Cells[2].Value = dr[2].ToString();
+                        dataGridView2.Rows[n].Cells[3].Value = dr[3].ToString();
+                        dataGridView2.Rows[n].Cells[4].Value = dr[4].ToString();
+                        dataGridView2.Rows[n].Cells[5].Value = dr[5].ToString();
+                        dataGridView2.Rows[n].Cells[6].Value = dr[6].ToString();
+                        dataGridView2.Rows[n].Cells[7].Value = dr[7].ToString();
+                        dataGridView2.Rows[n].Cells[8].Value = dr[8].ToString();
+                        dataGridView2.Rows[n].Cells[9].Value = dr[9].ToString();
+                        dataGridView2.Rows[n].Cells[11].Value = dr[10].ToString();
+                        dataGridView2.Rows[n].Cells[12].Value = dr[11].ToString();
+
+                    }
+                    dr.Close();
+                    #endregion
                     calculateTotalBill();
                     load1 = true;
 
