@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Item_Transitions_Report
+    partial class Factory_Transitions_Report
     {
         /// <summary>
         /// Required designer variable.
@@ -31,25 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.gridControl2 = new DevExpress.XtraGrid.GridControl();
-            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Note = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.BillNum = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Date = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Client = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ItemIncrease = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ItemDecrease = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Price = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.TotalCost = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCodeSearch5 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.panSearchAddtionalTool = new System.Windows.Forms.Panel();
             this.txtSort = new System.Windows.Forms.TextBox();
@@ -63,10 +51,7 @@
             this.comSort = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.labSearch = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnNewChooes = new System.Windows.Forms.Button();
-            this.comStore = new System.Windows.Forms.ComboBox();
-            this.txtStoreID = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.txtCodeSearch4 = new System.Windows.Forms.TextBox();
             this.comProduct = new System.Windows.Forms.ComboBox();
@@ -85,16 +70,10 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtTotalBills = new System.Windows.Forms.TextBox();
-            this.txtTotalReturn = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtSafy = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -118,60 +97,59 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.gridControl2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1043, 600);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
-            // gridControl2
+            // gridControl1
             // 
-            this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControl2.Location = new System.Drawing.Point(3, 133);
-            this.gridControl2.MainView = this.gridView2;
-            this.gridControl2.Name = "gridControl2";
-            this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl2.Size = new System.Drawing.Size(1037, 117);
-            this.gridControl2.TabIndex = 241;
-            this.gridControl2.ToolTipController = this.toolTipController1;
-            this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView2});
+            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControl1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridControl1.Location = new System.Drawing.Point(3, 133);
+            this.gridControl1.MainView = this.gridView1;
+            this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.gridControl1.Size = new System.Drawing.Size(1037, 404);
+            this.gridControl1.TabIndex = 241;
+            this.gridControl1.ToolTipController = this.toolTipController1;
+            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
             // 
-            // gridView2
+            // gridView1
             // 
-            this.gridView2.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView2.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView2.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView2.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView2.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridView2.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.gridView2.Appearance.Row.Options.UseFont = true;
-            this.gridView2.Appearance.Row.Options.UseForeColor = true;
-            this.gridView2.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.gridView2.GridControl = this.gridControl2;
-            this.gridView2.Name = "gridView2";
-            this.gridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridView2.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView2.OptionsBehavior.Editable = false;
-            this.gridView2.OptionsDetail.EnableMasterViewMode = false;
-            this.gridView2.OptionsFind.FindNullPrompt = "بحث";
-            this.gridView2.OptionsFind.ShowClearButton = false;
-            this.gridView2.OptionsFind.ShowFindButton = false;
-            this.gridView2.OptionsView.ShowGroupPanel = false;
-            this.gridView2.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView2_RowCellClick);
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.gridView1.Appearance.Row.Options.UseFont = true;
+            this.gridView1.Appearance.Row.Options.UseForeColor = true;
+            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
+            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.gridView1.GridControl = this.gridControl1;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridView1.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsDetail.EnableMasterViewMode = false;
+            this.gridView1.OptionsFind.FindNullPrompt = "بحث";
+            this.gridView1.OptionsFind.ShowClearButton = false;
+            this.gridView1.OptionsFind.ShowFindButton = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView2_RowCellClick);
             // 
             // toolTipController1
             // 
@@ -179,145 +157,15 @@
             this.toolTipController1.Appearance.Options.UseFont = true;
             this.toolTipController1.ShowBeak = true;
             // 
-            // gridControl1
-            // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 256);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(1037, 281);
-            this.gridControl1.TabIndex = 240;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
-            this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridView1.Appearance.Row.Options.UseFont = true;
-            this.gridView1.Appearance.Row.Options.UseTextOptions = true;
-            this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
-            this.gridView1.AppearancePrint.HeaderPanel.Options.UseTextOptions = true;
-            this.gridView1.AppearancePrint.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.AppearancePrint.Row.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.gridView1.AppearancePrint.Row.Options.UseFont = true;
-            this.gridView1.AppearancePrint.Row.Options.UseTextOptions = true;
-            this.gridView1.AppearancePrint.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.Note,
-            this.BillNum,
-            this.Date,
-            this.Client,
-            this.ItemIncrease,
-            this.ItemDecrease,
-            this.Price,
-            this.TotalCost});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.Date, DevExpress.Data.ColumnSortOrder.Ascending)});
-            // 
-            // Note
-            // 
-            this.Note.Caption = "بيان";
-            this.Note.FieldName = "بيان";
-            this.Note.Name = "Note";
-            this.Note.Visible = true;
-            this.Note.VisibleIndex = 0;
-            this.Note.Width = 110;
-            // 
-            // BillNum
-            // 
-            this.BillNum.Caption = "رقم الفاتورة";
-            this.BillNum.FieldName = "رقم الفاتورة";
-            this.BillNum.Name = "BillNum";
-            this.BillNum.Visible = true;
-            this.BillNum.VisibleIndex = 1;
-            this.BillNum.Width = 132;
-            // 
-            // Date
-            // 
-            this.Date.Caption = "التاريخ";
-            this.Date.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
-            this.Date.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.Date.FieldName = "التاريخ";
-            this.Date.Name = "Date";
-            this.Date.OptionsColumn.AllowEdit = false;
-            this.Date.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
-            this.Date.Visible = true;
-            this.Date.VisibleIndex = 2;
-            this.Date.Width = 177;
-            // 
-            // Client
-            // 
-            this.Client.Caption = "العميل";
-            this.Client.FieldName = "العميل";
-            this.Client.Name = "Client";
-            this.Client.Visible = true;
-            this.Client.VisibleIndex = 3;
-            this.Client.Width = 177;
-            // 
-            // ItemIncrease
-            // 
-            this.ItemIncrease.Caption = "اضافة";
-            this.ItemIncrease.FieldName = "اضافة";
-            this.ItemIncrease.Name = "ItemIncrease";
-            this.ItemIncrease.OptionsColumn.AllowEdit = false;
-            this.ItemIncrease.Visible = true;
-            this.ItemIncrease.VisibleIndex = 4;
-            this.ItemIncrease.Width = 80;
-            // 
-            // ItemDecrease
-            // 
-            this.ItemDecrease.Caption = "خصم";
-            this.ItemDecrease.FieldName = "خصم";
-            this.ItemDecrease.Name = "ItemDecrease";
-            this.ItemDecrease.Visible = true;
-            this.ItemDecrease.VisibleIndex = 5;
-            this.ItemDecrease.Width = 80;
-            // 
-            // Price
-            // 
-            this.Price.Caption = "السعر";
-            this.Price.FieldName = "السعر";
-            this.Price.Name = "Price";
-            this.Price.Visible = true;
-            this.Price.VisibleIndex = 6;
-            this.Price.Width = 121;
-            // 
-            // TotalCost
-            // 
-            this.TotalCost.Caption = "الاجمالى";
-            this.TotalCost.FieldName = "الاجمالى";
-            this.TotalCost.Name = "TotalCost";
-            this.TotalCost.Visible = true;
-            this.TotalCost.VisibleIndex = 7;
-            this.TotalCost.Width = 142;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtCodeSearch5);
-            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.dateTimePicker1);
             this.panel2.Controls.Add(this.dateTimePicker2);
             this.panel2.Controls.Add(this.panSearchAddtionalTool);
             this.panel2.Controls.Add(this.labSearch);
-            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.btnNewChooes);
-            this.panel2.Controls.Add(this.comStore);
-            this.panel2.Controls.Add(this.txtStoreID);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.txtCodeSearch4);
             this.panel2.Controls.Add(this.comProduct);
@@ -345,7 +193,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(304, 8);
+            this.label2.Location = new System.Drawing.Point(570, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 19);
             this.label2.TabIndex = 1;
@@ -367,17 +215,6 @@
             this.txtCodeSearch5.TextChanged += new System.EventHandler(this.txtCodeSearch5_TextChanged);
             this.txtCodeSearch5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodeSearch_KeyDown);
             // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(500, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "من";
-            // 
             // label13
             // 
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -390,23 +227,12 @@
             this.label13.TabIndex = 175;
             this.label13.Text = "البحث بكود الصنف";
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(345, 7);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.RightToLeftLayout = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(149, 20);
-            this.dateTimePicker1.TabIndex = 2;
-            // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker2.CustomFormat = "yyyy/MM/dd";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(149, 7);
+            this.dateTimePicker2.Location = new System.Drawing.Point(415, 11);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.RightToLeftLayout = true;
             this.dateTimePicker2.Size = new System.Drawing.Size(149, 20);
@@ -587,17 +413,6 @@
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
             // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(768, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 19);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "مخزن";
-            // 
             // btnNewChooes
             // 
             this.btnNewChooes.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -613,27 +428,6 @@
             this.btnNewChooes.Text = "اختيار اخر";
             this.btnNewChooes.UseVisualStyleBackColor = false;
             this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
-            // 
-            // comStore
-            // 
-            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(613, 5);
-            this.comStore.Name = "comStore";
-            this.comStore.Size = new System.Drawing.Size(149, 24);
-            this.comStore.TabIndex = 6;
-            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
-            // 
-            // txtStoreID
-            // 
-            this.txtStoreID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtStoreID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStoreID.Location = new System.Drawing.Point(541, 6);
-            this.txtStoreID.Name = "txtStoreID";
-            this.txtStoreID.Size = new System.Drawing.Size(66, 23);
-            this.txtStoreID.TabIndex = 11;
-            this.txtStoreID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // button1
             // 
@@ -862,15 +656,14 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel2.ColumnCount = 6;
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel2.Controls.Add(this.btnReport, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnReport, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 3, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 543);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -893,79 +686,31 @@
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "طباعة";
-            this.btnReport.Location = new System.Drawing.Point(721, 4);
+            this.btnReport.Location = new System.Drawing.Point(575, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(128, 46);
+            this.btnReport.Size = new System.Drawing.Size(97, 46);
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 6;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
-            this.tableLayoutPanel5.Controls.Add(this.txtTotalBills, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.txtTotalReturn, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label7, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label8, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label9, 4, 0);
-            this.tableLayoutPanel5.Controls.Add(this.txtSafy, 5, 0);
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Controls.Add(this.label9, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.txtSafy, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(59, 3);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(57, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(605, 48);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(201, 48);
             this.tableLayoutPanel5.TabIndex = 9;
-            // 
-            // txtTotalBills
-            // 
-            this.txtTotalBills.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalBills.Location = new System.Drawing.Point(408, 3);
-            this.txtTotalBills.Name = "txtTotalBills";
-            this.txtTotalBills.ReadOnly = true;
-            this.txtTotalBills.Size = new System.Drawing.Size(94, 23);
-            this.txtTotalBills.TabIndex = 2;
-            this.txtTotalBills.Text = "0";
-            // 
-            // txtTotalReturn
-            // 
-            this.txtTotalReturn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalReturn.Location = new System.Drawing.Point(198, 3);
-            this.txtTotalReturn.Name = "txtTotalReturn";
-            this.txtTotalReturn.ReadOnly = true;
-            this.txtTotalReturn.Size = new System.Drawing.Size(94, 23);
-            this.txtTotalReturn.TabIndex = 3;
-            this.txtTotalReturn.Text = "0";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Salmon;
-            this.label7.Location = new System.Drawing.Point(508, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 16);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "اجمالى الاضافة";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Salmon;
-            this.label8.Location = new System.Drawing.Point(298, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(81, 16);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "اجمالى الخصم";
             // 
             // label9
             // 
@@ -973,7 +718,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Salmon;
-            this.label9.Location = new System.Drawing.Point(138, 0);
+            this.label9.Location = new System.Drawing.Point(144, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(47, 16);
             this.label9.TabIndex = 6;
@@ -982,27 +727,25 @@
             // txtSafy
             // 
             this.txtSafy.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSafy.Location = new System.Drawing.Point(38, 3);
+            this.txtSafy.Location = new System.Drawing.Point(3, 3);
             this.txtSafy.Name = "txtSafy";
             this.txtSafy.ReadOnly = true;
-            this.txtSafy.Size = new System.Drawing.Size(94, 23);
+            this.txtSafy.Size = new System.Drawing.Size(135, 23);
             this.txtSafy.TabIndex = 7;
             this.txtSafy.Text = "0";
             // 
-            // Item_Transitions_Report
+            // Factory_Transitions_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 600);
             this.Controls.Add(this.panel1);
-            this.Name = "Item_Transitions_Report";
+            this.Name = "Factory_Transitions_Report";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bills_Transitions_Report";
             this.Load += new System.EventHandler(this.Item_Transitions_Report_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -1024,17 +767,8 @@
         private Bunifu.Framework.UI.BunifuTileButton btnReport;
         private DevExpress.Utils.ToolTipController toolTipController1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comStore;
-        private System.Windows.Forms.TextBox txtStoreID;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.TextBox txtTotalBills;
-        private System.Windows.Forms.TextBox txtTotalReturn;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtSafy;
         private System.Windows.Forms.Panel panel2;
@@ -1070,15 +804,5 @@
         private System.Windows.Forms.Label label15;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn BillNum;
-        private DevExpress.XtraGrid.Columns.GridColumn Date;
-        private DevExpress.XtraGrid.Columns.GridColumn Client;
-        private DevExpress.XtraGrid.Columns.GridColumn ItemIncrease;
-        private DevExpress.XtraGrid.Columns.GridColumn ItemDecrease;
-        private DevExpress.XtraGrid.Columns.GridColumn Price;
-        private DevExpress.XtraGrid.Columns.GridColumn TotalCost;
-        private DevExpress.XtraGrid.GridControl gridControl2;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn Note;
     }
 }
