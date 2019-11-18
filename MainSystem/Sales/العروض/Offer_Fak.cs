@@ -181,18 +181,31 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                RecordOfferQuantityInStorage(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
-                increaseItemsQuantityInDB(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
-                MessageBox.Show("تم");
+                string query = "select CurrentQuantity from offer where Offer_ID=" + txtOffersID.Text;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                int CurrentQuantity = Convert.ToInt16(com.ExecuteScalar());
+                int quantityFak = Convert.ToInt16(txtOfferQuantity.Text);
+                if ((CurrentQuantity- quantityFak)>=0)
+                {
+                    RecordOfferQuantityInOfferStorage(Convert.ToInt32(txtOffersID.Text), Convert.ToInt16(txtOfferQuantity.Text));
+                    RecordOfferQuantityInStorage(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
+                    increaseItemsQuantityInDB(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
+                    
+                    MessageBox.Show("تم");
 
-                dataGridView1.Rows.Clear();
-                comStore.Text = "";
-                txtStoreID.Text = "";
-                txtOfferQuantity.Text = "";
-                txtTotalQuantityOffer.Text = "";
-                txtOffersID.Text = "";
-                comOffers.Text = "";
-                offerStorage.DisplayOffer();
+                    dataGridView1.Rows.Clear();
+                    comStore.Text = "";
+                    txtStoreID.Text = "";
+                    txtOfferQuantity.Text = "";
+                    txtTotalQuantityOffer.Text = "";
+                    txtOffersID.Text = "";
+                    comOffers.Text = "";
+                    offerStorage.DisplayOffer();
+                }
+                else
+                {
+                    MessageBox.Show("الكمية المراد فكها اكبر من الكمية الحالية للعرض");
+                }
             }
             catch (Exception ex)
             {
@@ -289,9 +302,31 @@ namespace MainSystem
                 }
                 else
                 {
-                    query = "delete from storage  where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
+                    MessageBox.Show("الكمية المراد فكها اكبر من الكمية الحالية للعرض");
+                }
+            }
+            else
+            {
+                MessageBox.Show("هذا العرض لايوجد في المخزن");
+            }
+        }
+        //update offer openofferstorage
+        public void RecordOfferQuantityInOfferStorage(double newQuantityOffer, int offerID)
+        {
+            string query = "select Quantity from offer_openstorage_quantity  where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                double storeQuantity = Convert.ToDouble(com.ExecuteScalar());
+                if ((storeQuantity - newQuantityOffer) >= 0)
+                {
+                    query = "update offer_openstorage_quantity set Quantity =" + (storeQuantity - newQuantityOffer) + "  where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
                     com = new MySqlCommand(query, dbconnection);
                     com.ExecuteNonQuery();
+                }
+                else
+                {
+                    MessageBox.Show("الكمية المراد فكها اكبر من الكمية الحالية للعرض");
                 }
             }
             else
