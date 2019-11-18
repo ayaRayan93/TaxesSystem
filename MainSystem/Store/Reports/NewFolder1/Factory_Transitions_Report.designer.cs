@@ -51,10 +51,7 @@
             this.comSort = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.labSearch = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnNewChooes = new System.Windows.Forms.Button();
-            this.comStore = new System.Windows.Forms.ComboBox();
-            this.txtStoreID = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.txtCodeSearch4 = new System.Windows.Forms.TextBox();
             this.comProduct = new System.Windows.Forms.ComboBox();
@@ -168,10 +165,7 @@
             this.panel2.Controls.Add(this.dateTimePicker2);
             this.panel2.Controls.Add(this.panSearchAddtionalTool);
             this.panel2.Controls.Add(this.labSearch);
-            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.btnNewChooes);
-            this.panel2.Controls.Add(this.comStore);
-            this.panel2.Controls.Add(this.txtStoreID);
             this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.txtCodeSearch4);
             this.panel2.Controls.Add(this.comProduct);
@@ -199,7 +193,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(327, 8);
+            this.label2.Location = new System.Drawing.Point(570, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 19);
             this.label2.TabIndex = 1;
@@ -238,7 +232,7 @@
             this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker2.CustomFormat = "yyyy/MM/dd";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(172, 7);
+            this.dateTimePicker2.Location = new System.Drawing.Point(415, 11);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.RightToLeftLayout = true;
             this.dateTimePicker2.Size = new System.Drawing.Size(149, 20);
@@ -419,17 +413,6 @@
             this.labSearch.Text = "ادوات بحث اضافية";
             this.labSearch.Click += new System.EventHandler(this.labSearch_Click);
             // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(768, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 19);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "مخزن";
-            // 
             // btnNewChooes
             // 
             this.btnNewChooes.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -445,27 +428,6 @@
             this.btnNewChooes.Text = "اختيار اخر";
             this.btnNewChooes.UseVisualStyleBackColor = false;
             this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
-            // 
-            // comStore
-            // 
-            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(613, 5);
-            this.comStore.Name = "comStore";
-            this.comStore.Size = new System.Drawing.Size(149, 24);
-            this.comStore.TabIndex = 6;
-            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
-            // 
-            // txtStoreID
-            // 
-            this.txtStoreID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtStoreID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStoreID.Location = new System.Drawing.Point(541, 6);
-            this.txtStoreID.Name = "txtStoreID";
-            this.txtStoreID.Size = new System.Drawing.Size(66, 23);
-            this.txtStoreID.TabIndex = 11;
-            this.txtStoreID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // button1
             // 
@@ -806,9 +768,6 @@
         private DevExpress.Utils.ToolTipController toolTipController1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comStore;
-        private System.Windows.Forms.TextBox txtStoreID;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtSafy;
