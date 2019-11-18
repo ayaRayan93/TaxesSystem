@@ -178,8 +178,10 @@ namespace MainSystem
                 double quntityRequest = Convert.ToDouble(txtOfferQuantity.Text);
                 if (quntityRequest<=q)
                 {
+                    RecordOfferQuantityInOferStorage(Convert.ToInt32(txtOffersID.Text), Convert.ToInt16(txtOfferQuantity.Text));
                     RecordOfferQuantityInStorage(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
                     decreaseItemsQuantityInDB(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
+              
                     MessageBox.Show("تم");
                     // dataGridView1.Rows.Clear();
                     offerStorage.DisplayOffer();
@@ -362,7 +364,34 @@ namespace MainSystem
                 com.ExecuteNonQuery();
             }
         }
+        //record to offer open storage quantity
+        public void RecordOfferQuantityInOferStorage(int offerID,int minQuantity)
+        {
+            string query = "select Quntity from offer_openstorage_quantity where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                double storeQuantity = Convert.ToDouble(com.ExecuteScalar());
+                query = "update offer_openstorage_quantity set Quantity=" + (minQuantity + storeQuantity) + " where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
+                com = new MySqlCommand(query, dbconnection);
+                com.ExecuteNonQuery();
+            }
+            else
+            {
+                query = "insert into offer_openstorage_quantity (Store_ID,Offer_ID,Quantity,Date) values (@Store_ID,@Offer_ID,@Quantity,@date)";
+                com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                com.Parameters["@Store_ID"].Value = Convert.ToInt32(txtStoreID.Text);
+                com.Parameters.Add("@Offer_ID", MySqlDbType.Date);
+                com.Parameters["@Offer_ID"].Value = DateTime.Now.ToString("yyyy-MM-dd");
+                com.Parameters.Add("@Quantity", MySqlDbType.Int16);
+                com.Parameters["@Quantity"].Value = minQuantity;
+                com.Parameters.Add("@Date", MySqlDbType.Int16);
+                com.Parameters["@Date"].Value = DateTime.Now.Date;
+                com.ExecuteNonQuery();
+            }
 
+        }
         //function
         public void decreaseItemsQuantityInDB(double TaqmQuantity, int offerID)
         {

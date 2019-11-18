@@ -233,45 +233,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        private void navBarItemDelegateLeastBills_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            try
-            {
-                restForeColorOfNavBarItem();
-                NavBarItem navBarItem = (NavBarItem)sender;
-                navBarItem.Appearance.ForeColor = Color.Blue;
-                if (!xtraTabControlAccounting.Visible)
-                    xtraTabControlAccounting.Visible = true;
-
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير لما يتم سدادها بالكامل");
-                if (xtraTabPage == null)
-                {
-                    xtraTabControlAccounting.TabPages.Add("فواتير لما يتم سدادها بالكامل");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "فواتير لما يتم سدادها بالكامل");
-                    xtraTabPage.RightToLeft = RightToLeft.No;
-                }
-                else
-                {
-                    xtraTabPage.RightToLeft = RightToLeft.No;
-                }
-
-                xtraTabPage.Controls.Clear();
-                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
-
-                DelegateLeastBills objForm = new DelegateLeastBills(this);
-
-                objForm.TopLevel = false;
-                xtraTabPage.Controls.Add(objForm);
-                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                objForm.Dock = DockStyle.Fill;
-                //objForm.DisplayAtaqm();
-                objForm.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+      
         private void navBarItemDelegateCustomersBills_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

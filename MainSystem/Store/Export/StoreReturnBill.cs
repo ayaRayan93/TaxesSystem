@@ -526,7 +526,7 @@ namespace MainSystem
             {
                 row = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
                 rowHandel1 = e.RowHandle;
-                txtCode.Text = row[1].ToString();
+                txtCode.Text = row[2].ToString();
      
                 if (radioButtonReturnBill.Checked)
                 {
@@ -535,11 +535,11 @@ namespace MainSystem
                 }
                 else
                 {
-                    txtCarton.Text = row[4].ToString();
+                    txtCarton.Text = row[6].ToString();
                 }
                 try
                 {
-                    txtNumOfCarton.Text = (Convert.ToDouble(row[4].ToString()) / Convert.ToDouble(row[6].ToString())).ToString();
+                    txtNumOfCarton.Text = (Convert.ToDouble(row[5].ToString()) / Convert.ToDouble(row[6].ToString())).ToString();
                 }
                 catch 
                 {
@@ -559,8 +559,8 @@ namespace MainSystem
                 GridView View = sender as GridView;
                 if (e.RowHandle >= 0)
                 {
-                    double x1 = Convert.ToDouble(View.GetRowCellDisplayText(e.RowHandle, View.Columns[3]));
-                    double x2 = Convert.ToDouble(View.GetRowCellDisplayText(e.RowHandle, View.Columns[4]));
+                    double x1 = Convert.ToDouble(View.GetRowCellDisplayText(e.RowHandle, View.Columns[4]));
+                    double x2 = Convert.ToDouble(View.GetRowCellDisplayText(e.RowHandle, View.Columns[5]));
 
                     if (x1 > x2)
                     {
@@ -961,26 +961,28 @@ namespace MainSystem
                 DataTable dtAll = new DataTable();
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID, product_bill.Type  as 'الفئة' ,Code  as'الكود', " + itemName + "  as 'البند' ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة', Carton  as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
+                query = "select product_bill.Data_ID, product_bill.Type  as 'الفئة' ,Code  as'الكود', " + itemName + "  as 'الاسم' ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة', Carton  as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtProduct = new DataTable();
-
-                query = "select sets.Set_ID as 'Data_ID',concat(sets.Set_ID,' ') as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة','" + 0 + " ' as 'الكرتنة' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                ad.Fill(dtProduct);
+                query = "select sets.Set_ID as 'Data_ID',concat(sets.Set_ID,' ') as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة'," + 0 + " as 'الكرتنة' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                 ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtSet = new DataTable();
-              
+                ad.Fill(dtSet);
 
-                query = "select offer.Offer_ID as 'Data_ID',concat(offer.Offer_ID,' ') as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة','" + 0 + " ' as 'الكرتنة' from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+
+                query = "select offer.Offer_ID as 'Data_ID',concat(offer.Offer_ID,' ') as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة'," + 0 + " as 'الكرتنة' from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                 ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtOffer = new DataTable();
-               
+                ad.Fill(dtOffer);
+
 
                 dtAll = dtProduct.Copy();
-                dtAll.Merge(dtSet);
-                dtAll.Merge(dtOffer);
+                dtAll.Merge(dtSet, true, MissingSchemaAction.Ignore);
+                dtAll.Merge(dtOffer, true, MissingSchemaAction.Ignore);
 
            
-                ad.Fill(dtAll);
+                //ad.Fill(dtAll);
                 gridControl1.DataSource = dtAll;
                 gridView1.Columns[0].Visible = false;
             }
@@ -1060,8 +1062,8 @@ namespace MainSystem
                 if (gridView2.IsNewItemRow(rowHandle) && rowHandel1 != -1)
                 {
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[1]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[2]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[2]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[3]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row[4]);
 
                     double re = 0, carton = 0;
@@ -1083,8 +1085,8 @@ namespace MainSystem
                 if (gridView2.IsNewItemRow(rowHandle) && rowHandel1 != -1)
                 {
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[1]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[2]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[2]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[3]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], "");
 
                     double re = 0, carton = 0;

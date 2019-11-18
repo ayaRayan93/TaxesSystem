@@ -642,16 +642,27 @@ namespace MainSystem
                     }
                     
                     dbconnection.Open();
-                    string query = "update offer set Price=@Price,Delegate_Percent=@Delegate_Percent,Description=@Description where Offer_ID=" + rowOffer[0].ToString();
+                    string query = "select Offer_Name from offer where Offer_Name='" + txtOfferName.Text + "' and Offer_ID not in ("+ rowOffer[0].ToString() + ")";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    com.Parameters.Add("@Price", MySqlDbType.Decimal);
-                    com.Parameters["@Price"].Value = price;
-                    com.Parameters.Add("@Delegate_Percent", MySqlDbType.Decimal);
-                    com.Parameters["@Delegate_Percent"].Value = txtDelegatePercent.Text;
-                    com.Parameters.Add("@Description", MySqlDbType.VarChar);
-                    com.Parameters["@Description"].Value = txtDescription.Text;
-                    com.ExecuteNonQuery();
-
+                    if (com.ExecuteScalar() == null)
+                    {
+                        query = "update offer set Offer_Name=@Offer_Name,Price=@Price,Delegate_Percent=@Delegate_Percent,Description=@Description where Offer_ID=" + rowOffer[0].ToString();
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@Offer_Name", MySqlDbType.VarChar);
+                        com.Parameters["@Offer_Name"].Value = txtOfferName.Text;
+                        com.Parameters.Add("@Price", MySqlDbType.Decimal);
+                        com.Parameters["@Price"].Value = price;
+                        com.Parameters.Add("@Delegate_Percent", MySqlDbType.Decimal);
+                        com.Parameters["@Delegate_Percent"].Value = txtDelegatePercent.Text;
+                        com.Parameters.Add("@Description", MySqlDbType.VarChar);
+                        com.Parameters["@Description"].Value = txtDescription.Text;
+                        com.ExecuteNonQuery();
+                    }
+                    else {
+                        MessageBox.Show("اسم العرض مسجل من قبل");
+                        dbconnection.Close();
+                        return;
+                    }
                     //فك كمية البنود
                     dbconnection3.Open();
                     query = "select storage.Store_ID,sum(Total_Meters) as 'الكمية' from storage  where Offer_ID=" + rowOffer[0].ToString() + " group by storage.Store_ID,storage.Offer_ID";
