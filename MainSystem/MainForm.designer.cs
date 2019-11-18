@@ -5690,7 +5690,10 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemBillsAgleTransitionsReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemTotalSales;
         private DevExpress.XtraNavBar.NavBarItem navBarItemTotalSalesDetails;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem230;
         private DevExpress.XtraNavBar.NavBarItem navBarItemInventoryReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemFactoryProduct;
+        
     }
 }
 
