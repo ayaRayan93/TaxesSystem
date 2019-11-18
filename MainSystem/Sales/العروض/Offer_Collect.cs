@@ -367,7 +367,7 @@ namespace MainSystem
         //record to offer open storage quantity
         public void RecordOfferQuantityInOferStorage(int offerID,int minQuantity)
         {
-            string query = "select Quntity from offer_openstorage_quantity where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
+            string query = "select Quantity from offer_openstorage_quantity where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (com.ExecuteScalar() != null)
             {
@@ -382,11 +382,11 @@ namespace MainSystem
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                 com.Parameters["@Store_ID"].Value = Convert.ToInt32(txtStoreID.Text);
-                com.Parameters.Add("@Offer_ID", MySqlDbType.Date);
-                com.Parameters["@Offer_ID"].Value = DateTime.Now.ToString("yyyy-MM-dd");
+                com.Parameters.Add("@Offer_ID", MySqlDbType.Int16);
+                com.Parameters["@Offer_ID"].Value = offerID;
                 com.Parameters.Add("@Quantity", MySqlDbType.Int16);
                 com.Parameters["@Quantity"].Value = minQuantity;
-                com.Parameters.Add("@Date", MySqlDbType.Int16);
+                com.Parameters.Add("@Date", MySqlDbType.Date);
                 com.Parameters["@Date"].Value = DateTime.Now.Date;
                 com.ExecuteNonQuery();
             }

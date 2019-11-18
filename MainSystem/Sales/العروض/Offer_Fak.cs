@@ -181,31 +181,22 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                string query = "select CurrentQuantity from offer where Offer_ID=" + txtOffersID.Text;
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                int CurrentQuantity = Convert.ToInt16(com.ExecuteScalar());
-                int quantityFak = Convert.ToInt16(txtOfferQuantity.Text);
-                if ((CurrentQuantity- quantityFak)>=0)
-                {
-                    RecordOfferQuantityInOfferStorage(Convert.ToInt32(txtOffersID.Text), Convert.ToInt16(txtOfferQuantity.Text));
-                    RecordOfferQuantityInStorage(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
-                    increaseItemsQuantityInDB(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
+               
+                RecordOfferQuantityInOfferStorage(Convert.ToInt16(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
+                RecordOfferQuantityInStorage(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
+                increaseItemsQuantityInDB(Convert.ToDouble(txtOfferQuantity.Text), Convert.ToInt32(txtOffersID.Text));
                     
-                    MessageBox.Show("تم");
+                MessageBox.Show("تم");
 
-                    dataGridView1.Rows.Clear();
-                    comStore.Text = "";
-                    txtStoreID.Text = "";
-                    txtOfferQuantity.Text = "";
-                    txtTotalQuantityOffer.Text = "";
-                    txtOffersID.Text = "";
-                    comOffers.Text = "";
-                    offerStorage.DisplayOffer();
-                }
-                else
-                {
-                    MessageBox.Show("الكمية المراد فكها اكبر من الكمية الحالية للعرض");
-                }
+                dataGridView1.Rows.Clear();
+                comStore.Text = "";
+                txtStoreID.Text = "";
+                txtOfferQuantity.Text = "";
+                txtTotalQuantityOffer.Text = "";
+                txtOffersID.Text = "";
+                comOffers.Text = "";
+                offerStorage.DisplayOffer();
+            
             }
             catch (Exception ex)
             {
@@ -294,7 +285,7 @@ namespace MainSystem
             if (com.ExecuteScalar() != null)
             {
                 double storeQuantity = Convert.ToDouble(com.ExecuteScalar());
-                if ((storeQuantity - newQuantityOffer) > 0)
+                if ((storeQuantity - newQuantityOffer) >= 0)
                 {
                     query = "update storage set Total_Meters =" + (storeQuantity - newQuantityOffer) + "  where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
                     com = new MySqlCommand(query, dbconnection);
@@ -313,15 +304,14 @@ namespace MainSystem
         //update offer openofferstorage
         public void RecordOfferQuantityInOfferStorage(double newQuantityOffer, int offerID)
         {
-            string query = "select Quantity from offer_openstorage_quantity  where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            if (com.ExecuteScalar() != null)
+         
+            if (txtTotalQuantityOffer.Text!="")
             {
-                double storeQuantity = Convert.ToDouble(com.ExecuteScalar());
+                double storeQuantity = Convert.ToDouble(txtTotalQuantityOffer.Text);
                 if ((storeQuantity - newQuantityOffer) >= 0)
                 {
-                    query = "update offer_openstorage_quantity set Quantity =" + (storeQuantity - newQuantityOffer) + "  where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
-                    com = new MySqlCommand(query, dbconnection);
+                   string query = "update offer_openstorage_quantity set Quantity =" + (storeQuantity - newQuantityOffer) + "  where Offer_ID=" + offerID + " and Store_ID=" + txtStoreID.Text;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.ExecuteNonQuery();
                 }
                 else
