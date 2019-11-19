@@ -236,6 +236,7 @@
             this.dateTimePicker2.RightToLeftLayout = true;
             this.dateTimePicker2.Size = new System.Drawing.Size(149, 20);
             this.dateTimePicker2.TabIndex = 3;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // panSearchAddtionalTool
             // 

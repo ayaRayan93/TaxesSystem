@@ -869,23 +869,7 @@ namespace MainSystem
         {
             try
             {
-                comProduct.Text = "";
-                comType.Text = "";
-                comFactory.Text = "";
-                comGroup.Text = "";
-                comColor.Text = "";
-                comSize.Text = "";
-                comSort.Text = "";
-                //comClassfication.Text = "";
-
-                txtCodeSearch1.Text = "";
-                txtCodeSearch2.Text = "";
-                txtCodeSearch3.Text = "";
-                txtCodeSearch4.Text = "";
-                txtCodeSearch5.Text = "";
-                txtColor.Text = "";
-                txtSize.Text = "";
-                txtSort.Text = "";
+                newChoose();
             }
             catch (Exception ex)
             {
@@ -947,6 +931,29 @@ namespace MainSystem
         }
 
         //functions
+        public void newChoose()
+        {
+            comProduct.Text = "";
+            comType.Text = "";
+            comFactory.Text = "";
+            comGroup.Text = "";
+            comColor.Text = "";
+            comSize.Text = "";
+            comSort.Text = "";
+            //comClassfication.Text = "";
+
+            txtCodeSearch1.Text = "";
+            txtCodeSearch2.Text = "";
+            txtCodeSearch3.Text = "";
+            txtCodeSearch4.Text = "";
+            txtCodeSearch5.Text = "";
+            txtColor.Text = "";
+            txtSize.Text = "";
+            txtSort.Text = "";
+
+            gridControl1.DataSource = null;
+            txtSafy.Text = "0";
+        }
         private void loadBranch()
         {
             dbconnection.Open();
@@ -1281,6 +1288,18 @@ namespace MainSystem
             dr.Close();
             
             return quantity;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                newChoose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void labSearch_Click(object sender, EventArgs e)
