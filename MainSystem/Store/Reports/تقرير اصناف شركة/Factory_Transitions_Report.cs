@@ -1204,6 +1204,10 @@ namespace MainSystem
                 {
                     quantity += Convert.ToDouble(dr["Current_Quantity"].ToString());
                 }
+                else if(dr["Old_Quantity"].ToString() != "")
+                {
+                    quantity += Convert.ToDouble(dr["Old_Quantity"].ToString());
+                }
             }
             dr.Close();
 
