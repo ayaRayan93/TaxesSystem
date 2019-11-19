@@ -745,10 +745,10 @@
     <Compile Include="Store\Inventory\Report_Inventory.designer.cs">
       <DependentUpon>Report_Inventory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Reports\NewFolder1\Factory_Transitions_Report.cs">
+    <Compile Include="Store\Reports\تقرير اصناف شركة\Factory_Transitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Reports\NewFolder1\Factory_Transitions_Report.designer.cs">
+    <Compile Include="Store\Reports\تقرير اصناف شركة\Factory_Transitions_Report.designer.cs">
       <DependentUpon>Factory_Transitions_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Reports\تقرير اصناف الشركات\Items_Factory.cs" />
@@ -769,6 +769,18 @@
     </Compile>
     <Compile Include="Sales\reports\تقرير حركة السدادات\Print_Transition_Copy.designer.cs">
       <DependentUpon>Print_Transition_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Reports\تقرير اصناف شركة\Print_Items_Factory2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Reports\تقرير اصناف شركة\Print_Items_Factory2.designer.cs">
+      <DependentUpon>Print_Items_Factory2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Reports\تقرير اصناف شركة\Report_Items_Factory2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Reports\تقرير اصناف شركة\Report_Items_Factory2.designer.cs">
+      <DependentUpon>Report_Items_Factory2.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Reports\تقرير حركة صنف\DataHelperClassProducts.cs" />
     <Compile Include="Store\Reports\تقرير اصناف الشركات\InformationFactory_Report.cs">
@@ -3107,7 +3119,7 @@
     <EmbeddedResource Include="Store\Inventory\Report_Inventory.resx">
       <DependentUpon>Report_Inventory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Reports\NewFolder1\Factory_Transitions_Report.resx">
+    <EmbeddedResource Include="Store\Reports\تقرير اصناف شركة\Factory_Transitions_Report.resx">
       <DependentUpon>Factory_Transitions_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير اصناف الشركات\Report_Items_Factory.resx">
@@ -3121,6 +3133,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير اصناف الشركات\InformationFactory_Report.resx">
       <DependentUpon>InformationFactory_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Reports\تقرير اصناف شركة\Print_Items_Factory2.resx">
+      <DependentUpon>Print_Items_Factory2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Reports\تقرير اصناف شركة\Report_Items_Factory2.resx">
+      <DependentUpon>Report_Items_Factory2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير حركة صنف\Item_Transitions_Report.resx">
       <DependentUpon>Item_Transitions_Report.cs</DependentUpon>
