@@ -547,7 +547,39 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-     
+        private void navBarItem231_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "المخزون");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("المخزون");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "المخزون");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                TotalStoreReport objForm = new TotalStoreReport();
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         public void displayDelegateReport(GridControl gridControl, dataX d)
         {
             Delegate_Report objForm = new Delegate_Report(gridControl,d);

@@ -847,12 +847,14 @@ namespace MainSystem
             int Inventory_ID = Convert.ToInt16(com.ExecuteScalar());
             if (haveOpenStorageAccount(Data_ID))
             {
-                query = "update  inventory_details set Current_Quantity=@Current_Quantity,Updated=@Updated where Data_ID=" + Data_ID + " and Inventory_ID=" + Inventory_ID;
+                query = "update  inventory_details set Current_Quantity=@Current_Quantity,Updated=@Updated,Date=@Date where Data_ID=" + Data_ID + " and Inventory_ID=" + Inventory_ID;
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Current_Quantity", MySqlDbType.Decimal);
                 com.Parameters["@Current_Quantity"].Value = row[6];
                 com.Parameters.Add("@Updated", MySqlDbType.Int16);
                 com.Parameters["@Updated"].Value = 1;
+                com.Parameters.Add("@Date", MySqlDbType.Date);
+                com.Parameters["@Date"].Value = DateTime.Now.Date;
                 com.ExecuteNonQuery();
 
                 query = "update storage set Type=@Type,Storage_Date=@Storage_Date,Total_Meters=@Total_Meters,Note=@Note where Data_ID=" + Data_ID + " and Store_ID=" +txtStoreID.Text;
@@ -916,12 +918,14 @@ namespace MainSystem
                 com.ExecuteNonQuery();
 
                 //update inventory
-                query = "update  inventory_details set Current_Quantity=@Current_Quantity,Updated=@Updated where Data_ID=" + Data_ID + " and Inventory_ID=" + Inventory_ID;
+                query = "update  inventory_details set Current_Quantity=@Current_Quantity,Updated=@Updated,Date=@Date where Data_ID=" + Data_ID + " and Inventory_ID=" + Inventory_ID;
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Current_Quantity", MySqlDbType.Decimal);
                 com.Parameters["@Current_Quantity"].Value = row[6];
                 com.Parameters.Add("@Updated", MySqlDbType.Int16);
                 com.Parameters["@Updated"].Value = 1;
+                com.Parameters.Add("@Date", MySqlDbType.Date);
+                com.Parameters["@Date"].Value = DateTime.Now.Date;
                 com.ExecuteNonQuery();
 
                 UserControl.ItemRecord("inventory_details", "تعديل", (int)row[0], DateTime.Now, "", dbconnection);

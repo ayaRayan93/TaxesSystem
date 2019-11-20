@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using MainSystem.Store.Reports.تقرير_اصناف_الشركات;
 
 namespace MainSystem
 {
@@ -26,6 +27,14 @@ namespace MainSystem
                 p.Visible = false;
             }
             report.InitData(StoreId, StoreName, TotalBillPriceAD, BillItems);
+            documentViewer1.DocumentSource = report;
+            report.CreateDocument();
+        }
+        public void PrintReport( List<Data> listData)
+        {
+            XtraReportStorage report = new XtraReportStorage();
+            
+            report.InitData(listData);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }
