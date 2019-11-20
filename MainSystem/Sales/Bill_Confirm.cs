@@ -406,7 +406,7 @@ namespace MainSystem
 
                     //,delegate.Delegate_ID,delegate.Delegate_Name .. INNER JOIN delegate ON delegate.Delegate_ID = dash.Delegate_ID
                 
-                    string query = "SELECT dash.Customer_ID,dash.Customer_Name,customer.Customer_Type,dash_details.Data_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID  where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0";
+                    string query = "SELECT dash.Customer_ID,dash.Customer_Name,customer.Customer_Type,dash_details.Data_ID,dash_details.Store_ID,dash_details.Quantity,dash_details.Type,dash.Dash_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN customer ON customer.Customer_ID = dash.Customer_ID  where dash.Bill_Number = " + billNumb + " and dash.Branch_ID = " + comBranch.SelectedValue.ToString() + " and Confirmed=0";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     dataReader = com.ExecuteReader();
                     if (dataReader.HasRows)
@@ -481,12 +481,12 @@ namespace MainSystem
                             #region بند
                             if (dataReader["Type"].ToString().Trim() == "بند")
                             {
-                                query = "select distinct data.Data_ID, data.Code as 'الكود',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + comBranch.SelectedValue.ToString() + " and data.Data_ID=" + dataReader["Data_ID"].ToString() + "  and dash_details.Type='بند'";
+                                query = "select distinct data.Data_ID, data.Code as 'الكود',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID from dash INNER JOIN dash_details ON dash_details.Dash_ID = dash.Dash_ID inner join data on data.Data_ID=dash_details.Data_ID inner join product on product.Product_ID=data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where  dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + comBranch.SelectedValue.ToString() + " and data.Data_ID=" + dataReader["Data_ID"].ToString() + " and dash_details.Store_ID="+ dataReader["Store_ID"].ToString() + " and dash_details.Type='بند'";
                                 com = new MySqlCommand(query, dbconnectionr);
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
                                 {
-                                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Price as 'بعد الخصم',(sellprice.Last_Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Price * dash_details.Quantity) as 'الاجمالى بعد',(sellprice.Sell_Discount) as 'الخصم' from dash_details INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID where dash_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and dash_details.Dash_ID=" + dataReader["Dash_ID"].ToString() + " and dash_details.Type='بند' order by sellprice.Date desc limit 1";
+                                    string q = "select sellprice.Last_Price as 'السعر',sellprice.Sell_Price as 'بعد الخصم',(sellprice.Last_Price * dash_details.Quantity) as 'الاجمالى',(sellprice.Sell_Price * dash_details.Quantity) as 'الاجمالى بعد',(sellprice.Sell_Discount) as 'الخصم' from dash_details INNER JOIN sellprice ON sellprice.Data_ID = dash_details.Data_ID where dash_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and dash_details.Store_ID=" + dataReader1["Store_ID"].ToString() + " and dash_details.Dash_ID=" + dataReader["Dash_ID"].ToString() + " and dash_details.Type='بند' order by sellprice.Date desc limit 1";
                                     MySqlCommand c = new MySqlCommand(q, connectionReader3);
                                     MySqlDataReader dataReader2 = c.ExecuteReader();
                                     while (dataReader2.Read())
@@ -525,7 +525,7 @@ namespace MainSystem
                             #region طقم
                             else if (dataReader["Type"].ToString().Trim() == "طقم")
                             {
-                                query = "select distinct sets.Set_ID,sets.Set_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sets ON sets.Set_ID = dash_details.Data_ID  where sets.Set_ID=" + Convert.ToInt32(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + comBranch.SelectedValue.ToString() + " and dash_details.Type='طقم'";
+                                query = "select distinct sets.Set_ID,sets.Set_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID FROM dash_details INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN sets ON sets.Set_ID = dash_details.Data_ID  where sets.Set_ID=" + Convert.ToInt32(dataReader["Data_ID"].ToString()) + " and dash_details.Store_ID=" + dataReader["Store_ID"].ToString() + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + comBranch.SelectedValue.ToString() + " and dash_details.Type='طقم'";
                                 com = new MySqlCommand(query, dbconnectionr);
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
@@ -572,7 +572,7 @@ namespace MainSystem
                             #region عرض
                             else if (dataReader["Type"].ToString().Trim() == "عرض")
                             {
-                                query = "select distinct offer.Offer_ID, offer.Offer_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',offer.Price as 'السعر',(offer.Price*dash_details.Quantity) as 'الاجمالى',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID FROM offer INNER JOIN dash_details ON dash_details.Data_ID = offer.Offer_ID INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where offer.Offer_ID=" + Convert.ToInt32(dataReader["Data_ID"].ToString()) + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + comBranch.SelectedValue.ToString() + " and dash_details.Type='عرض'";
+                                query = "select distinct offer.Offer_ID, offer.Offer_Name as 'الاسم',dash_details.Quantity as 'الكمية',dash_details.Store_ID,dash_details.Store_Name as 'المخزن',offer.Price as 'السعر',(offer.Price*dash_details.Quantity) as 'الاجمالى',dash_details.Cartons as 'اجمالى الكراتين',dash_details.Delegate_ID FROM offer INNER JOIN dash_details ON dash_details.Data_ID = offer.Offer_ID INNER JOIN dash ON dash_details.Dash_ID = dash.Dash_ID INNER JOIN store ON dash_details.Store_ID = store.Store_ID where offer.Offer_ID=" + Convert.ToInt32(dataReader["Data_ID"].ToString()) + " and dash_details.Store_ID=" + dataReader["Store_ID"].ToString() + " and dash.Bill_Number=" + billNumb + " and dash.Branch_ID=" + comBranch.SelectedValue.ToString() + " and dash_details.Type='عرض'";
                                 com = new MySqlCommand(query, dbconnectionr);
                                 dataReader1 = com.ExecuteReader();
                                 while (dataReader1.Read())
@@ -713,14 +713,15 @@ namespace MainSystem
                 {
                     List<int> pakagesIDs = new List<int>();
                     List<string> pakagesTypes = new List<string>();
+                    List<string> pakagesStores = new List<string>();
                     for (int j = 0; j < gridView1.RowCount; j++)
                     {
                         DataRowView row1 = (DataRowView)gridView1.GetRow(j);
                         for (int i = 0; i < pakagesIDs.Count; i++)
                         {
-                            if (row1["التسلسل"].ToString() != "" && row1["النوع"].ToString() != "")
+                            if (row1["التسلسل"].ToString() != "" && row1["النوع"].ToString() != "" && row1["المخزن"].ToString() != "")
                             {
-                                if (pakagesIDs[i] == Convert.ToInt32(row1["التسلسل"].ToString()) && pakagesTypes[i] == row1["النوع"].ToString())
+                                if (pakagesIDs[i] == Convert.ToInt32(row1["التسلسل"].ToString()) && pakagesTypes[i] == row1["النوع"].ToString() && pakagesStores[i] == row1["المخزن"].ToString())
                                 {
                                     gridView1.SetRowCellValue(j, "added", 0);
                                     gridView1.UnselectRow(j);
@@ -732,6 +733,7 @@ namespace MainSystem
 
                         pakagesIDs.Add(Convert.ToInt32(row1["التسلسل"].ToString()));
                         pakagesTypes.Add(row1["النوع"].ToString());
+                        pakagesStores.Add(row1["المخزن"].ToString());
                     }
 
                     dbconnection.Open();
