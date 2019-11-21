@@ -989,6 +989,38 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد شركة بسعر البيع بعد الجرد");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("رصيد شركة بسعر البيع بعد الجرد");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد شركة بسعر البيع بعد الجرد");
+                }
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                Factory_Transitions_Report objForm = new Factory_Transitions_Report(this);
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemFactoriesTransitionReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
                 XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد شركة بسعر البيع");
                 if (xtraTabPage == null)
                 {
@@ -998,7 +1030,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                Factory_Transitions_Report objForm = new Factory_Transitions_Report(this);
+                Factories_Transitions_Report objForm = new Factories_Transitions_Report(this);
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
