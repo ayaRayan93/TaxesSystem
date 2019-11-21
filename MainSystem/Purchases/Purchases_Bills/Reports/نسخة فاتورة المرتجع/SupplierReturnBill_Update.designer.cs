@@ -127,6 +127,8 @@
             // comStore
             // 
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStore.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comStore.Enabled = false;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comStore.FormattingEnabled = true;
             this.comStore.Location = new System.Drawing.Point(693, 5);
@@ -708,6 +710,8 @@
             // comSupPerm
             // 
             this.comSupPerm.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupPerm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comSupPerm.Enabled = false;
             this.comSupPerm.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupPerm.FormattingEnabled = true;
             this.comSupPerm.Location = new System.Drawing.Point(121, 5);
@@ -721,6 +725,8 @@
             // comSupplier
             // 
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comSupplier.Enabled = false;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comSupplier.FormattingEnabled = true;
             this.comSupplier.Location = new System.Drawing.Point(311, 5);
@@ -744,6 +750,7 @@
             // txtBillNumber
             // 
             this.txtBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBillNumber.Enabled = false;
             this.txtBillNumber.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBillNumber.Location = new System.Drawing.Point(517, 6);
             this.txtBillNumber.Name = "txtBillNumber";
