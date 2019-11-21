@@ -132,8 +132,10 @@ namespace MainSystem
             {
                 panBillNumber.Visible = true;
                 groupBox1.Visible = false;
-              
                 panCustomer.Visible = false;
+                gridControl1.DataSource = null;
+                gridView1.Columns.Clear();
+                clear();
             }
             catch (Exception ex)
             {
@@ -526,15 +528,17 @@ namespace MainSystem
             {
                 row = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
                 rowHandel1 = e.RowHandle;
-                txtCode.Text = row[2].ToString();
+           
      
                 if (radioButtonReturnBill.Checked)
                 {
+                    txtCode.Text = row[2].ToString();
                     txtCarton.Text = row[6].ToString();
                     txtReturnedQuantity.Text = row[4].ToString();
                 }
                 else
                 {
+                    txtCode.Text = row[1].ToString();
                     txtCarton.Text = row[3].ToString();
                     return;
                 }
@@ -946,12 +950,13 @@ namespace MainSystem
                 dr.Close();
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID, Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(TotalQuantity) as 'الكمية المسلمة',customer_return_permission_details.Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_return_permission_details on customer_return_permission_details.Data_ID=product_bill.Data_ID where CustomerBill_ID=" + Billid + " group by product_bill.Data_ID";
+                query = "select product_bill.Data_ID, product_bill.Type  as 'الفئة', Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(TotalQuantity) as 'الكمية المسلمة',customer_return_permission_details.Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_return_permission_details on customer_return_permission_details.Data_ID=product_bill.Data_ID where CustomerBill_ID=" + Billid + " group by product_bill.Data_ID";
 
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 ad.Fill(dt);
                 gridControl1.DataSource = null;
+                gridView1.ClearDocument();
                 gridControl1.DataSource = dt;
                 gridView1.Columns[0].Visible = false;
                 gridView1.Columns[1].Width = 200;
@@ -966,13 +971,13 @@ namespace MainSystem
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtProduct = new DataTable();
                 ad.Fill(dtProduct);
-                query = "select sets.Set_ID as 'Data_ID',concat(sets.Set_ID,' ') as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة'," + 0 + " as 'الكرتنة' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                query = "select sets.Set_ID as 'Data_ID', product_bill.Type  as 'الفئة',concat(sets.Set_ID,' ') as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة'," + 0 + " as 'الكرتنة' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                 ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtSet = new DataTable();
                 ad.Fill(dtSet);
 
 
-                query = "select offer.Offer_ID as 'Data_ID',concat(offer.Offer_ID,' ') as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة'," + 0 + " as 'الكرتنة' from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                query = "select offer.Offer_ID as 'Data_ID', product_bill.Type  as 'الفئة',concat(offer.Offer_ID,' ') as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة'," + 0 + " as 'الكرتنة' from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                 ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtOffer = new DataTable();
                 ad.Fill(dtOffer);
