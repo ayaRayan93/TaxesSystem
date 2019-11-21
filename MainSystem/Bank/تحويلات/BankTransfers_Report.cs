@@ -101,7 +101,7 @@ namespace MainSystem
                     {
                         panelRecordBankTransfer.Controls.Clear();
                         MainTabPageRecordBankTransfer.ImageOptions.Image = null;
-                        BankTransfers_Record form = new BankTransfers_Record();
+                        BankTransfers_Record2 form = new BankTransfers_Record2();
                         form.Size = new Size(1059, 638);
                         form.TopLevel = false;
                         form.FormBorderStyle = FormBorderStyle.None;
