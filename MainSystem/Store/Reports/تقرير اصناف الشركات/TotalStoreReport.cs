@@ -68,16 +68,26 @@ namespace MainSystem
             string query = "";
             if (comStore.Text == "")
             {
-                query = "select Store_Name as 'أسم المخزن', sum(Total_Meters*Sell_Price) as 'اجمالي المخزون بسعر البيع',sum(Total_Meters*Purchasing_Price) as 'اجمالي المخزون بسعر الشراء' from storage inner join sellprice on storage.Data_ID=sellprice.Data_ID inner join purchasing_price on storage.Data_ID=purchasing_price.Data_ID inner join store on store.Store_ID=storage.Store_ID group by storage.Store_ID";
+                query = "select Store_Name as 'أسم المخزن', sum(Total_Meters*Sell_Price) as 'اجمالي المخزون بسعر البيع',sum(Total_Meters*Purchasing_Price) as 'اجمالي المخزون بسعر الشراء' from storage left join sellprice on storage.Data_ID=sellprice.Data_ID left join purchasing_price on storage.Data_ID=purchasing_price.Data_ID inner join store on store.Store_ID=storage.Store_ID group by storage.Store_ID";
             }
             else
             {
-                query = "select Store_Name as 'أسم المخزن', sum(Total_Meters*Sell_Price) as 'اجمالي المخزون بسعر البيع',sum(Total_Meters*Purchasing_Price) as 'اجمالي المخزون بسعر الشراء' from storage inner join sellprice on storage.Data_ID=sellprice.Data_ID inner join purchasing_price on storage.Data_ID=purchasing_price.Data_ID inner join store on store.Store_ID=storage.Store_ID group by storage.Store_ID having storage.Store_ID=" + comStore.SelectedValue;
+                query = "select Store_Name as 'أسم المخزن', sum(Total_Meters*Sell_Price) as 'اجمالي المخزون بسعر البيع',sum(Total_Meters*Purchasing_Price) as 'اجمالي المخزون بسعر الشراء' from storage left join sellprice on storage.Data_ID=sellprice.Data_ID left join purchasing_price on storage.Data_ID=purchasing_price.Data_ID inner join store on store.Store_ID=storage.Store_ID group by storage.Store_ID having storage.Store_ID=" + comStore.SelectedValue;
             }
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable td = new DataTable();
             da.Fill(td);
             gridControl1.DataSource = td;
+            double totalSellPrice = 0,totalPurshasePrice = 0;
+            for (int i = 0; i < td.Rows.Count; i++)
+            {
+                if(td.Rows[i].ItemArray[1].ToString() != "")
+                    totalSellPrice +=Convert.ToDouble(td.Rows[i].ItemArray[1]);
+                if (td.Rows[i].ItemArray[2].ToString() != "")
+                    totalPurshasePrice += Convert.ToDouble(td.Rows[i].ItemArray[2]);
+            }
+            txtTotalSales.Text = totalSellPrice.ToString();
+            txtTotalPurshases.Text = totalPurshasePrice.ToString();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -120,8 +130,10 @@ namespace MainSystem
                 {
                     Data data = new Data();
                     data.Store_Name = gridView1.GetRowCellDisplayText(i,gridView1.Columns[0].ToString());
-                    data.totalPurshasePrice = Convert.ToDouble(gridView1.GetRowCellDisplayText(i,gridView1.Columns[1]));
-                    data.totalSellPrice = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns[2]));
+                    if(gridView1.GetRowCellDisplayText(i, gridView1.Columns[1]).ToString()!="")
+                        data.totalPurshasePrice = Convert.ToDouble(gridView1.GetRowCellDisplayText(i,gridView1.Columns[1]));
+                    if (gridView1.GetRowCellDisplayText(i, gridView1.Columns[2]).ToString() != "")
+                        data.totalSellPrice = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns[2]));
                     dataList.Add(data);
                 }
                 Report_Items_Factory f = new Report_Items_Factory();

@@ -535,7 +535,8 @@ namespace MainSystem
                 }
                 else
                 {
-                    txtCarton.Text = row[6].ToString();
+                    txtCarton.Text = row[3].ToString();
+                    return;
                 }
                 try
                 {
@@ -1085,8 +1086,8 @@ namespace MainSystem
                 if (gridView2.IsNewItemRow(rowHandle) && rowHandel1 != -1)
                 {
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[2]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[3]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[1]);
+                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[2]);
                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], "");
 
                     double re = 0, carton = 0;

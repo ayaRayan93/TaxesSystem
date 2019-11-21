@@ -287,7 +287,7 @@
             this.TotalSales.FieldName = "TotalSales";
             this.TotalSales.Name = "TotalSales";
             this.TotalSales.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "اجمالي المبيعات={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "{0:0.##}")});
             this.TotalSales.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.TotalSales.Visible = true;
             this.TotalSales.VisibleIndex = 2;
@@ -310,7 +310,7 @@
             this.TotalReturn.FieldName = "TotalReturn";
             this.TotalReturn.Name = "TotalReturn";
             this.TotalReturn.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "اجمالي المرتجعات={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "{0:0.##}")});
             this.TotalReturn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.TotalReturn.Visible = true;
             this.TotalReturn.VisibleIndex = 1;
@@ -333,7 +333,7 @@
             this.Safaya.FieldName = "Safaya";
             this.Safaya.Name = "Safaya";
             this.Safaya.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "اجمالي الصافي={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "{0:0.##}")});
             this.Safaya.UnboundExpression = "[TotalSales] - [TotalReturn]";
             this.Safaya.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.Safaya.Visible = true;
