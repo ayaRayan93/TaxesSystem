@@ -276,6 +276,12 @@
     <Compile Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.designer.cs">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bank\تحويلات\BankTransfers_Record2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\تحويلات\BankTransfers_Record2.designer.cs">
+      <DependentUpon>BankTransfers_Record2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2744,6 +2750,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.resx">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\تحويلات\BankTransfers_Record2.resx">
+      <DependentUpon>BankTransfers_Record2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

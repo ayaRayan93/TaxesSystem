@@ -79,7 +79,7 @@ namespace MainSystem
                     panelRecordBankTransfer.Dock = DockStyle.Fill;
 
                     panelRecordBankTransfer.Controls.Clear();
-                    BankTransfers_Record form = new BankTransfers_Record();
+                    BankTransfers_Record2 form = new BankTransfers_Record2();
                     form.Size = new Size(1059, 638);
                     form.TopLevel = false;
                     form.FormBorderStyle = FormBorderStyle.None;
@@ -121,58 +121,33 @@ namespace MainSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-
-                if (selRow["Error"].ToString() == "0")
+                try
                 {
-                    if (MainTabPageUpdateBankTransfer.ImageOptions.Image == null)
-                    {
-                        if (selRow[0].ToString() != "")
-                        {
-                            MainTabPageUpdateBankTransfer.Name = "tabPageUpdateBankTransfer";
-                            MainTabPageUpdateBankTransfer.Text = "تعديل تحويل";
-                            MainTabPageUpdateBankTransfer.ImageOptions.Image = null;
-                            panelUpdateBankTransfer.Name = "PanelUpdateBankTransfer";
-                            panelUpdateBankTransfer.Dock = DockStyle.Fill;
+                    DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
 
-                            panelUpdateBankTransfer.Controls.Clear();
-                            BankTransfers_Update form = new BankTransfers_Update(selRow);
-                            form.Size = new Size(1059, 638);
-                            form.TopLevel = false;
-                            form.FormBorderStyle = FormBorderStyle.None;
-                            form.Dock = DockStyle.Fill;
-                            panelUpdateBankTransfer.Controls.Add(form);
-                            MainTabPageUpdateBankTransfer.Controls.Add(panelUpdateBankTransfer);
-                            MainTabControlBank.TabPages.Add(MainTabPageUpdateBankTransfer);
-                            form.Show();
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateBankTransfer;
-                        }
-                        else
-                        {
-                            MessageBox.Show("يجب ان تختار عنصر");
-                        }
-                    }
-                    else
+                    if (selRow["Error"].ToString() == "0")
                     {
-                        if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-                        {
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateBankTransfer;
-                            return;
-                        }
-                        else
+                        if (MainTabPageUpdateBankTransfer.ImageOptions.Image == null)
                         {
                             if (selRow[0].ToString() != "")
                             {
-                                panelUpdateBankTransfer.Controls.Clear();
+                                MainTabPageUpdateBankTransfer.Name = "tabPageUpdateBankTransfer";
+                                MainTabPageUpdateBankTransfer.Text = "تعديل تحويل";
                                 MainTabPageUpdateBankTransfer.ImageOptions.Image = null;
+                                panelUpdateBankTransfer.Name = "PanelUpdateBankTransfer";
+                                panelUpdateBankTransfer.Dock = DockStyle.Fill;
+
+                                panelUpdateBankTransfer.Controls.Clear();
                                 BankTransfers_Update form = new BankTransfers_Update(selRow);
                                 form.Size = new Size(1059, 638);
                                 form.TopLevel = false;
                                 form.FormBorderStyle = FormBorderStyle.None;
                                 form.Dock = DockStyle.Fill;
                                 panelUpdateBankTransfer.Controls.Add(form);
+                                MainTabPageUpdateBankTransfer.Controls.Add(panelUpdateBankTransfer);
+                                MainTabControlBank.TabPages.Add(MainTabPageUpdateBankTransfer);
                                 form.Show();
                                 MainTabControlBank.SelectedTabPage = MainTabPageUpdateBankTransfer;
                             }
@@ -181,31 +156,62 @@ namespace MainSystem
                                 MessageBox.Show("يجب ان تختار عنصر");
                             }
                         }
+                        else
+                        {
+                            if (MessageBox.Show("هناك تعديلات لم تحفظ بعد..هل انت متاكد انك تريد التجاهل؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                            {
+                                MainTabControlBank.SelectedTabPage = MainTabPageUpdateBankTransfer;
+                                return;
+                            }
+                            else
+                            {
+                                if (selRow[0].ToString() != "")
+                                {
+                                    panelUpdateBankTransfer.Controls.Clear();
+                                    MainTabPageUpdateBankTransfer.ImageOptions.Image = null;
+                                    BankTransfers_Update form = new BankTransfers_Update(selRow);
+                                    form.Size = new Size(1059, 638);
+                                    form.TopLevel = false;
+                                    form.FormBorderStyle = FormBorderStyle.None;
+                                    form.Dock = DockStyle.Fill;
+                                    panelUpdateBankTransfer.Controls.Add(form);
+                                    form.Show();
+                                    MainTabControlBank.SelectedTabPage = MainTabPageUpdateBankTransfer;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("يجب ان تختار عنصر");
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("هذا العنصر تم حذفة من قبل");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("هذا العنصر تم حذفة من قبل");
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                GridView view = gridView1 as GridView;
-                delete(view);
+                try
+                {
+                    GridView view = gridView1 as GridView;
+                    delete(view);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -239,20 +245,23 @@ namespace MainSystem
 
         private void gridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            if (UserControl.userType == 1)
             {
-                if (e.KeyCode == Keys.Delete)
+                try
                 {
-                    //GridView view = sender as GridView;
-                    GridView view = gridView1 as GridView;
-                    delete(view);
+                    if (e.KeyCode == Keys.Delete)
+                    {
+                        //GridView view = sender as GridView;
+                        GridView view = gridView1 as GridView;
+                        delete(view);
+                    }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn.Close();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();
         }
 
         private void toolTipController1_GetActiveObjectInfo(object sender, DevExpress.Utils.ToolTipControllerGetActiveObjectInfoEventArgs e)
@@ -315,7 +324,7 @@ namespace MainSystem
         //functions
         public void search()
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT BankTransfer_ID as 'التسلسل',FromBank_ID,CONCAT (FromBank_Name , ',' , FromBranch_Name) as 'من',ToBank_ID,CONCAT (ToBank_Name , ',' , ToBranch_Name) as 'الى',Money as 'المبلغ',Date as 'تاريخ التحويل',Description as 'البيان',Error FROM bank_transfer", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT BankTransfer_ID as 'التسلسل',FromBank_ID,CONCAT(FromBank_Name,',',COALESCE(FromBranch_Name,'')) as 'من',ToBank_ID,CONCAT(ToBank_Name,',',COALESCE(ToBranch_Name,'')) as 'الى',Money as 'المبلغ',Date as 'تاريخ التحويل',Description as 'البيان',Error FROM bank_transfer", conn);
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
 
