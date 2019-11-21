@@ -34,6 +34,8 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtTotalSafay = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.txtTotalProfit = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTotalReturn = new System.Windows.Forms.TextBox();
@@ -70,8 +72,6 @@
             this.PercentageDelegate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DelegateProfit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-            this.txtTotalSafay = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -169,6 +169,26 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(905, 38);
             this.panel2.TabIndex = 4;
+            // 
+            // txtTotalSafay
+            // 
+            this.txtTotalSafay.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalSafay.Location = new System.Drawing.Point(245, 9);
+            this.txtTotalSafay.Name = "txtTotalSafay";
+            this.txtTotalSafay.ReadOnly = true;
+            this.txtTotalSafay.Size = new System.Drawing.Size(114, 26);
+            this.txtTotalSafay.TabIndex = 7;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(365, 9);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(87, 19);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "اجمالي الصافي";
             // 
             // txtTotalProfit
             // 
@@ -592,7 +612,7 @@
             this.TotalSales.FieldName = "TotalSales";
             this.TotalSales.Name = "TotalSales";
             this.TotalSales.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "اجمالي المبيعات={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "{0:0.##}")});
             this.TotalSales.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.TotalSales.Visible = true;
             this.TotalSales.VisibleIndex = 4;
@@ -613,7 +633,7 @@
             this.TotalReturn.FieldName = "TotalReturn";
             this.TotalReturn.Name = "TotalReturn";
             this.TotalReturn.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "اجمالي المرتجعات={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "{0:0.##}")});
             this.TotalReturn.Visible = true;
             this.TotalReturn.VisibleIndex = 3;
             // 
@@ -635,7 +655,7 @@
             this.Safaya.FieldName = "Safaya";
             this.Safaya.Name = "Safaya";
             this.Safaya.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "اجمالي الصافي={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "{0:0.##}")});
             this.Safaya.UnboundExpression = "[TotalSales] - [TotalReturn]";
             this.Safaya.Visible = true;
             this.Safaya.VisibleIndex = 2;
@@ -680,29 +700,9 @@
             this.DelegateProfit.FieldName = "DelegateProfit";
             this.DelegateProfit.Name = "DelegateProfit";
             this.DelegateProfit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DelegateProfit", "اجمالي ربح المندوب={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DelegateProfit", "{0:0.##}")});
             this.DelegateProfit.Visible = true;
             this.DelegateProfit.VisibleIndex = 0;
-            // 
-            // txtTotalSafay
-            // 
-            this.txtTotalSafay.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalSafay.Location = new System.Drawing.Point(245, 9);
-            this.txtTotalSafay.Name = "txtTotalSafay";
-            this.txtTotalSafay.ReadOnly = true;
-            this.txtTotalSafay.Size = new System.Drawing.Size(114, 26);
-            this.txtTotalSafay.TabIndex = 7;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(365, 9);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(87, 19);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "اجمالي الصافي";
             // 
             // DelegateSalesForCompany
             // 
