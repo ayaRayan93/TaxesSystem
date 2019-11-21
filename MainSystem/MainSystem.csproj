@@ -751,6 +751,12 @@
     <Compile Include="Store\Inventory\Report_Inventory.designer.cs">
       <DependentUpon>Report_Inventory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Reports\NewFolder1\Factories_Transitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Reports\NewFolder1\Factories_Transitions_Report.designer.cs">
+      <DependentUpon>Factories_Transitions_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Reports\تقرير اصناف شركة\Factory_Transitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3140,6 +3146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Inventory\Report_Inventory.resx">
       <DependentUpon>Report_Inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Reports\NewFolder1\Factories_Transitions_Report.resx">
+      <DependentUpon>Factories_Transitions_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير اصناف شركة\Factory_Transitions_Report.resx">
       <DependentUpon>Factory_Transitions_Report.cs</DependentUpon>
