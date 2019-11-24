@@ -372,10 +372,10 @@ namespace MainSystem
                                             if (dr["الكمية"].ToString() != "")
                                             {
                                                 quantti = searchSelectedItem(dr["Data_ID"].ToString());
-                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], quantti);
+                                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], Math.Round((Double)quantti, 2));
                                             }
 
-                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], quantti * pricee);
+                                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Math.Round((Double)quantti, 2) * pricee);
                                         }
                                     }
                                     dr.Close();
@@ -395,7 +395,7 @@ namespace MainSystem
                                         }
                                         safyi += pricee;
                                     }
-                                    txtSafy.Text = safyi.ToString();
+                                    txtSafy.Text = safyi.ToString("#.00");
                                 }
                                 else
                                 {
@@ -522,10 +522,10 @@ namespace MainSystem
                             if (dr["الكمية"].ToString() != "")
                             {
                                 quantti = searchSelectedItem(dr["Data_ID"].ToString());
-                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], quantti);
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], Math.Round((Double)quantti, 2));
                             }
 
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], quantti * pricee);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Math.Round((Double)quantti, 2) * pricee);
                         }
                     }
                     dr.Close();
@@ -545,7 +545,7 @@ namespace MainSystem
                         }
                         safyi += pricee;
                     }
-                    txtSafy.Text = safyi.ToString();
+                    txtSafy.Text = safyi.ToString("#.00");
                 }
             }
             catch (Exception ex)
@@ -1157,10 +1157,10 @@ namespace MainSystem
                         if (dr["الكمية"].ToString() != "")
                         {
                             quantti = searchSelectedItem(dr["Data_ID"].ToString());
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], quantti);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], Math.Round((Double)quantti, 2));
                         }
 
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], quantti * pricee);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], Math.Round((Double)quantti, 2) * pricee);
                     }
                 }
                 dr.Close();
@@ -1180,7 +1180,7 @@ namespace MainSystem
                     }
                     safyi += pricee;
                 }
-                txtSafy.Text = safyi.ToString();
+                txtSafy.Text = safyi.ToString("#.00");
             }
             else
             {
