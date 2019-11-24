@@ -451,21 +451,28 @@ namespace MainSystem
                         dbconnection.Open();
                         MySqlCommand adpt = new MySqlCommand(query2, dbconnection);
                         string maxCode = adpt.ExecuteScalar().ToString();
-                        char[] arrCode = maxCode.ToCharArray();
-                        string part5 = arrCode[16] + arrCode[17] + arrCode[18] + arrCode[19] + "";
-
-                        int result = Convert.ToInt32(part5);
-                        result = result + 1;
-                        dbconnection.Close();
-
-                        int resultcount = result.ToString().Length;
-
-                        code5 = result.ToString();
-
-                        while (resultcount < 4)
+                        if (maxCode != "")
                         {
-                            code5 = "0" + code5;
-                            resultcount++;
+                            char[] arrCode = maxCode.ToCharArray();
+                            string part5 = arrCode[16].ToString() + arrCode[17].ToString() + arrCode[18].ToString() + arrCode[19].ToString() + "";
+
+                            int result = Convert.ToInt32(part5);
+                            result = result + 1;
+                            dbconnection.Close();
+
+                            int resultcount = result.ToString().Length;
+
+                            code5 = result.ToString();
+
+                            while (resultcount < 4)
+                            {
+                                code5 = "0" + code5;
+                                resultcount++;
+                            }
+                        }
+                        else
+                        {
+                            code5 = "0001";
                         }
                     }
                     else
@@ -763,10 +770,10 @@ namespace MainSystem
         }
         public bool IsMainChang()
         {
-            if (comType.Text == prodRow["النوع"].ToString() &&
-            comFactory.Text == prodRow["المصنع"].ToString() &&
-            comGroup.Text == prodRow["المجموعة"].ToString() &&
-            comProduct.Text == prodRow["الصنف"].ToString() )
+            if (comType.Text == prodRow[5].ToString() &&
+            comFactory.Text == prodRow[6].ToString() &&
+            comGroup.Text == prodRow[7].ToString() &&
+            comProduct.Text == prodRow[8].ToString() )
                 return true;
 
             return false;
