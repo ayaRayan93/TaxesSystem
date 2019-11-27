@@ -202,7 +202,7 @@ namespace MainSystem
 
         private void btnUpdateBill_Click(object sender, EventArgs e)
         {
-            /*try
+            try
             {
                 if (row1 != null)
                 {
@@ -213,7 +213,7 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
+            }
         }
 
         public void search(int supplierId)

@@ -33,7 +33,6 @@
             this.comStore = new System.Windows.Forms.ComboBox();
             this.labTotalPriceBD = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnNewChoose = new System.Windows.Forms.Button();
             this.labTotalPrice = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -70,7 +69,6 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.btnAddAll = new System.Windows.Forms.Button();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -156,21 +154,6 @@
             this.label3.Size = new System.Drawing.Size(175, 18);
             this.label3.TabIndex = 59;
             this.label3.Text = "اجمالي الفاتورة قبل الخصم";
-            // 
-            // btnNewChoose
-            // 
-            this.btnNewChoose.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnNewChoose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewChoose.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnNewChoose.ForeColor = System.Drawing.Color.White;
-            this.btnNewChoose.Location = new System.Drawing.Point(35, 3);
-            this.btnNewChoose.Name = "btnNewChoose";
-            this.btnNewChoose.Size = new System.Drawing.Size(80, 28);
-            this.btnNewChoose.TabIndex = 58;
-            this.btnNewChoose.Text = "اختيار اخر";
-            this.btnNewChoose.UseVisualStyleBackColor = false;
-            this.btnNewChoose.Click += new System.EventHandler(this.newReturnBill_Click);
             // 
             // labTotalPrice
             // 
@@ -550,11 +533,10 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel4.ColumnCount = 4;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 645);
@@ -579,7 +561,7 @@
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 18;
             this.btnSave.LabelText = "حفظ";
-            this.btnSave.Location = new System.Drawing.Point(463, 4);
+            this.btnSave.Location = new System.Drawing.Point(417, 4);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(85, 46);
@@ -596,7 +578,6 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel5.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnRemove, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnAddAll, 3, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 349);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -632,20 +613,6 @@
             this.btnRemove.Text = "حذف";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // btnAddAll
-            // 
-            this.btnAddAll.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAddAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddAll.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnAddAll.ForeColor = System.Drawing.Color.White;
-            this.btnAddAll.Location = new System.Drawing.Point(146, 3);
-            this.btnAddAll.Name = "btnAddAll";
-            this.btnAddAll.Size = new System.Drawing.Size(78, 28);
-            this.btnAddAll.TabIndex = 22;
-            this.btnAddAll.Text = "اضافة الكل";
-            this.btnAddAll.UseVisualStyleBackColor = true;
-            this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
             // 
             // gridControl2
             // 
@@ -686,7 +653,6 @@
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.txtBillNumber);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.btnNewChoose);
             this.panel1.Controls.Add(this.comStore);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -915,7 +881,7 @@
             this.ClientSize = new System.Drawing.Size(923, 702);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SupplierReturnBill_Update";
-            this.Text = "Form1";
+            this.ShowIcon = false;
             this.Load += new System.EventHandler(this.Supplier_Return_Bill_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -941,7 +907,6 @@
         private System.Windows.Forms.ComboBox comStore;
         private System.Windows.Forms.Label labTotalPriceBD;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnNewChoose;
         private System.Windows.Forms.Label labTotalPrice;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
@@ -973,7 +938,6 @@
         private System.Windows.Forms.TextBox txtPurchasePrice;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtBillNumber;
-        private System.Windows.Forms.Button btnAddAll;
         private System.Windows.Forms.ComboBox comSupplier;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label labelSupPerm;
