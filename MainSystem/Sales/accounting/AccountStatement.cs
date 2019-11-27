@@ -264,8 +264,8 @@ namespace MainSystem
 
                     foreach (DataGridViewRow row1 in dataGridView2.Rows)
                     {
-                        totalBill += Convert.ToDouble(row1.Cells[6].Value);
-                        TotalReturn += Convert.ToDouble(row1.Cells[5].Value);
+                        totalBill += Convert.ToDouble(row1.Cells[7].Value);
+                        TotalReturn += Convert.ToDouble(row1.Cells[6].Value);
                         rest2 = totalBill - TotalReturn;
                     }
 
@@ -512,7 +512,7 @@ namespace MainSystem
                 dataGridView2.Rows[n].Cells[6].Value = "0.00";
                 dataGridView2.Rows[n].Cells[5].Value = dr["CustomerTaswaya_ID"].ToString();
                 dataGridView2.Rows[n].Cells[2].Value = "تسوية";
-                dataGridView2.Rows[n].Cells[1].Value = "تسوية";
+                dataGridView2.Rows[n].Cells[1].Value = " ";
                 dataGridView2.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
             dr.Close();
