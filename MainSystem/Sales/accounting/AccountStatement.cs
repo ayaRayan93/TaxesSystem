@@ -304,10 +304,26 @@ namespace MainSystem
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
-                query = "select * from customer_bill where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Bill_Date between '" + d + "' and '" + d2 + "'";
-                string q = "select Customer_OpenAccount from custmer_client where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text;
-                MySqlCommand c = new MySqlCommand(q, dbconnection);
-                labCustomerOpenAccount.Text = c.ExecuteScalar().ToString();
+                if (txtClientID.Text != txtCustomerID.Text)
+                {
+                    query = "select * from customer_bill where Client_ID=" + txtClientID.Text + " and Customer_ID='" + txtCustomerID.Text + "' and Bill_Date between '" + d + "' and '" + d2 + "'";
+                    string q = "select Customer_OpenAccount from custmer_client where Client_ID=" + txtClientID.Text + " and Customer_ID=" + txtCustomerID.Text;
+                    MySqlCommand c = new MySqlCommand(q, dbconnection);
+                    if (c.ExecuteScalar() != null)
+                        labCustomerOpenAccount.Text = c.ExecuteScalar().ToString();
+                    else
+                        labCustomerOpenAccount.Text = "0";
+                }
+                else
+                {
+                    query = "select * from customer_bill where Client_ID=" + txtClientID.Text + " and Bill_Date between '" + d + "' and '" + d2 + "'";
+                    string q = "select Customer_OpenAccount from custmer_client where Client_ID=" + txtClientID.Text ;
+                    MySqlCommand c = new MySqlCommand(q, dbconnection);
+                    if (c.ExecuteScalar() != null)
+                        labCustomerOpenAccount.Text = c.ExecuteScalar().ToString();
+                    else
+                        labCustomerOpenAccount.Text = "0";
+                }
             }
             else if (txtClientID.Text == "" && txtCustomerID.Text != "")
             {
@@ -436,12 +452,13 @@ namespace MainSystem
                 while (dr1.Read())
                 {
                     int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[6].Value = dr1["Amount"].ToString();
-                    dataGridView2.Rows[n].Cells[5].Value = "0.00";
-                    dataGridView2.Rows[n].Cells[4].Value = dr1["Transition_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    dataGridView2.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[1].Value = dr1["Type"].ToString();
+                    dataGridView2.Rows[n].Cells[7].Value = dr1["Amount"].ToString();
+                    dataGridView2.Rows[n].Cells[6].Value = "0.00";
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["Transition_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["Customer_Name"].ToString();
+                    dataGridView2.Rows[n].Cells[3].Value = dr1["Client_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["Type"].ToString();
+                    dataGridView2.Rows[n].Cells[1].Value = dr1["Data"].ToString();
                     dataGridView2.Rows[n].Cells[0].Value = dr1["Date"].ToString();
                 }
                 dr1.Close();
@@ -452,12 +469,13 @@ namespace MainSystem
                 while (dr1.Read())
                 {
                     int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[6].Value = dr1["Money_Paid"].ToString();
-                    dataGridView2.Rows[n].Cells[5].Value = "0.00";
-                    dataGridView2.Rows[n].Cells[4].Value = dr1["CustomerTaswaya_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    dataGridView2.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[1].Value = "تسوية";
+                    dataGridView2.Rows[n].Cells[7].Value = dr1["Money_Paid"].ToString();
+                    dataGridView2.Rows[n].Cells[6].Value = "0.00";
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["CustomerTaswaya_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["Customer_Name"].ToString();
+                    dataGridView2.Rows[n].Cells[3].Value = dr1["Client_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = "تسوية";
+                    dataGridView2.Rows[n].Cells[1].Value = " ";
                     dataGridView2.Rows[n].Cells[0].Value = dr1["Date"].ToString();
                 }
                 dr1.Close();
@@ -475,10 +493,11 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[6].Value = dr["Amount"].ToString();
-                dataGridView2.Rows[n].Cells[5].Value = "0.00";
-                dataGridView2.Rows[n].Cells[4].Value = dr["Transition_ID"].ToString();
-                dataGridView2.Rows[n].Cells[1].Value = dr["Type"].ToString();
+                dataGridView2.Rows[n].Cells[7].Value = dr["Amount"].ToString();
+                dataGridView2.Rows[n].Cells[6].Value = "0.00";
+                dataGridView2.Rows[n].Cells[5].Value = dr["Transition_ID"].ToString();
+                dataGridView2.Rows[n].Cells[2].Value = dr["Type"].ToString();
+                dataGridView2.Rows[n].Cells[1].Value = dr["Data"].ToString();
                 dataGridView2.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
             dr.Close();
@@ -489,9 +508,10 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[6].Value = dr["Money_Paid"].ToString();
-                dataGridView2.Rows[n].Cells[5].Value = "0.00";
-                dataGridView2.Rows[n].Cells[4].Value = dr["CustomerTaswaya_ID"].ToString();
+                dataGridView2.Rows[n].Cells[7].Value = dr["Money_Paid"].ToString();
+                dataGridView2.Rows[n].Cells[6].Value = "0.00";
+                dataGridView2.Rows[n].Cells[5].Value = dr["CustomerTaswaya_ID"].ToString();
+                dataGridView2.Rows[n].Cells[2].Value = "تسوية";
                 dataGridView2.Rows[n].Cells[1].Value = "تسوية";
                 dataGridView2.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
@@ -526,12 +546,13 @@ namespace MainSystem
                 while (dr1.Read())
                 {
                     int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[6].Value =  "0.00";
-                    dataGridView2.Rows[n].Cells[5].Value = dr1["Amount"].ToString();
-                    dataGridView2.Rows[n].Cells[4].Value = dr1["Transition_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    dataGridView2.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[1].Value = dr1["Type"].ToString();
+                    dataGridView2.Rows[n].Cells[7].Value =  "0.00";
+                    dataGridView2.Rows[n].Cells[6].Value = dr1["Amount"].ToString();
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["Transition_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["Customer_Name"].ToString();
+                    dataGridView2.Rows[n].Cells[3].Value = dr1["Client_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = dr1["Type"].ToString();
+                    dataGridView2.Rows[n].Cells[1].Value = dr1["Data"].ToString();
                     dataGridView2.Rows[n].Cells[0].Value = dr1["Date"].ToString();
                 }
                 dr1.Close();
@@ -542,12 +563,13 @@ namespace MainSystem
                 while (dr1.Read())
                 {
                     int n = dataGridView2.Rows.Add();
-                    dataGridView2.Rows[n].Cells[6].Value = "0.00"; 
-                    dataGridView2.Rows[n].Cells[5].Value = dr1["Money_Paid"].ToString();
-                    dataGridView2.Rows[n].Cells[4].Value = dr1["CustomerTaswaya_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
-                    dataGridView2.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
-                    dataGridView2.Rows[n].Cells[1].Value = "تسوية";
+                    dataGridView2.Rows[n].Cells[7].Value = "0.00"; 
+                    dataGridView2.Rows[n].Cells[6].Value = dr1["Money_Paid"].ToString();
+                    dataGridView2.Rows[n].Cells[5].Value = dr1["CustomerTaswaya_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[4].Value = dr1["Customer_Name"].ToString();
+                    dataGridView2.Rows[n].Cells[3].Value = dr1["Client_ID"].ToString();
+                    dataGridView2.Rows[n].Cells[2].Value = "تسوية";
+                    dataGridView2.Rows[n].Cells[1].Value = " ";
                     dataGridView2.Rows[n].Cells[0].Value = dr1["Date"].ToString();
                 }
                 dr1.Close();
@@ -565,10 +587,11 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[6].Value = "0.00";
-                dataGridView2.Rows[n].Cells[5].Value = dr["Amount"].ToString();
-                dataGridView2.Rows[n].Cells[4].Value = dr["Transition_ID"].ToString();
-                dataGridView2.Rows[n].Cells[1].Value = dr["Type"].ToString();
+                dataGridView2.Rows[n].Cells[7].Value = "0.00";
+                dataGridView2.Rows[n].Cells[6].Value = dr["Amount"].ToString();
+                dataGridView2.Rows[n].Cells[5].Value = dr["Transition_ID"].ToString();
+                dataGridView2.Rows[n].Cells[2].Value = dr["Type"].ToString();
+                dataGridView2.Rows[n].Cells[1].Value = dr["Data"].ToString();
                 dataGridView2.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
             dr.Close();
@@ -578,10 +601,11 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView2.Rows.Add();
-                dataGridView2.Rows[n].Cells[6].Value = "0.00";
-                dataGridView2.Rows[n].Cells[5].Value = dr["Money_Paid"].ToString();
-                dataGridView2.Rows[n].Cells[4].Value = dr["CustomerTaswaya_ID"].ToString(); ;
-                dataGridView2.Rows[n].Cells[1].Value = "تسوية";
+                dataGridView2.Rows[n].Cells[7].Value = "0.00";
+                dataGridView2.Rows[n].Cells[6].Value = dr["Money_Paid"].ToString();
+                dataGridView2.Rows[n].Cells[5].Value = dr["CustomerTaswaya_ID"].ToString(); ;
+                dataGridView2.Rows[n].Cells[2].Value = "تسوية";
+                dataGridView2.Rows[n].Cells[1].Value = " ";
                 dataGridView2.Rows[n].Cells[0].Value = dr["Date"].ToString();
             }
             dr.Close();
@@ -691,7 +715,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-      
+        
     }
 }
