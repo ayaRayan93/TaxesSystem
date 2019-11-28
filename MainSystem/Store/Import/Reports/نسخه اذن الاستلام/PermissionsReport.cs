@@ -107,7 +107,7 @@ namespace MainSystem
                     int storeID, billNum = 0;
                     if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null && int.TryParse(txtPermissionNumber.Text, out billNum))
                     {
-                        gridControl2.DataSource = null;
+                        //gridControl2.DataSource = null;
                         DataSet sourceDataSet = new DataSet();
                         MySqlDataAdapter adapterPerm = null;
                         MySqlDataAdapter adapterSup = null;
@@ -171,7 +171,7 @@ namespace MainSystem
                 if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null)
                 {
                     txtPermissionNumber.Text = "";
-                    gridControl2.DataSource = null;
+                    //gridControl2.DataSource = null;
                     DataSet sourceDataSet = new DataSet();
                     MySqlDataAdapter adapterPerm = null;
                     MySqlDataAdapter adapterSup = null;
@@ -216,7 +216,7 @@ namespace MainSystem
 
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
-            if (loaded)
+            /*if (loaded)
             {
                 try
                 {
@@ -246,7 +246,7 @@ namespace MainSystem
                     MessageBox.Show(ex.Message);
                 }
                 dbconnection.Close();
-            }
+            }*/
         }
 
         private void btnReport_Click(object sender, EventArgs e)

@@ -695,6 +695,13 @@
     <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition.designer.cs">
       <DependentUpon>Print_AglTransition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Import\Reports\تقرير اذون الوارد والمرتجعات\DataHelperClassPermissionsTransitions.cs" />
+    <Compile Include="Store\Import\Reports\تقرير اذون الوارد والمرتجعات\Permissions_Transitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Import\Reports\تقرير اذون الوارد والمرتجعات\Permissions_Transitions_Report.designer.cs">
+      <DependentUpon>Permissions_Transitions_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\DataHelperClassUpdate.cs" />
     <Compile Include="Store\Import\Reports\نسخة اذن المرتجع\Print_StorageReturnCopy.cs">
       <SubType>Component</SubType>
@@ -3119,6 +3126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Products_Report2Sales.resx">
       <DependentUpon>Products_Report2Sales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\Reports\تقرير اذون الوارد والمرتجعات\Permissions_Transitions_Report.resx">
+      <DependentUpon>Permissions_Transitions_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\Reports\نسخة اذن المرتجع\Print_StorageReturnCopy.resx">
       <DependentUpon>Print_StorageReturnCopy.cs</DependentUpon>
