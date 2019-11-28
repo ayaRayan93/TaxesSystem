@@ -28,9 +28,11 @@ namespace MainSystem
         int importSupplierPermissionID = 0;
         XtraTabControl xtraTabControlStores = null;
         int flagConfirm = 2;
-        DataRow selrow = null;
+        //DataRow selrow = null;
+        string permissionNum = "";
+        DateTime date = new DateTime();
 
-        public SupplierReceiptUpdate(DataRow Selrow, PermissionsReport permissionsReport, XtraTabControl tabControlContentStore)
+        public SupplierReceiptUpdate(/*DataRow Selrow, */string StoreId,string PermissionNum, DateTime Date,PermissionsReport permissionsReport, XtraTabControl tabControlContentStore)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
@@ -38,7 +40,10 @@ namespace MainSystem
             conn6 = new MySqlConnection(connection.connectionString);
             conn3 = new MySqlConnection(connection.connectionString);
             xtraTabControlStores = tabControlContentStore;
-            selrow = Selrow;
+            //selrow = Selrow;
+            storeId = Convert.ToInt32(StoreId);
+            permissionNum = PermissionNum;
+            date = Date;
             
             comType.AutoCompleteMode = AutoCompleteMode.Suggest;
             comType.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -56,8 +61,6 @@ namespace MainSystem
         {
             try
             {
-                storeId = Convert.ToInt32(selrow["Store_ID"].ToString());
-
                 conn.Open();
                 string query = "select * from type";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
@@ -103,7 +106,7 @@ namespace MainSystem
                 comStorePlace.DisplayMember = dt.Columns["Store_Place_Code"].ToString();
                 comStorePlace.ValueMember = dt.Columns["Store_Place_ID"].ToString();
 
-                txtPermissionNum.Text = selrow["رقم الاذن"].ToString();
+                txtPermissionNum.Text = permissionNum;
                 
                 loaded = true;
             }
@@ -1120,8 +1123,8 @@ namespace MainSystem
                         suppliers_Name += "," + gridView2.GetRowCellDisplayText(gridView2.GetRowHandle(gridView2.RowCount - 1), gridView2.Columns["المورد"]);
                     }
 
-                    Report_SupplierReceipt f = new Report_SupplierReceipt();
-                    f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, bi);
+                    Report_SupplierReceiptCopy f = new Report_SupplierReceiptCopy();
+                    f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, date, bi);
                     f.ShowDialog();
 
                     this.Close();

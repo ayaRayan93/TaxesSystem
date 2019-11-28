@@ -30,14 +30,9 @@
         {
             this.labBillNumber = new System.Windows.Forms.Label();
             this.txtPermissionNumber = new System.Windows.Forms.TextBox();
-            this.btnDisplay = new System.Windows.Forms.Button();
             this.comStore = new System.Windows.Forms.ComboBox();
             this.txtStoreID = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
@@ -46,6 +41,11 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSupplierId = new System.Windows.Forms.TextBox();
+            this.comSupplier = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -57,47 +57,30 @@
             // 
             this.labBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labBillNumber.AutoSize = true;
-            this.labBillNumber.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.labBillNumber.Location = new System.Drawing.Point(780, 44);
+            this.labBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.labBillNumber.Location = new System.Drawing.Point(378, 12);
             this.labBillNumber.Name = "labBillNumber";
-            this.labBillNumber.Size = new System.Drawing.Size(78, 19);
+            this.labBillNumber.Size = new System.Drawing.Size(68, 19);
             this.labBillNumber.TabIndex = 5;
             this.labBillNumber.Text = "رقم الاذن";
-            this.labBillNumber.Visible = false;
             // 
             // txtPermissionNumber
             // 
             this.txtPermissionNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPermissionNumber.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtPermissionNumber.Location = new System.Drawing.Point(624, 40);
+            this.txtPermissionNumber.Location = new System.Drawing.Point(232, 8);
             this.txtPermissionNumber.Name = "txtPermissionNumber";
             this.txtPermissionNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPermissionNumber.Size = new System.Drawing.Size(150, 27);
+            this.txtPermissionNumber.Size = new System.Drawing.Size(140, 27);
             this.txtPermissionNumber.TabIndex = 4;
-            this.txtPermissionNumber.Visible = false;
             this.txtPermissionNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBillNumber_KeyDown);
-            // 
-            // btnDisplay
-            // 
-            this.btnDisplay.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnDisplay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisplay.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnDisplay.ForeColor = System.Drawing.Color.White;
-            this.btnDisplay.Location = new System.Drawing.Point(81, 16);
-            this.btnDisplay.Name = "btnDisplay";
-            this.btnDisplay.Size = new System.Drawing.Size(132, 35);
-            this.btnDisplay.TabIndex = 7;
-            this.btnDisplay.Text = "عرض كل الاذون";
-            this.btnDisplay.UseVisualStyleBackColor = false;
-            this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
             // 
             // comStore
             // 
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 12F);
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(624, 7);
+            this.comStore.Location = new System.Drawing.Point(580, 8);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(150, 27);
@@ -108,7 +91,7 @@
             // 
             this.txtStoreID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtStoreID.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtStoreID.Location = new System.Drawing.Point(568, 7);
+            this.txtStoreID.Location = new System.Drawing.Point(524, 8);
             this.txtStoreID.Name = "txtStoreID";
             this.txtStoreID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtStoreID.Size = new System.Drawing.Size(50, 27);
@@ -119,60 +102,12 @@
             // 
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(789, 11);
+            this.label16.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label16.Location = new System.Drawing.Point(736, 12);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(61, 19);
+            this.label16.Size = new System.Drawing.Size(51, 19);
             this.label16.TabIndex = 204;
             this.label16.Text = "المخزن";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(476, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 19);
-            this.label2.TabIndex = 214;
-            this.label2.Text = "الي";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePicker2.CustomFormat = "yyyy/MM/dd";
-            this.dateTimePicker2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(270, 41);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dateTimePicker2.RightToLeftLayout = true;
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 24);
-            this.dateTimePicker2.TabIndex = 213;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(477, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 19);
-            this.label3.TabIndex = 212;
-            this.label3.Text = "من";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(270, 8);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dateTimePicker1.RightToLeftLayout = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 24);
-            this.dateTimePicker1.TabIndex = 211;
             // 
             // tableLayoutPanel1
             // 
@@ -317,14 +252,14 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.dateTimePicker2);
-            this.panel1.Controls.Add(this.txtPermissionNumber);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.labBillNumber);
-            this.panel1.Controls.Add(this.btnDisplay);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.txtSupplierId);
+            this.panel1.Controls.Add(this.comSupplier);
+            this.panel1.Controls.Add(this.txtPermissionNumber);
+            this.panel1.Controls.Add(this.labBillNumber);
+            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.txtStoreID);
             this.panel1.Controls.Add(this.comStore);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -332,6 +267,64 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(965, 74);
             this.panel1.TabIndex = 216;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimePicker1.CustomFormat = "dd-MM-yyyy HH:mm:ss";
+            this.dateTimePicker1.Enabled = false;
+            this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(207, 41);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dateTimePicker1.RightToLeftLayout = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(165, 23);
+            this.dateTimePicker1.TabIndex = 207;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(378, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 19);
+            this.label1.TabIndex = 206;
+            this.label1.Text = "التاريخ";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label2.Location = new System.Drawing.Point(736, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 19);
+            this.label2.TabIndex = 208;
+            this.label2.Text = "المورد";
+            // 
+            // txtSupplierId
+            // 
+            this.txtSupplierId.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSupplierId.Enabled = false;
+            this.txtSupplierId.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtSupplierId.Location = new System.Drawing.Point(524, 39);
+            this.txtSupplierId.Name = "txtSupplierId";
+            this.txtSupplierId.Size = new System.Drawing.Size(50, 27);
+            this.txtSupplierId.TabIndex = 209;
+            // 
+            // comSupplier
+            // 
+            this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupplier.Enabled = false;
+            this.comSupplier.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.comSupplier.FormattingEnabled = true;
+            this.comSupplier.Location = new System.Drawing.Point(580, 39);
+            this.comSupplier.Name = "comSupplier";
+            this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comSupplier.Size = new System.Drawing.Size(150, 27);
+            this.comSupplier.TabIndex = 210;
             // 
             // PermissionsReport
             // 
@@ -359,14 +352,9 @@
 
         private System.Windows.Forms.Label labBillNumber;
         private System.Windows.Forms.TextBox txtPermissionNumber;
-        private System.Windows.Forms.Button btnDisplay;
         private System.Windows.Forms.ComboBox comStore;
         private System.Windows.Forms.TextBox txtStoreID;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraGrid.GridControl gridControl1;
@@ -375,6 +363,11 @@
         private Bunifu.Framework.UI.BunifuTileButton btnReport;
         private Bunifu.Framework.UI.BunifuTileButton btnCancel;
         private Bunifu.Framework.UI.BunifuTileButton btnUpdate;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtSupplierId;
+        private System.Windows.Forms.ComboBox comSupplier;
     }
 }
 
