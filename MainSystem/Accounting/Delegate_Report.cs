@@ -36,7 +36,7 @@ namespace MainSystem
             try
             {
                 PrintableComponentLink printableComponentLink = new PrintableComponentLink();
-                
+         
                 printableComponentLink.Component = gridControl;
                 printableComponentLink.RightToLeftLayout = false;
                 printableComponentLink.Landscape = false;
@@ -64,7 +64,7 @@ namespace MainSystem
 
             // Set the rectangle for a page info brick. 
             RectangleF r = RectangleF.Empty;
-            r.Height = 20;
+            r.Height = 10;
 
             // Display the PageInfoBrick containing the page number among total pages. The page number
             // is displayed in the right part of the MarginalHeader section.
@@ -97,48 +97,48 @@ namespace MainSystem
             // Display the PageInfoBrick containing date-time information. Date-time information is displayed
             // in the left part of the MarginalHeader section using the FullDateTimePattern.
             //{0:F}
-            pageInfoBrickFrom = brickGraphics.DrawPageInfo(PageInfo.None, ":من" , Color.Black, new Rectangle(180, 160, 60, 80), BorderSide.None);
+            pageInfoBrickFrom = brickGraphics.DrawPageInfo(PageInfo.None, ":من" , Color.Black, new Rectangle(180, 100, 60, 80), BorderSide.None);
             pageInfoBrickFrom.Font = new Font("Tahoma", 10, FontStyle.Bold);
-            pageInfoBrickFrom = brickGraphics.DrawPageInfo(PageInfo.None, d.dateFrom, Color.Black, new Rectangle(40, 160, 140, 80), BorderSide.None);
+            pageInfoBrickFrom = brickGraphics.DrawPageInfo(PageInfo.None, d.dateFrom, Color.Black, new Rectangle(40, 100, 140, 80), BorderSide.None);
 
             pageInfoBrickFrom.Alignment = BrickAlignment.Near;
             pageInfoBrickFrom.Font = new Font("Tahoma", 10, FontStyle.Bold);
-            pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None, ":الي", Color.Black, new Rectangle(180, 180, 60, 80), BorderSide.None);
+            pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None, ":الي", Color.Black, new Rectangle(180, 120, 60, 80), BorderSide.None);
             pageInfoBrickTo.Font = new Font("Tahoma", 10, FontStyle.Bold);
-            pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None,  d.dateTo, Color.Black, new Rectangle(40, 180, 140, 80), BorderSide.None);
+            pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None,  d.dateTo, Color.Black, new Rectangle(40, 120, 140, 80), BorderSide.None);
 
             pageInfoBrickTo.Alignment = BrickAlignment.Near;
             pageInfoBrickTo.Font = new Font("Tahoma", 10, FontStyle.Bold);
             BrickGraphics brickGraphics1 = e.Graph;
-            pageInfo = brickGraphics1.DrawPageInfo(PageInfo.None, d.delegateName, Color.Black, new Rectangle(525, 160, 180, 70), BorderSide.None);
+            pageInfo = brickGraphics1.DrawPageInfo(PageInfo.None, d.delegateName, Color.Black, new Rectangle(525, 100, 180, 70), BorderSide.None);
             pageInfo.Alignment = BrickAlignment.Near;
             pageInfo.Font = new Font("Tahoma", 10, FontStyle.Bold);
             BrickGraphics brickGraphics3 = e.Graph;
-            pageInfo1 = brickGraphics3.DrawPageInfo(PageInfo.None, d.company, Color.Black, new Rectangle(528, 180, 180, 70), BorderSide.None);
+            pageInfo1 = brickGraphics3.DrawPageInfo(PageInfo.None, d.company, Color.Black, new Rectangle(528, 120, 180, 70), BorderSide.None);
             pageInfo1.Alignment = BrickAlignment.Near;
             pageInfo1.Font = new Font("Tahoma", 10, FontStyle.Bold);
 
             if (d.company_profit_list != null)
             {
-                pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None, "الشركة", Color.Black, new Rectangle(525, 240, 100, 80), BorderSide.None);
+                pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None, "الشركة", Color.Black, new Rectangle(525, 100, 100, 80), BorderSide.None);
                 pageInfoBrickTo.Font = new Font("Tahoma", 10, FontStyle.Bold);
-                pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None,"قيمة ربح المندوب", Color.Black, new Rectangle(528, 240, 150, 80), BorderSide.None);
+                pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None,"قيمة ربح المندوب", Color.Black, new Rectangle(528, 120, 150, 80), BorderSide.None);
 
                 pageInfoBrickTo.Alignment = BrickAlignment.Far;
                 pageInfoBrickTo.Font = new Font("Tahoma", 10, FontStyle.Bold);
-                int y = 240;
+                int y = 120;
                 PageInfoBrick pageInfoBrick3;
                 foreach (company_profit item in d.company_profit_list)
                 {
                     y += 20;
-                    pageInfoBrick3 = brickGraphics.DrawPageInfo(PageInfo.None, item.companyName, Color.Black, new Rectangle(725, y, 160, 80), BorderSide.None);
+                    pageInfoBrick3 = brickGraphics.DrawPageInfo(PageInfo.None, item.companyName, Color.Black, new Rectangle(725, y, 140, 80), BorderSide.None);
                     pageInfoBrick3.Font = new Font("Tahoma", 10, FontStyle.Regular);
-                    pageInfoBrick3 = brickGraphics.DrawPageInfo(PageInfo.None, item.delegateProfit, Color.Black, new Rectangle(528, y, 160, 80), BorderSide.None);
+                    pageInfoBrick3 = brickGraphics.DrawPageInfo(PageInfo.None, item.delegateProfit, Color.Black, new Rectangle(528, y, 140, 80), BorderSide.None);
 
                     pageInfoBrick3.Alignment = BrickAlignment.Far;
                     pageInfoBrick3.Font = new Font("Tahoma", 10, FontStyle.Regular);
                 }
-                pageInfoBrick3 = brickGraphics.DrawPageInfo(PageInfo.None, d.delegateProfit+":اجمالي ربح المندوب ", Color.Black, new Rectangle(685, y+40, 250, 80), BorderSide.None);
+                pageInfoBrick3 = brickGraphics.DrawPageInfo(PageInfo.None, d.delegateProfit+":اجمالي ربح المندوب ", Color.Black, new Rectangle(685, y+40, 230, 80), BorderSide.None);
 
                 pageInfoBrick3.Alignment = BrickAlignment.Far;
                 pageInfoBrick3.Font = new Font("Tahoma", 11, FontStyle.Bold);
