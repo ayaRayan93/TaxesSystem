@@ -146,7 +146,7 @@ namespace MainSystem
         {
             try
             {
-                if (comType.Text != "" && comFactory.Text != "")
+                if (comType.Text != "")
                 {
                     string q1 = "", q2 = "", q3 = "", q4 = "", q5 = "", fQuery = "";
                     if (comType.Text == "")
@@ -211,7 +211,8 @@ namespace MainSystem
                     da.Fill(dt);
                     gridControl1.DataSource = dt;
                     //storage.Store_ID IN (" + q5 + ") and
-                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + q5 + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                    //date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and
+                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + q5 + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = comand.ExecuteReader();
                     while (dr.Read())
@@ -274,7 +275,7 @@ namespace MainSystem
                 else
                 {
                     gridControl1.DataSource = null;
-                    MessageBox.Show("يجب اختيار النوع والمصنع على الاقل");
+                    MessageBox.Show("يجب اختيار النوع على الاقل");
                 }
             }
             catch (Exception ex)
@@ -308,7 +309,8 @@ namespace MainSystem
                     gridView1.Columns["Type"].Visible = false;
                     gridView1.Columns[0].Visible = false;
                     //storage.Store_ID IN (" + q5 + ") and 
-                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Code='" + code1 + code2 + code3 + code4 + code5 + "' " + q5 + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                    //date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and 
+                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Code='" + code1 + code2 + code3 + code4 + code5 + "' " + q5 + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = comand.ExecuteReader();
                     while (dr.Read())
@@ -633,7 +635,8 @@ namespace MainSystem
 
                                     dbconnection6.Open();
                                     //storage.Store_ID IN (" + q5 + ") and 
-                                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Code like '" + code1 + code2 + code3 + code4 + "%'" + q5 + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                                    //date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and 
+                                    query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Code like '" + code1 + code2 + code3 + code4 + "%'" + q5 + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                                     MySqlDataReader dr = comand.ExecuteReader();
                                     while (dr.Read())
@@ -768,7 +771,8 @@ namespace MainSystem
                             }
                             dr1.Close();
                             //storage.Store_ID IN(" + q5 + ") and 
-                            query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and sets.Set_ID=" + dr["الكود"] + q5 + " group by sets.Set_ID";
+                            //date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and 
+                            query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sets.Set_ID=" + dr["الكود"] + q5 + " group by sets.Set_ID";
                             comand = new MySqlCommand(query, dbconnection3);
                             dr1 = comand.ExecuteReader();
                             while (dr1.Read())
@@ -854,7 +858,8 @@ namespace MainSystem
                     checkEditOffers.Checked = false;
                     //,Price as 'السعر'
                     //storage.Store_ID IN (" + q5 + ") and 
-                    string query = "select offer.Offer_ID as 'الكود','Type',Offer_Name as 'الاسم',Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية','الاجمالى' from offer LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and offer.Offer_ID=" + comOffer.SelectedValue.ToString() + q5 + " group by storage.Offer_ID";
+                    //date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and 
+                    string query = "select offer.Offer_ID as 'الكود','Type',Offer_Name as 'الاسم',Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية','الاجمالى' from offer LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=" + comOffer.SelectedValue.ToString() + q5 + " group by storage.Offer_ID";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -1273,7 +1278,8 @@ namespace MainSystem
                             }
                             dr1.Close();
                             //storage.Store_ID IN (" + q5 + ") and 
-                            query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' " + q5 + " and sets.Set_ID=" + dr["الكود"] + " group by sets.Set_ID";
+                            //date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'
+                            query = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM sets LEFT JOIN storage ON storage.Set_ID = sets.Set_ID where sets.Set_ID=" + dr["الكود"] + q5  + " group by sets.Set_ID";
                             comand = new MySqlCommand(query, dbconnection3);
                             dr1 = comand.ExecuteReader();
                             while (dr1.Read())
@@ -1357,31 +1363,71 @@ namespace MainSystem
                     checkEditSets.Checked = false;
                     comOffer.Text = "";
                     //,Price as 'السعر'
-                    string query = "select offer.Offer_ID as 'الكود','Type',Offer_Name as 'الاسم',Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية','الاجمالى' from offer LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' " + q5 + " group by storage.Offer_ID";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    gridControl1.DataSource = dt;
+                    //date(storage.Storage_Date) <= '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'
+                    MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT data.Data_ID,data.Code as 'الكود','Type',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sellprice.Sell_Price as 'بعد الخصم',sum(storage.Total_Meters) as 'الكمية','الاجمالى' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  left JOIN sellprice ON sellprice.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID=0 group by data.Data_ID", dbconnection);
+                    DataTable dtf = new DataTable();
+                    adapter.Fill(dtf);
+                    gridControl1.DataSource = dtf;
                     gridView1.Columns["Type"].Visible = false;
                     gridView1.Columns[0].Visible = false;
 
-                    for (int i = 0; i < gridView1.RowCount; i++)
+                    dbconnection.Open();
+                    dbconnection3.Open();
+                    string query = "select offer.Offer_ID as 'الكود',Offer_Name as 'الاسم',Price as 'بعد الخصم' from offer";
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader dr = comand.ExecuteReader();
+                    while (dr.Read())
                     {
-                        gridView1.SetRowCellValue(i, gridView1.Columns["Type"], "عرض");
-
-                        double quantti = 0;
-                        double pricee = 0;
-                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["بعد الخصم"]) != "")
+                        double totalQuanity = 0;
+                        gridView1.AddNewRow();
+                        int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                        if (gridView1.IsNewItemRow(rowHandle))
                         {
-                            pricee = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["بعد الخصم"]));
-                        }
-                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]) != "")
-                        {
-                            quantti = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]));
-                        }
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Type"], "عرض");
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["بعد الخصم"], dr["بعد الخصم"]);
 
-                        gridView1.SetRowCellValue(i, gridView1.Columns["الاجمالى"], quantti * pricee);
+                            string query2 = "SELECT sum(storage.Total_Meters) as 'الكمية' FROM offer LEFT JOIN storage ON storage.Offer_ID = offer.Offer_ID where offer.Offer_ID=" + dr["الكود"] + q5 + " group by offer.Offer_ID";
+                            MySqlCommand comand2 = new MySqlCommand(query2, dbconnection3);
+                            MySqlDataReader dr1 = comand2.ExecuteReader();
+                            while (dr1.Read())
+                            {
+                                if (dr1["الكمية"].ToString() != "")
+                                {
+                                    totalQuanity += Convert.ToDouble(dr1["الكمية"].ToString());
+                                }
+                                else
+                                {
+                                    totalQuanity += 0;
+                                }
+                            }
+                            dr1.Close();
+
+                            if (totalQuanity != 0)
+                            {
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], totalQuanity);
+                            }
+                            else
+                            {
+                                gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], "");
+                            }
+
+                            double quantti = 0;
+                            double pricee = 0;
+                            if (gridView1.GetRowCellDisplayText(rowHandle, gridView1.Columns["بعد الخصم"]) != "")
+                            {
+                                pricee = Convert.ToDouble(gridView1.GetRowCellDisplayText(rowHandle, gridView1.Columns["بعد الخصم"]));
+                            }
+                            if (gridView1.GetRowCellDisplayText(rowHandle, gridView1.Columns["الكمية"]) != "")
+                            {
+                                quantti = Convert.ToDouble(gridView1.GetRowCellDisplayText(rowHandle, gridView1.Columns["الكمية"]));
+                            }
+
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالى"], quantti * pricee);
+                        }
                     }
+                    dr.Close();
 
                     if (gridView1.IsLastVisibleRow)
                     {
@@ -1406,6 +1452,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnection3.Close();
         }
 
         private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
