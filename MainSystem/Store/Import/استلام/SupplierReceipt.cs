@@ -669,7 +669,7 @@ namespace MainSystem
                                 MySqlCommand com = new MySqlCommand(query, conn);
                                 if (com.ExecuteScalar() == null)
                                 {
-                                    query = "SELECT gate.Car_ID,gate.Car_Number,gate.Driver_ID,gate.Driver_Name FROM gate INNER JOIN gate_supplier ON gate.Gate_ID = gate_supplier.Gate_ID INNER JOIN gate_permission ON gate_supplier.GateSupplier_ID = gate_permission.GateSupplier_ID where gate.Store_ID=" + storeId + " and gate_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and gate_permission.Supplier_PermissionNumber=" + supPermNum + " and gate_permission.Type='دخول'";
+                                    query = "SELECT gate.Car_ID,gate.Car_Number,gate.Driver_ID,gate.Driver_Name FROM gate INNER JOIN gate_supplier ON gate.Gate_ID = gate_supplier.Gate_ID INNER JOIN gate_permission ON gate_supplier.GateSupplier_ID = gate_permission.GateSupplier_ID where gate.Store_ID=" + storeId + " and gate_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and gate_permission.Supplier_PermissionNumber=" + supPermNum + " and gate_permission.Type='دخول' order by gate.Gate_ID desc limit 1";
                                     com = new MySqlCommand(query, conn2);
                                     MySqlDataReader dr2 = com.ExecuteReader();
                                     if (dr2.HasRows)
@@ -758,7 +758,7 @@ namespace MainSystem
                                     com = new MySqlCommand(query, conn);
                                     if (com.ExecuteScalar() == null)
                                     {
-                                        query = "SELECT gate.Car_ID,gate.Car_Number,gate.Driver_ID,gate.Driver_Name FROM gate INNER JOIN gate_supplier ON gate.Gate_ID = gate_supplier.Gate_ID INNER JOIN gate_permission ON gate_supplier.GateSupplier_ID = gate_permission.GateSupplier_ID where gate.Store_ID=" + storeId + " and gate_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and gate_permission.Supplier_PermissionNumber=" + supPermNum + " and gate_permission.Type='دخول'";
+                                        query = "SELECT gate.Car_ID,gate.Car_Number,gate.Driver_ID,gate.Driver_Name FROM gate INNER JOIN gate_supplier ON gate.Gate_ID = gate_supplier.Gate_ID INNER JOIN gate_permission ON gate_supplier.GateSupplier_ID = gate_permission.GateSupplier_ID where gate.Store_ID=" + storeId + " and gate_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and gate_permission.Supplier_PermissionNumber=" + supPermNum + " and gate_permission.Type='دخول' order by gate.Gate_ID desc limit 1";
                                         com = new MySqlCommand(query, conn2);
                                         MySqlDataReader dr2 = com.ExecuteReader();
                                         if (dr2.HasRows)
