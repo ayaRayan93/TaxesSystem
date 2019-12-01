@@ -17,7 +17,6 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         bool loaded = false;
-        DataRow row1 = null;
 
         public Permissions_Transitions_Report(MainForm mainform)
         {
@@ -120,7 +119,7 @@ namespace MainSystem
                     }
 
                     dbconnection.Open();
-                    string query = "SELECT distinct storage_import_permission.StorageImportPermission_ID as 'ID', storage_import_permission.Import_Permission_Number as 'رقم الاذن',store.Store_Name as 'المخزن',storage_import_permission.Storage_Date as 'التاريخ' FROM storage_import_permission INNER JOIN import_supplier_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID where storage_import_permission.Confirmed=0 and import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and date(storage_import_permission.Storage_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by storage_import_permission.Storage_Date";
+                    string query = "SELECT distinct storage_import_permission.StorageImportPermission_ID as 'ID', storage_import_permission.Import_Permission_Number as 'رقم الاذن',store.Store_Name as 'المخزن',storage_import_permission.Storage_Date as 'التاريخ' FROM storage_import_permission INNER JOIN import_supplier_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID INNER JOIN store ON store.Store_ID = storage_import_permission.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_supplier_permission.Supplier_ID where (storage_import_permission.Confirmed=0 or storage_import_permission.Confirmed=1) and import_supplier_permission.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and date(storage_import_permission.Storage_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by storage_import_permission.Storage_Date";
                     MySqlCommand comand = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = comand.ExecuteReader();
                     while (dr.Read())

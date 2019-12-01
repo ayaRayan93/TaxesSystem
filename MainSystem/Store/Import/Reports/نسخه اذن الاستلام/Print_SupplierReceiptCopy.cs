@@ -14,9 +14,9 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string storeName, string permissionNum, string supplierName, List<SupplierReceipt_Items> ReceiptItems)
+        public void InitData(string storeName, string permissionNum, string supplierName, DateTime Date, List<SupplierReceipt_Items> ReceiptItems)
         {
-            DateNow.Value = DateTime.Now;
+            DateNow.Value = Date;
             StoreName.Value = storeName;
             PermissionNumber.Value = permissionNum;
             SupplierName.Value = supplierName;

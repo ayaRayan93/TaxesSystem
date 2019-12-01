@@ -16,8 +16,9 @@ namespace MainSystem
     {
         MySqlConnection dbconnection, dbconnection1, dbconnection2, dbconnection3, dbconnection4;
         bool loaded = false;
-        DataRow row1 = null;
+        //DataRow row1 = null;
         XtraTabControl tabControlContentStore = null;
+        int ImportStorageReturnID = 0;
 
         public PermissionReturnedReport(MainForm mainform, XtraTabControl tabControlContent)
         {
@@ -42,7 +43,17 @@ namespace MainSystem
                 comStore.ValueMember = dt.Columns["Store_ID"].ToString();
                 comStore.Text = "";
                 txtStoreID.Text = "";
-
+                
+                query = "select * from supplier";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comSupplier.DataSource = dt;
+                comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
+                comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+                comSupplier.Text = "";
+                txtSupplierId.Text = "";
+                
                 loaded = true;
             }
             catch (Exception ex)
@@ -59,8 +70,6 @@ namespace MainSystem
                 if (loaded)
                 {
                     txtStoreID.Text = comStore.SelectedValue.ToString();
-                    labBillNumber.Visible = true;
-                    txtPermissionNumber.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -100,7 +109,7 @@ namespace MainSystem
 
         private void gridView1_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
-            if (loaded)
+            /*if (loaded)
             {
                 try
                 {
@@ -111,21 +120,25 @@ namespace MainSystem
                     MessageBox.Show(ex.Message);
                 }
                 dbconnection.Close();
-            }
+            }*/
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if(UserControl.userType == 1 || UserControl.userType == 13)
             {
-                try
+                int supplierID, billNum = 0;
+                if (int.TryParse(txtStoreID.Text, out supplierID) && comStore.SelectedValue != null && int.TryParse(txtReturnedPermissionNum.Text, out billNum))
                 {
-                    StorageReturnBill_Update form = new StorageReturnBill_Update(row1, comStore.SelectedValue.ToString(), this, tabControlContentStore);
-                    form.ShowDialog();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        StorageReturnBill_Update form = new StorageReturnBill_Update(ImportStorageReturnID, comStore.SelectedValue.ToString(), billNum, txtPermissionNum.Text, txtReason.Text, dateTimePicker1.Value, this, tabControlContentStore);
+                        form.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
@@ -137,9 +150,10 @@ namespace MainSystem
                 try
                 {
                     int supplierID, billNum = 0;
-                    if (int.TryParse(txtStoreID.Text, out supplierID) && comStore.SelectedValue != null && int.TryParse(txtPermissionNumber.Text, out billNum))
+                    if (int.TryParse(txtStoreID.Text, out supplierID) && comStore.SelectedValue != null && int.TryParse(txtReturnedPermissionNum.Text, out billNum))
                     {
-                        gridControl1.DataSource = null;
+                        #region edit
+                        /*gridControl1.DataSource = null;
                         DataSet sourceDataSet = new DataSet();
                         MySqlDataAdapter adapterPerm = null;
                         MySqlDataAdapter adapterSup = null;
@@ -159,7 +173,30 @@ namespace MainSystem
                         DataColumn foreignKeyColumn3 = sourceDataSet.Tables["import_storage_return_details"].Columns["التسلسل"];
                         sourceDataSet.Relations.Add("موردين الاذن", keyColumn, foreignKeyColumn);
                         sourceDataSet.Relations.Add("تفاصيل الاذن", foreignKeyColumn2, foreignKeyColumn3);
-                        gridControl1.DataSource = sourceDataSet.Tables["import_storage_return"];
+                        gridControl1.DataSource = sourceDataSet.Tables["import_storage_return"];*/
+                        #endregion
+
+                        dbconnection.Open();
+                        string query = "SELECT DISTINCT import_storage_return.ImportStorageReturn_ID as 'التسلسل',import_storage_return_supplier.Supplier_ID,supplier.Supplier_Name as 'المورد',import_storage_return.Retrieval_Date as 'التاريخ',import_storage_return.Reason as 'سبب الاسترجاع',import_storage_return.Import_Permission_Number as 'رقم اذن المخزن' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID where import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + billNum;
+                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                        MySqlDataReader dr = comand.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            ImportStorageReturnID = Convert.ToInt16(dr["التسلسل"].ToString());
+                            comSupplier.SelectedIndex = -1;
+                            comSupplier.Text = dr["المورد"].ToString();
+                            txtSupplierId.Text = dr["Supplier_ID"].ToString();
+                            dateTimePicker1.Value = Convert.ToDateTime(dr["التاريخ"].ToString());
+                            txtReason.Text = dr["سبب الاسترجاع"].ToString();
+                            txtPermissionNum.Text = dr["رقم اذن المخزن"].ToString();
+                        }
+                        dr.Close();
+
+                        query = "SELECT data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',import_storage_return_supplier.Supplier_Permission_Number as 'رقم اذن الاستلام',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + billNum;
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        gridControl1.DataSource = dt;
                     }
                     else
                     {
@@ -177,7 +214,7 @@ namespace MainSystem
 
         private void btnDisplay_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 DataSet sourceDataSet = new DataSet();
                 int supplierID= 0;
@@ -217,7 +254,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
+            dbconnection.Close();*/
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -225,7 +262,8 @@ namespace MainSystem
             try
             {
                 int storeID = 0;
-                if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null && gridView1.RowCount > 0 && row1 != null)
+                int billNum = 0;
+                if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null && int.TryParse(txtReturnedPermissionNum.Text, out billNum) && gridView1.RowCount > 0)
                 {
                     string suppliers_Name = "";
                     dbconnection.Open();
@@ -237,7 +275,7 @@ namespace MainSystem
                     dbconnection1.Open();
                     dbconnection2.Open();
                     dbconnection3.Open();
-                    q1 = "SELECT DISTINCT import_storage_return.ImportStorageReturn_ID as 'التسلسل',import_storage_return.Returned_Permission_Number as 'رقم اذن المرتجع',import_storage_return.Retrieval_Date as 'تاريخ الاسترجاع',import_storage_return.Reason as 'سبب الاسترجاع',import_storage_return.Import_Permission_Number as 'رقم اذن المخزن' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID where import_storage_return.Returned_Permission_Number=" + row1["رقم اذن المرتجع"].ToString() + " and import_storage_return.Store_ID=" + comStore.SelectedValue.ToString();
+                    q1 = "SELECT DISTINCT import_storage_return.ImportStorageReturn_ID as 'التسلسل',import_storage_return.Returned_Permission_Number as 'رقم اذن المرتجع',import_storage_return.Retrieval_Date as 'تاريخ الاسترجاع',import_storage_return.Reason as 'سبب الاسترجاع',import_storage_return.Import_Permission_Number as 'رقم اذن المخزن' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID where import_storage_return.Returned_Permission_Number=" + txtReturnedPermissionNum.Text + " and import_storage_return.Store_ID=" + comStore.SelectedValue.ToString();
                     MySqlCommand com1 = new MySqlCommand(q1, dbconnection1);
                     MySqlDataReader dr1 = com1.ExecuteReader();
                     while (dr1.Read())
@@ -305,7 +343,7 @@ namespace MainSystem
                             supplierCount++;
 
                             Report_StorageReturnCopy f = new Report_StorageReturnCopy();
-                            f.PrintInvoice(storeName, row1["رقم اذن المخزن"].ToString(), suppliers_Name, Convert.ToInt16(row1["رقم اذن المرتجع"].ToString()), row1["تاريخ الاسترجاع"].ToString(), row1["سبب الاسترجاع"].ToString(), bi);
+                            f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, billNum, dateTimePicker1.Value.ToString(), txtReason.Text, bi);
                             f.ShowDialog();
                         }
                         dr2.Close();
@@ -331,14 +369,14 @@ namespace MainSystem
         {
             try
             {
-                if (row1 != null)
+                if (gridView1.RowCount > 0)
                 {
                     if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         dbconnection.Open();
                         dbconnection2.Open();
                         dbconnection3.Open();
-                        string q2 = "SELECT DISTINCT import_storage_return.ImportStorageReturn_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',import_storage_return_supplier.Supplier_Permission_Number as 'رقم اذن الاستلام',import_storage_return_supplier.ImportStorageReturnSupplier_ID as 'ID' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID where import_storage_return.ImportStorageReturn_ID=" + row1["التسلسل"].ToString();
+                        string q2 = "SELECT DISTINCT import_storage_return.ImportStorageReturn_ID as 'التسلسل',supplier.Supplier_Name as 'المورد',import_storage_return_supplier.Supplier_Permission_Number as 'رقم اذن الاستلام',import_storage_return_supplier.ImportStorageReturnSupplier_ID as 'ID' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID where import_storage_return.ImportStorageReturn_ID=" + ImportStorageReturnID;
                         MySqlCommand com2 = new MySqlCommand(q2, dbconnection2);
                         MySqlDataReader dr2 = com2.ExecuteReader();
                         while (dr2.Read())
@@ -388,7 +426,7 @@ namespace MainSystem
                         }
                         dr2.Close();
 
-                        string query2 = "delete from import_storage_return where ImportStorageReturn_ID=" + row1["التسلسل"].ToString();
+                        string query2 = "delete from import_storage_return where ImportStorageReturn_ID=" + ImportStorageReturnID;
                         MySqlCommand com4 = new MySqlCommand(query2, dbconnection);
                         com4.ExecuteNonQuery();
 

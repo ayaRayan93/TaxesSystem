@@ -28,13 +28,17 @@ namespace MainSystem
         int storageReturnSupplierId = 0;
         //int ReturnedPermissionNumber = 1;
         XtraTabControl xtraTabControlStores = null;
-        DataRow selrow = null;
+        //DataRow selrow = null;
         string storeIdd = "";
         //int flagConfirm = 2;
         //int rowHandel1;
         int storageReturnID = 0;
+        int returnedPermNum = 0;
+        string permissionNum = "";
+        string reason = "";
+        DateTime date = new DateTime();
 
-        public StorageReturnBill_Update(DataRow Selrow, string StoreIdd, PermissionReturnedReport permissionsReport, XtraTabControl tabControlContentStore)
+        public StorageReturnBill_Update(/*DataRow Selrow,*/int ImportStorageReturnID, string StoreIdd, int ReturnedPermNum, string PermissionNum, string Reason, DateTime Date, PermissionReturnedReport permissionsReport, XtraTabControl tabControlContentStore)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -52,9 +56,13 @@ namespace MainSystem
             comProduct.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             xtraTabControlStores = tabControlContentStore;
-            selrow = Selrow;
+            //selrow = Selrow;
             storeIdd = StoreIdd;
-            storageReturnID = Convert.ToInt16(Selrow["التسلسل"].ToString());
+            returnedPermNum = ReturnedPermNum;
+            permissionNum = PermissionNum;
+            storageReturnID = ImportStorageReturnID;
+            reason = Reason;
+            date = Date;
         }
 
         private void StorageReturnBill_Load(object sender, EventArgs e)
@@ -136,24 +144,24 @@ namespace MainSystem
                 comProduct.Text = "";
                 txtProduct.Text = "";
 
-                if (selrow["رقم اذن المخزن"].ToString() != "")
+                if (permissionNum != "")
                 {
                     radioButtonReturnPermission.Checked = true;
                     comStore.SelectedValue = storeIdd;
-                    txtPermissionNum.Text = selrow["رقم اذن المخزن"].ToString();
+                    txtPermissionNum.Text = permissionNum;
                 }
                 else
                 {
                     radioButtonWithOutReturnPermission.Checked = true;
                     comStoreFilter.SelectedValue = storeIdd;
                 }
-                txtReason.Text = selrow["سبب الاسترجاع"].ToString();
+                txtReason.Text = reason;
 
                 dbconnection.Open();
                 if (radioButtonReturnPermission.Checked)
                 {
                     #region add with permission
-                    query = "SELECT import_storage_return_details.ImportStorageReturnDetails_ID,import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',supplier_permission_details.Supplier_Permission_Details_ID,import_storage_return_supplier.Supplier_ID,import_storage_return_supplier.Supplier_Permission_Number as 'اذن استلام',supplier.Supplier_Name as 'المورد' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_storage_return.StorageImportPermission_ID INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID and import_supplier_permission.Supplier_ID = import_storage_return_supplier.Supplier_ID  AND import_supplier_permission.Supplier_Permission_Number = import_storage_return_supplier.Supplier_Permission_Number INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID and import_storage_return_details.Data_ID = supplier_permission_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
+                    query = "SELECT import_storage_return_details.ImportStorageReturnDetails_ID,import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',supplier_permission_details.Supplier_Permission_Details_ID,import_storage_return_supplier.Supplier_ID,import_storage_return_supplier.Supplier_Permission_Number as 'اذن استلام',supplier.Supplier_Name as 'المورد' FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_storage_return.StorageImportPermission_ID INNER JOIN import_supplier_permission ON import_supplier_permission.StorageImportPermission_ID = storage_import_permission.StorageImportPermission_ID and import_supplier_permission.Supplier_ID = import_storage_return_supplier.Supplier_ID  AND import_supplier_permission.Supplier_Permission_Number = import_storage_return_supplier.Supplier_Permission_Number INNER JOIN supplier_permission_details ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID and import_storage_return_details.Data_ID = supplier_permission_details.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStore.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + returnedPermNum;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
                     while (dr.Read())
@@ -184,7 +192,7 @@ namespace MainSystem
                 else
                 {
                     #region without permission
-                    query = "SELECT import_storage_return_details.ImportStorageReturnDetails_ID,import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',import_storage_return_supplier.Supplier_ID FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + selrow["رقم اذن المرتجع"].ToString();
+                    query = "SELECT import_storage_return_details.ImportStorageReturnDetails_ID,import_storage_return.ImportStorageReturn_ID as 'التسلسل',data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',import_storage_return_details.Balatat as 'عدد البلتات',import_storage_return_details.Carton_Balata as 'عدد الكراتين',import_storage_return_details.Total_Meters as 'متر/قطعة',data.Carton as 'الكرتنة',DATE_FORMAT(import_storage_return_details.Date, '%d-%m-%Y %T') as 'وقت الاسترجاع',import_storage_return_details.Reason as 'السبب',import_storage_return_supplier.Supplier_ID FROM import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID left JOIN store_places ON store_places.Store_Place_ID = import_storage_return_details.Store_Place_ID INNER JOIN data ON import_storage_return_details.Data_ID = data.Data_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID  where import_storage_return.Store_ID=" + comStoreFilter.SelectedValue.ToString() + " and import_storage_return.Returned_Permission_Number=" + returnedPermNum;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     MySqlDataReader dr = com.ExecuteReader();
                     while (dr.Read())
@@ -1291,7 +1299,7 @@ namespace MainSystem
                         }
 
                         Report_StorageReturnCopy f = new Report_StorageReturnCopy();
-                        f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, Convert.ToInt16(selrow["رقم اذن المرتجع"].ToString()), selrow["تاريخ الاسترجاع"].ToString(), txtReason.Text, bi);
+                        f.PrintInvoice(storeName, txtPermissionNum.Text, suppliers_Name, returnedPermNum, date.ToString(), txtReason.Text, bi);
                         f.ShowDialog();
                     }
                     #endregion
@@ -1331,7 +1339,7 @@ namespace MainSystem
                         }
 
                         Report_StorageReturnCopy f = new Report_StorageReturnCopy();
-                        f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, Convert.ToInt16(selrow["رقم اذن المرتجع"].ToString()), selrow["تاريخ الاسترجاع"].ToString(), txtReason.Text, bi);
+                        f.PrintInvoice(storeName, txtPermissionNum.Text, comSupplier.Text, returnedPermNum, date.ToString(), txtReason.Text, bi);
                         f.ShowDialog();
                     }
                     #endregion
@@ -1351,9 +1359,9 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        private void btnReport_Click(object sender, EventArgs e)
+        /*private void btnReport_Click(object sender, EventArgs e)
         {
-            /*try
+            try
             {
                 if (comSupplier.SelectedValue != null && txtPermissionNum.Text != "" && gridView2.RowCount > 0)
                 {
@@ -1400,8 +1408,8 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();*/
-        }
+            dbconnection.Close();
+        }*/
 
         public void search()
         {
