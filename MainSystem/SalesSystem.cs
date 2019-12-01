@@ -504,7 +504,7 @@ namespace MainSystem
                     //xtraTabPage.Controls.Clear();
 
                     xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
-                    salesReportForCompany objForm = new salesReportForCompany();
+                    salesReportForCompany objForm = new salesReportForCompany(this);
                     objForm.TopLevel = false;
                     xtraTabPage.Controls.Add(objForm);
                     objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1248,6 +1248,13 @@ namespace MainSystem
                     labelNotifySpecialOrderSales.Visible = false;
                 }
             }
+        }
+
+        public void displayCompanyReport(GridControl gridControl, dataX d,string title)
+        {
+            Delegate_Report objForm = new Delegate_Report(gridControl, d, "تقرير مبيعات الشركات");
+            
+            objForm.Show();
         }
     }
 }

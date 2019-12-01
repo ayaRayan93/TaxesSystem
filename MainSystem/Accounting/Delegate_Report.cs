@@ -17,6 +17,7 @@ namespace MainSystem
     {
         public GridControl gridControl;
         dataX d;
+        string title= "تقرير مبيعات المناديب";
         public Delegate_Report(GridControl gridControl, dataX d)
         {
             try
@@ -30,7 +31,20 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
+        public Delegate_Report(GridControl gridControl, dataX d,string title)
+        {
+            try
+            {
+                InitializeComponent();
+                this.gridControl = gridControl;
+                this.d = d;
+                this.title = title;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void Product_Report_Load(object sender, EventArgs e)
         {
             try
@@ -97,36 +111,36 @@ namespace MainSystem
             // Display the PageInfoBrick containing date-time information. Date-time information is displayed
             // in the left part of the MarginalHeader section using the FullDateTimePattern.
             //{0:F}
-            pageInfoBrickFrom = brickGraphics.DrawPageInfo(PageInfo.None, ":من" , Color.Black, new Rectangle(180, 100, 60, 80), BorderSide.None);
+            pageInfoBrickFrom = brickGraphics.DrawPageInfo(PageInfo.None, ":من" , Color.Black, new Rectangle(180, 110, 60, 80), BorderSide.None);
             pageInfoBrickFrom.Font = new Font("Tahoma", 10, FontStyle.Bold);
-            pageInfoBrickFrom = brickGraphics.DrawPageInfo(PageInfo.None, d.dateFrom, Color.Black, new Rectangle(40, 100, 140, 80), BorderSide.None);
+            pageInfoBrickFrom = brickGraphics.DrawPageInfo(PageInfo.None, d.dateFrom, Color.Black, new Rectangle(40, 110, 140, 80), BorderSide.None);
 
             pageInfoBrickFrom.Alignment = BrickAlignment.Near;
             pageInfoBrickFrom.Font = new Font("Tahoma", 10, FontStyle.Bold);
-            pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None, ":الي", Color.Black, new Rectangle(180, 120, 60, 80), BorderSide.None);
+            pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None, ":الي", Color.Black, new Rectangle(180, 130, 60, 80), BorderSide.None);
             pageInfoBrickTo.Font = new Font("Tahoma", 10, FontStyle.Bold);
-            pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None,  d.dateTo, Color.Black, new Rectangle(40, 120, 140, 80), BorderSide.None);
+            pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None,  d.dateTo, Color.Black, new Rectangle(40, 130, 140, 80), BorderSide.None);
 
             pageInfoBrickTo.Alignment = BrickAlignment.Near;
             pageInfoBrickTo.Font = new Font("Tahoma", 10, FontStyle.Bold);
             BrickGraphics brickGraphics1 = e.Graph;
-            pageInfo = brickGraphics1.DrawPageInfo(PageInfo.None, d.delegateName, Color.Black, new Rectangle(525, 100, 180, 70), BorderSide.None);
+            pageInfo = brickGraphics1.DrawPageInfo(PageInfo.None, d.delegateName, Color.Black, new Rectangle(525, 110, 180, 70), BorderSide.None);
             pageInfo.Alignment = BrickAlignment.Near;
             pageInfo.Font = new Font("Tahoma", 10, FontStyle.Bold);
             BrickGraphics brickGraphics3 = e.Graph;
-            pageInfo1 = brickGraphics3.DrawPageInfo(PageInfo.None, d.company, Color.Black, new Rectangle(528, 120, 180, 70), BorderSide.None);
+            pageInfo1 = brickGraphics3.DrawPageInfo(PageInfo.None, d.company, Color.Black, new Rectangle(528, 130, 180, 70), BorderSide.None);
             pageInfo1.Alignment = BrickAlignment.Near;
             pageInfo1.Font = new Font("Tahoma", 10, FontStyle.Bold);
 
             if (d.company_profit_list != null)
             {
-                pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None, "الشركة", Color.Black, new Rectangle(525, 100, 100, 80), BorderSide.None);
+                pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None, "الشركة", Color.Black, new Rectangle(525, 110, 100, 80), BorderSide.None);
                 pageInfoBrickTo.Font = new Font("Tahoma", 10, FontStyle.Bold);
-                pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None,"قيمة ربح المندوب", Color.Black, new Rectangle(528, 120, 150, 80), BorderSide.None);
+                pageInfoBrickTo = brickGraphics.DrawPageInfo(PageInfo.None,"قيمة ربح المندوب", Color.Black, new Rectangle(528, 130, 150, 80), BorderSide.None);
 
                 pageInfoBrickTo.Alignment = BrickAlignment.Far;
                 pageInfoBrickTo.Font = new Font("Tahoma", 10, FontStyle.Bold);
-                int y = 120;
+                int y = 130;
                 PageInfoBrick pageInfoBrick3;
                 foreach (company_profit item in d.company_profit_list)
                 {
@@ -145,7 +159,7 @@ namespace MainSystem
             }
 
             // Declare text strings.
-            string devexpress = "تقرير مبيعات المناديب";
+            string devexpress = title;
             // Specify required settings for the brick graphics.
             BrickGraphics brickGraphics2 = e.Graph;
             brickGraphics2.BackColor = Color.White;

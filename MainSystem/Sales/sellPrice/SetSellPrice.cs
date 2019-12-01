@@ -113,6 +113,7 @@ namespace MainSystem
         //main events
         private void SetSellPrice_Load(object sender, EventArgs e)
         {
+
             try
             {
                 dbconnection.Open();

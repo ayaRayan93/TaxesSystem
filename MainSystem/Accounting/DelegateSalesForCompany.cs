@@ -58,7 +58,6 @@ namespace MainSystem
                 comFactory.Text = "";
                 txtFactory.Text = "";
                 
-
                 loaded = true;
             }
             catch (Exception ex)
