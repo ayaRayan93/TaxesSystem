@@ -599,7 +599,8 @@ namespace MainSystem
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
-        }      
+        }
+  
         public void bindTaswayaSupplierForm()
         {
             if (!xtraTabControlAccounting.Visible)

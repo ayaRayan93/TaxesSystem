@@ -18,13 +18,13 @@ namespace MainSystem
         private MySqlConnection dbconnection;
         bool loaded = false;
         MainForm MainForm;
-        public salesReportForCompany()
+        public salesReportForCompany(MainForm MainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
-            
+                this.MainForm = MainForm;
             }
             catch (Exception ex)
             {
@@ -56,8 +56,7 @@ namespace MainSystem
                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                 comFactory.Text = "";
                 txtFactory.Text = "";
-
-
+                
                 loaded = true;
             }
             catch (Exception ex)
@@ -146,108 +145,58 @@ namespace MainSystem
         {
             try
             {
-                if (txtBranchID.Text != "")
+                dbconnection.Open();
+                DateTime date = dateTimeFrom.Value;
+                string d = date.ToString("yyyy-MM-dd ");
+                d += "00:00:00";
+                DateTime date2 = dateTimeTo.Value;
+                string d2 = date2.ToString("yyyy-MM-dd ");
+                d2 += "23:59:59";
+                string supQuery = "";
+                if (comBranch.Text != "")
                 {
-                    dbconnection.Open();
-                    DateTime date = dateTimeFrom.Value;
-                    string d = date.ToString("yyyy-MM-dd ");
-                    d += "00:00:00";
-                    DateTime date2 = dateTimeTo.Value;
-                    string d2 = date2.ToString("yyyy-MM-dd ");
-                    d2 += "23:59:59";
-                    // string query = "select CustomerBill_ID from customer_bill inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
-                    string query = "select CustomerBill_ID from customer_bill  where Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
+                    supQuery= " and customer_bill.Branch_ID=" + txtBranchID.Text; 
+                }
+                string query = "select CustomerBill_ID from customer_bill  where Bill_Date between '" + d + "' and '" + d2 + "' "+supQuery;
 
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    MySqlDataReader dr = com.ExecuteReader();
-                    string str = "";
-                    while (dr.Read())
-                    {
-                        str += dr[0].ToString() + ",";
-                    }
-                    dr.Close();
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                MySqlDataReader dr = com.ExecuteReader();
+                string str = "";
+                while (dr.Read())
+                {
+                    str += dr[0].ToString() + ",";
+                }
+                dr.Close();
 
-                    //query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
-                    //com = new MySqlCommand(query, dbconnection);
-                    //dr = com.ExecuteReader();
+                str += 0;
+                string supQuery1 = "";
+                if (comBranch.Text != "")
+                {
+                    supQuery1 = " and customer_return_bill.Branch_ID=" + txtBranchID.Text;
+                }
+                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' "+supQuery1;
 
-                    //while (dr.Read())
-                    //{
-                    //    str += dr[0].ToString() + ",";
-                    //}
-                    //dr.Close();
-
-                    str += 0;
-
-                    //query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
-                    // query = "select Bill_Number from transitions where  Date between '" + d + "' and '" + d2 + "' and Type='كاش' and Transition='سحب' and transitions.TransitionBranch_ID=" + txtBranchID.Text;
-                    query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
-
-                    com = new MySqlCommand(query, dbconnection);
-                    dr = com.ExecuteReader();
-                    string str1 = "";
-                    while (dr.Read())
-                    {
-                        str1 += dr[0].ToString() + ",";
-                    }
-                    dr.Close();
-                    str1 += 0;
-                    //string query = "select distinct customer_bill.CustomerBill_ID from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join transitions on customer_bill.Branch_BillNumber=transitions.Bill_Number where Paid_Status=1 and Type_Buy='كاش' and Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text ;
-                    //MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    //MySqlDataReader dr = com.ExecuteReader();
-                    //string str = "";
-                    //while (dr.Read())
-                    //{
-                    //    str += dr[0].ToString() + ",";
-                    //}
-                    //dr.Close();
-
-                    //query = "select distinct customer_bill.CustomerBill_ID from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text + " and delegate.Delegate_ID= " + txtDelegateID.Text;
-                    //com = new MySqlCommand(query, dbconnection);
-                    //dr = com.ExecuteReader();
-
-                    //while (dr.Read())
-                    //{
-                    //    str += dr[0].ToString() + ",";
-                    //}
-                    //dr.Close();
-
-                    //str += 0;
-
-                    //query = "select distinct customer_return_bill.CustomerReturnBill_ID from customer_return_bill inner join customer_return_bill_details on customer_return_bill_details.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text +" and delegate.Delegate_ID= " + txtDelegateID.Text  ;
-                    //com = new MySqlCommand(query, dbconnection);
-                    //dr = com.ExecuteReader();
-                    //string str1 = "";
-                    //while (dr.Read())
-                    //{
-                    //    str1 += dr[0].ToString() + ",";
-                    //}
-                    //dr.Close();
-                    // str1 += 0;
-                    DataTable _Table = peraperDataTable();
+                com = new MySqlCommand(query, dbconnection);
+                dr = com.ExecuteReader();
+                string str1 = "";
+                while (dr.Read())
+                {
+                    str1 += dr[0].ToString() + ",";
+                }
+                dr.Close();
+                str1 += 0;
+           
+                DataTable _Table = peraperDataTable();
               
 
-                    //if (txtFactory.Text != "")
-                    //{
-                    //    query += " and data.Factory_ID=" + txtFactory.Text;
-                    //    gridView1.Columns["Factory_Name"].Visible = false;
-                    //}
-                    //else
-                    //{
-                    //    gridView1.Columns["Factory_Name"].Visible = true;
-                    //}
-                    _Table = getTotalSales(_Table, str);
-                    _Table = getTotalReturn(_Table, str1);
+                _Table = getTotalSales(_Table, str);
+                _Table = getTotalReturn(_Table, str1);
 
-                    GridControl1.DataSource = _Table;
+                GridControl1.DataSource = _Table;
 
 
-                    CalTotal(_Table);
-                }
-                else
-                {
-                    MessageBox.Show("اختار الفرع والمندوب");
-                }
+                CalTotal(_Table);
+              
             }
             catch
             {
@@ -443,7 +392,7 @@ namespace MainSystem
             try
             {
                 dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, "", comFactory.Text);
-                MainForm.displayDelegateReport(GridControl1, d);
+                MainForm.displayCompanyReport(GridControl1, d,"تقرير مبيعات الشركات");
             }
             catch (Exception ex)
             {
@@ -451,7 +400,6 @@ namespace MainSystem
             }
         }
 
-      
     }
 
 }

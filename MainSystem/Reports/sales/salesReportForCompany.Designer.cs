@@ -258,7 +258,7 @@
             this.TotalSales.FieldName = "TotalSales";
             this.TotalSales.Name = "TotalSales";
             this.TotalSales.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "اجمالي المبيعات={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "{0:0.##}")});
             this.TotalSales.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.TotalSales.Visible = true;
             this.TotalSales.VisibleIndex = 2;
@@ -279,7 +279,7 @@
             this.TotalReturn.FieldName = "TotalReturn";
             this.TotalReturn.Name = "TotalReturn";
             this.TotalReturn.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "اجمالي المرتجعات={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "{0:0.##}")});
             this.TotalReturn.Visible = true;
             this.TotalReturn.VisibleIndex = 1;
             // 
@@ -301,7 +301,7 @@
             this.Safaya.FieldName = "Safaya";
             this.Safaya.Name = "Safaya";
             this.Safaya.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "اجمالي الصافي={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "{0:0.##}")});
             this.Safaya.UnboundExpression = "[TotalSales] - [TotalReturn]";
             this.Safaya.Visible = true;
             this.Safaya.VisibleIndex = 0;
@@ -423,6 +423,7 @@
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(94, 36);
             this.btnReport.TabIndex = 3;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // panel2
             // 
