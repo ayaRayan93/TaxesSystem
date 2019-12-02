@@ -72,11 +72,10 @@
             this.panStoreContent = new System.Windows.Forms.Panel();
             this.xtraTabControlStoresContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup54 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemItemTransitionReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemInformationFactoryReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemFactoryProduct = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemFactoriesTransitionReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup12 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSupplierPermission = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemSupplierReturnedPermission = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPermissionsTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
@@ -124,9 +123,11 @@
             this.navBarItem225 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupProductsTicket = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemProductTicket = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup12 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSupplierPermission = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemSupplierReturnedPermission = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup54 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemItemTransitionReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemInformationFactoryReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemFactoryProduct = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemFactoriesTransitionReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPermissionDelivery = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPermissionConfirm = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPageSales = new DevExpress.XtraTab.XtraTabPage();
@@ -544,7 +545,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemPermissionsTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -1190,40 +1190,34 @@
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
-            // navBarGroup54
+            // navBarGroup12
             // 
-            this.navBarGroup54.Caption = "تقارير المبيعات";
-            this.navBarGroup54.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemItemTransitionReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInformationFactoryReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemFactoryProduct),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemFactoriesTransitionReport)});
-            this.navBarGroup54.Name = "navBarGroup54";
-            this.navBarGroup54.SelectedLinkIndex = 0;
+            this.navBarGroup12.Caption = "التقارير";
+            this.navBarGroup12.Expanded = true;
+            this.navBarGroup12.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierPermission),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierReturnedPermission),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionsTransitionsReport)});
+            this.navBarGroup12.Name = "navBarGroup12";
+            this.navBarGroup12.SelectedLinkIndex = 0;
             // 
-            // navBarItemItemTransitionReport
+            // navBarItemSupplierPermission
             // 
-            this.navBarItemItemTransitionReport.Caption = "حركة صنف";
-            this.navBarItemItemTransitionReport.Name = "navBarItemItemTransitionReport";
-            this.navBarItemItemTransitionReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemItemTransitionReport_LinkClicked);
+            this.navBarItemSupplierPermission.Caption = "عرض اذن وارد";
+            this.navBarItemSupplierPermission.Name = "navBarItemSupplierPermission";
+            this.navBarItemSupplierPermission.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierPermission_LinkClicked);
             // 
-            // navBarItemInformationFactoryReport
+            // navBarItemSupplierReturnedPermission
             // 
-            this.navBarItemInformationFactoryReport.Caption = "رصيد الشركات بسعر البيع";
-            this.navBarItemInformationFactoryReport.Name = "navBarItemInformationFactoryReport";
-            this.navBarItemInformationFactoryReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemInformationFactoryReport_LinkClicked);
+            this.navBarItemSupplierReturnedPermission.Caption = "عرض اذن مرتجع";
+            this.navBarItemSupplierReturnedPermission.Name = "navBarItemSupplierReturnedPermission";
+            this.navBarItemSupplierReturnedPermission.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierReturnedPermission_LinkClicked);
             // 
-            // navBarItemFactoryProduct
+            // navBarItemPermissionsTransitionsReport
             // 
-            this.navBarItemFactoryProduct.Caption = "رصيد شركة بسعر البيع بعد الجرد";
-            this.navBarItemFactoryProduct.Name = "navBarItemFactoryProduct";
-            this.navBarItemFactoryProduct.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemFactoryProduct_LinkClicked);
-            // 
-            // navBarItemFactoriesTransitionReport
-            // 
-            this.navBarItemFactoriesTransitionReport.Caption = "رصيد شركة بسعر البيع";
-            this.navBarItemFactoriesTransitionReport.Name = "navBarItemFactoriesTransitionReport";
-            this.navBarItemFactoriesTransitionReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemFactoriesTransitionReport_LinkClicked);
+            this.navBarItemPermissionsTransitionsReport.Caption = "حركة الاذون";
+            this.navBarItemPermissionsTransitionsReport.Name = "navBarItemPermissionsTransitionsReport";
+            this.navBarItemPermissionsTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionsTransitionsReport_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -1556,28 +1550,40 @@
             this.navBarItemProductTicket.Name = "navBarItemProductTicket";
             this.navBarItemProductTicket.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemProductTicket_LinkClicked);
             // 
-            // navBarGroup12
+            // navBarGroup54
             // 
-            this.navBarGroup12.Caption = "التقارير";
-            this.navBarGroup12.Expanded = true;
-            this.navBarGroup12.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierPermission),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierReturnedPermission),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionsTransitionsReport)});
-            this.navBarGroup12.Name = "navBarGroup12";
-            this.navBarGroup12.SelectedLinkIndex = 2;
+            this.navBarGroup54.Caption = "تقارير المبيعات";
+            this.navBarGroup54.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemItemTransitionReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInformationFactoryReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemFactoryProduct),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemFactoriesTransitionReport)});
+            this.navBarGroup54.Name = "navBarGroup54";
+            this.navBarGroup54.SelectedLinkIndex = 0;
             // 
-            // navBarItemSupplierPermission
+            // navBarItemItemTransitionReport
             // 
-            this.navBarItemSupplierPermission.Caption = "عرض اذن وارد";
-            this.navBarItemSupplierPermission.Name = "navBarItemSupplierPermission";
-            this.navBarItemSupplierPermission.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierPermission_LinkClicked);
+            this.navBarItemItemTransitionReport.Caption = "حركة صنف";
+            this.navBarItemItemTransitionReport.Name = "navBarItemItemTransitionReport";
+            this.navBarItemItemTransitionReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemItemTransitionReport_LinkClicked);
             // 
-            // navBarItemSupplierReturnedPermission
+            // navBarItemInformationFactoryReport
             // 
-            this.navBarItemSupplierReturnedPermission.Caption = "عرض اذن مرتجع";
-            this.navBarItemSupplierReturnedPermission.Name = "navBarItemSupplierReturnedPermission";
-            this.navBarItemSupplierReturnedPermission.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSupplierReturnedPermission_LinkClicked);
+            this.navBarItemInformationFactoryReport.Caption = "رصيد الشركات بسعر البيع";
+            this.navBarItemInformationFactoryReport.Name = "navBarItemInformationFactoryReport";
+            this.navBarItemInformationFactoryReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemInformationFactoryReport_LinkClicked);
+            // 
+            // navBarItemFactoryProduct
+            // 
+            this.navBarItemFactoryProduct.Caption = "رصيد شركة بسعر البيع بعد الجرد";
+            this.navBarItemFactoryProduct.Name = "navBarItemFactoryProduct";
+            this.navBarItemFactoryProduct.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemFactoryProduct_LinkClicked);
+            // 
+            // navBarItemFactoriesTransitionReport
+            // 
+            this.navBarItemFactoriesTransitionReport.Caption = "رصيد شركة بسعر البيع";
+            this.navBarItemFactoriesTransitionReport.Name = "navBarItemFactoriesTransitionReport";
+            this.navBarItemFactoriesTransitionReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemFactoriesTransitionReport_LinkClicked);
             // 
             // navBarItemPermissionDelivery
             // 
@@ -5146,12 +5152,6 @@
             // 
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
-            // 
-            // navBarItemPermissionsTransitionsReport
-            // 
-            this.navBarItemPermissionsTransitionsReport.Caption = "حركة الاذون";
-            this.navBarItemPermissionsTransitionsReport.Name = "navBarItemPermissionsTransitionsReport";
-            this.navBarItemPermissionsTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionsTransitionsReport_LinkClicked);
             // 
             // MainForm
             // 
