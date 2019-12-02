@@ -88,7 +88,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCoding);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPagePurchases);
 
-                var DailyTimeBackup = "19:00:00";
+                var DailyTimeBackup = "18:00:00";
                 var timePartsBackup = DailyTimeBackup.Split(new char[1] { ':' });
 
                 var dateNowBackup = DateTime.Now;
@@ -523,7 +523,7 @@ namespace MainSystem
                 navBarGroup9.Visible = false;
                 navBarGroup10.Visible = false;
                 navBarGroup11.Visible = false;
-                navBarGroup12.Visible = false;
+                //navBarGroup12.Visible = false;
 
                 navBarGroup43.Visible = false;
                 navBarGroup44.Visible = false;
