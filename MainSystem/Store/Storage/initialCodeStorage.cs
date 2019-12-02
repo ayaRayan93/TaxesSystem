@@ -829,46 +829,46 @@ namespace MainSystem
                                 MessageBox.Show("تم حفظ هذاالبند من قبل");
                             }
                         }
-                        if (IsEdited((int)mdt.Rows[i][0]))
-                        {
-                            string query = "update  open_storage_account set Quantity=@Quantity,Store_Place_ID=@Store_Place_ID,Date=@Date,Note=@Note where Data_ID=" + mdt.Rows[i][0] + " and Store_ID=" + mdt.Rows[i][1];
-                            MySqlCommand com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
-                            com.Parameters["@Quantity"].Value = mdt.Rows[i][6];
-                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_Place_ID"].Value = mdt.Rows[i][2];
-                            com.Parameters.Add("@Date", MySqlDbType.Date, 0);
-                            DateTime date = Convert.ToDateTime(mdt.Rows[i][8]);
-                            string d = date.ToString("yyyy-MM-dd");
-                            com.Parameters["@Date"].Value = d;
-                            com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                            com.Parameters["@Note"].Value = mdt.Rows[i][7];
-                            com.ExecuteNonQuery();
+                        //if (IsEdited((int)mdt.Rows[i][0]))
+                        //{
+                        //    string query = "update  open_storage_account set Quantity=@Quantity,Store_Place_ID=@Store_Place_ID,Date=@Date,Note=@Note where Data_ID=" + mdt.Rows[i][0] + " and Store_ID=" + mdt.Rows[i][1];
+                        //    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        //    com.Parameters.Add("@Quantity", MySqlDbType.Decimal);
+                        //    com.Parameters["@Quantity"].Value = mdt.Rows[i][6];
+                        //    com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                        //    com.Parameters["@Store_Place_ID"].Value = mdt.Rows[i][2];
+                        //    com.Parameters.Add("@Date", MySqlDbType.Date, 0);
+                        //    DateTime date = Convert.ToDateTime(mdt.Rows[i][8]);
+                        //    string d = date.ToString("yyyy-MM-dd");
+                        //    com.Parameters["@Date"].Value = d;
+                        //    com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                        //    com.Parameters["@Note"].Value = mdt.Rows[i][7];
+                        //    com.ExecuteNonQuery();
 
-                            query = "update storage set Type=@Type,Storage_Date=@Storage_Date,Store_Place_ID=@Store_Place_ID,Total_Meters=@Total_Meters,Note=@Note where Data_ID=" + mdt.Rows[i][0] + " and Store_ID=" + mdt.Rows[i][1];
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@Type", MySqlDbType.VarChar);
-                            com.Parameters["@Type"].Value = "بند";
-                            com.Parameters.Add("@Storage_Date", MySqlDbType.Date, 0);
-                            date = Convert.ToDateTime(mdt.Rows[i][8]);
-                            d = date.ToString("yyyy-MM-dd");
-                            com.Parameters["@Storage_Date"].Value = d;
-                            com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
-                            com.Parameters["@Store_Place_ID"].Value = mdt.Rows[i][2];
-                            com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
-                            com.Parameters["@Total_Meters"].Value = mdt.Rows[i][6];
-                            com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                            com.Parameters["@Note"].Value = mdt.Rows[i][7];
-                            com.ExecuteNonQuery();
+                        //    query = "update storage set Type=@Type,Storage_Date=@Storage_Date,Store_Place_ID=@Store_Place_ID,Total_Meters=@Total_Meters,Note=@Note where Data_ID=" + mdt.Rows[i][0] + " and Store_ID=" + mdt.Rows[i][1];
+                        //    com = new MySqlCommand(query, dbconnection);
+                        //    com.Parameters.Add("@Type", MySqlDbType.VarChar);
+                        //    com.Parameters["@Type"].Value = "بند";
+                        //    com.Parameters.Add("@Storage_Date", MySqlDbType.Date, 0);
+                        //    date = Convert.ToDateTime(mdt.Rows[i][8]);
+                        //    d = date.ToString("yyyy-MM-dd");
+                        //    com.Parameters["@Storage_Date"].Value = d;
+                        //    com.Parameters.Add("@Store_Place_ID", MySqlDbType.Int16);
+                        //    com.Parameters["@Store_Place_ID"].Value = mdt.Rows[i][2];
+                        //    com.Parameters.Add("@Total_Meters", MySqlDbType.Decimal);
+                        //    com.Parameters["@Total_Meters"].Value = mdt.Rows[i][6];
+                        //    com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                        //    com.Parameters["@Note"].Value = mdt.Rows[i][7];
+                        //    com.ExecuteNonQuery();
 
-                            string value = "";
+                        //    string value = "";
 
-                            if (initialCodeStorage.InputBox("ادخل سبب التعديل؟", mdt.Rows[i][1] + "هذا البند تم تعديله ", ref value) == DialogResult.OK)
-                            {
-                                UserControl.ItemRecord("open_storage_account", "تعديل", (int)mdt.Rows[i][0], DateTime.Now, value, dbconnection);
-                            }
+                        //    if (initialCodeStorage.InputBox("ادخل سبب التعديل؟", mdt.Rows[i][1] + "هذا البند تم تعديله ", ref value) == DialogResult.OK)
+                        //    {
+                        //        UserControl.ItemRecord("open_storage_account", "تعديل", (int)mdt.Rows[i][0], DateTime.Now, value, dbconnection);
+                        //    }
 
-                        }
+                        //}
 
                     }
                     MessageBox.Show("تم الحفظ");
@@ -901,15 +901,15 @@ namespace MainSystem
                             e.Appearance.ForeColor = Color.White;
                         }
                     }
-                    for (int i = 0; i < ListOfEditDataIDs.Count; i++)
-                    {
-                        if (Data_ID == ListOfEditDataIDs[i])
-                        {
-                            e.Appearance.BackColor = Color.LightBlue;
-                            e.Appearance.BackColor2 = Color.LightBlue;
-                            e.Appearance.ForeColor = Color.Black;
-                        }
-                    }
+                    //for (int i = 0; i < ListOfEditDataIDs.Count; i++)
+                    //{
+                    //    if (Data_ID == ListOfEditDataIDs[i])
+                    //    {
+                    //        e.Appearance.BackColor = Color.LightBlue;
+                    //        e.Appearance.BackColor2 = Color.LightBlue;
+                    //        e.Appearance.ForeColor = Color.Black;
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
@@ -1125,9 +1125,10 @@ namespace MainSystem
                 gridView2.Columns[3].OptionsColumn.AllowEdit = false;
                 gridView2.Columns[4].OptionsColumn.AllowEdit = false;
                 gridView2.Columns[5].OptionsColumn.AllowEdit = false;
-                gridView2.Columns[6].OptionsColumn.AllowEdit = true;
-                gridView2.Columns[7].OptionsColumn.AllowEdit = true;
-                gridView2.Columns[8].OptionsColumn.AllowEdit = true;
+                //changed disable edit
+                gridView2.Columns[6].OptionsColumn.AllowEdit = false;
+                gridView2.Columns[7].OptionsColumn.AllowEdit = false;
+                gridView2.Columns[8].OptionsColumn.AllowEdit = false;
                 gridView2.BestFitColumns();
 
             }
