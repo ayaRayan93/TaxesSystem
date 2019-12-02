@@ -88,7 +88,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCoding);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPagePurchases);
 
-                var DailyTimeBackup = "19:00:00";
+                var DailyTimeBackup = "18:00:00";
                 var timePartsBackup = DailyTimeBackup.Split(new char[1] { ':' });
 
                 var dateNowBackup = DateTime.Now;
