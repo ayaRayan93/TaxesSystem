@@ -57,7 +57,7 @@ namespace MainSystem
                     ids += rows[i][0] + ",";
                 }
                 ids += rows[rows.Count - 1][0];
-                query = "SELECT SellPrice.SellPrice_ID,data.Data_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ' ,COALESCE(size.Size_Value,'') )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',sellprice.Price as 'السعر',sellprice.Price_Type as 'نوع السعر',sellprice.Sell_Discount as 'خصم البيع',sellprice.Normal_Increase as 'الزيادة العادية',sellprice.Categorical_Increase as 'الزيادة القطعية',sellprice.ProfitRatio as 'نسبة الاضافة',sellprice.Sell_Price as 'سعر البيع',sellprice.PercentageDelegate as 'نسبة المندوب'  from data INNER JOIN sellprice on sellprice.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   SellPrice.SellPrice_ID in(" + ids + ")";
+                query = "SELECT SellPrice.SellPrice_ID,data.Data_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ' ,COALESCE(size.Size_Value,'') )as 'البند',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',sellprice.Price as 'السعر',sellprice.Price_Type as 'نوع السعر',sellprice.Sell_Discount as 'خصم البيع',sellprice.Normal_Increase as 'الزيادة العادية',sellprice.Categorical_Increase as 'الزيادة القطعية',sellprice.ProfitRatio as 'نسبة الاضافة',sellprice.Sell_Price as 'سعر البيع',sellprice.PercentageDelegate as 'نسبة المندوب' ,sellprice.OfferFlag from data INNER JOIN sellprice on sellprice.Data_ID=data.Data_ID  INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where   SellPrice.SellPrice_ID in(" + ids + ")";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -67,6 +67,7 @@ namespace MainSystem
             
                 gridView1.Columns[0].Visible = false;
                 gridView1.Columns[1].Visible = false;
+                gridView1.Columns["OfferFlag"].Visible = false;
                 gridView1.Columns[2].Width = 200;
                 gridView1.Columns[3].Width = 300;
                 gridView1.BestFitColumns();
@@ -94,8 +95,7 @@ namespace MainSystem
             {
                 if (chBoxAdditionalIncrease.Checked)
                 {
-                    tLPanCpntent.RowStyles[1].Height = 360;
-                    
+                    tLPanCpntent.RowStyles[1].Height = 360;                    
                 }
                 else
                 {
@@ -331,7 +331,7 @@ namespace MainSystem
                                 DataRowView row = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[i]));
 
                                 additionalIncreaseSellPrice(Convert.ToInt32(row[0].ToString()));
-                                String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date where SellPrice_ID=" + row[0].ToString();
+                                String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date,OfferFlag=@OfferFlag where SellPrice_ID=" + row[0].ToString();
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "قطعى");
                                 command.Parameters.AddWithValue("@Sell_Price", price + (price * SellPercent / 100.0));
@@ -343,6 +343,15 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.Parameters.Add("?OfferFlag", MySqlDbType.Int16);
+                                if (checkBoxOfferFlag.Checked)
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 1;
+                                }
+                                else
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 0;
+                                }
                                 command.ExecuteNonQuery();
 
                                 UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt32(row[0].ToString()), DateTime.Now, "", dbconnection);
@@ -386,7 +395,7 @@ namespace MainSystem
 
                                 additionalIncreaseSellPrice(Convert.ToInt32(row[0].ToString()));
 
-                                string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Sell_Price=@Sell_Price,Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date where SellPrice_ID =" + row[0].ToString();
+                                string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type,Sell_Price=@Sell_Price,Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date,OfferFlag=@OfferFlag where SellPrice_ID =" + row[0].ToString();
 
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "لستة");
@@ -400,7 +409,15 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
-
+                                command.Parameters.Add("?OfferFlag", MySqlDbType.Int16);
+                                if (checkBoxOfferFlag.Checked)
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 1;
+                                }
+                                else
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 0;
+                                }
                                 command.ExecuteNonQuery();
 
                                 UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt32(row[0].ToString()), DateTime.Now, "", dbconnection);
@@ -419,6 +436,15 @@ namespace MainSystem
                                 command.Parameters.AddWithValue("@PercentageDelegate", double.Parse(txtPercentageDelegate.Text));
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.Parameters.Add("?OfferFlag", MySqlDbType.Int16);
+                                if (checkBoxOfferFlag.Checked)
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 1;
+                                }
+                                else
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 0;
+                                }
                                 command.ExecuteNonQuery();
                                 additionalIncreaseOldSellPrice();
 
@@ -448,7 +474,7 @@ namespace MainSystem
 
                                 additionalIncreaseSellPrice(Convert.ToInt32(row[0].ToString()));
 
-                                String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Last_Price=@Last_Price,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date where SellPrice_ID=" + row[0].ToString();
+                                String query = "update sellprice set Sell_Discount=@Sell_Discount,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,Price_Type=@Price_Type,Sell_Price=@Sell_Price,ProfitRatio=@ProfitRatio,Last_Price=@Last_Price,Price=@Price,PercentageDelegate=@PercentageDelegate,Date=@Date,OfferFlag=@OfferFlag where SellPrice_ID=" + row[0].ToString();
 
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "قطعى");
@@ -494,6 +520,15 @@ namespace MainSystem
 
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.Parameters.Add("?OfferFlag", MySqlDbType.Int16);
+                                if (checkBoxOfferFlag.Checked)
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 1;
+                                }
+                                else
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 0;
+                                }
                                 command.ExecuteNonQuery();
 
                                 UserControl.ItemRecord("sellprice", "تعديل", Convert.ToInt32(row[0].ToString()), DateTime.Now, "", dbconnection);
@@ -542,7 +577,7 @@ namespace MainSystem
 
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
-
+                             
                                 command.ExecuteNonQuery();
                                 additionalIncreaseOldSellPrice();
 
@@ -561,7 +596,7 @@ namespace MainSystem
 
                                 additionalIncreaseSellPrice(Convert.ToInt32(row[0].ToString()));
 
-                                string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type," +/*Sell_Price=@Sell_Price*/"Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date where SellPrice_ID =" + row[0].ToString();
+                                string query = "update sellprice set ProfitRatio=@ProfitRatio, Price_Type=@Price_Type," +/*Sell_Price=@Sell_Price*/"Sell_Discount=@Sell_Discount,Price=@Price,Normal_Increase=@Normal_Increase,Categorical_Increase=@Categorical_Increase,PercentageDelegate=@PercentageDelegate ,Last_Price=@Last_Price,Date=@Date,OfferFlag=@OfferFlag where SellPrice_ID =" + row[0].ToString();
 
                                 MySqlCommand command = new MySqlCommand(query, dbconnection);
                                 command.Parameters.AddWithValue("@Price_Type", "لستة");
@@ -597,6 +632,15 @@ namespace MainSystem
 
                                 command.Parameters.Add("?Date", MySqlDbType.Date);
                                 command.Parameters["?Date"].Value = DateTime.Now.Date;
+                                command.Parameters.Add("?OfferFlag", MySqlDbType.Int16);
+                                if (checkBoxOfferFlag.Checked)
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 1;
+                                }
+                                else
+                                {
+                                    command.Parameters["?OfferFlag"].Value = 0;
+                                }
                                 command.ExecuteNonQuery();
 
 
@@ -683,7 +727,6 @@ namespace MainSystem
                             com.Parameters.Add("@Date", MySqlDbType.Date);
                             com.Parameters["@Date"].Value = DateTime.Now.Date;
                             com.ExecuteNonQuery();
-
                         }
                     }
             
@@ -994,7 +1037,16 @@ namespace MainSystem
         }
         public void setData(DataRowView row1)
         {
-           // txtCode.Text = row1["الكود"].ToString();
+            //txtCode.Text = row1["الكود"].ToString();
+            int offerFlag = Convert.ToInt16(row1["OfferFlag"].ToString());
+            if (offerFlag == 1)
+            {
+                checkBoxOfferFlag.Checked = true;
+            }
+            else
+            {
+                checkBoxOfferFlag.Checked = false;
+            }
             txtPrice.Text = row1["السعر"].ToString();
             labSellPrice.Text = row1["سعر البيع"].ToString();
             txtPercentageDelegate.Text = row1["نسبة المندوب"].ToString();

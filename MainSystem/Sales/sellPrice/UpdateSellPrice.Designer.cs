@@ -82,6 +82,7 @@
             this.txtPercentageDelegate = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
+            this.checkBoxOfferFlag = new System.Windows.Forms.CheckBox();
             this.panContainer.SuspendLayout();
             this.tLPanCpntent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -251,6 +252,7 @@
             // 
             // panContent
             // 
+            this.panContent.Controls.Add(this.checkBoxOfferFlag);
             this.panContent.Controls.Add(this.checkBoxCategorical_Increase);
             this.panContent.Controls.Add(this.checkBoxNormal_Increase);
             this.panContent.Controls.Add(this.checkBoxSell_Discount);
@@ -597,7 +599,7 @@
             // 
             this.chBoxAdditionalIncrease.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.chBoxAdditionalIncrease.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBoxAdditionalIncrease.Location = new System.Drawing.Point(559, 167);
+            this.chBoxAdditionalIncrease.Location = new System.Drawing.Point(559, 171);
             this.chBoxAdditionalIncrease.Name = "chBoxAdditionalIncrease";
             this.chBoxAdditionalIncrease.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chBoxAdditionalIncrease.Size = new System.Drawing.Size(105, 20);
@@ -781,6 +783,18 @@
             this.txtCode.TabIndex = 43;
             this.txtCode.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
+            // checkBoxOfferFlag
+            // 
+            this.checkBoxOfferFlag.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkBoxOfferFlag.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxOfferFlag.Location = new System.Drawing.Point(301, 171);
+            this.checkBoxOfferFlag.Name = "checkBoxOfferFlag";
+            this.checkBoxOfferFlag.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBoxOfferFlag.Size = new System.Drawing.Size(105, 20);
+            this.checkBoxOfferFlag.TabIndex = 153;
+            this.checkBoxOfferFlag.Text = "عرض";
+            this.checkBoxOfferFlag.UseVisualStyleBackColor = true;
+            // 
             // UpdateSellPrice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -865,5 +879,6 @@
         private System.Windows.Forms.CheckBox checkBoxSell_Discount;
         private System.Windows.Forms.CheckBox checkBoxPrice;
         private System.Windows.Forms.CheckBox chBoxDelegatePersentage;
+        private System.Windows.Forms.CheckBox checkBoxOfferFlag;
     }
 }
