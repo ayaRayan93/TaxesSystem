@@ -546,6 +546,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemCustomerDeliverReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemTransportationReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
@@ -1182,6 +1183,8 @@
             this.navBarItemFactoryProduct,
             this.navBarItemFactoriesTransitionReport,
             this.navBarItemPermissionsTransitionsReport,
+            this.navBarItemCustomerDeliverReport});
+            this.navBarItemPermissionsTransitionsReport,
             this.navBarItemTransportationStoreBill,
             this.navBarItemTransportationReport});
             this.navBarControl1.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInGroup;
@@ -1253,7 +1256,6 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
             this.navBarGroup1.Name = "navBarGroup1";
             this.navBarGroup1.SelectedLinkIndex = 0;
-            this.navBarGroup1.Visible = false;
             // 
             // navBarItem1
             // 
@@ -1392,12 +1394,14 @@
             // navBarGroup6
             // 
             this.navBarGroup6.Caption = "التسليم";
+            this.navBarGroup6.Expanded = true;
             this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelivery),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem203)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem203),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemCustomerDeliverReport)});
             this.navBarGroup6.Name = "navBarGroup6";
-            this.navBarGroup6.SelectedLinkIndex = 0;
+            this.navBarGroup6.SelectedLinkIndex = 3;
             // 
             // navBarItemDelivery
             // 
@@ -5165,6 +5169,12 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
+            // navBarItemCustomerDeliverReport
+            // 
+            this.navBarItemCustomerDeliverReport.Caption = "تقرير اذونات التسليم";
+            this.navBarItemCustomerDeliverReport.Name = "navBarItemCustomerDeliverReport";
+            this.navBarItemCustomerDeliverReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemCustomerDeliverReport_LinkClicked);
+            // 
             // navBarItemTransportationReport
             // 
             this.navBarItemTransportationReport.Caption = "استعلام عن تحويل";
@@ -5740,6 +5750,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem231;
         private DevExpress.XtraNavBar.NavBarItem navBarItemFactoriesTransitionReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPermissionsTransitionsReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemCustomerDeliverReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemTransportationStoreBill;
         private DevExpress.XtraNavBar.NavBarItem navBarItemTransportationReport;
     }
