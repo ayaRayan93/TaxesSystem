@@ -14,5 +14,6 @@ namespace MainSystem
         public double NumOfCarton { get; set; }
         public double TotalQuantity { get; set; }
         public string DeliveryQuantity { get; set; }
+        public string StoreName { get; set; }
     }
 }

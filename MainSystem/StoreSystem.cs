@@ -1188,7 +1188,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                CustomerDeliveryReport objForm = new CustomerDeliveryReport();
+                CustomerDeliveryReport objForm = new CustomerDeliveryReport(this);
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1520,6 +1520,23 @@ namespace MainSystem
             {
                 xtraTabControlStoresContent.TabPages.Add("تقرير أطقم");
                 xtraTabPage = getTabPage(xtraTabControlStoresContent,"تقرير أطقم");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindReportPermissionForm(GridControl gridControl,string title)
+        {
+            SetReport objForm = new SetReport(gridControl, title);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, title);
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add(title);
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, title);
             }
             xtraTabPage.Controls.Clear();
             xtraTabPage.Controls.Add(objForm);

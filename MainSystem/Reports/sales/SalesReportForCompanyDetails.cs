@@ -18,13 +18,14 @@ namespace MainSystem.Reports.sales
         bool factoryFlage = false;
         bool groupFlage = false;
         bool flagProduct = false;
-
-        public SalesReportForCompanyDetails()
+        MainForm MainForm;
+        public SalesReportForCompanyDetails(MainForm MainForm)
         {
             try
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                this.MainForm=MainForm;
             }
             catch (Exception ex)
             {
@@ -543,7 +544,7 @@ namespace MainSystem.Reports.sales
                     gridControl1.DataSource = _Table;
 
 
-                    //CalTotal(_Table);
+                    CalTotal(_Table);
                 }
                 else
                 {
@@ -830,23 +831,35 @@ namespace MainSystem.Reports.sales
             return _Table;
         }
 
-        //public void CalTotal(DataTable _Tabl)
-        //{
-        //    double totalSales = 0, totalReturn = 0, totalSafay = 0, totalProfit = 0;
-        //    foreach (DataRow item in _Tabl.Rows)
-        //    {
-        //        if (item["TotalSales"].ToString() != "")
-        //            totalSales += Convert.ToDouble(item["TotalSales"].ToString());
-        //        if (item["TotalReturn"].ToString() != "")
-        //            totalReturn += Convert.ToDouble(item["TotalReturn"].ToString());
-        //        if (item["Safaya"].ToString() != "")
-        //            totalSafay += Convert.ToDouble(item["Safaya"].ToString());
-        //    }
-        //    txtTotalSales.Text = totalSales.ToString("0.00");
-        //    txtTotalReturn.Text = totalReturn.ToString("0.00");
-        //    txtTotalSafay.Text = totalSafay.ToString("0.00");
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, "", comFactory.Text);
+                MainForm.displayCompanyReport(gridControl1, d, "تقرير  تفاصيل مبيعات الشركات");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-        //}
+        public void CalTotal(DataTable _Tabl)
+        {
+            double totalSales = 0, totalReturn = 0, totalSafay = 0, totalProfit = 0;
+            foreach (DataRow item in _Tabl.Rows)
+            {
+                if (item["TotalSales"].ToString() != "")
+                    totalSales += Convert.ToDouble(item["TotalSales"].ToString());
+                if (item["TotalReturn"].ToString() != "")
+                    totalReturn += Convert.ToDouble(item["TotalReturn"].ToString());
+                if (item["Safaya"].ToString() != "")
+                    totalSafay += Convert.ToDouble(item["Safaya"].ToString());
+            }
+            txtTotalSales.Text = totalSales.ToString("0.00");
+            txtTotalReturn.Text = totalReturn.ToString("0.00");
+            txtTotalSafay.Text = totalSafay.ToString("0.00");
+        }
 
     }
 }
