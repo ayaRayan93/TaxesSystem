@@ -799,7 +799,41 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                TransportationStore objForm = new TransportationStore(this);
+                TransportationStore2 objForm = new TransportationStore2(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemTransportationStoreBill_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تحويلات الفواتير");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("تحويلات الفواتير");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تحويلات الفواتير");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                TransportationStoreBill objForm = new TransportationStoreBill(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -847,7 +881,7 @@ namespace MainSystem
             }
         }
 
-        private void navBarItemConfirmTransferToStore_LinkClicked(object sender, NavBarLinkEventArgs e)
+        /*private void navBarItemConfirmTransferToStore_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
             {
@@ -879,7 +913,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
+        }*/
 
         private void navBarItemProductTicket_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
@@ -1043,6 +1077,38 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemTransportationTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير حركة التحويلات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("تقرير حركة التحويلات");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير حركة التحويلات");
+                }
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                Transportation_Transitions_Report objForm = new Transportation_Transitions_Report(this);
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemTransportationReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -1053,11 +1119,11 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير التحويلات");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "استعلام عن تحويل");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add("تقرير التحويلات");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير التحويلات");
+                    xtraTabControlStoresContent.TabPages.Add("استعلام عن تحويل");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "استعلام عن تحويل");
                 }
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
@@ -1832,7 +1898,7 @@ namespace MainSystem
             searchReciveDate.Dock = DockStyle.Fill;
             searchReciveDate.Show();
         }
-        public void bindUpdateTransporationForm(DataRow rows, Transportation_Report transportationStore)
+        public void bindUpdateTransporationForm(int TransferProductID, string FromStore, string ToStore, DateTime date, Transportation_Report transportationStore)
         {
             if (!xtraTabControlStoresContent.Visible)
                 xtraTabControlStoresContent.Visible = true;
@@ -1848,7 +1914,31 @@ namespace MainSystem
 
             xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-            TransportationStore_Update objForm = new TransportationStore_Update(rows, transportationStore, xtraTabControlStoresContent);
+            TransportationStore_Update2 objForm = new TransportationStore_Update2(TransferProductID, FromStore, ToStore, date, transportationStore, xtraTabControlStoresContent);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindUpdateTransporationBillForm(int TransferProductID, string FromStore, string ToStore, DateTime date, Transportation_Report transportationStore)
+        {
+            if (!xtraTabControlStoresContent.Visible)
+                xtraTabControlStoresContent.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل بيانات تحويل فاتورة");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تعديل بيانات تحويل فاتورة");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل بيانات تحويل فاتورة");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            TransportationStoreBill_Update2 objForm = new TransportationStoreBill_Update2(TransferProductID, FromStore, ToStore, date, transportationStore, xtraTabControlStoresContent);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);

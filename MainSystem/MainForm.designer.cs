@@ -72,6 +72,14 @@
             this.panStoreContent = new System.Windows.Forms.Panel();
             this.xtraTabControlStoresContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup8 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemTransportationStore = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemTransportationStoreBill = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemTransportationTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemTransportationReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemConfirmTransferFromStore = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem17 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemConfirmTransferToStore = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup6 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemDelivery = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem14 = new DevExpress.XtraNavBar.NavBarItem();
@@ -99,12 +107,6 @@
             this.navBarItemCustomerReturnBillOfPeriod = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup7 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem15 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup8 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemTransportationStore = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem17 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemConfirmTransferFromStore = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemConfirmTransferToStore = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemTransportationReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup9 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemInventoryReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem18 = new DevExpress.XtraNavBar.NavBarItem();
@@ -544,7 +546,7 @@
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
@@ -1075,7 +1077,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup6;
+            this.navBarControl1.ActiveGroup = this.navBarGroup1;
             this.navBarControl1.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl1.Appearance.Background.Options.UseFont = true;
             this.navBarControl1.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1178,12 +1180,14 @@
             this.navBarItemProductTicket,
             this.navBarItemItemTransitionReport,
             this.navBarItemInformationFactoryReport,
-            this.navBarItemTransportationReport,
+            this.navBarItemTransportationTransitionsReport,
             this.navBarItemInventoryReport,
             this.navBarItemFactoryProduct,
             this.navBarItemFactoriesTransitionReport,
             this.navBarItemPermissionsTransitionsReport,
-            this.navBarItemCustomerDeliverReport});
+            this.navBarItemCustomerDeliverReport,
+            this.navBarItemTransportationStoreBill,
+            this.navBarItemTransportationReport});
             this.navBarControl1.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInGroup;
             this.navBarControl1.Location = new System.Drawing.Point(920, 0);
             this.navBarControl1.Name = "navBarControl1";
@@ -1193,6 +1197,62 @@
             this.navBarControl1.StoreDefaultPaintStyleName = true;
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
+            // 
+            // navBarGroup8
+            // 
+            this.navBarGroup8.Caption = "التحويلات";
+            this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransportationStore),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransportationStoreBill),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransportationTransitionsReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransportationReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmTransferFromStore),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem17),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmTransferToStore)});
+            this.navBarGroup8.Name = "navBarGroup8";
+            this.navBarGroup8.SelectedLinkIndex = 0;
+            // 
+            // navBarItemTransportationStore
+            // 
+            this.navBarItemTransportationStore.Caption = "تحويل من مخزن الي مخزن";
+            this.navBarItemTransportationStore.Name = "navBarItemTransportationStore";
+            this.navBarItemTransportationStore.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransportationStore_LinkClicked);
+            // 
+            // navBarItemTransportationStoreBill
+            // 
+            this.navBarItemTransportationStoreBill.Caption = "تحويل فاتورة من مخزن الي مخزن";
+            this.navBarItemTransportationStoreBill.Name = "navBarItemTransportationStoreBill";
+            this.navBarItemTransportationStoreBill.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransportationStoreBill_LinkClicked);
+            // 
+            // navBarItemTransportationTransitionsReport
+            // 
+            this.navBarItemTransportationTransitionsReport.Caption = "تقرير حركة التحويلات";
+            this.navBarItemTransportationTransitionsReport.Name = "navBarItemTransportationTransitionsReport";
+            this.navBarItemTransportationTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransportationTransitionsReport_LinkClicked);
+            // 
+            // navBarItemTransportationReport
+            // 
+            this.navBarItemTransportationReport.Caption = "استعلام عن تحويل";
+            this.navBarItemTransportationReport.Name = "navBarItemTransportationReport";
+            this.navBarItemTransportationReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransportationReport_LinkClicked);
+            // 
+            // navBarItemConfirmTransferFromStore
+            // 
+            this.navBarItemConfirmTransferFromStore.Caption = "تاكيد التحويل";
+            this.navBarItemConfirmTransferFromStore.Name = "navBarItemConfirmTransferFromStore";
+            this.navBarItemConfirmTransferFromStore.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemConfirmTransferFromStore_LinkClicked);
+            // 
+            // navBarItem17
+            // 
+            this.navBarItem17.Caption = "تنقلات داخل المخزن";
+            this.navBarItem17.Name = "navBarItem17";
+            this.navBarItem17.Visible = false;
+            // 
+            // navBarItemConfirmTransferToStore
+            // 
+            this.navBarItemConfirmTransferToStore.Caption = "تاكيد التحويل الى مخزن";
+            this.navBarItemConfirmTransferToStore.Name = "navBarItemConfirmTransferToStore";
+            this.navBarItemConfirmTransferToStore.Visible = false;
             // 
             // navBarGroup6
             // 
@@ -1234,6 +1294,7 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "الرصيد الافتتاحي";
+            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
@@ -1387,51 +1448,10 @@
             this.navBarItem15.Caption = "تسجيل الهالك";
             this.navBarItem15.Name = "navBarItem15";
             // 
-            // navBarGroup8
-            // 
-            this.navBarGroup8.Caption = "التحويلات";
-            this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransportationStore),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem17),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmTransferFromStore),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmTransferToStore),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransportationReport)});
-            this.navBarGroup8.Name = "navBarGroup8";
-            this.navBarGroup8.SelectedLinkIndex = 0;
-            // 
-            // navBarItemTransportationStore
-            // 
-            this.navBarItemTransportationStore.Caption = "تحويل من مخزن الي مخزن";
-            this.navBarItemTransportationStore.Name = "navBarItemTransportationStore";
-            this.navBarItemTransportationStore.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransportationStore_LinkClicked);
-            // 
-            // navBarItem17
-            // 
-            this.navBarItem17.Caption = "تنقلات داخل المخزن";
-            this.navBarItem17.Name = "navBarItem17";
-            // 
-            // navBarItemConfirmTransferFromStore
-            // 
-            this.navBarItemConfirmTransferFromStore.Caption = "تاكيد التحويل";
-            this.navBarItemConfirmTransferFromStore.Name = "navBarItemConfirmTransferFromStore";
-            this.navBarItemConfirmTransferFromStore.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemConfirmTransferFromStore_LinkClicked);
-            // 
-            // navBarItemConfirmTransferToStore
-            // 
-            this.navBarItemConfirmTransferToStore.Caption = "تاكيد التحويل الى مخزن";
-            this.navBarItemConfirmTransferToStore.Name = "navBarItemConfirmTransferToStore";
-            this.navBarItemConfirmTransferToStore.Visible = false;
-            this.navBarItemConfirmTransferToStore.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemConfirmTransferToStore_LinkClicked);
-            // 
-            // navBarItemTransportationReport
-            // 
-            this.navBarItemTransportationReport.Caption = "تقرير التحويلات";
-            this.navBarItemTransportationReport.Name = "navBarItemTransportationReport";
-            this.navBarItemTransportationReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransportationReport_LinkClicked);
-            // 
             // navBarGroup9
             // 
             this.navBarGroup9.Caption = "الجرد";
+            this.navBarGroup9.Expanded = true;
             this.navBarGroup9.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemInventoryReport),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem18),
@@ -5730,7 +5750,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemSalesProductsDate;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSalesProductsFactory;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDelegateBill2;
-        private DevExpress.XtraNavBar.NavBarItem navBarItemTransportationReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemTransportationTransitionsReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItem16;
         private DevExpress.XtraNavBar.NavBarItem navBarItem226;
         private DevExpress.XtraNavBar.NavBarItem btnTaswayAgalBills1;
@@ -5749,6 +5769,8 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemFactoriesTransitionReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPermissionsTransitionsReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemCustomerDeliverReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemTransportationStoreBill;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemTransportationReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItem232;
         private DevExpress.XtraNavBar.NavBarItem navBarItem233;
     }
