@@ -12,5 +12,6 @@ namespace MainSystem
         public string Product_Type { get; set; }
         public string Product_Name { get; set; }
         public double Total_Meters { get; set; }
+        public string Bill { get; set; }
     }
 }

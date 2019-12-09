@@ -157,7 +157,6 @@ namespace MainSystem
             {
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
-
                 pictureBoxStoreExpectedOrder.Visible = true;
 
                 navBarGroup1.Visible = false;
@@ -166,7 +165,6 @@ namespace MainSystem
                 navBarGroup54.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 navBarGroup12.Visible = false;
-
                 navBarGroup3.Visible = false;
                 navBarGroup4.Visible = false;
                 navBarItemStoreReturn.Visible = false;
@@ -206,45 +204,39 @@ namespace MainSystem
 
                 pictureBoxBell.Visible = true;
             }
-            else if (UserControl.userType == 6/* || UserControl.userType == 7*/)
+            else if (UserControl.userType == 6)
             {
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
 
-                //if (UserControl.userType == 6)
-                //{
-                    //pictureBoxSales.Visible = true;
-                    btnTaswayAgalBills.Visible = false;
-                    navBarItem153.Visible = false;
-                    //navBarItemSalesTransitions.Visible = false;
-                    navBarItemBillsAgleTransitionsReport.Visible = false;
-                    navBarItemTotalSales.Visible = false;
-                    //btnBank.Enabled = true;
-                    //btnBank.Checked = true;
+                btnTaswayAgalBills.Visible = false;
+                navBarItem153.Visible = false;
+                navBarItemBillsAgleTransitionsReport.Visible = false;
+                navBarItemTotalSales.Visible = false;
 
-                    btnStores.Enabled = true;
-                    btnStores.Checked = true;
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
 
-                    navBarGroup1.Visible = false;
-                    navBarGroup2.Visible = false;
-                    navBarGroup3.Visible = false;
-                    navBarGroup4.Visible = false;
-                    navBarGroup6.Visible = false;
-                    navBarGroup54.Visible = false;
-                    navBarGroup7.Visible = false;
-                    //navBarGroup8.Visible = false;
-                    navBarGroup9.Visible = false;
-                    navBarGroup10.Visible = false;
-                    navBarGroup11.Visible = false;
-                    navBarGroupProductsTicket.Visible = false;
-                    navBarGroup12.Visible = false;
-                    navBarItemStoreReturn.Visible = false;
-                    navBarItemConfirmTransferFromStore.Visible = false;
-                    navBarItem17.Visible = false;
-                //}
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup6.Visible = false;
+                navBarGroup54.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup12.Visible = false;
+                navBarItemStoreReturn.Visible = false;
+                navBarItemConfirmTransferFromStore.Visible = false;
+                navBarItem17.Visible = false;
                 navBarGroup13.Visible = false;
                 navBarGroup39.Visible = false;
+                navBarItemTransportationStore.Visible = false;
             }
+            //حسابات العملاء
             else if (UserControl.userType == 7)
             {
                 btnStores.Enabled = true;
@@ -266,7 +258,6 @@ namespace MainSystem
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
                 navBarGroupBillRecord.Visible = false;
-                //userAccess();
             }
             else if (UserControl.userType == 8)
             {
@@ -309,9 +300,6 @@ namespace MainSystem
                 navBarGroup11.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 navBarGroup12.Visible = false;
-
-                //pictureBoxPurchase.Visible = true;
-                //pictureBoxPurchaseLeast.Visible = true;
             }
             else if (UserControl.userType == 11)
             {
@@ -345,7 +333,6 @@ namespace MainSystem
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
                 navBarGroupBillRecord.Visible = false;
-                //userAccess();
             }
             //شيخون
             else if (UserControl.userType == 14)
@@ -395,8 +382,6 @@ namespace MainSystem
             {
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
-                //btnStores.Enabled = true;
-                //btnStores.Checked = true;
                 btnBank.Enabled = true;
                 btnBank.Checked = true;
                 btnReception.Enabled = true;
@@ -407,7 +392,7 @@ namespace MainSystem
                 pictureBoxBell.Visible = true;
                 navBarItemBillsAgleTransitionsReport.Visible = false;
                 navBarItemTotalSales.Visible = false;
-                
+
                 navBarGroup13.Visible = false;
                 navBarGroup39.Visible = false;
                 btnTaswayAgalBills.Visible = false;
@@ -456,9 +441,6 @@ namespace MainSystem
                 navBarGroup11.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 navBarGroup12.Visible = false;
-
-                //pictureBoxPurchase.Visible = true;
-                //pictureBoxPurchaseLeast.Visible = true;
             }
             //marwa
             else if (UserControl.userType == 18)
@@ -500,9 +482,6 @@ namespace MainSystem
                 navBarGroup11.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 navBarGroup12.Visible = false;
-
-                //pictureBoxPurchase.Visible = true;
-                //pictureBoxPurchaseLeast.Visible = true;
             }
             //ahmed sayed
             else if (UserControl.userType == 19)
@@ -511,7 +490,7 @@ namespace MainSystem
                 btnPurchases.Checked = true;
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
-                
+
                 navBarGroup1.Visible = false;
                 navBarGroup2.Visible = false;
                 navBarGroup3.Visible = false;
@@ -519,15 +498,13 @@ namespace MainSystem
                 navBarGroup5.Visible = false;
                 navBarGroup6.Visible = false;
                 navBarGroup7.Visible = false;
-                navBarGroup8.Visible = false;
+                //navBarGroup8.Visible = false;
                 navBarGroup9.Visible = false;
                 navBarGroup10.Visible = false;
                 navBarGroup11.Visible = false;
-                //navBarGroup12.Visible = false;
 
                 navBarGroup43.Visible = false;
                 navBarGroup44.Visible = false;
-                //navBarGroup46.Visible = false;
                 navBarGroupSupplier.Visible = false;
                 navBarGroup48.Visible = false;
 
@@ -545,7 +522,6 @@ namespace MainSystem
                 navBarGroup52.Visible = false;
                 navBarGroup53.Visible = false;
                 navBarItemLeastQuantity.Visible = false;
-                //navBarGroupLeastQuantity.Visible = false;
                 navBarGroup48.Visible = false;
                 navBarGroupSupplier.Visible = false;
                 navBarGroupPurchasesReport.Visible = false;
@@ -591,8 +567,6 @@ namespace MainSystem
                 navBarGroup11.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 navBarGroup54.Visible = false;
-                //navBarItem17.Visible = false;
-                //navBarItemTransportationStore.Visible = false;
             }
             //حركة تسليم
             else if (UserControl.userType == 23)
@@ -614,6 +588,36 @@ namespace MainSystem
                 navBarGroup12.Visible = false;
                 navBarItem17.Visible = false;
                 navBarItemTransportationStore.Visible = false;
+            }
+            //مبيعات ومخازن - عمرو عاطف و محمد جمال
+            else if (UserControl.userType == 24)
+            {
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                pictureBoxBell.Visible = true;
+
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup6.Visible = false;
+                navBarGroup54.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup12.Visible = false;
+                navBarItemStoreReturn.Visible = false;
+                navBarItemConfirmTransferFromStore.Visible = false;
+                navBarItem17.Visible = false;
+                navBarGroup13.Visible = false;
+                navBarGroup39.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarItemTransportationStoreBill.Visible = false;
             }
             labUserName.Text = UserControl.EmpName;
         }
@@ -1110,29 +1114,9 @@ namespace MainSystem
         }
         public void userAccess()
         {
-            //navBarGroup15.Visible = false;
             navBarGroup16.Visible = false;
             navBarGroup13.Visible = false;
             navBarGroup39.Visible = false;
-            //navBarGroup7.Visible = false;
-            //navBarGroup8.Visible = false;
-            //navBarGroup9.Visible = false;
-            //navBarGroup10.Visible = false;
-            //navBarGroup11.Visible = false;
-            //navBarGroup12.Visible = false;
-            //navBarGroup45.Visible = false;
-
-            //navBarGroup14.Visible = false;
-            //navBarGroup15.Visible = false;
-            //navBarGroup16.Visible = false;
-            //navBarGroup17.Visible = false;
-            //navBarGroup18.Visible = false;
-            //navBarGroup39.Visible = false;
-
-            //navBarGroup43.Visible = false;
-            //navBarGroup44.Visible = false;
-            //navBarGroupSupplier.Visible = false;
-            //navBarGroupLeastQuantity.Visible = false;
         }
         public void userAccessStore()
         {

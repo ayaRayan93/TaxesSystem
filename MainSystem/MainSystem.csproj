@@ -2275,6 +2275,12 @@
     <Compile Include="Store\Storage\الجرد\GardStorage.designer.cs">
       <DependentUpon>GardStorage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Ticket\Print_Product_Ticket.designer.cs">
+      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Ticket\Print_Product_Ticket_Copy4.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2287,11 +2293,11 @@
     <Compile Include="Store\Ticket\Print_Product_Ticket_Copy3.designer.cs">
       <DependentUpon>Print_Product_Ticket_Copy3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Ticket\Print_Product_Ticket.cs">
+    <Compile Include="Store\Ticket\Print_Product_Ticket2.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Store\Ticket\Print_Product_Ticket.designer.cs">
-      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
+    <Compile Include="Store\Ticket\Print_Product_Ticket2.designer.cs">
+      <DependentUpon>Print_Product_Ticket2.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Ticket\Print_Product_Ticket_Copy2.cs">
       <SubType>Component</SubType>
@@ -2624,35 +2630,71 @@
     <Compile Include="RequestImage.designer.cs">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Transportation\ConfirmationToStoreX.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Store\Transportation\ConfirmationToStoreX.designer.cs">
-      <DependentUpon>ConfirmationToStoreX.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Store\Transportation\ConfirmationStore.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Store\Transportation\ConfirmationStore.designer.cs">
-      <DependentUpon>ConfirmationStore.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Store\Transportation\report\Print_Transportation_Copy.cs">
+    <Compile Include="Store\Transportation\report\نسخة تحويل فواتير\Print_Transportation_Bill_Copy.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Store\Transportation\report\Print_Transportation_Copy.designer.cs">
+    <Compile Include="Store\Transportation\report\نسخة تحويل فواتير\Print_Transportation_Bill_Copy.designer.cs">
+      <DependentUpon>Print_Transportation_Bill_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\report\نسخة تحويل فواتير\Report_Transportation_Bill_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\report\نسخة تحويل فواتير\Report_Transportation_Bill_Copy.designer.cs">
+      <DependentUpon>Report_Transportation_Bill_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\تاكيد التحويل\ConfirmationToStoreX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\تاكيد التحويل\ConfirmationToStoreX.designer.cs">
+      <DependentUpon>ConfirmationToStoreX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\تاكيد التحويل\ConfirmationStore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\تاكيد التحويل\ConfirmationStore.designer.cs">
+      <DependentUpon>ConfirmationStore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\تحويل فواتير\Print_Transportation_Bill.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\تحويل فواتير\Print_Transportation_Bill.designer.cs">
+      <DependentUpon>Print_Transportation_Bill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\report\نسخه تحويل بنود\Print_Transportation_Copy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\report\نسخه تحويل بنود\Print_Transportation_Copy.designer.cs">
       <DependentUpon>Print_Transportation_Copy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Transportation\report\Report_Transportation_Copy.cs">
+    <Compile Include="Store\Transportation\report\نسخه تحويل بنود\Report_Transportation_Copy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Transportation\report\Report_Transportation_Copy.designer.cs">
+    <Compile Include="Store\Transportation\report\نسخه تحويل بنود\Report_Transportation_Copy.designer.cs">
       <DependentUpon>Report_Transportation_Copy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Transportation\report\TransportationStore_Update.cs">
+    <Compile Include="Store\Transportation\report\نسخة تحويل فواتير\TransportationStoreBill_Update2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Transportation\report\TransportationStore_Update.designer.cs">
+    <Compile Include="Store\Transportation\report\نسخة تحويل فواتير\TransportationStoreBill_Update2.designer.cs">
+      <DependentUpon>TransportationStoreBill_Update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\report\نسخه تحويل بنود\TransportationStore_Update2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\report\نسخه تحويل بنود\TransportationStore_Update2.designer.cs">
+      <DependentUpon>TransportationStore_Update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\report\نسخه تحويل بنود\TransportationStore_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\report\نسخه تحويل بنود\TransportationStore_Update.designer.cs">
       <DependentUpon>TransportationStore_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\report\Transportation_Transitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\report\Transportation_Transitions_Report.designer.cs">
+      <DependentUpon>Transportation_Transitions_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Transportation\report\Transportation_Report.cs">
       <SubType>Form</SubType>
@@ -2660,23 +2702,41 @@
     <Compile Include="Store\Transportation\report\Transportation_Report.designer.cs">
       <DependentUpon>Transportation_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Transportation\Transportation_Items.cs" />
-    <Compile Include="Store\Transportation\Print_Transportation.cs">
+    <Compile Include="Store\Transportation\تحويل فواتير\Report_Transportation_Bill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\تحويل فواتير\Report_Transportation_Bill.designer.cs">
+      <DependentUpon>Report_Transportation_Bill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\تحويل فواتير\TransportationStoreBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\تحويل فواتير\TransportationStoreBill.designer.cs">
+      <DependentUpon>TransportationStoreBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\تحويل بنود\TransportationStore2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Transportation\تحويل بنود\TransportationStore2.designer.cs">
+      <DependentUpon>TransportationStore2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Transportation\تحويل بنود\Transportation_Items.cs" />
+    <Compile Include="Store\Transportation\تحويل بنود\Print_Transportation.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Store\Transportation\Print_Transportation.designer.cs">
+    <Compile Include="Store\Transportation\تحويل بنود\Print_Transportation.designer.cs">
       <DependentUpon>Print_Transportation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Transportation\Report_Transportation.cs">
+    <Compile Include="Store\Transportation\تحويل بنود\Report_Transportation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Transportation\Report_Transportation.designer.cs">
+    <Compile Include="Store\Transportation\تحويل بنود\Report_Transportation.designer.cs">
       <DependentUpon>Report_Transportation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Transportation\TransportationStore.cs">
+    <Compile Include="Store\Transportation\تحويل بنود\TransportationStore.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Transportation\TransportationStore.designer.cs">
+    <Compile Include="Store\Transportation\تحويل بنود\TransportationStore.designer.cs">
       <DependentUpon>TransportationStore.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\Form2SpeicalOrder.cs">
@@ -3799,14 +3859,17 @@
     <EmbeddedResource Include="Store\Storage\الجرد\GardStorage.resx">
       <DependentUpon>GardStorage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket.resx">
+      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy4.resx">
       <DependentUpon>Print_Product_Ticket_Copy4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy3.resx">
       <DependentUpon>Print_Product_Ticket_Copy3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket.resx">
-      <DependentUpon>Print_Product_Ticket.cs</DependentUpon>
+    <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket2.resx">
+      <DependentUpon>Print_Product_Ticket2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ticket\Print_Product_Ticket_Copy2.resx">
       <DependentUpon>Print_Product_Ticket_Copy2.cs</DependentUpon>
@@ -3913,31 +3976,58 @@
     <EmbeddedResource Include="RequestImage.resx">
       <DependentUpon>RequestImage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\ConfirmationToStoreX.resx">
+    <EmbeddedResource Include="Store\Transportation\report\نسخة تحويل فواتير\Print_Transportation_Bill_Copy.resx">
+      <DependentUpon>Print_Transportation_Bill_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\report\نسخة تحويل فواتير\Report_Transportation_Bill_Copy.resx">
+      <DependentUpon>Report_Transportation_Bill_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\تاكيد التحويل\ConfirmationToStoreX.resx">
       <DependentUpon>ConfirmationToStoreX.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\Print_Transportation.resx">
+    <EmbeddedResource Include="Store\Transportation\تحويل فواتير\Print_Transportation_Bill.resx">
+      <DependentUpon>Print_Transportation_Bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\تحويل بنود\Print_Transportation.resx">
       <DependentUpon>Print_Transportation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\report\Print_Transportation_Copy.resx">
+    <EmbeddedResource Include="Store\Transportation\report\نسخه تحويل بنود\Print_Transportation_Copy.resx">
       <DependentUpon>Print_Transportation_Copy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\report\Report_Transportation_Copy.resx">
+    <EmbeddedResource Include="Store\Transportation\report\نسخه تحويل بنود\Report_Transportation_Copy.resx">
       <DependentUpon>Report_Transportation_Copy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\report\TransportationStore_Update.resx">
+    <EmbeddedResource Include="Store\Transportation\report\نسخة تحويل فواتير\TransportationStoreBill_Update2.resx">
+      <DependentUpon>TransportationStoreBill_Update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\report\نسخه تحويل بنود\TransportationStore_Update2.resx">
+      <DependentUpon>TransportationStore_Update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\report\نسخه تحويل بنود\TransportationStore_Update.resx">
       <DependentUpon>TransportationStore_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\report\Transportation_Transitions_Report.resx">
+      <DependentUpon>Transportation_Transitions_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Transportation\report\Transportation_Report.resx">
       <DependentUpon>Transportation_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\Report_Transportation.resx">
+    <EmbeddedResource Include="Store\Transportation\تحويل بنود\Report_Transportation.resx">
       <DependentUpon>Report_Transportation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\ConfirmationStore.resx">
+    <EmbeddedResource Include="Store\Transportation\تاكيد التحويل\ConfirmationStore.resx">
       <DependentUpon>ConfirmationStore.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Transportation\TransportationStore.resx">
+    <EmbeddedResource Include="Store\Transportation\تحويل فواتير\Report_Transportation_Bill.resx">
+      <DependentUpon>Report_Transportation_Bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\تحويل فواتير\TransportationStoreBill.resx">
+      <DependentUpon>TransportationStoreBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\تحويل بنود\TransportationStore2.resx">
+      <DependentUpon>TransportationStore2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Transportation\تحويل بنود\TransportationStore.resx">
       <DependentUpon>TransportationStore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\Form2SpeicalOrder.resx">
