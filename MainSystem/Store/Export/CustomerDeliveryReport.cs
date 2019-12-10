@@ -15,9 +15,11 @@ namespace MainSystem.Store.Export
     {
         MySqlConnection dbconnection;
         bool load = false;
-        public CustomerDeliveryReport()
+        MainForm MainForm;
+        public CustomerDeliveryReport(MainForm MainForm)
         {
             InitializeComponent();
+            this.MainForm = MainForm;
             dbconnection = new MySqlConnection(connection.connectionString);
         }
 
@@ -34,6 +36,15 @@ namespace MainSystem.Store.Export
                 comStore.DisplayMember = dt.Columns["Store_Name"].ToString();
                 comStore.ValueMember = dt.Columns["Store_ID"].ToString();
                 comStore.Text = "";
+
+                query = "select * from branch";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch.Text = "";
             }
             catch (Exception ex)
             {
@@ -72,8 +83,16 @@ namespace MainSystem.Store.Export
                 {
                     subQuery = " customer_permissions.Customer_Permissin_ID=" + txtPermissionStore.Text;
                 }
+                if (comBranch.Text != "")
+                {
+                    subQuery += " and customer_permissions.Branch_ID=" + comBranch.SelectedValue;
+                }
 
-                string query = "SELECT Customer_Permissin_ID, customer_permissions.Customer_Permissin_ID as 'رقم الأذن', store.Store_Name as 'المخزن',customer_permissions.Date as 'التاريخ' FROM customer_permissions INNER JOIN store ON store.Store_ID = customer_permissions.Store_ID   WHERE " + subQuery;
+                if (txtBranch.Text != "")
+                {
+                    subQuery = " customer_permissions.BranchBillNumber=" + txtBranch.Text;
+                }
+                string query = "SELECT Customer_Permissin_ID, customer_permissions.Customer_Permissin_ID as 'رقم الأذن',branch.Branch_Name as 'الفرع',customer_permissions.BranchBillNumber as 'رقم الفاتورة', store.Store_Name as 'المخزن',customer_permissions.Date as 'التاريخ' FROM customer_permissions INNER JOIN store ON store.Store_ID = customer_permissions.Store_ID inner join branch on branch.Branch_ID=customer_permissions.Branch_ID   WHERE " + subQuery;
                 MySqlDataAdapter adapterSets = new MySqlDataAdapter(query, dbconnection);
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
                 query = "SELECT customer_permissions_details.Customer_Permissin_ID as 'رقم الأذن',data.Code as 'الكود' ," + itemName + " ,DeliveredQuantity as 'الكمية المستلمة',Quantity as 'الكمية' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  inner join customer_permissions_details on customer_permissions_details.Data_ID=data.Data_ID inner join customer_permissions on customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID  WHERE " + subQuery;
@@ -102,5 +121,34 @@ namespace MainSystem.Store.Export
 
         }
 
+        private void btnNewChooes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                comBranch.Text = "";
+                txtBranch.Text = "";
+                comStore.Text = "";
+                txtPermissionStore.Text = "";
+                dateTimeFrom.Text = DateTime.Now.Date.ToString();
+                dateTimeTo.Text = DateTime.Now.Date.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               MainForm.bindReportPermissionForm(dataGridView1,"تقرير أذونات التسليم");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }

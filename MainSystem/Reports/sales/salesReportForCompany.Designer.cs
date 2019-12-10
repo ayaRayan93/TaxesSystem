@@ -410,7 +410,6 @@
             this.btnReport.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnReport.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
             this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
@@ -418,10 +417,10 @@
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "طباعة تقرير";
-            this.btnReport.Location = new System.Drawing.Point(839, 4);
+            this.btnReport.Location = new System.Drawing.Point(860, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(94, 36);
+            this.btnReport.Size = new System.Drawing.Size(73, 36);
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 

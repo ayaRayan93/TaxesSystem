@@ -45,6 +45,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.txtBranch = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comBranch = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tLPanProductsContainer = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -60,9 +64,9 @@
             this.dateTimeTo.CustomFormat = "yyyy/MM/dd";
             this.dateTimeTo.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeTo.Location = new System.Drawing.Point(216, 67);
+            this.dateTimeTo.Location = new System.Drawing.Point(127, 67);
             this.dateTimeTo.Name = "dateTimeTo";
-            this.dateTimeTo.Size = new System.Drawing.Size(200, 22);
+            this.dateTimeTo.Size = new System.Drawing.Size(165, 22);
             this.dateTimeTo.TabIndex = 192;
             // 
             // dateTimeFrom
@@ -71,9 +75,9 @@
             this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
             this.dateTimeFrom.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeFrom.Location = new System.Drawing.Point(216, 23);
+            this.dateTimeFrom.Location = new System.Drawing.Point(127, 36);
             this.dateTimeFrom.Name = "dateTimeFrom";
-            this.dateTimeFrom.Size = new System.Drawing.Size(200, 22);
+            this.dateTimeFrom.Size = new System.Drawing.Size(165, 22);
             this.dateTimeFrom.TabIndex = 193;
             // 
             // label2
@@ -81,7 +85,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(431, 23);
+            this.label2.Location = new System.Drawing.Point(307, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 19);
             this.label2.TabIndex = 194;
@@ -92,7 +96,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(430, 67);
+            this.label3.Location = new System.Drawing.Point(306, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 19);
             this.label3.TabIndex = 195;
@@ -100,22 +104,22 @@
             // 
             // txtPermissionStore
             // 
-            this.txtPermissionStore.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPermissionStore.Location = new System.Drawing.Point(527, 63);
+            this.txtPermissionStore.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPermissionStore.Location = new System.Drawing.Point(377, 71);
             this.txtPermissionStore.Name = "txtPermissionStore";
-            this.txtPermissionStore.Size = new System.Drawing.Size(100, 26);
+            this.txtPermissionStore.Size = new System.Drawing.Size(100, 25);
             this.txtPermissionStore.TabIndex = 136;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(630, 64);
+            this.label1.Location = new System.Drawing.Point(480, 72);
             this.label1.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 19);
+            this.label1.Size = new System.Drawing.Size(52, 17);
             this.label1.TabIndex = 135;
             this.label1.Text = "أذن تسليم";
             // 
@@ -127,12 +131,13 @@
             this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewChooes.Location = new System.Drawing.Point(48, 22);
+            this.btnNewChooes.Location = new System.Drawing.Point(5, 22);
             this.btnNewChooes.Name = "btnNewChooes";
             this.btnNewChooes.Size = new System.Drawing.Size(103, 36);
             this.btnNewChooes.TabIndex = 134;
             this.btnNewChooes.Text = "اختيار اخر";
             this.btnNewChooes.UseVisualStyleBackColor = false;
+            this.btnNewChooes.Click += new System.EventHandler(this.btnNewChooes_Click);
             // 
             // comStore
             // 
@@ -140,25 +145,25 @@
             this.comStore.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comStore.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comStore.BackColor = System.Drawing.Color.White;
-            this.comStore.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comStore.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(495, 20);
+            this.comStore.Location = new System.Drawing.Point(345, 38);
             this.comStore.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comStore.Size = new System.Drawing.Size(155, 27);
+            this.comStore.Size = new System.Drawing.Size(155, 25);
             this.comStore.TabIndex = 29;
             // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(653, 20);
+            this.label7.Location = new System.Drawing.Point(503, 38);
             this.label7.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 19);
+            this.label7.Size = new System.Drawing.Size(43, 17);
             this.label7.TabIndex = 30;
             this.label7.Text = "المخزن";
             // 
@@ -185,7 +190,7 @@
             this.btnSearch.IconVisible = false;
             this.btnSearch.IconZoom = 90D;
             this.btnSearch.IsTab = false;
-            this.btnSearch.Location = new System.Drawing.Point(48, 63);
+            this.btnSearch.Location = new System.Drawing.Point(5, 63);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(5);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
@@ -259,6 +264,7 @@
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(82, 52);
             this.btnReport.TabIndex = 3;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // btnUpdate
             // 
@@ -315,6 +321,10 @@
             // 
             this.panelControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.panelControl1.Controls.Add(this.txtBranch);
+            this.panelControl1.Controls.Add(this.label4);
+            this.panelControl1.Controls.Add(this.comBranch);
+            this.panelControl1.Controls.Add(this.label5);
             this.panelControl1.Controls.Add(this.dateTimeTo);
             this.panelControl1.Controls.Add(this.dateTimeFrom);
             this.panelControl1.Controls.Add(this.label2);
@@ -331,6 +341,55 @@
             this.tLPanProductsContainer.SetRowSpan(this.panelControl1, 2);
             this.panelControl1.Size = new System.Drawing.Size(769, 114);
             this.panelControl1.TabIndex = 13;
+            // 
+            // txtBranch
+            // 
+            this.txtBranch.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBranch.Location = new System.Drawing.Point(588, 73);
+            this.txtBranch.Name = "txtBranch";
+            this.txtBranch.Size = new System.Drawing.Size(100, 25);
+            this.txtBranch.TabIndex = 199;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(691, 74);
+            this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 17);
+            this.label4.TabIndex = 198;
+            this.label4.Text = "رقم الفاتورة";
+            // 
+            // comBranch
+            // 
+            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBranch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comBranch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comBranch.BackColor = System.Drawing.Color.White;
+            this.comBranch.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comBranch.FormattingEnabled = true;
+            this.comBranch.Location = new System.Drawing.Point(556, 40);
+            this.comBranch.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.comBranch.Name = "comBranch";
+            this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comBranch.Size = new System.Drawing.Size(155, 25);
+            this.comBranch.TabIndex = 196;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label5.Location = new System.Drawing.Point(714, 40);
+            this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 17);
+            this.label5.TabIndex = 197;
+            this.label5.Text = "الفرع";
             // 
             // tLPanProductsContainer
             // 
@@ -397,5 +456,9 @@
         private Bunifu.Framework.UI.BunifuTileButton btnReport;
         private Bunifu.Framework.UI.BunifuTileButton btnUpdate;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private System.Windows.Forms.TextBox txtBranch;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comBranch;
+        private System.Windows.Forms.Label label5;
     }
 }

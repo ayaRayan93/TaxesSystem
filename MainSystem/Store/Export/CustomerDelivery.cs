@@ -402,7 +402,7 @@ namespace MainSystem
                     string query = "select * from customer_bill  where Branch_ID=" + txtBranchID.Text + " and Branch_BillNumber=" + txtPermBillNumber.Text;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     int CustomerBill_ID = Convert.ToInt16(com.ExecuteScalar());
-                    query = "insert into customer_permissions (CustomerBill_ID,Customer_ID,Customer_Name,Store_ID,Store_Name,Client_ID,Client_Name,Delegate_Name,Date,BranchBillNumber,Branch_ID,Branch_Name) values (@CustomerBill_ID,@Customer_ID,@Customer_Name,@Store_ID,@Store_Name,@Client_ID,@Client_Name,@Delegate_Name,@Date,@BranchBillNumber,@Branch_ID,Branch_Name)";
+                    query = "insert into customer_permissions (CustomerBill_ID,Customer_ID,Customer_Name,Store_ID,Store_Name,Client_ID,Client_Name,Delegate_Name,Date,BranchBillNumber,Branch_ID,Branch_Name,Note) values (@CustomerBill_ID,@Customer_ID,@Customer_Name,@Store_ID,@Store_Name,@Client_ID,@Client_Name,@Delegate_Name,@Date,@BranchBillNumber,@Branch_ID,@Branch_Name,@Note)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                     com.Parameters["@CustomerBill_ID"].Value = txtPermBillNumber.Text;
@@ -448,6 +448,8 @@ namespace MainSystem
                     com.Parameters["@Branch_ID"].Value = Convert.ToInt16(txtBranchID.Text);
                     com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar);
                     com.Parameters["@Branch_Name"].Value = comStore.Text;
+                    com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                    com.Parameters["@Note"].Value = txtNote.Text;
                     com.ExecuteNonQuery();
                     query = "select Customer_Permissin_ID from customer_permissions order by Customer_Permissin_ID desc limit 1";
                     com= new MySqlCommand(query, dbconnection);
@@ -733,6 +735,7 @@ namespace MainSystem
                             deliveryPermissionClass.NumOfCarton = Convert.ToDouble(row1[5]);
                         }
                         deliveryPermissionClass.DeliveryQuantity = row1[7].ToString();
+                        deliveryPermissionClass.StoreName = row1[10].ToString();
                         listOfData.Add(deliveryPermissionClass);
                     }
                     DeliveryPermissionReportViewer DeliveryPermissionReport;//= new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
@@ -972,7 +975,7 @@ namespace MainSystem
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
             DataTable dtAll = new DataTable();
-            query = "select data.Data_ID,data.Code as 'الكود',concat(type.Type_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(data.Description,''),' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',data.Carton as 'الكرتنة',product_bill.Quantity as 'الكمية',(case  when data.Carton !=0 then (product_bill.Quantity /data.Carton) end ) as 'عدد الكراتين','" + " " + " ' as 'الكمية المسلمة',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID=" + id + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+            query = "select data.Data_ID,data.Code as 'الكود',concat(type.Type_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(data.Description,''),' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',data.Carton as 'الكرتنة',product_bill.Quantity as 'الكمية',(case  when data.Carton !=0 then (product_bill.Quantity /data.Carton) end ) as 'عدد الكراتين','" + " " + " ' as 'الكمية المسلمة',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',store.Store_Name as 'المخزن',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join store on product_bill.Store_ID=store.Store_ID where CustomerBill_ID=" + id + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dtProduct = new DataTable();
             da.Fill(dtProduct);

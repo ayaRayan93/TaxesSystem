@@ -338,7 +338,77 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        //partner Income
+        private void navBarItem23_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlCarsContent.Visible)
+                    xtraTabControlCarsContent.Visible = true;
 
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlCarsContent,"تقرير  حركة السيارات الخاصة");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlCarsContent.TabPages.Add("تقرير  حركة السيارات الخاصة");
+                    xtraTabPage = getTabPage(xtraTabControlCarsContent,"تقرير  حركة السيارات الخاصة");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlCarsContent.SelectedTabPage = xtraTabPage;
+
+                CarPartnerIncomes objForm = new CarPartnerIncomes(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemPartnerCar_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlCarsContent.Visible)
+                    xtraTabControlCarsContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlCarsContent,"تقرير");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlCarsContent.TabPages.Add("تقرير");
+                    xtraTabPage = getTabPage(xtraTabControlCarsContent,"تقرير");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlCarsContent.SelectedTabPage = xtraTabPage;
+
+                PartenerCarsReport objForm = new PartenerCarsReport(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         //function
         //cars
@@ -819,7 +889,67 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+        //car Partner Incomes
+        public void bindRecordPartnerIncomesForm(CarPartnerIncomes carIncomes)
+        {
+            CarPartnerIncomeRecord objForm = new CarPartnerIncomeRecord(carIncomes, xtraTabControlCarsContent);
 
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlCarsContent,"تسجيل ايراد السيارات الخاصة");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlCarsContent.TabPages.Add("تسجيل ايراد السيارات الخاصة");
+                xtraTabPage = getTabPage(xtraTabControlCarsContent,"تسجيل ايراد السيارات الخاصة");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlCarsContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindUpdatePartnerIncomesForm(DataRowView incomesRow, CarPartnerIncomes carIncomes)
+        {
+            CarPartnerIncomeUpdate objForm = new CarPartnerIncomeUpdate(Convert.ToInt16(incomesRow[0].ToString()), carIncomes, xtraTabControlCarsContent);
+
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlCarsContent,"تعديل إيراد السيارات الخاصة");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlCarsContent.TabPages.Add("تعديل إيراد السيارات الخاصة");
+                xtraTabPage = getTabPage(xtraTabControlCarsContent,"تعديل إيراد السيارات الخاصة");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlCarsContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindReportPartnerIncomesForm(GridControl gridControl)
+        {
+            CarPartnerIncomesReport objForm = new CarPartnerIncomesReport(gridControl);
+
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlCarsContent,"تقرير الإيرادات");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlCarsContent.TabPages.Add("تقرير الإيرادات");
+                xtraTabPage = getTabPage(xtraTabControlCarsContent,"تقرير الإيرادات");
+
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlCarsContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+    
         void item_Click(object sender, EventArgs e)
         {
             try

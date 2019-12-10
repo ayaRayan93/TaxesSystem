@@ -540,7 +540,7 @@ namespace MainSystem
                     //xtraTabPage.Controls.Clear();
 
                     xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
-                    SalesReportForCompanyDetails objForm = new SalesReportForCompanyDetails();
+                    SalesReportForCompanyDetails objForm = new SalesReportForCompanyDetails(this);
                     objForm.TopLevel = false;
                     xtraTabPage.Controls.Add(objForm);
                     objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1213,7 +1213,7 @@ namespace MainSystem
                 }
             return null;
         }
-        
+
         //
         public void GetNonRequestedSpecialOrders(object sender, EventArgs e)
         {
@@ -1252,7 +1252,7 @@ namespace MainSystem
 
         public void displayCompanyReport(GridControl gridControl, dataX d,string title)
         {
-            Delegate_Report objForm = new Delegate_Report(gridControl, d, "تقرير مبيعات الشركات");
+            Delegate_Report objForm = new Delegate_Report(gridControl, d, title);
             
             objForm.Show();
         }

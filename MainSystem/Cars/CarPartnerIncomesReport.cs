@@ -12,35 +12,17 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class SetReport : Form
+    public partial class CarPartnerIncomesReport : Form
     {
-        public GridControl gridControl;
-        string title = "تقرير الاطقم";
-        public SetReport(GridControl gridControl)
+        GridControl gridControl;
+
+        public CarPartnerIncomesReport(GridControl gridControl)
         {
-            try
-            {
-                InitializeComponent();
-                this.gridControl = gridControl;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            InitializeComponent();
+            this.gridControl = gridControl;
         }
-        public SetReport(GridControl gridControl,string title)
-        {
-            try
-            {
-                InitializeComponent();
-                this.gridControl = gridControl;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        private void SetReport_Load(object sender, EventArgs e)
+
+        private void CarExpensesReport_Load(object sender, EventArgs e)
         {
             try
             {
@@ -60,7 +42,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
 
         private void PrintableComponentLink_CreateMarginalFooterArea(object sender, CreateAreaEventArgs e)
         {
@@ -94,21 +75,21 @@ namespace MainSystem
             PageImageBrick pageImageBrick;
 
             // Define the image to display.
-            Image pageImage = MainSystem.Properties.Resources.logo_option2;
+            Image pageImage = MainSystem.Properties.Resources.Logo;
 
             // Display the PageImageBrick containing the DevExpress logo.
-            pageImageBrick = brickGraphics.DrawPageImage(pageImage, new Rectangle(856, 0, 100, 80), BorderSide.None, Color.Transparent);
+            pageImageBrick = brickGraphics.DrawPageImage(pageImage, new Rectangle(810, 0, 150, 150), BorderSide.None, Color.Transparent);
             pageImageBrick.Alignment = BrickAlignment.Far;
 
             // Display the PageInfoBrick containing date-time information. Date-time information is displayed
             // in the left part of the MarginalHeader section using the FullDateTimePattern.
             //{0:F}
-            pageInfoBrick = brickGraphics.DrawPageInfo(PageInfo.DateTime, "{0:MM/dd/yyyy hh:mm tt}", Color.Black, new Rectangle(840, 90, 120, 50), BorderSide.None);
+            pageInfoBrick = brickGraphics.DrawPageInfo(PageInfo.DateTime, "{0:MM/dd/yyyy hh:mm tt}", Color.Black, new Rectangle(840, 160, 120, 50), BorderSide.None);
             pageInfoBrick.Alignment = BrickAlignment.Far;
 
 
             // Declare text strings.
-            string devexpress = title;
+            string devexpress = "تقرير ايرادات السيارات";
             // Specify required settings for the brick graphics.
             BrickGraphics brickGraphics2 = e.Graph;
             brickGraphics2.BackColor = Color.White;
@@ -119,5 +100,6 @@ namespace MainSystem
             pageInfoBrick = brickGraphics2.DrawPageInfo(PageInfo.None, devexpress, Color.Black, new RectangleF(new PointF(440, 50), size), BorderSide.None);
             pageInfoBrick.Alignment = BrickAlignment.Center;
         }
+
     }
 }

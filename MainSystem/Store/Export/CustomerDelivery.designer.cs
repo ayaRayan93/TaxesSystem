@@ -85,6 +85,8 @@
             this.NumOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtNote = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -106,7 +108,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label1.Location = new System.Drawing.Point(228, 16);
+            this.label1.Location = new System.Drawing.Point(228, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 17);
             this.label1.TabIndex = 201;
@@ -117,7 +119,7 @@
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(28, 43);
+            this.dateTimePicker1.Location = new System.Drawing.Point(28, 39);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(194, 20);
             this.dateTimePicker1.TabIndex = 207;
@@ -127,7 +129,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label3.Location = new System.Drawing.Point(228, 43);
+            this.label3.Location = new System.Drawing.Point(228, 39);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 17);
             this.label3.TabIndex = 208;
@@ -141,10 +143,10 @@
             this.groupBox1.Controls.Add(this.labPhoneNumber);
             this.groupBox1.Controls.Add(this.txtPhoneNumber);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Location = new System.Drawing.Point(9, 0);
+            this.groupBox1.Location = new System.Drawing.Point(9, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox1.Size = new System.Drawing.Size(972, 94);
+            this.groupBox1.Size = new System.Drawing.Size(972, 72);
             this.groupBox1.TabIndex = 210;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "بيانات الفاتورة";
@@ -154,7 +156,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label2.Location = new System.Drawing.Point(430, 60);
+            this.label2.Location = new System.Drawing.Point(430, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 17);
             this.label2.TabIndex = 218;
@@ -166,7 +168,7 @@
             this.txtDelegate.BackColor = System.Drawing.SystemColors.Control;
             this.txtDelegate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDelegate.Location = new System.Drawing.Point(252, 59);
+            this.txtDelegate.Location = new System.Drawing.Point(252, 45);
             this.txtDelegate.Name = "txtDelegate";
             this.txtDelegate.ReadOnly = true;
             this.txtDelegate.Size = new System.Drawing.Size(174, 24);
@@ -177,7 +179,7 @@
             this.labPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labPhoneNumber.AutoSize = true;
             this.labPhoneNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labPhoneNumber.Location = new System.Drawing.Point(429, 29);
+            this.labPhoneNumber.Location = new System.Drawing.Point(429, 15);
             this.labPhoneNumber.Name = "labPhoneNumber";
             this.labPhoneNumber.Size = new System.Drawing.Size(72, 17);
             this.labPhoneNumber.TabIndex = 214;
@@ -189,7 +191,7 @@
             this.txtPhoneNumber.BackColor = System.Drawing.SystemColors.Control;
             this.txtPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhoneNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPhoneNumber.Location = new System.Drawing.Point(251, 28);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(251, 14);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.ReadOnly = true;
             this.txtPhoneNumber.Size = new System.Drawing.Size(174, 24);
@@ -204,7 +206,7 @@
             this.groupBox2.Controls.Add(this.labClient);
             this.groupBox2.Controls.Add(this.labCustomer);
             this.groupBox2.Controls.Add(this.txtCustomerID);
-            this.groupBox2.Location = new System.Drawing.Point(537, 19);
+            this.groupBox2.Location = new System.Drawing.Point(537, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(388, 65);
             this.groupBox2.TabIndex = 161;
@@ -463,8 +465,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 98F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -479,7 +481,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 441F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 443F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -504,7 +506,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(443, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(444, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(95, 45);
@@ -514,14 +516,15 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 83);
+            this.panel1.Location = new System.Drawing.Point(3, 101);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(990, 94);
+            this.panel1.Size = new System.Drawing.Size(990, 75);
             this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.txtNote);
             this.panel2.Controls.Add(this.labDate);
             this.panel2.Controls.Add(this.txtStore);
             this.panel2.Controls.Add(this.label4);
@@ -538,14 +541,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(990, 74);
+            this.panel2.Size = new System.Drawing.Size(990, 92);
             this.panel2.TabIndex = 230;
             // 
             // txtStore
             // 
             this.txtStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtStore.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtStore.Location = new System.Drawing.Point(28, 14);
+            this.txtStore.Location = new System.Drawing.Point(28, 10);
             this.txtStore.Name = "txtStore";
             this.txtStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtStore.Size = new System.Drawing.Size(58, 24);
@@ -601,7 +604,7 @@
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(92, 14);
+            this.comStore.Location = new System.Drawing.Point(92, 10);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(130, 24);
@@ -788,6 +791,26 @@
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
             // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label5.Location = new System.Drawing.Point(228, 68);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 17);
+            this.label5.TabIndex = 241;
+            this.label5.Text = "ملحوظة";
+            // 
+            // txtNote
+            // 
+            this.txtNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNote.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtNote.Location = new System.Drawing.Point(27, 62);
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(195, 27);
+            this.txtNote.TabIndex = 240;
+            // 
             // CustomerDelivery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -880,6 +903,8 @@
         private System.Windows.Forms.ComboBox comStore;
         private System.Windows.Forms.Label labDate;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtNote;
     }
 }
 
