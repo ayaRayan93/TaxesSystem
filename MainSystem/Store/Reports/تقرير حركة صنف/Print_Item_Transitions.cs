@@ -14,7 +14,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string Store, DateTime fromDate, DateTime toDate, string productName, double TotalBills, double TotalReturn, double safy, List<Item_Transitions> Bill_Items)
+        public void InitData(string Store, DateTime fromDate, DateTime toDate, string productName, double TotalBills, double TotalReturn, double safy, double before, List<Item_Transitions> Bill_Items)
         {
             Store_Name.Value = Store;
             FromDate.Value = fromDate;
@@ -23,6 +23,7 @@ namespace MainSystem
             TotalIncrease.Value = TotalBills;
             TotalDecrease.Value = TotalReturn;
             Safy.Value = safy;
+            Before.Value = before;
             DateNow.Value = DateTime.Now;
             objectDataSource1.DataSource = Bill_Items;
         }
