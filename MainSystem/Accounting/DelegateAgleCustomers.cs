@@ -212,7 +212,7 @@ namespace MainSystem
             try
             {
                 dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, comDelegate.Text, "");
-                MainForm.displayDelegateReport(gridControl1, d);
+                MainForm.displayDelegateReport(gridControl1,"", d);
             }
             catch (Exception ex)
             {

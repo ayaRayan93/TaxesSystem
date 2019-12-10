@@ -622,7 +622,7 @@ namespace MainSystem
                    x.delegateProfit = gridView1.GetRowCellValue(item, "ValueDelegate").ToString();
                     d.company_profit_list.Add(x);
                 }
-                MainForm.displayDelegateReport(gridControl1, d);
+                MainForm.displayDelegateReport(gridControl1,"", d);
             }
             catch (Exception ex)
             {

@@ -298,9 +298,11 @@ namespace MainSystem
         public void displayBill()
         {
             DateTime date = dateTimeFrom.Value;
-            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            string d = date.ToString("yyyy-MM-dd ");
+            d += "00:00:00";
             DateTime date2 = dateTimeTo.Value;
-            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss") ;
+            string d2 = date2.ToString("yyyy-MM-dd ");
+            d2 += "23:59:59";
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -377,9 +379,11 @@ namespace MainSystem
         public void displayReturnBill(DataGridView datagridview)
         {
             DateTime date = dateTimeFrom.Value;
-            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            string d = date.ToString("yyyy-MM-dd ");
+            d += "00:00:00";
             DateTime date2 = dateTimeTo.Value;
-            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string d2 = date2.ToString("yyyy-MM-dd ");
+            d2 += "23:59:59";
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -430,9 +434,11 @@ namespace MainSystem
         public void displayPaidBill()
         {
             DateTime date = dateTimeFrom.Value;
-            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            string d = date.ToString("yyyy-MM-dd ");
+            d += "00:00:00";
             DateTime date2 = dateTimeTo.Value;
-            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string d2 = date2.ToString("yyyy-MM-dd ");
+            d2 += "23:59:59";
             string query = "", query1 = "";
             string Name = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
@@ -523,9 +529,11 @@ namespace MainSystem
         public void displayPaidReturnBill()
         {
             DateTime date = dateTimeFrom.Value;
-            string d = date.ToString("yyyy-MM-dd HH:mm:ss");
+            string d = date.ToString("yyyy-MM-dd ");
+            d += "00:00:00";
             DateTime date2 = dateTimeTo.Value;
-            string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            string d2 = date2.ToString("yyyy-MM-dd ");
+            d2 += "23:59:59";
             string query = "", query1 = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {

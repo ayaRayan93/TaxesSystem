@@ -174,7 +174,12 @@ namespace MainSystem
                 DateTime date2 = dateTimeTo.Value;
                 string d2 = date2.ToString("yyyy-MM-dd ");
                 d2 += "23:59:59";
-                string query= "select CustomerBill_ID from customer_bill  where Bill_Date between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID="+txtBranchID.Text;
+                string subQuery = "";
+                if (comBranch.Text != "")
+                {
+                    subQuery = " and customer_bill.Branch_ID=" + txtBranchID.Text;
+                }
+                string query= "select CustomerBill_ID from customer_bill  where Bill_Date between '" + d + "' and '" + d2 +"'"+subQuery;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = com.ExecuteReader();
                 string str = "";
@@ -195,8 +200,11 @@ namespace MainSystem
                 //dr.Close();
 
                 str += 0;
-
-                query = "select Branch_BillNumber from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
+                if (comBranch.Text != "")
+                {
+                    subQuery = " and customer_return_bill.Branch_ID=" + txtBranchID.Text;
+                }
+                query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 +"'"+subQuery;
                 //query = "select Bill_Number from transitions where  Date between '" + d + "' and '" + d2 + "' and Type='كاش' and Transition='سحب' and transitions.TransitionBranch_ID=" + txtBranchID.Text;
 
                 com = new MySqlCommand(query, dbconnection);
@@ -228,9 +236,9 @@ namespace MainSystem
 
                 CalTotal(_Table);
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("اختار الفرع");
+                MessageBox.Show(ex.Message);
             }
             dbconnection.Close(); 
         }
@@ -272,7 +280,7 @@ namespace MainSystem
         }
         public DataTable getTotalReturn(DataTable _Table, string CustomerReturnBill_IDs, string subQuery)
         {
-            string query = "select delegate.Delegate_ID,Delegate_Name,sum(TotalAD) from customer_return_bill_details inner join customer_return_bill on customer_return_bill_details.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where customer_return_bill.Branch_BillNumber in (" + CustomerReturnBill_IDs + ") and  customer_return_bill.Branch_ID="+txtBranchID.Text+" " + subQuery + " group by delegate.Delegate_ID ";
+            string query = "select delegate.Delegate_ID,Delegate_Name,sum(TotalAD) from customer_return_bill_details inner join customer_return_bill on customer_return_bill_details.CustomerReturnBill_ID=customer_return_bill.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where customer_return_bill.CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ") " + subQuery + " group by delegate.Delegate_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();
@@ -344,7 +352,7 @@ namespace MainSystem
             try
             {
                 dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, comDelegate.Text, "");
-                MainForm.displayDelegateReport(gridControl1, d);
+                MainForm.displayDelegateReport(gridControl1,comBranch.Text, d);
             }
             catch (Exception ex)
             {

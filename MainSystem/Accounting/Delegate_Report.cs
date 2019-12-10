@@ -18,6 +18,7 @@ namespace MainSystem
         public GridControl gridControl;
         dataX d;
         string title= "تقرير مبيعات المناديب";
+        string branchName = "";
         public Delegate_Report(GridControl gridControl, dataX d)
         {
             try
@@ -25,6 +26,20 @@ namespace MainSystem
                 InitializeComponent();
                 this.gridControl = gridControl;
                 this.d = d;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public Delegate_Report(GridControl gridControl, string branchName, dataX d)
+        {
+            try
+            {
+                InitializeComponent();
+                this.gridControl = gridControl;
+                this.d = d;
+                this.branchName = branchName;
             }
             catch (Exception ex)
             {
@@ -169,6 +184,13 @@ namespace MainSystem
             SizeF size = brickGraphics2.MeasureString(devexpress);
             pageInfoBrick = brickGraphics2.DrawPageInfo(PageInfo.None, devexpress, Color.Black, new RectangleF(new PointF(320, 50), size), BorderSide.None);
             pageInfoBrick.Alignment = BrickAlignment.Center;
+
+            if (branchName != "")
+            {
+                SizeF sizea = brickGraphics2.MeasureString(branchName);
+                pageInfoBrick = brickGraphics2.DrawPageInfo(PageInfo.None, branchName, Color.Black, new RectangleF(new PointF(370, 70), size), BorderSide.None);
+                pageInfoBrick.Alignment = BrickAlignment.Center;
+            }
         }
 
     }
