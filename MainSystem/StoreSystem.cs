@@ -1266,6 +1266,81 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        
+        #region branchs
+        private void btnCodingItems_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            if (UserControl.userType == 1)
+            {
+                try
+                {
+                    restForeColorOfNavBarItem();
+                    NavBarItem navBarItem = (NavBarItem)sender;
+                    navBarItem.Appearance.ForeColor = Color.Blue;
+
+                    if (!xtraTabControlStoresContent.Visible)
+                        xtraTabControlStoresContent.Visible = true;
+                    
+                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير الافرع");
+                    if (xtraTabPage == null)
+                    {
+                        xtraTabControlStoresContent.TabPages.Add("تقرير الافرع");
+                        xtraTabPage = getTabPage(xtraTabControlStoresContent, "تقرير الافرع");
+                    }
+                    xtraTabPage.Controls.Clear();
+                    xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+                    Branch_Report objForm = new Branch_Report(this);
+
+                    objForm.TopLevel = false;
+                    xtraTabPage.Controls.Add(objForm);
+                    objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                    objForm.Dock = DockStyle.Fill;
+                    objForm.Show();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        public void bindRecordBranchForm(Branch_Report form)
+        {
+            Branch_Record objForm = new Branch_Record(form, xtraTabControlStoresContent);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "اضافة فرع");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("اضافة فرع");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "اضافة فرع");
+                xtraTabPage.Controls.Clear();
+                xtraTabPage.Controls.Add(objForm);
+            }
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindUpdateBranchForm(DataRowView sellRow, Branch_Report form)
+        {
+            Branch_Update objForm = new Branch_Update(sellRow, form, xtraTabControlStoresContent);
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل فرع");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تعديل فرع");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل فرع");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.Controls.Add(objForm);
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        } 
+        #endregion
+
         /// <summary>
         private void xtraTabControlStoresContent_CloseButtonClick(object sender, EventArgs e)
         {
