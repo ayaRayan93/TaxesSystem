@@ -153,6 +153,8 @@
             // comDelegate
             // 
             this.comDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comDelegate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comDelegate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comDelegate.FormattingEnabled = true;
             this.comDelegate.Location = new System.Drawing.Point(287, 50);
@@ -175,9 +177,9 @@
             // dateTimeTo
             // 
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimeTo.Location = new System.Drawing.Point(556, 54);
             this.dateTimeTo.CustomFormat = "yyyy/MM/dd";
             this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeTo.Location = new System.Drawing.Point(556, 54);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
             this.dateTimeTo.TabIndex = 188;
@@ -185,9 +187,9 @@
             // dateTimeFrom
             // 
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimeFrom.Location = new System.Drawing.Point(556, 18);
             this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
             this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeFrom.Location = new System.Drawing.Point(556, 18);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFrom.TabIndex = 189;
