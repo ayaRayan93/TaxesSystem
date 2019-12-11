@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Client_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Customer_Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,14 +78,14 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView1.ColumnHeadersHeight = 40;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Client_Code,
@@ -96,14 +96,14 @@
             this.paidCustomerBill,
             this.ReturnBill,
             this.Bill});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(10, 160);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
@@ -118,8 +118,8 @@
             // Client_Code
             // 
             this.Client_Code.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Client_Code.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Client_Code.DefaultCellStyle = dataGridViewCellStyle11;
             this.Client_Code.FillWeight = 20.30457F;
             this.Client_Code.HeaderText = "ع";
             this.Client_Code.Name = "Client_Code";
@@ -304,7 +304,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(432, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 16);
+            this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 185;
             this.label2.Text = "من";
             // 
@@ -347,7 +347,7 @@
             this.radDealer.Location = new System.Drawing.Point(599, 31);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radDealer.Size = new System.Drawing.Size(45, 20);
+            this.radDealer.Size = new System.Drawing.Size(46, 20);
             this.radDealer.TabIndex = 180;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -357,6 +357,8 @@
             // comEngCon
             // 
             this.comEngCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comEngCon.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comEngCon.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comEngCon.FormattingEnabled = true;
             this.comEngCon.Location = new System.Drawing.Point(620, 57);
@@ -369,6 +371,8 @@
             // comClient
             // 
             this.comClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comClient.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comClient.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
             this.comClient.Location = new System.Drawing.Point(620, 88);
@@ -398,7 +402,7 @@
             this.radCon.Location = new System.Drawing.Point(654, 31);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(58, 20);
+            this.radCon.Size = new System.Drawing.Size(59, 20);
             this.radCon.TabIndex = 175;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -442,7 +446,7 @@
             this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEng.Location = new System.Drawing.Point(797, 61);
             this.labelEng.Name = "labelEng";
-            this.labelEng.Size = new System.Drawing.Size(108, 16);
+            this.labelEng.Size = new System.Drawing.Size(110, 16);
             this.labelEng.TabIndex = 179;
             this.labelEng.Text = "مهندس/مقاول/تاجر";
             this.labelEng.Visible = false;

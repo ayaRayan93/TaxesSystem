@@ -34,6 +34,7 @@ namespace MainSystem
             {
                 InitializeComponent();
                 this.gridControl = gridControl;
+                this.title = title;
             }
             catch (Exception ex)
             {

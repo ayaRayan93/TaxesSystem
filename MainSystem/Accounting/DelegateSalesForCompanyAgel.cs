@@ -521,7 +521,7 @@ namespace MainSystem
             try
             {
                 dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, comDelegate.Text, comFactory.Text);
-                MainForm.displayDelegateReport(GridControl1,d);
+                MainForm.displayDelegateReport(GridControl1,"",d);
             }
             catch (Exception ex)
             {

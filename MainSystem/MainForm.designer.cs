@@ -1374,6 +1374,7 @@
             // 
             this.navBarItemDelivery.Caption = "تسليم فاتورة";
             this.navBarItemDelivery.Name = "navBarItemDelivery";
+            this.navBarItemDelivery.Visible = false;
             this.navBarItemDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelivery_LinkClicked);
             // 
             // navBarItem14
