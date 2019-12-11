@@ -828,6 +828,34 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSalesProductsFactories_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة بالشركة");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("الاصناف المباعة بالشركة");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة بالشركة");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                bindDisplaySalesProductsBillsFactoriesForm(xtraTabPage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //functions
         public void bindDisplaySpecialOrderConfirm(XtraTabPage xtraTabPage)
         {
@@ -1202,6 +1230,17 @@ namespace MainSystem
             objFormBillConfirm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objFormBillConfirm.Dock = DockStyle.Fill;
             objFormBillConfirm.Show();
+        }
+        
+        public void bindDisplaySalesProductsBillsFactoriesForm(XtraTabPage xtraTabPage)
+        {
+            SalesProductsBillsFactories_Report objForm = new SalesProductsBillsFactories_Report(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
         }
 
         public XtraTabPage getTabPage(string text)

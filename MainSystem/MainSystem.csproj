@@ -312,6 +312,12 @@
     <Compile Include="Cars\PartenerCarsReport.designer.cs">
       <DependentUpon>PartenerCarsReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Coding\المصروفات\SafeExpense_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Coding\المصروفات\SafeExpense_Record.designer.cs">
+      <DependentUpon>SafeExpense_Record.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -674,6 +680,24 @@
     </Compile>
     <Compile Include="Reports\sales\SalesReportForCompanyDetails.Designer.cs">
       <DependentUpon>SalesReportForCompanyDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\accounting reports\Print_ProductsBillsFactories.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting reports\Print_ProductsBillsFactories.designer.cs">
+      <DependentUpon>Print_ProductsBillsFactories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\accounting reports\Report_Items_BillsFactories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting reports\Report_Items_BillsFactories.designer.cs">
+      <DependentUpon>Report_Items_BillsFactories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\accounting reports\SalesProductsBillsFactories_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\accounting reports\SalesProductsBillsFactories_Report.designer.cs">
+      <DependentUpon>SalesProductsBillsFactories_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\accounting\PrintReport.cs">
       <SubType>Form</SubType>
@@ -2878,6 +2902,9 @@
     <EmbeddedResource Include="Cars\PartenerCarsReport.resx">
       <DependentUpon>PartenerCarsReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Coding\المصروفات\SafeExpense_Record.resx">
+      <DependentUpon>SafeExpense_Record.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -3201,6 +3228,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\sales\SalesReportForCompanyDetails.resx">
       <DependentUpon>SalesReportForCompanyDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting reports\Print_ProductsBillsFactories.resx">
+      <DependentUpon>Print_ProductsBillsFactories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting reports\Report_Items_BillsFactories.resx">
+      <DependentUpon>Report_Items_BillsFactories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\accounting reports\SalesProductsBillsFactories_Report.resx">
+      <DependentUpon>SalesProductsBillsFactories_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\accounting\PrintReport.resx">
       <DependentUpon>PrintReport.cs</DependentUpon>

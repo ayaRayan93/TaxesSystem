@@ -1144,7 +1144,7 @@ namespace MainSystem
         void RecordExpense()
         {
             dbconnection.Open();
-            string query = "insert into expense (ExpenseType_ID,Expense_Type,Error) values (@ExpenseType_ID,@Expense_Type,@Error)";
+            string query = "insert into expenses (ExpenseType_ID,Expense_Type,Error) values (@ExpenseType_ID,@Expense_Type,@Error)";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             if (cmbExpenseType.SelectedValue != null)
             {
