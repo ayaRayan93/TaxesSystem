@@ -28,13 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.labRecivedMoney = new System.Windows.Forms.Label();
             this.btnDone = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panHeader = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comBranch = new System.Windows.Forms.ComboBox();
+            this.txtBranchID = new System.Windows.Forms.TextBox();
             this.btnNewChooes = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtClientID = new System.Windows.Forms.TextBox();
@@ -49,11 +54,6 @@
             this.labelEng = new System.Windows.Forms.Label();
             this.panFooter = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comBranch = new System.Windows.Forms.ComboBox();
-            this.txtBranchID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -64,23 +64,23 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(246)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(245)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeight = 30;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(50, 129);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(50, 0, 50, 0);
@@ -163,6 +163,73 @@
             this.panHeader.Size = new System.Drawing.Size(834, 129);
             this.panHeader.TabIndex = 1;
             // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.IndianRed;
+            this.label10.Location = new System.Drawing.Point(159, 57);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(19, 19);
+            this.label10.TabIndex = 213;
+            this.label10.Text = "*";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label5.Location = new System.Drawing.Point(416, 54);
+            this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 18);
+            this.label5.TabIndex = 211;
+            this.label5.Text = "الفرع";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.label6.Location = new System.Drawing.Point(416, 54);
+            this.label6.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 17);
+            this.label6.TabIndex = 212;
+            this.label6.Text = "الصنف";
+            // 
+            // comBranch
+            // 
+            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBranch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comBranch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comBranch.BackColor = System.Drawing.Color.White;
+            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comBranch.FormattingEnabled = true;
+            this.comBranch.Location = new System.Drawing.Point(238, 54);
+            this.comBranch.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.comBranch.Name = "comBranch";
+            this.comBranch.Size = new System.Drawing.Size(175, 24);
+            this.comBranch.TabIndex = 210;
+            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
+            // 
+            // txtBranchID
+            // 
+            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtBranchID.BackColor = System.Drawing.Color.White;
+            this.txtBranchID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtBranchID.Location = new System.Drawing.Point(183, 54);
+            this.txtBranchID.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.txtBranchID.Name = "txtBranchID";
+            this.txtBranchID.Size = new System.Drawing.Size(49, 24);
+            this.txtBranchID.TabIndex = 209;
+            this.txtBranchID.TabStop = false;
+            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
+            // 
             // btnNewChooes
             // 
             this.btnNewChooes.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -235,6 +302,8 @@
             // comEngCon
             // 
             this.comEngCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comEngCon.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comEngCon.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comEngCon.FormattingEnabled = true;
             this.comEngCon.Location = new System.Drawing.Point(518, 54);
@@ -247,6 +316,8 @@
             // comClient
             // 
             this.comClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comClient.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comClient.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
             this.comClient.Location = new System.Drawing.Point(518, 85);
@@ -348,73 +419,6 @@
             this.label1.Size = new System.Drawing.Size(60, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "الاجمالي";
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.IndianRed;
-            this.label10.Location = new System.Drawing.Point(159, 57);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(19, 19);
-            this.label10.TabIndex = 213;
-            this.label10.Text = "*";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(416, 54);
-            this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 18);
-            this.label5.TabIndex = 211;
-            this.label5.Text = "الفرع";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label6.Location = new System.Drawing.Point(416, 54);
-            this.label6.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 17);
-            this.label6.TabIndex = 212;
-            this.label6.Text = "الصنف";
-            // 
-            // comBranch
-            // 
-            this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comBranch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comBranch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comBranch.BackColor = System.Drawing.Color.White;
-            this.comBranch.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(238, 54);
-            this.comBranch.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.comBranch.Name = "comBranch";
-            this.comBranch.Size = new System.Drawing.Size(175, 24);
-            this.comBranch.TabIndex = 210;
-            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
-            // 
-            // txtBranchID
-            // 
-            this.txtBranchID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBranchID.BackColor = System.Drawing.Color.White;
-            this.txtBranchID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtBranchID.Location = new System.Drawing.Point(183, 54);
-            this.txtBranchID.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.txtBranchID.Name = "txtBranchID";
-            this.txtBranchID.Size = new System.Drawing.Size(49, 24);
-            this.txtBranchID.TabIndex = 209;
-            this.txtBranchID.TabStop = false;
-            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
             // checkPaidBillsForm
             // 

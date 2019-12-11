@@ -75,11 +75,11 @@ namespace MainSystem
         {
             try
             {
-                this.comClient.AutoCompleteMode = AutoCompleteMode.Suggest;
+                this.comClient.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 this.comClient.AutoCompleteSource = AutoCompleteSource.ListItems;
-                this.comEngCon.AutoCompleteMode = AutoCompleteMode.Suggest;
+                this.comEngCon.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 this.comEngCon.AutoCompleteSource = AutoCompleteSource.ListItems;
-                this.comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
+                this.comBranch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 this.comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 EmpBranchId = UserControl.EmpBranchID;

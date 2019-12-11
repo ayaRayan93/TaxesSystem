@@ -449,6 +449,8 @@
             // comDelegate
             // 
             this.comDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comDelegate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comDelegate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comDelegate.FormattingEnabled = true;
             this.comDelegate.Location = new System.Drawing.Point(323, 78);
