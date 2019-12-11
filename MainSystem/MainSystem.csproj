@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>203</ApplicationRevision>
+    <ApplicationRevision>204</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -699,6 +699,7 @@
     <Compile Include="Sales\accounting reports\SalesProductsBillsFactories_Report.designer.cs">
       <DependentUpon>SalesProductsBillsFactories_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\accounting\customerAccount.cs" />
     <Compile Include="Sales\accounting\PrintReport.cs">
       <SubType>Form</SubType>
     </Compile>
