@@ -101,10 +101,7 @@ namespace MainSystem
         {
             conn.Open();
             conn2.Open();
-
-            double totalQuantity = 0;
-            double returnedQuantity = 0;
-
+            
             string query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Quantity as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=0";
             MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
             DataTable dtProduct = new DataTable();
@@ -116,6 +113,9 @@ namespace MainSystem
             MySqlDataReader dataReader1 = c.ExecuteReader();
             while (dataReader1.Read())
             {
+                double totalQuantity = 0;
+                double returnedQuantity = 0;
+
                 gridView1.AddNewRow();
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
@@ -124,7 +124,7 @@ namespace MainSystem
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dataReader1["النوع"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dataReader1["الاسم"].ToString());
 
-                    query = "select sum(product_bill.Quantity) as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID where date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=" + dataReader1["Data_ID"].ToString() + " group by product_bill.Data_ID";
+                    query = "select sum(product_bill.Quantity) as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID where date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=" + dataReader1["Data_ID"].ToString() + " and product_bill.Type='بند' group by product_bill.Data_ID";
                     MySqlCommand com2 = new MySqlCommand(query, conn2);
                     if (com2.ExecuteScalar() != null)
                     {
