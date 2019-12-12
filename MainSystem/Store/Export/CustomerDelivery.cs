@@ -400,7 +400,7 @@ namespace MainSystem
                     string query = "select * from customer_bill  where Branch_ID=" + txtBranchID.Text + " and Branch_BillNumber=" + txtPermBillNumber.Text;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     int CustomerBill_ID = Convert.ToInt16(com.ExecuteScalar());
-                    query = "insert into customer_permissions (CustomerBill_ID,Customer_ID,Customer_Name,Store_ID,Store_Name,Client_ID,Client_Name,Delegate_Name,Date,BranchBillNumber,Branch_ID,Branch_Name,Note) values (@CustomerBill_ID,@Customer_ID,@Customer_Name,@Store_ID,@Store_Name,@Client_ID,@Client_Name,@Delegate_Name,@Date,@BranchBillNumber,@Branch_ID,@Branch_Name,@Note)";
+                    query = "insert into customer_permissions (CustomerBill_ID,Customer_ID,Customer_Name,Store_ID,Store_Name,Client_ID,Client_Name,Delegate_Name,Date,BranchBillNumber,Branch_ID,Branch_Name,Note,DeliveredPerson,StoreKeeper) values (@CustomerBill_ID,@Customer_ID,@Customer_Name,@Store_ID,@Store_Name,@Client_ID,@Client_Name,@Delegate_Name,@Date,@BranchBillNumber,@Branch_ID,@Branch_Name,@Note,@DeliveredPerson,@StoreKeeper)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                     com.Parameters["@CustomerBill_ID"].Value = txtPermBillNumber.Text;
@@ -448,6 +448,12 @@ namespace MainSystem
                     com.Parameters["@Branch_Name"].Value = comStore.Text;
                     com.Parameters.Add("@Note", MySqlDbType.VarChar);
                     com.Parameters["@Note"].Value = txtNote.Text;
+
+                    com.Parameters.Add("@DeliveredPerson", MySqlDbType.VarChar);
+                    com.Parameters["@DeliveredPerson"].Value = txtDeliverPerson.Text;
+                    com.Parameters.Add("@StoreKeeper", MySqlDbType.VarChar);
+                    com.Parameters["@StoreKeeper"].Value = txtStoreKeeper.Text;
+
                     com.ExecuteNonQuery();
                     query = "select Customer_Permissin_ID from customer_permissions order by Customer_Permissin_ID desc limit 1";
                     com= new MySqlCommand(query, dbconnection);
