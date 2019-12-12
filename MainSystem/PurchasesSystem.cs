@@ -580,99 +580,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void navBarItemSalesProductsDate_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            try
-            {
-                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                //{
-                    restForeColorOfNavBarItem();
-                    NavBarItem navBarItem = (NavBarItem)sender;
-                    navBarItem.Appearance.ForeColor = Color.Blue;
-
-                    if (!xtraTabControlPurchases.Visible)
-                        xtraTabControlPurchases.Visible = true;
-
-                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالتاريخ");
-                    if (xtraTabPage == null)
-                    {
-                        xtraTabControlPurchases.TabPages.Add("الاصناف المباعة بالتاريخ");
-                        xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالتاريخ");
-                    }
-                    xtraTabPage.Controls.Clear();
-
-                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
-                    bindDisplaySalesProductsBillsDateForm(xtraTabPage);
-                //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void navBarItemSalesProductsBills_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            try
-            {
-                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                //{
-                    restForeColorOfNavBarItem();
-                    NavBarItem navBarItem = (NavBarItem)sender;
-                    navBarItem.Appearance.ForeColor = Color.Blue;
-
-                    if (!xtraTabControlPurchases.Visible)
-                        xtraTabControlPurchases.Visible = true;
-
-                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالفواتير");
-                    if (xtraTabPage == null)
-                    {
-                        xtraTabControlPurchases.TabPages.Add("الاصناف المباعة بالفواتير");
-                        xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالفواتير");
-                    }
-                    xtraTabPage.Controls.Clear();
-
-                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
-                    bindDisplaySalesProductsBillsNumForm(xtraTabPage);
-                //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void navBarItemSalesProductsFactory_LinkClicked(object sender, NavBarLinkEventArgs e)
-        {
-            try
-            {
-                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
-                //{
-                    restForeColorOfNavBarItem();
-                    NavBarItem navBarItem = (NavBarItem)sender;
-                    navBarItem.Appearance.ForeColor = Color.Blue;
-
-                    if (!xtraTabControlPurchases.Visible)
-                        xtraTabControlPurchases.Visible = true;
-
-                    XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالشركة");
-                    if (xtraTabPage == null)
-                    {
-                        xtraTabControlPurchases.TabPages.Add("الاصناف المباعة بالشركة");
-                        xtraTabPage = getTabPage(xtraTabControlPurchases, "الاصناف المباعة بالشركة");
-                    }
-                    xtraTabPage.Controls.Clear();
-
-                    xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
-                    bindDisplaySalesProductsBillsFactoryForm(xtraTabPage);
-                //}
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
         private void navBarItemSupplierBillReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -703,6 +610,206 @@ namespace MainSystem
                     objForm.Dock = DockStyle.Fill;
                     objForm.Show();
                 //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        ////////////////////////////////////////////////////////
+        private void navBarItemSupplierAccount_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlPurchases.Visible)
+                    xtraTabControlPurchases.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض حسابات الموردين");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlPurchases.TabPages.Add("عرض حسابات الموردين");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض حسابات الموردين");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                SupplierAccount_Report objForm = new SupplierAccount_Report(this, xtraTabControlPurchases);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void navBarItemSupplierSoonPayments_Report_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlPurchases.Visible)
+                    xtraTabControlPurchases.Visible = true;
+                //عرض سدادات الموردين
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض تحصيلات الموردين");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlPurchases.TabPages.Add("عرض تحصيلات الموردين");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض تحصيلات الموردين");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                SupplierSoonPayments_Report objForm = new SupplierSoonPayments_Report(this, xtraTabControlPurchases);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void navBarItemSupplierTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlPurchases.Visible)
+                    xtraTabControlPurchases.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "حركة سدادات الموردين");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlPurchases.TabPages.Add("حركة سدادات الموردين");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "حركة سدادات الموردين");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                SupplierTransitions_Report objForm = new SupplierTransitions_Report(this, xtraTabControlPurchases);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void navBarItemSupplierBillsTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlPurchases.Visible)
+                    xtraTabControlPurchases.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "حركة المسحوبات والمرتجعات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlPurchases.TabPages.Add("حركة المسحوبات والمرتجعات");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "حركة المسحوبات والمرتجعات");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                SupplierBillsTransitions_Report objForm = new SupplierBillsTransitions_Report(this, xtraTabControlPurchases);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void navBarItemSupplierBillsTransitionsDetailsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlPurchases.Visible)
+                    xtraTabControlPurchases.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تفاصيل حركة المسحوبات والمرتجعات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlPurchases.TabPages.Add("تفاصيل حركة المسحوبات والمرتجعات");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "تفاصيل حركة المسحوبات والمرتجعات");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                SupplierBillsTransitionsDetails_Report objForm = new SupplierBillsTransitionsDetails_Report(this, xtraTabControlPurchases);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void navBarItemSupplierTaswyaReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlPurchases.Visible)
+                    xtraTabControlPurchases.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض التسويات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlPurchases.TabPages.Add("عرض التسويات");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض التسويات");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                SupplierTaswayaReport objForm = new SupplierTaswayaReport(this, xtraTabControlPurchases);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
             }
             catch (Exception ex)
             {
@@ -1126,6 +1233,50 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+
+        public void bindTaswayaSupplierForm()
+        {
+            if (!xtraTabControlAccounting.Visible)
+                xtraTabControlAccounting.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "اضافة تسوية لمورد");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlAccounting.TabPages.Add("اضافة تسوية لمورد");
+                xtraTabPage = getTabPage(xtraTabControlAccounting, "اضافة تسوية لمورد");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+            SupplierTaswaya objForm = new SupplierTaswaya();
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindUpdateTaswayaSupplierForm(DataRowView row, SupplierTaswayaReport SupplierTaswayaReport)
+        {
+            if (!xtraTabControlAccounting.Visible)
+                xtraTabControlAccounting.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "تعديل تسوية مورد");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlAccounting.TabPages.Add("تعديل تسوية مورد");
+                xtraTabPage = getTabPage(xtraTabControlAccounting, "تعديل تسوية مورد");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+            UpdateSupplierTaswaya objForm = new UpdateSupplierTaswaya(row, SupplierTaswayaReport, xtraTabControlAccounting);
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
         public void bindUpdateOrderForm(DataRowView rows, Order_Report OrderReport)
         {
             /*if (!xtraTabControlPurchases.Visible)
