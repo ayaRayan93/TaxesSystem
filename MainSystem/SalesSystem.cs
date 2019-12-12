@@ -828,6 +828,37 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSalesProductsFactoryBranch_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة لشركة بفرع");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("الاصناف المباعة لشركة بفرع");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة لشركة بفرع");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                bindDisplaySalesProductsBillsFactoryForm(xtraTabPage);
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemSalesProductsFactories_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -839,16 +870,78 @@ namespace MainSystem
                 if (!xtraTabControlSalesContent.Visible)
                     xtraTabControlSalesContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة بالشركة");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة لشركة");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlSalesContent.TabPages.Add("الاصناف المباعة بالشركة");
-                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة بالشركة");
+                    xtraTabControlSalesContent.TabPages.Add("الاصناف المباعة لشركة");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة لشركة");
                 }
                 xtraTabPage.Controls.Clear();
 
                 xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
                 bindDisplaySalesProductsBillsFactoriesForm(xtraTabPage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemSalesProductsDate_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة بالتاريخ");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("الاصناف المباعة بالتاريخ");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة بالتاريخ");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                bindDisplaySalesProductsBillsDateForm(xtraTabPage);
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemSalesProductsBills_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة بالفواتير");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("الاصناف المباعة بالفواتير");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "الاصناف المباعة بالفواتير");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                bindDisplaySalesProductsBillsNumForm(xtraTabPage);
+                //}
             }
             catch (Exception ex)
             {
