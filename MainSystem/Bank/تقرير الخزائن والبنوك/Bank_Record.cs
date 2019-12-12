@@ -274,6 +274,10 @@ namespace MainSystem
                     {
                         check = (txtName.Text != "" && cmbBranch.Text != "" && txtAccountNumber.Text != "" && txtAccountType.Text != "" && txtStock.Text != "" && txtMachineID.Text != "" && dateEdit1.Text != "");
                     }
+                    else if (cmbType.Text == "خزينة مصروفات")
+                    {
+                        check = (txtName.Text != "" && cmbBranch.Text != "" && txtStock.Text != "" && dateEdit1.Text != "");
+                    }
 
                     if (check)
                     {
@@ -289,6 +293,10 @@ namespace MainSystem
                         else if (cmbType.Text == "فيزا")
                         {
                             query = "SELECT Machine_ID FROM bank where Branch_ID=" + cmbBranch.SelectedValue.ToString() + " and Machine_ID='" + txtMachineID.Text + "' and Bank_Name='" + txtName.Text + "' and BankVisa_ID=" + cmbBank.SelectedValue;
+                        }
+                        else if (cmbType.Text == "خزينة مصروفات")
+                        {
+                            query = "select Bank_Name from bank where Branch_ID=" + cmbBranch.SelectedValue.ToString() + " and Bank_Name='" + txtName.Text + "'";
                         }
 
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -342,6 +350,19 @@ namespace MainSystem
                                         command.Parameters.AddWithValue("?BankVisa", cmbBank.Text);
                                         command.Parameters.AddWithValue("?Machine_ID", txtMachineID.Text);
                                     }
+                                    if (cmbType.Text == "خزينة مصروفات")
+                                    {
+                                        command.Parameters.AddWithValue("?Bank_Type", "خزينة مصروفات");
+                                        command.Parameters.AddWithValue("?Bank_Name", txtName.Text);
+                                        command.Parameters.AddWithValue("?Branch_ID", cmbBranch.SelectedValue.ToString());
+                                        command.Parameters.AddWithValue("?Branch_Name", cmbBranch.Text);
+                                        command.Parameters.AddWithValue("?Bank_Account", "");
+                                        command.Parameters.AddWithValue("?BankAccount_Type", "");
+                                        command.Parameters.AddWithValue("?BankVisa_ID", null);
+                                        command.Parameters.AddWithValue("?BankVisa", null);
+                                        command.Parameters.AddWithValue("?Machine_ID", null);
+                                    }
+
                                     command.Parameters.AddWithValue("?Bank_Stock", stock);
                                     command.Parameters.AddWithValue("?Start_Date", dateEdit1.DateTime.Date);
                                     command.Parameters.AddWithValue("?Bank_Info", txtInformation.Text);
@@ -550,6 +571,27 @@ namespace MainSystem
                 labelBank.Text = "*";
                 layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelID.Text = "*";
+            }
+            else if (cmbType.Text == "خزينة مصروفات")
+            {
+                layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelBranch.Text = "*";
+                layoutControlItemName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelName.Text = "*";
+                layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelStock.Text = "*";
+                layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelDate.Text = "*";
+                layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelInfo.Text = "";
+                layoutControlItemAccountNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelAccountNumber.Text = "";
+                layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelAccountType.Text = "";
+                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelBank.Text = "";
+                layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelID.Text = "";
             }
             labelEmp.Visible = true;
             comBankUsers.Visible = true;
