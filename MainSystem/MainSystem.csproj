@@ -232,6 +232,24 @@
     <Compile Include="Accounting\GetDelegateProfit.Designer.cs">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\المصروفات\SubExpenses_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\SubExpenses_Report.designer.cs">
+      <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Main_Sub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Main_Sub.Designer.cs">
+      <DependentUpon>Main_Sub.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\MainExpenses_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\MainExpenses_Report.designer.cs">
+      <DependentUpon>MainExpenses_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2298,7 +2316,7 @@
     <Compile Include="Shipping\Zone_Report.designer.cs">
       <DependentUpon>Zone_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="CodingSystem.cs" />
+    <Compile Include="ExpensesSystem.cs" />
     <Compile Include="StoreSystem.cs" />
     <Compile Include="Store\Ataqm.cs">
       <SubType>Form</SubType>
@@ -2869,6 +2887,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\GetDelegateProfit.resx">
       <DependentUpon>GetDelegateProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\SubExpenses_Report.resx">
+      <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Main_Sub.resx">
+      <DependentUpon>Main_Sub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\MainExpenses_Report.resx">
+      <DependentUpon>MainExpenses_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.resx">
       <DependentUpon>Print_SupplierBillsTransitionsDetails.cs</DependentUpon>

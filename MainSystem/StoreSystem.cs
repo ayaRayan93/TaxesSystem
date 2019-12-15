@@ -1289,7 +1289,7 @@ namespace MainSystem
                     }
                     xtraTabPage.Controls.Clear();
                     xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
-                    Branch_Report objForm = new Branch_Report(this);
+                    Branch_Report objForm = new Branch_Report(this, xtraTabControlStoresContent);
 
                     objForm.TopLevel = false;
                     xtraTabPage.Controls.Add(objForm);

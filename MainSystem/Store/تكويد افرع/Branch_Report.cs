@@ -21,7 +21,7 @@ namespace MainSystem
     {
         MySqlConnection conn;
         MainForm branchMainForm = null;
-        XtraTabControl MainTabControlBranch;
+        XtraTabControl tabControlStoresContent;
 
         XtraTabPage MainTabPagePrintingBranch;
         Panel panelPrintingBranch;
@@ -30,12 +30,12 @@ namespace MainSystem
 
         public static GridControl gridcontrol;
 
-        public Branch_Report(MainForm BranchMainForm)
+        public Branch_Report(MainForm BranchMainForm, XtraTabControl TabControlStoresContent)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
             branchMainForm = BranchMainForm;
-            MainTabControlBranch = MainForm.tabControlBranch;
+            tabControlStoresContent = TabControlStoresContent;
 
             MainTabPagePrintingBranch = new XtraTabPage();
             panelPrintingBranch = new Panel();
@@ -107,9 +107,9 @@ namespace MainSystem
             try
             {
                 MainTabPagePrintingBranch.Text = "طباعة الافرع";
-                MainTabControlBranch.TabPages.Add(MainTabPagePrintingBranch);
+                tabControlStoresContent.TabPages.Add(MainTabPagePrintingBranch);
 
-                MainTabControlBranch.SelectedTabPage = MainTabPagePrintingBranch;
+                tabControlStoresContent.SelectedTabPage = MainTabPagePrintingBranch;
 
                 panelPrintingBranch.Controls.Clear();
                 branchPrint = new Branch_Print();

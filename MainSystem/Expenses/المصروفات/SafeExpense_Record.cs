@@ -114,9 +114,8 @@ namespace MainSystem
                                 return;
                             }
                         }
-
-
-                        RecordExpense();
+                        
+                        //RecordExpense();
                         if (successFlag == false)
                         {
                             MessageBox.Show("حدث خطأ اثناء التنفيذ");
@@ -346,62 +345,6 @@ namespace MainSystem
 
             loaded = true;
             dbconnection.Close();
-        }
-
-        void RecordExpense()
-        {
-            dbconnection.Open();
-            string query = "insert into expenses (ExpenseType_ID,Expense_Type,Error) values (@ExpenseType_ID,@Expense_Type,@Error)";
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            if (cmbExpenseType.SelectedValue != null)
-            {
-                com.Parameters.Add("@ExpenseType_ID", MySqlDbType.Int16, 11).Value = cmbExpenseType.SelectedValue;
-            }
-            else
-            {
-                int ExpenseType_ID = 0;
-                string q = "select ID from expense_type where Type='" + cmbExpenseType.Text + "'";
-                MySqlCommand comand = new MySqlCommand(q, dbconnection);
-                if (comand.ExecuteScalar() == null)
-                {
-                    q = "insert into expense_type (Type) values (@Type)";
-                    comand = new MySqlCommand(q, dbconnection);
-                    comand.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = cmbExpenseType.Text;
-                    comand.ExecuteNonQuery();
-
-                    q = "select ID from expense_type order by ID desc limit 1";
-                    comand = new MySqlCommand(q, dbconnection);
-                    ExpenseType_ID = Convert.ToInt32(comand.ExecuteScalar().ToString());
-                }
-                else
-                {
-                    cmbExpenseType.SelectedValue = comand.ExecuteScalar();
-                    ExpenseType_ID = Convert.ToInt32(cmbExpenseType.SelectedValue.ToString());
-                }
-
-                com.Parameters.Add("@ExpenseType_ID", MySqlDbType.Int16, 11).Value = ExpenseType_ID;
-            }
-            com.Parameters.Add("@Expense_Type", MySqlDbType.VarChar, 255).Value = cmbExpenseType.Text;
-            com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
-            com.ExecuteNonQuery();
-
-            query = "select Expense_ID from expense order by Expense_ID desc limit 1";
-            com = new MySqlCommand(query, dbconnection);
-            ID = Convert.ToInt32(com.ExecuteScalar().ToString());
-
-            //////////record adding/////////////
-            query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
-            com = new MySqlCommand(query, dbconnection);
-            com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-            com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "expense";
-            com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "اضافة";
-            com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = ID;
-            com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-            com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
-            com.ExecuteNonQuery();
-            ////////////////////////////////////
-            dbconnection.Close();
-            successFlag = true;
         }
     }
 }

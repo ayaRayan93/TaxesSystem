@@ -30,13 +30,13 @@ namespace MainSystem
         {
             if(xtraTabControl1.SelectedTabPage == xtraTabPageArea)
             {
-                btnArea.BackColor = Color.Gainsboro;
-                btnZone.BackColor = Color.White;
+                btnArea.BackColor = Color.White;
+                btnZone.BackColor = Color.Gainsboro;
             }
             if (xtraTabControl1.SelectedTabPage == xtraTabPageZone)
             {
-                btnZone.BackColor = Color.Gainsboro;
-                btnArea.BackColor = Color.White;
+                btnZone.BackColor = Color.White;
+                btnArea.BackColor = Color.Gainsboro;
             }
         }
 

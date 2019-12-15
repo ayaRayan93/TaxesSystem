@@ -31,7 +31,7 @@ namespace MainSystem
         XtraTabPage ReceptionTP;
         XtraTabPage ShippingTP;
         XtraTabPage AccountingTP;
-        XtraTabPage CodingTP;
+        XtraTabPage ExpensesTP;
         XtraTabPage PurchasesTP;
         int index = 1;
         static int countBackup = 0;
@@ -74,7 +74,7 @@ namespace MainSystem
                 ReceptionTP = xtraTabPageReception;
                 ShippingTP = xtraTabPageShipping;
                 AccountingTP = xtraTabPageAccounting;
-                CodingTP = xtraTabPageCoding;
+                ExpensesTP = xtraTabPageExpenses;
                 PurchasesTP = xtraTabPagePurchases;
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageStores);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageSales);
@@ -85,7 +85,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageReception);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageShipping);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageAccounting);
-                xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCoding);
+                xtraTabControlMainContainer.TabPages.Remove(xtraTabPageExpenses);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPagePurchases);
 
                 var DailyTimeBackup = "18:00:00";
@@ -141,8 +141,8 @@ namespace MainSystem
                 btnHR.Checked = true;
                 btnCustomerService.Enabled = true;
                 btnCustomerService.Checked = true;
-                btnCoding.Enabled = true;
-                btnCoding.Checked = true;
+                btnExpenses.Enabled = true;
+                btnExpenses.Checked = true;
                 btnReports.Enabled = true;
                 btnReports.Checked = true;
 
@@ -890,23 +890,23 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        private void btnCoding_ItemClick(object sender, TileItemEventArgs e)
+        private void btnExpenses_ItemClick(object sender, TileItemEventArgs e)
         {
             try
             {
-                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageCoding))
+                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageExpenses))
                 {
                     if (index == 0)
                     {
-                        xtraTabControlMainContainer.TabPages.Insert(1, CodingTP);
+                        xtraTabControlMainContainer.TabPages.Insert(1, ExpensesTP);
                     }
                     else
                     {
-                        xtraTabControlMainContainer.TabPages.Insert(index, CodingTP);
+                        xtraTabControlMainContainer.TabPages.Insert(index, ExpensesTP);
                     }
                     index++;
                 }
-                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageCoding)];
+                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageExpenses)];
             }
             catch (Exception ex)
             {
