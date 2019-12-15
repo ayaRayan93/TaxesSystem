@@ -63,6 +63,8 @@
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtNote = new System.Windows.Forms.TextBox();
             this.txtStore = new System.Windows.Forms.TextBox();
             this.panBranch = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
@@ -85,8 +87,11 @@
             this.NumOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtNote = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtStoreKeeper = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtDeliverPerson = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -101,6 +106,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -306,10 +312,10 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.txtCode);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.groupBox3.Location = new System.Drawing.Point(3, 415);
+            this.groupBox3.Location = new System.Drawing.Point(3, 389);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox3.Size = new System.Drawing.Size(990, 84);
+            this.groupBox3.Size = new System.Drawing.Size(990, 61);
             this.groupBox3.TabIndex = 227;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "بيانات البند";
@@ -320,7 +326,7 @@
             this.btnPut.BackColor = System.Drawing.Color.Transparent;
             this.btnPut.Image = ((System.Drawing.Image)(resources.GetObject("btnPut.Image")));
             this.btnPut.ImageActive = null;
-            this.btnPut.Location = new System.Drawing.Point(146, 33);
+            this.btnPut.Location = new System.Drawing.Point(146, 16);
             this.btnPut.Name = "btnPut";
             this.btnPut.Size = new System.Drawing.Size(57, 34);
             this.btnPut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -343,7 +349,7 @@
             this.btnPrint.ImageZoom = 0;
             this.btnPrint.LabelPosition = 26;
             this.btnPrint.LabelText = "طباعة الاذن";
-            this.btnPrint.Location = new System.Drawing.Point(27, 33);
+            this.btnPrint.Location = new System.Drawing.Point(27, 16);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(83, 38);
@@ -357,7 +363,7 @@
             this.btnRemove.BackColor = System.Drawing.Color.Transparent;
             this.btnRemove.Image = global::MainSystem.Properties.Resources.closeIcon;
             this.btnRemove.ImageActive = null;
-            this.btnRemove.Location = new System.Drawing.Point(212, 33);
+            this.btnRemove.Location = new System.Drawing.Point(212, 16);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(59, 34);
             this.btnRemove.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -371,7 +377,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label11.Location = new System.Drawing.Point(444, 32);
+            this.label11.Location = new System.Drawing.Point(444, 15);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(124, 19);
             this.label11.TabIndex = 224;
@@ -381,7 +387,7 @@
             // 
             this.txtRecivedQuantity.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtRecivedQuantity.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtRecivedQuantity.Location = new System.Drawing.Point(334, 32);
+            this.txtRecivedQuantity.Location = new System.Drawing.Point(334, 15);
             this.txtRecivedQuantity.Name = "txtRecivedQuantity";
             this.txtRecivedQuantity.Size = new System.Drawing.Size(104, 27);
             this.txtRecivedQuantity.TabIndex = 223;
@@ -392,7 +398,7 @@
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label8.Location = new System.Drawing.Point(480, 62);
+            this.label8.Location = new System.Drawing.Point(480, 49);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 19);
             this.label8.TabIndex = 220;
@@ -404,7 +410,7 @@
             this.comStorePlace.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStorePlace.Font = new System.Drawing.Font("Tahoma", 12F);
             this.comStorePlace.FormattingEnabled = true;
-            this.comStorePlace.Location = new System.Drawing.Point(331, 57);
+            this.comStorePlace.Location = new System.Drawing.Point(331, 44);
             this.comStorePlace.Name = "comStorePlace";
             this.comStorePlace.Size = new System.Drawing.Size(146, 27);
             this.comStorePlace.TabIndex = 219;
@@ -415,7 +421,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label7.Location = new System.Drawing.Point(842, 32);
+            this.label7.Location = new System.Drawing.Point(842, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 19);
             this.label7.TabIndex = 218;
@@ -425,7 +431,7 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtCode.Location = new System.Drawing.Point(631, 32);
+            this.txtCode.Location = new System.Drawing.Point(631, 15);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(205, 27);
             this.txtCode.TabIndex = 217;
@@ -455,21 +461,23 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.gridControl2, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 98F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(996, 785);
             this.tableLayoutPanel1.TabIndex = 237;
@@ -481,7 +489,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 443F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 444F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -506,7 +514,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(444, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(446, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(95, 45);
@@ -523,8 +531,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.txtNote);
             this.panel2.Controls.Add(this.labDate);
             this.panel2.Controls.Add(this.txtStore);
             this.panel2.Controls.Add(this.label4);
@@ -543,6 +549,27 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(990, 92);
             this.panel2.TabIndex = 230;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label5.Location = new System.Drawing.Point(319, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 17);
+            this.label5.TabIndex = 241;
+            this.label5.Text = "ملحوظة";
+            // 
+            // txtNote
+            // 
+            this.txtNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNote.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtNote.Location = new System.Drawing.Point(109, 16);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(204, 44);
+            this.txtNote.TabIndex = 240;
             // 
             // txtStore
             // 
@@ -659,7 +686,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 183);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(990, 226);
+            this.gridControl1.Size = new System.Drawing.Size(990, 200);
             this.gridControl1.TabIndex = 231;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -688,10 +715,10 @@
             // gridControl2
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Location = new System.Drawing.Point(3, 505);
+            this.gridControl2.Location = new System.Drawing.Point(3, 461);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(990, 226);
+            this.gridControl2.Size = new System.Drawing.Size(990, 200);
             this.gridControl2.TabIndex = 232;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -791,25 +818,60 @@
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
             // 
-            // label5
+            // panel3
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label5.Location = new System.Drawing.Point(228, 68);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 17);
-            this.label5.TabIndex = 241;
-            this.label5.Text = "ملحوظة";
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.txtNote);
+            this.panel3.Controls.Add(this.txtDeliverPerson);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.txtStoreKeeper);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 664);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(996, 70);
+            this.panel3.TabIndex = 233;
             // 
-            // txtNote
+            // label6
             // 
-            this.txtNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtNote.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtNote.Location = new System.Drawing.Point(27, 62);
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(195, 27);
-            this.txtNote.TabIndex = 240;
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label6.Location = new System.Drawing.Point(865, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 19);
+            this.label6.TabIndex = 226;
+            this.label6.Text = "امين المخزن";
+            // 
+            // txtStoreKeeper
+            // 
+            this.txtStoreKeeper.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtStoreKeeper.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtStoreKeeper.Location = new System.Drawing.Point(708, 16);
+            this.txtStoreKeeper.Name = "txtStoreKeeper";
+            this.txtStoreKeeper.Size = new System.Drawing.Size(151, 27);
+            this.txtStoreKeeper.TabIndex = 225;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label9.Location = new System.Drawing.Point(585, 18);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 19);
+            this.label9.TabIndex = 228;
+            this.label9.Text = "المستلم";
+            // 
+            // txtDeliverPerson
+            // 
+            this.txtDeliverPerson.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDeliverPerson.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtDeliverPerson.Location = new System.Drawing.Point(428, 18);
+            this.txtDeliverPerson.Name = "txtDeliverPerson";
+            this.txtDeliverPerson.Size = new System.Drawing.Size(151, 27);
+            this.txtDeliverPerson.TabIndex = 227;
             // 
             // CustomerDelivery
             // 
@@ -842,6 +904,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -905,6 +969,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtNote;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtDeliverPerson;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtStoreKeeper;
     }
 }
 
