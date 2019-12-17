@@ -179,6 +179,8 @@ namespace MainSystem
                     DialogResult dialogResult = MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        panelAddZone.Visible = false;
+                        panelUpdateZone.Visible = false;
                         delete();
                         //gridView1.DeleteRow(gridView1.GetSelectedRows()[0]);
                         combuilder = new MySqlCommandBuilder(adabter);
@@ -402,6 +404,11 @@ namespace MainSystem
             string query = "delete from zone where Zone_ID=" + zoneId;
             MySqlCommand com = new MySqlCommand(query, dbConnection);
             com.ExecuteNonQuery();
+            
+            query = "update area set Zone_ID=null where Zone_ID=" + zoneId;
+            com = new MySqlCommand(query, dbConnection);
+            com.ExecuteNonQuery();
+
             UserControl.ItemRecord("zone", "حذف", zoneId, DateTime.Now, null, dbConnection);
         }
     }
