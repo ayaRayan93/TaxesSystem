@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version1.32\</PublishUrl>
+    <PublishUrl>D:\التكويد\version1.34\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>206</ApplicationRevision>
+    <ApplicationRevision>208</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -761,6 +761,13 @@
     </Compile>
     <Compile Include="Store\Export\CustomerDeliveryReport.Designer.cs">
       <DependentUpon>CustomerDeliveryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Export\DeliveryListPermissionClass.cs" />
+    <Compile Include="Store\Export\XtraReportPermissionList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Store\Export\XtraReportPermissionList.Designer.cs">
+      <DependentUpon>XtraReportPermissionList.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Import\Reports\تقرير اذون الوارد والمرتجعات\DataHelperClassPermissionsTransitions.cs" />
     <Compile Include="Store\Import\Reports\تقرير اذون الوارد والمرتجعات\Permissions_Transitions_Report.cs">
@@ -3004,6 +3011,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeIP.resx">
       <DependentUpon>ChangeIP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\XtraReportPermissionList.resx">
+      <DependentUpon>XtraReportPermissionList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\تكويد افرع\Branch_Print.resx">
       <DependentUpon>Branch_Print.cs</DependentUpon>

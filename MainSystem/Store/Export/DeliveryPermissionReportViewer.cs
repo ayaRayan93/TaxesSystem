@@ -13,8 +13,9 @@ namespace MainSystem.Store.Export
     public partial class DeliveryPermissionReportViewer : Form
     {
         List<DeliveryPermissionClass> listOfData;
-        string BranchBillNumber="", PerNum = "" , customerName="", customerPhone="", delegateName="", date="", branchId="", branchName="";
-        public DeliveryPermissionReportViewer(List<DeliveryPermissionClass> listOfData,string customerName,string customerPhone,string delegateName,string date, string BranchBillNumber, string PerNum, string branchId,string branchName )
+        string BranchBillNumber="", PerNum = "" , customerName="", customerPhone="", delegateName="", date="", branchId="", branchName="", storeKeeper="", customerdelivery="", store_Name="";
+        bool flag = false;
+        public DeliveryPermissionReportViewer(List<DeliveryPermissionClass> listOfData,string customerName,string customerPhone,string delegateName,string date, string BranchBillNumber, string PerNum, string branchId,string branchName, string storeKeeper, string customerdelivery, string store_Name,bool flag)
         {
             InitializeComponent();
             this.listOfData = new List<DeliveryPermissionClass>();
@@ -27,13 +28,17 @@ namespace MainSystem.Store.Export
             this.date = date;
             this.branchId = branchId;
             this.branchName = branchName;
+            this.storeKeeper = storeKeeper;
+            this.customerdelivery = customerdelivery;
+            this.store_Name = store_Name;
+            this.flag = flag;
         }
 
         private void ReportViewer_Load(object sender, EventArgs e)
         {
             try
             {
-                DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData,customerName,customerPhone,delegateName,date, BranchBillNumber, PerNum,branchId,branchName);
+                DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData,customerName,customerPhone,delegateName,date, BranchBillNumber, PerNum,branchId,branchName, storeKeeper, customerdelivery, store_Name,flag);
                 documentViewer1.DocumentSource = DeliveryPermissionReport;
                 DeliveryPermissionReport.CreateDocument();
             }
