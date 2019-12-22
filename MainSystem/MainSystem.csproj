@@ -275,6 +275,18 @@
     <Compile Include="Expenses\المصروفات\ايداع\SafeExpenseIncome_Record.designer.cs">
       <DependentUpon>SafeExpenseIncome_Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\المصروفات\مصروف\Print_Expense.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مصروف\Print_Expense.designer.cs">
+      <DependentUpon>Print_Expense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مصروف\Print_Expense_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مصروف\Print_Expense_Report.designer.cs">
+      <DependentUpon>Print_Expense_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2933,6 +2945,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\ايداع\SafeExpenseIncome_Record.resx">
       <DependentUpon>SafeExpenseIncome_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_Expense.resx">
+      <DependentUpon>Print_Expense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_Expense_Report.resx">
+      <DependentUpon>Print_Expense_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.resx">
       <DependentUpon>Print_SupplierBillsTransitionsDetails.cs</DependentUpon>
