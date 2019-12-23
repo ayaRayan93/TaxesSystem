@@ -189,7 +189,7 @@ namespace MainSystem
             {
                 try
                 {
-                    string query = "SELECT import_storage_return_supplier.Supplier_Permission_Number,import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where import_storage_return_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_storage_return_supplier.ImportStorageReturn_ID=" + ImportStorageReturnId + " and ReturnedPurchaseBill=0";
+                    string query = "SELECT import_storage_return_supplier.Supplier_Permission_Number,import_storage_return_supplier.ImportStorageReturnSupplier_ID FROM import_storage_return_supplier where import_storage_return_supplier.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " and import_storage_return_supplier.ImportStorageReturn_ID=" + ImportStorageReturnId + " and import_storage_return_supplier.ReturnedPurchaseBill=0";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -1295,7 +1295,7 @@ namespace MainSystem
                 //    comSupplier.DataSource = dt;
                 //    comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
                 //    comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
-                string query = "select supplier.Supplier_ID,supplier.Supplier_Name from import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN supplier ON import_storage_return_supplier.Supplier_ID = supplier.Supplier_ID where import_storage_return.ImportStorageReturn_ID=" + ImportStorageReturnId;
+                string query = "select DISTINCT supplier.Supplier_ID,supplier.Supplier_Name from import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN supplier ON import_storage_return_supplier.Supplier_ID = supplier.Supplier_ID where import_storage_return_supplier.ReturnedPurchaseBill=0 and import_storage_return.ImportStorageReturn_ID=" + ImportStorageReturnId;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -1313,7 +1313,7 @@ namespace MainSystem
             #region with out permission
             else
             {
-                string query = "select supplier.Supplier_ID,supplier.Supplier_Name from import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN supplier ON import_storage_return_supplier.Supplier_ID = supplier.Supplier_ID where import_storage_return.ImportStorageReturn_ID=" + ImportStorageReturnId;
+                string query = "select DISTINCT supplier.Supplier_ID,supplier.Supplier_Name from import_storage_return INNER JOIN import_storage_return_supplier ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN supplier ON import_storage_return_supplier.Supplier_ID = supplier.Supplier_ID where import_storage_return_supplier.ReturnedPurchaseBill=0 and import_storage_return.ImportStorageReturn_ID=" + ImportStorageReturnId;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
