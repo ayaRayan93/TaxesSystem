@@ -485,7 +485,6 @@ namespace MainSystem
             return SafayCar_Number = Convert.ToDouble(txtNolone.Text) - (gate + Taateg);
         }
         
-      
     }
     
 }

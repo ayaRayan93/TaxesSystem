@@ -523,12 +523,12 @@ namespace MainSystem
 
                     if (txtClientID.Text != "")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text,txtStoreKeeper.Text,txtDeliverPerson.Text,comStore.Text,false);
                         DeliveryPermissionReport.Show();
                     }
                     else if (txtCustomerID.Text != "")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text, txtStoreKeeper.Text, txtDeliverPerson.Text, comStore.Text,false);
                         DeliveryPermissionReport.Show();
                     }
 
@@ -746,12 +746,12 @@ namespace MainSystem
 
                     if (txtClientID.Text!="")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text,"","","",true);
                         DeliveryPermissionReport.Show();
                     }
                     else if (txtCustomerID.Text!="")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text,"","","",true);
                         DeliveryPermissionReport.Show();
                     }
                   

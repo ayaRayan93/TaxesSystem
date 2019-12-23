@@ -702,6 +702,7 @@ namespace MainSystem
                 {
                     MemoryStream ms = new MemoryStream(photo);
                     ImageProduct.Image = Image.FromStream(ms);
+                    selectedImage = photo;
                 }
                 else
                 {
