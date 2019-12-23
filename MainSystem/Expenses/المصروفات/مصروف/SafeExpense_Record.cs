@@ -51,7 +51,29 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        
+
+        private void comMain_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    string query = "select * from expense_sub where MainExpense_ID=" + comMain.SelectedValue.ToString();
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comSub.DataSource = dt;
+                    comSub.DisplayMember = dt.Columns["SubExpense_Name"].ToString();
+                    comSub.ValueMember = dt.Columns["SubExpense_ID"].ToString();
+                    comSub.SelectedIndex = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -70,7 +92,7 @@ namespace MainSystem
                             string query = "insert into expense_transition (Branch_ID,Depositor_Name,Bank_ID,Date,Amount,Description,SubExpense_ID,Type,Employee_ID) values(@Branch_ID,@Depositor_Name,@Bank_ID,@Date,@Amount,@Description,@SubExpense_ID,@Type,@Employee_ID)";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "سحب";
+                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "صرف";
                             com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
                             com.Parameters.Add("@SubExpense_ID", MySqlDbType.Int16, 11).Value = comSub.SelectedValue.ToString();
                             com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = comBank.SelectedValue;
@@ -100,7 +122,7 @@ namespace MainSystem
                             com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                             com.ExecuteNonQuery();
 
-                            dbconnection.Close();
+                            /*printExpense();*/
                             clear();
                         }
                         else
@@ -180,26 +202,11 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        private void comMain_SelectedValueChanged(object sender, EventArgs e)
+        void printExpense()
         {
-            if (loaded)
-            {
-                try
-                {
-                    string query = "select * from expense_sub where MainExpense_ID=" + comMain.SelectedValue.ToString();
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comSub.DataSource = dt;
-                    comSub.DisplayMember = dt.Columns["SubExpense_Name"].ToString();
-                    comSub.ValueMember = dt.Columns["SubExpense_ID"].ToString();
-                    comSub.SelectedIndex = -1;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            Print_Expense_Report f = new Print_Expense_Report();
+            f.PrintInvoice(comMain.Text, comSub.Text, comBank.Text, txtPullMoney.Text, txtClient.Text, txtDescrip.Text);
+            f.ShowDialog();
         }
     }
 }

@@ -528,7 +528,7 @@
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(492, 28);
             this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem8.Text = "المودع";
+            this.layoutControlItem8.Text = "المستلم";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(116, 24);
             // 
             // layoutControlItemMoney
@@ -584,7 +584,6 @@
             this.Name = "SafeExpense_Record";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BankPullExpense_Record";
             this.Load += new System.EventHandler(this.BankPullExpense_Record_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();

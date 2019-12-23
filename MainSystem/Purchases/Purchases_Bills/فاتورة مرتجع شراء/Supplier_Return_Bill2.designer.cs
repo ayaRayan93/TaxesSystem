@@ -75,11 +75,11 @@
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comPermessionNum = new System.Windows.Forms.ComboBox();
             this.labelSupPerm = new System.Windows.Forms.Label();
             this.comSupPerm = new System.Windows.Forms.ComboBox();
             this.comSupplier = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtBillNumber = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtLastPrice = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -108,7 +108,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(623, 8);
+            this.label11.Location = new System.Drawing.Point(643, 8);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 18);
             this.label11.TabIndex = 37;
@@ -119,7 +119,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(829, 8);
+            this.label2.Location = new System.Drawing.Point(849, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 18);
             this.label2.TabIndex = 35;
@@ -130,11 +130,12 @@
             this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(693, 5);
+            this.comStore.Location = new System.Drawing.Point(713, 5);
             this.comStore.Name = "comStore";
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(130, 24);
             this.comStore.TabIndex = 34;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // labTotalPriceBD
             // 
@@ -163,7 +164,7 @@
             this.btnNewChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewChoose.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnNewChoose.ForeColor = System.Drawing.Color.White;
-            this.btnNewChoose.Location = new System.Drawing.Point(35, 3);
+            this.btnNewChoose.Location = new System.Drawing.Point(25, 3);
             this.btnNewChoose.Name = "btnNewChoose";
             this.btnNewChoose.Size = new System.Drawing.Size(80, 28);
             this.btnNewChoose.TabIndex = 58;
@@ -703,11 +704,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.comPermessionNum);
             this.panel1.Controls.Add(this.labelSupPerm);
             this.panel1.Controls.Add(this.comSupPerm);
             this.panel1.Controls.Add(this.comSupplier);
             this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.txtBillNumber);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.btnNewChoose);
             this.panel1.Controls.Add(this.comStore);
@@ -718,12 +719,24 @@
             this.panel1.Size = new System.Drawing.Size(917, 34);
             this.panel1.TabIndex = 0;
             // 
+            // comPermessionNum
+            // 
+            this.comPermessionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comPermessionNum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comPermessionNum.FormattingEnabled = true;
+            this.comPermessionNum.Location = new System.Drawing.Point(507, 5);
+            this.comPermessionNum.Name = "comPermessionNum";
+            this.comPermessionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comPermessionNum.Size = new System.Drawing.Size(130, 24);
+            this.comPermessionNum.TabIndex = 204;
+            this.comPermessionNum.SelectedValueChanged += new System.EventHandler(this.comPerm_SelectedValueChanged);
+            // 
             // labelSupPerm
             // 
             this.labelSupPerm.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelSupPerm.AutoSize = true;
             this.labelSupPerm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSupPerm.Location = new System.Drawing.Point(227, 8);
+            this.labelSupPerm.Location = new System.Drawing.Point(217, 8);
             this.labelSupPerm.Name = "labelSupPerm";
             this.labelSupPerm.Size = new System.Drawing.Size(78, 18);
             this.labelSupPerm.TabIndex = 202;
@@ -735,7 +748,7 @@
             this.comSupPerm.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comSupPerm.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comSupPerm.FormattingEnabled = true;
-            this.comSupPerm.Location = new System.Drawing.Point(121, 5);
+            this.comSupPerm.Location = new System.Drawing.Point(111, 5);
             this.comSupPerm.Name = "comSupPerm";
             this.comSupPerm.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupPerm.Size = new System.Drawing.Size(100, 24);
@@ -748,7 +761,7 @@
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(311, 5);
+            this.comSupplier.Location = new System.Drawing.Point(301, 5);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 24);
@@ -760,22 +773,11 @@
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(467, 8);
+            this.label15.Location = new System.Drawing.Point(457, 8);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(44, 18);
             this.label15.TabIndex = 60;
             this.label15.Text = "المورد";
-            // 
-            // txtBillNumber
-            // 
-            this.txtBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBillNumber.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBillNumber.Location = new System.Drawing.Point(517, 6);
-            this.txtBillNumber.Name = "txtBillNumber";
-            this.txtBillNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtBillNumber.Size = new System.Drawing.Size(100, 23);
-            this.txtBillNumber.TabIndex = 42;
-            this.txtBillNumber.TextChanged += new System.EventHandler(this.txtBillNumber_TextChanged);
             // 
             // panel2
             // 
@@ -991,7 +993,6 @@
         private Bunifu.Framework.UI.BunifuTileButton btnSave;
         private System.Windows.Forms.TextBox txtPurchasePrice;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox txtBillNumber;
         private System.Windows.Forms.Button btnAddAll;
         private System.Windows.Forms.ComboBox comSupplier;
         private System.Windows.Forms.Label label15;
@@ -1016,6 +1017,7 @@
         private System.Windows.Forms.Label labelTotalA;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtAllTax;
+        private System.Windows.Forms.ComboBox comPermessionNum;
     }
 }
 

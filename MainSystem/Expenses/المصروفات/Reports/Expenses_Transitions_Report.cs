@@ -73,33 +73,33 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            /*if (comSafe.SelectedValue != null)
+            if (comSafe.SelectedValue != null && gridView1.RowCount > 0)
             {
                 try
                 {
-                    double costSale = 0;
-                    double costReturn = 0;
+                    double costIncome = 0;
+                    double costExpense = 0;
                     List<ExpensesTransition_Items> bi = new List<ExpensesTransition_Items>();
 
-                    for (int i = 0; i < gridView2.RowCount; i++)
+                    for (int i = 0; i < gridView1.RowCount; i++)
                     {
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["وارد"]) != "")
+                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["وارد"]) != "")
                         {
-                            costSale = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["وارد"]));
+                            costIncome = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["وارد"]));
                         }
                         else
                         {
-                            costSale = 0;
+                            costIncome = 0;
                         }
-                        if (gridView2.GetRowCellDisplayText(i, gridView2.Columns["مصروف"]) != "")
+                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["مصروف"]) != "")
                         {
-                            costReturn = Convert.ToDouble(gridView2.GetRowCellDisplayText(i, gridView2.Columns["مصروف"]));
+                            costExpense = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["مصروف"]));
                         }
                         else
                         {
-                            costReturn = 0;
+                            costExpense = 0;
                         }
-                        ExpensesTransition_Items item = new ExpensesTransition_Items() { ID = Convert.ToInt32(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التسلسل"])), /*Operation_Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]),* Type = gridView2.GetRowCellDisplayText(i, gridView2.Columns["النوع"]), Bill_Number = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفاتورة"])/*, Branch_Name = gridView2.GetRowCellDisplayText(i, gridView2.Columns["الفرع"])*, Client = gridView2.GetRowCellDisplayText(i, gridView2.Columns["المودع"]), Date = Convert.ToDateTime(gridView2.GetRowCellDisplayText(i, gridView2.Columns["التاريخ"])).ToString("yyyy-MM-dd"), CostSale = costSale, CostReturn = costReturn, Description = gridView2.GetRowCellDisplayText(i, gridView2.Columns["البيان"]) };
+                        ExpensesTransition_Items item = new ExpensesTransition_Items() { ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التسلسل"])), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), MainExpense_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المصروف الرئيسى"]), SubExpense_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المصروف الفرعى"]), DepositorName = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المودع/المستلم"]), Date = Convert.ToDateTime(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التاريخ"])).ToString("yyyy-MM-dd"), ExpenseIncome = costIncome, ExpenseAmount = costExpense, Employee_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الموظف"]), Description = gridView1.GetRowCellDisplayText(i, gridView1.Columns["البيان"]) };
                         bi.Add(item);
                     }
 
@@ -114,8 +114,8 @@ namespace MainSystem
             }
             else
             {
-                MessageBox.Show("يجب اختيار خزينة");
-            }*/
+                MessageBox.Show("يجب التاكد من البيانات");
+            }
         }
 
         //functions
@@ -126,54 +126,53 @@ namespace MainSystem
             double totalSale = 0;
             double totalReturn = 0;
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Type as 'النوع',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',branch.Branch_Name as 'الفرع',expense_transition.Date as 'التاريخ',expense_transition.Amount as 'وارد',expense_transition.Amount as 'مصروف',employee.Employee_Name as 'الموظف',expense_transition.Depositor_Name as 'المودع',expense_transition.Description as 'البيان' FROM expense_transition left JOIN expense_sub ON expense_sub.SubExpense_ID = expense_transition.SubExpense_ID left JOIN expense_main ON expense_main.MainExpense_ID = expense_sub.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where ExpenseTransition_ID=0", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Date as 'التاريخ',expense_transition.Type as 'النوع',expense_transition.Depositor_Name as 'المودع/المستلم',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',expense_transition.Amount as 'وارد',expense_transition.Amount as 'مصروف',employee.Employee_Name as 'الموظف',expense_transition.Description as 'البيان' FROM expense_transition left JOIN expense_sub ON expense_sub.SubExpense_ID = expense_transition.SubExpense_ID left JOIN expense_main ON expense_main.MainExpense_ID = expense_sub.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where ExpenseTransition_ID=0", conn);
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
-            gridControl2.DataSource = sourceDataSet.Tables[0];
+            gridControl1.DataSource = sourceDataSet.Tables[0];
 
-            string query = "SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Type as 'النوع',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',branch.Branch_Name as 'الفرع',expense_transition.Date as 'التاريخ',expense_transition.Depositor_Name as 'المودع',expense_transition.Amount as 'المبلغ',expense_transition.Description as 'البيان',employee.Employee_Name as 'الموظف' FROM expense_transition left JOIN expense_sub ON expense_transition.SubExpense_ID=expense_sub.SubExpense_ID left JOIN expense_main ON expense_sub.MainExpense_ID=expense_main.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where expense_transition.Bank_ID=" + comSafe.SelectedValue.ToString() + " and expense_transition.Error=0 and date(expense_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by expense_transition.Date";
+            string query = "SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Type as 'النوع',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',expense_transition.Date as 'التاريخ',expense_transition.Depositor_Name as 'المودع/المستلم',expense_transition.Amount as 'المبلغ',expense_transition.Description as 'البيان',employee.Employee_Name as 'الموظف' FROM expense_transition left JOIN expense_sub ON expense_transition.SubExpense_ID=expense_sub.SubExpense_ID left JOIN expense_main ON expense_sub.MainExpense_ID=expense_main.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where expense_transition.Bank_ID=" + comSafe.SelectedValue.ToString() + " and expense_transition.Error=0 and date(expense_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by expense_transition.Date";
             MySqlCommand comand = new MySqlCommand(query, conn);
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
             {
-                gridView2.AddNewRow();
-                int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
-                if (gridView2.IsNewItemRow(rowHandle))
+                gridView1.AddNewRow();
+                int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                if (gridView1.IsNewItemRow(rowHandle))
                 {
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["التسلسل"], dr["التسلسل"].ToString());
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["النوع"], dr["النوع"].ToString());
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الفرع"], dr["الفرع"].ToString());
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["المصروف الرئيسى"], dr["المصروف الرئيسى"].ToString());
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["المصروف الفرعى"], dr["المصروف الفرعى"].ToString());
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["التاريخ"], dr["التاريخ"].ToString());
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["المودع"], dr["المودع"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التسلسل"], dr["التسلسل"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المصروف الرئيسى"], dr["المصروف الرئيسى"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المصروف الفرعى"], dr["المصروف الفرعى"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المودع/المستلم"], dr["المودع/المستلم"].ToString());
                     
                     if (dr["النوع"].ToString() == "ايداع")
                     {
-                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["وارد"], dr["المبلغ"].ToString());
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["وارد"], dr["المبلغ"].ToString());
                         totalSale += Convert.ToDouble(dr["المبلغ"].ToString());
                     }
                     else
                     {
-                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns["مصروف"], dr["المبلغ"].ToString());
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["مصروف"], dr["المبلغ"].ToString());
                         totalReturn += Convert.ToDouble(dr["المبلغ"].ToString());
                     }
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["البيان"], dr["البيان"].ToString());
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns["الموظف"], dr["الموظف"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["البيان"], dr["البيان"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الموظف"], dr["الموظف"].ToString());
                 }
             }
             dr.Close();
             
-            if (gridView2.IsLastVisibleRow)
+            if (gridView1.IsLastVisibleRow)
             {
-                gridView2.FocusedRowHandle = gridView2.RowCount - 1;
+                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
             }
-            gridView2.Columns[0].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
+            gridView1.Columns[0].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             if (!loaded)
             {
-                for (int i = 1; i < gridView2.Columns.Count; i++)
+                for (int i = 1; i < gridView1.Columns.Count; i++)
                 {
-                    gridView2.Columns[i].Width = 100;
+                    gridView1.Columns[i].Width = 100;
                 }
             }
 
@@ -189,7 +188,7 @@ namespace MainSystem
             {
                 clearCom();
                 
-                gridControl2.DataSource = null;
+                gridControl1.DataSource = null;
                 txtSale.Text = "0";
                 txtReturn.Text = "0";
                 txtFinal.Text = "0";
@@ -218,6 +217,11 @@ namespace MainSystem
                     dateTimePicker2.Value = DateTime.Now;
                 }
             }
+        }
+
+        private void btnPrintCopy_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
