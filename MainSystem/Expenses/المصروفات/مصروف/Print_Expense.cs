@@ -22,6 +22,7 @@ namespace MainSystem
             Money.Value = PullMoney;
             DepositorName.Value = Client;
             Description.Value = Descrip;
+            Date.Value = DateTime.Now;
         }
     }
 }
