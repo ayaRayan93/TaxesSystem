@@ -33,6 +33,7 @@ namespace MainSystem
         XtraTabPage AccountingTP;
         XtraTabPage ExpensesTP;
         XtraTabPage PurchasesTP;
+        XtraTabPage CustomerServiceTP;
         int index = 1;
         static int countBackup = 0;
 
@@ -76,6 +77,7 @@ namespace MainSystem
                 AccountingTP = xtraTabPageAccounting;
                 ExpensesTP = xtraTabPageExpenses;
                 PurchasesTP = xtraTabPagePurchases;
+                CustomerServiceTP = xtraTabPageCustomerService;
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageStores);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageSales);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageHR);
@@ -87,6 +89,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageAccounting);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageExpenses);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPagePurchases);
+                xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCustomerService);
 
                 var DailyTimeBackup = "18:00:00";
                 var timePartsBackup = DailyTimeBackup.Split(new char[1] { ':' });
@@ -317,7 +320,6 @@ namespace MainSystem
             {
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
-                navBarGroup11.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
@@ -329,7 +331,6 @@ namespace MainSystem
                 navBarGroup47.Visible = false;
                 navBarGroup15.Visible = false;
                 navBarGroup16.Visible = false;
-                navBarGroup1.Visible = false;
                 navBarItemSalesTransitions.Visible = false;
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
@@ -407,6 +408,8 @@ namespace MainSystem
             {
                 btnPurchases.Enabled = true;
                 btnPurchases.Checked = true;
+                btnCustomerService.Enabled = true;
+                btnCustomerService.Checked = true;
                 AccountingSystem.Enabled = true;
                 AccountingSystem.Checked = true;
                 btnSales.Enabled = true;
@@ -612,6 +615,8 @@ namespace MainSystem
                 btnPOS.Checked = true;
                 pictureBoxBell.Visible = true;
 
+              
+
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
 
@@ -620,7 +625,7 @@ namespace MainSystem
                 navBarGroup3.Visible = false;
                 navBarGroup4.Visible = false;
                 navBarGroup6.Visible = false;
-                navBarGroup54.Visible = false;
+               // navBarGroup54.Visible = false;
                 navBarGroup7.Visible = false;
                 navBarGroup9.Visible = false;
                 navBarGroup10.Visible = false;
@@ -634,6 +639,21 @@ namespace MainSystem
                 navBarGroup39.Visible = false;
                 navBarGroup5.Visible = false;
                 navBarItemTransportationStoreBill.Visible = false;
+                //new
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+                navBarGroup39.Visible = false;
+                navBarGroup13.Visible = false;
+                navBarGroup14.Visible = false;
+                navBarGroup15.Visible = false;
+                navBarGroup16.Visible = false;
+                navBarGroup17.Visible = false;
+
+                navBarItemConfirmTransferToStore.Visible = false;
+                navBarItemSalesTransitions.Visible = false;
+                navBarItemInformationFactoryReport.Visible = false;
+                navBarItemFactoryProduct.Visible = false;
+                navBarItemFactoriesTransitionReport.Visible = false;
             }
             labUserName.Text = UserControl.EmpName;
         }
@@ -936,6 +956,30 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btnCustomerService_ItemClick(object sender, TileItemEventArgs e)
+        {
+            try
+            {
+                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageCustomerService))
+                {
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, CustomerServiceTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, CustomerServiceTP);
+                    }
+                    index++;
+                }
+                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageCustomerService)];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -1159,6 +1203,8 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+      
     }
 
     public static class connection

@@ -316,9 +316,9 @@ namespace MainSystem
                     loaded = false;
                     if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row["الكمية"]))
                     {
-                        if (IsDelveryQuantityHaveValue(row[6].ToString()))
+                        if (IsDelveryQuantityHaveValue(row[7].ToString()))
                         {
-                            if ((Convert.ToDouble(row[6]) < Convert.ToDouble(row["الكمية"])))
+                            if ((Convert.ToDouble(row[7]) < Convert.ToDouble(row["الكمية"])))
                             {
                                 addrow = row;
                                 SelectType = "oneRow";

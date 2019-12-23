@@ -235,6 +235,12 @@ namespace MainSystem
         {
             try
             {
+               string beforAccount= getPerviousSafayAccount();
+                double beforRest1 = Convert.ToDouble(beforAccount.Split('+')[0]);
+                double beforRest2 = Convert.ToDouble(beforAccount.Split('+')[1]);
+                labBeforBill.Text = beforRest1.ToString();
+                labBeforPaid.Text = beforRest1.ToString();
+
                 dbconnection.Open();
                 dbconnection1.Open();
                 dataGridView1.Rows.Clear();
@@ -243,10 +249,10 @@ namespace MainSystem
                 {
                     int.TryParse(txtClientID.Text, out ClientID);
                     ClientName = comClient.Text;
-                    displayBill();
-                    displayReturnBill(dataGridView1);
-                    displayPaidReturnBill();
-                    displayPaidBill();
+                    displayBill("");
+                    displayReturnBill(dataGridView1,"");
+                    displayPaidReturnBill("");
+                    displayPaidBill("");
                     double totalBill = 0, TotalReturn = 0, rest = 0, rest2 = 0;
 
                     foreach (DataGridViewRow row1 in dataGridView1.Rows)
@@ -258,7 +264,7 @@ namespace MainSystem
 
                     labTotalBillCost.Text = totalBill.ToString();
                     labTotalReturnCost.Text = TotalReturn.ToString();
-                    labRest.Text = rest.ToString();
+                    labRest.Text = (rest+ beforRest1).ToString();
 
                     totalBill = 0; TotalReturn = 0;
 
@@ -271,15 +277,15 @@ namespace MainSystem
 
                     labTotalPaid.Text = totalBill.ToString();
                     labTotalReturn2.Text = TotalReturn.ToString();
-                    labRest2.Text = rest2.ToString();
+                    labRest2.Text = (rest2+ beforRest2).ToString();
 
-                    if (rest2 > 0)
+                    if ((rest2+ beforRest2) > 0)
                     {
-                        safay = rest - rest2;
+                        safay = (rest+ beforRest1) - (rest2+ beforRest2);
                     }
                     else
                     {
-                        safay = rest + rest2;
+                        safay = (rest+ beforRest1) + (rest2+ beforRest2);
                     }
                     safay += Convert.ToDouble(labCustomerOpenAccount.Text);
                     labSafay.Text = safay.ToString();
@@ -295,7 +301,7 @@ namespace MainSystem
 
         //function
         // display Customer bills
-        public void displayBill()
+        public void displayBill(string datestr)
         {
             DateTime date = dateTimeFrom.Value;
             string d = date.ToString("yyyy-MM-dd ");
@@ -303,6 +309,12 @@ namespace MainSystem
             DateTime date2 = dateTimeTo.Value;
             string d2 = date2.ToString("yyyy-MM-dd ");
             d2 += "23:59:59";
+            if (datestr != "")
+            {
+                d2 = d;
+                 d = datestr;
+            }
+          
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -376,7 +388,7 @@ namespace MainSystem
             dataGridView1.Columns[2].Visible = false;
         }
         // display Customer return bills
-        public void displayReturnBill(DataGridView datagridview)
+        public void displayReturnBill(DataGridView datagridview, string datestr)
         {
             DateTime date = dateTimeFrom.Value;
             string d = date.ToString("yyyy-MM-dd ");
@@ -384,6 +396,11 @@ namespace MainSystem
             DateTime date2 = dateTimeTo.Value;
             string d2 = date2.ToString("yyyy-MM-dd ");
             d2 += "23:59:59";
+            if (datestr != "")
+            {
+                d2 = d;
+                d = datestr;
+            }
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -431,7 +448,7 @@ namespace MainSystem
             datagridview.Columns[2].Visible = false;
         }
         // display Customer Paid bills
-        public void displayPaidBill()
+        public void displayPaidBill(string datestr)
         {
             DateTime date = dateTimeFrom.Value;
             string d = date.ToString("yyyy-MM-dd ");
@@ -439,6 +456,11 @@ namespace MainSystem
             DateTime date2 = dateTimeTo.Value;
             string d2 = date2.ToString("yyyy-MM-dd ");
             d2 += "23:59:59";
+            if (datestr != "")
+            {
+                d2 = d;
+                d = datestr;
+            }
             string query = "", query1 = "";
             string Name = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
@@ -526,7 +548,7 @@ namespace MainSystem
             dataGridView2.Columns[2].Visible = false;
         }
         // display Customer Paid Return bills
-        public void displayPaidReturnBill()
+        public void displayPaidReturnBill(string datestr)
         {
             DateTime date = dateTimeFrom.Value;
             string d = date.ToString("yyyy-MM-dd ");
@@ -534,6 +556,11 @@ namespace MainSystem
             DateTime date2 = dateTimeTo.Value;
             string d2 = date2.ToString("yyyy-MM-dd ");
             d2 += "23:59:59";
+            if (datestr != "")
+            {
+                d2 = d;
+                d = datestr;
+            }
             string query = "", query1 = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -664,8 +691,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-
         private void btnReportBills_Click(object sender, EventArgs e)
         {
             try
@@ -686,7 +711,7 @@ namespace MainSystem
                     item.Returned = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
                     arrTD.Add(item);
                 }
-                PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text,false);
+                PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text,false,Convert.ToDouble(labBeforBill.Text), Convert.ToDouble(labTotalBillCost.Text), Convert.ToDouble(labTotalReturnCost.Text), Convert.ToDouble(labRest.Text)+ Convert.ToDouble(labBeforBill.Text));
                 pr.Show();
             }
             catch (Exception ex)
@@ -694,7 +719,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnReportPaid_Click(object sender, EventArgs e)
         {
             try
@@ -703,25 +727,83 @@ namespace MainSystem
                 for (int i = 0; i < dataGridView2.Rows.Count; i++)
                 {
                     TransitionData item = new TransitionData();
-                    item.ID = Convert.ToInt16(dataGridView2.Rows[i].Cells[4].Value.ToString());
+                   // item.ID = Convert.ToInt16(dataGridView2.Rows[i].Cells[4].Value.ToString());
                     item.Operation_Type =  dataGridView2.Rows[i].Cells[1].Value.ToString();
                     if (txtClientID.Text == "")
                     {
                         item.Client = dataGridView2.Rows[i].Cells[3].Value.ToString();
                         item.ClientCode = dataGridView2.Rows[i].Cells[2].Value.ToString();
                     }
-                    item.Paid = Convert.ToDouble(dataGridView2.Rows[i].Cells[6].Value.ToString());
+                    item.Paid = Convert.ToDouble(dataGridView2.Rows[i].Cells[5].Value.ToString());
                     item.Date = dataGridView2.Rows[i].Cells[0].Value.ToString();
-                    item.Returned = Convert.ToDouble(dataGridView2.Rows[i].Cells[5].Value.ToString());
+                    item.Returned = Convert.ToDouble(dataGridView2.Rows[i].Cells[6].Value.ToString());
                     arrTD.Add(item);
                 }
-                PrintReport pr = new PrintReport(arrTD,comClient.Text+" "+txtClientID.Text,true);
+                PrintReport pr = new PrintReport(arrTD,comClient.Text+" "+txtClientID.Text,true, Convert.ToDouble(labBeforPaid.Text), Convert.ToDouble(labTotalPaid.Text), Convert.ToDouble(labTotalReturn2.Text), Convert.ToDouble(labRest2.Text)+ Convert.ToDouble(labBeforPaid.Text));
                 pr.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private string getPerviousSafayAccount()
+        {
+            dbconnection.Open();
+            dbconnection1.Open();
+            dataGridView1.Rows.Clear();
+            dataGridView2.Rows.Clear();
+            double totalBill = 0, TotalReturn = 0, rest = 0, rest2 = 0;
+            if (txtClientID.Text != "" || txtCustomerID.Text != "")
+            {
+                int.TryParse(txtClientID.Text, out ClientID);
+                ClientName = comClient.Text;
+                displayBill("2019-07-01 00:00:00");
+                displayReturnBill(dataGridView1, "2019-07-01 00:00:00");
+                displayPaidReturnBill("2019-07-01 00:00:00");
+                displayPaidBill("2019-07-01 00:00:00");
+              
+
+                foreach (DataGridViewRow row1 in dataGridView1.Rows)
+                {
+                    totalBill += Convert.ToDouble(row1.Cells[6].Value);
+                    TotalReturn += Convert.ToDouble(row1.Cells[5].Value);
+                    rest = totalBill - TotalReturn;
+                }
+
+                labTotalBillCost.Text = totalBill.ToString();
+                labTotalReturnCost.Text = TotalReturn.ToString();
+                labRest.Text = rest.ToString();
+
+                totalBill = 0; TotalReturn = 0;
+
+                foreach (DataGridViewRow row1 in dataGridView2.Rows)
+                {
+                    totalBill += Convert.ToDouble(row1.Cells[7].Value);
+                    TotalReturn += Convert.ToDouble(row1.Cells[6].Value);
+                    rest2 = totalBill - TotalReturn;
+                }
+
+                labTotalPaid.Text = totalBill.ToString();
+                labTotalReturn2.Text = TotalReturn.ToString();
+                labRest2.Text = rest2.ToString();
+
+                if (rest2 > 0)
+                {
+                    safay = rest - rest2;
+                }
+                else
+                {
+                    safay = rest + rest2;
+                }
+                safay += Convert.ToDouble(labCustomerOpenAccount.Text);
+                labSafay.Text = safay.ToString();
+            }
+            dbconnection.Close();
+            dbconnection1.Close();
+
+            return rest + "+" + rest2;
         }
         
     }

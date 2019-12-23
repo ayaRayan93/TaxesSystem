@@ -13,10 +13,14 @@ namespace MainSystem.Sales.accounting
         {
             InitializeComponent();
         }
-        public void InitData(List<TransitionData> TransitionData,string name)
+        public void InitData(List<TransitionData> TransitionData,string name, double befor, double totalBills, double totalReturns, double safay1)
         {
             objectDataSource1.DataSource = TransitionData;
             Name.Value = name;
+            TotalBefor.Value = befor;
+            TotalPaid.Value = totalBills;
+            TotalReturns.Value = totalReturns;
+            TotalSafay.Value = safay1;
         }
     }
 }

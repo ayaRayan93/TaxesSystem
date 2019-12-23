@@ -16,12 +16,17 @@ namespace MainSystem.Sales.accounting
         List<TransitionData> Bill_Items;
         string name;
         bool flag = true;
-        public PrintReport(List<TransitionData> Bill_Items, string name,bool flag)
+        double befor, totalBills, totalReturns, safay1;
+        public PrintReport(List<TransitionData> Bill_Items, string name,bool flag, double befor, double totalBills, double totalReturns, double safay1)
         {
             InitializeComponent();
             this.Bill_Items = Bill_Items;
             this.name = name;
             this.flag = flag;
+            this.befor = befor;
+            this.totalBills = totalBills;
+            this.totalReturns = totalReturns;
+            this.safay1 = safay1;
         }
 
         private void PrintReport_Load(object sender, EventArgs e)
@@ -29,14 +34,14 @@ namespace MainSystem.Sales.accounting
             if (flag)
             {
                 XtraPrintReport tt = new XtraPrintReport();
-                tt.InitData(Bill_Items, name);
+                tt.InitData(Bill_Items, name, befor, totalBills, totalReturns, safay1);
                 documentViewer1.DocumentSource = tt;
                 tt.CreateDocument();
             }
             else
             {
                 XtraPrintReportBills tt = new XtraPrintReportBills();
-                tt.InitData(Bill_Items, name);
+                tt.InitData(Bill_Items, name, befor, totalBills, totalReturns, safay1);
                 documentViewer1.DocumentSource = tt;
                 tt.CreateDocument();
             }

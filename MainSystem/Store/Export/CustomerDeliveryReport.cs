@@ -113,6 +113,7 @@ namespace MainSystem.Store.Export
                 dataGridView1.DataSource = dataSet11.Tables["customer_permissions"];
                 gridView2.Columns[0].Visible = false;
                 load = true;
+
             }
             catch (Exception ex)
             {
