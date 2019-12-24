@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
@@ -593,7 +592,7 @@
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
@@ -4262,7 +4261,7 @@
             // 
             // navBarControl6
             // 
-            this.navBarControl6.ActiveGroup = this.navBarGroup32;
+            this.navBarControl6.ActiveGroup = this.navBarGroup42;
             this.navBarControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControl6.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4317,7 +4316,6 @@
             this.navBarGroup32.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
             this.navBarGroup32.Appearance.Options.UseFont = true;
             this.navBarGroup32.Caption = "تقارير";
-            this.navBarGroup32.Expanded = true;
             this.navBarGroup32.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemExpensesTransitionsReport)});
             this.navBarGroup32.Name = "navBarGroup32";
@@ -4335,6 +4333,7 @@
             this.navBarGroup42.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarGroup42.Appearance.Options.UseFont = true;
             this.navBarGroup42.Caption = "تكويد";
+            this.navBarGroup42.Expanded = true;
             this.navBarGroup42.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemMainSubReport)});
             this.navBarGroup42.Name = "navBarGroup42";
@@ -4355,6 +4354,7 @@
             this.navBarGroup56.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSafeExpenseIncomeRecord)});
             this.navBarGroup56.Name = "navBarGroup56";
+            this.navBarGroup56.Visible = false;
             // 
             // navBarItemSafeExpenseIncomeRecord
             // 

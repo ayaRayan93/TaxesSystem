@@ -282,6 +282,12 @@
     <Compile Include="Expenses\المصروفات\ايداع\SafeExpenseIncome_Record.designer.cs">
       <DependentUpon>SafeExpenseIncome_Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\المصروفات\مصروف\Print_Expense2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مصروف\Print_Expense2.designer.cs">
+      <DependentUpon>Print_Expense2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\المصروفات\مصروف\Print_Expense.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -293,6 +299,12 @@
     </Compile>
     <Compile Include="Expenses\المصروفات\مصروف\Print_Expense_Report.designer.cs">
       <DependentUpon>Print_Expense_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.designer.cs">
+      <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
       <SubType>Component</SubType>
@@ -2963,11 +2975,17 @@
     <EmbeddedResource Include="Expenses\المصروفات\ايداع\SafeExpenseIncome_Record.resx">
       <DependentUpon>SafeExpenseIncome_Record.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_Expense2.resx">
+      <DependentUpon>Print_Expense2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_Expense.resx">
       <DependentUpon>Print_Expense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_Expense_Report.resx">
       <DependentUpon>Print_Expense_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.resx">
+      <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.resx">
       <DependentUpon>Print_SupplierBillsTransitionsDetails.cs</DependentUpon>
