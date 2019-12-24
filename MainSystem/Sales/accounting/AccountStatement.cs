@@ -727,14 +727,14 @@ namespace MainSystem
                 for (int i = 0; i < dataGridView2.Rows.Count; i++)
                 {
                     TransitionData item = new TransitionData();
-                   // item.ID = Convert.ToInt16(dataGridView2.Rows[i].Cells[4].Value.ToString());
-                    item.Operation_Type =  dataGridView2.Rows[i].Cells[1].Value.ToString();
+                    item.ID = Convert.ToInt16(dataGridView2.Rows[i].Cells[5].Value.ToString());
+                    item.Operation_Type =  dataGridView2.Rows[i].Cells[2].Value.ToString();
                     if (txtClientID.Text == "")
                     {
-                        item.Client = dataGridView2.Rows[i].Cells[3].Value.ToString();
-                        item.ClientCode = dataGridView2.Rows[i].Cells[2].Value.ToString();
+                        item.Client = dataGridView2.Rows[i].Cells[4].Value.ToString();
+                        item.ClientCode = dataGridView2.Rows[i].Cells[3].Value.ToString();
                     }
-                    item.Paid = Convert.ToDouble(dataGridView2.Rows[i].Cells[5].Value.ToString());
+                    item.Paid = Convert.ToDouble(dataGridView2.Rows[i].Cells[7].Value.ToString());
                     item.Date = dataGridView2.Rows[i].Cells[0].Value.ToString();
                     item.Returned = Convert.ToDouble(dataGridView2.Rows[i].Cells[6].Value.ToString());
                     arrTD.Add(item);
