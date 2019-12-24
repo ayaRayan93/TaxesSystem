@@ -62,8 +62,8 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.btnSub, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnMain, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSub, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnMain, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -74,11 +74,11 @@
             // 
             // btnSub
             // 
-            this.btnSub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSub.BackColor = System.Drawing.Color.White;
+            this.btnSub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSub.BackColor = System.Drawing.Color.Gainsboro;
             this.btnSub.FlatAppearance.BorderSize = 0;
             this.btnSub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSub.Location = new System.Drawing.Point(479, 4);
+            this.btnSub.Location = new System.Drawing.Point(383, 4);
             this.btnSub.Name = "btnSub";
             this.btnSub.Size = new System.Drawing.Size(90, 30);
             this.btnSub.TabIndex = 0;
@@ -88,11 +88,11 @@
             // 
             // btnMain
             // 
-            this.btnMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMain.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMain.BackColor = System.Drawing.Color.White;
             this.btnMain.FlatAppearance.BorderSize = 0;
             this.btnMain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnMain.Location = new System.Drawing.Point(383, 4);
+            this.btnMain.Location = new System.Drawing.Point(479, 4);
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(90, 30);
             this.btnMain.TabIndex = 1;
