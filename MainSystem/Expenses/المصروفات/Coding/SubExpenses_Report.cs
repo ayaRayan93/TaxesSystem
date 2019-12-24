@@ -93,7 +93,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     DataSet sourceDataSet = new DataSet();
-                    MySqlDataAdapter adapterSub = new MySqlDataAdapter("SELECT expense_sub.SubExpense_ID as 'التسلسل',expense_sub.SubExpense_Name as 'المصروف الفرعى',MainExpense_ID FROM expense_sub where expense_sub.SubExpense_ID=" + comSub.SelectedValue.ToString(), dbConnection);
+                    MySqlDataAdapter adapterSub = new MySqlDataAdapter("SELECT expense_sub.SubExpense_ID as 'التسلسل',expense_sub.SubExpense_Name as 'المصروف الفرعى',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.MainExpense_ID FROM expense_sub INNER JOIN expense_main ON expense_sub.MainExpense_ID = expense_main.MainExpense_ID where expense_sub.SubExpense_ID=" + comSub.SelectedValue.ToString(), dbConnection);
                     adapterSub.Fill(sourceDataSet);
                     gridControl1.DataSource = sourceDataSet.Tables[0];
 
@@ -225,7 +225,7 @@ namespace MainSystem
                 comMainUpdate.DataSource = dt;
                 comMainUpdate.DisplayMember = dt.Columns["MainExpense_Name"].ToString();
                 comMainUpdate.ValueMember = dt.Columns["MainExpense_ID"].ToString();
-                comMainUpdate.SelectedValue = row1[2].ToString();
+                comMainUpdate.SelectedValue = row1["MainExpense_ID"].ToString();
             }
             catch (Exception ex)
             {
@@ -237,7 +237,7 @@ namespace MainSystem
         //System Functions
         public void displayAllMain()
         {
-            string query = "select SubExpense_ID as 'التسلسل',SubExpense_Name as 'المصروف الفرعى',MainExpense_ID from expense_sub";
+            string query = "select SubExpense_ID as 'التسلسل',SubExpense_Name as 'المصروف الفرعى',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.MainExpense_ID from expense_sub INNER JOIN expense_main ON expense_sub.MainExpense_ID = expense_main.MainExpense_ID";
             adabter = new MySqlDataAdapter(query, dbConnection);
             dTable = new DataTable();
             adabter.Fill(dTable);
