@@ -239,7 +239,7 @@ namespace MainSystem
                 double beforRest1 = Convert.ToDouble(beforAccount.Split('+')[0]);
                 double beforRest2 = Convert.ToDouble(beforAccount.Split('+')[1]);
                 labBeforBill.Text = beforRest1.ToString();
-                labBeforPaid.Text = beforRest1.ToString();
+                labBeforPaid.Text = beforRest2.ToString();
 
                 dbconnection.Open();
                 dbconnection1.Open();
@@ -279,16 +279,17 @@ namespace MainSystem
                     labTotalReturn2.Text = TotalReturn.ToString();
                     labRest2.Text = (rest2+ beforRest2).ToString();
 
-                    if ((rest2+ beforRest2) > 0)
-                    {
-                        safay = (rest+ beforRest1) - (rest2+ beforRest2);
-                    }
-                    else
-                    {
-                        safay = (rest+ beforRest1) + (rest2+ beforRest2);
-                    }
+                    //if ((rest2+ beforRest2) < 0)
+                    //{
+                    //    safay = (rest+ beforRest1) - (rest2+ beforRest2);
+                    //}
+                    //else
+                    //{
+                    //    safay = (rest+ beforRest1) + (rest2+ beforRest2);
+                    //}
+                    safay = (rest + beforRest1) - (rest2 + beforRest2);
                     safay += Convert.ToDouble(labCustomerOpenAccount.Text);
-                    labSafay.Text = safay.ToString();
+                    labSafay.Text = safay.ToString("#.00");
                 }
             }
             catch (Exception ex)
@@ -711,7 +712,7 @@ namespace MainSystem
                     item.Returned = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
                     arrTD.Add(item);
                 }
-                PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text,false,Convert.ToDouble(labBeforBill.Text), Convert.ToDouble(labTotalBillCost.Text), Convert.ToDouble(labTotalReturnCost.Text), Convert.ToDouble(labRest.Text)+ Convert.ToDouble(labBeforBill.Text));
+                PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text,false,Convert.ToDouble(labBeforBill.Text), Convert.ToDouble(labTotalBillCost.Text), Convert.ToDouble(labTotalReturnCost.Text), Convert.ToDouble(labRest.Text)+ Convert.ToDouble(labBeforBill.Text), dateTimeFrom.Text,dateTimeTo.Text);
                 pr.Show();
             }
             catch (Exception ex)
@@ -739,7 +740,7 @@ namespace MainSystem
                     item.Returned = Convert.ToDouble(dataGridView2.Rows[i].Cells[6].Value.ToString());
                     arrTD.Add(item);
                 }
-                PrintReport pr = new PrintReport(arrTD,comClient.Text+" "+txtClientID.Text,true, Convert.ToDouble(labBeforPaid.Text), Convert.ToDouble(labTotalPaid.Text), Convert.ToDouble(labTotalReturn2.Text), Convert.ToDouble(labRest2.Text)+ Convert.ToDouble(labBeforPaid.Text));
+                PrintReport pr = new PrintReport(arrTD,comClient.Text+" "+txtClientID.Text,true, Convert.ToDouble(labBeforPaid.Text), Convert.ToDouble(labTotalPaid.Text), Convert.ToDouble(labTotalReturn2.Text), Convert.ToDouble(labRest2.Text)+ Convert.ToDouble(labBeforPaid.Text),dateTimeFrom.Text, dateTimeTo.Text);
                 pr.Show();
             }
             catch (Exception ex)
@@ -789,16 +790,7 @@ namespace MainSystem
                 labTotalReturn2.Text = TotalReturn.ToString();
                 labRest2.Text = rest2.ToString();
 
-                if (rest2 > 0)
-                {
-                    safay = rest - rest2;
-                }
-                else
-                {
-                    safay = rest + rest2;
-                }
-                safay += Convert.ToDouble(labCustomerOpenAccount.Text);
-                labSafay.Text = safay.ToString();
+               
             }
             dbconnection.Close();
             dbconnection1.Close();

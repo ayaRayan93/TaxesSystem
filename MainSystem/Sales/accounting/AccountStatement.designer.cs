@@ -43,6 +43,7 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labBeforBill = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnReportBills = new Bunifu.Framework.UI.BunifuTileButton();
             this.labTotalBillCost = new System.Windows.Forms.Label();
@@ -75,6 +76,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panFooter = new System.Windows.Forms.Panel();
+            this.labBeforPaid = new System.Windows.Forms.Label();
             this.btnReportPaid = new Bunifu.Framework.UI.BunifuTileButton();
             this.label4 = new System.Windows.Forms.Label();
             this.labCustomerOpenAccount = new System.Windows.Forms.Label();
@@ -88,8 +90,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
-            this.labBeforBill = new System.Windows.Forms.Label();
-            this.labBeforPaid = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -104,7 +104,7 @@
             this.labTotalPaid.AutoSize = true;
             this.labTotalPaid.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTotalPaid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.labTotalPaid.Location = new System.Drawing.Point(754, 13);
+            this.labTotalPaid.Location = new System.Drawing.Point(754, 22);
             this.labTotalPaid.Name = "labTotalPaid";
             this.labTotalPaid.Size = new System.Drawing.Size(0, 16);
             this.labTotalPaid.TabIndex = 168;
@@ -205,6 +205,17 @@
             this.panel1.Size = new System.Drawing.Size(970, 50);
             this.panel1.TabIndex = 162;
             // 
+            // labBeforBill
+            // 
+            this.labBeforBill.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labBeforBill.AutoSize = true;
+            this.labBeforBill.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labBeforBill.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labBeforBill.Location = new System.Drawing.Point(862, 10);
+            this.labBeforBill.Name = "labBeforBill";
+            this.labBeforBill.Size = new System.Drawing.Size(0, 16);
+            this.labBeforBill.TabIndex = 167;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -242,7 +253,7 @@
             this.labTotalBillCost.AutoSize = true;
             this.labTotalBillCost.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTotalBillCost.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.labTotalBillCost.Location = new System.Drawing.Point(734, 10);
+            this.labTotalBillCost.Location = new System.Drawing.Point(754, 10);
             this.labTotalBillCost.Name = "labTotalBillCost";
             this.labTotalBillCost.Size = new System.Drawing.Size(0, 16);
             this.labTotalBillCost.TabIndex = 163;
@@ -610,6 +621,17 @@
             this.panFooter.Size = new System.Drawing.Size(970, 150);
             this.panFooter.TabIndex = 168;
             // 
+            // labBeforPaid
+            // 
+            this.labBeforPaid.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labBeforPaid.AutoSize = true;
+            this.labBeforPaid.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labBeforPaid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labBeforPaid.Location = new System.Drawing.Point(862, 22);
+            this.labBeforPaid.Name = "labBeforPaid";
+            this.labBeforPaid.Size = new System.Drawing.Size(0, 16);
+            this.labBeforPaid.TabIndex = 180;
+            // 
             // btnReportPaid
             // 
             this.btnReportPaid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
@@ -691,7 +713,7 @@
             this.labTotalReturn2.AutoSize = true;
             this.labTotalReturn2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labTotalReturn2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.labTotalReturn2.Location = new System.Drawing.Point(625, 13);
+            this.labTotalReturn2.Location = new System.Drawing.Point(605, 22);
             this.labTotalReturn2.Name = "labTotalReturn2";
             this.labTotalReturn2.Size = new System.Drawing.Size(0, 16);
             this.labTotalReturn2.TabIndex = 169;
@@ -720,7 +742,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(259, 22);
+            this.label1.Location = new System.Drawing.Point(264, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 16);
             this.label1.TabIndex = 171;
@@ -757,28 +779,6 @@
             this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
-            // 
-            // labBeforBill
-            // 
-            this.labBeforBill.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labBeforBill.AutoSize = true;
-            this.labBeforBill.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labBeforBill.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.labBeforBill.Location = new System.Drawing.Point(862, 10);
-            this.labBeforBill.Name = "labBeforBill";
-            this.labBeforBill.Size = new System.Drawing.Size(0, 16);
-            this.labBeforBill.TabIndex = 167;
-            // 
-            // labBeforPaid
-            // 
-            this.labBeforPaid.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labBeforPaid.AutoSize = true;
-            this.labBeforPaid.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labBeforPaid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.labBeforPaid.Location = new System.Drawing.Point(906, 22);
-            this.labBeforPaid.Name = "labBeforPaid";
-            this.labBeforPaid.Size = new System.Drawing.Size(0, 16);
-            this.labBeforPaid.TabIndex = 180;
             // 
             // AccountStatement
             // 
