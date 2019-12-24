@@ -13,7 +13,7 @@ namespace MainSystem.Sales.accounting
         {
             InitializeComponent();
         }
-        public void InitData(List<TransitionData> TransitionData,string name, double befor, double totalBills, double totalReturns, double safay1)
+        public void InitData(List<TransitionData> TransitionData,string name, double befor, double totalBills, double totalReturns, double safay1,string from,string to)
         {
             objectDataSource1.DataSource = TransitionData;
             Name.Value = name;
@@ -21,6 +21,8 @@ namespace MainSystem.Sales.accounting
             TotalPaid.Value = totalBills;
             TotalReturns.Value = totalReturns;
             TotalSafay.Value = safay1;
+            dateFrom.Value = from;
+            dateTo.Value = to;
         }
     }
 }
