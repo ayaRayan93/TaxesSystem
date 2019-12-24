@@ -110,19 +110,19 @@ namespace MainSystem
                             //////////record adding/////////////
                             query = "select ExpenseTransition_ID from expense_transition order by ExpenseTransition_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            string TransitionID = com.ExecuteScalar().ToString();
+                            string ExpenseTransitionID = com.ExecuteScalar().ToString();
 
                             query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
                             com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "expense_transition";
                             com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "اضافة";
-                            com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = TransitionID;
+                            com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = ExpenseTransitionID;
                             com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                             com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                             com.ExecuteNonQuery();
 
-                            /*printExpense();*/
+                            /*printExpense(Convert.ToInt32(ExpenseTransitionID));*/
                             clear();
                         }
                         else
@@ -202,10 +202,10 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        void printExpense()
+        void printExpense(int ExpenseTransitionID)
         {
             Print_Expense_Report f = new Print_Expense_Report();
-            f.PrintInvoice(comMain.Text, comSub.Text, comBank.Text, txtPullMoney.Text, txtClient.Text, txtDescrip.Text);
+            f.PrintInvoice(ExpenseTransitionID, comMain.Text, comSub.Text, comBank.Text, txtPullMoney.Text, txtClient.Text, txtDescrip.Text);
             f.ShowDialog();
         }
     }

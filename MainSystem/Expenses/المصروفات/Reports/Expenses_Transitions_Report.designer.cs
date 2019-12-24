@@ -283,6 +283,7 @@
             this.btnPrintCopy.Name = "btnPrintCopy";
             this.btnPrintCopy.Size = new System.Drawing.Size(97, 46);
             this.btnPrintCopy.TabIndex = 5;
+            this.btnPrintCopy.Visible = false;
             this.btnPrintCopy.Click += new System.EventHandler(this.btnPrintCopy_Click);
             // 
             // tableLayoutPanel3

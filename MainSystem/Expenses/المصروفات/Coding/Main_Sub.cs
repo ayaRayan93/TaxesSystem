@@ -42,42 +42,6 @@ namespace MainSystem
 
         private void btnArea_Click(object sender, EventArgs e)
         {
-            panelSubReport.Name = "panelSubReport";
-            panelSubReport.Dock = DockStyle.Fill;
-
-            SubReport = new SubExpenses_Report();
-            SubReport.Size = new Size(1109, 660);
-            SubReport.TopLevel = false;
-            SubReport.FormBorderStyle = FormBorderStyle.None;
-            SubReport.Dock = DockStyle.Fill;
-            
-            panelSubReport.Controls.Clear();
-            panelSubReport.Controls.Add(SubReport);
-            xtraTabPageSub.Controls.Add(panelSubReport);
-            SubReport.Show();
-            xtraTabControl1.SelectedTabPage = xtraTabPageSub;
-        }
-
-        private void btnZone_Click(object sender, EventArgs e)
-        {
-            panelMainReport.Name = "panelMainReport";
-            panelMainReport.Dock = DockStyle.Fill;
-
-            MainReport = new MainExpenses_Report();
-            MainReport.Size = new Size(1109, 660);
-            MainReport.TopLevel = false;
-            MainReport.FormBorderStyle = FormBorderStyle.None;
-            MainReport.Dock = DockStyle.Fill;
-
-            panelMainReport.Controls.Clear();
-            panelMainReport.Controls.Add(MainReport);
-            xtraTabPageMain.Controls.Add(panelMainReport);
-            MainReport.Show();
-            xtraTabControl1.SelectedTabPage = xtraTabPageMain;
-        }
-
-        private void Zone_Area_Load(object sender, EventArgs e)
-        {
             try
             {
                 panelSubReport.Name = "panelSubReport";
@@ -94,6 +58,56 @@ namespace MainSystem
                 xtraTabPageSub.Controls.Add(panelSubReport);
                 SubReport.Show();
                 xtraTabControl1.SelectedTabPage = xtraTabPageSub;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnZone_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                panelMainReport.Name = "panelMainReport";
+                panelMainReport.Dock = DockStyle.Fill;
+
+                MainReport = new MainExpenses_Report();
+                MainReport.Size = new Size(1109, 660);
+                MainReport.TopLevel = false;
+                MainReport.FormBorderStyle = FormBorderStyle.None;
+                MainReport.Dock = DockStyle.Fill;
+
+                panelMainReport.Controls.Clear();
+                panelMainReport.Controls.Add(MainReport);
+                xtraTabPageMain.Controls.Add(panelMainReport);
+                MainReport.Show();
+                xtraTabControl1.SelectedTabPage = xtraTabPageMain;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Zone_Area_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                panelMainReport.Name = "panelMainReport";
+                panelMainReport.Dock = DockStyle.Fill;
+
+                MainReport = new MainExpenses_Report();
+                MainReport.Size = new Size(1109, 660);
+                MainReport.TopLevel = false;
+                MainReport.FormBorderStyle = FormBorderStyle.None;
+                MainReport.Dock = DockStyle.Fill;
+
+                panelMainReport.Controls.Clear();
+                panelMainReport.Controls.Add(MainReport);
+                xtraTabPageMain.Controls.Add(panelMainReport);
+                MainReport.Show();
+                xtraTabControl1.SelectedTabPage = xtraTabPageMain;
             }
             catch(Exception ex)
             {

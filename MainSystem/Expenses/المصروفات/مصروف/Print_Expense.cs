@@ -14,8 +14,9 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string Main, string Sub, string Bank, string PullMoney, string Client, string Descrip)
+        public void InitData(int ExpenseTransitionID, string Main, string Sub, string Bank, string PullMoney, string Client, string Descrip)
         {
+            ID.Value = ExpenseTransitionID;
             MainExpense.Value = Main;
             SubExpense.Value = Sub;
             SafeName.Value = Bank;

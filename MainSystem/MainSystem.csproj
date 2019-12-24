@@ -239,11 +239,11 @@
     <Compile Include="CustomerService\displayCustomerBill.Designer.cs">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="Expenses\المصروفات\Coding\SubExpenses_Report.cs">
+    <Compile Include="Expenses\المصروفات\Coding\MainExpenses_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Expenses\المصروفات\Coding\SubExpenses_Report.designer.cs">
-      <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    <Compile Include="Expenses\المصروفات\Coding\MainExpenses_Report.designer.cs">
+      <DependentUpon>MainExpenses_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\المصروفات\Coding\Main_Sub.cs">
       <SubType>Form</SubType>
@@ -251,11 +251,11 @@
     <Compile Include="Expenses\المصروفات\Coding\Main_Sub.Designer.cs">
       <DependentUpon>Main_Sub.cs</DependentUpon>
     </Compile>
-    <Compile Include="Expenses\المصروفات\Coding\MainExpenses_Report.cs">
+    <Compile Include="Expenses\المصروفات\Coding\SubExpenses_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Expenses\المصروفات\Coding\MainExpenses_Report.designer.cs">
-      <DependentUpon>MainExpenses_Report.cs</DependentUpon>
+    <Compile Include="Expenses\المصروفات\Coding\SubExpenses_Report.designer.cs">
+      <DependentUpon>SubExpenses_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\المصروفات\Reports\Expenses_Transitions_Report.cs">
       <SubType>Form</SubType>
@@ -2942,14 +2942,14 @@
     <EmbeddedResource Include="CustomerService\displayCustomerBill.resx">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Expenses\المصروفات\Coding\SubExpenses_Report.resx">
-      <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    <EmbeddedResource Include="Expenses\المصروفات\Coding\MainExpenses_Report.resx">
+      <DependentUpon>MainExpenses_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Coding\Main_Sub.resx">
       <DependentUpon>Main_Sub.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Expenses\المصروفات\Coding\MainExpenses_Report.resx">
-      <DependentUpon>MainExpenses_Report.cs</DependentUpon>
+    <EmbeddedResource Include="Expenses\المصروفات\Coding\SubExpenses_Report.resx">
+      <DependentUpon>SubExpenses_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\Expenses_Transitions_Report.resx">
       <DependentUpon>Expenses_Transitions_Report.cs</DependentUpon>

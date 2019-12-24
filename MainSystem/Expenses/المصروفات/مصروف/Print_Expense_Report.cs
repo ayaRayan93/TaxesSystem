@@ -18,14 +18,14 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void PrintInvoice(string Main, string Sub, string Bank, string PullMoney, string Client, string Descrip)
+        public void PrintInvoice(int ExpenseTransitionID, string Main, string Sub, string Bank, string PullMoney, string Client, string Descrip)
         {
             Print_Expense report = new Print_Expense();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
             }
-            report.InitData(Main, Sub, Bank, PullMoney, Client, Descrip);
+            report.InitData(ExpenseTransitionID, Main, Sub, Bank, PullMoney, Client, Descrip);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }
