@@ -45,6 +45,7 @@
             this.StoreName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Date = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.SupplierName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -202,6 +203,7 @@
             this.Type,
             this.BillNum,
             this.StoreName,
+            this.SupplierName,
             this.Date});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
@@ -255,7 +257,7 @@
             this.Date.OptionsColumn.AllowEdit = false;
             this.Date.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value;
             this.Date.Visible = true;
-            this.Date.VisibleIndex = 3;
+            this.Date.VisibleIndex = 4;
             this.Date.Width = 158;
             // 
             // panel1
@@ -274,6 +276,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(965, 74);
             this.panel1.TabIndex = 216;
+            // 
+            // SupplierName
+            // 
+            this.SupplierName.Caption = "المورد";
+            this.SupplierName.FieldName = "ColSupplierName";
+            this.SupplierName.Name = "SupplierName";
+            this.SupplierName.Visible = true;
+            this.SupplierName.VisibleIndex = 3;
             // 
             // Permissions_Transitions_Report
             // 
@@ -314,6 +324,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn BillNum;
         private DevExpress.XtraGrid.Columns.GridColumn Date;
         private DevExpress.XtraGrid.Columns.GridColumn StoreName;
+        private DevExpress.XtraGrid.Columns.GridColumn SupplierName;
     }
 }
 
