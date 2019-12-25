@@ -394,6 +394,9 @@ namespace MainSystem
                 btnSales.Checked = true;
                 btnBank.Enabled = true;
                 btnBank.Checked = true;
+                btnExpenses.Enabled = true;
+                btnExpenses.Checked = true;
+                navBarGroup42.Visible = false;
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
                 btnPOS.Enabled = true;
