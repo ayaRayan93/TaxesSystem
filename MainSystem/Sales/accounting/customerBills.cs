@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MainSystem.Sales.accounting;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -349,14 +350,15 @@ namespace MainSystem
         {
             try
             {
+                double restBefore = getCustomersBalance();
                 dbconnection.Open();
                 dbconnection1.Open();
                 dataGridView1.Rows.Clear();
 
-                customers_Bills();
-                customers_returnBills();
-                customersPaid_Bills();
-                customersPaid_returnBills();
+                customers_Bills("");
+                customers_returnBills("");
+                customersPaid_Bills("");
+                customersPaid_returnBills("");
 
                 double totalBill = 0, TotalReturn = 0, totalPaidBill = 0, TotalPaidReturn = 0;
 
@@ -370,7 +372,9 @@ namespace MainSystem
            
                 labBills.Text = (totalBill - TotalReturn).ToString("000,000.00");
                 labpaid.Text = (totalPaidBill - TotalPaidReturn).ToString("000,000.00");
-                labRest.Text = ((totalBill - TotalReturn)- (totalPaidBill - TotalPaidReturn)).ToString("000,000.00");
+                labRest.Text = ((totalBill - TotalReturn) - (totalPaidBill - TotalPaidReturn)+ restBefore).ToString("000,000.00");
+
+                labTotalBefor.Text = restBefore.ToString("000,000.00");
             }
             catch (Exception ex)
             {
@@ -382,12 +386,18 @@ namespace MainSystem
 
         //function
         // display Customer bills
-        public void customers_Bills()
+        public void customers_Bills(string dateStr)
         {
             DateTime date = dateTimeFrom.Value;
             string d = date.ToString("yyyy-MM-dd HH:mm:ss");
             DateTime date2 = dateTimeTo.Value;
             string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+
+            if (dateStr != "")
+            {
+                d2 = d;
+                d = dateStr;
+            }
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -429,12 +439,17 @@ namespace MainSystem
             }
             dr.Close();
         }
-        public void customers_returnBills()
+        public void customers_returnBills(string dateStr)
         {
             DateTime date = dateTimeFrom.Value;
             string d = date.ToString("yyyy-MM-dd HH:mm:ss");
             DateTime date2 = dateTimeTo.Value;
             string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            if (dateStr != "")
+            {
+                d2 = d;
+                d = dateStr;
+            }
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -488,12 +503,17 @@ namespace MainSystem
             }
             dr.Close();
         }
-        public void customersPaid_Bills()
+        public void customersPaid_Bills(string dateStr)
         {
             DateTime date = dateTimeFrom.Value;
             string d = date.ToString("yyyy-MM-dd HH:mm:ss");
             DateTime date2 = dateTimeTo.Value;
             string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            if (dateStr != "")
+            {
+                d2 = d;
+                d = dateStr;
+            }
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -548,12 +568,17 @@ namespace MainSystem
             }
             dr.Close();
         }
-        public void customersPaid_returnBills()
+        public void customersPaid_returnBills(string dateStr)
         {
             DateTime date = dateTimeFrom.Value;
             string d = date.ToString("yyyy-MM-dd HH:mm:ss");
             DateTime date2 = dateTimeTo.Value;
             string d2 = date2.ToString("yyyy-MM-dd HH:mm:ss");
+            if (dateStr != "")
+            {
+                d2 = d;
+                d = dateStr;
+            }
             string query = "";
             if (txtClientID.Text != "" && txtCustomerID.Text != "")
             {
@@ -608,16 +633,34 @@ namespace MainSystem
             dr.Close();
         }
 
+        public double getCustomersBalance()
+        {
+            dbconnection.Open();
+            dbconnection1.Open();
+            dataGridView1.Rows.Clear();
 
+            customers_Bills("2019-07-01 00:00:00");
+            customers_returnBills("2019-07-01 00:00:00");
+            customersPaid_Bills("2019-07-01 00:00:00");
+            customersPaid_returnBills("2019-07-01 00:00:00");
 
+            double totalBill = 0, TotalReturn = 0, totalPaidBill = 0, TotalPaidReturn = 0;
 
+            foreach (DataGridViewRow row1 in dataGridView1.Rows)
+            {
+                totalBill += Convert.ToDouble(row1.Cells[7].Value);
+                TotalReturn += Convert.ToDouble(row1.Cells[6].Value);
+                totalPaidBill += Convert.ToDouble(row1.Cells[5].Value);
+                TotalPaidReturn += Convert.ToDouble(row1.Cells[4].Value);
+            }
 
-
-
-
-
-
-
+            labBills.Text = (totalBill - TotalReturn).ToString("000,000.00");
+            labpaid.Text = (totalPaidBill - TotalPaidReturn).ToString("000,000.00");
+            labRest.Text = ((totalBill - TotalReturn) - (totalPaidBill - TotalPaidReturn)).ToString("000,000.00");
+            dbconnection.Close();
+            dbconnection1.Close();
+            return (totalBill - TotalReturn) - (totalPaidBill - TotalPaidReturn);
+        }
         public void displayBill()
         {
             DateTime date = dateTimeFrom.Value;
@@ -759,7 +802,31 @@ namespace MainSystem
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                List<customerAccount> arrTD = new List<customerAccount>();
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    customerAccount item = new customerAccount();
+                    item.ID = Convert.ToInt16(dataGridView1.Rows[i].Cells[4].Value.ToString());
+                    item.Operation_Type = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    if (txtClientID.Text == "")
+                    {
+                        item.Client = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                        item.ClientCode = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                    }
+                    item.Paid = Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value.ToString());
+                    item.Date = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    item.Returned = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
+                    arrTD.Add(item);
+                }
+                PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text, false, Convert.ToDouble(labBeforBill.Text), Convert.ToDouble(labTotalBillCost.Text), Convert.ToDouble(labTotalReturnCost.Text), Convert.ToDouble(labRest.Text) + Convert.ToDouble(labBeforBill.Text), dateTimeFrom.Text, dateTimeTo.Text);
+                pr.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

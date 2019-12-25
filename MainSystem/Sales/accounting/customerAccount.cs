@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MainSystem.Sales.accounting
 {
-    class customerAccount
+   public class customerAccount
     {
         public int ID { get; set; }
         public string ClientCode { get; set; }
