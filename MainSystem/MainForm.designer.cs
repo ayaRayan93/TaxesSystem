@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
@@ -436,14 +437,14 @@
             this.xtraTabPageExpenses = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlExpenses = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl6 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup32 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemExpensesTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup42 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemMainSubReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup56 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSafeExpenseIncomeRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup57 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemExpenseRecord = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup32 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemExpensesTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem156 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem157 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem158 = new DevExpress.XtraNavBar.NavBarItem();
@@ -592,7 +593,7 @@
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
@@ -4311,23 +4312,6 @@
             this.navBarControl6.TabIndex = 5;
             this.navBarControl6.Text = "navBarControl1";
             // 
-            // navBarGroup32
-            // 
-            this.navBarGroup32.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
-            this.navBarGroup32.Appearance.Options.UseFont = true;
-            this.navBarGroup32.Caption = "تقارير";
-            this.navBarGroup32.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemExpensesTransitionsReport)});
-            this.navBarGroup32.Name = "navBarGroup32";
-            // 
-            // navBarItemExpensesTransitionsReport
-            // 
-            this.navBarItemExpensesTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemExpensesTransitionsReport.Appearance.Options.UseFont = true;
-            this.navBarItemExpensesTransitionsReport.Caption = "حركة المصروفات";
-            this.navBarItemExpensesTransitionsReport.Name = "navBarItemExpensesTransitionsReport";
-            this.navBarItemExpensesTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpensesTransitionsReport_LinkClicked);
-            // 
             // navBarGroup42
             // 
             this.navBarGroup42.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4380,6 +4364,23 @@
             this.navBarItemExpenseRecord.Caption = "تسجيل مصروف";
             this.navBarItemExpenseRecord.Name = "navBarItemExpenseRecord";
             this.navBarItemExpenseRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpenseRecord_LinkClicked);
+            // 
+            // navBarGroup32
+            // 
+            this.navBarGroup32.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F);
+            this.navBarGroup32.Appearance.Options.UseFont = true;
+            this.navBarGroup32.Caption = "تقارير";
+            this.navBarGroup32.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemExpensesTransitionsReport)});
+            this.navBarGroup32.Name = "navBarGroup32";
+            // 
+            // navBarItemExpensesTransitionsReport
+            // 
+            this.navBarItemExpensesTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemExpensesTransitionsReport.Appearance.Options.UseFont = true;
+            this.navBarItemExpensesTransitionsReport.Caption = "حركة المصروفات";
+            this.navBarItemExpensesTransitionsReport.Name = "navBarItemExpensesTransitionsReport";
+            this.navBarItemExpensesTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpensesTransitionsReport_LinkClicked);
             // 
             // navBarItem156
             // 

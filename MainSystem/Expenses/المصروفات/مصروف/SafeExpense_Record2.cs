@@ -188,7 +188,7 @@ namespace MainSystem
             }
             else
             {
-                query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة'";
+                query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID +" and Bank_Type='خزينة'";
             }
             da = new MySqlDataAdapter(query, dbconnection);
             dt = new DataTable();

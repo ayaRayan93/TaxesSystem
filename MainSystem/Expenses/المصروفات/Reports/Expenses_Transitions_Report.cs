@@ -34,13 +34,13 @@ namespace MainSystem
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
         {
             string query = "";
-            if (UserControl.userType == 1)
+            if (UserControl.userType == 1 || UserControl.userType == 7)
             {
                 query = "select * from bank where Bank_Type='خزينة'";
             }
             else
             {
-                query = "select * from bank where Branch_ID=" + UserControl.EmpBranchID + " and Bank_Type='خزينة'";
+                query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + UserControl.EmpBranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + " and Bank_Type='خزينة'";
             }
             MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
             DataTable dt = new DataTable();
