@@ -178,6 +178,9 @@ namespace MainSystem
                 btnBank.Checked = true;
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
+                btnExpenses.Enabled = true;
+                btnExpenses.Checked = true;
+                navBarGroup42.Visible = false;
 
                 navBarGroup1.Visible = false;
                 navBarGroup2.Visible = false;
@@ -252,6 +255,9 @@ namespace MainSystem
                 AccountingSystem.Checked = true;
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
+                btnExpenses.Enabled = true;
+                btnExpenses.Checked = true;
+                navBarGroup57.Visible = false;
                 navBarGroupBillRecord.Visible = false;
                 //navBarGroupSupplierPayments.Visible = false;
                 //navBarGroup49.Visible = false;

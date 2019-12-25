@@ -83,7 +83,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
 
                 xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
-                SafeExpense_Record objFormExpenses = new SafeExpense_Record(xtraTabControlExpenses);
+                SafeExpense_Record2 objFormExpenses = new SafeExpense_Record2(xtraTabControlExpenses);
                 objFormExpenses.TopLevel = false;
 
                 xtraTabPage.Controls.Add(objFormExpenses);

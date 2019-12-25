@@ -20,7 +20,7 @@ namespace MainSystem
 
         public void PrintInvoice(int ExpenseTransitionID, string Main, string Sub, string Bank, string PullMoney, string Client, string Descrip)
         {
-            Print_Expense report = new Print_Expense();
+            Print_Expense2 report = new Print_Expense2();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
