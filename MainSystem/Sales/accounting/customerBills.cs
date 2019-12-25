@@ -804,7 +804,7 @@ namespace MainSystem
         {
             try
             {
-                List<customerAccount> arrTD = new List<customerAccount>();
+                /*List<customerAccount> arrTD = new List<customerAccount>();
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     customerAccount item = new customerAccount();

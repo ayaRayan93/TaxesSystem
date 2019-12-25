@@ -21,7 +21,7 @@ namespace MainSystem
     {
         MySqlConnection conn;
         XtraTabControl xtraTabControlExpenses;
-        
+        DataRowView row1 = null;
         bool loaded = false;
 
         public Expenses_Transitions_Report(XtraTabControl XtraTabControlExpenses)
@@ -116,12 +116,12 @@ namespace MainSystem
             
             double totalReturn = 0;
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Date as 'التاريخ',expense_transition.Depositor_Name as 'المستلم',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',expense_transition.Amount as 'المبلغ',employee.Employee_Name as 'الموظف',expense_transition.Description as 'البيان' FROM expense_transition left JOIN expense_sub ON expense_sub.SubExpense_ID = expense_transition.SubExpense_ID left JOIN expense_main ON expense_main.MainExpense_ID = expense_sub.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where ExpenseTransition_ID=0", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Date as 'التاريخ',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',bank.Bank_Name as 'الخزينة',expense_transition.Amount as 'المبلغ',employee.Employee_Name as 'الموظف',expense_transition.Depositor_Name as 'المستلم',expense_transition.Description as 'البيان' FROM expense_transition left JOIN expense_sub ON expense_sub.SubExpense_ID = expense_transition.SubExpense_ID left JOIN expense_main ON expense_main.MainExpense_ID = expense_sub.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where ExpenseTransition_ID=0", conn);
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
             gridControl1.DataSource = sourceDataSet.Tables[0];
 
-            string query = "SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',expense_transition.Date as 'التاريخ',expense_transition.Depositor_Name as 'المستلم',expense_transition.Amount as 'المبلغ',expense_transition.Description as 'البيان',employee.Employee_Name as 'الموظف' FROM expense_transition left JOIN expense_sub ON expense_transition.SubExpense_ID=expense_sub.SubExpense_ID left JOIN expense_main ON expense_sub.MainExpense_ID=expense_main.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where expense_transition.Bank_ID=" + comSafe.SelectedValue.ToString() + " and expense_transition.Error=0 and date(expense_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by expense_transition.Date";
+            string query = "SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',expense_transition.Date as 'التاريخ',expense_transition.Depositor_Name as 'المستلم',bank.Bank_Name as 'الخزينة',expense_transition.Amount as 'المبلغ',expense_transition.Description as 'البيان',employee.Employee_Name as 'الموظف' FROM expense_transition left JOIN expense_sub ON expense_transition.SubExpense_ID=expense_sub.SubExpense_ID left JOIN expense_main ON expense_sub.MainExpense_ID=expense_main.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where expense_transition.Bank_ID=" + comSafe.SelectedValue.ToString() + " and expense_transition.Error=0 and date(expense_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by expense_transition.Date";
             MySqlCommand comand = new MySqlCommand(query, conn);
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
@@ -135,6 +135,7 @@ namespace MainSystem
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المصروف الفرعى"], dr["المصروف الفرعى"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المستلم"], dr["المستلم"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخزينة"], dr["الخزينة"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المبلغ"], dr["المبلغ"].ToString());
                     totalReturn += Convert.ToDouble(dr["المبلغ"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["البيان"], dr["البيان"].ToString());
@@ -197,7 +198,36 @@ namespace MainSystem
 
         private void btnPrintCopy_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (row1 != null && comSafe.Text != "" && comSafe.SelectedValue != null)
+                { 
+                    Print_Expense_Report_Copy f = new Print_Expense_Report_Copy();
+                    f.PrintInvoice(Convert.ToInt32(row1["التسلسل"].ToString()), row1["المصروف الرئيسى"].ToString(), row1["المصروف الفرعى"].ToString(), row1["الخزينة"].ToString(), row1["المبلغ"].ToString(), row1["المستلم"].ToString(), row1["البيان"].ToString(), row1["التاريخ"].ToString());
+                    f.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("يجب ادخال البيانات كاملة");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
+        }
 
+        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            try
+            {
+                row1 = (DataRowView)gridView1.GetRow(e.RowHandle);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

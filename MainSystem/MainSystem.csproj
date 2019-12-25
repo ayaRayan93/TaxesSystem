@@ -263,6 +263,18 @@
     <Compile Include="Expenses\المصروفات\Reports\Expenses_Transitions_Report.designer.cs">
       <DependentUpon>Expenses_Transitions_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\print expense copy\Print_Expense2_Copy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\print expense copy\Print_Expense2_Copy.designer.cs">
+      <DependentUpon>Print_Expense2_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\print expense copy\Print_Expense_Report_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\print expense copy\Print_Expense_Report_Copy.designer.cs">
+      <DependentUpon>Print_Expense_Report_Copy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\المصروفات\Reports\Print_ExpensesTransition.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2965,6 +2977,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\Expenses_Transitions_Report.resx">
       <DependentUpon>Expenses_Transitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\print expense copy\Print_Expense2_Copy.resx">
+      <DependentUpon>Print_Expense2_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\print expense copy\Print_Expense_Report_Copy.resx">
+      <DependentUpon>Print_Expense_Report_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\Print_ExpensesTransition.resx">
       <DependentUpon>Print_ExpensesTransition.cs</DependentUpon>
