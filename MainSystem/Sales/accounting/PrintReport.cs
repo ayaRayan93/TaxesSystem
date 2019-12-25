@@ -14,6 +14,7 @@ namespace MainSystem.Sales.accounting
     public partial class PrintReport : DevExpress.XtraEditors.XtraForm
     {
         List<TransitionData> Bill_Items;
+        List<customerAccount> Report_Items;
         string name,from,to;
         bool flag = true;
         double befor, totalBills, totalReturns, safay1;
@@ -27,6 +28,21 @@ namespace MainSystem.Sales.accounting
             this.totalBills = totalBills;
             this.totalReturns = totalReturns;
             this.safay1 = safay1;
+            this.from = from;
+            this.to = to;
+        }
+
+        public PrintReport(List<customerAccount> Report_Items, bool flag, double befor, double totalBills, double totalReturns, double safay1, string from, string to)
+        {
+            InitializeComponent();
+            this.Report_Items = Report_Items;
+            this.flag = flag;
+            this.befor = befor;
+            this.totalBills = totalBills;
+            this.totalReturns = totalReturns;
+            this.safay1 = safay1;
+            this.from = from;
+            this.to = to;
         }
 
         private void PrintReport_Load(object sender, EventArgs e)

@@ -62,11 +62,13 @@
             this.radClient = new System.Windows.Forms.RadioButton();
             this.labelEng = new System.Windows.Forms.Label();
             this.panFooter = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.labBills = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labpaid = new System.Windows.Forms.Label();
-            this.btnPrint = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labTotalBefor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -283,7 +285,7 @@
             this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimeTo.CustomFormat = "yyyy/MM/dd";
             this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeTo.Location = new System.Drawing.Point(217, 88);
+            this.dateTimeTo.Location = new System.Drawing.Point(642, 74);
             this.dateTimeTo.Name = "dateTimeTo";
             this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
             this.dateTimeTo.TabIndex = 183;
@@ -293,7 +295,7 @@
             this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
             this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimeFrom.Location = new System.Drawing.Point(217, 52);
+            this.dateTimeFrom.Location = new System.Drawing.Point(642, 38);
             this.dateTimeFrom.Name = "dateTimeFrom";
             this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
             this.dateTimeFrom.TabIndex = 184;
@@ -303,7 +305,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(432, 53);
+            this.label2.Location = new System.Drawing.Point(857, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 185;
@@ -314,7 +316,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(431, 88);
+            this.label3.Location = new System.Drawing.Point(856, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 16);
             this.label3.TabIndex = 186;
@@ -324,7 +326,7 @@
             // 
             this.txtClientID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtClientID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtClientID.Location = new System.Drawing.Point(565, 88);
+            this.txtClientID.Location = new System.Drawing.Point(214, 75);
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.Size = new System.Drawing.Size(48, 24);
             this.txtClientID.TabIndex = 182;
@@ -334,7 +336,7 @@
             // 
             this.txtCustomerID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCustomerID.Location = new System.Drawing.Point(565, 57);
+            this.txtCustomerID.Location = new System.Drawing.Point(214, 44);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.Size = new System.Drawing.Size(48, 24);
             this.txtCustomerID.TabIndex = 181;
@@ -345,7 +347,7 @@
             this.radDealer.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDealer.Location = new System.Drawing.Point(599, 31);
+            this.radDealer.Location = new System.Drawing.Point(248, 18);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radDealer.Size = new System.Drawing.Size(46, 20);
@@ -362,7 +364,7 @@
             this.comEngCon.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comEngCon.FormattingEnabled = true;
-            this.comEngCon.Location = new System.Drawing.Point(620, 57);
+            this.comEngCon.Location = new System.Drawing.Point(269, 44);
             this.comEngCon.Name = "comEngCon";
             this.comEngCon.Size = new System.Drawing.Size(173, 24);
             this.comEngCon.TabIndex = 178;
@@ -376,7 +378,7 @@
             this.comClient.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(620, 88);
+            this.comClient.Location = new System.Drawing.Point(269, 75);
             this.comClient.Name = "comClient";
             this.comClient.Size = new System.Drawing.Size(173, 24);
             this.comClient.TabIndex = 173;
@@ -388,7 +390,7 @@
             this.labelClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelClient.AutoSize = true;
             this.labelClient.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelClient.Location = new System.Drawing.Point(799, 92);
+            this.labelClient.Location = new System.Drawing.Point(448, 79);
             this.labelClient.Name = "labelClient";
             this.labelClient.Size = new System.Drawing.Size(35, 16);
             this.labelClient.TabIndex = 174;
@@ -400,7 +402,7 @@
             this.radCon.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCon.Location = new System.Drawing.Point(654, 31);
+            this.radCon.Location = new System.Drawing.Point(303, 18);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radCon.Size = new System.Drawing.Size(59, 20);
@@ -415,7 +417,7 @@
             this.radEng.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radEng.Location = new System.Drawing.Point(719, 31);
+            this.radEng.Location = new System.Drawing.Point(368, 18);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(65, 20);
@@ -430,7 +432,7 @@
             this.radClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radClient.AutoSize = true;
             this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radClient.Location = new System.Drawing.Point(796, 31);
+            this.radClient.Location = new System.Drawing.Point(445, 18);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radClient.Size = new System.Drawing.Size(53, 20);
@@ -445,7 +447,7 @@
             this.labelEng.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelEng.AutoSize = true;
             this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEng.Location = new System.Drawing.Point(797, 61);
+            this.labelEng.Location = new System.Drawing.Point(446, 48);
             this.labelEng.Name = "labelEng";
             this.labelEng.Size = new System.Drawing.Size(110, 16);
             this.labelEng.TabIndex = 179;
@@ -454,6 +456,8 @@
             // 
             // panFooter
             // 
+            this.panFooter.Controls.Add(this.label4);
+            this.panFooter.Controls.Add(this.labTotalBefor);
             this.panFooter.Controls.Add(this.btnPrint);
             this.panFooter.Controls.Add(this.label5);
             this.panFooter.Controls.Add(this.labBills);
@@ -467,11 +471,28 @@
             this.panFooter.Size = new System.Drawing.Size(956, 94);
             this.panFooter.TabIndex = 163;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnPrint.FlatAppearance.BorderSize = 0;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnPrint.Location = new System.Drawing.Point(17, 46);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(93, 32);
+            this.btnPrint.TabIndex = 171;
+            this.btnPrint.Text = "طباعة تقرير";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(835, 20);
+            this.label5.Location = new System.Drawing.Point(612, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(101, 16);
             this.label5.TabIndex = 170;
@@ -482,7 +503,7 @@
             this.labBills.AutoSize = true;
             this.labBills.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labBills.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.labBills.Location = new System.Drawing.Point(715, 20);
+            this.labBills.Location = new System.Drawing.Point(492, 20);
             this.labBills.Name = "labBills";
             this.labBills.Size = new System.Drawing.Size(0, 17);
             this.labBills.TabIndex = 169;
@@ -491,7 +512,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(604, 20);
+            this.label1.Location = new System.Drawing.Point(381, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 16);
             this.label1.TabIndex = 168;
@@ -502,27 +523,30 @@
             this.labpaid.AutoSize = true;
             this.labpaid.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labpaid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.labpaid.Location = new System.Drawing.Point(485, 20);
+            this.labpaid.Location = new System.Drawing.Point(262, 20);
             this.labpaid.Name = "labpaid";
             this.labpaid.Size = new System.Drawing.Size(0, 17);
             this.labpaid.TabIndex = 167;
             // 
-            // btnPrint
+            // label4
             // 
-            this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.FlatAppearance.BorderSize = 0;
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnPrint.Location = new System.Drawing.Point(70, 56);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(93, 32);
-            this.btnPrint.TabIndex = 171;
-            this.btnPrint.Text = "طباعة تقرير";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(846, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 16);
+            this.label4.TabIndex = 173;
+            this.label4.Text = "رصيد ما قبل";
+            // 
+            // labTotalBefor
+            // 
+            this.labTotalBefor.AutoSize = true;
+            this.labTotalBefor.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labTotalBefor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labTotalBefor.Location = new System.Drawing.Point(726, 21);
+            this.labTotalBefor.Name = "labTotalBefor";
+            this.labTotalBefor.Size = new System.Drawing.Size(0, 17);
+            this.labTotalBefor.TabIndex = 172;
             // 
             // customerBills
             // 
@@ -586,5 +610,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
         private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labTotalBefor;
     }
 }
