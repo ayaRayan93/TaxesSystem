@@ -712,7 +712,7 @@ namespace MainSystem
                     item.Returned = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
                     arrTD.Add(item);
                 }
-                PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text,false,Convert.ToDouble(labBeforBill.Text), Convert.ToDouble(labTotalBillCost.Text), Convert.ToDouble(labTotalReturnCost.Text), Convert.ToDouble(labRest.Text)+ Convert.ToDouble(labBeforBill.Text), dateTimeFrom.Text,dateTimeTo.Text);
+                PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text,2,Convert.ToDouble(labBeforBill.Text), Convert.ToDouble(labTotalBillCost.Text), Convert.ToDouble(labTotalReturnCost.Text), Convert.ToDouble(labRest.Text)+ Convert.ToDouble(labBeforBill.Text), dateTimeFrom.Text,dateTimeTo.Text);
                 pr.Show();
             }
             catch (Exception ex)
@@ -740,7 +740,7 @@ namespace MainSystem
                     item.Returned = Convert.ToDouble(dataGridView2.Rows[i].Cells[6].Value.ToString());
                     arrTD.Add(item);
                 }
-                PrintReport pr = new PrintReport(arrTD,comClient.Text+" "+txtClientID.Text,true, Convert.ToDouble(labBeforPaid.Text), Convert.ToDouble(labTotalPaid.Text), Convert.ToDouble(labTotalReturn2.Text), Convert.ToDouble(labRest2.Text)+ Convert.ToDouble(labBeforPaid.Text),dateTimeFrom.Text, dateTimeTo.Text);
+                PrintReport pr = new PrintReport(arrTD,comClient.Text+" "+txtClientID.Text,1, Convert.ToDouble(labBeforPaid.Text), Convert.ToDouble(labTotalPaid.Text), Convert.ToDouble(labTotalReturn2.Text), Convert.ToDouble(labRest2.Text)+ Convert.ToDouble(labBeforPaid.Text),dateTimeFrom.Text, dateTimeTo.Text);
                 pr.Show();
             }
             catch (Exception ex)

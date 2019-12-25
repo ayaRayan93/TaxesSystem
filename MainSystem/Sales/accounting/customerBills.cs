@@ -808,19 +808,63 @@ namespace MainSystem
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     customerAccount item = new customerAccount();
-                    item.ID = Convert.ToInt16(dataGridView1.Rows[i].Cells[4].Value.ToString());
-                    item.Operation_Type = dataGridView1.Rows[i].Cells[1].Value.ToString();
-                    if (txtClientID.Text == "")
+
+                    item.ClientCode = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    item.CustomerCode = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    item.Client = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                    item.CustomerName = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                    if (dataGridView1.Rows[i].Cells[4].Value != null)
                     {
-                        item.Client = dataGridView1.Rows[i].Cells[3].Value.ToString();
-                        item.ClientCode = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                        item.Returned = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value.ToString());
                     }
-                    item.Paid = Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value.ToString());
-                    item.Date = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                    item.Returned = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
+                    else
+                    {
+                        item.Returned = 0;
+                    }
+                    if (dataGridView1.Rows[i].Cells[5].Value != null)
+                    {
+                        item.Paid = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
+                    }
+                    else
+                    {
+                        item.Paid = 0;
+                    }
+                    if (dataGridView1.Rows[i].Cells[6].Value != null)
+                    {
+                        item.ReturnedBill = Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value.ToString());
+                    }
+                    else
+                    {
+                        item.ReturnedBill = 0;
+                    }
+                    if (dataGridView1.Rows[i].Cells[7].Value != null)
+                    {
+                        item.Bill = Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value.ToString());
+                    }
+                    else
+                    {
+                        item.Bill = 0;
+                    }
                     arrTD.Add(item);
                 }
-                PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text, false, Convert.ToDouble(labBeforBill.Text), Convert.ToDouble(labTotalBillCost.Text), Convert.ToDouble(labTotalReturnCost.Text), Convert.ToDouble(labRest.Text) + Convert.ToDouble(labBeforBill.Text), dateTimeFrom.Text, dateTimeTo.Text);
+                double TotalBefor = 0, TotalBillCost = 0, TotalPaid = 0, Rest = 0;
+                if (labTotalBefor.Text != "")
+                {
+                    TotalBefor = Convert.ToDouble(labTotalBefor.Text);
+                }
+                if (labBills.Text != "")
+                {
+                   TotalBillCost= Convert.ToDouble(labBills.Text);
+                }
+                if (labpaid.Text != "")
+                {
+                    TotalPaid = Convert.ToDouble(labpaid.Text);
+                }
+                if (labRest.Text != "")
+                {
+                    Rest = Convert.ToDouble(labRest.Text);
+                }
+                PrintReport pr = new PrintReport(arrTD, 3, TotalBefor, TotalBillCost, TotalPaid,Rest, dateTimeFrom.Text, dateTimeTo.Text);
                 pr.Show();
             }
             catch (Exception ex)

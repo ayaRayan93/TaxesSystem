@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XtraReportCustomerAccount));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
@@ -85,7 +84,7 @@
             this.totalSafayBill = new DevExpress.XtraReports.Parameters.Parameter();
             this.totalSafayPaid = new DevExpress.XtraReports.Parameters.Parameter();
             this.customerRestMoney = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -107,7 +106,6 @@
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrTable2.Name = "xrTable2";
-            this.xrTable2.OddStyleName = "DetailData3_Odd";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow2});
             this.xrTable2.SizeF = new System.Drawing.SizeF(797.9999F, 25F);
@@ -620,12 +618,14 @@
             this.totalSafayBefore.Description = "Parameter1";
             this.totalSafayBefore.Name = "totalSafayBefore";
             this.totalSafayBefore.Type = typeof(decimal);
+            this.totalSafayBefore.Visible = false;
             // 
             // dateFrom
             // 
             this.dateFrom.Description = "Parameter1";
             this.dateFrom.Name = "dateFrom";
             this.dateFrom.Type = typeof(System.DateTime);
+            this.dateFrom.Visible = false;
             // 
             // dateTo
             // 
@@ -633,6 +633,7 @@
             this.dateTo.Name = "dateTo";
             this.dateTo.Type = typeof(System.DateTime);
             this.dateTo.ValueInfo = "2019-12-11";
+            this.dateTo.Visible = false;
             // 
             // ReportFooter
             // 
@@ -789,18 +790,21 @@
             this.totalSafayBill.Description = "Parameter1";
             this.totalSafayBill.Name = "totalSafayBill";
             this.totalSafayBill.Type = typeof(decimal);
+            this.totalSafayBill.Visible = false;
             // 
             // totalSafayPaid
             // 
             this.totalSafayPaid.Description = "Parameter1";
             this.totalSafayPaid.Name = "totalSafayPaid";
             this.totalSafayPaid.Type = typeof(decimal);
+            this.totalSafayPaid.Visible = false;
             // 
             // customerRestMoney
             // 
             this.customerRestMoney.Description = "Parameter1";
             this.customerRestMoney.Name = "customerRestMoney";
             this.customerRestMoney.Type = typeof(decimal);
+            this.customerRestMoney.Visible = false;
             // 
             // objectDataSource1
             // 
