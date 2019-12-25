@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
@@ -593,7 +592,7 @@
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
@@ -1129,7 +1128,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup8;
+            this.navBarControl1.ActiveGroup = this.navBarGroup1;
             this.navBarControl1.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl1.Appearance.Background.Options.UseFont = true;
             this.navBarControl1.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1254,7 +1253,6 @@
             // navBarGroup8
             // 
             this.navBarGroup8.Caption = "التحويلات";
-            this.navBarGroup8.Expanded = true;
             this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransportationStore),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransportationStoreBill),
@@ -1312,6 +1310,7 @@
             // navBarGroup1
             // 
             this.navBarGroup1.Caption = "الرصيد الافتتاحي";
+            this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
@@ -1734,7 +1733,7 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup58;
+            this.navBarControl2.ActiveGroup = this.navBarGroup15;
             this.navBarControl2.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Background.Options.UseFont = true;
             this.navBarControl2.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1829,7 +1828,6 @@
             // navBarGroup58
             // 
             this.navBarGroup58.Caption = "تقارير اصناف المبيعات";
-            this.navBarGroup58.Expanded = true;
             this.navBarGroup58.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTotalSales),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTotalSalesDetails),
@@ -1878,6 +1876,7 @@
             // navBarGroup15
             // 
             this.navBarGroup15.Caption = "تاكيد البيع";
+            this.navBarGroup15.Expanded = true;
             this.navBarGroup15.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmBill)});
             this.navBarGroup15.Name = "navBarGroup15";
@@ -2481,7 +2480,7 @@
             // 
             // navBarControl4
             // 
-            this.navBarControl4.ActiveGroup = this.navBarGroup29;
+            this.navBarControl4.ActiveGroup = this.navBarGroup26;
             this.navBarControl4.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl4.Appearance.Background.Options.UseFont = true;
             this.navBarControl4.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -2562,7 +2561,6 @@
             // navBarGroup29
             // 
             this.navBarGroup29.Caption = "العداد";
-            this.navBarGroup29.Expanded = true;
             this.navBarGroup29.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem71)});
             this.navBarGroup29.Name = "navBarGroup29";
@@ -2576,6 +2574,7 @@
             // navBarGroup26
             // 
             this.navBarGroup26.Caption = "التكويد";
+            this.navBarGroup26.Expanded = true;
             this.navBarGroup26.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem65),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem66),
