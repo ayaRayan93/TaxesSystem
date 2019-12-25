@@ -804,7 +804,7 @@ namespace MainSystem
         {
             try
             {
-                List<customerAccount> arrTD = new List<customerAccount>();
+                /*List<customerAccount> arrTD = new List<customerAccount>();
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     customerAccount item = new customerAccount();
@@ -821,7 +821,7 @@ namespace MainSystem
                     arrTD.Add(item);
                 }
                 PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text, false, Convert.ToDouble(labBeforBill.Text), Convert.ToDouble(labTotalBillCost.Text), Convert.ToDouble(labTotalReturnCost.Text), Convert.ToDouble(labRest.Text) + Convert.ToDouble(labBeforBill.Text), dateTimeFrom.Text, dateTimeTo.Text);
-                pr.Show();
+                pr.Show();*/
             }
             catch (Exception ex)
             {
