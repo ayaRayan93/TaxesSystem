@@ -43,6 +43,8 @@ namespace MainSystem
         {
             try
             {
+                panelUpdateMain.Visible = false;
+                panelAddMain.Visible = false;
                 dbConnection.Open();
                 updateLists();
                 displayAllMain();
@@ -114,20 +116,20 @@ namespace MainSystem
 
         private void btnAddNewSub_Click(object sender, EventArgs e)
         {
-            if (txtMain.Text != "")
+            if (txtMainAdd.Text != "")
             {
                 try
                 {
                     dbConnection.Open();
-                    string q = "select MainExpense_Name from expense_main where MainExpense_Name='" + txtMain.Text + "'";
+                    string q = "select MainExpense_Name from expense_main where MainExpense_Name='" + txtMainAdd.Text + "'";
                     MySqlCommand c = new MySqlCommand(q, dbConnection);
                     if (c.ExecuteScalar() == null)
                     {
                         string query = "insert into expense_main (MainExpense_Name) values (@MainExpense_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbConnection);
-                        com.Parameters.Add("@MainExpense_Name", MySqlDbType.VarChar).Value = txtMain.Text;
+                        com.Parameters.Add("@MainExpense_Name", MySqlDbType.VarChar).Value = txtMainAdd.Text;
                         com.ExecuteNonQuery();
-                        txtMain.Text = "";
+                        txtMainAdd.Text = "";
 
                         q = "select MainExpense_ID from expense_main order by MainExpense_ID desc limit 1";
                         c = new MySqlCommand(q, dbConnection);
@@ -136,6 +138,8 @@ namespace MainSystem
                         UserControl.ItemRecord("expense_main", "اضافة", MainExpenseId, DateTime.Now, null, dbConnection);
                         updateLists();
                         displayAllMain();
+                        panelAddMain.Visible = false;
+                        panelUpdateMain.Visible = false;
                     }
                     else
                     {
@@ -172,6 +176,8 @@ namespace MainSystem
                         DialogResult dialogResult = MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dialogResult == DialogResult.Yes)
                         {
+                            panelAddMain.Visible = false;
+                            panelUpdateMain.Visible = false;
                             delete();
                             //gridView1.DeleteRow(gridView1.GetSelectedRows()[0]);
                             combuilder = new MySqlCommandBuilder(adabter);
@@ -198,7 +204,10 @@ namespace MainSystem
         {
             try
             {
+                panelAddMain.Visible = false;
+                panelUpdateMain.Visible = true;
                 row1 = (DataRowView)gridView1.GetRow(e.RowHandle);
+                txtMainUpdate.Text = row1[1].ToString();
             }
             catch (Exception ex)
             {
@@ -319,6 +328,52 @@ namespace MainSystem
             com.ExecuteNonQuery();*/
 
             UserControl.ItemRecord("expense_main", "حذف", Convert.ToInt32(row1[0].ToString()), DateTime.Now, null, dbConnection);
+        }
+
+        private void btnAddMain_Click(object sender, EventArgs e)
+        {
+            panelAddMain.Visible = true;
+            panelUpdateMain.Visible = false;
+        }
+
+        private void btnMainUpdate_Click(object sender, EventArgs e)
+        {
+            if (txtMainUpdate.Text != "")
+            {
+                try
+                {
+                    dbConnection.Open();
+                    string q = "select MainExpense_Name from expense_main where MainExpense_Name='" + txtMainUpdate.Text + "' and MainExpense_ID<>" + row1[0].ToString();
+                    MySqlCommand c = new MySqlCommand(q, dbConnection);
+                    if (c.ExecuteScalar() == null)
+                    {
+                        string query = "update expense_main set MainExpense_Name=@MainExpense_Name where MainExpense_ID=" + row1[0].ToString();
+                        MySqlCommand com = new MySqlCommand(query, dbConnection);
+                        com.Parameters.Add("@MainExpense_Name", MySqlDbType.VarChar).Value = txtMainUpdate.Text;
+                        com.ExecuteNonQuery();
+                        txtMainUpdate.Text = "";
+
+                        UserControl.ItemRecord("expense_main", "تعديل", Convert.ToInt32(row1[0].ToString()), DateTime.Now, null, dbConnection);
+                        updateLists();
+                        displayAllMain();
+                        panelAddMain.Visible = false;
+                        panelUpdateMain.Visible = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("هذا المصروف تم اضافته من قبل");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                dbConnection.Close();
+            }
+            else
+            {
+                MessageBox.Show("يجب التاكد من البيانات");
+            }
         }
     }
 }

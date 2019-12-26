@@ -35,8 +35,8 @@ namespace MainSystem
         {
             try
             {
-                panelUpdateMain.Visible = false;
-                panelAddMain.Visible = false;
+                panelUpdateSub.Visible = false;
+                panelAddSub.Visible = false;
                 dbConnection.Open();
                 updateLists();
                 displayAllMain();
@@ -64,13 +64,38 @@ namespace MainSystem
 
         private void btnAddMain_Click(object sender, EventArgs e)//add New Main Expense button
         {
-            if (txtMainNameAdd.Text != "" && comMainAdd.SelectedValue != null)
+            if (txtSubNameAdd.Text != "" && comMainAdd.SelectedValue != null)
             {
                 try
                 {
                     dbConnection.Open();
-                    addNewMain();//add new Main Expense
-                    txtMainNameAdd.Text = "";
+                    string q = "select SubExpense_Name from expense_sub where SubExpense_Name='" + txtSubNameAdd.Text + "' and MainExpense_ID=" + comMainAdd.SelectedValue.ToString();
+                    MySqlCommand c = new MySqlCommand(q, dbConnection);
+                    if (c.ExecuteScalar() == null)
+                    {
+                        string query = "insert into expense_sub (SubExpense_Name,MainExpense_ID) values (@SubExpense_Name,@MainExpense_ID)";
+                        MySqlCommand com = new MySqlCommand(query, dbConnection);
+                        com.Parameters.Add("@SubExpense_Name", MySqlDbType.VarChar).Value = txtSubNameAdd.Text;
+                        com.Parameters.Add("@MainExpense_ID", MySqlDbType.VarChar).Value = comMainAdd.SelectedValue.ToString();
+                        com.ExecuteNonQuery();
+                        txtSubNameAdd.Text = "";
+                        comMainAdd.SelectedIndex = -1;
+
+                        q = "select SubExpense_ID from expense_sub order by SubExpense_ID desc limit 1";
+                        c = new MySqlCommand(q, dbConnection);
+                        int SubId = Convert.ToInt32(c.ExecuteScalar().ToString());
+
+                        UserControl.ItemRecord("expense_sub", "اضافة", SubId, DateTime.Now, null, dbConnection);
+
+                        updateLists();//update combox1
+                        displayAllMain();
+                        panelUpdateSub.Visible = false;
+                        panelAddSub.Visible = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("هذا المصروف تم اضافته من قبل");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -109,8 +134,8 @@ namespace MainSystem
 
         private void btnAddNewMain_Click(object sender, EventArgs e)//add new
         {
-            panelAddMain.Visible = true;
-            panelUpdateMain.Visible = false;
+            panelAddSub.Visible = true;
+            panelUpdateSub.Visible = false;
 
             string query = "select * from expense_main";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbConnection);
@@ -124,19 +149,34 @@ namespace MainSystem
 
         private void btnUpdateMain_Click(object sender, EventArgs e)//update
         {
-            if (txtMainNameUpdate.Text != "" && comMainUpdate.SelectedValue != null)
+            if (txtSubNameUpdate.Text != "" && comMainUpdate.SelectedValue != null)
             {
                 try
                 {
                     dbConnection.Open();
-                    string query = "update expense_sub set MainExpense_ID=@MainExpense_ID where SubExpense_ID=" + row1[0].ToString();
-                    MySqlCommand com = new MySqlCommand(query, dbConnection);
-                    com.Parameters.Add("@MainExpense_ID", MySqlDbType.VarChar).Value = comMainUpdate.SelectedValue.ToString();
-                    com.ExecuteNonQuery();
+                    string q = "select SubExpense_Name from expense_sub where SubExpense_Name='" + txtSubNameUpdate.Text + "' and MainExpense_ID=" + comMainUpdate.SelectedValue.ToString() + " and SubExpense_ID<>" + row1[0].ToString();
+                    MySqlCommand c = new MySqlCommand(q, dbConnection);
+                    if (c.ExecuteScalar() == null)
+                    {
+                        string query = "update expense_sub set SubExpense_Name=@SubExpense_Name,MainExpense_ID=@MainExpense_ID where SubExpense_ID=" + row1[0].ToString();
+                        MySqlCommand com = new MySqlCommand(query, dbConnection);
+                        com.Parameters.Add("@SubExpense_Name", MySqlDbType.VarChar).Value = txtSubNameUpdate.Text;
+                        com.Parameters.Add("@MainExpense_ID", MySqlDbType.VarChar).Value = comMainUpdate.SelectedValue.ToString();
+                        com.ExecuteNonQuery();
+                        txtSubNameUpdate.Text = "";
+                        comMainUpdate.SelectedIndex = -1;
+                        
+                        UserControl.ItemRecord("expense_sub", "تعديل", Convert.ToInt32(row1[0].ToString()), DateTime.Now, null, dbConnection);
 
-                    updateLists();
-                    displayAllMain();
-                    panelUpdateMain.Visible = false;
+                        updateLists();//update combox1
+                        displayAllMain();
+                        panelUpdateSub.Visible = false;
+                        panelAddSub.Visible = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("هذا المصروف تم اضافته من قبل");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -168,8 +208,8 @@ namespace MainSystem
                         DialogResult dialogResult = MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            panelAddMain.Visible = false;
-                            panelUpdateMain.Visible = false;
+                            panelAddSub.Visible = false;
+                            panelUpdateSub.Visible = false;
                             delete();
                             combuilder = new MySqlCommandBuilder(adabter);
                             adabter.Update(dTable);
@@ -212,10 +252,10 @@ namespace MainSystem
         {
             try
             {
-                panelAddMain.Visible = false;
-                panelUpdateMain.Visible = true;
+                panelAddSub.Visible = false;
+                panelUpdateSub.Visible = true;
                 row1 = (DataRowView)gridView1.GetRow(e.RowHandle);
-                txtMainNameUpdate.Text = row1[1].ToString();
+                txtSubNameUpdate.Text = row1[1].ToString();
 
                 //display sub in this main expense
                 string query = "select * from expense_main";
@@ -258,37 +298,6 @@ namespace MainSystem
             
             gridControl1.DataSource = null;
             loaded = true;
-        }
-
-        private void addNewMain()
-        {
-            string q = "select SubExpense_Name from expense_sub where SubExpense_Name='" + txtMainNameAdd.Text + "' and MainExpense_ID=" + comMainAdd.SelectedValue.ToString();
-            MySqlCommand c = new MySqlCommand(q, dbConnection);
-            if (c.ExecuteScalar() == null)
-            {
-                string query = "insert into expense_sub (SubExpense_Name,MainExpense_ID) values (@SubExpense_Name,@MainExpense_ID)";
-                MySqlCommand com = new MySqlCommand(query, dbConnection);
-                com.Parameters.Add("@SubExpense_Name", MySqlDbType.VarChar).Value = txtMainNameAdd.Text;
-                com.Parameters.Add("@MainExpense_ID", MySqlDbType.VarChar).Value = comMainAdd.SelectedValue.ToString();
-                com.ExecuteNonQuery();
-
-                q = "select SubExpense_ID from expense_sub order by SubExpense_ID desc limit 1";
-                c = new MySqlCommand(q, dbConnection);
-                int SubId = Convert.ToInt32(c.ExecuteScalar().ToString());
-
-                UserControl.ItemRecord("expense_sub", "اضافة", SubId, DateTime.Now, null, dbConnection);
-
-                updateLists();//update combox1
-                displayAllMain();
-                panelUpdateMain.Visible = false;
-                panelAddMain.Visible = false;
-            }
-            else
-            {
-                MessageBox.Show("هذا المصروف تم اضافته من قبل");
-                dbConnection.Close();
-                return;
-            }
         }
 
         void delete()
