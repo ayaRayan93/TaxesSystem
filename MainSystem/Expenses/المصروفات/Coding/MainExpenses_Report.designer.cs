@@ -32,17 +32,24 @@
             this.comMain = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddNewMain = new System.Windows.Forms.Button();
-            this.txtMain = new System.Windows.Forms.TextBox();
+            this.txtMainAdd = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.panelAddMain = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnAddMain = new System.Windows.Forms.Button();
+            this.panelUpdateMain = new System.Windows.Forms.Panel();
+            this.btnMainUpdate = new System.Windows.Forms.Button();
+            this.txtMainUpdate = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panelAddMain.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.panelUpdateMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // btndisplayAll
@@ -85,44 +92,46 @@
             // 
             // btnAddNewMain
             // 
+            this.btnAddNewMain.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnAddNewMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnAddNewMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddNewMain.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnAddNewMain.ForeColor = System.Drawing.Color.White;
-            this.btnAddNewMain.Location = new System.Drawing.Point(299, 3);
+            this.btnAddNewMain.Location = new System.Drawing.Point(191, 48);
             this.btnAddNewMain.Name = "btnAddNewMain";
-            this.btnAddNewMain.Size = new System.Drawing.Size(164, 30);
+            this.btnAddNewMain.Size = new System.Drawing.Size(80, 30);
             this.btnAddNewMain.TabIndex = 13;
-            this.btnAddNewMain.Text = "اضافة مصروف رئيسى جديد";
+            this.btnAddNewMain.Text = "اضافة";
             this.btnAddNewMain.UseVisualStyleBackColor = false;
             this.btnAddNewMain.Click += new System.EventHandler(this.btnAddNewSub_Click);
             // 
-            // txtMain
+            // txtMainAdd
             // 
-            this.txtMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMain.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtMain.Location = new System.Drawing.Point(469, 3);
-            this.txtMain.Name = "txtMain";
-            this.txtMain.Size = new System.Drawing.Size(150, 24);
-            this.txtMain.TabIndex = 14;
+            this.txtMainAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtMainAdd.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtMainAdd.Location = new System.Drawing.Point(156, 16);
+            this.txtMainAdd.Name = "txtMainAdd";
+            this.txtMainAdd.Size = new System.Drawing.Size(150, 24);
+            this.txtMainAdd.TabIndex = 14;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnAddMain, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gridControl1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(937, 749);
             this.tableLayoutPanel1.TabIndex = 15;
@@ -133,15 +142,25 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.btnAddNewMain, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtMain, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.panelAddMain, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.panelUpdateMain, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 706);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 652);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(931, 40);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(931, 94);
             this.tableLayoutPanel3.TabIndex = 14;
+            // 
+            // panelAddMain
+            // 
+            this.panelAddMain.Controls.Add(this.btnAddNewMain);
+            this.panelAddMain.Controls.Add(this.txtMainAdd);
+            this.panelAddMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelAddMain.Location = new System.Drawing.Point(469, 3);
+            this.panelAddMain.Name = "panelAddMain";
+            this.panelAddMain.Size = new System.Drawing.Size(459, 88);
+            this.panelAddMain.TabIndex = 4;
             // 
             // tableLayoutPanel4
             // 
@@ -160,16 +179,16 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(931, 38);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(931, 36);
             this.tableLayoutPanel4.TabIndex = 15;
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(3, 47);
+            this.gridControl1.Location = new System.Drawing.Point(3, 45);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(931, 653);
+            this.gridControl1.Size = new System.Drawing.Size(931, 561);
             this.gridControl1.TabIndex = 17;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -193,6 +212,55 @@
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
+            // btnAddMain
+            // 
+            this.btnAddMain.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnAddMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAddMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddMain.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnAddMain.ForeColor = System.Drawing.Color.White;
+            this.btnAddMain.Location = new System.Drawing.Point(383, 614);
+            this.btnAddMain.Name = "btnAddMain";
+            this.btnAddMain.Size = new System.Drawing.Size(171, 32);
+            this.btnAddMain.TabIndex = 18;
+            this.btnAddMain.Text = "اضافة مصروف رئيسى جديد ";
+            this.btnAddMain.UseVisualStyleBackColor = false;
+            this.btnAddMain.Click += new System.EventHandler(this.btnAddMain_Click);
+            // 
+            // panelUpdateMain
+            // 
+            this.panelUpdateMain.Controls.Add(this.btnMainUpdate);
+            this.panelUpdateMain.Controls.Add(this.txtMainUpdate);
+            this.panelUpdateMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelUpdateMain.Location = new System.Drawing.Point(3, 3);
+            this.panelUpdateMain.Name = "panelUpdateMain";
+            this.panelUpdateMain.Size = new System.Drawing.Size(460, 88);
+            this.panelUpdateMain.TabIndex = 5;
+            // 
+            // btnMainUpdate
+            // 
+            this.btnMainUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnMainUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnMainUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMainUpdate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnMainUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnMainUpdate.Location = new System.Drawing.Point(190, 45);
+            this.btnMainUpdate.Name = "btnMainUpdate";
+            this.btnMainUpdate.Size = new System.Drawing.Size(80, 30);
+            this.btnMainUpdate.TabIndex = 15;
+            this.btnMainUpdate.Text = "تعديل";
+            this.btnMainUpdate.UseVisualStyleBackColor = false;
+            this.btnMainUpdate.Click += new System.EventHandler(this.btnMainUpdate_Click);
+            // 
+            // txtMainUpdate
+            // 
+            this.txtMainUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtMainUpdate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtMainUpdate.Location = new System.Drawing.Point(155, 13);
+            this.txtMainUpdate.Name = "txtMainUpdate";
+            this.txtMainUpdate.Size = new System.Drawing.Size(150, 24);
+            this.txtMainUpdate.TabIndex = 16;
+            // 
             // MainExpenses_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,11 +272,14 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.panelAddMain.ResumeLayout(false);
+            this.panelAddMain.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.panelUpdateMain.ResumeLayout(false);
+            this.panelUpdateMain.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -219,12 +290,17 @@
         private System.Windows.Forms.ComboBox comMain;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAddNewMain;
-        private System.Windows.Forms.TextBox txtMain;
+        private System.Windows.Forms.TextBox txtMainAdd;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.Panel panelAddMain;
+        private System.Windows.Forms.Button btnAddMain;
+        private System.Windows.Forms.Panel panelUpdateMain;
+        private System.Windows.Forms.Button btnMainUpdate;
+        private System.Windows.Forms.TextBox txtMainUpdate;
     }
 }
 

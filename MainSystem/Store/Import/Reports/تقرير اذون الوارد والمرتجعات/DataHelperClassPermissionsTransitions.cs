@@ -79,7 +79,17 @@ namespace MainSystem
             column.Unique = false;
 
             table.Columns.Add(column);
-            
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "ColSupplierName";
+            column.AutoIncrement = false;
+            column.Caption = "المورد";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
             column = new DataColumn();
             column.DataType = typeof(DateTime);
             column.ColumnName = "ColDate";
@@ -138,7 +148,17 @@ namespace MainSystem
             column.Unique = false;
 
             table.Columns.Add(column);
-            
+
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "ColSupplierName";
+            column.AutoIncrement = false;
+            column.Caption = "المورد";
+            column.ReadOnly = false;
+            column.Unique = false;
+
+            table.Columns.Add(column);
+
             column = new DataColumn();
             column.DataType = typeof(DateTime);
             column.ColumnName = "ColDate";
