@@ -949,6 +949,37 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSaleProductBillDetailsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                //if (UserControl.userType == 10 || UserControl.userType == 17 || UserControl.userType == 1)
+                //{
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تفاصيل الاصناف المباعة");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("تفاصيل الاصناف المباعة");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "تفاصيل الاصناف المباعة");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                bindDisplaySalesProductsBillsDetailsForm(xtraTabPage);
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //functions
         public void bindDisplaySpecialOrderConfirm(XtraTabPage xtraTabPage)
         {
@@ -1328,6 +1359,17 @@ namespace MainSystem
         public void bindDisplaySalesProductsBillsFactoriesForm(XtraTabPage xtraTabPage)
         {
             SalesProductsBillsFactories_Report objForm = new SalesProductsBillsFactories_Report(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindDisplaySalesProductsBillsDetailsForm(XtraTabPage xtraTabPage)
+        {
+            SalesProductsBillsDetails_Report objForm = new SalesProductsBillsDetails_Report(this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
