@@ -269,18 +269,7 @@ namespace MainSystem
                     str += dr[0].ToString() + ",";
                 }
                 dr.Close();
-
-                // query = "select CustomerBill_ID from customer_bill  where Paid_Status=1 and Type_Buy='آجل' and AgelBill_PaidDate between '" + d + "' and '" + d2 + "' and customer_bill.Branch_ID=" + txtBranchID.Text;
-  
-                //com = new MySqlCommand(query, dbconnection);
-                //dr = com.ExecuteReader();
-
-                //while (dr.Read())
-                //{
-                //    str += dr[0].ToString() + ",";
-                //}
-                //dr.Close();
-
+                
                 str += 0;
 
                 query = "select CustomerReturnBill_ID from customer_return_bill where  Date between '" + d + "' and '" + d2 + "' and customer_return_bill.Branch_ID=" + txtBranchID.Text;
@@ -392,7 +381,7 @@ namespace MainSystem
 
         public DataTable getReturnedQuantity(DataTable _Table, string itemName, string DataTableRelations, string dateFrom, string dateTo, string customerReturnBill_IDs)
         {
-            string query = "select customer_return_bill_details.Data_ID,data.Code," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerReturnBill_ID in (" + customerReturnBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Code  ";
+            string query = "select customer_return_bill_details.Data_ID,data.Code," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerReturnBill_ID in (" + customerReturnBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Data_ID  ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();
@@ -405,7 +394,7 @@ namespace MainSystem
                     {
                         item["QuantityReturned"] = dr[3].ToString();
                         item["Quantity"] = (Convert.ToDouble(item[3].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
-                        item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[3].ToString());
+                        item["Cost"] = Convert.ToDouble(item["Quantity"].ToString()) * Convert.ToDouble(dr[4].ToString());
                         flag = false;
                     }
 
@@ -420,7 +409,7 @@ namespace MainSystem
                     row["Data_ID"] = dr[0].ToString();
                     row["Code"] = dr[1].ToString();
                     row["CodeName"] = dr[2].ToString();
-                    row["Cost"] = Convert.ToDouble(dr[2].ToString()) * Convert.ToDouble(dr[3].ToString());
+                    row["Cost"] =- Convert.ToDouble(dr[4].ToString()) * Convert.ToDouble(dr[3].ToString());
 
                     temp.Rows.Add(row);
                 }

@@ -857,6 +857,23 @@ namespace MainSystem
                 com.Parameters["@Date"].Value = DateTime.Now.Date;
                 com.ExecuteNonQuery();
 
+                query = "insert into itemquantityhistory (Data_ID,Old_Quantity,Current_Quantity,Date,Note,Store_ID) values (@Data_ID,@Old_Quantity,@Current_Quantity,@Date,@Note,@Store_ID)";
+                com = new MySqlCommand(query, dbconnection);
+
+                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                com.Parameters["@Data_ID"].Value = Data_ID;
+                com.Parameters.Add("@Old_Quantity", MySqlDbType.Decimal);
+                com.Parameters["@Old_Quantity"].Value = row[5];
+                com.Parameters.Add("@Current_Quantity", MySqlDbType.Decimal);
+                com.Parameters["@Current_Quantity"].Value = row[6];
+                com.Parameters.Add("@Date", MySqlDbType.Date);
+                com.Parameters["@Date"].Value = DateTime.Now.Date;
+                com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                com.Parameters["@Note"].Value = "تعديل في كمية الجرد";
+                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                com.Parameters["@Store_ID"].Value = txtStoreID.Text;
+                com.ExecuteNonQuery();
+
                 query = "update storage set Type=@Type,Storage_Date=@Storage_Date,Total_Meters=@Total_Meters,Note=@Note where Data_ID=" + Data_ID + " and Store_ID=" +txtStoreID.Text;
                 com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Type", MySqlDbType.VarChar);
@@ -926,6 +943,23 @@ namespace MainSystem
                 com.Parameters["@Updated"].Value = 1;
                 com.Parameters.Add("@Date", MySqlDbType.Date);
                 com.Parameters["@Date"].Value = DateTime.Now.Date;
+                com.ExecuteNonQuery();
+
+                query = "insert into itemquantityhistory (Data_ID,Old_Quantity,Current_Quantity,Date,Note,Store_ID) values (@Data_ID,@Old_Quantity,@Current_Quantity,@Date,@Note,@Store_ID)";
+                com = new MySqlCommand(query, dbconnection);
+
+                com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
+                com.Parameters["@Data_ID"].Value = Data_ID;
+                com.Parameters.Add("@Old_Quantity", MySqlDbType.Decimal);
+                com.Parameters["@Old_Quantity"].Value = row[5];
+                com.Parameters.Add("@Current_Quantity", MySqlDbType.Decimal);
+                com.Parameters["@Current_Quantity"].Value = row[6];
+                com.Parameters.Add("@Date", MySqlDbType.Date);
+                com.Parameters["@Date"].Value = DateTime.Now.Date;
+                com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                com.Parameters["@Note"].Value = "تعديل في كمية الجرد";
+                com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
+                com.Parameters["@Store_ID"].Value = txtStoreID.Text;
                 com.ExecuteNonQuery();
 
                 UserControl.ItemRecord("inventory_details", "تعديل", (int)row[0], DateTime.Now, "", dbconnection);
