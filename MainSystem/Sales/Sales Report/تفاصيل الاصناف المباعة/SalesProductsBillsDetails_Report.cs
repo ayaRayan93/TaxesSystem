@@ -91,6 +91,7 @@ namespace MainSystem
                                 comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
                                 factoryFlage = true;
                                 comFactory.Text = "";
+                                txtFacory.Text = "";
                                 dbconnection.Close();
                                 dbconnection.Open();
                                 query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
@@ -116,6 +117,7 @@ namespace MainSystem
                                     comGroup.DisplayMember = dt2.Columns["Group_Name"].ToString();
                                     comGroup.ValueMember = dt2.Columns["Group_ID"].ToString();
                                     comGroup.Text = "";
+                                    txtGroup.Text = "";
                                     groupFlage = true;
                                 }
                                 factoryFlage = true;
@@ -143,6 +145,7 @@ namespace MainSystem
                                     comGroup.DisplayMember = dt2f.Columns["Group_Name"].ToString();
                                     comGroup.ValueMember = dt2f.Columns["Group_ID"].ToString();
                                     comGroup.Text = "";
+                                    txtGroup.Text = "";
                                 }
                                 else
                                 {
@@ -187,6 +190,7 @@ namespace MainSystem
                                 comProduct.ValueMember = dt3.Columns["Product_ID"].ToString();
                                 
                                 comProduct.Text = "";
+                                txtProduct.Text = "";
                                 flagProduct = true;
                                 string query2 = "select * from size where Group_ID=" + comGroup.SelectedValue.ToString() + subQuery1;
                                 MySqlDataAdapter da2 = new MySqlDataAdapter(query2, dbconnection);
@@ -372,6 +376,7 @@ namespace MainSystem
             comType.DisplayMember = dt.Columns["Type_Name"].ToString();
             comType.ValueMember = dt.Columns["Type_ID"].ToString();
             comType.Text = "";
+            txtType.Text = "";
 
             query = "select * from factory";
             da = new MySqlDataAdapter(query, dbconnection);
@@ -381,6 +386,7 @@ namespace MainSystem
             comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
             comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
             comFactory.Text = "";
+            txtFacory.Text = "";
 
             query = "select * from groupo";
             da = new MySqlDataAdapter(query, dbconnection);
@@ -390,6 +396,7 @@ namespace MainSystem
             comGroup.DisplayMember = dt.Columns["Group_Name"].ToString();
             comGroup.ValueMember = dt.Columns["Group_ID"].ToString();
             comGroup.Text = "";
+            txtGroup.Text = "";
 
             query = "select * from product";
             da = new MySqlDataAdapter(query, dbconnection);
@@ -399,6 +406,7 @@ namespace MainSystem
             comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
             comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
             comProduct.Text = "";
+            txtProduct.Text = "";
 
             query = "select * from size";
             da = new MySqlDataAdapter(query, dbconnection);
@@ -408,6 +416,7 @@ namespace MainSystem
             comSize.DisplayMember = dt.Columns["Size_Value"].ToString();
             comSize.ValueMember = dt.Columns["Size_ID"].ToString();
             comSize.Text = "";
+            txtSize.Text = "";
 
             loadedBranch = true;
         }
@@ -596,7 +605,7 @@ namespace MainSystem
 
                     for (int i = 0; i < gridView1.RowCount; i++)
                     {
-                        Items_Bills_Details item = new Items_Bills_Details() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), SellingQuantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية المباعة"])), ReturnedQuantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية المرتجعة"])) };
+                        Items_Bills_Details item = new Items_Bills_Details() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), SellingQuantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية المباعة"])), ReturnedQuantity = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية المرتجعة"])), Safy = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الصافى"])) };
                         bi.Add(item);
                     }
 
@@ -640,7 +649,7 @@ namespace MainSystem
                     comProduct.DisplayMember = dt.Columns["Product_Name"].ToString();
                     comProduct.ValueMember = dt.Columns["Product_ID"].ToString();
                     comProduct.Text = "";
-
+                    txtProduct.Text = "";
                 }
             }
 
