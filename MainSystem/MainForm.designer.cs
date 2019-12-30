@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
@@ -144,6 +143,7 @@
             this.navBarItemSalesProductsFactories = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSalesProductsDate2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSalesProductsBills2 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemSaleProductBillDetailsReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup15 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemConfirmBill = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup16 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -593,11 +593,10 @@
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemSaleProductBillDetailsReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -1864,6 +1863,7 @@
             // 
             this.navBarItemSalesProductsFactories.Caption = "الاصناف المباعة لشركة";
             this.navBarItemSalesProductsFactories.Name = "navBarItemSalesProductsFactories";
+            this.navBarItemSalesProductsFactories.Visible = false;
             this.navBarItemSalesProductsFactories.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesProductsFactories_LinkClicked);
             // 
             // navBarItemSalesProductsDate2
@@ -1878,6 +1878,12 @@
             this.navBarItemSalesProductsBills2.Name = "navBarItemSalesProductsBills2";
             this.navBarItemSalesProductsBills2.Visible = false;
             this.navBarItemSalesProductsBills2.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesProductsBills_LinkClicked);
+            // 
+            // navBarItemSaleProductBillDetailsReport
+            // 
+            this.navBarItemSaleProductBillDetailsReport.Caption = "تفاصيل الاصناف المباعة";
+            this.navBarItemSaleProductBillDetailsReport.Name = "navBarItemSaleProductBillDetailsReport";
+            this.navBarItemSaleProductBillDetailsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSaleProductBillDetailsReport_LinkClicked);
             // 
             // navBarGroup15
             // 
@@ -5593,12 +5599,6 @@
             // 
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
-            // 
-            // navBarItemSaleProductBillDetailsReport
-            // 
-            this.navBarItemSaleProductBillDetailsReport.Caption = "تفاصيل الاصناف المباعة";
-            this.navBarItemSaleProductBillDetailsReport.Name = "navBarItemSaleProductBillDetailsReport";
-            this.navBarItemSaleProductBillDetailsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSaleProductBillDetailsReport_LinkClicked);
             // 
             // MainForm
             // 

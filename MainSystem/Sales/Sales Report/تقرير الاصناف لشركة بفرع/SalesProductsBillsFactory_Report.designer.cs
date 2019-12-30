@@ -139,18 +139,18 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Controls.Add(this.comBranch, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label3, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtBranchID, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.label4, 5, 0);
-            this.tableLayoutPanel3.Controls.Add(this.comFactory, 6, 0);
-            this.tableLayoutPanel3.Controls.Add(this.txtFactory, 7, 0);
             this.tableLayoutPanel3.Controls.Add(this.label1, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.dateTimePicker1, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.label2, 5, 1);
             this.tableLayoutPanel3.Controls.Add(this.dateTimePicker2, 6, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnSearch, 9, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnNewChosen, 9, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtBranchID, 7, 0);
+            this.tableLayoutPanel3.Controls.Add(this.comBranch, 6, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label3, 5, 0);
+            this.tableLayoutPanel3.Controls.Add(this.label4, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.comFactory, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtFactory, 3, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -164,7 +164,7 @@
             // 
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(672, 3);
+            this.comBranch.Location = new System.Drawing.Point(352, 3);
             this.comBranch.Name = "comBranch";
             this.comBranch.Size = new System.Drawing.Size(144, 24);
             this.comBranch.TabIndex = 6;
@@ -175,7 +175,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(822, 0);
+            this.label3.Location = new System.Drawing.Point(502, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 19);
             this.label3.TabIndex = 5;
@@ -184,7 +184,7 @@
             // txtBranchID
             // 
             this.txtBranchID.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBranchID.Location = new System.Drawing.Point(600, 3);
+            this.txtBranchID.Location = new System.Drawing.Point(280, 3);
             this.txtBranchID.Name = "txtBranchID";
             this.txtBranchID.ReadOnly = true;
             this.txtBranchID.Size = new System.Drawing.Size(66, 23);
@@ -195,7 +195,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(502, 0);
+            this.label4.Location = new System.Drawing.Point(822, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 19);
             this.label4.TabIndex = 13;
@@ -205,7 +205,7 @@
             // 
             this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(352, 3);
+            this.comFactory.Location = new System.Drawing.Point(672, 3);
             this.comFactory.Name = "comFactory";
             this.comFactory.Size = new System.Drawing.Size(144, 24);
             this.comFactory.TabIndex = 14;
@@ -214,7 +214,7 @@
             // txtFactory
             // 
             this.txtFactory.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFactory.Location = new System.Drawing.Point(280, 3);
+            this.txtFactory.Location = new System.Drawing.Point(600, 3);
             this.txtFactory.Name = "txtFactory";
             this.txtFactory.ReadOnly = true;
             this.txtFactory.Size = new System.Drawing.Size(66, 23);
