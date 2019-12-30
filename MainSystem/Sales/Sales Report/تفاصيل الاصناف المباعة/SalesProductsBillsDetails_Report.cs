@@ -80,6 +80,7 @@ namespace MainSystem
                         case "comType":
                             if (loadedBranch)
                             {
+                                txtType.Text = comType.SelectedValue.ToString();
                                 factoryFlage = false;
                                 string query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + comType.SelectedValue.ToString();
                                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -125,6 +126,7 @@ namespace MainSystem
                         case "comFactory":
                             if (factoryFlage)
                             {
+                                txtFacory.Text = comFactory.SelectedValue.ToString();
                                 dbconnection.Close();
                                 dbconnection.Open();
                                 string query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
@@ -156,12 +158,14 @@ namespace MainSystem
                                 comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
                                 comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
                                 comSize.Text = "";
+                                txtSize.Text = "";
                                 comGroup.Focus();
                             }
                             break;
                         case "comGroup":
                             if (groupFlage)
                             {
+                                txtGroup.Text = comGroup.SelectedValue.ToString();
                                 string supQuery = "", subQuery1 = "";
                                 if (comType.SelectedValue != null)
                                 {
@@ -192,6 +196,7 @@ namespace MainSystem
                                 comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
                                 comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
                                 comSize.Text = "";
+                                txtSize.Text = "";
 
                                 comProduct.Focus();
                             }
@@ -200,10 +205,12 @@ namespace MainSystem
                         case "comProduct":
                             if (flagProduct)
                             {
+                                txtProduct.Text = comProduct.SelectedValue.ToString();
                             }
                             break;
                             
                         case "comSize":
+                            txtSize.Text = comSize.SelectedValue.ToString();
                             break;
                     }
                 }
@@ -213,6 +220,113 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        private void txtBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+            string query;
+            MySqlCommand com;
+            string Name;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (txtBox.Text != "")
+                    {
+                        dbconnection.Open();
+                        switch (txtBox.Name)
+                        {
+                            case "txtType":
+                                query = "select Type_Name from type where Type_ID='" + txtType.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comType.Text = Name;
+                                    txtFacory.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtFacory":
+                                query = "select Factory_Name from factory where Factory_ID='" + txtFacory.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comFactory.Text = Name;
+                                    txtGroup.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtGroup":
+                                query = "select Group_Name from groupo where Group_ID='" + txtGroup.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comGroup.Text = Name;
+                                    txtProduct.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtProduct":
+                                query = "select Product_Name from product where Product_ID='" + txtProduct.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comProduct.Text = Name;
+                                    txtSize.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+
+                            case "txtSize":
+                                query = "select Size_Value from size where Size_ID='" + txtSize.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comSize.Text = Name;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                dbconnection.Close();
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -336,12 +450,13 @@ namespace MainSystem
             }
 
             double totalQuantity = 0;
-            double returnedQuantity = 0;
-            string query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Quantity as 'الكمية المباعة',product_bill.Quantity as 'الكمية المرتجعة' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=0";
+            double totalReturnedQuantity = 0;
+            string query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Quantity as 'الكمية المباعة',product_bill.Quantity as 'الكمية المرتجعة',product_bill.Quantity as 'الصافى' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=0";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dtProduct = new DataTable();
             da.Fill(dtProduct);
             gridControl1.DataSource = dtProduct;
+            gridView1.Columns["الاسم"].Width = 300;
 
             query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where data.Type_ID=" + comType.SelectedValue.ToString() + " and data.Factory_ID=" + comFactory.SelectedValue.ToString() + " and data.Group_ID in (" + q2 + ") and data.Product_ID in (" + q3 + ") " + fQuery + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
             MySqlCommand c = new MySqlCommand(query, dbconnection);
@@ -352,6 +467,9 @@ namespace MainSystem
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
                 {
+                    double Quantity = 0;
+                    double ReturnedQuantity = 0;
+
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكود"], dataReader1["الكود"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dataReader1["النوع"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dataReader1["الاسم"].ToString());
@@ -360,8 +478,9 @@ namespace MainSystem
                     MySqlCommand com2 = new MySqlCommand(query, dbconnection2);
                     if (com2.ExecuteScalar() != null)
                     {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المباعة"], Convert.ToDouble(com2.ExecuteScalar().ToString()));
-                        totalQuantity += Convert.ToDouble(com2.ExecuteScalar().ToString());
+                        Quantity = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المباعة"], Quantity);
+                        totalQuantity += Quantity;
                     }
                     else
                     {
@@ -372,13 +491,16 @@ namespace MainSystem
                     com2 = new MySqlCommand(query, dbconnection2);
                     if (com2.ExecuteScalar() != null)
                     {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المرتجعة"], Convert.ToDouble(com2.ExecuteScalar().ToString()));
-                        returnedQuantity += Convert.ToDouble(com2.ExecuteScalar().ToString());
+                        ReturnedQuantity = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المرتجعة"], ReturnedQuantity);
+                        totalReturnedQuantity += ReturnedQuantity;
                     }
                     else
                     {
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المرتجعة"], 0);
                     }
+
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الصافى"], Quantity - ReturnedQuantity);
                 }
             }
 
@@ -388,8 +510,8 @@ namespace MainSystem
             }
 
             txtSale.Text = totalQuantity.ToString();
-            txtReturn.Text = returnedQuantity.ToString();
-            txtFinal.Text = (totalQuantity - returnedQuantity).ToString();
+            txtReturn.Text = totalReturnedQuantity.ToString();
+            txtFinal.Text = (totalQuantity - totalReturnedQuantity).ToString();
         }
 
         private void btnNewChosen_Click(object sender, EventArgs e)
