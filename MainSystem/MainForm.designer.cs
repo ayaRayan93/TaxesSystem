@@ -1870,6 +1870,7 @@
             // 
             this.navBarItemSalesProductsDate2.Caption = "الاصناف المباعة بالتاريخ";
             this.navBarItemSalesProductsDate2.Name = "navBarItemSalesProductsDate2";
+            this.navBarItemSalesProductsDate2.Visible = false;
             this.navBarItemSalesProductsDate2.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesProductsDate_LinkClicked);
             // 
             // navBarItemSalesProductsBills2
