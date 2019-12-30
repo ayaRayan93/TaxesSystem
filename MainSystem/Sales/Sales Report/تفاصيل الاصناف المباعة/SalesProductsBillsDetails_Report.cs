@@ -80,6 +80,7 @@ namespace MainSystem
                         case "comType":
                             if (loadedBranch)
                             {
+                                txtType.Text = comType.SelectedValue.ToString();
                                 factoryFlage = false;
                                 string query = "select * from factory inner join type_factory on factory.Factory_ID=type_factory.Factory_ID inner join type on type_factory.Type_ID=type.Type_ID where type_factory.Type_ID=" + comType.SelectedValue.ToString();
                                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -125,6 +126,7 @@ namespace MainSystem
                         case "comFactory":
                             if (factoryFlage)
                             {
+                                txtFacory.Text = comFactory.SelectedValue.ToString();
                                 dbconnection.Close();
                                 dbconnection.Open();
                                 string query = "select TypeCoding_Method from type where Type_ID=" + comType.SelectedValue.ToString();
@@ -156,12 +158,14 @@ namespace MainSystem
                                 comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
                                 comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
                                 comSize.Text = "";
+                                txtSize.Text = "";
                                 comGroup.Focus();
                             }
                             break;
                         case "comGroup":
                             if (groupFlage)
                             {
+                                txtGroup.Text = comGroup.SelectedValue.ToString();
                                 string supQuery = "", subQuery1 = "";
                                 if (comType.SelectedValue != null)
                                 {
@@ -192,6 +196,7 @@ namespace MainSystem
                                 comSize.DisplayMember = dt2.Columns["Size_Value"].ToString();
                                 comSize.ValueMember = dt2.Columns["Size_ID"].ToString();
                                 comSize.Text = "";
+                                txtSize.Text = "";
 
                                 comProduct.Focus();
                             }
@@ -200,10 +205,12 @@ namespace MainSystem
                         case "comProduct":
                             if (flagProduct)
                             {
+                                txtProduct.Text = comProduct.SelectedValue.ToString();
                             }
                             break;
                             
                         case "comSize":
+                            txtSize.Text = comSize.SelectedValue.ToString();
                             break;
                     }
                 }
@@ -213,6 +220,113 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        private void txtBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox txtBox = (TextBox)sender;
+            string query;
+            MySqlCommand com;
+            string Name;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (txtBox.Text != "")
+                    {
+                        dbconnection.Open();
+                        switch (txtBox.Name)
+                        {
+                            case "txtType":
+                                query = "select Type_Name from type where Type_ID='" + txtType.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comType.Text = Name;
+                                    txtFacory.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtFacory":
+                                query = "select Factory_Name from factory where Factory_ID='" + txtFacory.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comFactory.Text = Name;
+                                    txtGroup.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtGroup":
+                                query = "select Group_Name from groupo where Group_ID='" + txtGroup.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comGroup.Text = Name;
+                                    txtProduct.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                            case "txtProduct":
+                                query = "select Product_Name from product where Product_ID='" + txtProduct.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comProduct.Text = Name;
+                                    txtSize.Focus();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+
+                            case "txtSize":
+                                query = "select Size_Value from size where Size_ID='" + txtSize.Text + "'";
+                                com = new MySqlCommand(query, dbconnection);
+                                if (com.ExecuteScalar() != null)
+                                {
+                                    Name = (string)com.ExecuteScalar();
+                                    comSize.Text = Name;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("there is no item with this id");
+                                    dbconnection.Close();
+                                    return;
+                                }
+                                break;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                dbconnection.Close();
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
