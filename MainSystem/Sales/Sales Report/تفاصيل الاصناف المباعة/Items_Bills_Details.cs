@@ -13,5 +13,6 @@ namespace MainSystem
         public string Product_Name { get; set; }
         public double SellingQuantity { get; set; }
         public double ReturnedQuantity { get; set; }
+        public double Safy { get; set; }
     }
 }

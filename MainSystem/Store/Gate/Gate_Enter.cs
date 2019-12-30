@@ -588,16 +588,17 @@ namespace MainSystem
                                 }
                                 if (txtPermisionNum.Text != "")
                                 {
+                                    treeViewSupIdPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                    treeViewSupPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                    txtPermisionNum.Text = "";
+
                                     OpenFileDialog openFileDialog1 = new OpenFileDialog();
                                     if (openFileDialog1.ShowDialog() == DialogResult.OK)
                                     {
                                         string selectedFile = openFileDialog1.FileName;
                                         byte[] selectedRequestImage = null;
                                         selectedRequestImage = File.ReadAllBytes(selectedFile);
-                                        treeViewSupIdPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
-                                        treeViewSupPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
                                         imageListBoxControl1.Items.Add(selectedFile);
-                                        txtPermisionNum.Text = "";
                                         return;
                                     }
                                     else
@@ -612,17 +613,18 @@ namespace MainSystem
                         treeViewSupPerm.Nodes.Add(comSupplier.Text);
                         if (txtPermisionNum.Text != "")
                         {
+                            int n = treeViewSupIdPerm.Nodes.Count;
+                            treeViewSupIdPerm.Nodes[n - 1].Nodes.Add(txtPermisionNum.Text);
+                            treeViewSupPerm.Nodes[n - 1].Nodes.Add(txtPermisionNum.Text);
+                            txtPermisionNum.Text = "";
+
                             OpenFileDialog openFileDialog2 = new OpenFileDialog();
                             if (openFileDialog2.ShowDialog() == DialogResult.OK)
                             {
                                 string selectedFile = openFileDialog2.FileName;
                                 byte[] selectedRequestImage = null;
                                 selectedRequestImage = File.ReadAllBytes(selectedFile);
-                                int n = treeViewSupIdPerm.Nodes.Count;
-                                treeViewSupIdPerm.Nodes[n - 1].Nodes.Add(txtPermisionNum.Text);
-                                treeViewSupPerm.Nodes[n - 1].Nodes.Add(txtPermisionNum.Text);
                                 imageListBoxControl1.Items.Add(selectedFile);
-                                txtPermisionNum.Text = "";
                                 return;
                             }
                             else
@@ -637,16 +639,17 @@ namespace MainSystem
                         treeViewSupPerm.Nodes.Add(comSupplier.Text);
                         if (txtPermisionNum.Text != "")
                         {
+                            treeViewSupIdPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                            treeViewSupPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                            txtPermisionNum.Text = "";
+
                             OpenFileDialog openFileDialog1 = new OpenFileDialog();
                             if (openFileDialog1.ShowDialog() == DialogResult.OK)
                             {
                                 string selectedFile = openFileDialog1.FileName;
                                 byte[] selectedRequestImage = null;
                                 selectedRequestImage = File.ReadAllBytes(selectedFile);
-                                treeViewSupIdPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
-                                treeViewSupPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
                                 imageListBoxControl1.Items.Add(selectedFile);
-                                txtPermisionNum.Text = "";
                                 return;
                             }
                             else
@@ -676,16 +679,17 @@ namespace MainSystem
                                 }
                                 if (txtPermisionNum.Text != "")
                                 {
+                                    treeViewSupIdPerm.Nodes[i].Nodes.Add(comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text);
+                                    treeViewSupPerm.Nodes[i].Nodes.Add(comBranch.Text + ":" + txtPermisionNum.Text);
+                                    txtPermisionNum.Text = "";
+
                                     OpenFileDialog openFileDialog1 = new OpenFileDialog();
                                     if (openFileDialog1.ShowDialog() == DialogResult.OK)
                                     {
                                         string selectedFile = openFileDialog1.FileName;
                                         byte[] selectedRequestImage = null;
                                         selectedRequestImage = File.ReadAllBytes(selectedFile);
-                                        treeViewSupIdPerm.Nodes[i].Nodes.Add(comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text);
-                                        treeViewSupPerm.Nodes[i].Nodes.Add(comBranch.Text + ":" + txtPermisionNum.Text);
                                         imageListBoxControl1.Items.Add(selectedFile);
-                                        txtPermisionNum.Text = "";
                                         return;
                                     }
                                     else
@@ -700,17 +704,18 @@ namespace MainSystem
                         treeViewSupPerm.Nodes.Add(comClient.Text);
                         if (txtPermisionNum.Text != "")
                         {
+                            int n = treeViewSupIdPerm.Nodes.Count;
+                            treeViewSupIdPerm.Nodes[n - 1].Nodes.Add(comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text);
+                            treeViewSupPerm.Nodes[n - 1].Nodes.Add(comBranch.Text + ":" + txtPermisionNum.Text);
+                            txtPermisionNum.Text = "";
+
                             OpenFileDialog openFileDialog2 = new OpenFileDialog();
                             if (openFileDialog2.ShowDialog() == DialogResult.OK)
                             {
                                 string selectedFile = openFileDialog2.FileName;
                                 byte[] selectedRequestImage = null;
                                 selectedRequestImage = File.ReadAllBytes(selectedFile);
-                                int n = treeViewSupIdPerm.Nodes.Count;
-                                treeViewSupIdPerm.Nodes[n - 1].Nodes.Add(comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text);
-                                treeViewSupPerm.Nodes[n - 1].Nodes.Add(comBranch.Text + ":" + txtPermisionNum.Text);
                                 imageListBoxControl1.Items.Add(selectedFile);
-                                txtPermisionNum.Text = "";
                                 return;
                             }
                             else
@@ -725,16 +730,17 @@ namespace MainSystem
                         treeViewSupPerm.Nodes.Add(comClient.Text);
                         if (txtPermisionNum.Text != "")
                         {
+                            treeViewSupIdPerm.Nodes[0].Nodes.Add(comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text);
+                            treeViewSupPerm.Nodes[0].Nodes.Add(comBranch.Text + ":" + txtPermisionNum.Text);
+                            txtPermisionNum.Text = "";
+
                             OpenFileDialog openFileDialog1 = new OpenFileDialog();
                             if (openFileDialog1.ShowDialog() == DialogResult.OK)
                             {
                                 string selectedFile = openFileDialog1.FileName;
                                 byte[] selectedRequestImage = null;
                                 selectedRequestImage = File.ReadAllBytes(selectedFile);
-                                treeViewSupIdPerm.Nodes[0].Nodes.Add(comBranch.SelectedValue.ToString() + ":" + txtPermisionNum.Text);
-                                treeViewSupPerm.Nodes[0].Nodes.Add(comBranch.Text + ":" + txtPermisionNum.Text);
                                 imageListBoxControl1.Items.Add(selectedFile);
-                                txtPermisionNum.Text = "";
                                 return;
                             }
                             else
@@ -763,16 +769,17 @@ namespace MainSystem
                                 }
                                 if (txtPermisionNum.Text != "")
                                 {
+                                    treeViewSupIdPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                    treeViewSupPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
+                                    txtPermisionNum.Text = "";
+
                                     OpenFileDialog openFileDialog1 = new OpenFileDialog();
                                     if (openFileDialog1.ShowDialog() == DialogResult.OK)
                                     {
                                         string selectedFile = openFileDialog1.FileName;
                                         byte[] selectedRequestImage = null;
                                         selectedRequestImage = File.ReadAllBytes(selectedFile);
-                                        treeViewSupIdPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
-                                        treeViewSupPerm.Nodes[i].Nodes.Add(txtPermisionNum.Text);
                                         imageListBoxControl1.Items.Add(selectedFile);
-                                        txtPermisionNum.Text = "";
                                         return;
                                     }
                                     else
@@ -787,6 +794,10 @@ namespace MainSystem
                     {
                         treeViewSupIdPerm.Nodes.Add(storeId.ToString());
                         treeViewSupPerm.Nodes.Add(storeName);
+                        treeViewSupIdPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                        treeViewSupPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
+                        txtPermisionNum.Text = "";
+
                         if (txtPermisionNum.Text != "")
                         {
                             OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -795,10 +806,7 @@ namespace MainSystem
                                 string selectedFile = openFileDialog1.FileName;
                                 byte[] selectedRequestImage = null;
                                 selectedRequestImage = File.ReadAllBytes(selectedFile);
-                                treeViewSupIdPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
-                                treeViewSupPerm.Nodes[0].Nodes.Add(txtPermisionNum.Text);
                                 imageListBoxControl1.Items.Add(selectedFile);
-                                txtPermisionNum.Text = "";
                                 return;
                             }
                             else
@@ -983,7 +991,14 @@ namespace MainSystem
                             com.Parameters.Add("@Type", MySqlDbType.VarChar, 255);
                             com.Parameters["@Type"].Value = "دخول";
                             com.Parameters.Add("@Permission_Image", MySqlDbType.LongBlob, 0);
-                            com.Parameters["@Permission_Image"].Value = imageToByteArray(Image.FromFile(imageListBoxControl1.Items[i].Value.ToString()));
+                            try
+                            {
+                                com.Parameters["@Permission_Image"].Value = imageToByteArray(Image.FromFile(imageListBoxControl1.Items[i].Value.ToString()));
+                            }
+                            catch
+                            {
+                                com.Parameters["@Permission_Image"].Value = null;
+                            }
                             com.ExecuteNonQuery();
                         }
                     }

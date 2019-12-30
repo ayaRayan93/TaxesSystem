@@ -69,7 +69,7 @@ namespace MainSystem
         {
             try
             {
-                if (comBranch.Text != "" && txtBranchID.Text != "" && comFactory.Text != "" && txtFactory.Text != "")
+                if (comFactory.Text != "" && txtFactory.Text != "")
                 {
                     search();
                 }
@@ -117,7 +117,17 @@ namespace MainSystem
             conn.Open();
             conn2.Open();
 
-            string query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Quantity as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where customer_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=0";
+            string q1 = "";
+            if (comBranch.Text == "")
+            {
+                q1 = "select Branch_ID from branch";
+            }
+            else
+            {
+                q1 = comBranch.SelectedValue.ToString();
+            }
+
+            string query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Quantity as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID  where date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=0";
             MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
             DataTable dtProduct = new DataTable();
             da.Fill(dtProduct);
@@ -138,7 +148,7 @@ namespace MainSystem
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dataReader1["النوع"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dataReader1["الاسم"].ToString());
 
-                    query = "select sum(product_bill.Quantity) as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID where customer_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=" + dataReader1["Data_ID"].ToString() + " and product_bill.Type='بند' group by product_bill.Data_ID";
+                    query = "select sum(product_bill.Quantity) as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID where customer_bill.Branch_ID in (" + q1 + ") and date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=" + dataReader1["Data_ID"].ToString() + " and product_bill.Type='بند' group by product_bill.Data_ID";
                     MySqlCommand com2 = new MySqlCommand(query, conn2);
                     if (com2.ExecuteScalar() != null)
                     {
@@ -149,7 +159,7 @@ namespace MainSystem
                         totalQuantity = 0;
                     }
 
-                    query = "SELECT sum(customer_return_bill_details.TotalMeter) as 'الكمية' FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID where customer_return_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_return_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and customer_return_bill_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and customer_return_bill_details.Type='بند' group by customer_return_bill_details.Data_ID";
+                    query = "SELECT sum(customer_return_bill_details.TotalMeter) as 'الكمية' FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID where customer_return_bill.Branch_ID in (" + q1 + ") and date(customer_return_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and customer_return_bill_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and customer_return_bill_details.Type='بند' group by customer_return_bill_details.Data_ID";
                     MySqlCommand com = new MySqlCommand(query, conn2);
                     if (com.ExecuteScalar() != null)
                     {
@@ -245,7 +255,7 @@ namespace MainSystem
         {
             try
             {
-                if (comBranch.Text != "" && txtBranchID.Text != "" && comFactory.Text != "" && txtFactory.Text != "" && gridView1.RowCount > 0)
+                if (comFactory.Text != "" && txtFactory.Text != "" && gridView1.RowCount > 0)
                 {
                     List<Items_Bills> bi = new List<Items_Bills>();
 
