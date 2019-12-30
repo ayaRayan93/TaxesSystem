@@ -30,7 +30,6 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
         private void DelegateSalesForCompany_Load(object sender, EventArgs e)
         {
@@ -91,7 +90,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-   
         private void comFactory_SelectedValueChanged(object sender, EventArgs e)
         {
             try
