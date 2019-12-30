@@ -314,7 +314,7 @@ namespace MainSystem
         //get sold quantity from cash bill
         public DataTable getSoldQuantity1(DataTable _Table,string itemName,string DataTableRelations,string dateFrom,string dateTo,string customerBill_IDs)
         {
-            string query = "select product_bill.Data_ID,data.Code," + itemName + ",sum(Quantity) as 'الكمية',PriceAD from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID in (" + customerBill_IDs + ") and product_bill.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by product_bill.Data_ID ";
+            string query = "select product_bill.Data_ID,data.Code," + itemName + ",Quantity as 'الكمية',PriceAD from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID in (" + customerBill_IDs + ") and product_bill.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by product_bill.Data_ID ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
 
@@ -381,7 +381,7 @@ namespace MainSystem
 
         public DataTable getReturnedQuantity(DataTable _Table, string itemName, string DataTableRelations, string dateFrom, string dateTo, string customerReturnBill_IDs)
         {
-            string query = "select customer_return_bill_details.Data_ID,data.Code," + itemName + ",sum(TotalMeter) as 'الكمية',PriceAD from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerReturnBill_ID in (" + customerReturnBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Data_ID  ";
+            string query = "select customer_return_bill_details.Data_ID,data.Code," + itemName + ",TotalMeter as 'الكمية',PriceAD from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + DataTableRelations + " inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID  where CustomerReturnBill_ID in (" + customerReturnBill_IDs + ") and customer_return_bill_details.Delegate_ID=" + txtDelegateID.Text + " and data.Factory_ID=" + txtFactory.Text + " group by data.Data_ID  ";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             DataTable temp = peraperDataTable();
@@ -436,6 +436,7 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("Cost", typeof(decimal)));
             _Table.Columns.Add(new DataColumn("Quantity", typeof(string)));
             return _Table;
+
         }
 
         private void btnReport_Click(object sender, EventArgs e)
