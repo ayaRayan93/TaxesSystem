@@ -14,6 +14,7 @@ using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
 using DevExpress.XtraGrid.Views.Grid;
+using MainSystem.Reports.sales;
 
 namespace MainSystem
 {
@@ -124,7 +125,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void navBarItemDelegateSalesForCompanyAgel_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -193,7 +193,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void navBarItemDelegateSalesForProduct_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -219,7 +218,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
 
-                DelegateSalesForProduct objForm = new DelegateSalesForProduct(this);
+                SalesReportForDelegateProductDetails objForm = new SalesReportForDelegateProductDetails(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
@@ -232,8 +231,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-      
+        }      
         private void navBarItemDelegateCustomersBills_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

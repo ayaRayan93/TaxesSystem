@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version1.43\</PublishUrl>
+    <PublishUrl>D:\التكويد\version1.44\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>216</ApplicationRevision>
+    <ApplicationRevision>217</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -675,6 +675,12 @@
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\فاتورة شراء\Print_SupplierBill.designer.cs">
       <DependentUpon>Print_SupplierBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\sales\SalesReportForDelegateProductDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\sales\SalesReportForDelegateProductDetails.Designer.cs">
+      <DependentUpon>SalesReportForDelegateProductDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sales Report\تفاصيل الاصناف المباعة\Items_Bills_Details.cs" />
     <Compile Include="Sales\Sales Report\تفاصيل الاصناف المباعة\Print_ProductsBillsDetails.cs">
@@ -3158,6 +3164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeIP.resx">
       <DependentUpon>ChangeIP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\sales\SalesReportForDelegateProductDetails.resx">
+      <DependentUpon>SalesReportForDelegateProductDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Sales Report\تفاصيل الاصناف المباعة\Print_ProductsBillsDetails.resx">
       <DependentUpon>Print_ProductsBillsDetails.cs</DependentUpon>
