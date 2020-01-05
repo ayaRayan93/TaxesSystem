@@ -701,7 +701,9 @@ namespace MainSystem.Reports.sales
             }
 
             string subString = " INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-            string query = "select data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',FORMAT(sum(product_bill.PriceAD*Quantity),2) from product_bill  inner join data on data.Data_ID=product_bill.Data_ID "+subString+" where CustomerBill_ID in (" + customerBill_ids + ") and data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + " and product_bill.Delegate_ID="+txtDelegateID.Text+" group by  data.Data_ID";
+            string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+
+            string query = "select data.Data_ID,data.Code as 'الكود',"+itemName+",FORMAT(sum(product_bill.PriceAD*Quantity),2),FORMAT(sum(Quantity),2) from product_bill  inner join data on data.Data_ID=product_bill.Data_ID " + subString+" where CustomerBill_ID in (" + customerBill_ids + ") and data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + " and product_bill.Delegate_ID="+txtDelegateID.Text+" group by  data.Data_ID";
             
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
@@ -714,32 +716,39 @@ namespace MainSystem.Reports.sales
                 if (dr[1].ToString() != "")
                     row["Code"] = dr[1].ToString();
                 if (dr[2].ToString() != "")
-                    row["Product_Name"] = dr[2].ToString();
+                    row["Item_Name"] = dr[2].ToString();
+                //if (dr[3].ToString() != "")
+                //    row["Type_Name"] = dr[3].ToString();
+                //if (dr[4].ToString() != "")
+                //    row["Factory_Name"] = dr[4].ToString();
+                //if (dr[5].ToString() != "")
+                //    row["Group_Name"] = dr[5].ToString();
+                //if (dr[6].ToString() != "")
+                //    row["Color_Name"] = dr[6].ToString();
+                //if (dr[7].ToString() != "")
+                //    row["Size_Value"] = dr[7].ToString();
+                //if (dr[8].ToString() != "")
+                //    row["Sort_Value"] = dr[8].ToString();
+                //if (dr[12].ToString() != "")
+                //    row["Classification"] = dr[12].ToString();
+                //if (dr[9].ToString() != "")
+                //    row["Description"] = dr[9].ToString();
                 if (dr[3].ToString() != "")
-                    row["Type_Name"] = dr[3].ToString();
-                if (dr[4].ToString() != "")
-                    row["Factory_Name"] = dr[4].ToString();
-                if (dr[5].ToString() != "")
-                    row["Group_Name"] = dr[5].ToString();
-                if (dr[6].ToString() != "")
-                    row["Color_Name"] = dr[6].ToString();
-                if (dr[7].ToString() != "")
-                    row["Size_Value"] = dr[7].ToString();
-                if (dr[8].ToString() != "")
-                    row["Sort_Value"] = dr[8].ToString();
-                if (dr[9].ToString() != "")
-                    row["Classification"] = dr[9].ToString();
-                if (dr[10].ToString() != "")
-                    row["Description"] = dr[10].ToString();
-                if (dr[11].ToString() != "")
-                    row["TotalSales"] = dr[11].ToString();
+                    row["TotalSales"] = dr[3].ToString();
                 else
                     row["TotalSales"] = 0;
-                if (dr[11].ToString() != "")
-                    row["Safaya"] = dr[11].ToString();
+                if (dr[3].ToString() != "")
+                    row["Safaya"] = dr[3].ToString();
                 else
                     row["Safaya"] = 0;
-                
+                if (dr[4].ToString() != "")
+                    row["TotalQuantity"] = dr[4].ToString();
+                else
+                    row["TotalQuantity"] = 0;
+                if (dr[4].ToString() != "")
+                    row["SafayaQuantity"] = dr[4].ToString();
+                else
+                    row["SafayaQuantity"] = 0;
                 _Table.Rows.Add(row);
             }
             dr.Close();
@@ -801,7 +810,9 @@ namespace MainSystem.Reports.sales
             }
 
             string subString = " INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-            string query = "select data.Data_ID,data.Code as 'الكود',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',FORMAT(sum(TotalAD),2) from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID "+subString+" where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ") and data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + " and customer_return_bill_details.Delegate_ID="+txtDelegateID.Text+"  group by  factory.Factory_ID  ";
+            string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+
+            string query = "select data.Data_ID,data.Code as 'الكود',"+itemName+",FORMAT(sum(TotalAD),2),FORMAT(sum(TotalMeter),2) from customer_return_bill_details inner join data on data.Data_ID=customer_return_bill_details.Data_ID " + subString+" where CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ") and data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  " + fQuery + " and customer_return_bill_details.Delegate_ID="+txtDelegateID.Text+"  group by  factory.Factory_ID  ";
           
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
@@ -815,15 +826,26 @@ namespace MainSystem.Reports.sales
                     string x = dr[0].ToString();
                     if (item[0].ToString() == dr[0].ToString())
                     {
-                        if (dr[11].ToString() != "")
+                        if (dr[3].ToString() != "")
                         {
-                            item["TotalReturn"] = dr[11].ToString();
-                            item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[11].ToString())).ToString();
+                            item["TotalReturn"] = dr[3].ToString();
+                            item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
                         }
                         else
                         {
                             item["TotalReturn"] = 0;
                             item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - 0);
+                        }
+
+                        if (dr[4].ToString() != "")
+                        {
+                            item["TotalReturnQuantity"] = dr[4].ToString();
+                            item["SafayaQuantity"] = (Convert.ToDouble(item["TotalQuantity"].ToString()) - Convert.ToDouble(dr[4].ToString())).ToString();
+                        }
+                        else
+                        {
+                            item["TotalReturnQuantity"] = 0;
+                            item["SafayaQuantity"] = (Convert.ToDouble(item["TotalQuantity"].ToString()) - 0);
                         }
                         flag = false;
                     }
@@ -831,23 +853,25 @@ namespace MainSystem.Reports.sales
                 if (flag)
                 {
                     DataRow row = temp.NewRow();
-                    if (dr[11].ToString() != "")
+                    if (dr[3].ToString() != "")
                     {
-                        row["TotalReturn"] = dr[11].ToString();
+                        row["TotalReturn"] = dr[3].ToString();
+                        row["TotalReturnQuantity"] = dr[4].ToString();
                         if (dr[2].ToString() != "")
-                            row["Safaya"] = -Convert.ToDouble(dr[11].ToString());
-                        
-                            row["Data_ID"] = dr[0].ToString();
+                            row["Safaya"] = -Convert.ToDouble(dr[3].ToString());
+                            row["SafayaQuantity"] = -Convert.ToDouble(dr[4].ToString());
+
+                        row["Data_ID"] = dr[0].ToString();
                             row["Code"] = dr[1].ToString();
-                            row["Product_Name"] = dr[2].ToString();
-                            row["Type_Name"] = dr[3].ToString();
-                            row["Factory_Name"] = dr[4].ToString();
-                            row["Group_Name"] = dr[5].ToString();
-                            row["Color_Name"] = dr[6].ToString();
-                            row["Size_Value"] = dr[7].ToString();
-                            row["Sort_Value"] = dr[8].ToString();
-                            row["Classification"] = dr[9].ToString();
-                            row["Description"] = dr[10].ToString();
+                            row["Item_Name"] = dr[2].ToString();
+                            //row["Type_Name"] = dr[3].ToString();
+                            //row["Factory_Name"] = dr[4].ToString();
+                            //row["Group_Name"] = dr[5].ToString();
+                            //row["Color_Name"] = dr[6].ToString();
+                            //row["Size_Value"] = dr[7].ToString();
+                            //row["Sort_Value"] = dr[8].ToString();
+                            //row["Classification"] = dr[11].ToString();
+                            //row["Description"] = dr[9].ToString();
                         temp.Rows.Add(row);
                     }
                     else
@@ -872,19 +896,23 @@ namespace MainSystem.Reports.sales
             DataTable _Table = new DataTable("Table2");
             _Table.Columns.Add(new DataColumn("Data_ID", typeof(string)));
             _Table.Columns.Add(new DataColumn("Code", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Product_Name", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Type_Name", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Factory_Name", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Group_Name", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Color_Name", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Size_Value", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Sort_Value", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Classification", typeof(string)));
-            _Table.Columns.Add(new DataColumn("Description", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Item_Name", typeof(string)));
+          //  _Table.Columns.Add(new DataColumn("Type_Name", typeof(string)));
+          //  _Table.Columns.Add(new DataColumn("Factory_Name", typeof(string)));
+          //  _Table.Columns.Add(new DataColumn("Group_Name", typeof(string)));
+          //  _Table.Columns.Add(new DataColumn("Color_Name", typeof(string)));
+          //  _Table.Columns.Add(new DataColumn("Size_Value", typeof(string)));
+          //  _Table.Columns.Add(new DataColumn("Sort_Value", typeof(string)));
+          //  _Table.Columns.Add(new DataColumn("Classification", typeof(string)));
+          //  _Table.Columns.Add(new DataColumn("Description", typeof(string)));
 
             _Table.Columns.Add(new DataColumn("TotalSales", typeof(string)));
             _Table.Columns.Add(new DataColumn("TotalReturn", typeof(string)));
             _Table.Columns.Add(new DataColumn("Safaya", typeof(decimal)));
+
+            _Table.Columns.Add(new DataColumn("TotalQuantity", typeof(string)));
+            _Table.Columns.Add(new DataColumn("TotalReturnQuantity", typeof(string)));
+            _Table.Columns.Add(new DataColumn("SafayaQuantity", typeof(decimal)));
             return _Table;
         }
 
@@ -917,7 +945,6 @@ namespace MainSystem.Reports.sales
             txtTotalReturn.Text = totalReturn.ToString("0.00");
             txtTotalSafay.Text = totalSafay.ToString("0.00");
         }
-
-   
+        
     }
 }

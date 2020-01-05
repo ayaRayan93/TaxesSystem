@@ -34,7 +34,6 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
-             
             }
             catch (Exception ex)
             {
@@ -273,9 +272,9 @@ namespace MainSystem
                     {
                         displayData();
                     }
-                    DataHelper dh = new DataHelper(DSparametr.simpleDS);
-                    gridControl2.DataSource = dh.DataSet;
-                    gridControl2.DataMember = dh.DataMember;
+                    //DataHelper dh = new DataHelper(DSparametr.simpleDS);
+                    //gridControl2.DataSource = dh.DataSet;
+                    //gridControl2.DataMember = dh.DataMember;
                 }
             }
             catch (Exception ex)
@@ -316,9 +315,9 @@ namespace MainSystem
                     loaded = false;
                     if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row["الكمية"]))
                     {
-                        if (IsDelveryQuantityHaveValue(row[7].ToString()))
+                        if (IsDelveryQuantityHaveValue(row[6].ToString()))
                         {
-                            if ((Convert.ToDouble(row[7]) < Convert.ToDouble(row["الكمية"])))
+                            if ((Convert.ToDouble(row[6]) < Convert.ToDouble(row["الكمية"])))
                             {
                                 addrow = row;
                                 SelectType = "oneRow";
@@ -327,6 +326,10 @@ namespace MainSystem
                                 txtCode.Text = "";
                                 txtRecivedQuantity.Text = "";
                                 comStorePlace.DataSource = null;
+                            }
+                            else
+                            {
+                                MessageBox.Show("البند تم تسليمه بالكامل");
                             }
                         }
                         else
@@ -557,7 +560,16 @@ namespace MainSystem
                     row = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
                     rowHandel1 = e.RowHandle;
                     txtCode.Text = row[1].ToString();
-                    txtRecivedQuantity.Text = row[5].ToString();
+                    string d = row[6].ToString();
+                    if (d!="")
+                    {
+                        
+                        txtRecivedQuantity.Text = (Convert.ToDouble(row[5].ToString()) - Convert.ToDouble(row[6].ToString())).ToString();
+                    }
+                    else
+                    {
+                        txtRecivedQuantity.Text = row[5].ToString();
+                    }
                     txtRecivedQuantity.Focus();
                 }
                 else
@@ -584,7 +596,6 @@ namespace MainSystem
             try
             {
                 rowHandel2 = e.RowHandle;
-
             }
             catch (Exception ex)
             {
@@ -667,6 +678,10 @@ namespace MainSystem
                                     txtRecivedQuantity.Text = "";
                                     comStorePlace.DataSource = null;
                                 }
+                                else
+                                {
+                                    MessageBox.Show("البند تم تسليمه بالكامل");
+                                }
                             }
                             else
                             {
@@ -725,6 +740,7 @@ namespace MainSystem
                             dr.Close();
                             deliveryPermissionClass.ItemName = "-" + row1[2].ToString() + "\n" + str;
                         }
+
                         else
                         {
                             deliveryPermissionClass.ItemName = row1[2].ToString();
@@ -979,7 +995,7 @@ namespace MainSystem
             gridControl1.DataSource = null;
             gridView1.Columns.Clear();
             DataTable dtAll = new DataTable();
-            query = "select data.Data_ID,data.Code as 'الكود',concat(type.Type_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(data.Description,''),' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',data.Carton as 'الكرتنة',product_bill.Quantity as 'الكمية',(case  when data.Carton !=0 then (product_bill.Quantity /data.Carton) end ) as 'عدد الكراتين','" + " " + " ' as 'الكمية المسلمة',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',store.Store_Name as 'المخزن',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join store on product_bill.Store_ID=store.Store_ID where CustomerBill_ID=" + id + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+            query = "select data.Data_ID,data.Code as 'الكود',concat(type.Type_Name,' ',product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(data.Description,''),' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',data.Carton as 'الكرتنة',product_bill.Quantity as 'الكمية'"/*,(case  when data.Carton !=0 then (product_bill.Quantity /data.Carton) end ) as 'عدد الكراتين'*/+",'" + "" + "' as 'الكمية المسلمة',data.Description as 'الوصف',product_bill.Returned as 'تم الاسترجاع',store.Store_Name as 'المخزن',Delegate_Name,product_bill.CustomerBill_ID,product_bill.Store_ID from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join store on product_bill.Store_ID=store.Store_ID where CustomerBill_ID=" + id + " and product_bill.Type='بند'  and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dtProduct = new DataTable();
             da.Fill(dtProduct);
@@ -1070,7 +1086,7 @@ namespace MainSystem
             string re = getDeliveredDataItems("بند");
             if (re != "")
             {
-                query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Cartons as 'الكرتنة',product_bill.Quantity as 'الكمية' , '" + 0 + " ' as 'الكمية المسلمة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID=" + id + " and product_bill.Type='بند' and product_bill.Data_ID not in ( '" + re + "') ";// and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                query = "select data.Data_ID,data.Code as 'الكود',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Type as 'الفئة',product_bill.Cartons as 'الكرتنة',product_bill.Quantity as 'الكمية' , '" + 0 + " ' as 'الكمية المسلمة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID  where CustomerBill_ID=" + id + " and product_bill.Type='بند' and product_bill.Data_ID not in ( " + re + ") ";// and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                 da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtProduct = new DataTable();
                 da.Fill(dtProduct);

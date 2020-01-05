@@ -61,6 +61,10 @@
             this.tt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panHeader = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtDelegateID = new System.Windows.Forms.TextBox();
+            this.comDelegate = new System.Windows.Forms.ComboBox();
+            this.labelDelegate = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -75,18 +79,13 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.Data_ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ReturnQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.TotalQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.SafayaQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Safaya = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TotalReturn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TotalSales = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Classification = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Sort_Value = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Size_Value = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Color_Name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Group_Name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Factory_Name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Type_Name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Product_Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Item_Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -98,10 +97,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.txtTotalSales = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtDelegateID = new System.Windows.Forms.TextBox();
-            this.comDelegate = new System.Windows.Forms.ComboBox();
-            this.labelDelegate = new System.Windows.Forms.Label();
             this.panSearchAddtionalTool.SuspendLayout();
             this.panHeader.SuspendLayout();
             this.panContainer.SuspendLayout();
@@ -617,6 +612,53 @@
             this.panHeader.Size = new System.Drawing.Size(916, 244);
             this.panHeader.TabIndex = 40;
             // 
+            // label18
+            // 
+            this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.IndianRed;
+            this.label18.Location = new System.Drawing.Point(173, 11);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(19, 19);
+            this.label18.TabIndex = 213;
+            this.label18.Text = "*";
+            // 
+            // txtDelegateID
+            // 
+            this.txtDelegateID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDelegateID.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtDelegateID.Location = new System.Drawing.Point(198, 11);
+            this.txtDelegateID.Name = "txtDelegateID";
+            this.txtDelegateID.Size = new System.Drawing.Size(48, 24);
+            this.txtDelegateID.TabIndex = 212;
+            this.txtDelegateID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
+            // 
+            // comDelegate
+            // 
+            this.comDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comDelegate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comDelegate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comDelegate.FormattingEnabled = true;
+            this.comDelegate.Location = new System.Drawing.Point(253, 11);
+            this.comDelegate.Name = "comDelegate";
+            this.comDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comDelegate.Size = new System.Drawing.Size(173, 24);
+            this.comDelegate.TabIndex = 210;
+            this.comDelegate.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            // 
+            // labelDelegate
+            // 
+            this.labelDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelDelegate.AutoSize = true;
+            this.labelDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDelegate.Location = new System.Drawing.Point(432, 11);
+            this.labelDelegate.Name = "labelDelegate";
+            this.labelDelegate.Size = new System.Drawing.Size(45, 16);
+            this.labelDelegate.TabIndex = 211;
+            this.labelDelegate.Text = "مندوب";
+            // 
             // label12
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -784,25 +826,26 @@
             this.gridView1.AppearancePrint.FilterPanel.Options.UseFont = true;
             this.gridView1.AppearancePrint.FilterPanel.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.FilterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.FooterPanel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.FooterPanel.Options.UseFont = true;
+            this.gridView1.AppearancePrint.FooterPanel.Options.UseTextOptions = true;
+            this.gridView1.AppearancePrint.FooterPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView1.AppearancePrint.HeaderPanel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.HeaderPanel.Options.UseFont = true;
             this.gridView1.AppearancePrint.Row.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView1.AppearancePrint.Row.Options.UseFont = true;
             this.gridView1.AppearancePrint.Row.Options.UseTextOptions = true;
             this.gridView1.AppearancePrint.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Data_ID,
+            this.Code,
+            this.Item_Name,
+            this.ReturnQuantity,
+            this.TotalQuantity,
+            this.SafayaQuantity,
             this.Safaya,
             this.TotalReturn,
-            this.TotalSales,
-            this.Description,
-            this.Classification,
-            this.Sort_Value,
-            this.Size_Value,
-            this.Color_Name,
-            this.Group_Name,
-            this.Factory_Name,
-            this.Type_Name,
-            this.Product_Name,
-            this.Code});
+            this.TotalSales});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
@@ -813,6 +856,36 @@
             this.Data_ID.Caption = "Data_ID";
             this.Data_ID.FieldName = "Data_ID";
             this.Data_ID.Name = "Data_ID";
+            // 
+            // ReturnQuantity
+            // 
+            this.ReturnQuantity.Caption = "الكمية المرتجعة";
+            this.ReturnQuantity.FieldName = "ReturnQuantity";
+            this.ReturnQuantity.Name = "ReturnQuantity";
+            this.ReturnQuantity.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ReturnQuantity", "{0:0.##}")});
+            this.ReturnQuantity.Visible = true;
+            this.ReturnQuantity.VisibleIndex = 5;
+            // 
+            // TotalQuantity
+            // 
+            this.TotalQuantity.Caption = "الكمية المباعة";
+            this.TotalQuantity.FieldName = "TotalQuantity";
+            this.TotalQuantity.Name = "TotalQuantity";
+            this.TotalQuantity.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalQuantity", "{0:0.##}")});
+            this.TotalQuantity.Visible = true;
+            this.TotalQuantity.VisibleIndex = 4;
+            // 
+            // SafayaQuantity
+            // 
+            this.SafayaQuantity.Caption = "صافي الكمية";
+            this.SafayaQuantity.FieldName = "SafayaQuantity";
+            this.SafayaQuantity.Name = "SafayaQuantity";
+            this.SafayaQuantity.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SafayaQuantity", "{0:0.##}")});
+            this.SafayaQuantity.Visible = true;
+            this.SafayaQuantity.VisibleIndex = 3;
             // 
             // Safaya
             // 
@@ -844,77 +917,13 @@
             this.TotalSales.Visible = true;
             this.TotalSales.VisibleIndex = 2;
             // 
-            // Description
+            // Item_Name
             // 
-            this.Description.Caption = "الوصف";
-            this.Description.FieldName = "Description";
-            this.Description.Name = "Description";
-            this.Description.Visible = true;
-            this.Description.VisibleIndex = 3;
-            // 
-            // Classification
-            // 
-            this.Classification.Caption = "التصنيف";
-            this.Classification.FieldName = "Classification";
-            this.Classification.Name = "Classification";
-            this.Classification.Visible = true;
-            this.Classification.VisibleIndex = 4;
-            // 
-            // Sort_Value
-            // 
-            this.Sort_Value.Caption = "الفرز";
-            this.Sort_Value.FieldName = "Sort_Value";
-            this.Sort_Value.Name = "Sort_Value";
-            this.Sort_Value.Visible = true;
-            this.Sort_Value.VisibleIndex = 5;
-            // 
-            // Size_Value
-            // 
-            this.Size_Value.Caption = "المقاس";
-            this.Size_Value.FieldName = "Size_Value";
-            this.Size_Value.Name = "Size_Value";
-            this.Size_Value.Visible = true;
-            this.Size_Value.VisibleIndex = 6;
-            // 
-            // Color_Name
-            // 
-            this.Color_Name.Caption = "اللون";
-            this.Color_Name.FieldName = "Color_Name";
-            this.Color_Name.Name = "Color_Name";
-            this.Color_Name.Visible = true;
-            this.Color_Name.VisibleIndex = 7;
-            // 
-            // Group_Name
-            // 
-            this.Group_Name.Caption = "المجموعة";
-            this.Group_Name.FieldName = "Group_Name";
-            this.Group_Name.Name = "Group_Name";
-            this.Group_Name.Visible = true;
-            this.Group_Name.VisibleIndex = 8;
-            // 
-            // Factory_Name
-            // 
-            this.Factory_Name.Caption = "المصنع";
-            this.Factory_Name.FieldName = "Factory_Name";
-            this.Factory_Name.Name = "Factory_Name";
-            this.Factory_Name.Visible = true;
-            this.Factory_Name.VisibleIndex = 9;
-            // 
-            // Type_Name
-            // 
-            this.Type_Name.Caption = "النوع";
-            this.Type_Name.FieldName = "Type_Name";
-            this.Type_Name.Name = "Type_Name";
-            this.Type_Name.Visible = true;
-            this.Type_Name.VisibleIndex = 10;
-            // 
-            // Product_Name
-            // 
-            this.Product_Name.Caption = "الصنف";
-            this.Product_Name.FieldName = "Product_Name";
-            this.Product_Name.Name = "Product_Name";
-            this.Product_Name.Visible = true;
-            this.Product_Name.VisibleIndex = 11;
+            this.Item_Name.Caption = "البند";
+            this.Item_Name.FieldName = "Item_Name";
+            this.Item_Name.Name = "Item_Name";
+            this.Item_Name.Visible = true;
+            this.Item_Name.VisibleIndex = 6;
             // 
             // Code
             // 
@@ -922,7 +931,7 @@
             this.Code.FieldName = "Code";
             this.Code.Name = "Code";
             this.Code.Visible = true;
-            this.Code.VisibleIndex = 12;
+            this.Code.VisibleIndex = 7;
             // 
             // panel1
             // 
@@ -1047,53 +1056,6 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "اجمالي المبيعات";
             // 
-            // label18
-            // 
-            this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.IndianRed;
-            this.label18.Location = new System.Drawing.Point(173, 11);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(19, 19);
-            this.label18.TabIndex = 213;
-            this.label18.Text = "*";
-            // 
-            // txtDelegateID
-            // 
-            this.txtDelegateID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDelegateID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDelegateID.Location = new System.Drawing.Point(198, 11);
-            this.txtDelegateID.Name = "txtDelegateID";
-            this.txtDelegateID.Size = new System.Drawing.Size(48, 24);
-            this.txtDelegateID.TabIndex = 212;
-            this.txtDelegateID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
-            // 
-            // comDelegate
-            // 
-            this.comDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comDelegate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comDelegate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comDelegate.FormattingEnabled = true;
-            this.comDelegate.Location = new System.Drawing.Point(253, 11);
-            this.comDelegate.Name = "comDelegate";
-            this.comDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comDelegate.Size = new System.Drawing.Size(173, 24);
-            this.comDelegate.TabIndex = 210;
-            this.comDelegate.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // labelDelegate
-            // 
-            this.labelDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelDelegate.AutoSize = true;
-            this.labelDelegate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDelegate.Location = new System.Drawing.Point(432, 11);
-            this.labelDelegate.Name = "labelDelegate";
-            this.labelDelegate.Size = new System.Drawing.Size(45, 16);
-            this.labelDelegate.TabIndex = 211;
-            this.labelDelegate.Text = "مندوب";
-            // 
             // SalesReportForDelegateProductDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1171,15 +1133,7 @@
         private System.Windows.Forms.TextBox txtBranchID;
         private DevExpress.XtraGrid.Columns.GridColumn Data_ID;
         private DevExpress.XtraGrid.Columns.GridColumn Code;
-        private DevExpress.XtraGrid.Columns.GridColumn Product_Name;
-        private DevExpress.XtraGrid.Columns.GridColumn Type_Name;
-        private DevExpress.XtraGrid.Columns.GridColumn Factory_Name;
-        private DevExpress.XtraGrid.Columns.GridColumn Group_Name;
-        private DevExpress.XtraGrid.Columns.GridColumn Color_Name;
-        private DevExpress.XtraGrid.Columns.GridColumn Size_Value;
-        private DevExpress.XtraGrid.Columns.GridColumn Sort_Value;
-        private DevExpress.XtraGrid.Columns.GridColumn Classification;
-        private DevExpress.XtraGrid.Columns.GridColumn Description;
+        private DevExpress.XtraGrid.Columns.GridColumn Item_Name;
         private DevExpress.XtraGrid.Columns.GridColumn TotalSales;
         private DevExpress.XtraGrid.Columns.GridColumn TotalReturn;
         private DevExpress.XtraGrid.Columns.GridColumn Safaya;
@@ -1197,5 +1151,8 @@
         private System.Windows.Forms.TextBox txtDelegateID;
         private System.Windows.Forms.ComboBox comDelegate;
         private System.Windows.Forms.Label labelDelegate;
+        private DevExpress.XtraGrid.Columns.GridColumn ReturnQuantity;
+        private DevExpress.XtraGrid.Columns.GridColumn TotalQuantity;
+        private DevExpress.XtraGrid.Columns.GridColumn SafayaQuantity;
     }
 }
