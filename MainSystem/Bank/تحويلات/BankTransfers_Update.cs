@@ -69,7 +69,7 @@ namespace MainSystem
                 comand = new MySqlCommand(query, dbconnection);
                 string ToBankType = comand.ExecuteScalar().ToString();
 
-                if(FromBankType=="خزينة")
+                if(FromBankType=="خزينة" || FromBankType == "خزينة مصروفات")
                 {
                     radFromSafe.Checked = true;
                 }
@@ -78,7 +78,7 @@ namespace MainSystem
                     radFromBank.Checked = true;
                 }
 
-                if (ToBankType == "خزينة")
+                if (ToBankType == "خزينة" || ToBankType == "خزينة مصروفات")
                 {
                     radToSafe.Checked = true;
                 }
@@ -160,7 +160,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from bank where Bank_Type='خزينة' and Branch_ID=" + comFromBranch.SelectedValue;
+                string query = "select * from bank where (Bank_Type='خزينة' or Bank_Type='خزينة مصروفات') and Branch_ID=" + comFromBranch.SelectedValue;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -180,7 +180,8 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from bank where Bank_Type='حساب بنكى' and Branch_ID=" + comFromBranch.SelectedValue;
+                // and Branch_ID=" + comFromBranch.SelectedValue
+                string query = "select * from bank where Bank_Type='حساب بنكى'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -200,7 +201,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from bank where Bank_Type='خزينة' and Branch_ID=" + comToBranch.SelectedValue;
+                string query = "select * from bank where (Bank_Type='خزينة' or Bank_Type='خزينة مصروفات') and Branch_ID=" + comToBranch.SelectedValue;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -220,7 +221,8 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from bank where Bank_Type='حساب بنكى' and Branch_ID=" + comToBranch.SelectedValue;
+                // and Branch_ID=" + comToBranch.SelectedValue
+                string query = "select * from bank where Bank_Type='حساب بنكى'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

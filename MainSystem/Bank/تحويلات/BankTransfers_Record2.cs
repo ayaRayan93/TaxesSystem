@@ -43,7 +43,7 @@ namespace MainSystem
                 radToBank.Enabled = false;
                 radToSafe.Enabled = false;
                 comFromBank.Enabled = false;
-                comToBank.Enabled = false;
+                //comToBank.Enabled = false;
                 radFromSafe.Checked = true;
                 radToSafe.Checked = true;
             }
@@ -55,7 +55,7 @@ namespace MainSystem
             {
                 if (UserControl.userType == 1)
                 {
-                    string query = "select * from bank where Bank_Type='خزينة'";
+                    string query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -123,7 +123,7 @@ namespace MainSystem
             {
                 if (UserControl.userType == 1)
                 {
-                    string query = "select * from bank where Bank_Type='خزينة'";
+                    string query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -134,7 +134,7 @@ namespace MainSystem
                 }
                 else
                 {
-                    string query = "select * from bank where Bank_Type='خزينة' and Bank_ID=3";
+                    string query = "select * from bank where (Bank_Type='خزينة' and Bank_ID=3) or Bank_Type='خزينة مصروفات'";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
