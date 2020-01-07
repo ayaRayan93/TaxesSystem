@@ -182,13 +182,17 @@ namespace MainSystem
             comMain.ValueMember = dt.Columns["MainExpense_ID"].ToString();
             comMain.SelectedIndex = -1;
             
-            if (UserControl.userType == 1)
+            if (UserControl.userType == 3 || UserControl.userType == 16)
             {
-                query = "select * from bank where Bank_Type='خزينة'";
+                query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + " and Bank_Type='خزينة'";
             }
-            else
+            else if (UserControl.userType == 7)
             {
-                query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID +" and Bank_Type='خزينة'";
+                query = "select * from bank where Bank_Type='خزينة مصروفات' and bank.Branch_ID=" + transitionbranchID;
+            }
+            else if(UserControl.userType == 1)
+            {
+                query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
             }
             da = new MySqlDataAdapter(query, dbconnection);
             dt = new DataTable();

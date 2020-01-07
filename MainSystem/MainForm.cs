@@ -181,6 +181,7 @@ namespace MainSystem
                 btnExpenses.Enabled = true;
                 btnExpenses.Checked = true;
                 navBarGroup42.Visible = false;
+                navBarItemSubExpensesTransitionsReport.Visible = false;
 
                 navBarGroup1.Visible = false;
                 navBarGroup2.Visible = false;
@@ -257,7 +258,7 @@ namespace MainSystem
                 btnPOS.Checked = true;
                 btnExpenses.Enabled = true;
                 btnExpenses.Checked = true;
-                navBarGroup57.Visible = false;
+                //navBarGroup57.Visible = false;
                 navBarGroupBillRecord.Visible = false;
                 //navBarGroupSupplierPayments.Visible = false;
                 //navBarGroup49.Visible = false;
@@ -397,6 +398,7 @@ namespace MainSystem
                 btnExpenses.Enabled = true;
                 btnExpenses.Checked = true;
                 navBarGroup42.Visible = false;
+                navBarItemSubExpensesTransitionsReport.Visible = false;
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
                 btnPOS.Enabled = true;

@@ -14,6 +14,7 @@ namespace MainSystem
         public string DepositorName { get; set; }
         public string MainExpense_Name { get; set; }
         public string SubExpense_Name { get; set; }
+        public double IncomeAmount { get; set; }
         public double ExpenseAmount { get; set; }
         public string Employee_Name { get; set; }
         public string Description { get; set; }

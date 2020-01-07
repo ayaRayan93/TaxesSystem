@@ -269,7 +269,7 @@
             // 
             // label2
             // 
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label2.ForeColor = System.Drawing.Color.Red;
             this.label2.Location = new System.Drawing.Point(474, 223);
             this.label2.Name = "label2";
@@ -1189,8 +1189,8 @@
             this.layoutControlItem5.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem5.Control = this.txtDescription;
             this.layoutControlItem5.Location = new System.Drawing.Point(491, 244);
-            this.layoutControlItem5.MaxSize = new System.Drawing.Size(332, 160);
-            this.layoutControlItem5.MinSize = new System.Drawing.Size(332, 160);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 160);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(60, 160);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(332, 160);
             this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
@@ -1290,8 +1290,8 @@
             this.layoutControlItem3.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem3.Control = this.txtMoney;
             this.layoutControlItem3.Location = new System.Drawing.Point(491, 216);
-            this.layoutControlItem3.MaxSize = new System.Drawing.Size(332, 28);
-            this.layoutControlItem3.MinSize = new System.Drawing.Size(332, 28);
+            this.layoutControlItem3.MaxSize = new System.Drawing.Size(0, 28);
+            this.layoutControlItem3.MinSize = new System.Drawing.Size(60, 28);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(332, 28);
             this.layoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;

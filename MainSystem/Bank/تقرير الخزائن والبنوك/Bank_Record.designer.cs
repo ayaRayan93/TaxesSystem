@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.label15 = new System.Windows.Forms.Label();
@@ -896,7 +897,8 @@
             this.cmbType.Items.AddRange(new object[] {
             "خزينة",
             "حساب بنكى",
-            "فيزا"});
+            "فيزا",
+            "خزينة مصروفات"});
             this.cmbType.Location = new System.Drawing.Point(393, 31);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(216, 27);
