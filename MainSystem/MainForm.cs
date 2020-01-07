@@ -333,14 +333,14 @@ namespace MainSystem
                 //navBarGroupSupplierPayments.Visible = false;
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
+                AccountingSystem.Enabled = true;
+                AccountingSystem.Checked = true;
                 navBarGroupBillRecord.Visible = false;
                 //navBarGroup49.Visible = false;
                 navBarGroup47.Visible = false;
                 navBarGroup15.Visible = false;
                 navBarGroup16.Visible = false;
                 navBarItemSalesTransitions.Visible = false;
-                btnPOS.Enabled = true;
-                btnPOS.Checked = true;
                 navBarGroupBillRecord.Visible = false;
                 navBarGroup58.Visible = false;
             }
