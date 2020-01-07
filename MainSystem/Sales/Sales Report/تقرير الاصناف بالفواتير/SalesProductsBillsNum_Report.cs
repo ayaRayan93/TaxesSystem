@@ -127,7 +127,7 @@ namespace MainSystem
                     double totalQuantity = 0;
                     double returnedQuantity = 0;
 
-                    query = "SELECT sum(customer_return_bill_details.TotalMeter) as 'الكمية' FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID where customer_return_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and customer_return_bill_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and customer_return_bill_details.Type='بند' group by customer_return_bill_details.Data_ID";
+                    query = "SELECT sum(customer_return_bill_details.TotalMeter) as 'الكمية' FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID INNER JOIN customer_bill ON customer_return_bill_details.CustomerBill_ID = customer_bill.CustomerBill_ID INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID where customer_return_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and customer_return_bill_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and customer_bill.Branch_BillNumber >= " + txtFromBill.Text + " and customer_bill.Branch_BillNumber <=" + txtToBill.Text + " and customer_return_bill_details.Type='بند' group by customer_return_bill_details.Data_ID";
                     MySqlCommand com = new MySqlCommand(query, conn2);
                     if (com.ExecuteScalar() != null)
                     {

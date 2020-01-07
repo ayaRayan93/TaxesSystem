@@ -105,7 +105,7 @@ namespace MainSystem
             }
             else
             {
-                MessageBox.Show("يجب اختيار المصروف الرئيسى والفرعى");
+                MessageBox.Show("يجب اختيار المصروف الرئيسى");
             }
         }
 
