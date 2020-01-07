@@ -1143,21 +1143,39 @@ namespace MainSystem
             DataTable dtper1 = new DataTable();
             da.Fill(dtper1);
             dtAll.Merge(dtper1, true, MissingSchemaAction.Ignore);
+       
 
             bool flag = true;
-            foreach (DataRow item in dtAll.Rows)
+            dbconnection.Close();
+            if (IsQuantityEqual())
             {
-                if (Convert.ToDouble(item[4]) > Convert.ToDouble(item[5]))
+                dbconnection.Open();
+                foreach (DataRow item in dtAll.Rows)
                 {
-                    flag = false;
+                    if (Convert.ToDouble(item[4]) > Convert.ToDouble(item[5]))
+                    {
+                        flag = false;
+                        query = "update customer_bill set RecivedFlag='تم تسليم جزء' where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.ExecuteNonQuery();
+                    }
+
+                }
+                if (flag)
+                {
+                    query = "update customer_bill set RecivedFlag='تم' where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    com.ExecuteNonQuery();
                 }
             }
-            if (flag)
+            else
             {
-                query = "update customer_bill set RecivedFlag='تم' where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+                dbconnection.Open();
+                query = "update customer_bill set RecivedFlag='تم تسليم جزء' where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 com.ExecuteNonQuery();
             }
+         
         }
         public bool IsDelveryQuantityHaveValue(string x)
         {
@@ -1172,6 +1190,32 @@ namespace MainSystem
             }
         }
 
+        public bool IsQuantityEqual()
+        {
+            dbconnection.Open();
+            //check number of records
+            string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+            MySqlCommand com1 = new MySqlCommand(query, dbconnection);
+            int id = Convert.ToInt16(com1.ExecuteScalar());
+
+            query = "select count(*) from product_bill where CustomerBill_ID=" + id;
+            com1 = new MySqlCommand(query, dbconnection);
+            int count1 = Convert.ToInt16(com1.ExecuteScalar());
+
+            query = "select Customer_Permissin_ID from customer_permissions where CustomerBill_ID=" + id;
+            com1 = new MySqlCommand(query, dbconnection);
+            int Customer_Permissin_ID = Convert.ToInt16(com1.ExecuteScalar());
+
+            query = "select count(*) from customer_permissions_details where Customer_Permissin_ID=" + id;
+            com1 = new MySqlCommand(query, dbconnection);
+            int count2 = Convert.ToInt16(com1.ExecuteScalar());
+
+            dbconnection.Close();
+            if (count1 == count2)
+                return true;
+            else
+                return false;
+        }
     }
 
    
