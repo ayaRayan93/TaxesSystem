@@ -279,7 +279,7 @@
             this.xrLabel1.SizeF = new System.Drawing.SizeF(190.4783F, 30F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "حركة سداد";
+            this.xrLabel1.Text = "حركة المصروفات";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel5
@@ -470,7 +470,7 @@
             this.xrTableCell7.Multiline = true;
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.StylePriority.UseFont = false;
-            this.xrTableCell7.Text = "المستلم";
+            this.xrTableCell7.Text = "المودع/المستلم";
             this.xrTableCell7.Weight = 3.0931467664358121D;
             // 
             // xrTableCell11
