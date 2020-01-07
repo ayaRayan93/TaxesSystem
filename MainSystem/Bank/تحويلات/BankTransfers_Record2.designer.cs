@@ -835,6 +835,7 @@
             this.comFromBank.Name = "comFromBank";
             this.comFromBank.Size = new System.Drawing.Size(332, 24);
             this.comFromBank.TabIndex = 6;
+            this.comFromBank.SelectedValueChanged += new System.EventHandler(this.comFromBank_SelectedValueChanged);
             this.comFromBank.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // radFromBank

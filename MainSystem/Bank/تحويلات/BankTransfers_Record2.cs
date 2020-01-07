@@ -23,6 +23,7 @@ namespace MainSystem
         int[] arrPaidMoneyPlus;
         bool flag = false;
         bool flagCategoriesSuccess = false;
+        bool fromSafeLoad = false;
 
         public BankTransfers_Record2()
         {
@@ -53,6 +54,7 @@ namespace MainSystem
         {
             try
             {
+                fromSafeLoad = false;
                 if (UserControl.userType == 1)
                 {
                     string query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
@@ -62,6 +64,7 @@ namespace MainSystem
                     comFromBank.DataSource = dt;
                     comFromBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                     comFromBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                    fromSafeLoad = true;
                     comFromBank.SelectedIndex = -1;
                 }
                 else
@@ -73,6 +76,7 @@ namespace MainSystem
                     comFromBank.DataSource = dt;
                     comFromBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                     comFromBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                    fromSafeLoad = true;
                     comFromBank.SelectedIndex = -1;
 
                     dbconnection.Open();
@@ -168,6 +172,32 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        private void comFromBank_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (fromSafeLoad)
+            {
+                try
+                {
+                    if (comFromBank.SelectedValue != null)
+                    {
+                        dbconnection.Open();
+                        string query = "select Bank_Stock from bank where Bank_ID=" + comFromBank.SelectedValue;
+                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                        txtMoney.Text = comand.ExecuteScalar().ToString();
+                    }
+                    else
+                    {
+                        txtMoney.Text = "";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dbconnection.Close();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)

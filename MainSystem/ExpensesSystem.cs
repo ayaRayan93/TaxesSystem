@@ -142,6 +142,40 @@ namespace MainSystem
                 if (!xtraTabControlExpenses.Visible)
                     xtraTabControlExpenses.Visible = true;
 
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة المصروفات بالخزنة");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("حركة المصروفات بالخزنة");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة المصروفات بالخزنة");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                Expenses_Transitions_Report objFormExpenses = new Expenses_Transitions_Report(xtraTabControlExpenses);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemSubExpensesTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
                 XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة المصروفات");
                 if (xtraTabPage == null)
                 {
@@ -151,7 +185,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
 
                 xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
-                Expenses_Transitions_Report objFormExpenses = new Expenses_Transitions_Report(xtraTabControlExpenses);
+                SubExpensesTransitions_Report objFormExpenses = new SubExpensesTransitions_Report(xtraTabControlExpenses);
                 objFormExpenses.TopLevel = false;
 
                 xtraTabPage.Controls.Add(objFormExpenses);

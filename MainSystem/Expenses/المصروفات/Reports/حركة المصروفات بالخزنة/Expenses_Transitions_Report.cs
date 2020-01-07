@@ -22,7 +22,6 @@ namespace MainSystem
         MySqlConnection conn;
         XtraTabControl xtraTabControlExpenses;
         DataRowView row1 = null;
-        bool loaded = false;
 
         public Expenses_Transitions_Report(XtraTabControl XtraTabControlExpenses)
         {
@@ -196,19 +195,15 @@ namespace MainSystem
                 gridView1.FocusedRowHandle = gridView1.RowCount - 1;
             }
             gridView1.Columns[0].Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
-            if (!loaded)
+            
+            for (int i = 1; i < gridView1.Columns.Count; i++)
             {
-                for (int i = 1; i < gridView1.Columns.Count; i++)
-                {
-                    gridView1.Columns[i].Width = 100;
-                }
+                gridView1.Columns[i].Width = 100;
             }
 
             txtIncome.Text = totalIncome.ToString();
             txtExpense.Text = totalExpense.ToString();
             txtSafy.Text = (totalIncome - totalExpense).ToString();
-
-            loaded = true;
         }
 
         private void btnNewChosen_Click(object sender, EventArgs e)
