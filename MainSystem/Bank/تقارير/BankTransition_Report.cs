@@ -14,14 +14,13 @@ namespace MainSystem
 {
     public partial class BankTransition_Report : Form
     {
-        MySqlConnection dbconnection, dbconnection2;
+        MySqlConnection dbconnection;
         MainForm mainForm;
 
         public BankTransition_Report(MainForm mainform)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
-            dbconnection2 = new MySqlConnection(connection.connectionString);
             mainForm = mainform;
         }
 
@@ -46,46 +45,6 @@ namespace MainSystem
             dbconnection.Close();
         }
         
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            /*try
-            {
-                if (txtTransitionId.Text != "" && txtOperation.Text != "" && txtType.Text != "")
-                {
-                    PrintCopy_ReturnedAglCategoriesBill_Report f = new PrintCopy_ReturnedAglCategoriesBill_Report();
-                    f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtTransitionBranch.Text, txtClient.Text, Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, username, txtDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
-                    f.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            conn.Close();*/
-        }
-
-        //clear function
-        public void clear()
-        {
-            foreach (Control co in this.panel1.Controls)
-            {
-                //if (co is GroupBox)
-                //{
-                foreach (Control item in co.Controls)
-                {
-                    if (item is ComboBox)
-                    {
-                        item.Text = "";
-                    }
-                    else if (item is TextBox)
-                    {
-                        item.Text = "";
-                    }
-                }
-                //}
-            }
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -229,31 +188,22 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        public bool IsClear()
+        private void btnReport_Click(object sender, EventArgs e)
         {
-            bool flag5 = false;
-            foreach (Control co in this.panel1.Controls)
+            /*try
             {
-                foreach (Control item in co.Controls)
+                if (txtTransitionId.Text != "" && txtOperation.Text != "" && txtType.Text != "")
                 {
-                    if (item is ComboBox)
-                    {
-                        if (item.Text == "")
-                            flag5 = true;
-                        else
-                            return false;
-                    }
-                    else if (item is TextBox)
-                    {
-                        if (item.Text == "")
-                            flag5 = true;
-                        else
-                            return false;
-                    }
+                    PrintCopy_ReturnedAglCategoriesBill_Report f = new PrintCopy_ReturnedAglCategoriesBill_Report();
+                    f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtTransitionBranch.Text, txtClient.Text, Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, username, txtDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                    f.ShowDialog();
                 }
             }
-
-            return flag5;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();*/
         }
     }
 }
