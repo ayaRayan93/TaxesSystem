@@ -210,6 +210,15 @@ namespace MainSystem
                 }
                 else
                 {
+                    txtSales.Text = "0";
+                    txtReturned.Text = "0";
+                    txtIncomeExpenses.Text = "0";
+                    txtExpenses.Text = "0";
+                    txtTransferTo.Text = "0";
+                    txtTransferFrom.Text = "0";
+                    txtTotalAdd.Text = "0";
+                    txtTotalSub.Text = "0";
+                    txtSafy.Text = "0";
                     MessageBox.Show("يجب اختيار الخزينة");
                 }
             }
