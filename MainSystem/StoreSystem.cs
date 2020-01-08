@@ -606,7 +606,40 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        
+        private void navBarItemPermissionRestBill_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
 
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "اذونات لم يتم تسليمها بالكامل");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("اذونات لم يتم تسليمها بالكامل");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "اذونات لم يتم تسليمها بالكامل");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                RestDeliveryItems objForm = new RestDeliveryItems(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void navBarItemAddingQuantity_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

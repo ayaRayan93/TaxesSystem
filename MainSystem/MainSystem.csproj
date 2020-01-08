@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version1.47\</PublishUrl>
+    <PublishUrl>D:\التكويد\version1.49\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>220</ApplicationRevision>
+    <ApplicationRevision>222</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -886,6 +886,12 @@
       <DependentUpon>CustomerDeliveryReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Export\DeliveryListPermissionClass.cs" />
+    <Compile Include="Store\Export\RestDeliveryItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\RestDeliveryItems.Designer.cs">
+      <DependentUpon>RestDeliveryItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Export\XtraReportPermissionList.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3194,6 +3200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Sales Report\تفاصيل الاصناف المباعة\SalesProductsBillsDetails_Report.resx">
       <DependentUpon>SalesProductsBillsDetails_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\RestDeliveryItems.resx">
+      <DependentUpon>RestDeliveryItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\XtraReportPermissionList.resx">
       <DependentUpon>XtraReportPermissionList.cs</DependentUpon>
