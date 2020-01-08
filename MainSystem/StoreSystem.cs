@@ -1996,6 +1996,30 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+        public void bindDisplayUpdateDeliveryForm(string permissionNum, string branchID, int flag)
+        {
+            if (!xtraTabControlStoresContent.Visible)
+                xtraTabControlStoresContent.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل أذن استلام");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تعديل أذن استلام");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تعديل أذن استلام");
+            }
+
+            xtraTabPage.Controls.Clear();
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            updateCustomerPermission objForm = new updateCustomerPermission(permissionNum, branchID);
+
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
         public void bindDisplayExpectedOrdersReport(XtraTabPage xtraTabPage)
         {
             searchReciveDate = new SearchRecive_Date(this, xtraTabControlStoresContent);
