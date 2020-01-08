@@ -349,6 +349,7 @@ namespace MainSystem
             AddUnboundColumngridView2();
             AddRepositorygridView2();
         }
+
         private void AddRepositorygridView1()
         {
             RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();

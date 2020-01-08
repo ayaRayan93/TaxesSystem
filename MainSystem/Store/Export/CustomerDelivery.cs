@@ -313,7 +313,7 @@ namespace MainSystem
                 if (gridView1.SelectedRowsCount==1&& txtRecivedQuantity.Text!="")
                 {
                     loaded = false;
-                    if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row["الكمية"]))
+                    if (Convert.ToDouble(txtRecivedQuantity.Text) <= (Convert.ToDouble(row["الكمية"].ToString()) - Convert.ToDouble(row[6].ToString())))
                     {
                         if (IsDelveryQuantityHaveValue(row[6].ToString()))
                         {
@@ -332,21 +332,22 @@ namespace MainSystem
                                 MessageBox.Show("البند تم تسليمه بالكامل");
                             }
                         }
-                        else
-                        {
-                            addrow = row;
-                            SelectType = "oneRow";
-                            addNewRow(row);
+                        //else
+                        //{
+                        //    addrow = row;
+                        //    SelectType = "oneRow";
+                        //    addNewRow(row);
 
-                            txtCode.Text = "";
-                            txtRecivedQuantity.Text = "";
-                            comStorePlace.DataSource = null;
-                        }
+                        //    txtCode.Text = "";
+                        //    txtRecivedQuantity.Text = "";
+                        //    comStorePlace.DataSource = null;
+                        //}
                     }
                     else
                     {
                         txtRecivedQuantity.Text = "0";
                         txtRecivedQuantity.Focus();
+                        MessageBox.Show("الكمية اكبر من اجمالي الكمية المطلوبة");
                     }
                 }
                 else 
@@ -665,7 +666,7 @@ namespace MainSystem
                     if (gridView1.SelectedRowsCount == 1)
                     {
                         loaded = false;
-                        if (Convert.ToDouble(txtRecivedQuantity.Text) <= Convert.ToDouble(row[5].ToString()))
+                        if (Convert.ToDouble(txtRecivedQuantity.Text) <= (Convert.ToDouble(row[5].ToString())- Convert.ToDouble(row[6].ToString())))
                         {
                             if (IsDelveryQuantityHaveValue(row[6].ToString()))
                             {
@@ -683,20 +684,21 @@ namespace MainSystem
                                     MessageBox.Show("البند تم تسليمه بالكامل");
                                 }
                             }
-                            else
-                            {
-                                addrow = row;
-                                SelectType = "oneRow";
-                                addNewRow(row);
-                                txtCode.Text = "";
-                                txtRecivedQuantity.Text = "";
-                                comStorePlace.DataSource = null;
-                            }
+                            //else
+                            //{
+                            //    addrow = row;
+                            //    SelectType = "oneRow";
+                            //    addNewRow(row);
+                            //    txtCode.Text = "";
+                            //    txtRecivedQuantity.Text = "";
+                            //    comStorePlace.DataSource = null;
+                            //}
                         }
                         else
                         {
                             txtRecivedQuantity.Text = "0";
                             txtRecivedQuantity.Focus();
+                            MessageBox.Show("الكمية اكبر من اجمالي الكمية المطلوبة");
                         }
                     }
                      loaded = true;
