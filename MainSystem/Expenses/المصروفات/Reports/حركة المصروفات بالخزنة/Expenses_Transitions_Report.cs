@@ -255,9 +255,11 @@ namespace MainSystem
                         f.PrintInvoice(Convert.ToInt32(row1["التسلسل"].ToString()), row1["المصروف الرئيسى"].ToString(), row1["المصروف الفرعى"].ToString(), row1["الخزينة"].ToString(), row1["مصروف"].ToString(), row1["المودع/المستلم"].ToString(), row1["البيان"].ToString(), row1["التاريخ"].ToString());
                         f.ShowDialog();
                     }
-                    else
+                    else if (row1["النوع"].ToString() == "ايداع")
                     {
-                        MessageBox.Show("طباعة النسخة للمصروف فقط وليس للايداع");
+                        Print_IncomeExpense_Report_Copy f = new Print_IncomeExpense_Report_Copy();
+                        f.PrintInvoice(Convert.ToInt32(row1["التسلسل"].ToString()), row1["الخزينة"].ToString(), row1["مصروف"].ToString(), row1["المودع/المستلم"].ToString(), row1["البيان"].ToString(), row1["التاريخ"].ToString());
+                        f.ShowDialog();
                     }
                 }
                 else
