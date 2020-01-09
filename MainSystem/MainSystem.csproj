@@ -238,6 +238,18 @@
     <Compile Include="Bank\تقارير\BankTransition_Report.designer.cs">
       <DependentUpon>BankTransition_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bank\تقارير\BankTransition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\تقارير\BankTransition.Designer.cs">
+      <DependentUpon>BankTransition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\تقارير\Print_BankTransition_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\تقارير\Print_BankTransition_Report.designer.cs">
+      <DependentUpon>Print_BankTransition_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerServiceSystem.cs" />
     <Compile Include="CustomerService\displayCustomerBill.cs">
       <SubType>Form</SubType>
@@ -262,6 +274,18 @@
     </Compile>
     <Compile Include="Expenses\المصروفات\Coding\SubExpenses_Report.designer.cs">
       <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\print income expense copy\Print_IncomeExpense_Report_Copy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\print income expense copy\Print_IncomeExpense_Report_Copy.designer.cs">
+      <DependentUpon>Print_IncomeExpense_Report_Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\print income expense copy\Print_IncomeExpense_Copy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\print income expense copy\Print_IncomeExpense_Copy.designer.cs">
+      <DependentUpon>Print_IncomeExpense_Copy.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\Expenses_Transitions_Report.cs">
       <SubType>Form</SubType>
@@ -294,11 +318,36 @@
       <DependentUpon>Print_ExpensesTransition_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\ExpensesTransition_Items.cs" />
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Item_SubExpensesTransitions.cs" />
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Print_SubExpensesTransitions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Print_SubExpensesTransitions.designer.cs">
+      <DependentUpon>Print_SubExpensesTransitions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Report_SubExpensesTransitions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Report_SubExpensesTransitions.designer.cs">
+      <DependentUpon>Report_SubExpensesTransitions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\SubExpensesTransitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\SubExpensesTransitions_Report.designer.cs">
       <DependentUpon>SubExpensesTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\ايداع\Print_IncomeExpense.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\ايداع\Print_IncomeExpense.designer.cs">
+      <DependentUpon>Print_IncomeExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\ايداع\Print_IncomeExpense_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\ايداع\Print_IncomeExpense_Report.designer.cs">
+      <DependentUpon>Print_IncomeExpense_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\المصروفات\ايداع\SafeExpenseIncome_Record.cs">
       <SubType>Form</SubType>
@@ -3015,6 +3064,12 @@
     <EmbeddedResource Include="Bank\تقارير\BankTransition_Report.resx">
       <DependentUpon>BankTransition_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bank\تقارير\BankTransition.resx">
+      <DependentUpon>BankTransition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\تقارير\Print_BankTransition_Report.resx">
+      <DependentUpon>Print_BankTransition_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\displayCustomerBill.resx">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
     </EmbeddedResource>
@@ -3026,6 +3081,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Coding\SubExpenses_Report.resx">
       <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\print income expense copy\Print_IncomeExpense_Report_Copy.resx">
+      <DependentUpon>Print_IncomeExpense_Report_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\print income expense copy\Print_IncomeExpense_Copy.resx">
+      <DependentUpon>Print_IncomeExpense_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\Expenses_Transitions_Report.resx">
       <DependentUpon>Expenses_Transitions_Report.cs</DependentUpon>
@@ -3042,8 +3103,20 @@
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\Print_ExpensesTransition_Report.resx">
       <DependentUpon>Print_ExpensesTransition_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Print_SubExpensesTransitions.resx">
+      <DependentUpon>Print_SubExpensesTransitions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Report_SubExpensesTransitions.resx">
+      <DependentUpon>Report_SubExpensesTransitions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\SubExpensesTransitions_Report.resx">
       <DependentUpon>SubExpensesTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\ايداع\Print_IncomeExpense.resx">
+      <DependentUpon>Print_IncomeExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\ايداع\Print_IncomeExpense_Report.resx">
+      <DependentUpon>Print_IncomeExpense_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\ايداع\SafeExpenseIncome_Record.resx">
       <DependentUpon>SafeExpenseIncome_Record.cs</DependentUpon>

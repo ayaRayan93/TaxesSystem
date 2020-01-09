@@ -190,12 +190,12 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            /*try
+            try
             {
-                if (txtTransitionId.Text != "" && txtOperation.Text != "" && txtType.Text != "")
+                if (comSafe.SelectedValue != null && comSafe.Text != "" && txtSales.Text != "" && txtReturned.Text != "" && txtIncomeExpenses.Text != "" && txtExpenses.Text != "" && txtTransferFrom.Text != "" && txtTransferTo.Text != "" && txtTotalAdd.Text != "" && txtTotalSub.Text != "" && txtSafy.Text != "")
                 {
-                    PrintCopy_ReturnedAglCategoriesBill_Report f = new PrintCopy_ReturnedAglCategoriesBill_Report();
-                    f.PrintInvoice(Convert.ToDateTime(txtDate.Text), transitionId.ToString(), txtTransitionBranch.Text, txtClient.Text, Convert.ToDouble(txtMoney.Text), txtPaymentMethod.Text, txtBank.Text, txtCheckNum.Text, txtCheckDate.Text, txtCartType.Text, txtOperationNum.Text, txtInformation.Text, username, txtDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                    Print_BankTransition_Report f = new Print_BankTransition_Report();
+                    f.PrintInvoice(comSafe.Text, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, txtSales.Text, txtReturned.Text, txtIncomeExpenses.Text, txtExpenses.Text, txtTransferTo.Text, txtTransferFrom.Text, txtTotalAdd.Text, txtTotalSub.Text, txtSafy.Text);
                     f.ShowDialog();
                 }
             }
@@ -203,7 +203,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            conn.Close();*/
+            dbconnection.Close();
         }
     }
 }

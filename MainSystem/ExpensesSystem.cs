@@ -176,11 +176,11 @@ namespace MainSystem
                 if (!xtraTabControlExpenses.Visible)
                     xtraTabControlExpenses.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة المصروفات");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة المصروفات بالمصروف");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlExpenses.TabPages.Add("حركة المصروفات");
-                    xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة المصروفات");
+                    xtraTabControlExpenses.TabPages.Add("حركة المصروفات بالمصروف");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة المصروفات بالمصروف");
                 }
                 xtraTabPage.Controls.Clear();
 
