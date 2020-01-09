@@ -322,7 +322,7 @@
             this.xrLabel12.SizeF = new System.Drawing.SizeF(135.5856F, 30.00003F);
             this.xrLabel12.StylePriority.UseFont = false;
             this.xrLabel12.StylePriority.UseTextAlignment = false;
-            this.xrLabel12.Text = ": الموظــــــــف";
+            this.xrLabel12.Text = ": اميـن الخزينـة";
             this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel15

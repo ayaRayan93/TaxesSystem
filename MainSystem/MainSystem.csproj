@@ -294,6 +294,19 @@
       <DependentUpon>Print_ExpensesTransition_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\ExpensesTransition_Items.cs" />
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Item_SubExpensesTransitions.cs" />
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Print_SubExpensesTransitions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Print_SubExpensesTransitions.designer.cs">
+      <DependentUpon>Print_SubExpensesTransitions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Report_SubExpensesTransitions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Report_SubExpensesTransitions.designer.cs">
+      <DependentUpon>Report_SubExpensesTransitions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\SubExpensesTransitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3035,6 +3048,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\Print_ExpensesTransition_Report.resx">
       <DependentUpon>Print_ExpensesTransition_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Print_SubExpensesTransitions.resx">
+      <DependentUpon>Print_SubExpensesTransitions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\Report_SubExpensesTransitions.resx">
+      <DependentUpon>Report_SubExpensesTransitions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالفرعى\SubExpensesTransitions_Report.resx">
       <DependentUpon>SubExpensesTransitions_Report.cs</DependentUpon>

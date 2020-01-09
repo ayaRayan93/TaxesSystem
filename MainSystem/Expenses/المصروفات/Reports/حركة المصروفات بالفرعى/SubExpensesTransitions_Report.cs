@@ -111,38 +111,18 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            /*if (gridView1.RowCount > 0)
+            if (gridView1.RowCount > 0)
             {
                 try
                 {
-                    double costIncome = 0;
-                    double costExpense = 0;
-                    List<ExpensesTransition_Items> bi = new List<ExpensesTransition_Items>();
-
+                    List<Item_SubExpensesTransitions> bi = new List<Item_SubExpensesTransitions>();
                     for (int i = 0; i < gridView1.RowCount; i++)
                     {
-                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["وارد"]) != "")
-                        {
-                            costIncome = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["وارد"]));
-                        }
-                        else
-                        {
-                            costIncome = 0;
-                        }
-                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["مصروف"]) != "")
-                        {
-                            costExpense = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["مصروف"]));
-                        }
-                        else
-                        {
-                            costExpense = 0;
-                        }
-                        ExpensesTransition_Items item = new ExpensesTransition_Items() { ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التسلسل"])), MainExpense_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المصروف الرئيسى"]), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), SubExpense_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المصروف الفرعى"]), DepositorName = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المودع/المستلم"]), Date = Convert.ToDateTime(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التاريخ"])).ToString("yyyy-MM-dd"), IncomeAmount = costIncome, ExpenseAmount = costExpense, Employee_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الموظف"]), Description = gridView1.GetRowCellDisplayText(i, gridView1.Columns["البيان"]) };
+                        Item_SubExpensesTransitions item = new Item_SubExpensesTransitions() { ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التسلسل"])), MainExpenses = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المصروف الرئيسى"]), SubExpenses = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المصروف الفرعى"]), Depesitor = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المستلم"]), Date = Convert.ToDateTime(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التاريخ"])).ToString("yyyy-MM-dd"), Money = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["المبلغ"])), Safe = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الخزينة"]), Employee = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الموظف"]), Description = gridView1.GetRowCellDisplayText(i, gridView1.Columns["البيان"]) };
                         bi.Add(item);
                     }
-
-                    Print_ExpensesTransition_Report f = new Print_ExpensesTransition_Report();
-                    f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comSafe.Text, bi);
+                    Report_SubExpensesTransitions f = new Report_SubExpensesTransitions();
+                    f.PrintInvoice(comMain.Text, comSub.Text, comSafe.Text, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, bi);
                     f.ShowDialog();
                 }
                 catch (Exception ex)
@@ -153,7 +133,7 @@ namespace MainSystem
             else
             {
                 MessageBox.Show("يجب التاكد من البيانات");
-            }*/
+            }
         }
 
         //functions
