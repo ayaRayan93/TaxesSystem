@@ -130,7 +130,7 @@ namespace MainSystem
                         if (gridView1.IsNewItemRow(rowHandle))
                         {
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColID"], dr["ID"].ToString());
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColType"], "وراد");
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColType"], "وارد");
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColBill"], dr["رقم الاذن"].ToString());
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColStoreName"], dr["المخزن"].ToString());
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColSupplierName"], dr["المورد"].ToString());
@@ -182,7 +182,7 @@ namespace MainSystem
                         if (gridView1.IsNewItemRow(rowHandle))
                         {
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColID"], dr["ID"].ToString());
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColType"], "وراد");
+                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColType"], "وارد");
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColBill"], dr["رقم الاذن"].ToString());
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColStoreName"], dr["المخزن"].ToString());
                             gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColSupplierName"], dr["المورد"].ToString());
