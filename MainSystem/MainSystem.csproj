@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version1.49\</PublishUrl>
+    <PublishUrl>D:\التكويد\version1.50\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>222</ApplicationRevision>
+    <ApplicationRevision>223</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -904,6 +904,12 @@
     </Compile>
     <Compile Include="Store\Export\RestDeliveryItems.Designer.cs">
       <DependentUpon>RestDeliveryItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Export\updateCustomerPermission.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\updateCustomerPermission.Designer.cs">
+      <DependentUpon>updateCustomerPermission.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Export\XtraReportPermissionList.cs">
       <SubType>Component</SubType>
@@ -3222,6 +3228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\RestDeliveryItems.resx">
       <DependentUpon>RestDeliveryItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\updateCustomerPermission.resx">
+      <DependentUpon>updateCustomerPermission.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\XtraReportPermissionList.resx">
       <DependentUpon>XtraReportPermissionList.cs</DependentUpon>
