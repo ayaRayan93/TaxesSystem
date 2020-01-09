@@ -238,6 +238,18 @@
     <Compile Include="Bank\تقارير\BankTransition_Report.designer.cs">
       <DependentUpon>BankTransition_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bank\تقارير\BankTransition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\تقارير\BankTransition.Designer.cs">
+      <DependentUpon>BankTransition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\تقارير\Print_BankTransition_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\تقارير\Print_BankTransition_Report.designer.cs">
+      <DependentUpon>Print_BankTransition_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerServiceSystem.cs" />
     <Compile Include="CustomerService\displayCustomerBill.cs">
       <SubType>Form</SubType>
@@ -3027,6 +3039,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\تقارير\BankTransition_Report.resx">
       <DependentUpon>BankTransition_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\تقارير\BankTransition.resx">
+      <DependentUpon>BankTransition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\تقارير\Print_BankTransition_Report.resx">
+      <DependentUpon>Print_BankTransition_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\displayCustomerBill.resx">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
