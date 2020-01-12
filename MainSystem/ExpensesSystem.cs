@@ -151,7 +151,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
 
                 xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
-                Expenses_Transitions_Report objFormExpenses = new Expenses_Transitions_Report(xtraTabControlExpenses);
+                Expenses_Transitions_Report objFormExpenses = new Expenses_Transitions_Report(xtraTabControlExpenses, this);
                 objFormExpenses.TopLevel = false;
 
                 xtraTabPage.Controls.Add(objFormExpenses);
@@ -197,6 +197,56 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void bindUpdateExpenseForm(DataRowView rows, Expenses_Transitions_Report ExpensesTransitionsReport)
+        {
+            if (!xtraTabControlExpenses.Visible)
+                xtraTabControlExpenses.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "تعديل مصروف");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlExpenses.TabPages.Add("تعديل مصروف");
+                xtraTabPage = getTabPage(xtraTabControlExpenses, "تعديل مصروف");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+
+            SafeExpense_Update objForm = new SafeExpense_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindUpdateIncomeExpenseForm(DataRowView rows, Expenses_Transitions_Report ExpensesTransitionsReport)
+        {
+            if (!xtraTabControlExpenses.Visible)
+                xtraTabControlExpenses.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "تعديل ايداع مصروف");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlExpenses.TabPages.Add("تعديل ايداع مصروف");
+                xtraTabPage = getTabPage(xtraTabControlExpenses, "تعديل ايداع مصروف");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+
+            SafeExpenseIncome_Update objForm = new SafeExpenseIncome_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
         }
     }
 }

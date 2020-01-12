@@ -28,17 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtExpense = new System.Windows.Forms.TextBox();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
+            this.txtExpense = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtIncome = new System.Windows.Forms.TextBox();
+            this.txtSafy = new System.Windows.Forms.TextBox();
             this.btnPrintCopy = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,10 +52,7 @@
             this.btnNewChosen = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.comSafe = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtIncome = new System.Windows.Forms.TextBox();
-            this.txtSafy = new System.Windows.Forms.TextBox();
+            this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -141,16 +141,18 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel2.ColumnCount = 6;
+            this.tableLayoutPanel2.ColumnCount = 7;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 600F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.btnReport, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnPrintCopy, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnReport, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnPrintCopy, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnUpdate, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 543);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -158,14 +160,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1037, 54);
             this.tableLayoutPanel2.TabIndex = 5;
-            // 
-            // txtExpense
-            // 
-            this.txtExpense.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtExpense.Location = new System.Drawing.Point(232, 3);
-            this.txtExpense.Name = "txtExpense";
-            this.txtExpense.Size = new System.Drawing.Size(94, 23);
-            this.txtExpense.TabIndex = 3;
             // 
             // btnReport
             // 
@@ -181,7 +175,7 @@
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "طباعة";
-            this.btnReport.Location = new System.Drawing.Point(732, 4);
+            this.btnReport.Location = new System.Drawing.Point(682, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(94, 46);
@@ -206,7 +200,7 @@
             this.tableLayoutPanel4.Controls.Add(this.txtIncome, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.txtSafy, 6, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(112, 3);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(62, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel4.RowCount = 1;
@@ -226,6 +220,54 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "مصروف";
             // 
+            // txtExpense
+            // 
+            this.txtExpense.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtExpense.Location = new System.Drawing.Point(232, 3);
+            this.txtExpense.Name = "txtExpense";
+            this.txtExpense.Size = new System.Drawing.Size(94, 23);
+            this.txtExpense.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label4.Location = new System.Drawing.Point(155, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 16);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "الصافى";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.label6.Location = new System.Drawing.Point(509, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(31, 16);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "ايداع";
+            // 
+            // txtIncome
+            // 
+            this.txtIncome.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIncome.Location = new System.Drawing.Point(409, 3);
+            this.txtIncome.Name = "txtIncome";
+            this.txtIncome.Size = new System.Drawing.Size(94, 23);
+            this.txtIncome.TabIndex = 8;
+            // 
+            // txtSafy
+            // 
+            this.txtSafy.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSafy.Location = new System.Drawing.Point(55, 3);
+            this.txtSafy.Name = "txtSafy";
+            this.txtSafy.Size = new System.Drawing.Size(94, 23);
+            this.txtSafy.TabIndex = 9;
+            // 
             // btnPrintCopy
             // 
             this.btnPrintCopy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
@@ -240,7 +282,7 @@
             this.btnPrintCopy.ImageZoom = 25;
             this.btnPrintCopy.LabelPosition = 18;
             this.btnPrintCopy.LabelText = "طباعة نسخة";
-            this.btnPrintCopy.Location = new System.Drawing.Point(832, 4);
+            this.btnPrintCopy.Location = new System.Drawing.Point(782, 4);
             this.btnPrintCopy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPrintCopy.Name = "btnPrintCopy";
             this.btnPrintCopy.Size = new System.Drawing.Size(94, 46);
@@ -366,45 +408,26 @@
             this.comSafe.Size = new System.Drawing.Size(144, 24);
             this.comSafe.TabIndex = 14;
             // 
-            // label4
+            // btnUpdate
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label4.Location = new System.Drawing.Point(155, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 16);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "الصافى";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.label6.Location = new System.Drawing.Point(509, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 16);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "ايداع";
-            // 
-            // txtIncome
-            // 
-            this.txtIncome.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIncome.Location = new System.Drawing.Point(409, 3);
-            this.txtIncome.Name = "txtIncome";
-            this.txtIncome.Size = new System.Drawing.Size(94, 23);
-            this.txtIncome.TabIndex = 8;
-            // 
-            // txtSafy
-            // 
-            this.txtSafy.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSafy.Location = new System.Drawing.Point(55, 3);
-            this.txtSafy.Name = "txtSafy";
-            this.txtSafy.Size = new System.Drawing.Size(94, 23);
-            this.txtSafy.TabIndex = 9;
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnUpdate.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnUpdate.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUpdate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdate.ImagePosition = 1;
+            this.btnUpdate.ImageZoom = 25;
+            this.btnUpdate.LabelPosition = 18;
+            this.btnUpdate.LabelText = "تعديل";
+            this.btnUpdate.Location = new System.Drawing.Point(882, 4);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(94, 46);
+            this.btnUpdate.TabIndex = 6;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // Expenses_Transitions_Report
             // 
@@ -456,5 +479,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtIncome;
         private System.Windows.Forms.TextBox txtSafy;
+        private Bunifu.Framework.UI.BunifuTileButton btnUpdate;
     }
 }
