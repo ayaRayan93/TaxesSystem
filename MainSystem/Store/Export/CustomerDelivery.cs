@@ -310,25 +310,29 @@ namespace MainSystem
                 if (gridView1.SelectedRowsCount==1&& txtRecivedQuantity.Text!="")
                 {
                     loaded = false;
-                    if (Convert.ToDouble(txtRecivedQuantity.Text) <= (Convert.ToDouble(row["الكمية"].ToString()) - Convert.ToDouble(row[6].ToString())))
+                    double totalQuantity = 0;
+                    if (row[6].ToString() != "")
                     {
-                        if (IsDelveryQuantityHaveValue(row[6].ToString()))
-                        {
-                            if ((Convert.ToDouble(row[6]) < Convert.ToDouble(row["الكمية"])))
-                            {
-                                addrow = row;
-                                SelectType = "oneRow";
-                                addNewRow(row);
+                        totalQuantity = Convert.ToDouble(row[6].ToString());
+                    }
 
-                                txtCode.Text = "";
-                                txtRecivedQuantity.Text = "";
-                                comStorePlace.DataSource = null;
-                            }
-                            else
-                            {
-                                MessageBox.Show("البند تم تسليمه بالكامل");
-                            }
+                    if (Convert.ToDouble(txtRecivedQuantity.Text) <= (Convert.ToDouble(row["الكمية"].ToString()) - totalQuantity))
+                    {
+                        if (totalQuantity < Convert.ToDouble(row["الكمية"]))
+                        {
+                            addrow = row;
+                            SelectType = "oneRow";
+                            addNewRow(row);
+
+                            txtCode.Text = "";
+                            txtRecivedQuantity.Text = "";
+                            comStorePlace.DataSource = null;
                         }
+                        else
+                        {
+                            MessageBox.Show("البند تم تسليمه بالكامل");
+                        }
+                        
                     }
                     else
                     {
@@ -1161,9 +1165,15 @@ namespace MainSystem
 
             query = "select Customer_Permissin_ID from customer_permissions where CustomerBill_ID=" + id;
             com1 = new MySqlCommand(query, dbconnection);
-            int Customer_Permissin_ID = Convert.ToInt16(com1.ExecuteScalar());
-
-            query = "select count(*) from customer_permissions_details where Customer_Permissin_ID=" + id;
+            MySqlDataReader dr = com1.ExecuteReader();
+            string str = "";
+            while (dr.Read())
+            {
+                str+=dr[0].ToString()+",";
+            }
+            dr.Close();
+            str += "0";
+            query = "select count(*) from customer_permissions_details where Customer_Permissin_ID in (" + str +")";
             com1 = new MySqlCommand(query, dbconnection);
             int count2 = Convert.ToInt16(com1.ExecuteScalar());
 
