@@ -22,12 +22,14 @@ namespace MainSystem
         MySqlConnection conn;
         XtraTabControl xtraTabControlExpenses;
         DataRowView row1 = null;
+        MainForm mainForm = null;
 
-        public Expenses_Transitions_Report(XtraTabControl XtraTabControlExpenses)
+        public Expenses_Transitions_Report(XtraTabControl XtraTabControlExpenses, MainForm mainform)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
             xtraTabControlExpenses = XtraTabControlExpenses;
+            mainForm = mainform;
         }
         
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
@@ -284,6 +286,33 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (row1 != null)
+                {
+                    if (row1["النوع"].ToString() == "صرف")
+                    {
+                        mainForm.bindUpdateExpenseForm(row1, this);
+                    }
+                    else if (row1["النوع"].ToString() == "ايداع")
+                    {
+                        mainForm.bindUpdateIncomeExpenseForm(row1, this);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("يجب ادخال البيانات كاملة");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Close();
         }
     }
 }
