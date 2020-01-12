@@ -12,7 +12,7 @@ namespace MainSystem
         bool flag = false;
         List<DeliveryPermissionClass> listOfData;
         int rowCount = 0,count=0;
-        public DeliveryPermissionReport(List<DeliveryPermissionClass> listOfData, string customerName, string customerPhone, string delegateName, string date,string BranchBillNumber1, string PerNum, string branchId, string branchName,string storeKeeper,string customerdelivery,string store_Name,bool flag)
+        public DeliveryPermissionReport(List<DeliveryPermissionClass> listOfData, string customerName, string customerPhone, string delegateName, string date,string BranchBillNumber1, string PerNum, string branchId, string branchName,string storeKeeper,string customerdelivery,string store_Name,bool flag,string customerAddress)
         {
             try
             {
@@ -29,6 +29,7 @@ namespace MainSystem
                 StoreKeeper.Value = storeKeeper;
                 customerDelivery.Value = customerdelivery;
                 Store_Name.Value = store_Name;
+                CustomerAddress.Value = customerAddress;
                 if (!flag)
                 {
                     Watermark.Text = "";

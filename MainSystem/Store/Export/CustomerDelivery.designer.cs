@@ -33,16 +33,17 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtDelegate = new System.Windows.Forms.TextBox();
-            this.labPhoneNumber = new System.Windows.Forms.Label();
-            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtClientName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
+            this.txtDelegate = new System.Windows.Forms.TextBox();
             this.txtClientID = new System.Windows.Forms.TextBox();
+            this.labPhoneNumber = new System.Windows.Forms.Label();
             this.labClient = new System.Windows.Forms.Label();
             this.labCustomer = new System.Windows.Forms.Label();
+            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.labDate = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -63,8 +64,6 @@
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtNote = new System.Windows.Forms.TextBox();
             this.txtStore = new System.Windows.Forms.TextBox();
             this.panBranch = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
@@ -86,14 +85,15 @@
             this.Carton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.NumOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemType = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.txtDeliverPerson = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtStoreKeeper = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtDeliverPerson = new System.Windows.Forms.TextBox();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
@@ -144,11 +144,18 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.txtAddress);
+            this.groupBox1.Controls.Add(this.txtClientName);
             this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtCustomerName);
             this.groupBox1.Controls.Add(this.txtDelegate);
+            this.groupBox1.Controls.Add(this.txtClientID);
             this.groupBox1.Controls.Add(this.labPhoneNumber);
+            this.groupBox1.Controls.Add(this.labClient);
+            this.groupBox1.Controls.Add(this.labCustomer);
             this.groupBox1.Controls.Add(this.txtPhoneNumber);
-            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.txtCustomerID);
             this.groupBox1.Location = new System.Drawing.Point(9, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -157,16 +164,59 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "بيانات الفاتورة";
             // 
+            // label12
+            // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label12.Location = new System.Drawing.Point(266, 15);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(45, 17);
+            this.label12.TabIndex = 220;
+            this.label12.Text = "العنوان";
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtAddress.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAddress.Location = new System.Drawing.Point(19, 15);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(243, 51);
+            this.txtAddress.TabIndex = 219;
+            // 
+            // txtClientName
+            // 
+            this.txtClientName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtClientName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtClientName.Location = new System.Drawing.Point(680, 42);
+            this.txtClientName.Name = "txtClientName";
+            this.txtClientName.ReadOnly = true;
+            this.txtClientName.Size = new System.Drawing.Size(172, 20);
+            this.txtClientName.TabIndex = 110;
+            // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label2.Location = new System.Drawing.Point(430, 46);
+            this.label2.Location = new System.Drawing.Point(524, 42);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 17);
             this.label2.TabIndex = 218;
             this.label2.Text = "المندوب";
+            // 
+            // txtCustomerName
+            // 
+            this.txtCustomerName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtCustomerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCustomerName.Location = new System.Drawing.Point(680, 17);
+            this.txtCustomerName.Name = "txtCustomerName";
+            this.txtCustomerName.ReadOnly = true;
+            this.txtCustomerName.Size = new System.Drawing.Size(172, 20);
+            this.txtCustomerName.TabIndex = 109;
             // 
             // txtDelegate
             // 
@@ -174,85 +224,38 @@
             this.txtDelegate.BackColor = System.Drawing.SystemColors.Control;
             this.txtDelegate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDelegate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDelegate.Location = new System.Drawing.Point(252, 45);
+            this.txtDelegate.Location = new System.Drawing.Point(346, 42);
             this.txtDelegate.Name = "txtDelegate";
             this.txtDelegate.ReadOnly = true;
             this.txtDelegate.Size = new System.Drawing.Size(174, 24);
             this.txtDelegate.TabIndex = 217;
+            // 
+            // txtClientID
+            // 
+            this.txtClientID.BackColor = System.Drawing.SystemColors.Control;
+            this.txtClientID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtClientID.Location = new System.Drawing.Point(616, 42);
+            this.txtClientID.Name = "txtClientID";
+            this.txtClientID.ReadOnly = true;
+            this.txtClientID.Size = new System.Drawing.Size(48, 20);
+            this.txtClientID.TabIndex = 106;
             // 
             // labPhoneNumber
             // 
             this.labPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labPhoneNumber.AutoSize = true;
             this.labPhoneNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labPhoneNumber.Location = new System.Drawing.Point(429, 15);
+            this.labPhoneNumber.Location = new System.Drawing.Point(524, 20);
             this.labPhoneNumber.Name = "labPhoneNumber";
             this.labPhoneNumber.Size = new System.Drawing.Size(72, 17);
             this.labPhoneNumber.TabIndex = 214;
             this.labPhoneNumber.Text = "رقم التلفون";
             // 
-            // txtPhoneNumber
-            // 
-            this.txtPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPhoneNumber.BackColor = System.Drawing.SystemColors.Control;
-            this.txtPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPhoneNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPhoneNumber.Location = new System.Drawing.Point(251, 14);
-            this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.ReadOnly = true;
-            this.txtPhoneNumber.Size = new System.Drawing.Size(174, 24);
-            this.txtPhoneNumber.TabIndex = 213;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox2.Controls.Add(this.txtClientName);
-            this.groupBox2.Controls.Add(this.txtCustomerName);
-            this.groupBox2.Controls.Add(this.txtClientID);
-            this.groupBox2.Controls.Add(this.labClient);
-            this.groupBox2.Controls.Add(this.labCustomer);
-            this.groupBox2.Controls.Add(this.txtCustomerID);
-            this.groupBox2.Location = new System.Drawing.Point(537, 5);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(388, 65);
-            this.groupBox2.TabIndex = 161;
-            this.groupBox2.TabStop = false;
-            // 
-            // txtClientName
-            // 
-            this.txtClientName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtClientName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientName.Location = new System.Drawing.Point(84, 38);
-            this.txtClientName.Name = "txtClientName";
-            this.txtClientName.ReadOnly = true;
-            this.txtClientName.Size = new System.Drawing.Size(172, 20);
-            this.txtClientName.TabIndex = 110;
-            // 
-            // txtCustomerName
-            // 
-            this.txtCustomerName.BackColor = System.Drawing.SystemColors.Control;
-            this.txtCustomerName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCustomerName.Location = new System.Drawing.Point(84, 13);
-            this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.ReadOnly = true;
-            this.txtCustomerName.Size = new System.Drawing.Size(172, 20);
-            this.txtCustomerName.TabIndex = 109;
-            // 
-            // txtClientID
-            // 
-            this.txtClientID.BackColor = System.Drawing.SystemColors.Control;
-            this.txtClientID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtClientID.Location = new System.Drawing.Point(20, 38);
-            this.txtClientID.Name = "txtClientID";
-            this.txtClientID.ReadOnly = true;
-            this.txtClientID.Size = new System.Drawing.Size(48, 20);
-            this.txtClientID.TabIndex = 106;
-            // 
             // labClient
             // 
             this.labClient.AutoSize = true;
             this.labClient.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labClient.Location = new System.Drawing.Point(278, 39);
+            this.labClient.Location = new System.Drawing.Point(874, 42);
             this.labClient.Name = "labClient";
             this.labClient.Size = new System.Drawing.Size(40, 17);
             this.labClient.TabIndex = 108;
@@ -262,17 +265,29 @@
             // 
             this.labCustomer.AutoSize = true;
             this.labCustomer.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labCustomer.Location = new System.Drawing.Point(278, 13);
+            this.labCustomer.Location = new System.Drawing.Point(874, 20);
             this.labCustomer.Name = "labCustomer";
             this.labCustomer.Size = new System.Drawing.Size(91, 17);
             this.labCustomer.TabIndex = 105;
             this.labCustomer.Text = "مهندس/مقاول";
             // 
+            // txtPhoneNumber
+            // 
+            this.txtPhoneNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtPhoneNumber.BackColor = System.Drawing.SystemColors.Control;
+            this.txtPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPhoneNumber.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(345, 13);
+            this.txtPhoneNumber.Name = "txtPhoneNumber";
+            this.txtPhoneNumber.ReadOnly = true;
+            this.txtPhoneNumber.Size = new System.Drawing.Size(174, 24);
+            this.txtPhoneNumber.TabIndex = 213;
+            // 
             // txtCustomerID
             // 
             this.txtCustomerID.BackColor = System.Drawing.SystemColors.Control;
             this.txtCustomerID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCustomerID.Location = new System.Drawing.Point(20, 13);
+            this.txtCustomerID.Location = new System.Drawing.Point(616, 17);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.ReadOnly = true;
             this.txtCustomerID.Size = new System.Drawing.Size(48, 20);
@@ -489,7 +504,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 444F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 447F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -514,10 +529,10 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(446, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(449, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(95, 45);
+            this.bunifuTileButton1.Size = new System.Drawing.Size(94, 45);
             this.bunifuTileButton1.TabIndex = 1;
             this.bunifuTileButton1.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -549,27 +564,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(990, 92);
             this.panel2.TabIndex = 230;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label5.Location = new System.Drawing.Point(319, 22);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 17);
-            this.label5.TabIndex = 241;
-            this.label5.Text = "ملحوظة";
-            // 
-            // txtNote
-            // 
-            this.txtNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtNote.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtNote.Location = new System.Drawing.Point(109, 16);
-            this.txtNote.Multiline = true;
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(204, 44);
-            this.txtNote.TabIndex = 240;
             // 
             // txtStore
             // 
@@ -811,13 +805,6 @@
             this.ItemType.FieldName = "ItemType";
             this.ItemType.Name = "ItemType";
             // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "عدد الكراتين المستلمة";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 4;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.label5);
@@ -832,6 +819,47 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(996, 70);
             this.panel3.TabIndex = 233;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label5.Location = new System.Drawing.Point(319, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 17);
+            this.label5.TabIndex = 241;
+            this.label5.Text = "ملحوظة";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label9.Location = new System.Drawing.Point(585, 18);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 19);
+            this.label9.TabIndex = 228;
+            this.label9.Text = "المستلم";
+            // 
+            // txtNote
+            // 
+            this.txtNote.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNote.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtNote.Location = new System.Drawing.Point(109, 16);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(204, 44);
+            this.txtNote.TabIndex = 240;
+            // 
+            // txtDeliverPerson
+            // 
+            this.txtDeliverPerson.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDeliverPerson.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtDeliverPerson.Location = new System.Drawing.Point(428, 18);
+            this.txtDeliverPerson.Name = "txtDeliverPerson";
+            this.txtDeliverPerson.Size = new System.Drawing.Size(151, 27);
+            this.txtDeliverPerson.TabIndex = 227;
             // 
             // label6
             // 
@@ -853,25 +881,12 @@
             this.txtStoreKeeper.Size = new System.Drawing.Size(151, 27);
             this.txtStoreKeeper.TabIndex = 225;
             // 
-            // label9
+            // gridColumn1
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label9.Location = new System.Drawing.Point(585, 18);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(68, 19);
-            this.label9.TabIndex = 228;
-            this.label9.Text = "المستلم";
-            // 
-            // txtDeliverPerson
-            // 
-            this.txtDeliverPerson.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDeliverPerson.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtDeliverPerson.Location = new System.Drawing.Point(428, 18);
-            this.txtDeliverPerson.Name = "txtDeliverPerson";
-            this.txtDeliverPerson.Size = new System.Drawing.Size(151, 27);
-            this.txtDeliverPerson.TabIndex = 227;
+            this.gridColumn1.Caption = "عدد الكراتين المستلمة";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 4;
             // 
             // CustomerDelivery
             // 
@@ -887,8 +902,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).EndInit();
@@ -915,7 +928,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtClientName;
         private System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.TextBox txtClientID;
@@ -974,6 +986,8 @@
         private System.Windows.Forms.TextBox txtDeliverPerson;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtStoreKeeper;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtAddress;
     }
 }
 

@@ -28,6 +28,7 @@ namespace MainSystem
         bool comBranchLoaded=false;
         string branchID = "", BranchName = "";
         string TypeBuy = "";
+
         public CustomerDelivery()
         {
             try
@@ -45,10 +46,7 @@ namespace MainSystem
             try
             {
                 InitializeComponent();
-                //if (UserControl.EmpType == "مدير")
-                //{
-                    btnPrint.Visible = true;
-                //}
+                btnPrint.Visible = true;
                 dbconnection = new MySqlConnection(connection.connectionString);
                 dbconnection.Open();
                 this.permissionNum = permissionNum;
@@ -69,7 +67,6 @@ namespace MainSystem
                 comBranch.Text = comand.ExecuteScalar().ToString();
                 this.branchID = branchID;
                 this.BranchName = comBranch.Text;
-                // displayPermission(permissionNum);
                 if (IsBillHavePerviousPermission())
                 {
                     displayDatawithPerviousPer();
@@ -332,16 +329,6 @@ namespace MainSystem
                                 MessageBox.Show("البند تم تسليمه بالكامل");
                             }
                         }
-                        //else
-                        //{
-                        //    addrow = row;
-                        //    SelectType = "oneRow";
-                        //    addNewRow(row);
-
-                        //    txtCode.Text = "";
-                        //    txtRecivedQuantity.Text = "";
-                        //    comStorePlace.DataSource = null;
-                        //}
                     }
                     else
                     {
@@ -404,7 +391,7 @@ namespace MainSystem
                     string query = "select * from customer_bill  where Branch_ID=" + txtBranchID.Text + " and Branch_BillNumber=" + txtPermBillNumber.Text;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     int CustomerBill_ID = Convert.ToInt16(com.ExecuteScalar());
-                    query = "insert into customer_permissions (CustomerBill_ID,Customer_ID,Customer_Name,Store_ID,Store_Name,Client_ID,Client_Name,Delegate_Name,Date,BranchBillNumber,Branch_ID,Branch_Name,Note,DeliveredPerson,StoreKeeper) values (@CustomerBill_ID,@Customer_ID,@Customer_Name,@Store_ID,@Store_Name,@Client_ID,@Client_Name,@Delegate_Name,@Date,@BranchBillNumber,@Branch_ID,@Branch_Name,@Note,@DeliveredPerson,@StoreKeeper)";
+                    query = "insert into customer_permissions (CustomerBill_ID,Customer_ID,Customer_Name,Store_ID,Store_Name,Client_ID,Client_Name,Delegate_Name,Date,BranchBillNumber,Branch_ID,Branch_Name,Note,DeliveredPerson,StoreKeeper,CustomerAddress) values (@CustomerBill_ID,@Customer_ID,@Customer_Name,@Store_ID,@Store_Name,@Client_ID,@Client_Name,@Delegate_Name,@Date,@BranchBillNumber,@Branch_ID,@Branch_Name,@Note,@DeliveredPerson,@StoreKeeper,@CustomerAddress)";
                     com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
                     com.Parameters["@CustomerBill_ID"].Value = txtPermBillNumber.Text;
@@ -457,7 +444,8 @@ namespace MainSystem
                     com.Parameters["@DeliveredPerson"].Value = txtDeliverPerson.Text;
                     com.Parameters.Add("@StoreKeeper", MySqlDbType.VarChar);
                     com.Parameters["@StoreKeeper"].Value = txtStoreKeeper.Text;
-
+                    com.Parameters.Add("@CustomerAddress", MySqlDbType.VarChar);
+                    com.Parameters["@CustomerAddress"].Value = txtAddress.Text;
                     com.ExecuteNonQuery();
                     query = "select Customer_Permissin_ID from customer_permissions order by Customer_Permissin_ID desc limit 1";
                     com= new MySqlCommand(query, dbconnection);
@@ -527,12 +515,12 @@ namespace MainSystem
 
                     if (txtClientID.Text != "")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text,txtStoreKeeper.Text,txtDeliverPerson.Text,comStore.Text,false);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text,txtStoreKeeper.Text,txtDeliverPerson.Text,comStore.Text,false,txtAddress.Text);
                         DeliveryPermissionReport.Show();
                     }
                     else if (txtCustomerID.Text != "")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text, txtStoreKeeper.Text, txtDeliverPerson.Text, comStore.Text,false);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text, txtStoreKeeper.Text, txtDeliverPerson.Text, comStore.Text,false, txtAddress.Text);
                         DeliveryPermissionReport.Show();
                     }
 
@@ -577,15 +565,7 @@ namespace MainSystem
                 {
                     txtCode.Text ="";
                     txtRecivedQuantity.Text = "";
-                }
-                //if (radioBtnCustomerDelivery.Checked)
-                //    Store_ID = row[7].ToString();
-                //string query = "select concat(Store_Place_Code ,'   ',Total_Meters) as 'x' from storage inner join store_places on store_places.Store_Place_ID=storage.Store_Place_ID where storage.Store_ID=" + Store_ID + " and  Data_ID=" + row[0].ToString();
-                //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                //DataTable dt = new DataTable();
-                //da.Fill(dt);
-                //comStorePlace.DataSource = dt;
-                //comStorePlace.DisplayMember = dt.Columns["x"].ToString();          
+                }         
             }
             catch (Exception ex)
             {
@@ -640,21 +620,12 @@ namespace MainSystem
                             view.SetRowCellValue(view.GetSelectedRows()[0], "DeliveryQuantity",  "0");
                         }
                     }
-                    //else if (e.Column.Name == "Carton")
-                    //{
-                    //    GridView view = (GridView)sender;
-                    //    DataRow dataRow = view.GetFocusedDataRow();
-                    //    double NumOfCarton = Convert.ToDouble(dataRow["NumOfCarton"].ToString());
-                    //    double cellValue = Convert.ToDouble(e.Value);
-                    //    double re = cellValue * NumOfCarton;
-
-                    //    view.SetRowCellValue(view.GetSelectedRows()[0], "DeliveryQuantity", re + "");
-                    //}
+            
                 }
             }
-            catch
+            catch(Exception ex)
             {
-               // MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
         private void txtRecivedQuantity_KeyDown(object sender, KeyEventArgs e)
@@ -684,15 +655,6 @@ namespace MainSystem
                                     MessageBox.Show("البند تم تسليمه بالكامل");
                                 }
                             }
-                            //else
-                            //{
-                            //    addrow = row;
-                            //    SelectType = "oneRow";
-                            //    addNewRow(row);
-                            //    txtCode.Text = "";
-                            //    txtRecivedQuantity.Text = "";
-                            //    comStorePlace.DataSource = null;
-                            //}
                         }
                         else
                         {
@@ -742,7 +704,6 @@ namespace MainSystem
                             dr.Close();
                             deliveryPermissionClass.ItemName = "-" + row1[2].ToString() + "\n" + str;
                         }
-
                         else
                         {
                             deliveryPermissionClass.ItemName = row1[2].ToString();
@@ -757,19 +718,19 @@ namespace MainSystem
                             deliveryPermissionClass.NumOfCarton = Convert.ToDouble(row1[5]);
                         }
                         deliveryPermissionClass.DeliveryQuantity = row1[6].ToString();
-                        deliveryPermissionClass.StoreName = row1[9].ToString();
+                        deliveryPermissionClass.StoreName = row1[8].ToString();
                         listOfData.Add(deliveryPermissionClass);
                     }
                     DeliveryPermissionReportViewer DeliveryPermissionReport;//= new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
 
                     if (txtClientID.Text!="")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text,"","","",true);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text , labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text,"","","",true, txtAddress.Text);
                         DeliveryPermissionReport.Show();
                     }
                     else if (txtCustomerID.Text!="")
                     {
-                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text,"","","",true);
+                        DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text,"","","",true, txtAddress.Text);
                         DeliveryPermissionReport.Show();
                     }
                   
@@ -959,11 +920,6 @@ namespace MainSystem
                 if (item is TextBox)
                     item.Text = "";
             }
-            foreach (Control item in groupBox2.Controls)
-            {
-                if (item is TextBox)
-                    item.Text = "";
-            }
             foreach (Control item in groupBox3.Controls)
             {
                 if (item is TextBox)
@@ -1019,7 +975,7 @@ namespace MainSystem
             gridView1.Columns[0].Visible = false;
             gridView1.Columns["CustomerBill_ID"].Visible = false;
             //gridView1.Columns["الفئة"].Visible = false;
-            gridView1.Columns["الوصف"].Visible = false;
+            //gridView1.Columns["الوصف"].Visible = false;
             gridView1.Columns["Delegate_Name"].Visible = false;
             gridView1.Columns["Store_ID"].Visible = false;
             txtDelegate.Text = gridView1.GetDataRow(0)["Delegate_Name"].ToString();
@@ -1191,7 +1147,6 @@ namespace MainSystem
                 return false;
             }
         }
-
         public bool IsQuantityEqual()
         {
             dbconnection.Open();
@@ -1219,6 +1174,5 @@ namespace MainSystem
                 return false;
         }
     }
-
-   
+    
 }

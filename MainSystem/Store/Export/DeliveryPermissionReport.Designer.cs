@@ -98,6 +98,9 @@
             this.customerDelivery = new DevExpress.XtraReports.Parameters.Parameter();
             this.Store_Name = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
+            this.CustomerAddress = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -125,7 +128,7 @@
             this.xrTable2.StylePriority.UseBorders = false;
             this.xrTable2.StylePriority.UseTextAlignment = false;
             this.xrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-           // 
+            // 
             // xrTableRow2
             // 
             this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -239,9 +242,11 @@
             // BottomMargin
             // 
             this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel27,
             this.xrPanel2,
-            this.xrPageInfo2});
-            this.BottomMargin.HeightF = 185F;
+            this.xrPageInfo2,
+            this.xrLabel26});
+            this.BottomMargin.HeightF = 227.7083F;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -264,7 +269,7 @@
             this.xrLabel7,
             this.xrLabel8,
             this.xrLabel9});
-            this.xrPanel2.LocationFloat = new DevExpress.Utils.PointFloat(10.00001F, 10.00001F);
+            this.xrPanel2.LocationFloat = new DevExpress.Utils.PointFloat(9.99999F, 71.37505F);
             this.xrPanel2.Name = "xrPanel2";
             this.xrPanel2.SizeF = new System.Drawing.SizeF(731.9999F, 122.9166F);
             this.xrPanel2.StylePriority.UseBorderDashStyle = false;
@@ -431,7 +436,7 @@
             // 
             // xrPageInfo2
             // 
-            this.xrPageInfo2.LocationFloat = new DevExpress.Utils.PointFloat(331.0001F, 152F);
+            this.xrPageInfo2.LocationFloat = new DevExpress.Utils.PointFloat(337.0948F, 204.7083F);
             this.xrPageInfo2.Name = "xrPageInfo2";
             this.xrPageInfo2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrPageInfo2.SizeF = new System.Drawing.SizeF(100.3032F, 23F);
@@ -971,6 +976,40 @@
             this.objectDataSource1.DataSource = typeof(MainSystem.DeliveryPermissionClass);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // xrLabel26
+            // 
+            this.xrLabel26.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel26.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(616.9999F, 20.41667F);
+            this.xrLabel26.Multiline = true;
+            this.xrLabel26.Name = "xrLabel26";
+            this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel26.SizeF = new System.Drawing.SizeF(125F, 25F);
+            this.xrLabel26.StylePriority.UseBorders = false;
+            this.xrLabel26.StylePriority.UseFont = false;
+            this.xrLabel26.StylePriority.UseTextAlignment = false;
+            this.xrLabel26.Text = "العنوان :";
+            this.xrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // CustomerAddress
+            // 
+            this.CustomerAddress.Description = "Parameter1";
+            this.CustomerAddress.Name = "CustomerAddress";
+            this.CustomerAddress.Visible = false;
+            // 
+            // xrLabel27
+            // 
+            this.xrLabel27.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[CustomerAddress]")});
+            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(430.9763F, 22.41669F);
+            this.xrLabel27.Multiline = true;
+            this.xrLabel27.Name = "xrLabel27";
+            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel27.SizeF = new System.Drawing.SizeF(182.2917F, 23F);
+            this.xrLabel27.StylePriority.UseTextAlignment = false;
+            this.xrLabel27.Text = "xrLabel27";
+            this.xrLabel27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
             // DeliveryPermissionReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -982,7 +1021,7 @@
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
-            this.Margins = new System.Drawing.Printing.Margins(27, 27, 50, 185);
+            this.Margins = new System.Drawing.Printing.Margins(27, 27, 50, 228);
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PermissionNumber,
             this.Client_Name,
@@ -993,7 +1032,8 @@
             this.BranchBillNumber,
             this.StoreKeeper,
             this.customerDelivery,
-            this.Store_Name});
+            this.Store_Name,
+            this.CustomerAddress});
             this.RightToLeft = DevExpress.XtraReports.UI.RightToLeft.Yes;
             this.StyleSheet.AddRange(new DevExpress.XtraReports.UI.XRControlStyle[] {
             this.Title,
@@ -1083,5 +1123,8 @@
         private DevExpress.XtraReports.Parameters.Parameter StoreKeeper;
         private DevExpress.XtraReports.Parameters.Parameter customerDelivery;
         private DevExpress.XtraReports.Parameters.Parameter Store_Name;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel27;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel26;
+        private DevExpress.XtraReports.Parameters.Parameter CustomerAddress;
     }
 }
