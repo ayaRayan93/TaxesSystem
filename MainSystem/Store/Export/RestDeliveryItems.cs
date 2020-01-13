@@ -114,6 +114,71 @@ namespace MainSystem.Store.Export
             }
         }
 
+        private void comStore_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtStoreID.Text = comStore.SelectedValue.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void comBranch_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBranchID.Text = comBranch.SelectedValue.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtStoreID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Close();
+                    string query = "select Store_Name from store where Store_ID=" + txtStoreID.Text;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    string Store_Name = comand.ExecuteScalar().ToString();
+                    dbconnection.Close();
+                    comStore.Text = Store_Name;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Close();
+                    string query = "select Branch_Name from branch where Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    dbconnection.Open();
+                    string Branch_Name = comand.ExecuteScalar().ToString();
+                    dbconnection.Close();
+                    comBranch.Text = Branch_Name;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         //functions
         public void displayBill()
         {

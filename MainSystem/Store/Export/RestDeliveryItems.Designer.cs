@@ -104,6 +104,7 @@
             this.txtBranchID.Name = "txtBranchID";
             this.txtBranchID.Size = new System.Drawing.Size(48, 24);
             this.txtBranchID.TabIndex = 207;
+            this.txtBranchID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
             // comBranch
             // 
@@ -114,6 +115,7 @@
             this.comBranch.Name = "comBranch";
             this.comBranch.Size = new System.Drawing.Size(173, 24);
             this.comBranch.TabIndex = 205;
+            this.comBranch.SelectedValueChanged += new System.EventHandler(this.comBranch_SelectedValueChanged);
             // 
             // label1
             // 
@@ -166,6 +168,7 @@
             this.txtStoreID.Name = "txtStoreID";
             this.txtStoreID.Size = new System.Drawing.Size(48, 24);
             this.txtStoreID.TabIndex = 203;
+            this.txtStoreID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtStoreID_KeyDown);
             // 
             // comStore
             // 
@@ -176,6 +179,7 @@
             this.comStore.Name = "comStore";
             this.comStore.Size = new System.Drawing.Size(173, 24);
             this.comStore.TabIndex = 201;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // labelDelegate
             // 
