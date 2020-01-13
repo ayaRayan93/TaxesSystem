@@ -244,10 +244,12 @@
             this.gridView1.OptionsFind.ShowFindButton = false;
             this.gridView1.OptionsPrint.ExpandAllDetails = true;
             this.gridView1.OptionsPrint.PrintDetails = true;
+            this.gridView1.OptionsView.ColumnAutoWidth = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowViewCaption = true;
             this.gridView1.ViewCaption = "بيانات الاذن";
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // panel1
             // 

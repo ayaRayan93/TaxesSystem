@@ -997,6 +997,12 @@
     <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\Print_SupplierReceiptCopy.designer.cs">
       <DependentUpon>Print_SupplierReceiptCopy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\SupplierReceiptQuantity_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\SupplierReceiptQuantity_Update.designer.cs">
+      <DependentUpon>SupplierReceiptQuantity_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Import\Reports\نسخه اذن الاستلام\Report_SupplierReceiptCopy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3306,6 +3312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\XtraReportPermissionList.resx">
       <DependentUpon>XtraReportPermissionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Import\Reports\نسخه اذن الاستلام\SupplierReceiptQuantity_Update.resx">
+      <DependentUpon>SupplierReceiptQuantity_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\تكويد افرع\Branch_Print.resx">
       <DependentUpon>Branch_Print.cs</DependentUpon>

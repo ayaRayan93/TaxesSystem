@@ -1,4 +1,7 @@
-﻿using DevExpress.XtraTab;
+﻿using DevExpress.Utils;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DevExpress.XtraTab;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -416,6 +419,22 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             conn.Close();
+        }
+        
+        private void gridView2_DoubleClick(object sender, EventArgs e)
+        {
+            DXMouseEventArgs ea = e as DXMouseEventArgs;
+            GridView view = sender as GridView;
+            GridHitInfo info = view.CalcHitInfo(ea.Location);
+            if (info.InRow || info.InRowCell)
+            {
+                DataRowView row2 = (DataRowView)gridView2.GetRow(gridView2.GetRowHandle(info.RowHandle));
+                if (info.Column.GetCaption() == "متر/قطعة")
+                {
+                    SupplierReceiptQuantity_Update sd = new SupplierReceiptQuantity_Update(info.RowHandle, row2, storeId, "SupplierReceiptUpdate", this);
+                    sd.ShowDialog();
+                }
+            }
         }
 
         private void txtNumCarton_TextChanged(object sender, EventArgs e)
@@ -1351,6 +1370,11 @@ namespace MainSystem
                     comProduct.Text = "";
                 }
             }
+        }
+        
+        public void refreshView(int rowHandel, double quantity)
+        {
+            gridView2.SetRowCellValue(rowHandel, "متر/قطعة", quantity);
         }
     }
 }
