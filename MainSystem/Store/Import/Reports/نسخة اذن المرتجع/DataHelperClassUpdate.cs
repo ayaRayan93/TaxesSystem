@@ -105,7 +105,7 @@ namespace MainSystem
             column.DataType = typeof(string);
             column.ColumnName = "TotalQuantity";
             column.AutoIncrement = false;
-            column.Caption = "عدد المتر/القطعة";
+            column.Caption = "متر/قطعة";
             column.ReadOnly = false;
             column.Unique = false;
 
@@ -267,7 +267,7 @@ namespace MainSystem
             column.DataType = typeof(string);
             column.ColumnName = "TotalQuantity";
             column.AutoIncrement = false;
-            column.Caption = "عدد المتر/القطعة";
+            column.Caption = "متر/قطعة";
             column.ReadOnly = false;
             column.Unique = false;
 

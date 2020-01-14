@@ -41,15 +41,15 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtReason = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtPermissionNum = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSupplierId = new System.Windows.Forms.TextBox();
             this.comSupplier = new System.Windows.Forms.ComboBox();
-            this.txtPermissionNum = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtReason = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -251,6 +251,7 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.ViewCaption = "المرتجعات";
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // panel1
             // 
@@ -274,6 +275,51 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(965, 114);
             this.panel1.TabIndex = 216;
+            // 
+            // txtReason
+            // 
+            this.txtReason.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtReason.Enabled = false;
+            this.txtReason.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtReason.Location = new System.Drawing.Point(516, 71);
+            this.txtReason.Multiline = true;
+            this.txtReason.Name = "txtReason";
+            this.txtReason.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtReason.Size = new System.Drawing.Size(206, 37);
+            this.txtReason.TabIndex = 218;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label4.Location = new System.Drawing.Point(728, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 19);
+            this.label4.TabIndex = 219;
+            this.label4.Text = "سبب الاسترجاع";
+            // 
+            // txtPermissionNum
+            // 
+            this.txtPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtPermissionNum.Enabled = false;
+            this.txtPermissionNum.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtPermissionNum.Location = new System.Drawing.Point(209, 69);
+            this.txtPermissionNum.Name = "txtPermissionNum";
+            this.txtPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtPermissionNum.Size = new System.Drawing.Size(150, 27);
+            this.txtPermissionNum.TabIndex = 216;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label3.Location = new System.Drawing.Point(365, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(104, 19);
+            this.label3.TabIndex = 217;
+            this.label3.Text = "رقم اذن المخزن";
             // 
             // dateTimePicker1
             // 
@@ -332,51 +378,6 @@
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 27);
             this.comSupplier.TabIndex = 215;
-            // 
-            // txtPermissionNum
-            // 
-            this.txtPermissionNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPermissionNum.Enabled = false;
-            this.txtPermissionNum.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtPermissionNum.Location = new System.Drawing.Point(209, 69);
-            this.txtPermissionNum.Name = "txtPermissionNum";
-            this.txtPermissionNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtPermissionNum.Size = new System.Drawing.Size(150, 27);
-            this.txtPermissionNum.TabIndex = 216;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label3.Location = new System.Drawing.Point(365, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(104, 19);
-            this.label3.TabIndex = 217;
-            this.label3.Text = "رقم اذن المخزن";
-            // 
-            // txtReason
-            // 
-            this.txtReason.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtReason.Enabled = false;
-            this.txtReason.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtReason.Location = new System.Drawing.Point(516, 71);
-            this.txtReason.Multiline = true;
-            this.txtReason.Name = "txtReason";
-            this.txtReason.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtReason.Size = new System.Drawing.Size(206, 37);
-            this.txtReason.TabIndex = 218;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label4.Location = new System.Drawing.Point(728, 75);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 19);
-            this.label4.TabIndex = 219;
-            this.label4.Text = "سبب الاسترجاع";
             // 
             // PermissionReturnedReport
             // 

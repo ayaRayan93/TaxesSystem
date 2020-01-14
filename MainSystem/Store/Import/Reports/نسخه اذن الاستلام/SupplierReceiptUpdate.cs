@@ -34,8 +34,9 @@ namespace MainSystem
         //DataRow selrow = null;
         string permissionNum = "";
         DateTime date = new DateTime();
+        PermissionsReport permissionsReport = null;
 
-        public SupplierReceiptUpdate(/*DataRow Selrow, */string StoreId,string PermissionNum, DateTime Date,PermissionsReport permissionsReport, XtraTabControl tabControlContentStore)
+        public SupplierReceiptUpdate(/*DataRow Selrow, */string StoreId,string PermissionNum, DateTime Date,PermissionsReport PermissionsReport, XtraTabControl tabControlContentStore)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
@@ -47,6 +48,7 @@ namespace MainSystem
             storeId = Convert.ToInt32(StoreId);
             permissionNum = PermissionNum;
             date = Date;
+            permissionsReport = PermissionsReport;
             
             comType.AutoCompleteMode = AutoCompleteMode.Suggest;
             comType.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -431,7 +433,7 @@ namespace MainSystem
                 DataRowView row2 = (DataRowView)gridView2.GetRow(gridView2.GetRowHandle(info.RowHandle));
                 if (info.Column.GetCaption() == "متر/قطعة")
                 {
-                    SupplierReceiptQuantity_Update sd = new SupplierReceiptQuantity_Update(info.RowHandle, row2, storeId, "SupplierReceiptUpdate", this);
+                    SupplierReceiptQuantity_Update sd = new SupplierReceiptQuantity_Update(info.RowHandle, row2, storeId, permissionsReport, this/*, "SupplierReceiptUpdate", this*/);
                     sd.ShowDialog();
                 }
             }

@@ -883,6 +883,7 @@
             this.gridView2.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsBehavior.Editable = false;
             this.gridView2.OptionsView.ShowGroupPanel = false;
+            this.gridView2.DoubleClick += new System.EventHandler(this.gridView2_DoubleClick);
             // 
             // ImportStorageReturnDetails_ID
             // 
@@ -936,7 +937,7 @@
             // 
             // TotalQuantity
             // 
-            this.TotalQuantity.Caption = "عدد المتر/القطعة";
+            this.TotalQuantity.Caption = "متر/قطعة";
             this.TotalQuantity.FieldName = "TotalQuantity";
             this.TotalQuantity.Name = "TotalQuantity";
             this.TotalQuantity.Visible = true;

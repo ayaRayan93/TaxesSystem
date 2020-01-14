@@ -367,7 +367,7 @@ namespace MainSystem
                         DataRowView row2 = (DataRowView)gridView1.GetRow(gridView1.GetRowHandle(info.RowHandle));
                         if (info.Column.GetCaption() == "متر/قطعة")
                         {
-                            SupplierReceiptQuantity_Update sd = new SupplierReceiptQuantity_Update(info.RowHandle, row2, storeID, "PermissionsReport", this);
+                            SupplierReceiptQuantity_Update sd = new SupplierReceiptQuantity_Update(info.RowHandle, row2, storeID, this, null/*, "PermissionsReport", this*/);
                             sd.ShowDialog();
                         }
                     }
