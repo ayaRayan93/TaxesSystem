@@ -1,4 +1,6 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
+﻿using DevExpress.Utils;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraTab;
 using MySql.Data.MySqlClient;
 using System;
@@ -37,8 +39,9 @@ namespace MainSystem
         string permissionNum = "";
         string reason = "";
         DateTime date = new DateTime();
+        PermissionReturnedReport permissionsReport = null;
 
-        public StorageReturnBill_Update(/*DataRow Selrow,*/int ImportStorageReturnID, string StoreIdd, int ReturnedPermNum, string PermissionNum, string Reason, DateTime Date, PermissionReturnedReport permissionsReport, XtraTabControl tabControlContentStore)
+        public StorageReturnBill_Update(/*DataRow Selrow,*/int ImportStorageReturnID, string StoreIdd, int ReturnedPermNum, string PermissionNum, string Reason, DateTime Date, PermissionReturnedReport PermissionsReport, XtraTabControl tabControlContentStore)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -63,6 +66,7 @@ namespace MainSystem
             storageReturnID = ImportStorageReturnID;
             reason = Reason;
             date = Date;
+            permissionsReport = PermissionsReport;
         }
 
         private void StorageReturnBill_Load(object sender, EventArgs e)
@@ -217,6 +221,10 @@ namespace MainSystem
                     }
                     dr.Close(); 
                     #endregion
+                }
+                if (gridView2.IsLastVisibleRow)
+                {
+                    gridView2.FocusedRowHandle = gridView2.RowCount - 1;
                 }
                 loaded = true;
             }
@@ -742,6 +750,11 @@ namespace MainSystem
                                     //gridView2.SetRowCellValue(rowHandle, gridView2.Columns[13], row1["Store_Place_ID"].ToString());
                                     gridView2.SetRowCellValue(rowHandle, gridView2.Columns[14], row1["المورد"].ToString());
                                 }
+                                if (gridView2.IsLastVisibleRow)
+                                {
+                                    gridView2.FocusedRowHandle = gridView2.RowCount - 1;
+                                }
+
                                 DataRow row2 = gridView2.GetDataRow(rowHandle);
 
                                 dbconnection.Open();
@@ -870,6 +883,11 @@ namespace MainSystem
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[8], txtBalat.Text);
                                 gridView2.SetRowCellValue(rowHandle, gridView2.Columns[9], txtItemReason.Text);
                             }
+                            if (gridView2.IsLastVisibleRow)
+                            {
+                                gridView2.FocusedRowHandle = gridView2.RowCount - 1;
+                            }
+
                             DataRow row2 = gridView2.GetDataRow(rowHandle);
 
                             dbconnection.Open();
@@ -1217,6 +1235,30 @@ namespace MainSystem
                 //MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        private void gridView2_DoubleClick(object sender, EventArgs e)
+        {
+            DXMouseEventArgs ea = e as DXMouseEventArgs;
+            GridView view = sender as GridView;
+            GridHitInfo info = view.CalcHitInfo(ea.Location);
+            if (info.InRow || info.InRowCell)
+            {
+                DataRowView row2 = (DataRowView)gridView2.GetRow(gridView2.GetRowHandle(info.RowHandle));
+                if (info.Column.GetCaption() == "متر/قطعة")
+                {
+                    if (radioButtonReturnPermission.Checked)
+                    {
+                        StorageReturnQuantity_Update sd = new StorageReturnQuantity_Update(info.RowHandle, row2, Convert.ToInt16(comStore.SelectedValue.ToString()), permissionsReport, this/*, "StorageReturnBill_Update", this*/, txtPermissionNum.Text);
+                        sd.ShowDialog();
+                    }
+                    else
+                    {
+                        StorageReturnQuantity_Update sd = new StorageReturnQuantity_Update(info.RowHandle, row2, Convert.ToInt16(comStoreFilter.SelectedValue.ToString()), permissionsReport, this/*, "StorageReturnBill_Update", this*/, "");
+                        sd.ShowDialog();
+                    }
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -1575,6 +1617,11 @@ namespace MainSystem
                 gridControl1.DataSource = dt;
                 gridView1.Columns[0].Visible = false;
                 gridView1.Columns[1].Width = 200;
+                
+                if (gridView1.IsLastVisibleRow)
+                {
+                    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                }
             }
             else
             {
@@ -1812,6 +1859,11 @@ namespace MainSystem
                 comProduct.Text = "";
                 txtProduct.Text = "";
             }
+        }
+
+        public void refreshView(int rowHandel, double quantity)
+        {
+            gridView2.SetRowCellValue(rowHandel, "TotalQuantity", quantity);
         }
     }
 }
