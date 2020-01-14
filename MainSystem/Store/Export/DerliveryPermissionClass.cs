@@ -8,7 +8,9 @@ namespace MainSystem
 {
     public class DeliveryPermissionClass
     {
+        public int ID { get; set; }
         public int Data_ID { get; set; }
+        public string Type { get; set; }
         public string ItemName { get; set; }
         public string Code { get; set; }
         public double NumOfCarton { get; set; }
