@@ -173,7 +173,7 @@ namespace MainSystem
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         gridControl1.DataSource = dt;
-                        //gridView1.Columns["Data_ID"].Visible = false;
+                        gridView1.Columns["Data_ID"].Visible = false;
                         gridView1.Columns["Supplier_ID"].Visible = false;
                         gridView1.Columns["Supplier_Permission_Details_ID"].Visible = false;
                         gridView1.Columns["Factory_ID"].Visible = false;
