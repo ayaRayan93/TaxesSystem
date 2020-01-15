@@ -172,8 +172,15 @@ namespace MainSystem
         private void loadBranch()
         {
             dbconnection.Open();
-
-            string query = "select * from expense_main";
+            string query = "";
+            if (UserControl.userType == 16)
+            {
+                query = "select * from expense_main where MainExpense_ID=16";
+            }
+            else
+            {
+                query = "select * from expense_main";
+            }
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);

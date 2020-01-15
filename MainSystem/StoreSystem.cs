@@ -1299,7 +1299,39 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+        private void navBarItemInformationFactoryStorageReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            /*try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد الشركات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("رصيد الشركات");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد الشركات");
+                }
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                Factories_Transitions_Report objForm = new Factories_Transitions_Report(this);
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
+        }
+
         #region branchs
         private void btnCodingItems_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
