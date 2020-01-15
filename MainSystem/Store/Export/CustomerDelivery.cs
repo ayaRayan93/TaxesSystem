@@ -485,7 +485,7 @@ namespace MainSystem
                             com.Parameters.Add("@NumOfCarton", MySqlDbType.Double);
                             com.Parameters["@NumOfCarton"].Value = row1[6].ToString();
                             com.Parameters.Add("@ItemType", MySqlDbType.VarChar);
-                            com.Parameters["@ItemType"].Value = row1["ItemType"].ToString();
+                            com.Parameters["@ItemType"].Value = "بند";// row1["ItemType"].ToString();
                             com.ExecuteNonQuery();
 
                             IsBillRecived();
@@ -1040,6 +1040,7 @@ namespace MainSystem
             string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
 
             MySqlCommand com = new MySqlCommand(query, dbconnection);
+
             int id = Convert.ToInt32(com.ExecuteScalar());
             displayCustomerData(id.ToString());
             gridControl1.DataSource = null;
@@ -1102,6 +1103,7 @@ namespace MainSystem
             //gridView1.Columns["Store_ID"].Visible = false;
             //txtDelegate.Text = gridView1.GetDataRow(0)["Delegate_Name"].ToString();
         }
+
         public string getDeliveredDataItems(string type)
         {
             string query = "select group_concat(distinct Data_ID) from customer_permissions_details inner join customer_permissions on customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where ItemType='" + type+"' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
