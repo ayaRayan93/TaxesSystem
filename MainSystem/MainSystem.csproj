@@ -1175,6 +1175,12 @@
     <Compile Include="ChangeIP.Designer.cs">
       <DependentUpon>ChangeIP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Reports\تقرير رصيد المخازن\Storage_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Reports\تقرير رصيد المخازن\Storage_Report.designer.cs">
+      <DependentUpon>Storage_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\تكويد افرع\Branch_Print.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3324,6 +3330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Import\Reports\نسخه اذن الاستلام\SupplierReceiptQuantity_Update.resx">
       <DependentUpon>SupplierReceiptQuantity_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Reports\تقرير رصيد المخازن\Storage_Report.resx">
+      <DependentUpon>Storage_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\تكويد افرع\Branch_Print.resx">
       <DependentUpon>Branch_Print.cs</DependentUpon>

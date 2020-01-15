@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Factory_Transitions_Report : Form
+    public partial class Storage_Report : Form
     {
         MySqlConnection dbconnection, dbconnection2;
         
@@ -41,7 +41,7 @@ namespace MainSystem
         bool flag4 = false;
         bool flag5 = false;
 
-        public Factory_Transitions_Report(MainForm mainForm)
+        public Storage_Report(MainForm mainForm)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);

@@ -1300,7 +1300,7 @@ namespace MainSystem
             }
         }
 
-        private void navBarItemInformationFactoryStorageReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        private void navBarItemStorageReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             /*try
             {
@@ -1310,16 +1310,16 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد الشركات");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد المخازن");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add("رصيد الشركات");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد الشركات");
+                    xtraTabControlStoresContent.TabPages.Add("رصيد المخازن");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد المخازن");
                 }
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
-                Factories_Transitions_Report objForm = new Factories_Transitions_Report(this);
+                Storage_Report objForm = new Storage_Report(this);
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
