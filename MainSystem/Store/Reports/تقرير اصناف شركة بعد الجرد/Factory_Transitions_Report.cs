@@ -1202,18 +1202,41 @@ namespace MainSystem
             //}
             //dr.Close();
 
+            bool firstTime = true;
             string query = "SELECT concat(inventory.Inventory_Num,' ',store.Store_Name) 'رقم الفاتورة',inventory.Date as 'التاريخ',inventory_details.Current_Quantity,inventory_details.Old_Quantity FROM inventory_details INNER JOIN inventory ON inventory_details.Inventory_ID = inventory.Inventory_ID INNER JOIN store ON store.Store_ID = inventory.Store_ID inner join data on data.Data_ID=inventory_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=" + dataId + " and date(inventory_details.Date) between '2019-10-30' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
             MySqlCommand comand = new MySqlCommand(query, dbconnection2);
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
             {
-                if (dr["Current_Quantity"].ToString() != "")
+                if (firstTime)
                 {
-                    quantity += Convert.ToDouble(dr["Current_Quantity"].ToString());
+                    if (dr["Current_Quantity"].ToString() != "")
+                    {
+                        quantity += Convert.ToDouble(dr["Current_Quantity"].ToString());
+                    }
+                    else if (dr["Old_Quantity"].ToString() != "")
+                    {
+                        quantity += Convert.ToDouble(dr["Old_Quantity"].ToString());
+                    }
+                    firstTime = false;
                 }
-                else if(dr["Old_Quantity"].ToString() != "")
+                else
                 {
-                    quantity += Convert.ToDouble(dr["Old_Quantity"].ToString());
+                    if (dr["Old_Quantity"].ToString() == "" && dr["Current_Quantity"].ToString() != "")
+                    {
+                        quantity += Convert.ToDouble(dr["Current_Quantity"].ToString());
+                    }
+                    else if (dr["Old_Quantity"].ToString() != "" && dr["Current_Quantity"].ToString() != "")
+                    {
+                        if ((Convert.ToDouble(dr["Current_Quantity"].ToString()) - Convert.ToDouble(dr["Old_Quantity"].ToString())) > 0)
+                        {
+                            quantity += (Convert.ToDouble(dr["Current_Quantity"].ToString()) - Convert.ToDouble(dr["Old_Quantity"].ToString()));
+                        }
+                        else if ((Convert.ToDouble(dr["Current_Quantity"].ToString()) - Convert.ToDouble(dr["Old_Quantity"].ToString())) < 0)
+                        {
+                            quantity -= -1 * (Convert.ToDouble(dr["Current_Quantity"].ToString()) - Convert.ToDouble(dr["Old_Quantity"].ToString()));
+                        }
+                    }
                 }
             }
             dr.Close();

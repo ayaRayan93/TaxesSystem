@@ -1236,17 +1236,17 @@ namespace MainSystem
 
         public void bindTaswayaSupplierForm()
         {
-            if (!xtraTabControlAccounting.Visible)
-                xtraTabControlAccounting.Visible = true;
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
 
-            XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "اضافة تسوية لمورد");
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة تسوية لمورد");
             if (xtraTabPage == null)
             {
-                xtraTabControlAccounting.TabPages.Add("اضافة تسوية لمورد");
-                xtraTabPage = getTabPage(xtraTabControlAccounting, "اضافة تسوية لمورد");
+                xtraTabControlPurchases.TabPages.Add("اضافة تسوية لمورد");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "اضافة تسوية لمورد");
             }
             xtraTabPage.Controls.Clear();
-            xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
 
             SupplierTaswaya objForm = new SupplierTaswaya();
             objForm.TopLevel = false;
@@ -1257,19 +1257,19 @@ namespace MainSystem
         }
         public void bindUpdateTaswayaSupplierForm(DataRowView row, SupplierTaswayaReport SupplierTaswayaReport)
         {
-            if (!xtraTabControlAccounting.Visible)
-                xtraTabControlAccounting.Visible = true;
+            if (!xtraTabControlPurchases.Visible)
+                xtraTabControlPurchases.Visible = true;
 
-            XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "تعديل تسوية مورد");
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل تسوية مورد");
             if (xtraTabPage == null)
             {
-                xtraTabControlAccounting.TabPages.Add("تعديل تسوية مورد");
-                xtraTabPage = getTabPage(xtraTabControlAccounting, "تعديل تسوية مورد");
+                xtraTabControlPurchases.TabPages.Add("تعديل تسوية مورد");
+                xtraTabPage = getTabPage(xtraTabControlPurchases, "تعديل تسوية مورد");
             }
             xtraTabPage.Controls.Clear();
-            xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+            xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
 
-            UpdateSupplierTaswaya objForm = new UpdateSupplierTaswaya(row, SupplierTaswayaReport, xtraTabControlAccounting);
+            UpdateSupplierTaswaya objForm = new UpdateSupplierTaswaya(row, SupplierTaswayaReport, xtraTabControlPurchases);
             objForm.TopLevel = false;
             xtraTabPage.Controls.Add(objForm);
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

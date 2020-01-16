@@ -35,6 +35,8 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comStore = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCodeSearch5 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -72,8 +74,6 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.txtSafy = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comStore = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -190,6 +190,29 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1043, 130);
             this.panel2.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.label1.Location = new System.Drawing.Point(589, 10);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label1.Size = new System.Drawing.Size(51, 19);
+            this.label1.TabIndex = 178;
+            this.label1.Text = "المخزن";
+            // 
+            // comStore
+            // 
+            this.comStore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comStore.FormattingEnabled = true;
+            this.comStore.Location = new System.Drawing.Point(428, 7);
+            this.comStore.Name = "comStore";
+            this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comStore.Size = new System.Drawing.Size(150, 24);
+            this.comStore.TabIndex = 177;
             // 
             // label2
             // 
@@ -737,29 +760,6 @@
             this.txtSafy.Size = new System.Drawing.Size(135, 23);
             this.txtSafy.TabIndex = 7;
             this.txtSafy.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label1.Location = new System.Drawing.Point(589, 10);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(51, 19);
-            this.label1.TabIndex = 178;
-            this.label1.Text = "المخزن";
-            // 
-            // comStore
-            // 
-            this.comStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comStore.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comStore.FormattingEnabled = true;
-            this.comStore.Location = new System.Drawing.Point(428, 7);
-            this.comStore.Name = "comStore";
-            this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comStore.Size = new System.Drawing.Size(150, 24);
-            this.comStore.TabIndex = 177;
             // 
             // Storage_Report
             // 
