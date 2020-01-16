@@ -1302,7 +1302,7 @@ namespace MainSystem
 
         private void navBarItemStorageReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            /*try
+            try
             {
                 restForeColorOfNavBarItem();
                 NavBarItem navBarItem = (NavBarItem)sender;
@@ -1329,7 +1329,7 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
+            }
         }
 
         #region branchs
