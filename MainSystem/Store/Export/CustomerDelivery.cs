@@ -471,15 +471,15 @@ namespace MainSystem
                             com.Parameters["@Quantity"].Value = row1[3].ToString();
                             com.Parameters.Add("@DeliveredQuantity", MySqlDbType.Double);
                             com.Parameters["@DeliveredQuantity"].Value = row1[4].ToString();
-
-                            if (row1[3].ToString() == row1[4].ToString())
-                            {
-                                updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم");
-                            }
-                            else
-                            {
-                                updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم تسليم جزء");
-                            }
+                            checkIfItemRecivedTotaly(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]));
+                            //if (row1[3].ToString() == row1[4].ToString())
+                            //{
+                            //    updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم");
+                            //}
+                            //else
+                            //{
+                            //    updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم تسليم جزء");
+                            //}
                             com.Parameters.Add("@Carton", MySqlDbType.Double);
                             com.Parameters["@Carton"].Value = row1[5].ToString();
                             com.Parameters.Add("@NumOfCarton", MySqlDbType.Double);
@@ -1212,6 +1212,35 @@ namespace MainSystem
             MySqlCommand com = new MySqlCommand(query,dbconnection);
             com.ExecuteNonQuery();
         }
+
+
+        public void checkIfItemRecivedTotaly(int customerBill_ID, int Data_ID)
+        {
+            dbconnection.Close();
+            dbconnection.Open();
+            string query = "select group_concat(Customer_Permissin_ID) from customer_permissions where CustomerBill_ID=" + customerBill_ID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            string Customer_Permissin_IDs =com.ExecuteScalar().ToString();
+            query = "select sum(DeliveredQuantity),Quantity from customer_permissions_details where Customer_Permissin_ID in ("+ Customer_Permissin_IDs + ") and Data_ID="+Data_ID;
+            com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr[0] == dr[1])
+                {
+                    updateRecivedFlag(customerBill_ID, Data_ID , "تم");
+                }
+                else
+                {
+                    updateRecivedFlag(customerBill_ID, Data_ID , "تم تسليم جزء");
+                }
+            }
+            dr.Close();
+        }
+        //public bool checkIfBillRecivedTotaly()
+        //{
+
+        //}
     }
     
 }
