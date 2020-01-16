@@ -471,21 +471,21 @@ namespace MainSystem
                             com.Parameters["@Quantity"].Value = row1[3].ToString();
                             com.Parameters.Add("@DeliveredQuantity", MySqlDbType.Double);
                             com.Parameters["@DeliveredQuantity"].Value = row1[4].ToString();
-
-                            if (row1[3].ToString() == row1[4].ToString())
-                            {
-                                updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم");
-                            }
-                            else
-                            {
-                                updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم تسليم جزء");
-                            }
+                            checkIfItemRecivedTotaly(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]));
+                            //if (row1[3].ToString() == row1[4].ToString())
+                            //{
+                            //    updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم");
+                            //}
+                            //else
+                            //{
+                            //    updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم تسليم جزء");
+                            //}
                             com.Parameters.Add("@Carton", MySqlDbType.Double);
                             com.Parameters["@Carton"].Value = row1[5].ToString();
                             com.Parameters.Add("@NumOfCarton", MySqlDbType.Double);
                             com.Parameters["@NumOfCarton"].Value = row1[6].ToString();
                             com.Parameters.Add("@ItemType", MySqlDbType.VarChar);
-                            com.Parameters["@ItemType"].Value = row1["ItemType"].ToString();
+                            com.Parameters["@ItemType"].Value = "بند";// row1["ItemType"].ToString();
                             com.ExecuteNonQuery();
 
                             IsBillRecived();
@@ -1040,6 +1040,7 @@ namespace MainSystem
             string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
 
             MySqlCommand com = new MySqlCommand(query, dbconnection);
+
             int id = Convert.ToInt32(com.ExecuteScalar());
             displayCustomerData(id.ToString());
             gridControl1.DataSource = null;
@@ -1102,6 +1103,7 @@ namespace MainSystem
             //gridView1.Columns["Store_ID"].Visible = false;
             //txtDelegate.Text = gridView1.GetDataRow(0)["Delegate_Name"].ToString();
         }
+
         public string getDeliveredDataItems(string type)
         {
             string query = "select group_concat(distinct Data_ID) from customer_permissions_details inner join customer_permissions on customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where ItemType='" + type+"' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
@@ -1210,6 +1212,35 @@ namespace MainSystem
             MySqlCommand com = new MySqlCommand(query,dbconnection);
             com.ExecuteNonQuery();
         }
+
+
+        public void checkIfItemRecivedTotaly(int customerBill_ID, int Data_ID)
+        {
+            dbconnection.Close();
+            dbconnection.Open();
+            string query = "select group_concat(Customer_Permissin_ID) from customer_permissions where CustomerBill_ID=" + customerBill_ID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            string Customer_Permissin_IDs =com.ExecuteScalar().ToString();
+            query = "select sum(DeliveredQuantity),Quantity from customer_permissions_details where Customer_Permissin_ID in ("+ Customer_Permissin_IDs + ") and Data_ID="+Data_ID;
+            com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr[0] == dr[1])
+                {
+                    updateRecivedFlag(customerBill_ID, Data_ID , "تم");
+                }
+                else
+                {
+                    updateRecivedFlag(customerBill_ID, Data_ID , "تم تسليم جزء");
+                }
+            }
+            dr.Close();
+        }
+        //public bool checkIfBillRecivedTotaly()
+        //{
+
+        //}
     }
     
 }
