@@ -75,6 +75,7 @@
             this.FinalBillCost = new DevExpress.XtraReports.Parameters.Parameter();
             this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrControlStyle2 = new DevExpress.XtraReports.UI.XRControlStyle();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -252,7 +253,7 @@
             this.xrLabel1.SizeF = new System.Drawing.SizeF(196.8334F, 30F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "كشف أصناف الشركات";
+            this.xrLabel1.Text = "رصيد شركة بفترة";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrPictureBox1
@@ -495,6 +496,7 @@
             // ReportHeader
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel2,
             this.xrLabel1,
             this.xrPictureBox1,
             this.xrLabel15});
@@ -507,16 +509,16 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[DateNow]")});
             this.xrLabel15.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(319.1464F, 30F);
+            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(302.8315F, 30F);
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 6, 0, 0, 100F);
-            this.xrLabel15.SizeF = new System.Drawing.SizeF(161.4583F, 20F);
+            this.xrLabel15.SizeF = new System.Drawing.SizeF(128.0833F, 20F);
             this.xrLabel15.StylePriority.UseFont = false;
             this.xrLabel15.StylePriority.UseForeColor = false;
             this.xrLabel15.StylePriority.UsePadding = false;
             this.xrLabel15.StylePriority.UseTextAlignment = false;
             this.xrLabel15.Text = "xrLabel10";
-            this.xrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             this.xrLabel15.TextFormatString = "{0:yyyy-MM-dd}";
             // 
             // xrControlStyle1
@@ -613,6 +615,19 @@
             this.xrControlStyle2.BackColor = System.Drawing.Color.White;
             this.xrControlStyle2.Name = "xrControlStyle2";
             // 
+            // xrLabel2
+            // 
+            this.xrLabel2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(430.9149F, 30F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(35.37509F, 19.02518F);
+            this.xrLabel2.StylePriority.UseFont = false;
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            this.xrLabel2.Text = ": الى";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
             // objectDataSource2
             // 
             this.objectDataSource2.DataSource = typeof(MainSystem.Items_Factory);
@@ -698,5 +713,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         private DevExpress.XtraReports.UI.XRLabel xrLabel20;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource2;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
     }
 }
