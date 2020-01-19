@@ -18,7 +18,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void PrintInvoice(DateTime date, double TotalBillPriceAD, List<Items_Factory> BillItems)
+        public void PrintInvoice(DateTime date, double TotalBillPriceAD, List<Items_Storage> BillItems)
         {
             Print_Items_Storage report = new Print_Items_Storage();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)

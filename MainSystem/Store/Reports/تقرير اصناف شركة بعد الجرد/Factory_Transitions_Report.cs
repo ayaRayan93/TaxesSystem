@@ -1432,7 +1432,8 @@ namespace MainSystem
         {
             try
             {
-                newChoose();
+                gridControl1.DataSource = null;
+                txtSafy.Text = "0";
             }
             catch (Exception ex)
             {

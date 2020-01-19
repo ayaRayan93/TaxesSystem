@@ -213,6 +213,7 @@
             this.comStore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comStore.Size = new System.Drawing.Size(150, 24);
             this.comStore.TabIndex = 177;
+            this.comStore.SelectedValueChanged += new System.EventHandler(this.comStore_SelectedValueChanged);
             // 
             // label2
             // 
