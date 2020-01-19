@@ -1175,6 +1175,7 @@
     <Compile Include="ChangeIP.Designer.cs">
       <DependentUpon>ChangeIP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Store\Reports\تقرير رصيد المخازن\Items_Storage.cs" />
     <Compile Include="Store\Reports\تقرير رصيد المخازن\Print_Items_Storage.cs">
       <SubType>Component</SubType>
     </Compile>

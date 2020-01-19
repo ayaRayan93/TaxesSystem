@@ -870,7 +870,7 @@ namespace MainSystem
             try
             {
                 double totale = 0;
-                List<Items_Factory> bi = new List<Items_Factory>();
+                List<Items_Storage> bi = new List<Items_Storage>();
 
                 for (int i = 0; i < gridView1.RowCount; i++)
                 {
@@ -881,11 +881,11 @@ namespace MainSystem
                     }
 
                     totale += quantti;
-                    Items_Factory item = new Items_Factory() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = quantti, Total_Cost = quantti, Carton = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكرتنة"]) };
+                    Items_Storage item = new Items_Storage() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = quantti, Carton = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكرتنة"]) };
                     bi.Add(item);
                 }
 
-                Report_Items_Factory2 f = new Report_Items_Factory2();
+                Report_Items_Storage f = new Report_Items_Storage();
                 f.PrintInvoice(dateTimePicker2.Value.Date, totale, bi);
                 f.ShowDialog();
             }
@@ -1415,11 +1415,28 @@ namespace MainSystem
             return quantity;
         }
 
+        private void comStore_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded)
+            {
+                try
+                {
+                    gridControl1.DataSource = null;
+                    txtSafy.Text = "0";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                newChoose();
+                gridControl1.DataSource = null;
+                txtSafy.Text = "0";
             }
             catch (Exception ex)
             {

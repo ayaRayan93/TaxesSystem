@@ -14,11 +14,11 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(DateTime date, double TotalBillPriceAD, List<Items_Factory> Bill_Items)
+        public void InitData(DateTime date, double TotalBillPriceAD, List<Items_Storage> Bill_Items)
         {
-            FinalBillCost.Value = TotalBillPriceAD;
+            TotalQuantity.Value = TotalBillPriceAD;
             DateNow.Value = date;
-            objectDataSource2.DataSource = Bill_Items;
+            objectDataSource1.DataSource = Bill_Items;
         }
     }
 }
