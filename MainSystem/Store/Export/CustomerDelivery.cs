@@ -17,7 +17,7 @@ namespace MainSystem
 {
     public partial class CustomerDelivery : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection1;
         string Store_ID = "0";
         bool loaded = false;
         string permissionNum;
@@ -35,6 +35,7 @@ namespace MainSystem
             {
                 InitializeComponent();
                 dbconnection = new MySqlConnection(connection.connectionString);
+                dbconnection1 = new MySqlConnection(connection.connectionString);
             }
             catch (Exception ex)
             {
@@ -48,6 +49,7 @@ namespace MainSystem
                 InitializeComponent();
                 btnPrint.Visible = true;
                 dbconnection = new MySqlConnection(connection.connectionString);
+                dbconnection1 = new MySqlConnection(connection.connectionString);
                 dbconnection.Open();
                 this.permissionNum = permissionNum;
                 this.flag = flag;
@@ -471,15 +473,14 @@ namespace MainSystem
                             com.Parameters["@Quantity"].Value = row1[3].ToString();
                             com.Parameters.Add("@DeliveredQuantity", MySqlDbType.Double);
                             com.Parameters["@DeliveredQuantity"].Value = row1[4].ToString();
-                            checkIfItemRecivedTotaly(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]));
-                            //if (row1[3].ToString() == row1[4].ToString())
-                            //{
-                            //    updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم");
-                            //}
-                            //else
-                            //{
-                            //    updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم تسليم جزء");
-                            //}
+                            if (row1[3].ToString() == row1[4].ToString())
+                            {
+                                updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم");
+                            }
+                            else
+                            {
+                                updateRecivedFlag(CustomerBill_ID, Convert.ToInt16(row1["Data_ID"]), "تم تسليم جزء");
+                            }
                             com.Parameters.Add("@Carton", MySqlDbType.Double);
                             com.Parameters["@Carton"].Value = row1[5].ToString();
                             com.Parameters.Add("@NumOfCarton", MySqlDbType.Double);
@@ -527,6 +528,8 @@ namespace MainSystem
                         }
 
                     }
+                    checkIfItemRecivedTotaly(CustomerBill_ID);
+                    checkIfBillRecivedTotaly(CustomerBill_ID);
                     DeliveryPermissionReportViewer DeliveryPermissionReport;//= new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
 
                     if (txtClientID.Text != "")
@@ -1206,41 +1209,67 @@ namespace MainSystem
         }
         public void updateRecivedFlag(int customerBill_ID,int Data_ID,string flag)
         {
-            dbconnection.Close();
-            dbconnection.Open();
+            dbconnection1.Open();
             string query = "update product_bill set Recived_Flag='"+flag+ "' where CustomerBill_ID="+customerBill_ID+" and Data_ID="+Data_ID;
-            MySqlCommand com = new MySqlCommand(query,dbconnection);
+            MySqlCommand com = new MySqlCommand(query,dbconnection1);
             com.ExecuteNonQuery();
+            dbconnection1.Close();
         }
 
 
-        public void checkIfItemRecivedTotaly(int customerBill_ID, int Data_ID)
+        public void checkIfItemRecivedTotaly(int customerBill_ID)
         {
             dbconnection.Close();
             dbconnection.Open();
             string query = "select group_concat(Customer_Permissin_ID) from customer_permissions where CustomerBill_ID=" + customerBill_ID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             string Customer_Permissin_IDs =com.ExecuteScalar().ToString();
-            query = "select sum(DeliveredQuantity),Quantity from customer_permissions_details where Customer_Permissin_ID in ("+ Customer_Permissin_IDs + ") and Data_ID="+Data_ID;
+
+            query = "select group_concat(Data_ID) from product_bill where CustomerBill_ID=" + customerBill_ID;
             com = new MySqlCommand(query, dbconnection);
+            string product_bills = com.ExecuteScalar().ToString();
+            string[] strarr = product_bills.Split(',');
+            for (int i = 0; i < strarr.Length; i++)
+            {
+                query = "select sum(DeliveredQuantity),Quantity from customer_permissions_details where Customer_Permissin_ID in (" + Customer_Permissin_IDs + ") and Data_ID=" + strarr[i];
+                com = new MySqlCommand(query, dbconnection);
+                MySqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    if (dr[0].ToString() == dr[1].ToString())
+                    {
+                        updateRecivedFlag(customerBill_ID, Convert.ToInt16(strarr[i]), "تم");
+                    }
+                    else
+                    {
+                        updateRecivedFlag(customerBill_ID, Convert.ToInt16(strarr[i]), "تم تسليم جزء");
+                    }
+                }
+                dr.Close();
+            }
+       
+        }
+        public void checkIfBillRecivedTotaly(int customerBill_ID)
+        {
+            dbconnection1.Open();
+            string query = "select Recived_Flag from product_bill where CustomerBill_ID=" + customerBill_ID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
             {
-                if (dr[0] == dr[1])
+                if (dr[0].ToString() != "تم")
                 {
-                    updateRecivedFlag(customerBill_ID, Data_ID , "تم");
-                }
-                else
-                {
-                    updateRecivedFlag(customerBill_ID, Data_ID , "تم تسليم جزء");
+                    query = "update customer_bill set RecivedFlag='تم تسليم جزء' where CustomerBill_ID=" + customerBill_ID ;
+                    com = new MySqlCommand(query, dbconnection1);
+                    com.ExecuteNonQuery();
                 }
             }
             dr.Close();
+            query = "update customer_bill set RecivedFlag='تم' where CustomerBill_ID=" + customerBill_ID;
+            com = new MySqlCommand(query, dbconnection1);
+            com.ExecuteNonQuery();
+            dbconnection1.Close();
         }
-        //public bool checkIfBillRecivedTotaly()
-        //{
-
-        //}
     }
     
 }
