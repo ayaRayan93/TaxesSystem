@@ -1052,24 +1052,24 @@
     <Compile Include="Store\Reports\تقرير اصناف شركة بعد الجرد\Factory_Transitions_Report.designer.cs">
       <DependentUpon>Factory_Transitions_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\Data.cs" />
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\TotalStoreReport.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\Data.cs" />
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\TotalStoreReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\TotalStoreReport.designer.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\TotalStoreReport.designer.cs">
       <DependentUpon>TotalStoreReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\Items_Factory.cs" />
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\Report_Items_Factory.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\Items_Factory.cs" />
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\Report_Items_Factory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\Report_Items_Factory.designer.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\Report_Items_Factory.designer.cs">
       <DependentUpon>Report_Items_Factory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\Print_Items_Factory.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\Print_Items_Factory.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\Print_Items_Factory.designer.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\Print_Items_Factory.designer.cs">
       <DependentUpon>Print_Items_Factory.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\reports\تقرير حركة السدادات\Print_Transition_Copy.cs">
@@ -1090,17 +1090,17 @@
     <Compile Include="Store\Reports\تقرير اصناف شركة بعد الجرد\Report_Items_Factory2.designer.cs">
       <DependentUpon>Report_Items_Factory2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\XtraReportStorage.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\XtraReportStorage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\XtraReportStorage.Designer.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\XtraReportStorage.Designer.cs">
       <DependentUpon>XtraReportStorage.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Reports\تقرير حركة صنف\DataHelperClassProducts.cs" />
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\InformationFactory_Report.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\InformationFactory_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Store\Reports\تقرير اصناف الشركات\InformationFactory_Report.designer.cs">
+    <Compile Include="Store\Reports\تقرير رصيد الشركات الحالى\InformationFactory_Report.designer.cs">
       <DependentUpon>InformationFactory_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Reports\تقرير حركة صنف\Item_Transitions.cs" />
@@ -3671,19 +3671,19 @@
     <EmbeddedResource Include="Store\Reports\تقرير اصناف شركة بعد الجرد\Factory_Transitions_Report.resx">
       <DependentUpon>Factory_Transitions_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Reports\تقرير اصناف الشركات\TotalStoreReport.resx">
+    <EmbeddedResource Include="Store\Reports\تقرير رصيد الشركات الحالى\TotalStoreReport.resx">
       <DependentUpon>TotalStoreReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Reports\تقرير اصناف الشركات\Report_Items_Factory.resx">
+    <EmbeddedResource Include="Store\Reports\تقرير رصيد الشركات الحالى\Report_Items_Factory.resx">
       <DependentUpon>Report_Items_Factory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Reports\تقرير اصناف الشركات\Print_Items_Factory.resx">
+    <EmbeddedResource Include="Store\Reports\تقرير رصيد الشركات الحالى\Print_Items_Factory.resx">
       <DependentUpon>Print_Items_Factory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\تقرير حركة السدادات\Print_Transition_Copy.resx">
       <DependentUpon>Print_Transition_Copy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Reports\تقرير اصناف الشركات\InformationFactory_Report.resx">
+    <EmbeddedResource Include="Store\Reports\تقرير رصيد الشركات الحالى\InformationFactory_Report.resx">
       <DependentUpon>InformationFactory_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير اصناف شركة بعد الجرد\Print_Items_Factory2.resx">
@@ -3692,7 +3692,7 @@
     <EmbeddedResource Include="Store\Reports\تقرير اصناف شركة بعد الجرد\Report_Items_Factory2.resx">
       <DependentUpon>Report_Items_Factory2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Store\Reports\تقرير اصناف الشركات\XtraReportStorage.resx">
+    <EmbeddedResource Include="Store\Reports\تقرير رصيد الشركات الحالى\XtraReportStorage.resx">
       <DependentUpon>XtraReportStorage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير حركة صنف\Item_Transitions_Report.resx">
