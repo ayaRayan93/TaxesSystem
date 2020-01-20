@@ -1236,7 +1236,7 @@ namespace MainSystem
                 MySqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-                    if (dr[0].ToString() == dr[1].ToString())
+                    if (dr[0].ToString() == dr[1].ToString()&& dr[1].ToString()!="")
                     {
                         updateRecivedFlag(customerBill_ID, Convert.ToInt16(strarr[i]), "تم");
                     }
@@ -1251,6 +1251,7 @@ namespace MainSystem
         }
         public void checkIfBillRecivedTotaly(int customerBill_ID)
         {
+            bool flag = true;
             dbconnection1.Open();
             string query = "select Recived_Flag from product_bill where CustomerBill_ID=" + customerBill_ID;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -1262,12 +1263,16 @@ namespace MainSystem
                     query = "update customer_bill set RecivedFlag='تم تسليم جزء' where CustomerBill_ID=" + customerBill_ID ;
                     com = new MySqlCommand(query, dbconnection1);
                     com.ExecuteNonQuery();
+                    flag = false;
                 }
             }
             dr.Close();
-            query = "update customer_bill set RecivedFlag='تم' where CustomerBill_ID=" + customerBill_ID;
-            com = new MySqlCommand(query, dbconnection1);
-            com.ExecuteNonQuery();
+            if (flag)
+            {
+                query = "update customer_bill set RecivedFlag='تم' where CustomerBill_ID=" + customerBill_ID;
+                com = new MySqlCommand(query, dbconnection1);
+                com.ExecuteNonQuery();
+            }
             dbconnection1.Close();
         }
     }
