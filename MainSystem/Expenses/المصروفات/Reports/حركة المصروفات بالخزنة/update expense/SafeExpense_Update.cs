@@ -59,7 +59,6 @@ namespace MainSystem
                     comSub.DisplayMember = dt.Columns["SubExpense_Name"].ToString();
                     comSub.ValueMember = dt.Columns["SubExpense_ID"].ToString();
                     comSub.SelectedIndex = -1;
-                    comSub.Text = selRow["المصروف الفرعى"].ToString();
                 }
                 catch (Exception ex)
                 {
@@ -90,9 +89,9 @@ namespace MainSystem
                             return;
                         }
                         
-                        query = "update expense_transition set Depositor_Name=@Depositor_Name,Amount=@Amount,Description=@Description where ExpenseTransition_ID=" + selRow["التسلسل"].ToString();
+                        query = "update expense_transition set SubExpense_ID=@SubExpense_ID,Depositor_Name=@Depositor_Name,Amount=@Amount,Description=@Description where ExpenseTransition_ID=" + selRow["التسلسل"].ToString();
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
-
+                        com.Parameters.Add("@SubExpense_ID", MySqlDbType.Int16, 11).Value = comSub.SelectedValue.ToString();
                         com.Parameters.Add("@Depositor_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
                         com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                         com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
@@ -162,7 +161,8 @@ namespace MainSystem
             comMain.SelectedIndex = -1;
             loaded = true;
             comMain.Text = selRow["المصروف الرئيسى"].ToString();
-            
+            comSub.Text = selRow["المصروف الفرعى"].ToString();
+
             if (UserControl.userType == 3 || UserControl.userType == 16)
             {
                 query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + " and Bank_Type='خزينة'";

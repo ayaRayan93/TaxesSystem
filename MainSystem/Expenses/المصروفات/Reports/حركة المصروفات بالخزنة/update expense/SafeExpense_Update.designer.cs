@@ -172,8 +172,6 @@
             // 
             // comMain
             // 
-            this.comMain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comMain.Enabled = false;
             this.comMain.FormattingEnabled = true;
             this.comMain.Location = new System.Drawing.Point(548, 31);
             this.comMain.Name = "comMain";
@@ -200,8 +198,6 @@
             // 
             // comSub
             // 
-            this.comSub.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comSub.Enabled = false;
             this.comSub.FormattingEnabled = true;
             this.comSub.Location = new System.Drawing.Point(31, 31);
             this.comSub.Name = "comSub";
