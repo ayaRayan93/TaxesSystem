@@ -817,6 +817,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSupplierTypeReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            /*try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlPurchases.Visible)
+                    xtraTabControlPurchases.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "حركة مورد بالنوع");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlPurchases.TabPages.Add("حركة مورد بالنوع");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "حركة مورد بالنوع");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                SupplierType_Report objForm = new SupplierType_Report(this, xtraTabControlPurchases);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
+        }
+
         //Special Orders Report
         public void bindDisplaySpecialOrdersReport(XtraTabPage xtraTabPage)
         {

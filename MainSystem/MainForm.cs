@@ -512,6 +512,10 @@ namespace MainSystem
                 btnStores.Checked = true;
                 btnSales.Enabled = true;
                 btnSales.Checked = true;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                navBarGroupBillRecord.Visible = false;
+                navBarGroupReportPointSale.Visible = false;
 
                 navBarGroup1.Visible = false;
                 navBarGroup2.Visible = false;
