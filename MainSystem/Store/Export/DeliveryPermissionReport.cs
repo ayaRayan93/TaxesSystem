@@ -83,7 +83,7 @@ namespace MainSystem
                     if (count < rowCount)
                     {
                         XRTableCell cell = sender as XRTableCell;
-                        cell.Text = (Convert.ToDouble(listOfData[count].TotalQuantity) - Convert.ToDouble(listOfData[count].DeliveryQuantity)).ToString();
+                        cell.Text = "";// (Convert.ToDouble(listOfData[count].TotalQuantity) - Convert.ToDouble(listOfData[count].DeliveryQuantity)).ToString();
                         count++;
                     }
                 }
