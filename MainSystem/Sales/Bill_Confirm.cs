@@ -29,7 +29,7 @@ namespace MainSystem
 
         int EmpBranchId = 0;
         string EmpBranchName = "";
-        string type = "كاش";
+        string type = "";
         DataRowView selrow1;
 
         public Bill_Confirm()
@@ -709,7 +709,7 @@ namespace MainSystem
         {
             try
             {
-                if ((txtClientID.Text != "" || txtCustomerID.Text != "") && gridView1.RowCount > 0)
+                if ((txtClientID.Text != "" || txtCustomerID.Text != "") && gridView1.RowCount > 0 && (rdbCash.Checked || rdbSoon.Checked))
                 {
                     List<int> pakagesIDs = new List<int>();
                     List<string> pakagesTypes = new List<string>();
@@ -1096,6 +1096,11 @@ namespace MainSystem
                 else if (item is CheckBox)
                 {
                     checkBoxAdd.Checked = false;
+                }
+                else if (item is RadioButton)
+                {
+                    rdbCash.Checked = false;
+                    rdbSoon.Checked = false;
                 }
                 else if (item is Panel)
                 {

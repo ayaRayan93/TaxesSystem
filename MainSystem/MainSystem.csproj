@@ -533,6 +533,12 @@
     <Compile Include="Purchases\Supplier_Payments\SupplierPayments_Record.designer.cs">
       <DependentUpon>SupplierPayments_Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Supplier_Payments\supplierType\SupplierType_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\supplierType\SupplierType_Report.designer.cs">
+      <DependentUpon>SupplierType_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Supplier_Taswya\SupplierTaswaya.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3250,6 +3256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierPayments_Record.resx">
       <DependentUpon>SupplierPayments_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Supplier_Payments\supplierType\SupplierType_Report.resx">
+      <DependentUpon>SupplierType_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Taswya\SupplierTaswaya.resx">
       <DependentUpon>SupplierTaswaya.cs</DependentUpon>
