@@ -186,13 +186,11 @@
             // 
             this.rdbCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdbCash.AutoSize = true;
-            this.rdbCash.Checked = true;
             this.rdbCash.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbCash.Location = new System.Drawing.Point(24, 33);
             this.rdbCash.Name = "rdbCash";
             this.rdbCash.Size = new System.Drawing.Size(52, 20);
             this.rdbCash.TabIndex = 98;
-            this.rdbCash.TabStop = true;
             this.rdbCash.Text = "كاش";
             this.rdbCash.UseVisualStyleBackColor = true;
             this.rdbCash.CheckedChanged += new System.EventHandler(this.rdbCash_CheckedChanged);
@@ -206,7 +204,6 @@
             this.rdbSoon.Name = "rdbSoon";
             this.rdbSoon.Size = new System.Drawing.Size(47, 20);
             this.rdbSoon.TabIndex = 99;
-            this.rdbSoon.TabStop = true;
             this.rdbSoon.Text = "آجل";
             this.rdbSoon.UseVisualStyleBackColor = true;
             this.rdbSoon.CheckedChanged += new System.EventHandler(this.rdbSoon_CheckedChanged);
