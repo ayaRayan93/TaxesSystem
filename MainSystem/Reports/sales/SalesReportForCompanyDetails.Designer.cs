@@ -589,6 +589,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 153);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
+            this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gridControl1.Size = new System.Drawing.Size(916, 399);
             this.gridControl1.TabIndex = 41;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -648,7 +649,7 @@
             this.Safaya.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "{0:0.##}")});
             this.Safaya.Visible = true;
-            this.Safaya.VisibleIndex = 0;
+            this.Safaya.VisibleIndex = 4;
             // 
             // TotalReturn
             // 
@@ -658,7 +659,7 @@
             this.TotalReturn.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "{0:0.##}")});
             this.TotalReturn.Visible = true;
-            this.TotalReturn.VisibleIndex = 1;
+            this.TotalReturn.VisibleIndex = 3;
             // 
             // TotalSales
             // 
@@ -676,7 +677,7 @@
             this.Item_Name.FieldName = "Item_Name";
             this.Item_Name.Name = "Item_Name";
             this.Item_Name.Visible = true;
-            this.Item_Name.VisibleIndex = 3;
+            this.Item_Name.VisibleIndex = 1;
             // 
             // Code
             // 
@@ -684,7 +685,7 @@
             this.Code.FieldName = "Code";
             this.Code.Name = "Code";
             this.Code.Visible = true;
-            this.Code.VisibleIndex = 4;
+            this.Code.VisibleIndex = 0;
             // 
             // panel1
             // 

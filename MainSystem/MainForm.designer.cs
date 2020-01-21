@@ -1786,7 +1786,7 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup15;
+            this.navBarControl2.ActiveGroup = this.navBarGroup18;
             this.navBarControl2.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Background.Options.UseFont = true;
             this.navBarControl2.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1884,7 +1884,6 @@
             this.navBarGroup15.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.navBarGroup15.Appearance.Options.UseFont = true;
             this.navBarGroup15.Caption = "تاكيد البيع";
-            this.navBarGroup15.Expanded = true;
             this.navBarGroup15.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmBill)});
             this.navBarGroup15.Name = "navBarGroup15";
@@ -2010,6 +2009,7 @@
             this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.navBarGroup18.Appearance.Options.UseFont = true;
             this.navBarGroup18.Caption = "تقارير فواتير المبيعات";
+            this.navBarGroup18.Expanded = true;
             this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
@@ -4210,6 +4210,7 @@
             // 
             this.navBarItem16.Caption = "فواتير لم يتم سدادها بالكامل";
             this.navBarItem16.Name = "navBarItem16";
+            this.navBarItem16.Visible = false;
             this.navBarItem16.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateLeastBills_LinkClicked);
             // 
             // navBarItem226

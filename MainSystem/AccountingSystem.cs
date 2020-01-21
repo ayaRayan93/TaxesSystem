@@ -33,11 +33,11 @@ namespace MainSystem
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترة كاش");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "اجمالي مبيعات المندوبين كاش");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوب لفترة كاش");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترة كاش");
+                    xtraTabControlAccounting.TabPages.Add("اجمالي مبيعات المندوبين كاش");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "اجمالي مبيعات المندوبين كاش");
                 }
 
                 xtraTabPage.Controls.Clear();
@@ -67,11 +67,11 @@ namespace MainSystem
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترةآجل");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "اجمالي مبيعات المندوبين آجل");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوب لفترةآجل");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترةآجل");
+                    xtraTabControlAccounting.TabPages.Add("اجمالي مبيعات المندوبين آجل");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "اجمالي مبيعات المندوبين آجل");
                 }
 
                 xtraTabPage.Controls.Clear();
@@ -101,11 +101,11 @@ namespace MainSystem
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترة");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "اجمالي مبيعات مندوب");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوب لفترة");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لفترة");
+                    xtraTabControlAccounting.TabPages.Add("اجمالي مبيعات مندوب");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "اجمالي مبيعات مندوب");
                 }
 
                 xtraTabPage.Controls.Clear();
@@ -169,11 +169,11 @@ namespace MainSystem
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوبين لشركات كاش");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لشركات");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوبين لشركات كاش");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوبين لشركات كاش");
+                    xtraTabControlAccounting.TabPages.Add("مبيعات مندوب لشركات");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات مندوب لشركات");
                 }
 
                 xtraTabPage.Controls.Clear();
@@ -203,11 +203,11 @@ namespace MainSystem
                 if (!xtraTabControlAccounting.Visible)
                     xtraTabControlAccounting.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات المندوبين لصنف");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات اصناف شركة لمندوب");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlAccounting.TabPages.Add("مبيعات المندوبين لصنف");
-                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات المندوبين لصنف");
+                    xtraTabControlAccounting.TabPages.Add("مبيعات اصناف شركة لمندوب");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "مبيعات اصناف شركة لمندوب");
                     xtraTabPage.RightToLeft = RightToLeft.No;
                 }
                 else
