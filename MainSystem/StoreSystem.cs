@@ -1024,11 +1024,11 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد الشركات بسعر البيع");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الرصيد الحالى لشركة بسعر البيع");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add("رصيد الشركات بسعر البيع");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد الشركات بسعر البيع");
+                    xtraTabControlStoresContent.TabPages.Add("الرصيد الحالى لشركة بسعر البيع");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "الرصيد الحالى لشركة بسعر البيع");
                 }
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
@@ -1056,11 +1056,11 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد شركة بسعر البيع بعد الجرد");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الرصيد بفترة لشركة بسعر البيع");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add("رصيد شركة بسعر البيع بعد الجرد");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد شركة بسعر البيع بعد الجرد");
+                    xtraTabControlStoresContent.TabPages.Add("الرصيد بفترة لشركة بسعر البيع");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "الرصيد بفترة لشركة بسعر البيع");
                 }
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
@@ -1310,16 +1310,48 @@ namespace MainSystem
                 if (!xtraTabControlStoresContent.Visible)
                     xtraTabControlStoresContent.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد المخازن");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الرصيد بفترة لشركة بالكميات");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlStoresContent.TabPages.Add("رصيد المخازن");
-                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "رصيد المخازن");
+                    xtraTabControlStoresContent.TabPages.Add("الرصيد بفترة لشركة بالكميات");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "الرصيد بفترة لشركة بالكميات");
                 }
                 xtraTabPage.Controls.Clear();
                 xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
 
                 Storage_Report objForm = new Storage_Report(this);
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemInformationStorageReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الرصيد الحالى لشركة بالكميات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("الرصيد الحالى لشركة بالكميات");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "الرصيد الحالى لشركة بالكميات");
+                }
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                InformationStorage_Report objForm = new InformationStorage_Report(this);
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
                 objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

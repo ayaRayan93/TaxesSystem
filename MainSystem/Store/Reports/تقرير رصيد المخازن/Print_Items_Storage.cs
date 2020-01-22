@@ -14,8 +14,9 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(DateTime date, double TotalBillPriceAD, List<Items_Storage> Bill_Items)
+        public void InitData(string storeName, DateTime date, double TotalBillPriceAD, List<Items_Storage> Bill_Items)
         {
+            Store_Name.Value = storeName;
             TotalQuantity.Value = TotalBillPriceAD;
             DateNow.Value = date;
             objectDataSource1.DataSource = Bill_Items;

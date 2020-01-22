@@ -30,6 +30,17 @@ namespace MainSystem
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }
+        public void PrintInvoiceQuantity(string StoreId, string StoreName, double TotalBillPriceAD, List<Items_Factory> BillItems)
+        {
+            Print_Items_Storage2 report = new Print_Items_Storage2();
+            foreach (DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
+            {
+                p.Visible = false;
+            }
+            report.InitData(StoreId, StoreName, TotalBillPriceAD, BillItems);
+            documentViewer1.DocumentSource = report;
+            report.CreateDocument();
+        }
         public void PrintReport( List<Data> listData)
         {
             XtraReportStorage report = new XtraReportStorage();
