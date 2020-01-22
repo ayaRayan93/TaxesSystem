@@ -34,6 +34,7 @@ namespace MainSystem
         XtraTabPage ExpensesTP;
         XtraTabPage PurchasesTP;
         XtraTabPage CustomerServiceTP;
+        XtraTabPage RequestsTP;
         int index = 1;
         static int countBackup = 0;
 
@@ -78,6 +79,7 @@ namespace MainSystem
                 ExpensesTP = xtraTabPageExpenses;
                 PurchasesTP = xtraTabPagePurchases;
                 CustomerServiceTP = xtraTabPageCustomerService;
+                RequestsTP = xtraTabPageRequest;
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageStores);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageSales);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageHR);
@@ -90,6 +92,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageExpenses);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPagePurchases);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCustomerService);
+                xtraTabControlMainContainer.TabPages.Remove(xtraTabPageRequest);
 
                 var DailyTimeBackup = "18:00:00";
                 var timePartsBackup = DailyTimeBackup.Split(new char[1] { ':' });
@@ -148,6 +151,8 @@ namespace MainSystem
                 btnExpenses.Checked = true;
                 btnReports.Enabled = true;
                 btnReports.Checked = true;
+                btnRequests.Enabled = true;
+                btnRequests.Checked = true;
 
                 pictureBoxBell.Visible = true;
                 pictureBoxSales.Visible = true;

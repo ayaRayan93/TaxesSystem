@@ -886,7 +886,7 @@ namespace MainSystem
                 }
 
                 Report_Items_Storage f = new Report_Items_Storage();
-                f.PrintInvoice(dateTimePicker2.Value.Date, totale, bi);
+                f.PrintInvoice(comStore.Text, dateTimePicker2.Value.Date, totale, bi);
                 f.ShowDialog();
             }
             catch (Exception ex)
