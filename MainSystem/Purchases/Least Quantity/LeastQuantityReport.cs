@@ -337,13 +337,66 @@ namespace MainSystem
             gridView1.Columns["Product_ID"].Visible = false;
             gridView1.Columns["Group_ID"].Visible = false;
 
-
+            //bool firstround = true;
+            //string q11 = "0";
             string q1 = "select Data_ID from storage_least_taswya";
+            //MySqlCommand com = new MySqlCommand(q1, dbconnection);
+            //MySqlDataReader dr = com.ExecuteReader();
+            //while (dr.Read())
+            //{
+            //    if(firstround)
+            //    {
+            //        q11 = dr["Data_ID"].ToString();
+            //        firstround = false;
+            //    }
+            //    else
+            //    {
+            //        q11 += "," + dr["Data_ID"].ToString();
+            //    }
+            //}
+            //dr.Close();
+
+            //firstround = true;
+            //string q22 = "0";
             string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
-            string q3 = "select data.Data_ID from data inner join storage on data.Data_ID=storage.Data_ID group by data.Data_ID HAVING SUM(storage.Total_Meters) <= least_order.Least_Quantity";
+            //com = new MySqlCommand(q2, dbconnection);
+            //dr = com.ExecuteReader();
+            //while (dr.Read())
+            //{
+            //    if (firstround)
+            //    {
+            //        q22 = dr["Data_ID"].ToString();
+            //        firstround = false;
+            //    }
+            //    else
+            //    {
+            //        q22 += "," + dr["Data_ID"].ToString();
+            //    }
+            //}
+            //dr.Close();
+
+
+            /*firstround = true;
+            string q33 = "";
+            string q3 = "select data.Data_ID from data inner join storage on data.Data_ID=storage.Data_ID INNER JOIN least_order ON least_order.Data_ID = data.Data_ID group by data.Data_ID HAVING SUM(storage.Total_Meters) <= sum(least_order.Least_Quantity)";
+            com = new MySqlCommand(q3, dbconnection);
+            dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                if (firstround)
+                {
+                    q33 = dr["Data_ID"].ToString();
+                    firstround = false;
+                }
+                else
+                {
+                    q33 += "," + dr["Data_ID"].ToString();
+                }
+            }
+            dr.Close();*/
 
             //string query = "SELECT data.Data_ID,data.Type_ID,data.Factory_ID,data.Product_ID,data.Group_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',SUM(storage.Total_Meters) as 'الكمية المتاحة',least_order.Least_Quantity as 'الحد الادنى','تسوية' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ") and data.Type_ID IN(" + qT + ") and data.Factory_ID IN(" + qF + ") and data.Product_ID IN (" + qP + ") and data.Group_ID IN (" + qG + ") " + fQuery;
-            query = "SELECT distinct data.Data_ID,data.Type_ID,data.Factory_ID,data.Product_ID,data.Group_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',least_order.Least_Quantity as 'الحد الادنى','تسوية' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID in (" + q3 + ") and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ") and data.Type_ID IN(" + qT + ") and data.Factory_ID IN(" + qF + ") and data.Product_ID IN (" + qP + ") and data.Group_ID IN (" + qG + ") " + fQuery;
+            query = "SELECT distinct data.Data_ID,data.Type_ID,data.Factory_ID,data.Product_ID,data.Group_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',least_order.Least_Quantity as 'الحد الادنى','تسوية' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ") and data.Type_ID IN(" + qT + ") and data.Factory_ID IN(" + qF + ") and data.Product_ID IN (" + qP + ") and data.Group_ID IN (" + qG + ") " + fQuery;
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             while (dr.Read())
@@ -367,6 +420,7 @@ namespace MainSystem
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الحد الادنى"], dr["الحد الادنى"]);
                 }
             }
+            dr.Close();
 
             RepositoryItemCheckEdit repositoryCheckEdit1 = gridControl1.RepositoryItems.Add("CheckEdit") as RepositoryItemCheckEdit;
             repositoryCheckEdit1.ValueChecked = "True";

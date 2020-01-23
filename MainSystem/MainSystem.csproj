@@ -391,6 +391,7 @@
     <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.designer.cs">
       <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </Compile>
+    <Compile Include="RequestsSystem.cs" />
     <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
       <SubType>Component</SubType>
     </Compile>
