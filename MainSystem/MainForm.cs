@@ -58,6 +58,7 @@ namespace MainSystem
                     POSSystem();
                     initializeBranch();
                     PurchasesMainForm();
+                    RequestsMainForm();
                 }
                 if (UserControl.userType == 1)
                 {
@@ -511,8 +512,10 @@ namespace MainSystem
             //ahmed sayed
             else if (UserControl.userType == 19)
             {
-                btnPurchases.Enabled = true;
-                btnPurchases.Checked = true;
+                //btnPurchases.Enabled = true;
+                //btnPurchases.Checked = true;
+                btnRequests.Enabled = true;
+                btnRequests.Checked = true;
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
                 btnSales.Enabled = true;
@@ -993,6 +996,30 @@ namespace MainSystem
                     index++;
                 }
                 xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageCustomerService)];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRequests_ItemClick(object sender, TileItemEventArgs e)
+        {
+            try
+            {
+                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageRequest))
+                {
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, RequestsTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, RequestsTP);
+                    }
+                    index++;
+                }
+                xtraTabControlMainContainer.SelectedTabPage = xtraTabControlMainContainer.TabPages[xtraTabControlMainContainer.TabPages.IndexOf(xtraTabPageRequest)];
             }
             catch (Exception ex)
             {

@@ -1378,6 +1378,17 @@ namespace MainSystem
             objForm.Show();
         }
 
+        public void bindDisplaySalesProductsBillsFactoryForm(XtraTabPage xtraTabPage)
+        {
+            SalesProductsBillsFactory_Report objForm = new SalesProductsBillsFactory_Report(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
         public XtraTabPage getTabPage(string text)
         {
             for (int i = 0; i < xtraTabControlSalesContent.TabPages.Count; i++)

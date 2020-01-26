@@ -391,6 +391,7 @@
     <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.designer.cs">
       <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </Compile>
+    <Compile Include="RequestsSystem.cs" />
     <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -483,19 +484,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\Print_LeastQuantity.cs">
+    <Compile Include="Requests\Least Quantity\Print_LeastQuantity.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\Print_LeastQuantity.designer.cs">
+    <Compile Include="Requests\Least Quantity\Print_LeastQuantity.designer.cs">
       <DependentUpon>Print_LeastQuantity.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\Report_LeastQuantity.cs">
+    <Compile Include="Requests\Least Quantity\Report_LeastQuantity.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\Report_LeastQuantity.designer.cs">
+    <Compile Include="Requests\Least Quantity\Report_LeastQuantity.designer.cs">
       <DependentUpon>Report_LeastQuantity.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\LeastQuantity_Items.cs" />
+    <Compile Include="Requests\Least Quantity\LeastQuantity_Items.cs" />
     <Compile Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\Print_SupplierBills.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -649,56 +650,56 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\DashRequest_Record.cs">
+    <Compile Include="Requests\Orders\Request\DashRequest_Record.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\DashRequest_Record.designer.cs">
+    <Compile Include="Requests\Orders\Request\DashRequest_Record.designer.cs">
       <DependentUpon>DashRequest_Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\DashRequest_Report.cs">
+    <Compile Include="Requests\Orders\Request\DashRequest_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\DashRequest_Report.designer.cs">
+    <Compile Include="Requests\Orders\Request\DashRequest_Report.designer.cs">
       <DependentUpon>DashRequest_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\DataHelperClassRequest.cs" />
-    <Compile Include="Purchases\Orders\Request\Request_Items.cs" />
-    <Compile Include="Purchases\Orders\Request\Request_Record.cs">
+    <Compile Include="Requests\Orders\Request\DataHelperClassRequest.cs" />
+    <Compile Include="Requests\Orders\Request\Request_Items.cs" />
+    <Compile Include="Requests\Orders\Request\Request_Record.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\Request_Record.designer.cs">
+    <Compile Include="Requests\Orders\Request\Request_Record.designer.cs">
       <DependentUpon>Request_Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\Request_Report.cs">
+    <Compile Include="Requests\Orders\Request\Request_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\Request_Report.designer.cs">
+    <Compile Include="Requests\Orders\Request\Request_Report.designer.cs">
       <DependentUpon>Request_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\Print_Request.cs">
+    <Compile Include="Requests\Orders\Request\Print_Request.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\Print_Request.designer.cs">
+    <Compile Include="Requests\Orders\Request\Print_Request.designer.cs">
       <DependentUpon>Print_Request.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\Report_Request.cs">
+    <Compile Include="Requests\Orders\Request\Report_Request.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Request\Report_Request.designer.cs">
+    <Compile Include="Requests\Orders\Request\Report_Request.designer.cs">
       <DependentUpon>Report_Request.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Reports\ReportOrderDetails_Items.cs" />
-    <Compile Include="Purchases\Orders\Reports\ReportOrder_Items.cs" />
-    <Compile Include="Purchases\Orders\Reports\Print_OrderReport.cs">
+    <Compile Include="Requests\Orders\Reports\ReportOrderDetails_Items.cs" />
+    <Compile Include="Requests\Orders\Reports\ReportOrder_Items.cs" />
+    <Compile Include="Requests\Orders\Reports\Print_OrderReport.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Reports\Print_OrderReport.designer.cs">
+    <Compile Include="Requests\Orders\Reports\Print_OrderReport.designer.cs">
       <DependentUpon>Print_OrderReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.cs">
+    <Compile Include="Requests\Orders\Reports\Report_OrderSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Reports\Report_OrderSearch.designer.cs">
+    <Compile Include="Requests\Orders\Reports\Report_OrderSearch.designer.cs">
       <DependentUpon>Report_OrderSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Purchases_Bills\Reports\نسخة فاتورة الشراء وتعديل اسعار البنود\Print_SupplierBillCopy.cs">
@@ -1284,84 +1285,84 @@
     <Compile Include="PointOfSale\Products_Report.designer.cs">
       <DependentUpon>Products_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\DataHelperClassOrder.cs" />
-    <Compile Include="Purchases\Orders\bill\DashOrder_Record.cs">
+    <Compile Include="Requests\Orders\bill\DataHelperClassOrder.cs" />
+    <Compile Include="Requests\Orders\bill\DashOrder_Record.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\DashOrder_Record.designer.cs">
+    <Compile Include="Requests\Orders\bill\DashOrder_Record.designer.cs">
       <DependentUpon>DashOrder_Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\DashOrder_Report.cs">
+    <Compile Include="Requests\Orders\bill\DashOrder_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\DashOrder_Report.designer.cs">
+    <Compile Include="Requests\Orders\bill\DashOrder_Report.designer.cs">
       <DependentUpon>DashOrder_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\Order_Report.cs">
+    <Compile Include="Requests\Orders\bill\Order_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\Order_Report.designer.cs">
+    <Compile Include="Requests\Orders\bill\Order_Report.designer.cs">
       <DependentUpon>Order_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\Order_Record.cs">
+    <Compile Include="Requests\Orders\bill\Order_Record.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\Order_Record.designer.cs">
+    <Compile Include="Requests\Orders\bill\Order_Record.designer.cs">
       <DependentUpon>Order_Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\Print_Order.cs">
+    <Compile Include="Requests\Orders\bill\Print_Order.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\Print_Order.designer.cs">
+    <Compile Include="Requests\Orders\bill\Print_Order.designer.cs">
       <DependentUpon>Print_Order.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\Report_Order.cs">
+    <Compile Include="Requests\Orders\bill\Report_Order.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\Report_Order.designer.cs">
+    <Compile Include="Requests\Orders\bill\Report_Order.designer.cs">
       <DependentUpon>Report_Order.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\bill\Order_Items.cs" />
-    <Compile Include="Purchases\Orders\Reports\OrderStored.cs">
+    <Compile Include="Requests\Orders\bill\Order_Items.cs" />
+    <Compile Include="Requests\Orders\Reports\OrderStored.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Reports\OrderStored.designer.cs">
+    <Compile Include="Requests\Orders\Reports\OrderStored.designer.cs">
       <DependentUpon>OrderStored.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Reports\SearchRequest_Date.cs">
+    <Compile Include="Requests\Orders\Reports\SearchRequest_Date.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Reports\SearchRequest_Date.designer.cs">
+    <Compile Include="Requests\Orders\Reports\SearchRequest_Date.designer.cs">
       <DependentUpon>SearchRequest_Date.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Orders\Reports\SearchRecive_Date.cs">
+    <Compile Include="Requests\Orders\Reports\SearchRecive_Date.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\Reports\SearchRecive_Date.designer.cs">
+    <Compile Include="Requests\Orders\Reports\SearchRecive_Date.designer.cs">
       <DependentUpon>SearchRecive_Date.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\LeastQuantityRecord.cs">
+    <Compile Include="Requests\Least Quantity\LeastQuantityRecord.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\LeastQuantityRecord.designer.cs">
+    <Compile Include="Requests\Least Quantity\LeastQuantityRecord.designer.cs">
       <DependentUpon>LeastQuantityRecord.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\LeastQuantityReport.cs">
+    <Compile Include="Requests\Least Quantity\LeastQuantityReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\LeastQuantityReport.designer.cs">
+    <Compile Include="Requests\Least Quantity\LeastQuantityReport.designer.cs">
       <DependentUpon>LeastQuantityReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\Bill Least\Request_Least_Delivery.cs">
+    <Compile Include="Requests\Least Quantity\Bill Least\Request_Least_Delivery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\Bill Least\Request_Least_Delivery.designer.cs">
+    <Compile Include="Requests\Least Quantity\Bill Least\Request_Least_Delivery.designer.cs">
       <DependentUpon>Request_Least_Delivery.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\Bill Least\Request_Least_Order.cs">
+    <Compile Include="Requests\Least Quantity\Bill Least\Request_Least_Order.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Least Quantity\Bill Least\Request_Least_Order.designer.cs">
+    <Compile Include="Requests\Least Quantity\Bill Least\Request_Least_Order.designer.cs">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Supplier_Payments\SupplierAccount_Report.cs">
@@ -2476,10 +2477,10 @@
       <DependentUpon>ReturnedBills_Copy_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\reports\نسخة فاتورة المرتجع\CopyReturnedBill_Items.cs" />
-    <Compile Include="Purchases\Orders\SpecialOrders_Report2.cs">
+    <Compile Include="Requests\Orders\SpecialOrders_Report2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Orders\SpecialOrders_Report2.designer.cs">
+    <Compile Include="Requests\Orders\SpecialOrders_Report2.designer.cs">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\sellPrice\UpdateSellPrice.cs">
@@ -3245,10 +3246,10 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Least Quantity\Print_LeastQuantity.resx">
+    <EmbeddedResource Include="Requests\Least Quantity\Print_LeastQuantity.resx">
       <DependentUpon>Print_LeastQuantity.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Least Quantity\Report_LeastQuantity.resx">
+    <EmbeddedResource Include="Requests\Least Quantity\Report_LeastQuantity.resx">
       <DependentUpon>Report_LeastQuantity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Purchases_Bills\Reports\فواتير الموردين شراء و مرتجع\Print_SupplierBills.resx">
@@ -3425,67 +3426,67 @@
     <EmbeddedResource Include="PointOfSale\QuantityUpdate_Copy.resx">
       <DependentUpon>QuantityUpdate_Copy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Request\DashRequest_Record.resx">
+    <EmbeddedResource Include="Requests\Orders\Request\DashRequest_Record.resx">
       <DependentUpon>DashRequest_Record.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Request\DashRequest_Report.resx">
+    <EmbeddedResource Include="Requests\Orders\Request\DashRequest_Report.resx">
       <DependentUpon>DashRequest_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Request\Request_Record.resx">
+    <EmbeddedResource Include="Requests\Orders\Request\Request_Record.resx">
       <DependentUpon>Request_Record.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Request\Request_Report.resx">
+    <EmbeddedResource Include="Requests\Orders\Request\Request_Report.resx">
       <DependentUpon>Request_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Request\Print_Request.resx">
+    <EmbeddedResource Include="Requests\Orders\Request\Print_Request.resx">
       <DependentUpon>Print_Request.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Request\Report_Request.resx">
+    <EmbeddedResource Include="Requests\Orders\Request\Report_Request.resx">
       <DependentUpon>Report_Request.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\bill\DashOrder_Record.resx">
+    <EmbeddedResource Include="Requests\Orders\bill\DashOrder_Record.resx">
       <DependentUpon>DashOrder_Record.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\bill\DashOrder_Report.resx">
+    <EmbeddedResource Include="Requests\Orders\bill\DashOrder_Report.resx">
       <DependentUpon>DashOrder_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\bill\Order_Report.resx">
+    <EmbeddedResource Include="Requests\Orders\bill\Order_Report.resx">
       <DependentUpon>Order_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\bill\Order_Record.resx">
+    <EmbeddedResource Include="Requests\Orders\bill\Order_Record.resx">
       <DependentUpon>Order_Record.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\bill\Print_Order.resx">
+    <EmbeddedResource Include="Requests\Orders\bill\Print_Order.resx">
       <DependentUpon>Print_Order.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\bill\Report_Order.resx">
+    <EmbeddedResource Include="Requests\Orders\bill\Report_Order.resx">
       <DependentUpon>Report_Order.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Reports\OrderStored.resx">
+    <EmbeddedResource Include="Requests\Orders\Reports\OrderStored.resx">
       <DependentUpon>OrderStored.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Reports\Print_OrderReport.resx">
+    <EmbeddedResource Include="Requests\Orders\Reports\Print_OrderReport.resx">
       <DependentUpon>Print_OrderReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Reports\Report_OrderSearch.resx">
+    <EmbeddedResource Include="Requests\Orders\Reports\Report_OrderSearch.resx">
       <DependentUpon>Report_OrderSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Reports\SearchRequest_Date.resx">
+    <EmbeddedResource Include="Requests\Orders\Reports\SearchRequest_Date.resx">
       <DependentUpon>SearchRequest_Date.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\Reports\SearchRecive_Date.resx">
+    <EmbeddedResource Include="Requests\Orders\Reports\SearchRecive_Date.resx">
       <DependentUpon>SearchRecive_Date.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Least Quantity\LeastQuantityRecord.resx">
+    <EmbeddedResource Include="Requests\Least Quantity\LeastQuantityRecord.resx">
       <DependentUpon>LeastQuantityRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Least Quantity\LeastQuantityReport.resx">
+    <EmbeddedResource Include="Requests\Least Quantity\LeastQuantityReport.resx">
       <DependentUpon>LeastQuantityReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Least Quantity\Bill Least\Request_Least_Delivery.resx">
+    <EmbeddedResource Include="Requests\Least Quantity\Bill Least\Request_Least_Delivery.resx">
       <DependentUpon>Request_Least_Delivery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Least Quantity\Bill Least\Request_Least_Order.resx">
+    <EmbeddedResource Include="Requests\Least Quantity\Bill Least\Request_Least_Order.resx">
       <DependentUpon>Request_Least_Order.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierAccount_Report.resx">
@@ -4220,7 +4221,7 @@
     <EmbeddedResource Include="Sales\reports\نسخة فاتورة المرتجع\ReturnedBills_Copy_Report.resx">
       <DependentUpon>ReturnedBills_Copy_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Orders\SpecialOrders_Report2.resx">
+    <EmbeddedResource Include="Requests\Orders\SpecialOrders_Report2.resx">
       <DependentUpon>SpecialOrders_Report2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\sellPrice\UpdateSellPrice.resx">
