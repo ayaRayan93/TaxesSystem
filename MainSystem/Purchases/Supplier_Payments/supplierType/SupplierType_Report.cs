@@ -120,13 +120,13 @@ namespace MainSystem
         {
             try
             {
-                string[] monthes = { "السدادات والمرتجعات", "المسحوبات", "الرصيد" };
+                string[] monthes = {  "الاجمالى","ف3", "ف2", "ف1" };
                 Rectangle r2 = this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
                 Rectangle r1 = this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
 
-                for (int j = 1; j < 8;)
+                for (int j = 0; j < 8;)
                 {
-                    if (j == 1)
+                    /*if (j == 1)
                     {
                         r2 = this.dataGridView1.GetCellDisplayRectangle(j, -1, true);
 
@@ -159,7 +159,7 @@ namespace MainSystem
                         j += 3;
                     }
                     else
-                    {
+                    {*/
                         r1 = this.dataGridView1.GetCellDisplayRectangle(j, -1, true);
 
                         int w2 = this.dataGridView1.GetCellDisplayRectangle(j + 1, -1, true).Width;
@@ -180,14 +180,14 @@ namespace MainSystem
 
                         format.LineAlignment = StringAlignment.Center;
 
-                        e.Graphics.DrawString(monthes[j / 3],
+                        e.Graphics.DrawString(monthes[j / 2],
                             this.dataGridView1.ColumnHeadersDefaultCellStyle.Font,
                             new SolidBrush(Color.White),
                             r1,
                             format);
                         
                         j += 2;
-                    }
+                    //}
                 }
             }
             catch (Exception ex)

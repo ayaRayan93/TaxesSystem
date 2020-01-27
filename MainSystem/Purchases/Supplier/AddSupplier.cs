@@ -31,6 +31,30 @@ namespace MainSystem
             xtraTabControlPurchases = XtraTabControlPurchases;
         }
 
+        private void AddSupplier_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                dbconnection.Open();
+                string qury = "SELECT Factory_ID,Factory_Name FROM factory";
+                MySqlCommand comm = new MySqlCommand(qury, dbconnection);
+                MySqlDataReader dr1 = comm.ExecuteReader();
+                if (dr1.HasRows)
+                {
+                    while (dr1.Read())
+                    {
+                        checkedListBoxControlFactory.Items.Add(dr1["Factory_Name"].ToString() + "," + dr1["Factory_ID"].ToString());
+                    }
+                }
+                dr1.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
         private void btnAddPhone_Click(object sender, EventArgs e)
         {
             try
@@ -137,9 +161,7 @@ namespace MainSystem
                         com.Parameters.Add("@Info", MySqlDbType.VarChar, 255);
                         com.Parameters["@Info"].Value = txtInfo.Text;
                         com.ExecuteNonQuery();
-
-                        AddPhoneNumbers();
-
+                        
                         query = "SELECT Supplier_ID FROM supplier ORDER BY Supplier_ID DESC LIMIT 1";
                         com = new MySqlCommand(query, dbconnection);
                         int id = 0;
@@ -147,6 +169,9 @@ namespace MainSystem
                         {
                             id = (int)com.ExecuteScalar();
                         }
+
+                        AddPhoneNumbers(id);
+                        AddFactory(id);
 
                         UserControl.ItemRecord("supplier", "اضافة", id, DateTime.Now, "", dbconnection);
 
@@ -217,24 +242,30 @@ namespace MainSystem
                 return true;
         }
 
-        void AddPhoneNumbers()
+        void AddPhoneNumbers(int id)
         {
-            string query = "SELECT Supplier_ID FROM supplier ORDER BY Supplier_ID DESC LIMIT 1";
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            int id = 0;
-            if (com.ExecuteScalar() != null)
-            {
-                id = (int)com.ExecuteScalar();
-            }
-
             for (int i = 0; i < checkedListBoxControlPhone.ItemCount; i++)
             {
-                query = "insert into supplier_phone(Supplier_ID,Phone) values(@Supplier_ID,@Phone)";
-                com = new MySqlCommand(query, dbconnection);
+                string query = "insert into supplier_phone(Supplier_ID,Phone) values(@Supplier_ID,@Phone)";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
                 com.Parameters["@Supplier_ID"].Value = id;
                 com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255);
                 com.Parameters["@Phone"].Value = checkedListBoxControlPhone.Items[i].Value.ToString();
+                com.ExecuteNonQuery();
+            }
+        }
+        
+        void AddFactory(int id)
+        {
+            for (int i = 0; i < checkedListBoxControlFactory.CheckedItemsCount; i++)
+            {
+                string query = "insert into supplier_factory(Supplier_ID,Factory_ID) values(@Supplier_ID,@Factory_ID)";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
+                com.Parameters["@Supplier_ID"].Value = id;
+                com.Parameters.Add("@Factory_ID", MySqlDbType.Int16, 11);
+                com.Parameters["@Factory_ID"].Value = checkedListBoxControlFactory.CheckedItems[i].ToString().Split(',')[1];
                 com.ExecuteNonQuery();
             }
         }
@@ -258,6 +289,14 @@ namespace MainSystem
                     for (int i = 0; i < cont; i++)
                     {
                         checkedListBoxControlPhone.Items.RemoveAt(0);
+                    }
+                }
+                else if(item is Panel)
+                {
+                    int cont = checkedListBoxControlFactory.CheckedItemsCount;
+                    for (int i = 0; i < cont; i++)
+                    {
+                        checkedListBoxControlFactory.SetItemChecked(checkedListBoxControlFactory.CheckedIndices[0], false);
                     }
                 }
             }

@@ -39,7 +39,6 @@
             this.txtFax = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.label11 = new System.Windows.Forms.Label();
             this.checkedListBoxControlPhone = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,6 +54,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -81,8 +81,10 @@
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.checkedListBoxControlFactory = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).BeginInit();
@@ -113,7 +115,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlFactory)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -211,7 +215,7 @@
             // layoutControl1
             // 
             this.layoutControl1.BackColor = System.Drawing.Color.White;
-            this.layoutControl1.Controls.Add(this.label11);
+            this.layoutControl1.Controls.Add(this.panel1);
             this.layoutControl1.Controls.Add(this.checkedListBoxControlPhone);
             this.layoutControl1.Controls.Add(this.label10);
             this.layoutControl1.Controls.Add(this.label3);
@@ -245,13 +249,6 @@
             this.layoutControl1.Size = new System.Drawing.Size(876, 621);
             this.layoutControl1.TabIndex = 20;
             this.layoutControl1.Text = "layoutControl1";
-            // 
-            // label11
-            // 
-            this.label11.Location = new System.Drawing.Point(12, 267);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(852, 20);
-            this.label11.TabIndex = 69;
             // 
             // checkedListBoxControlPhone
             // 
@@ -396,6 +393,27 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(852, 54);
             this.tableLayoutPanel2.TabIndex = 36;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.ImagePosition = 1;
+            this.btnAdd.ImageZoom = 25;
+            this.btnAdd.LabelPosition = 18;
+            this.btnAdd.LabelText = "حفظ";
+            this.btnAdd.Location = new System.Drawing.Point(387, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(79, 46);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -426,7 +444,7 @@
             this.layoutControlItem17,
             this.layoutControlItem7,
             this.layoutControlItem24,
-            this.layoutControlItem18});
+            this.layoutControlItem26});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(876, 621);
             this.layoutControlGroup1.TextVisible = false;
@@ -448,9 +466,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 279);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 533);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(856, 264);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(856, 10);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem11
@@ -730,35 +748,43 @@
             this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem24.TextVisible = false;
             // 
-            // layoutControlItem18
+            // panel1
             // 
-            this.layoutControlItem18.Control = this.label11;
-            this.layoutControlItem18.Location = new System.Drawing.Point(0, 255);
-            this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(856, 24);
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem18.TextVisible = false;
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.checkedListBoxControlFactory);
+            this.panel1.Location = new System.Drawing.Point(12, 267);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(852, 274);
+            this.panel1.TabIndex = 70;
             // 
-            // btnAdd
+            // layoutControlItem26
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
-            this.btnAdd.ImagePosition = 1;
-            this.btnAdd.ImageZoom = 25;
-            this.btnAdd.LabelPosition = 18;
-            this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(387, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(79, 46);
-            this.btnAdd.TabIndex = 7;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.layoutControlItem26.Control = this.panel1;
+            this.layoutControlItem26.Location = new System.Drawing.Point(0, 255);
+            this.layoutControlItem26.Name = "layoutControlItem26";
+            this.layoutControlItem26.Size = new System.Drawing.Size(856, 278);
+            this.layoutControlItem26.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem26.TextVisible = false;
+            // 
+            // checkedListBoxControlFactory
+            // 
+            this.checkedListBoxControlFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkedListBoxControlFactory.Location = new System.Drawing.Point(358, 35);
+            this.checkedListBoxControlFactory.Name = "checkedListBoxControlFactory";
+            this.checkedListBoxControlFactory.Size = new System.Drawing.Size(136, 141);
+            this.checkedListBoxControlFactory.StyleController = this.layoutControl1;
+            this.checkedListBoxControlFactory.TabIndex = 69;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label12.Location = new System.Drawing.Point(500, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(67, 23);
+            this.label12.TabIndex = 70;
+            this.label12.Text = "المصانع";
             // 
             // AddSupplier
             // 
@@ -768,6 +794,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Name = "AddSupplier";
             this.Text = "AddSuppliers";
+            this.Load += new System.EventHandler(this.AddSupplier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).EndInit();
@@ -798,7 +825,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlFactory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -857,8 +887,10 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
         private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlPhone;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
-        private System.Windows.Forms.Label label11;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
+        private System.Windows.Forms.Panel panel1;
+        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlFactory;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
+        private System.Windows.Forms.Label label12;
     }
 }
 

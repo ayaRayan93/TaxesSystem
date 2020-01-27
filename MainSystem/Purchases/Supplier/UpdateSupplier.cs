@@ -17,7 +17,7 @@ namespace MainSystem
 {
     public partial class UpdateSupplier : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnection2;
         Supplier_Report SupplierReport;
         XtraTabControl xtraTabControlPurchases;
         XtraTabPage xtraTabPage;
@@ -29,6 +29,7 @@ namespace MainSystem
             InitializeComponent();
 
             dbconnection = new MySqlConnection(connection.connectionString);
+            dbconnection2 = new MySqlConnection(connection.connectionString);
             selRow = rows;
             SupplierReport = supplierReport;
             xtraTabControlPurchases = XtraTabControlPurchases;
@@ -59,7 +60,25 @@ namespace MainSystem
                     }
                 }
                 dr1.Close();
-                
+
+                dbconnection2.Open();
+                qury = "SELECT Factory_ID,Factory_Name FROM factory";
+                comm = new MySqlCommand(qury, dbconnection);
+                dr1 = comm.ExecuteReader();
+                if (dr1.HasRows)
+                {
+                    while (dr1.Read())
+                    {
+                        checkedListBoxControlFactory.Items.Add(dr1["Factory_Name"].ToString() + "," + dr1["Factory_ID"].ToString());
+
+                        string query = "SELECT factory.Factory_ID FROM supplier_factory INNER JOIN supplier ON supplier_factory.Supplier_ID = supplier.Supplier_ID INNER JOIN factory ON supplier_factory.Factory_ID = factory.Factory_ID where supplier_factory.Factory_ID=" + dr1["Factory_ID"].ToString() + " and supplier_factory.Supplier_ID=" + selRow[0].ToString();
+                        MySqlCommand com = new MySqlCommand(query, dbconnection2);
+                        if (com.ExecuteScalar() != null)
+                            checkedListBoxControlFactory.SetItemChecked(checkedListBoxControlFactory.ItemCount-1, true);
+                    }
+                }
+                dr1.Close();
+
                 loadedflag = true;
             }
             catch (Exception ex)
@@ -67,6 +86,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnection2.Close();
         }
 
         private void btnAddPhone_Click(object sender, EventArgs e)
@@ -135,6 +155,46 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+        }
+
+        private void checkedListBoxControlFactory_ItemCheck(object sender, DevExpress.XtraEditors.Controls.ItemCheckEventArgs e)
+        {
+            if (loadedflag)
+            {
+                try
+                {
+                    if (e.State == CheckState.Checked)
+                    {
+                        dbconnection.Open();
+                        string query = "insert into supplier_factory(Supplier_ID,Factory_ID) values(@Supplier_ID,@Factory_ID)";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Supplier_ID"].Value = selRow[0].ToString();
+                        com.Parameters.Add("@Factory_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Factory_ID"].Value = checkedListBoxControlFactory.Items[e.Index].ToString().Split(',')[1];
+                        com.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                        {
+                            loadedflag = false;
+                            checkedListBoxControlFactory.SetItemChecked(e.Index, true);
+                            loadedflag = true;
+                            return;
+                        }
+                        dbconnection.Open();
+                        string query = "delete from supplier_factory where Supplier_ID=" + selRow[0].ToString() + " and Factory_ID=" + checkedListBoxControlFactory.Items[e.Index].ToString().Split(',')[1];
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.ExecuteNonQuery();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dbconnection.Close();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
