@@ -202,24 +202,24 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    int supplierID = 0;
+                    //int supplierID = 0;
                     txtSupplierID.Text = comSupplier.SelectedValue.ToString();
-                    if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null)
-                    {
-                        search(Convert.ToInt32(comSupplier.SelectedValue.ToString()));
-                    }
-                    else
-                    {
-                        MessageBox.Show("تاكد من البيانات");
-                    }
+                    //if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null)
+                    //{
+                    //    search(Convert.ToInt32(comSupplier.SelectedValue.ToString()));
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("تاكد من البيانات");
+                    //}
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
-            dbconnection6.Close();
+            //dbconnection.Close();
+            //dbconnection6.Close();
         }
 
         private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
@@ -237,7 +237,7 @@ namespace MainSystem
                         loaded = false;
                         comSupplier.Text = Name;
                         comSupplier.SelectedValue = txtSupplierID.Text;
-                        search(Convert.ToInt32(comSupplier.SelectedValue.ToString()));
+                        //search(Convert.ToInt32(comSupplier.SelectedValue.ToString()));
                         loaded = true;
                     }
                     else
@@ -251,7 +251,7 @@ namespace MainSystem
                     MessageBox.Show(ex.Message);
                 }
                 dbconnection.Close();
-                dbconnection6.Close();
+                //dbconnection6.Close();
             }
         }
 
@@ -259,11 +259,11 @@ namespace MainSystem
         {
             try
             {
-                loaded = false;
-                comSupplier.SelectedIndex = -1;
-                txtSupplierID.Text = "";
-                loaded = true;
-                search(0);
+                //loaded = false;
+                //comSupplier.SelectedIndex = -1;
+                //txtSupplierID.Text = "";
+                //loaded = true;
+                search();
             }
             catch (Exception ex)
             {
@@ -273,8 +273,14 @@ namespace MainSystem
             dbconnection6.Close();
         }
 
-        public void search(int supplierId)
+        public void search()
         {
+            int supplierId = 0;
+            if (comSupplier.SelectedValue != null && comSupplier.Text != "")
+            {
+                supplierId = Convert.ToInt16(comSupplier.SelectedValue.ToString());
+            }
+
             double totalTransition = 0;
             double totalBills = 0;
             double totalTaswyaAdd = 0;
