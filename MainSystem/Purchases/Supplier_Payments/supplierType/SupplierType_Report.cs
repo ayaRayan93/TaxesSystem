@@ -17,6 +17,7 @@ namespace MainSystem
     {
         MySqlConnection dbconnection, dbconnection6;
         bool loaded = false;
+        bool loadedFactory = false;
         XtraTabControl tabControlContent;
 
         public SupplierType_Report(MainForm mainform, XtraTabControl TabControlContent)
@@ -198,28 +199,44 @@ namespace MainSystem
         
         private void comBranch_SelectedValueChanged(object sender, EventArgs e)
         {
-            try
+            if (loaded)
             {
-                if (loaded)
+                try
                 {
-                    //int supplierID = 0;
                     txtSupplierID.Text = comSupplier.SelectedValue.ToString();
-                    //if (int.TryParse(txtSupplierID.Text, out supplierID) && comSupplier.SelectedValue != null)
-                    //{
-                    //    search(Convert.ToInt32(comSupplier.SelectedValue.ToString()));
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("تاكد من البيانات");
-                    //}
+
+                    loadedFactory = false;
+                    string query = "select * from Factory inner join supplier_factory on factory.Factory_ID=supplier_factory.Factory_ID where Supplier_ID=" + comSupplier.SelectedValue.ToString();
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comFactory.DataSource = dt;
+                    comFactory.DisplayMember = dt.Columns["Factory_Name"].ToString();
+                    comFactory.ValueMember = dt.Columns["Factory_ID"].ToString();
+                    comFactory.Text = "";
+                    txtFactory.Text = "";
+                    loadedFactory = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch (Exception ex)
+        }
+
+        private void comFactory_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loadedFactory)
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    txtFactory.Text = comFactory.SelectedValue.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            //dbconnection.Close();
-            //dbconnection6.Close();
         }
 
         private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
@@ -252,6 +269,37 @@ namespace MainSystem
                 }
                 dbconnection.Close();
                 //dbconnection6.Close();
+            }
+        }
+
+        private void txtFactory_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    dbconnection.Open();
+                    string query = "select Factory_Name from factory where Factory_ID=" + txtFactory.Text;// + " and Factory_ID in (" + comFactory.DataSource + ")";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (com.ExecuteScalar() != null)
+                    {
+                        Name = (string)com.ExecuteScalar();
+                        loadedFactory = false;
+                        comFactory.Text = Name;
+                        comFactory.SelectedValue = txtFactory.Text;
+                        loadedFactory = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("there is no item with this id");
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                dbconnection.Close();
             }
         }
 
