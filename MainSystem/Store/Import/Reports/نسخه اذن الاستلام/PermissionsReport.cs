@@ -174,7 +174,7 @@ namespace MainSystem
                         da.Fill(dt);
                         gridControl1.DataSource = dt;*/
 
-                        string qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,'Factory_ID','المصنع','رقم الطلب' from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where data.Data_ID=0 order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                        string qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,'Factory_ID','المصنع','رقم الطلب',import_supplier_permission.Purchase_Bill from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where data.Data_ID=0 order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                         MySqlDataAdapter da = new MySqlDataAdapter(qq, dbconnection);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
@@ -183,6 +183,7 @@ namespace MainSystem
                         gridView1.Columns["Supplier_ID"].Visible = false;
                         gridView1.Columns["Supplier_Permission_Details_ID"].Visible = false;
                         gridView1.Columns["Factory_ID"].Visible = false;
+                        gridView1.Columns["Purchase_Bill"].Visible = false;
 
                         for (int i = 0; i < gridView1.Columns.Count; i++)
                         {
@@ -191,7 +192,7 @@ namespace MainSystem
                         gridView1.Columns["الكود"].Width = 180;
                         gridView1.Columns["الاسم"].Width = 200;
 
-                        qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + billNum + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString();
+                        qq = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',supplier_permission_details.Balatat as 'عدد البلتات',supplier_permission_details.Carton_Balata as 'عدد الكراتين',supplier_permission_details.Total_Meters as 'متر/قطعة',import_supplier_permission.Supplier_Permission_Number as 'اذن استلام',DATE_FORMAT(supplier_permission_details.Date, '%d-%m-%Y %T') as 'تاريخ التخزين',supplier_permission_details.Note as 'ملاحظة',import_supplier_permission.Supplier_ID,supplier_permission_details.Supplier_Permission_Details_ID,import_supplier_permission.Purchase_Bill from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + billNum + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString();
                         MySqlCommand com = new MySqlCommand(qq, dbconnection);
                         dr = com.ExecuteReader();
                         if (dr.HasRows)
@@ -215,7 +216,8 @@ namespace MainSystem
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ملاحظة"], dr["ملاحظة"]);
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Supplier_ID"], dr["Supplier_ID"]);
                                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Supplier_Permission_Details_ID"], dr["Supplier_Permission_Details_ID"]);
-                                    
+                                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["Purchase_Bill"], dr["Purchase_Bill"]);
+
                                     qq = "select orders.Order_Number,orders.Factory_ID,factory2.Factory_Name from supplier_permission_details INNER JOIN data ON supplier_permission_details.Data_ID = data.Data_ID INNER JOIN import_supplier_permission ON supplier_permission_details.ImportSupplierPermission_ID = import_supplier_permission.ImportSupplierPermission_ID INNER JOIN storage_import_permission ON storage_import_permission.StorageImportPermission_ID = import_supplier_permission.StorageImportPermission_ID  INNER JOIN supplier ON import_supplier_permission.Supplier_ID = supplier.Supplier_ID inner JOIN order_details ON supplier_permission_details.Data_ID = order_details.Data_ID inner JOIN orders ON order_details.Order_ID = orders.Order_ID INNER JOIN factory as factory2 ON orders.Factory_ID = factory2.Factory_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID where storage_import_permission.Import_Permission_Number=" + billNum + " and supplier_permission_details.Store_ID=" + comStore.SelectedValue.ToString() + " and data.Data_ID=" + dr["Data_ID"] + " ";
                                     com = new MySqlCommand(qq, dbconnection2);
                                     MySqlDataReader dr2 = com.ExecuteReader();
@@ -269,7 +271,7 @@ namespace MainSystem
                         }
                         else
                         {
-                            MessageBox.Show("الاذن منتهى");
+                            MessageBox.Show("هذا الاذن منتهى");
                         }
                     }
                     else
@@ -372,7 +374,7 @@ namespace MainSystem
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
         {
-            /*try
+            try
             {
                 int storeID = 0;
                 if (int.TryParse(txtStoreID.Text, out storeID) && comStore.SelectedValue != null && txtPermissionNumber.Text != "" && gridView1.RowCount > 0)
@@ -385,8 +387,15 @@ namespace MainSystem
                         DataRowView row2 = (DataRowView)gridView1.GetRow(gridView1.GetRowHandle(info.RowHandle));
                         if (info.Column.GetCaption() == "متر/قطعة")
                         {
-                            SupplierReceiptQuantity_Update sd = new SupplierReceiptQuantity_Update(info.RowHandle, row2, storeID, this, null/*, "PermissionsReport", this*);
-                            sd.ShowDialog();
+                            if (row2["Purchase_Bill"].ToString() == "0")
+                            {
+                                SupplierReceiptQuantity_Update sd = new SupplierReceiptQuantity_Update(info.RowHandle, row2, storeID, this, null/*, "PermissionsReport", this*/);
+                                sd.ShowDialog();
+                            }
+                            else
+                            {
+                                MessageBox.Show("هذا الاذن منتهى");
+                            }
                         }
                     }
                 }
@@ -394,7 +403,7 @@ namespace MainSystem
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
+            }
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -630,7 +639,7 @@ namespace MainSystem
                         }
                         else
                         {
-                            MessageBox.Show("الاذن منتهى");
+                            MessageBox.Show("هذا الاذن منتهى");
                         }
                     }
                     else

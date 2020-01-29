@@ -336,7 +336,7 @@ namespace MainSystem
             double TotalReturns = 0;
 
             dataGridView1.Rows.Clear();
-            
+
             dbconnection.Open();
             dbconnection6.Open();
             if (supplierId == 0)
@@ -583,8 +583,8 @@ namespace MainSystem
             }
             else
             {
-                #region first row
-                string query = "SELECT sum(supplier_bill.Total_Price_A) as 'المبلغ' FROM supplier_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where Date(supplier_bill.Date) < '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
+                /*#region others
+                string query = "SELECT sum(supplier_bill.Total_Price_A) as 'المبلغ' FROM supplier_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where Date(supplier_bill.Date) >= '" + start.ToString("yyyy-MM-dd") + "' and Date(supplier_bill.Date) < '" + end.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
                 if (dr.HasRows)
@@ -598,36 +598,8 @@ namespace MainSystem
                     }
                 }
                 dr.Close();
-                query = "SELECT sum(supplier_taswaya.Money_Paid) as 'المبلغ' FROM supplier_taswaya INNER JOIN supplier ON supplier.Supplier_ID = supplier_taswaya.Supplier_ID where supplier_taswaya.Taswaya_Type='اضافة' and supplier_taswaya.Date < '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
-                comand = new MySqlCommand(query, dbconnection);
-                dr = comand.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    while (dr.Read())
-                    {
-                        if (dr["المبلغ"].ToString() != "")
-                        {
-                            totalTaswyaAdd = Convert.ToDouble(dr["المبلغ"].ToString());
-                        }
-                    }
-                }
-                dr.Close();
 
-                query = "SELECT sum(supplier_transitions.Amount) as 'المبلغ' FROM supplier_transitions INNER JOIN supplier ON supplier.Supplier_ID = supplier_transitions.Supplier_ID INNER JOIN bank ON bank.Bank_ID = supplier_transitions.Bank_ID where supplier_transitions.Transition='سداد' and supplier_transitions.Paid='تم' and supplier_transitions.Error=0 and supplier_transitions.Date < '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
-                comand = new MySqlCommand(query, dbconnection);
-                dr = comand.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    while (dr.Read())
-                    {
-                        if (dr["المبلغ"].ToString() != "")
-                        {
-                            totalTransition = Convert.ToDouble(dr["المبلغ"].ToString());
-                        }
-                    }
-                }
-                dr.Close();
-                query = "SELECT sum(supplier_return_bill.Total_Price_AD) as 'المبلغ' FROM supplier_return_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_return_bill.Supplier_ID where Date(supplier_return_bill.Date) < '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
+                query = "SELECT sum(supplier_return_bill.Total_Price_AD) as 'المبلغ' FROM supplier_return_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_return_bill.Supplier_ID where Date(supplier_return_bill.Date) >= '" + start.ToString("yyyy-MM-dd") + "' and Date(supplier_return_bill.Date) < '" + end.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
                 comand = new MySqlCommand(query, dbconnection);
                 dr = comand.ExecuteReader();
                 if (dr.HasRows)
@@ -641,159 +613,28 @@ namespace MainSystem
                     }
                 }
                 dr.Close();
-                query = "SELECT sum(supplier_taswaya.Money_Paid) as 'المبلغ' FROM supplier_taswaya INNER JOIN supplier ON supplier.Supplier_ID = supplier_taswaya.Supplier_ID where supplier_taswaya.Taswaya_Type='خصم' and supplier_taswaya.Date < '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
-                comand = new MySqlCommand(query, dbconnection);
-                dr = comand.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    while (dr.Read())
-                    {
-                        if (dr["المبلغ"].ToString() != "")
-                        {
-                            totalTaswyaDiscount = Convert.ToDouble(dr["المبلغ"].ToString());
-                        }
-                    }
-                }
-                dr.Close();
 
                 int n = dataGridView1.Rows.Add();
-                dataGridView1.Rows[n].Cells["Descripe"].Value = "رصيد سابق";
+                dataGridView1.Rows[n].Cells["Descripe"].Value = "بيانات شهر " + start.Month;
+                dataGridView1.Rows[n].Cells["Debit"].Value = "";
+                dataGridView1.Rows[n].Cells["Credit"].Value = "";
+                dataGridView1.Rows[n].DefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.Rows[n].DefaultCellStyle.SelectionBackColor = Color.LightSteelBlue;
+                dataGridView1.Rows[n].DefaultCellStyle.SelectionForeColor = Color.Black;
+
+                n = dataGridView1.Rows.Add();
+                dataGridView1.Rows[n].Cells["Bill"].Value = totalBills;
+                dataGridView1.Rows[n].Cells["TaswyaaAdding"].Value = totalTaswyaAdd;
+                dataGridView1.Rows[n].Cells["ReturnBill"].Value = TotalReturns;
+                dataGridView1.Rows[n].Cells["TaswyaDiscount"].Value = totalTaswyaDiscount;
+                dataGridView1.Rows[n].Cells["Transitions"].Value = totalTransition;
+                dataGridView1.Rows[n].Cells["Debit"].Value = "";
+                dataGridView1.Rows[n].Cells["Credit"].Value = "";
+
+                n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells["Debit"].Value = totalBills + totalTaswyaAdd;
                 dataGridView1.Rows[n].Cells["Credit"].Value = totalTransition + TotalReturns + totalTaswyaDiscount;
-                #endregion
 
-                #region others
-                totalTransition = totalBills = totalTaswyaAdd = totalTaswyaDiscount = TotalReturns = 0;
-                DateTime sdt = dateTimePickerFrom.Value;
-                DateTime edt = dateTimePickerTo.Value;
-                int numMonths = 0;
-                while (sdt <= edt)
-                {
-                    sdt = sdt.AddMonths(1);
-                    numMonths++;
-                }
-
-                for (int i = 0; i < numMonths; i++)
-                {
-                    DateTime today = new DateTime();
-                    DateTime start = new DateTime();
-                    DateTime end = new DateTime();
-                    if (i == 0)
-                    {
-                        today = dateTimePickerFrom.Value;
-                        start = new DateTime(today.Year, today.Month, today.Day);
-                        end = start.AddMonths(1);
-                    }
-                    if (i == (numMonths - 1))
-                    {
-                        today = dateTimePickerFrom.Value;
-                        start = new DateTime(today.Year, today.Month, today.Day);
-                        start = start.AddMonths(i);
-                        today = dateTimePickerTo.Value;
-                        end = new DateTime(today.Year, today.Month, today.Day);
-                        end = end.AddDays(1);
-                    }
-                    else
-                    {
-                        today = dateTimePickerFrom.Value;
-                        start = new DateTime(today.Year, today.Month, today.Day);
-                        start = start.AddMonths(i);
-                        end = start.AddMonths(1);
-                    }
-
-                    query = "SELECT sum(supplier_bill.Total_Price_A) as 'المبلغ' FROM supplier_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where Date(supplier_bill.Date) >= '" + start.ToString("yyyy-MM-dd") + "' and Date(supplier_bill.Date) < '" + end.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
-                    comand = new MySqlCommand(query, dbconnection);
-                    dr = comand.ExecuteReader();
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            if (dr["المبلغ"].ToString() != "")
-                            {
-                                totalBills = Convert.ToDouble(dr["المبلغ"].ToString());
-                            }
-                        }
-                    }
-                    dr.Close();
-                    query = "SELECT sum(supplier_taswaya.Money_Paid) as 'المبلغ' FROM supplier_taswaya INNER JOIN supplier ON supplier.Supplier_ID = supplier_taswaya.Supplier_ID where supplier_taswaya.Taswaya_Type='اضافة' and supplier_taswaya.Date >= '" + start.ToString("yyyy-MM-dd") + "' and supplier_taswaya.Date < '" + end.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
-                    comand = new MySqlCommand(query, dbconnection);
-                    dr = comand.ExecuteReader();
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            if (dr["المبلغ"].ToString() != "")
-                            {
-                                totalTaswyaAdd = Convert.ToDouble(dr["المبلغ"].ToString());
-                            }
-                        }
-                    }
-                    dr.Close();
-
-                    query = "SELECT sum(supplier_transitions.Amount) as 'المبلغ' FROM supplier_transitions INNER JOIN supplier ON supplier.Supplier_ID = supplier_transitions.Supplier_ID INNER JOIN bank ON bank.Bank_ID = supplier_transitions.Bank_ID where supplier_transitions.Transition='سداد' and supplier_transitions.Paid='تم' and supplier_transitions.Error=0 and supplier_transitions.Date >= '" + start.ToString("yyyy-MM-dd") + "' and supplier_transitions.Date < '" + end.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
-                    comand = new MySqlCommand(query, dbconnection);
-                    dr = comand.ExecuteReader();
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            if (dr["المبلغ"].ToString() != "")
-                            {
-                                totalTransition = Convert.ToDouble(dr["المبلغ"].ToString());
-                            }
-                        }
-                    }
-                    dr.Close();
-                    query = "SELECT sum(supplier_return_bill.Total_Price_AD) as 'المبلغ' FROM supplier_return_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_return_bill.Supplier_ID where Date(supplier_return_bill.Date) >= '" + start.ToString("yyyy-MM-dd") + "' and Date(supplier_return_bill.Date) < '" + end.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
-                    comand = new MySqlCommand(query, dbconnection);
-                    dr = comand.ExecuteReader();
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            if (dr["المبلغ"].ToString() != "")
-                            {
-                                TotalReturns = Convert.ToDouble(dr["المبلغ"].ToString());
-                            }
-                        }
-                    }
-                    dr.Close();
-                    query = "SELECT sum(supplier_taswaya.Money_Paid) as 'المبلغ' FROM supplier_taswaya INNER JOIN supplier ON supplier.Supplier_ID = supplier_taswaya.Supplier_ID where supplier_taswaya.Taswaya_Type='خصم' and supplier_taswaya.Date >= '" + start.ToString("yyyy-MM-dd") + "' and supplier_taswaya.Date < '" + end.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
-                    comand = new MySqlCommand(query, dbconnection);
-                    dr = comand.ExecuteReader();
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            if (dr["المبلغ"].ToString() != "")
-                            {
-                                totalTaswyaDiscount = Convert.ToDouble(dr["المبلغ"].ToString());
-                            }
-                        }
-                    }
-                    dr.Close();
-
-                    n = dataGridView1.Rows.Add();
-                    dataGridView1.Rows[n].Cells["Descripe"].Value = "بيانات شهر " + start.Month;
-                    dataGridView1.Rows[n].Cells["Debit"].Value = "";
-                    dataGridView1.Rows[n].Cells["Credit"].Value = "";
-                    dataGridView1.Rows[n].DefaultCellStyle.BackColor = Color.LightGray;
-                    dataGridView1.Rows[n].DefaultCellStyle.SelectionBackColor = Color.LightSteelBlue;
-                    dataGridView1.Rows[n].DefaultCellStyle.SelectionForeColor = Color.Black;
-
-                    n = dataGridView1.Rows.Add();
-                    dataGridView1.Rows[n].Cells["Bill"].Value = totalBills;
-                    dataGridView1.Rows[n].Cells["TaswyaaAdding"].Value = totalTaswyaAdd;
-                    dataGridView1.Rows[n].Cells["ReturnBill"].Value = TotalReturns;
-                    dataGridView1.Rows[n].Cells["TaswyaDiscount"].Value = totalTaswyaDiscount;
-                    dataGridView1.Rows[n].Cells["Transitions"].Value = totalTransition;
-                    dataGridView1.Rows[n].Cells["Debit"].Value = "";
-                    dataGridView1.Rows[n].Cells["Credit"].Value = "";
-
-                    n = dataGridView1.Rows.Add();
-                    dataGridView1.Rows[n].Cells["Debit"].Value = totalBills + totalTaswyaAdd;
-                    dataGridView1.Rows[n].Cells["Credit"].Value = totalTransition + TotalReturns + totalTaswyaDiscount;
-                }
                 #endregion
 
                 #region Summary
@@ -821,7 +662,7 @@ namespace MainSystem
                 n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells["Debit"].Value = totalCredit - totalDebit;
                 dataGridView1.Rows[n].Cells["Descripe"].Value = "الرصيد";
-                #endregion
+                #endregion*/
             }
         }
 
