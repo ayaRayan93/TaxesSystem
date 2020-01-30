@@ -465,7 +465,7 @@ namespace MainSystem
 
         private void navBarItemSupplierTypeReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
-            /*try
+            try
             {
                 restForeColorOfNavBarItem();
                 NavBarItem navBarItem = (NavBarItem)sender;
@@ -494,7 +494,7 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
+            }
         }
 
         //Special Orders Report
