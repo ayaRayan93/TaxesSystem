@@ -39,6 +39,8 @@
             this.txtFax = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkedListBoxControlFactory = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.checkedListBoxControlPhone = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -81,8 +83,12 @@
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlFactory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -111,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -197,8 +204,8 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(534, 240);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -209,6 +216,7 @@
             // layoutControl1
             // 
             this.layoutControl1.BackColor = System.Drawing.Color.White;
+            this.layoutControl1.Controls.Add(this.panel1);
             this.layoutControl1.Controls.Add(this.checkedListBoxControlPhone);
             this.layoutControl1.Controls.Add(this.label10);
             this.layoutControl1.Controls.Add(this.label3);
@@ -242,6 +250,25 @@
             this.layoutControl1.Size = new System.Drawing.Size(876, 621);
             this.layoutControl1.TabIndex = 20;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.checkedListBoxControlFactory);
+            this.panel1.Location = new System.Drawing.Point(12, 267);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(852, 274);
+            this.panel1.TabIndex = 71;
+            // 
+            // checkedListBoxControlFactory
+            // 
+            this.checkedListBoxControlFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkedListBoxControlFactory.Location = new System.Drawing.Point(358, 35);
+            this.checkedListBoxControlFactory.Name = "checkedListBoxControlFactory";
+            this.checkedListBoxControlFactory.Size = new System.Drawing.Size(136, 141);
+            this.checkedListBoxControlFactory.StyleController = this.layoutControl1;
+            this.checkedListBoxControlFactory.TabIndex = 69;
+            this.checkedListBoxControlFactory.ItemCheck += new DevExpress.XtraEditors.Controls.ItemCheckEventHandler(this.checkedListBoxControlFactory_ItemCheck);
             // 
             // checkedListBoxControlPhone
             // 
@@ -436,7 +463,8 @@
             this.layoutControlItem8,
             this.layoutControlItem17,
             this.layoutControlItem7,
-            this.layoutControlItem24});
+            this.layoutControlItem24,
+            this.layoutControlItem18});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(876, 621);
             this.layoutControlGroup1.TextVisible = false;
@@ -458,9 +486,9 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 255);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 533);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(856, 288);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(856, 10);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem11
@@ -740,6 +768,26 @@
             this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem24.TextVisible = false;
             // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.panel1;
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 255);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(856, 278);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem18.TextVisible = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label12.Location = new System.Drawing.Point(500, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(67, 23);
+            this.label12.TabIndex = 71;
+            this.label12.Text = "المصانع";
+            // 
             // UpdateSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -751,6 +799,9 @@
             this.Load += new System.EventHandler(this.UpdateSupplier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlFactory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -779,6 +830,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -837,6 +889,10 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
         private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlPhone;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
+        private System.Windows.Forms.Panel panel1;
+        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlFactory;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
+        private System.Windows.Forms.Label label12;
     }
 }
 

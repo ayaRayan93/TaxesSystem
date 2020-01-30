@@ -28,33 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnDisplay = new System.Windows.Forms.Button();
             this.comSupplier = new System.Windows.Forms.ComboBox();
             this.txtSupplierID = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.TotalCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostF3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityF3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostF2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityF2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CostF1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityF1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Transitions = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaswyaDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaswyaaAdding = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Debit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtFactory = new System.Windows.Forms.TextBox();
+            this.comFactory = new System.Windows.Forms.ComboBox();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDisplay
@@ -64,7 +68,7 @@
             this.btnDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDisplay.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnDisplay.ForeColor = System.Drawing.Color.White;
-            this.btnDisplay.Location = new System.Drawing.Point(74, 16);
+            this.btnDisplay.Location = new System.Drawing.Point(74, 18);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(100, 35);
             this.btnDisplay.TabIndex = 7;
@@ -77,7 +81,7 @@
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 12F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(674, 24);
+            this.comSupplier.Location = new System.Drawing.Point(676, 9);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 27);
@@ -88,10 +92,10 @@
             // 
             this.txtSupplierID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSupplierID.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtSupplierID.Location = new System.Drawing.Point(618, 24);
+            this.txtSupplierID.Location = new System.Drawing.Point(615, 9);
             this.txtSupplierID.Name = "txtSupplierID";
             this.txtSupplierID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtSupplierID.Size = new System.Drawing.Size(50, 27);
+            this.txtSupplierID.Size = new System.Drawing.Size(55, 27);
             this.txtSupplierID.TabIndex = 205;
             this.txtSupplierID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBranchID_KeyDown);
             // 
@@ -100,7 +104,7 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(839, 28);
+            this.label16.Location = new System.Drawing.Point(836, 13);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(54, 19);
             this.label16.TabIndex = 204;
@@ -122,167 +126,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(971, 666);
             this.tableLayoutPanel1.TabIndex = 215;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.ColumnHeadersHeight = 40;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Descripe,
-            this.Transitions,
-            this.TaswyaDiscount,
-            this.ReturnBill,
-            this.TaswyaaAdding,
-            this.Bill,
-            this.Credit,
-            this.Debit});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 90);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 80;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(951, 506);
-            this.dataGridView1.TabIndex = 217;
-            // 
-            // Descripe
-            // 
-            this.Descripe.FillWeight = 111.3851F;
-            this.Descripe.HeaderText = "البيان";
-            this.Descripe.Name = "Descripe";
-            this.Descripe.ReadOnly = true;
-            // 
-            // Transitions
-            // 
-            this.Transitions.FillWeight = 111.3851F;
-            this.Transitions.HeaderText = "سدادات";
-            this.Transitions.Name = "Transitions";
-            this.Transitions.ReadOnly = true;
-            // 
-            // TaswyaDiscount
-            // 
-            this.TaswyaDiscount.FillWeight = 111.3851F;
-            this.TaswyaDiscount.HeaderText = "تسويات خصم";
-            this.TaswyaDiscount.Name = "TaswyaDiscount";
-            this.TaswyaDiscount.ReadOnly = true;
-            // 
-            // ReturnBill
-            // 
-            this.ReturnBill.FillWeight = 111.3851F;
-            this.ReturnBill.HeaderText = "مرتجعات شراء";
-            this.ReturnBill.Name = "ReturnBill";
-            this.ReturnBill.ReadOnly = true;
-            // 
-            // TaswyaaAdding
-            // 
-            this.TaswyaaAdding.HeaderText = "تسوية اضافة";
-            this.TaswyaaAdding.Name = "TaswyaaAdding";
-            this.TaswyaaAdding.ReadOnly = true;
-            // 
-            // Bill
-            // 
-            this.Bill.FillWeight = 111.3851F;
-            this.Bill.HeaderText = "فواتير شراء";
-            this.Bill.Name = "Bill";
-            this.Bill.ReadOnly = true;
-            // 
-            // Credit
-            // 
-            this.Credit.HeaderText = "دائن";
-            this.Credit.Name = "Credit";
-            this.Credit.ReadOnly = true;
-            // 
-            // Debit
-            // 
-            this.Debit.HeaderText = "مدين";
-            this.Debit.Name = "Debit";
-            this.Debit.ReadOnly = true;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.dateTimePickerTo);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.dateTimePickerFrom);
-            this.panel1.Controls.Add(this.btnDisplay);
-            this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.txtSupplierID);
-            this.panel1.Controls.Add(this.comSupplier);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(965, 74);
-            this.panel1.TabIndex = 216;
-            // 
-            // dateTimePickerTo
-            // 
-            this.dateTimePickerTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePickerTo.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dateTimePickerTo.CustomFormat = "yyyy/MM/dd";
-            this.dateTimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerTo.Location = new System.Drawing.Point(284, 42);
-            this.dateTimePickerTo.Name = "dateTimePickerTo";
-            this.dateTimePickerTo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dateTimePickerTo.RightToLeftLayout = true;
-            this.dateTimePickerTo.Size = new System.Drawing.Size(200, 24);
-            this.dateTimePickerTo.TabIndex = 217;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(490, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 19);
-            this.label2.TabIndex = 218;
-            this.label2.Text = "الي";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(491, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 19);
-            this.label3.TabIndex = 216;
-            this.label3.Text = "من";
-            // 
-            // dateTimePickerFrom
-            // 
-            this.dateTimePickerFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateTimePickerFrom.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dateTimePickerFrom.CustomFormat = "yyyy/MM/dd";
-            this.dateTimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerFrom.Location = new System.Drawing.Point(284, 9);
-            this.dateTimePickerFrom.Name = "dateTimePickerFrom";
-            this.dateTimePickerFrom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dateTimePickerFrom.RightToLeftLayout = true;
-            this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 24);
-            this.dateTimePickerFrom.TabIndex = 215;
             // 
             // tableLayoutPanel2
             // 
@@ -322,22 +165,227 @@
             this.btnReport.TabIndex = 0;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
-            // SupplierBillsTransitions_Report
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView1.ColumnHeadersHeight = 40;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TotalCost,
+            this.TotalQuantity,
+            this.CostF3,
+            this.QuantityF3,
+            this.CostF2,
+            this.QuantityF2,
+            this.CostF1,
+            this.QuantityF1,
+            this.Descripe});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 90);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 80;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(951, 506);
+            this.dataGridView1.TabIndex = 217;
+            // 
+            // TotalCost
+            // 
+            this.TotalCost.HeaderText = "القيمة بعد الخصم";
+            this.TotalCost.Name = "TotalCost";
+            this.TotalCost.ReadOnly = true;
+            // 
+            // TotalQuantity
+            // 
+            this.TotalQuantity.FillWeight = 111.3851F;
+            this.TotalQuantity.HeaderText = "الكمية بالمتر";
+            this.TotalQuantity.Name = "TotalQuantity";
+            this.TotalQuantity.ReadOnly = true;
+            // 
+            // CostF3
+            // 
+            this.CostF3.FillWeight = 111.3851F;
+            this.CostF3.HeaderText = "القيمة بعد الخصم";
+            this.CostF3.Name = "CostF3";
+            this.CostF3.ReadOnly = true;
+            // 
+            // QuantityF3
+            // 
+            this.QuantityF3.FillWeight = 111.3851F;
+            this.QuantityF3.HeaderText = "الكمية بالمتر";
+            this.QuantityF3.Name = "QuantityF3";
+            this.QuantityF3.ReadOnly = true;
+            // 
+            // CostF2
+            // 
+            this.CostF2.HeaderText = "القيمة بعد الخصم";
+            this.CostF2.Name = "CostF2";
+            this.CostF2.ReadOnly = true;
+            // 
+            // QuantityF2
+            // 
+            this.QuantityF2.FillWeight = 111.3851F;
+            this.QuantityF2.HeaderText = "الكمية بالمتر";
+            this.QuantityF2.Name = "QuantityF2";
+            this.QuantityF2.ReadOnly = true;
+            // 
+            // CostF1
+            // 
+            this.CostF1.HeaderText = "القيمة بعد الخصم";
+            this.CostF1.Name = "CostF1";
+            this.CostF1.ReadOnly = true;
+            // 
+            // QuantityF1
+            // 
+            this.QuantityF1.HeaderText = "الكمية بالمتر";
+            this.QuantityF1.Name = "QuantityF1";
+            this.QuantityF1.ReadOnly = true;
+            // 
+            // Descripe
+            // 
+            this.Descripe.FillWeight = 111.3851F;
+            this.Descripe.HeaderText = "البيان";
+            this.Descripe.Name = "Descripe";
+            this.Descripe.ReadOnly = true;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtFactory);
+            this.panel1.Controls.Add(this.comFactory);
+            this.panel1.Controls.Add(this.dateTimePickerTo);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.dateTimePickerFrom);
+            this.panel1.Controls.Add(this.btnDisplay);
+            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.txtSupplierID);
+            this.panel1.Controls.Add(this.comSupplier);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(965, 74);
+            this.panel1.TabIndex = 216;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(832, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 19);
+            this.label1.TabIndex = 220;
+            this.label1.Text = "المصنع";
+            // 
+            // txtFactory
+            // 
+            this.txtFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtFactory.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtFactory.Location = new System.Drawing.Point(615, 41);
+            this.txtFactory.Name = "txtFactory";
+            this.txtFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtFactory.Size = new System.Drawing.Size(55, 27);
+            this.txtFactory.TabIndex = 221;
+            this.txtFactory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFactory_KeyDown);
+            // 
+            // comFactory
+            // 
+            this.comFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comFactory.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.comFactory.FormattingEnabled = true;
+            this.comFactory.Location = new System.Drawing.Point(676, 41);
+            this.comFactory.Name = "comFactory";
+            this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comFactory.Size = new System.Drawing.Size(150, 27);
+            this.comFactory.TabIndex = 219;
+            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comFactory_SelectedValueChanged);
+            // 
+            // dateTimePickerTo
+            // 
+            this.dateTimePickerTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimePickerTo.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePickerTo.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dateTimePickerTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerTo.Location = new System.Drawing.Point(284, 42);
+            this.dateTimePickerTo.Name = "dateTimePickerTo";
+            this.dateTimePickerTo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dateTimePickerTo.RightToLeftLayout = true;
+            this.dateTimePickerTo.Size = new System.Drawing.Size(200, 24);
+            this.dateTimePickerTo.TabIndex = 217;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(490, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 19);
+            this.label2.TabIndex = 218;
+            this.label2.Text = "الي";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(491, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 19);
+            this.label3.TabIndex = 216;
+            this.label3.Text = "من";
+            // 
+            // dateTimePickerFrom
+            // 
+            this.dateTimePickerFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimePickerFrom.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePickerFrom.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dateTimePickerFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(284, 10);
+            this.dateTimePickerFrom.Name = "dateTimePickerFrom";
+            this.dateTimePickerFrom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dateTimePickerFrom.RightToLeftLayout = true;
+            this.dateTimePickerFrom.Size = new System.Drawing.Size(200, 24);
+            this.dateTimePickerFrom.TabIndex = 215;
+            // 
+            // SupplierType_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(971, 666);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "SupplierBillsTransitions_Report";
+            this.Name = "SupplierType_Report";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.requestStored_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -354,16 +402,20 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePickerFrom;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Transitions;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaswyaDiscount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TaswyaaAdding;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Debit;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CostF3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityF3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CostF2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityF2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CostF1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityF1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripe;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtFactory;
+        private System.Windows.Forms.ComboBox comFactory;
     }
 }
 
