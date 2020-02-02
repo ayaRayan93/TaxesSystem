@@ -480,7 +480,29 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        public void displayDelegateReport(GridControl gridControl, string branchName, dataX d)
+        {
+            Delegate_Report objForm = new Delegate_Report(gridControl, branchName, d);
 
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "تقرير مبيعات المناديب");
+            xtraTabControlSalesContent.RightToLeft = RightToLeft.Yes;
+            
+            if (xtraTabPage == null)
+            {
+                xtraTabControlSalesContent.TabPages.Add("تقرير مبيعات المناديب");
+                xtraTabPage = getTabPage(xtraTabControlSalesContent, "تقرير مبيعات المناديب");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.RightToLeft = RightToLeft.Yes;
+            xtraTabPage.Controls.Add(objForm);
+
+            xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
         private void navBarItemTotalSales_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -1398,7 +1420,6 @@ namespace MainSystem
                 }
             return null;
         }
-
         //
         public void GetNonRequestedSpecialOrders(object sender, EventArgs e)
         {
@@ -1441,5 +1462,7 @@ namespace MainSystem
             
             objForm.Show();
         }
+
+
     }
 }
