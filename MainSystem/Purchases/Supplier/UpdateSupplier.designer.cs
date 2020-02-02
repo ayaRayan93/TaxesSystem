@@ -40,6 +40,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.checkedListBoxControlFactory = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.checkedListBoxControlPhone = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.label10 = new System.Windows.Forms.Label();
@@ -84,7 +85,6 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -259,6 +259,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(852, 274);
             this.panel1.TabIndex = 71;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label12.Location = new System.Drawing.Point(500, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(67, 23);
+            this.label12.TabIndex = 71;
+            this.label12.Text = "المصانع";
             // 
             // checkedListBoxControlFactory
             // 
@@ -776,17 +788,6 @@
             this.layoutControlItem18.Size = new System.Drawing.Size(856, 278);
             this.layoutControlItem18.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem18.TextVisible = false;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label12.Location = new System.Drawing.Point(500, 35);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(67, 23);
-            this.label12.TabIndex = 71;
-            this.label12.Text = "المصانع";
             // 
             // UpdateSupplier
             // 

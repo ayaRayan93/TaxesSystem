@@ -984,7 +984,7 @@ namespace MainSystem
                                 storageReturnSupplierId = Convert.ToInt32(com.ExecuteScalar().ToString());
                             }
 
-                            query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
+                            query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID,Supplier_Permission_Details_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID,@Supplier_Permission_Details_ID)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = comStore.SelectedValue.ToString();
@@ -1014,6 +1014,8 @@ namespace MainSystem
                             com.Parameters["@Reason"].Value = row2["ReturnItemReason"].ToString();
                             com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
                             com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
+                            com.Parameters.Add("@Supplier_Permission_Details_ID", MySqlDbType.Int16);
+                            com.Parameters["@Supplier_Permission_Details_ID"].Value = row2["Supplier_Permission_Details_ID"].ToString();
                             com.ExecuteNonQuery();
 
                             query = "select Total_Meters from storage where Data_ID=" + row2["Data_ID"].ToString() + " and Store_ID=" + comStore.SelectedValue.ToString() /*+ " and Store_Place_ID=" + row2["Store_Place_ID"].ToString()*/;
@@ -1180,7 +1182,7 @@ namespace MainSystem
                         {
                             DataRow row2 = gridView2.GetDataRow(gridView2.GetRowHandle(i));
 
-                            query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID)";
+                            query = "insert into import_storage_return_details (Store_ID,Date,Data_ID,Balatat,Carton_Balata,Total_Meters,Reason,ImportStorageReturnSupplier_ID,Supplier_Permission_Details_ID) values (@Store_ID,@Date,@Data_ID,@Balatat,@Carton_Balata,@Total_Meters,@Reason,@ImportStorageReturnSupplier_ID,@Supplier_Permission_Details_ID)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                             com.Parameters["@Store_ID"].Value = comStoreFilter.SelectedValue.ToString();
@@ -1210,6 +1212,8 @@ namespace MainSystem
                             com.Parameters["@Reason"].Value = row2["ReturnItemReason"].ToString();
                             com.Parameters.Add("@ImportStorageReturnSupplier_ID", MySqlDbType.Int16);
                             com.Parameters["@ImportStorageReturnSupplier_ID"].Value = storageReturnSupplierId;
+                            com.Parameters.Add("@Supplier_Permission_Details_ID", MySqlDbType.Int16);
+                            com.Parameters["@Supplier_Permission_Details_ID"].Value = row2["Supplier_Permission_Details_ID"].ToString();
                             com.ExecuteNonQuery();
 
                             double totalQuant = Convert.ToDouble(row2["TotalQuantity"].ToString());

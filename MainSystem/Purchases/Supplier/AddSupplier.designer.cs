@@ -39,6 +39,9 @@
             this.txtFax = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.checkedListBoxControlFactory = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.checkedListBoxControlPhone = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -81,12 +84,11 @@
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.checkedListBoxControlFactory = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlFactory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -115,9 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlFactory)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -249,6 +249,36 @@
             this.layoutControl1.Size = new System.Drawing.Size(876, 621);
             this.layoutControl1.TabIndex = 20;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.checkedListBoxControlFactory);
+            this.panel1.Location = new System.Drawing.Point(12, 267);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(852, 274);
+            this.panel1.TabIndex = 70;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label12.Location = new System.Drawing.Point(500, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(67, 23);
+            this.label12.TabIndex = 70;
+            this.label12.Text = "المصانع";
+            // 
+            // checkedListBoxControlFactory
+            // 
+            this.checkedListBoxControlFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkedListBoxControlFactory.Location = new System.Drawing.Point(358, 35);
+            this.checkedListBoxControlFactory.Name = "checkedListBoxControlFactory";
+            this.checkedListBoxControlFactory.Size = new System.Drawing.Size(136, 141);
+            this.checkedListBoxControlFactory.StyleController = this.layoutControl1;
+            this.checkedListBoxControlFactory.TabIndex = 69;
             // 
             // checkedListBoxControlPhone
             // 
@@ -748,15 +778,6 @@
             this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem24.TextVisible = false;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.checkedListBoxControlFactory);
-            this.panel1.Location = new System.Drawing.Point(12, 267);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(852, 274);
-            this.panel1.TabIndex = 70;
-            // 
             // layoutControlItem26
             // 
             this.layoutControlItem26.Control = this.panel1;
@@ -765,26 +786,6 @@
             this.layoutControlItem26.Size = new System.Drawing.Size(856, 278);
             this.layoutControlItem26.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem26.TextVisible = false;
-            // 
-            // checkedListBoxControlFactory
-            // 
-            this.checkedListBoxControlFactory.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkedListBoxControlFactory.Location = new System.Drawing.Point(358, 35);
-            this.checkedListBoxControlFactory.Name = "checkedListBoxControlFactory";
-            this.checkedListBoxControlFactory.Size = new System.Drawing.Size(136, 141);
-            this.checkedListBoxControlFactory.StyleController = this.layoutControl1;
-            this.checkedListBoxControlFactory.TabIndex = 69;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F);
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label12.Location = new System.Drawing.Point(500, 35);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(67, 23);
-            this.label12.TabIndex = 70;
-            this.label12.Text = "المصانع";
             // 
             // AddSupplier
             // 
@@ -797,6 +798,9 @@
             this.Load += new System.EventHandler(this.AddSupplier_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlFactory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlPhone)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -825,10 +829,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlFactory)).EndInit();
             this.ResumeLayout(false);
 
         }
