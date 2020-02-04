@@ -19,6 +19,7 @@ namespace MainSystem
         dataX d;
         string title= "تقرير مبيعات المناديب";
         string branchName = "";
+        int flag = 0;
         public Delegate_Report(GridControl gridControl, dataX d)
         {
             try
@@ -60,6 +61,23 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public Delegate_Report(GridControl gridControl, dataX d, string title,int flag)
+        {
+            try
+            {
+                InitializeComponent();
+                this.gridControl = gridControl;
+                this.d = d;
+                this.title = title;
+                this.flag = flag;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void Product_Report_Load(object sender, EventArgs e)
         {
             try
@@ -67,13 +85,19 @@ namespace MainSystem
                 PrintableComponentLink printableComponentLink = new PrintableComponentLink();
          
                 printableComponentLink.Component = gridControl;
-                printableComponentLink.RightToLeftLayout = false;
+
+                if(flag==1)
+                    printableComponentLink.RightToLeftLayout = true;
+                else
+                    printableComponentLink.RightToLeftLayout = false;
+
                 printableComponentLink.Landscape = false;
                 printableComponentLink.Margins = new System.Drawing.Printing.Margins(20, 20, 20, 20);
                 printingSystem1.Links.Add(printableComponentLink);
                 printableComponentLink.CreateReportHeaderArea += PrintableComponentLink_CreateReportHeaderArea;
                 printableComponentLink.CreateMarginalFooterArea += PrintableComponentLink_CreateMarginalFooterArea;
                 printableComponentLink.CreateDocument();
+                
             }
             catch (Exception ex)
             {
@@ -105,9 +129,10 @@ namespace MainSystem
         {
             // Specify required settings for the brick graphics.
             BrickGraphics brickGraphics = e.Graph;
+            Height = 100;
             brickGraphics.BackColor = Color.White;
             brickGraphics.Font = new Font("Neo Sans Arabic", 10);
-
+            
             // Declare bricks.
             PageInfoBrick pageInfoBrickFrom;
             PageInfoBrick pageInfoBrickTo;
@@ -191,6 +216,7 @@ namespace MainSystem
                 pageInfoBrick = brickGraphics2.DrawPageInfo(PageInfo.None, branchName, Color.Black, new RectangleF(new PointF(370, 70), size), BorderSide.None);
                 pageInfoBrick.Alignment = BrickAlignment.Center;
             }
+            e.Graph.PrintingSystem.Document.PrintingSystem.PageMargins.Bottom = 0;
         }
 
     }

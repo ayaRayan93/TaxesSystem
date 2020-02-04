@@ -1862,6 +1862,7 @@
             this.xtraTabControlSalesContent.MultiLine = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabControlSalesContent.Name = "xtraTabControlSalesContent";
             this.xtraTabControlSalesContent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.xtraTabControlSalesContent.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControlSalesContent.Size = new System.Drawing.Size(950, 702);
             this.xtraTabControlSalesContent.TabIndex = 4;
             this.xtraTabControlSalesContent.Visible = false;

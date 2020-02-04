@@ -380,6 +380,28 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-   
+        public void displayDelegateReport2(GridControl gridControl, string branchName, dataX d)
+        {
+            Delegate_Report objForm = new Delegate_Report(gridControl, branchName, d);
+
+            objForm.TopLevel = false;
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "تقرير مبيعات المناديب");
+            xtraTabControlSalesContent.RightToLeft = RightToLeft.Yes;
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlAccounting.TabPages.Add("تقرير مبيعات المناديب");
+                xtraTabPage = getTabPage(xtraTabControlAccounting, "تقرير مبيعات المناديب");
+            }
+            xtraTabPage.Controls.Clear();
+            xtraTabPage.RightToLeft = RightToLeft.Yes;
+            xtraTabPage.Controls.Add(objForm);
+
+            xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
     }
 }
