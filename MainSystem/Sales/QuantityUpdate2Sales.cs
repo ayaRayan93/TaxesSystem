@@ -87,6 +87,16 @@ namespace MainSystem
                                             return;
                                         }
                                     }
+                                    else
+                                    {
+                                        int testInt = 0;
+                                        if (!int.TryParse(txtQuantity.Text, out testInt))
+                                        {
+                                            MessageBox.Show("الكمية يجب ان تكون عدد صحيح");
+                                            dbconnection.Close();
+                                            return;
+                                        }
+                                    }
                                 }
                             }
 
