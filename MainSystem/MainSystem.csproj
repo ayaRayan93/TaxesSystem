@@ -391,6 +391,19 @@
     <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.designer.cs">
       <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Supplier_Payments\supplierType\Print_SupplierType.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\supplierType\Print_SupplierType.designer.cs">
+      <DependentUpon>Print_SupplierType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\supplierType\Report_SupplierType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\supplierType\Report_SupplierType.designer.cs">
+      <DependentUpon>Report_SupplierType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\supplierType\SupplierType_Items.cs" />
     <Compile Include="RequestsSystem.cs" />
     <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
       <SubType>Component</SubType>
@@ -3245,6 +3258,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Supplier_Payments\supplierType\Print_SupplierType.resx">
+      <DependentUpon>Print_SupplierType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Supplier_Payments\supplierType\Report_SupplierType.resx">
+      <DependentUpon>Report_SupplierType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Requests\Least Quantity\Print_LeastQuantity.resx">
       <DependentUpon>Print_LeastQuantity.cs</DependentUpon>
