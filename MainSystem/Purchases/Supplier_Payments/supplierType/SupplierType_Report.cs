@@ -471,54 +471,66 @@ namespace MainSystem
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            try
+            if (comSupplier.SelectedValue != null && comSupplier.Text != "" && comFactory.SelectedValue != null && comFactory.Text != "" && dataGridView1.RowCount > 0)
             {
-                List<SupplierBillsTransitions_Items> bi = new List<SupplierBillsTransitions_Items>();
-                for (int i = 0; i < dataGridView1.RowCount; i++)
+                try
                 {
-                    string debit = "", credit = "", bill = "", taswyaaAdd = "", returnBill = "", taswyaaSub = "", transitions = "", descripe = "";
-                    if (dataGridView1.Rows[i].Cells["Debit"].Value != null)
+                    List<SupplierType_Items> bi = new List<SupplierType_Items>();
+                    for (int i = 0; i < dataGridView1.RowCount; i++)
                     {
-                        debit = dataGridView1.Rows[i].Cells["Debit"].Value.ToString();
+                        string descripe = "", QS1 = "", CS1 = "", QS2 = "", CS2 = "", QS3 = "", CS3 = "", QF = "", CF = "";
+
+                        if (dataGridView1.Rows[i].Cells["Descripe"].Value != null)
+                        {
+                            descripe = dataGridView1.Rows[i].Cells["Descripe"].Value.ToString();
+                        }
+                        if (dataGridView1.Rows[i].Cells["QuantityF1"].Value != null)
+                        {
+                            QS1 = dataGridView1.Rows[i].Cells["QuantityF1"].Value.ToString();
+                        }
+                        if (dataGridView1.Rows[i].Cells["QuantityF2"].Value != null)
+                        {
+                            QS2 = dataGridView1.Rows[i].Cells["QuantityF2"].Value.ToString();
+                        }
+                        if (dataGridView1.Rows[i].Cells["QuantityF3"].Value != null)
+                        {
+                            QS3 = dataGridView1.Rows[i].Cells["QuantityF3"].Value.ToString();
+                        }
+                        if (dataGridView1.Rows[i].Cells["CostF1"].Value != null)
+                        {
+                            CS1 = dataGridView1.Rows[i].Cells["CostF1"].Value.ToString();
+                        }
+                        if (dataGridView1.Rows[i].Cells["CostF2"].Value != null)
+                        {
+                            CS2 = dataGridView1.Rows[i].Cells["CostF2"].Value.ToString();
+                        }
+                        if (dataGridView1.Rows[i].Cells["CostF3"].Value != null)
+                        {
+                            CS3 = dataGridView1.Rows[i].Cells["CostF3"].Value.ToString();
+                        }
+                        if (dataGridView1.Rows[i].Cells["TotalQuantity"].Value != null)
+                        {
+                            QF = dataGridView1.Rows[i].Cells["TotalQuantity"].Value.ToString();
+                        }
+                        if (dataGridView1.Rows[i].Cells["TotalCost"].Value != null)
+                        {
+                            CF = dataGridView1.Rows[i].Cells["TotalCost"].Value.ToString();
+                        }
+                        SupplierType_Items item = new SupplierType_Items() { Description = descripe, CostS1 = CS1, CostS2 = CS2, CostS3 = CS3, CostSF = CF, QuantityS1 = QS1, QuantityS2 = QS2, QuantityS3 = QS3, QuantitySF = QF };
+                        bi.Add(item);
                     }
-                    if (dataGridView1.Rows[i].Cells["Credit"].Value != null)
-                    {
-                        credit = dataGridView1.Rows[i].Cells["Credit"].Value.ToString();
-                    }
-                    if (dataGridView1.Rows[i].Cells["Bill"].Value != null)
-                    {
-                        bill = dataGridView1.Rows[i].Cells["Bill"].Value.ToString();
-                    }
-                    if (dataGridView1.Rows[i].Cells["TaswyaaAdding"].Value != null)
-                    {
-                        taswyaaAdd = dataGridView1.Rows[i].Cells["TaswyaaAdding"].Value.ToString();
-                    }
-                    if (dataGridView1.Rows[i].Cells["ReturnBill"].Value != null)
-                    {
-                        returnBill = dataGridView1.Rows[i].Cells["ReturnBill"].Value.ToString();
-                    }
-                    if (dataGridView1.Rows[i].Cells["TaswyaDiscount"].Value != null)
-                    {
-                        taswyaaSub = dataGridView1.Rows[i].Cells["TaswyaDiscount"].Value.ToString();
-                    }
-                    if (dataGridView1.Rows[i].Cells["Transitions"].Value != null)
-                    {
-                        transitions = dataGridView1.Rows[i].Cells["Transitions"].Value.ToString();
-                    }
-                    if (dataGridView1.Rows[i].Cells["Descripe"].Value != null)
-                    {
-                        descripe = dataGridView1.Rows[i].Cells["Descripe"].Value.ToString();
-                    }
-                    SupplierBillsTransitions_Items item = new SupplierBillsTransitions_Items() { debit = debit, credit = credit, BillNum = bill, addingTaswyaa = taswyaaAdd, ReturnBillNum = returnBill, SubTaswyaa = taswyaaSub, Transitions = transitions, Info = descripe };
-                    bi.Add(item);
+                    Report_SupplierType f = new Report_SupplierType();
+                    f.PrintInvoice(comSupplier.Text, comFactory.Text, dateTimePickerFrom.Value.Date.ToString(), dateTimePickerTo.Value.Date.ToString(), bi);
+                    f.ShowDialog();
                 }
-                Report_SupplierBillsTransitions f = new Report_SupplierBillsTransitions();
-                f.PrintInvoice(comSupplier.Text, dateTimePickerFrom.Value.Date.ToString(), dateTimePickerTo.Value.Date.ToString(), bi);
-                f.ShowDialog();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("يجب اختيار المورد والمصنع");
             }
         }
 
