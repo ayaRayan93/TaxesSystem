@@ -444,7 +444,7 @@ namespace MainSystem
             try
             {
                 dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, comDelegate.Text, comFactory.Text);
-                MainForm.displayDelegateReport(gridControl1,"", d);
+                MainForm.displayDelegateReport2(gridControl1,"", d);
             }
             catch (Exception ex)
             {
