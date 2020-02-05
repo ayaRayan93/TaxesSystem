@@ -129,7 +129,7 @@ namespace MainSystem
 
         public void displayData()
         {
-            string query = "select car_income.Car_Income_ID as 'الرقم المسلسل', Address as 'العنوان',cars.Car_Number as 'رقم العربيه',car_income.meter_reading as 'قراءة العداد',GROUP_CONCAT(Permission_Number) as 'رقم الاذن',NoCarton as 'عدد الكراتين',NoSets as 'عدد الاطقم',NoDocks as 'عدد الاحواض',NoColumns as 'عدد العواميد',NoCompinations as 'عدد الكوبينشن',NoPanio as 'عدد البانيوهات',Nolon as 'النولون',Gate as 'البوابة',Taateg as 'التعتيق',Safay as 'الصافي',DATE_FORMAT(Date,'%Y-%m-%d') as 'التاريخ',Note as'ملاحظات' from car_income inner join cars on cars.Car_ID=car_income.Car_ID inner join car_permission on car_permission.Car_Income_ID=car_income.Car_Income_ID group by car_income.Car_Income_ID";
+            string query = "select car_income.Car_Income_ID as 'الرقم المسلسل', Address as 'العنوان',cars.Car_Number as 'رقم العربيه',car_income.meter_reading as 'قراءة العداد',GROUP_CONCAT(Permission_Number) as 'رقم الاذن',NoCarton as 'عدد الكراتين',NoSets as 'عدد الاطقم',NoDocks as 'عدد الاحواض',NoColumns as 'عدد العواميد',NoCompinations as 'عدد الكوبينشن',NoPanio as 'عدد البانيوهات',NoShaors as 'شوارات',NoUnits as 'وحدات',NoKhlats as 'خلاطات',NoSma3at as 'سماعات',NoA3watStalice as 'اعواد استاليس',NoShetat as 'شيتات',Nolon as 'النولون',Gate as 'البوابة',Taateg as 'التعتيق',Safay as 'الصافي',DATE_FORMAT(Date,'%Y-%m-%d') as 'التاريخ',Note as'ملاحظات' from car_income inner join cars on cars.Car_ID=car_income.Car_ID inner join car_permission on car_permission.Car_Income_ID=car_income.Car_Income_ID group by car_income.Car_Income_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);

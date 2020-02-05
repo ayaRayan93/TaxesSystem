@@ -106,7 +106,7 @@ namespace MainSystem
                 dbconnection.Open();
                 if (txtAddress.Text != "" && txtNolone.Text != "")
                 {
-                    string query = "insert into car_Income (meter_reading,Car_ID,Address,NoCarton,NoSets,NoDocks,NoColumns,NoCompinations,NoPanio,Nolon,Gate,Taateg,Safay,Date,Note) values (@meter_reading,@Car_ID,@Address,@NoCarton,@NoSets,@NoDocks,@NoColumns,@NoCompinations,@NoPanio,@Nolon,@Gate,@Taateg,@Safay,@Date,@Note)";
+                    string query = "insert into car_Income (meter_reading,Car_ID,Address,NoCarton,NoSets,NoDocks,NoColumns,NoCompinations,NoPanio,Nolon,Gate,Taateg,Safay,Date,Note,NoShaors,NoUnits,NoKhlats,NoSma3at,NoA3watStalice,NoShetat) values (@meter_reading,@Car_ID,@Address,@NoCarton,@NoSets,@NoDocks,@NoColumns,@NoCompinations,@NoPanio,@Nolon,@Gate,@Taateg,@Safay,@Date,@Note,@NoShaors,@NoUnits,@NoKhlats,@NoSma3at,@NoA3watStalice,@NoShetat)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                     com.Parameters.Add("@Date", MySqlDbType.Date);
@@ -127,6 +127,20 @@ namespace MainSystem
                     com.Parameters["@NoCompinations"].Value = txtNoComp.Text;
                     com.Parameters.Add("@NoPanio", MySqlDbType.Double);
                     com.Parameters["@NoPanio"].Value = txtNoPanio.Text;
+
+                    com.Parameters.Add("@NoShaors", MySqlDbType.Int16);
+                    com.Parameters["@NoShaors"].Value = txtNoShaors.Text;
+                    com.Parameters.Add("@NoUnits", MySqlDbType.Int16);
+                    com.Parameters["@NoUnits"].Value = txtNoUnits.Text;
+                    com.Parameters.Add("@NoKhlats", MySqlDbType.Int16);
+                    com.Parameters["@NoKhlats"].Value = txtNoKhlats.Text;
+                    com.Parameters.Add("@NoSma3at", MySqlDbType.Int16);
+                    com.Parameters["@NoSma3at"].Value = txtNoSma3at.Text;
+                    com.Parameters.Add("@NoA3watStalice", MySqlDbType.Int16);
+                    com.Parameters["@NoA3watStalice"].Value = txtNoA3watStalice.Text;
+                    com.Parameters.Add("@NoShetat", MySqlDbType.Int16);
+                    com.Parameters["@NoShetat"].Value = txtNoShetat.Text;
+
                     com.Parameters.Add("@Nolon", MySqlDbType.Double);
                     com.Parameters["@Nolon"].Value = txtNolone.Text;
                     com.Parameters.Add("@Gate", MySqlDbType.Double);

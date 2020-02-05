@@ -82,10 +82,26 @@ namespace MainSystem
                     data.Add(dr["NoPanio"].ToString());
                     txtNoSets.Text = dr["NoSets"].ToString();
                     data.Add(dr["NoSets"].ToString());
+
+                    txtNoShaors.Text = dr["NoShaors"].ToString();
+                    data.Add(dr["NoShaors"].ToString());
+                    txtNoUnits.Text = dr["NoUnits"].ToString();
+                    data.Add(dr["NoUnits"].ToString());
+                    txtNoKhlats.Text = dr["NoKhlats"].ToString();
+                    data.Add(dr["NoKhlats"].ToString());
+                    txtNoSma3at.Text = dr["NoSma3at"].ToString();
+                    data.Add(dr["NoSma3at"].ToString());
+                    txtNoA3watStalice.Text = dr["NoA3watStalice"].ToString();
+                    data.Add(dr["NoA3watStalice"].ToString());
+                    txtNoShetat.Text = dr["NoShetat"].ToString();
+                    data.Add(dr["NoShetat"].ToString());
+
+
                     txtNote.Text = dr["Note"].ToString();
                     data.Add(dr["Note"].ToString());
                     comCarNumber.Text = dr["Car_Number"].ToString();
                     data.Add(dr["Car_Number"].ToString());
+
                     dateTimePicker1.Text = dr["Date"].ToString();
                     string str= dr["Date"].ToString();
                     data.Add(str.Split(' ')[0]);
@@ -137,7 +153,7 @@ namespace MainSystem
                     getGateValue();
                     getTaategValue();
                     getSafayValue();
-                    string query = "update car_income set Car_ID ='" + comCarNumber.SelectedValue + "' ,Address='" + txtAddress.Text + "',NoCarton='" + txtNoCarton.Text + "',NoSets=" + txtNoSets.Text + ",NoDocks=" + txtNoDocks.Text + ",NoColumns=" + txtNoColumns.Text + ",NoCompinations=" + txtNoComp.Text + ",NoPanio=" + txtNoPanio.Text + ",Nolon=" + txtNolone.Text + ",Gate ="+gate+",Taateg ="+Taateg+",Safay="+SafayCar_Number+" where Car_Income_ID=" + ID + "";
+                    string query = "update car_income set Car_ID ='" + comCarNumber.SelectedValue + "' ,Address='" + txtAddress.Text + "',NoCarton='" + txtNoCarton.Text + "',NoSets=" + txtNoSets.Text + ",NoDocks=" + txtNoDocks.Text + ",NoColumns=" + txtNoColumns.Text + ",NoCompinations=" + txtNoComp.Text + ",NoPanio=" + txtNoPanio.Text + ",NoShaors=" + txtNoShaors.Text + ",NoUnits=" + txtNoUnits.Text + ",NoKhlats=" + txtNoKhlats.Text + ",NoSma3at=" + txtNoSma3at.Text + ",NoA3watStalice=" + txtNoA3watStalice.Text + ",NoShetat=" + txtNoShetat.Text +  ",Nolon=" + txtNolone.Text + ",Gate ="+gate+",Taateg ="+Taateg+",Safay="+SafayCar_Number+" where Car_Income_ID=" + ID + "";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.ExecuteNonQuery();
                     foreach (DataGridViewRow row in dataGridView1.Rows)

@@ -2758,7 +2758,7 @@
             // 
             // navBarItem67
             // 
-            this.navBarItem67.Caption = "تسجيل فطع الغيار";
+            this.navBarItem67.Caption = "تسجيل قطع الغيار";
             this.navBarItem67.Name = "navBarItem67";
             this.navBarItem67.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem3_LinkClicked);
             // 

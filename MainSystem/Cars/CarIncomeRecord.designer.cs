@@ -31,6 +31,18 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panContent = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtNoShetat = new System.Windows.Forms.TextBox();
+            this.txtNoA3watStalice = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtNoShaors = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtNoUnits = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtNoKhlats = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.lblMeter = new System.Windows.Forms.Label();
             this.lblSub = new System.Windows.Forms.Label();
@@ -67,23 +79,13 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comCarNumber = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtNoSma3at = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2.SuspendLayout();
             this.panContent.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -164,6 +166,133 @@
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(817, 683);
             this.panContent.TabIndex = 52;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox2.Controls.Add(this.txtNoSma3at);
+            this.groupBox2.Controls.Add(this.label23);
+            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.txtNoShetat);
+            this.groupBox2.Controls.Add(this.txtNoA3watStalice);
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.txtNoShaors);
+            this.groupBox2.Controls.Add(this.label19);
+            this.groupBox2.Controls.Add(this.txtNoUnits);
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.label21);
+            this.groupBox2.Controls.Add(this.txtNoKhlats);
+            this.groupBox2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(132, 475);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.groupBox2.Size = new System.Drawing.Size(645, 109);
+            this.groupBox2.TabIndex = 67;
+            this.groupBox2.TabStop = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(527, 76);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(44, 18);
+            this.label22.TabIndex = 45;
+            this.label22.Text = "شيتات";
+            // 
+            // txtNoShetat
+            // 
+            this.txtNoShetat.Location = new System.Drawing.Point(369, 78);
+            this.txtNoShetat.Name = "txtNoShetat";
+            this.txtNoShetat.Size = new System.Drawing.Size(147, 23);
+            this.txtNoShetat.TabIndex = 46;
+            this.txtNoShetat.Text = "0";
+            // 
+            // txtNoA3watStalice
+            // 
+            this.txtNoA3watStalice.Location = new System.Drawing.Point(25, 49);
+            this.txtNoA3watStalice.Name = "txtNoA3watStalice";
+            this.txtNoA3watStalice.Size = new System.Drawing.Size(147, 23);
+            this.txtNoA3watStalice.TabIndex = 35;
+            this.txtNoA3watStalice.Text = "0";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(527, 12);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(48, 18);
+            this.label17.TabIndex = 30;
+            this.label17.Text = "شورات";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(179, 52);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(90, 18);
+            this.label18.TabIndex = 44;
+            this.label18.Text = "اعواد استاليس";
+            // 
+            // txtNoShaors
+            // 
+            this.txtNoShaors.Location = new System.Drawing.Point(369, 14);
+            this.txtNoShaors.Name = "txtNoShaors";
+            this.txtNoShaors.Size = new System.Drawing.Size(147, 23);
+            this.txtNoShaors.TabIndex = 31;
+            this.txtNoShaors.Text = "0";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.Location = new System.Drawing.Point(183, 17);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(49, 18);
+            this.label19.TabIndex = 32;
+            this.label19.Text = "وحدات";
+            // 
+            // txtNoUnits
+            // 
+            this.txtNoUnits.Location = new System.Drawing.Point(25, 17);
+            this.txtNoUnits.Name = "txtNoUnits";
+            this.txtNoUnits.Size = new System.Drawing.Size(147, 23);
+            this.txtNoUnits.TabIndex = 33;
+            this.txtNoUnits.Text = "0";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(194, 49);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(0, 16);
+            this.label20.TabIndex = 34;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(527, 47);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(54, 18);
+            this.label21.TabIndex = 38;
+            this.label21.Text = "خلاطات";
+            // 
+            // txtNoKhlats
+            // 
+            this.txtNoKhlats.Location = new System.Drawing.Point(369, 49);
+            this.txtNoKhlats.Name = "txtNoKhlats";
+            this.txtNoKhlats.Size = new System.Drawing.Size(147, 23);
+            this.txtNoKhlats.TabIndex = 39;
+            this.txtNoKhlats.Text = "0";
             // 
             // label16
             // 
@@ -584,130 +713,24 @@
             this.label5.TabIndex = 49;
             this.label5.Text = "رقم السيارة";
             // 
-            // groupBox2
+            // txtNoSma3at
             // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Controls.Add(this.textBox5);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.label18);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(132, 475);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox2.Size = new System.Drawing.Size(645, 109);
-            this.groupBox2.TabIndex = 67;
-            this.groupBox2.TabStop = false;
+            this.txtNoSma3at.Location = new System.Drawing.Point(25, 78);
+            this.txtNoSma3at.Name = "txtNoSma3at";
+            this.txtNoSma3at.Size = new System.Drawing.Size(147, 23);
+            this.txtNoSma3at.TabIndex = 47;
+            this.txtNoSma3at.Text = "0";
             // 
-            // textBox1
+            // label23
             // 
-            this.textBox1.Location = new System.Drawing.Point(25, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(147, 23);
-            this.textBox1.TabIndex = 35;
-            this.textBox1.Text = "0";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(527, 12);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(48, 18);
-            this.label17.TabIndex = 30;
-            this.label17.Text = "شورات";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(179, 52);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(90, 18);
-            this.label18.TabIndex = 44;
-            this.label18.Text = "اعواد استاليس";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(369, 14);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(147, 23);
-            this.textBox2.TabIndex = 31;
-            this.textBox2.Text = "0";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(183, 17);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(49, 18);
-            this.label19.TabIndex = 32;
-            this.label19.Text = "وحدات";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(25, 17);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(147, 23);
-            this.textBox3.TabIndex = 33;
-            this.textBox3.Text = "0";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(194, 49);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(0, 16);
-            this.label20.TabIndex = 34;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(527, 47);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(54, 18);
-            this.label21.TabIndex = 38;
-            this.label21.Text = "خلاطات";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(369, 49);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(147, 23);
-            this.textBox4.TabIndex = 39;
-            this.textBox4.Text = "0";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(527, 76);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(44, 18);
-            this.label22.TabIndex = 45;
-            this.label22.Text = "شيتات";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(369, 78);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(147, 23);
-            this.textBox5.TabIndex = 46;
-            this.textBox5.Text = "0";
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(179, 81);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(57, 18);
+            this.label23.TabIndex = 48;
+            this.label23.Text = "سماعات";
             // 
             // CarIncomeRecord
             // 
@@ -724,11 +747,11 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panContent.ResumeLayout(false);
             this.panContent.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -777,16 +800,18 @@
         private System.Windows.Forms.Label lblMeter;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNoShetat;
+        private System.Windows.Forms.TextBox txtNoA3watStalice;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNoShaors;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtNoUnits;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtNoKhlats;
+        private System.Windows.Forms.TextBox txtNoSma3at;
+        private System.Windows.Forms.Label label23;
     }
 }
 

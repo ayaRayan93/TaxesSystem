@@ -74,7 +74,7 @@ namespace MainSystem
              
                 if (comSpareParts.Text != "")
                 {
-                    string qeury = "insert into car_sparepart (Car_ID,SparePart_ID,Car_SparePart_Info,Car_SpareDate)values(@Car_ID,@SparePart_ID,@Car_SparePart_Info,@Car_SpareDate)";
+                    string qeury = "insert into car_sparepart (Car_ID,SparePart_ID,Car_SparePart_Info,Car_SpareDate,SparePartPrice,ExpeirKMeter,ExpeirKDate)values(@Car_ID,@SparePart_ID,@Car_SparePart_Info,@Car_SpareDate,@SparePartPrice,@ExpeirKMeter,@ExpeirKDate)";
                     MySqlCommand com = new MySqlCommand(qeury, dbconnection);
                     com.Parameters.Add("@Car_ID", MySqlDbType.Int32);
                     com.Parameters["@Car_ID"].Value = CarId;
@@ -85,6 +85,12 @@ namespace MainSystem
                     com.Parameters.Add("@Car_SpareDate", MySqlDbType.Date);
                     com.Parameters["@Car_SpareDate"].Value = dateTimePicker1.Value.Date;
 
+                    com.Parameters.Add("@SparePartPrice", MySqlDbType.Double);
+                    com.Parameters["@SparePartPrice"].Value = txtSparePartPrice.Text;
+                    com.Parameters.Add("@ExpeirKMeter", MySqlDbType.Double);
+                    com.Parameters["@ExpeirKMeter"].Value = txtexpeirKMeter.Text;
+                    com.Parameters.Add("@ExpeirKDate", MySqlDbType.Date);
+                    com.Parameters["@ExpeirKDate"].Value = dateTimePicker2.Value.Date;
                     com.ExecuteNonQuery();
 
                     displayCarSpareParts();
@@ -149,7 +155,7 @@ namespace MainSystem
         //display cars driver
         public void displayCarSpareParts()
         {
-            String query = "select car_sparepart.SparePart_ID as 'الكود' ,sparepart.SparePart_Name as 'قطعة الغيار',car_sparepart.Car_SparePart_Info as 'البيان',car_sparepart.Car_SpareDate as 'التاريخ' from sparepart inner join car_sparepart on sparepart.SparePart_ID=car_sparepart.SparePart_ID where Car_ID=" + CarId;
+            String query = "select car_sparepart.SparePart_ID as 'الكود' ,sparepart.SparePart_Name as 'قطعة الغيار',SparePartPrice as 'قيمة الغيار',ExpeirKMeter as 'انتهاء الصلاحية بالكيلومتر',ExpeirKDate as 'انتهاء الصلاحية بالزمن',car_sparepart.Car_SparePart_Info as 'البيان',car_sparepart.Car_SpareDate as 'التاريخ' from sparepart inner join car_sparepart on sparepart.SparePart_ID=car_sparepart.SparePart_ID where Car_ID=" + CarId;
             MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
             DataTable dtaple = new DataTable();
             adapter.Fill(dtaple);
