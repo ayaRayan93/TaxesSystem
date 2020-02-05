@@ -135,9 +135,7 @@
             this.xrTableCell9,
             this.xrTableCell21});
             this.xrTableRow1.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "StyleName", "Iif([CostS1] == \'\' && [CostS2] == \'\' && [CostS3] == \'\' && [CostSF] == \'\' && [Quan" +
-                    "tityS1] == \'\' && [QuantityS2] == \'\' && [QuantityS3] == \'\' && [QuantitySF] == \'\'," +
-                    " \'xrControlStyle3\', \'xrControlStyle2\')")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "StyleName", resources.GetString("xrTableRow1.ExpressionBindings"))});
             this.xrTableRow1.Name = "xrTableRow1";
             this.xrTableRow1.StylePriority.UseBorders = false;
             this.xrTableRow1.Weight = 1.5D;
