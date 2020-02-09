@@ -391,6 +391,25 @@
     <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.designer.cs">
       <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\ItemsQuantity_Purchase.cs" />
+    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\Print_PurchaseQuantityDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\Print_PurchaseQuantityDetails.designer.cs">
+      <DependentUpon>Print_PurchaseQuantityDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\Report_PurchaseQuantityDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\Report_PurchaseQuantityDetails.designer.cs">
+      <DependentUpon>Report_PurchaseQuantityDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\PurchaseQuantityDetails_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\PurchaseQuantityDetails_Report.designer.cs">
+      <DependentUpon>PurchaseQuantityDetails_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Supplier_Payments\supplierType\Print_SupplierType.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3213,6 +3232,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.resx">
       <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Supplier_Payments\PurchasesQuantity\Print_PurchaseQuantityDetails.resx">
+      <DependentUpon>Print_PurchaseQuantityDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Supplier_Payments\PurchasesQuantity\Report_PurchaseQuantityDetails.resx">
+      <DependentUpon>Report_PurchaseQuantityDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Supplier_Payments\PurchasesQuantity\PurchaseQuantityDetails_Report.resx">
+      <DependentUpon>PurchaseQuantityDetails_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.resx">
       <DependentUpon>Print_SupplierBillsTransitionsDetails.cs</DependentUpon>
