@@ -460,14 +460,14 @@ namespace MainSystem
 
             double totalQuantity = 0;
             double totalReturnedQuantity = 0;
-            string query = "select data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',product_bill.Quantity as 'الكمية المباعة',product_bill.Quantity as 'الكمية المرتجعة',product_bill.Quantity as 'الصافى' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=0";
+            string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(supplier_bill_details.Quantity) as 'الكمية الواردة',sum(supplier_bill_details.Quantity) as 'الكمية المرتجعة',sum(supplier_bill_details.Quantity) as 'الصافى' FROM supplier_bill inner join supplier_bill_details on supplier_bill.Bill_ID=supplier_bill_details.Bill_ID inner join data on data.Data_ID=supplier_bill_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where supplier_bill.Store_ID in (" + q1 + ") and date(supplier_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Type_ID=" + comType.SelectedValue.ToString() + " and data.Factory_ID=" + comFactory.SelectedValue.ToString() + " and data.Group_ID in (" + q2 + ") and data.Product_ID in (" + q3 + ") " + fQuery + " and data.Data_ID=0";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dtProduct = new DataTable();
             da.Fill(dtProduct);
             gridControl1.DataSource = dtProduct;
             gridView1.Columns["الاسم"].Width = 300;
-
-            query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where data.Type_ID=" + comType.SelectedValue.ToString() + " and data.Factory_ID=" + comFactory.SelectedValue.ToString() + " and data.Group_ID in (" + q2 + ") and data.Product_ID in (" + q3 + ") " + fQuery + " order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
+            
+            query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',sum(supplier_bill_details.Quantity) as 'الكمية' FROM supplier_bill inner join supplier_bill_details on supplier_bill.Bill_ID=supplier_bill_details.Bill_ID inner join data on data.Data_ID=supplier_bill_details.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID where supplier_bill.Store_ID in (" + q1 + ") and date(supplier_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Type_ID=" + comType.SelectedValue.ToString() + " and data.Factory_ID=" + comFactory.SelectedValue.ToString() + " and data.Group_ID in (" + q2 + ") and data.Product_ID in (" + q3 + ") " + fQuery + " group by supplier_bill_details.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Sort_ID";
             MySqlCommand c = new MySqlCommand(query, dbconnection);
             MySqlDataReader dataReader1 = c.ExecuteReader();
             while (dataReader1.Read())
@@ -476,28 +476,17 @@ namespace MainSystem
                 int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
                 if (gridView1.IsNewItemRow(rowHandle))
                 {
-                    double Quantity = 0;
                     double ReturnedQuantity = 0;
 
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكود"], dataReader1["الكود"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dataReader1["النوع"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dataReader1["الاسم"].ToString());
-
-                    query = "select sum(product_bill.Quantity) as 'الكمية' FROM customer_bill INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID where customer_bill.Branch_ID in (" + q1 + ") and date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Data_ID=" + dataReader1["Data_ID"].ToString() + " and product_bill.Type='بند' group by product_bill.Data_ID";
+                    
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية الواردة"], Convert.ToDouble(dataReader1["الكمية"].ToString()));
+                    totalQuantity += Convert.ToDouble(dataReader1["الكمية"].ToString());
+                    
+                    /*query = "SELECT sum(customer_return_bill_details.TotalMeter) as 'الكمية' FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID where customer_return_bill.Branch_ID in (" + q1 + ") and date(customer_return_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and customer_return_bill_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and customer_return_bill_details.Type='بند' group by customer_return_bill_details.Data_ID";
                     MySqlCommand com2 = new MySqlCommand(query, dbconnection2);
-                    if (com2.ExecuteScalar() != null)
-                    {
-                        Quantity = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المباعة"], Quantity);
-                        totalQuantity += Quantity;
-                    }
-                    else
-                    {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المباعة"], 0);
-                    }
-
-                    query = "SELECT sum(customer_return_bill_details.TotalMeter) as 'الكمية' FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID where customer_return_bill.Branch_ID in (" + q1 + ") and date(customer_return_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and customer_return_bill_details.Data_ID=" + dataReader1["Data_ID"].ToString() + " and customer_return_bill_details.Type='بند' group by customer_return_bill_details.Data_ID";
-                    com2 = new MySqlCommand(query, dbconnection2);
                     if (com2.ExecuteScalar() != null)
                     {
                         ReturnedQuantity = Convert.ToDouble(com2.ExecuteScalar().ToString());
@@ -507,9 +496,9 @@ namespace MainSystem
                     else
                     {
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية المرتجعة"], 0);
-                    }
+                    }*/
 
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الصافى"], Quantity - ReturnedQuantity);
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الصافى"], Convert.ToDouble(dataReader1["الكمية"].ToString()) - ReturnedQuantity);
                 }
             }
 
