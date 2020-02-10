@@ -14,10 +14,9 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string branchName, string factoryName, DateTime fromDate, DateTime toDate, List<Items_Bills_Details> Bill_Items)
+        public void InitData(string branchName, DateTime fromDate, DateTime toDate, List<Items_Bills_Details> Bill_Items)
         {
             Branch_Name.Value = branchName;
-            Factory_Name.Value = factoryName;
             FromDate.Value = fromDate;
             ToDate.Value = toDate;
             DateNow.Value = DateTime.Now;
