@@ -337,7 +337,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 18 || UserControl.userType == 17 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 16|| UserControl.userType == 7)
+                if (UserControl.userType == 25 || UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 18 || UserControl.userType == 17 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 16|| UserControl.userType == 7)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -374,7 +374,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 18 || UserControl.userType == 17 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 16|| UserControl.userType == 7)
+                if (UserControl.userType == 25 || UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 18 || UserControl.userType == 17 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 16|| UserControl.userType == 7)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -411,7 +411,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 18 || UserControl.userType == 17 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 16|| UserControl.userType == 7)
+                if (UserControl.userType == 25 || UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 18 || UserControl.userType == 17 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 16|| UserControl.userType == 7)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -700,7 +700,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 16 || UserControl.userType == 7 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 6 || UserControl.userType == 13)
+                if (UserControl.userType == 25 || UserControl.userType == 16 || UserControl.userType == 7 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 6 || UserControl.userType == 13)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -742,7 +742,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 16 || UserControl.userType == 7 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 6 || UserControl.userType == 13)
+                if (UserControl.userType == 25 || UserControl.userType == 16 || UserControl.userType == 7 || UserControl.userType == 1|| UserControl.userType == 15 || UserControl.userType == 6 || UserControl.userType == 13)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;
@@ -817,7 +817,7 @@ namespace MainSystem
         {
             try
             {
-                if (UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 18 || UserControl.userType == 17 || UserControl.userType == 1 || UserControl.userType == 15 || UserControl.userType == 16|| UserControl.userType == 7)
+                if (UserControl.userType == 25 || UserControl.userType == 6 || UserControl.userType == 13 || UserControl.userType == 18 || UserControl.userType == 17 || UserControl.userType == 1 || UserControl.userType == 15 || UserControl.userType == 16|| UserControl.userType == 7)
                 {
                     restForeColorOfNavBarItem();
                     NavBarItem navBarItem = (NavBarItem)sender;

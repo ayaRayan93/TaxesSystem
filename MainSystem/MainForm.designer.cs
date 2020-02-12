@@ -488,6 +488,7 @@
             this.navBarItemSupplierBillsTransitionsDetailsReport2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSupplierTypeReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPurchaseQuantityReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPurchasePriceReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup43 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSupplierBills = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup44 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -653,7 +654,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemPurchasePriceReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -1352,7 +1352,6 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemFactoriesTransitionReport)});
             this.navBarGroup54.Name = "navBarGroup54";
             this.navBarGroup54.SelectedLinkIndex = 0;
-            this.navBarGroup54.TopVisibleLinkIndex = 2;
             // 
             // navBarItemItemTransitionReport
             // 
@@ -1872,7 +1871,7 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup58;
+            this.navBarControl2.ActiveGroup = this.navBarGroup17;
             this.navBarControl2.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Background.Options.UseFont = true;
             this.navBarControl2.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1970,7 +1969,6 @@
             this.navBarGroup58.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.navBarGroup58.Appearance.Options.UseFont = true;
             this.navBarGroup58.Caption = "تقارير اصناف المبيعات";
-            this.navBarGroup58.Expanded = true;
             this.navBarGroup58.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTotalSales),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTotalSalesDetails),
@@ -2081,6 +2079,7 @@
             this.navBarGroup17.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.navBarGroup17.Appearance.Options.UseFont = true;
             this.navBarGroup17.Caption = "حسابات العملاء";
+            this.navBarGroup17.Expanded = true;
             this.navBarGroup17.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnCustomerAccountStatment),
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnAgalAcountStatment),
@@ -4907,6 +4906,12 @@
             this.navBarItemPurchaseQuantityReport.Name = "navBarItemPurchaseQuantityReport";
             this.navBarItemPurchaseQuantityReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPurchaseQuantityReport_LinkClicked);
             // 
+            // navBarItemPurchasePriceReport
+            // 
+            this.navBarItemPurchasePriceReport.Caption = "حركة مورد بالاسعار";
+            this.navBarItemPurchasePriceReport.Name = "navBarItemPurchasePriceReport";
+            this.navBarItemPurchasePriceReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPurchasePriceReport_LinkClicked);
+            // 
             // navBarGroup43
             // 
             this.navBarGroup43.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
@@ -6195,12 +6200,6 @@
             // 
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
-            // 
-            // navBarItemPurchasePriceReport
-            // 
-            this.navBarItemPurchasePriceReport.Caption = "حركة مورد بالاسعار";
-            this.navBarItemPurchasePriceReport.Name = "navBarItemPurchasePriceReport";
-            this.navBarItemPurchasePriceReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPurchasePriceReport_LinkClicked);
             // 
             // MainForm
             // 
