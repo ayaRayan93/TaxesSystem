@@ -391,80 +391,92 @@
     <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.designer.cs">
       <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\Print_PurchaseQuantityDetails.cs">
+    <Compile Include="Purchases\Reports\PurchasesPrice\Print_PurchasePriceDetails.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\Print_PurchaseQuantityDetails.designer.cs">
+    <Compile Include="Purchases\Reports\PurchasesPrice\Print_PurchasePriceDetails.designer.cs">
+      <DependentUpon>Print_PurchasePriceDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Reports\PurchasesPrice\PurchasePriceDetails_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Reports\PurchasesPrice\PurchasePriceDetails_Report.designer.cs">
+      <DependentUpon>PurchasePriceDetails_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Reports\PurchasesQuantity\Print_PurchaseQuantityDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Reports\PurchasesQuantity\Print_PurchaseQuantityDetails.designer.cs">
       <DependentUpon>Print_PurchaseQuantityDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\Report_PurchaseQuantityDetails.cs">
+    <Compile Include="Purchases\Reports\PurchasesQuantity\Report_PurchaseDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\Report_PurchaseQuantityDetails.designer.cs">
-      <DependentUpon>Report_PurchaseQuantityDetails.cs</DependentUpon>
+    <Compile Include="Purchases\Reports\PurchasesQuantity\Report_PurchaseDetails.designer.cs">
+      <DependentUpon>Report_PurchaseDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\PurchaseQuantityDetails_Report.cs">
+    <Compile Include="Purchases\Reports\PurchasesQuantity\PurchaseQuantityDetails_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\PurchasesQuantity\PurchaseQuantityDetails_Report.designer.cs">
+    <Compile Include="Purchases\Reports\PurchasesQuantity\PurchaseQuantityDetails_Report.designer.cs">
       <DependentUpon>PurchaseQuantityDetails_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\supplierType\Print_SupplierType.cs">
+    <Compile Include="Purchases\Reports\supplierType\Print_SupplierType.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\supplierType\Print_SupplierType.designer.cs">
+    <Compile Include="Purchases\Reports\supplierType\Print_SupplierType.designer.cs">
       <DependentUpon>Print_SupplierType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\supplierType\Report_SupplierType.cs">
+    <Compile Include="Purchases\Reports\supplierType\Report_SupplierType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\supplierType\Report_SupplierType.designer.cs">
+    <Compile Include="Purchases\Reports\supplierType\Report_SupplierType.designer.cs">
       <DependentUpon>Report_SupplierType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\supplierType\SupplierType_Items.cs" />
+    <Compile Include="Purchases\Reports\supplierType\SupplierType_Items.cs" />
     <Compile Include="RequestsSystem.cs" />
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.designer.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.designer.cs">
       <DependentUpon>Print_SupplierBillsTransitionsDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Report_SupplierBillsTransitionsDetails.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\Report_SupplierBillsTransitionsDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Report_SupplierBillsTransitionsDetails.designer.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\Report_SupplierBillsTransitionsDetails.designer.cs">
       <DependentUpon>Report_SupplierBillsTransitionsDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Report.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Report.designer.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Report.designer.cs">
       <DependentUpon>SupplierBillsTransitionsDetails_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Items.cs" />
+    <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Items.cs" />
     <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitions_ReportX.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitions_ReportX.designer.cs">
       <DependentUpon>SupplierBillsTransitions_ReportX.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\Print_SupplierBillsTransitions.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitions_Report\Print_SupplierBillsTransitions.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\Print_SupplierBillsTransitions.designer.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitions_Report\Print_SupplierBillsTransitions.designer.cs">
       <DependentUpon>Print_SupplierBillsTransitions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\Report_SupplierBillsTransitions.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitions_Report\Report_SupplierBillsTransitions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\Report_SupplierBillsTransitions.designer.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitions_Report\Report_SupplierBillsTransitions.designer.cs">
       <DependentUpon>Report_SupplierBillsTransitions.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Items.cs" />
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitions_Report\SupplierBillsTransitions_Items.cs" />
+    <Compile Include="Purchases\Reports\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.designer.cs">
+    <Compile Include="Purchases\Reports\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.designer.cs">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Bank\تحويلات\BankTransfers_Record2.cs">
@@ -565,10 +577,10 @@
     <Compile Include="Purchases\Supplier_Payments\SupplierPayments_Record.designer.cs">
       <DependentUpon>SupplierPayments_Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\supplierType\SupplierType_Report.cs">
+    <Compile Include="Purchases\Reports\supplierType\SupplierType_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Purchases\Supplier_Payments\supplierType\SupplierType_Report.designer.cs">
+    <Compile Include="Purchases\Reports\supplierType\SupplierType_Report.designer.cs">
       <DependentUpon>SupplierType_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Supplier_Taswya\SupplierTaswaya.cs">
@@ -3232,34 +3244,40 @@
     <EmbeddedResource Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.resx">
       <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\PurchasesQuantity\Print_PurchaseQuantityDetails.resx">
+    <EmbeddedResource Include="Purchases\Reports\PurchasesPrice\Print_PurchasePriceDetails.resx">
+      <DependentUpon>Print_PurchasePriceDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Reports\PurchasesPrice\PurchasePriceDetails_Report.resx">
+      <DependentUpon>PurchasePriceDetails_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Reports\PurchasesQuantity\Print_PurchaseQuantityDetails.resx">
       <DependentUpon>Print_PurchaseQuantityDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\PurchasesQuantity\Report_PurchaseQuantityDetails.resx">
-      <DependentUpon>Report_PurchaseQuantityDetails.cs</DependentUpon>
+    <EmbeddedResource Include="Purchases\Reports\PurchasesQuantity\Report_PurchaseDetails.resx">
+      <DependentUpon>Report_PurchaseDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\PurchasesQuantity\PurchaseQuantityDetails_Report.resx">
+    <EmbeddedResource Include="Purchases\Reports\PurchasesQuantity\PurchaseQuantityDetails_Report.resx">
       <DependentUpon>PurchaseQuantityDetails_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.resx">
+    <EmbeddedResource Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.resx">
       <DependentUpon>Print_SupplierBillsTransitionsDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\Report_SupplierBillsTransitionsDetails.resx">
+    <EmbeddedResource Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\Report_SupplierBillsTransitionsDetails.resx">
       <DependentUpon>Report_SupplierBillsTransitionsDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Report.resx">
+    <EmbeddedResource Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Report.resx">
       <DependentUpon>SupplierBillsTransitionsDetails_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitions_ReportX.resx">
       <DependentUpon>SupplierBillsTransitions_ReportX.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\Print_SupplierBillsTransitions.resx">
+    <EmbeddedResource Include="Purchases\Reports\SupplierBillsTransitions_Report\Print_SupplierBillsTransitions.resx">
       <DependentUpon>Print_SupplierBillsTransitions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\Report_SupplierBillsTransitions.resx">
+    <EmbeddedResource Include="Purchases\Reports\SupplierBillsTransitions_Report\Report_SupplierBillsTransitions.resx">
       <DependentUpon>Report_SupplierBillsTransitions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.resx">
+    <EmbeddedResource Include="Purchases\Reports\SupplierBillsTransitions_Report\SupplierBillsTransitions_Report.resx">
       <DependentUpon>SupplierBillsTransitions_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\تحويلات\BankTransfers_Record2.resx">
@@ -3286,10 +3304,10 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\supplierType\Print_SupplierType.resx">
+    <EmbeddedResource Include="Purchases\Reports\supplierType\Print_SupplierType.resx">
       <DependentUpon>Print_SupplierType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\supplierType\Report_SupplierType.resx">
+    <EmbeddedResource Include="Purchases\Reports\supplierType\Report_SupplierType.resx">
       <DependentUpon>Report_SupplierType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Requests\Least Quantity\Print_LeastQuantity.resx">
@@ -3316,7 +3334,7 @@
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierPayments_Record.resx">
       <DependentUpon>SupplierPayments_Record.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Purchases\Supplier_Payments\supplierType\SupplierType_Report.resx">
+    <EmbeddedResource Include="Purchases\Reports\supplierType\SupplierType_Report.resx">
       <DependentUpon>SupplierType_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Taswya\SupplierTaswaya.resx">

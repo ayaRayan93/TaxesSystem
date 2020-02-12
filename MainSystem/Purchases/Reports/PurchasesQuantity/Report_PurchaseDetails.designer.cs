@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Report_PurchaseQuantityDetails
+    partial class Report_PurchaseDetails
     {
         /// <summary>
         /// Required designer variable.

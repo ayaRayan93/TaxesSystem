@@ -531,6 +531,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemPurchasePriceReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlPurchases.Visible)
+                    xtraTabControlPurchases.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "حركة مورد بالاسعار");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlPurchases.TabPages.Add("حركة مورد بالاسعار");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "حركة مورد بالاسعار");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                PurchasePriceDetails_Report objForm = new PurchasePriceDetails_Report(this, xtraTabControlPurchases);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //Special Orders Report
 
         //Products Purchase price
