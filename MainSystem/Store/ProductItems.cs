@@ -40,7 +40,7 @@ namespace MainSystem
                 mTC_Content.SelectedIndex = 6;
                 displayType();
                 txtType.Focus();
-                DeletePermission();
+                //DeletePermission();
             }
             catch (Exception e)
             {
@@ -901,22 +901,29 @@ namespace MainSystem
 
                 if (storeRow != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
+                    if (!producItemUsed("Type_ID", id))
                     {
-                        int id = Convert.ToInt32(storeRow.Cells[0].Value.ToString());
-                        string query = "delete from type where Type_ID=" + id;
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.ExecuteNonQuery();
-                        updateTablesDB("type", "Type_ID", id);
-                 
-                        UserControl.ItemRecord("type", "حذف",Convert.ToInt32(storeRow.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
+                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            string query = "delete from type where Type_ID=" + id;
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                            updateTablesDB("type", "Type_ID", id);
 
-                        displayType();
-                        txtType.Focus();
+                            UserControl.ItemRecord("type", "حذف", Convert.ToInt32(storeRow.Cells[0].Value.ToString()), DateTime.Now, "", dbconnection);
+
+                            displayType();
+                            txtType.Focus();
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        { }
                     }
-                    else if (dialogResult == DialogResult.No)
-                    { }
+                    else
+                    {
+                        MessageBox.Show("هذا العنصر تم استخدامه في تسجيل بنود لا يمكن حذفه.");
+                    }
                 }
                 else
                 {
@@ -1201,24 +1208,31 @@ namespace MainSystem
                 DataGridViewRow row1 = dataGridViewFactory.Rows[dataGridViewFactory.SelectedCells[0].RowIndex];
                 if (row1 != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
+                    if (!producItemUsed("Factory_ID", id))
                     {
-                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
-                        string query = "delete from factory where Factory_ID=" + id;
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.ExecuteNonQuery();
+                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            string query = "delete from factory where Factory_ID=" + id;
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
 
-                        updateTablesDB("factory", "Factory_ID", id);
+                            updateTablesDB("factory", "Factory_ID", id);
 
-                        UserControl.ItemRecord("factory", "حذف",Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
+                            UserControl.ItemRecord("factory", "حذف", Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now, "", dbconnection);
 
-                        displayFactory();
+                            displayFactory();
 
-                        txtFactory.Text="";
+                            txtFactory.Text = "";
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        { }
                     }
-                    else if (dialogResult == DialogResult.No)
-                    { }
+                    else
+                    {
+                        MessageBox.Show("هذا العنصر تم استخدامه في تسجيل بنود لا يمكن حذفه.");
+                    }
                 }
                 else
                 {
@@ -1610,30 +1624,37 @@ namespace MainSystem
 
                 if (row1 != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
+                    if (!producItemUsed("Product_ID", id))
                     {
-                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
-                        string query = "delete from groupo where Group_ID=" + id;
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.ExecuteNonQuery();
-                        
-                        updateTablesDB("groupo", "Group_ID", id);
-
-                        UserControl.ItemRecord("groupo", "حذف",Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
-                        if (comFactory.Text != "")
+                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            displayGroup(Convert.ToInt32(comFactory.SelectedValue));
-                        }
-                        else
-                        {
-                            displayGroup();
-                        }
+                            string query = "delete from groupo where Group_ID=" + id;
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
 
-                      txtGroup.Text="";
+                            updateTablesDB("groupo", "Group_ID", id);
+
+                            UserControl.ItemRecord("groupo", "حذف", Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now, "", dbconnection);
+                            if (comFactory.Text != "")
+                            {
+                                displayGroup(Convert.ToInt32(comFactory.SelectedValue));
+                            }
+                            else
+                            {
+                                displayGroup();
+                            }
+
+                            txtGroup.Text = "";
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        { }
                     }
-                    else if (dialogResult == DialogResult.No)
-                    { }
+                    else
+                    {
+                        MessageBox.Show("هذا العنصر تم استخدامه في تسجيل بنود لا يمكن حذفه.");
+                    }
                 }
                 else
                 {
@@ -1937,24 +1958,31 @@ namespace MainSystem
 
                 if (row1 != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
+                    if (!producItemUsed("Product_ID", id))
                     {
-                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
-                        string query = "delete from product where Product_ID=" + id;
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.ExecuteNonQuery();
-                        updateTablesDB("product", "Product_ID", id);
+                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            string query = "delete from product where Product_ID=" + id;
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                            updateTablesDB("product", "Product_ID", id);
 
-                        UserControl.ItemRecord("product", "حذف",Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
+                            UserControl.ItemRecord("product", "حذف", Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now, "", dbconnection);
 
-                        dataGridViewProduct.DataSource = null;
-                        displayProductAll();                     
+                            dataGridViewProduct.DataSource = null;
+                            displayProductAll();
 
-                        txtProduct.Focus();
+                            txtProduct.Focus();
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        { }
                     }
-                    else if (dialogResult == DialogResult.No)
-                    { }
+                    else
+                    {
+                        MessageBox.Show("هذا العنصر تم استخدامه في تسجيل بنود لا يمكن حذفه.");
+                    }
                 }
                 else
                 {
@@ -2519,31 +2547,38 @@ namespace MainSystem
 
                 if (row1 != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
+                    if (!producItemUsed("Color_ID", id))
                     {
-                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
-                        string query = "delete from color where Color_ID=" + id;
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.ExecuteNonQuery();
-
-                        updateTablesDB("color", "Color_ID", id);
-
-                        UserControl.ItemRecord("color", "حذف",Convert.ToInt32(row1.Cells[0].Value), DateTime.Now,"", dbconnection);
-
-                        if (comType2.Text != "")
+                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            displayColor(Convert.ToInt32(comType2.SelectedValue));
-                        }
-                        else
-                        {
-                            displayColor();
-                        }
+                            string query = "delete from color where Color_ID=" + id;
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
 
-                        txtColor.Focus();
+                            updateTablesDB("color", "Color_ID", id);
+
+                            UserControl.ItemRecord("color", "حذف", Convert.ToInt32(row1.Cells[0].Value), DateTime.Now, "", dbconnection);
+
+                            if (comType2.Text != "")
+                            {
+                                displayColor(Convert.ToInt32(comType2.SelectedValue));
+                            }
+                            else
+                            {
+                                displayColor();
+                            }
+
+                            txtColor.Focus();
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        { }
                     }
-                    else if (dialogResult == DialogResult.No)
-                    { }
+                    else
+                    {
+                        MessageBox.Show("هذا العنصر تم استخدامه في تسجيل بنود لا يمكن حذفه.");
+                    }
                 }
                 else
                 {
@@ -2816,33 +2851,40 @@ namespace MainSystem
 
                 if (row1 != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
+                    if (!producItemUsed("Size_ID", id))
                     {
-                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
-                        string query = "delete from size where Size_ID=" + id;
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.ExecuteNonQuery();
-
-                        updateTablesDB("size", "Size_ID", id);
-
-                        UserControl.ItemRecord("size", "حذف",Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now,"", dbconnection);
-
-                        if (comFactory2.Text != ""&&comGroup_Size.Text!="")
+                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            displaySize_group();
-                        }
-                        else
-                        {
-                            displaySize();
-                        }
+                            string query = "delete from size where Size_ID=" + id;
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
 
-                        txtSize.Focus();
-                        
+                            updateTablesDB("size", "Size_ID", id);
+
+                            UserControl.ItemRecord("size", "حذف", Convert.ToInt32(row1.Cells[0].Value.ToString()), DateTime.Now, "", dbconnection);
+
+                            if (comFactory2.Text != "" && comGroup_Size.Text != "")
+                            {
+                                displaySize_group();
+                            }
+                            else
+                            {
+                                displaySize();
+                            }
+
+                            txtSize.Focus();
+
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+
+                        }
                     }
-                    else if (dialogResult == DialogResult.No)
+                    else
                     {
-
+                        MessageBox.Show("هذا العنصر تم استخدامه في تسجيل بنود لا يمكن حذفه.");
                     }
                 }
                 else
@@ -3003,23 +3045,31 @@ namespace MainSystem
                 row1.Selected = true;
                 if (row1 != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
+                    if (!producItemUsed("Sort_ID", id))
                     {
-                        int id = Convert.ToInt32(row1.Cells[0].Value.ToString());
-                        string query = "delete from sort where Sort_ID=" + id;
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.ExecuteNonQuery();
-                       
-                        updateTablesDB("sort","Sort_ID",id);
-                        
-                        //UserControl.UserRecord("sort", "حذف", row1.Cells[0].Value.ToString(), DateTime.Now, dbconnection);
+                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
 
-                        displaySort();
-                        txtSort.Focus();
+                            string query = "delete from sort where Sort_ID=" + id;
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+
+                            updateTablesDB("sort", "Sort_ID", id);
+
+                            UserControl.ItemRecord("sort", "حذف", (int)row1.Cells[0].Value, DateTime.Now, "", dbconnection);
+
+                            displaySort();
+                            txtSort.Focus();
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        { }
                     }
-                    else if (dialogResult == DialogResult.No)
-                    { }
+                    else
+                    {
+                        MessageBox.Show("هذا العنصر تم استخدامه في تسجيل بنود لا يمكن حذفه.");
+                    }
                 }
                 else
                 {
@@ -3490,7 +3540,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         public void DeletePermission()
         {
             //if (UserControl.userType != 1)
@@ -3504,7 +3553,17 @@ namespace MainSystem
                 bunifuTileButton1.Enabled = false;
             //}
         }
-        
+        public bool producItemUsed(string columnName, int ProductItem_ID)
+        {
+            string query = "select Data_ID from data where " + columnName + "=" + ProductItem_ID + " limit 1";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 
     public class factory_Group
@@ -3523,4 +3582,6 @@ namespace MainSystem
         }
       
     }
+
+ 
 }

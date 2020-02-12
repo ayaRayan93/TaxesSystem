@@ -573,15 +573,36 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+        bool flag1 = true;
         private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             try
             {
-                GridView view = (GridView)sender;
-                DataRow dataRow = view.GetFocusedDataRow();
-                int Data_ID = Convert.ToInt32(dataRow["Data_ID"].ToString());
-                addGardQuantity(Data_ID, dataRow);
-                ListOfEditDataIDs.Add(Data_ID);
+                if (flag1)
+                {
+                    GridView view = (GridView)sender;
+                    DataRow dataRow = view.GetFocusedDataRow();
+                    int Data_ID = Convert.ToInt32(dataRow["Data_ID"].ToString());
+                    dbconnection.Open();
+                    double currentQuantity = MainForm.currentItemQuantity(Data_ID, (int)comStore.SelectedValue, dbconnection);
+                    string query = "SELECT Current_Quantity  from inventory inner join inventory_details on inventory.Inventory_ID=inventory_details.Inventory_ID where Inventory_Num=" + labGardPermission.Text + " and Store_ID=" + txtStoreID.Text + " and Data_ID=" + Data_ID;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    double GardQuantity = Convert.ToDouble(com.ExecuteScalar());
+                    dbconnection.Close();
+
+                    if (currentQuantity == GardQuantity)
+                    {
+                        addGardQuantity(Data_ID, dataRow);
+                        ListOfEditDataIDs.Add(Data_ID);
+                    }
+                    else
+                    {
+                        flag1 = false;
+                        view.SetRowCellValue(view.GetSelectedRows()[0], "الكمية المجردة", GardQuantity);
+                        MessageBox.Show("لا يمكن تعديل البند تم استخدامه بعد الجرد");
+                        flag1 = true;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -977,6 +998,8 @@ namespace MainSystem
             }
             return false;
         }
+
+   
     }
 
 }
