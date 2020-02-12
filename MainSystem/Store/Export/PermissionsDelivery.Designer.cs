@@ -50,6 +50,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -198,7 +205,7 @@
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(461, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 16);
+            this.label1.Size = new System.Drawing.Size(34, 16);
             this.label1.TabIndex = 206;
             this.label1.Text = "الفرع";
             // 
@@ -278,7 +285,7 @@
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(766, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 16);
+            this.label2.Size = new System.Drawing.Size(24, 16);
             this.label2.TabIndex = 199;
             this.label2.Text = "من";
             // 
@@ -349,10 +356,78 @@
             this.gridView2.Appearance.Row.Options.UseFont = true;
             this.gridView2.Appearance.Row.Options.UseTextOptions = true;
             this.gridView2.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn7,
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6});
             this.gridView2.GridControl = this.gridControl2;
             this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.AllowSortAnimation = DevExpress.Utils.DefaultBoolean.True;
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.OptionsView.ShowIndicator = false;
+            this.gridView2.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView2_CustomUnboundColumnData);
+           // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "رقم التسلسل";
+            this.gridColumn7.FieldName = "gridColumn7";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
+            this.gridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.Integer;
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 0;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "كود الفاتورة";
+            this.gridColumn1.FieldName = "Branch_BillNumber";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 1;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "الفرع";
+            this.gridColumn2.FieldName = "Branch_Name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 2;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "مهندس/مقاول/تاجر";
+            this.gridColumn3.FieldName = "Customer_Name";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 3;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "عميل";
+            this.gridColumn4.FieldName = "Client_Name";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 4;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "تاريخ الفاتورة";
+            this.gridColumn5.FieldName = "Bill_Date";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 5;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "تاريخ الاستلام";
+            this.gridColumn6.FieldName = "Shipped_Date";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 6;
             // 
             // PermissionsDelivery
             // 
@@ -401,5 +476,12 @@
         private System.Windows.Forms.TextBox txtBranchID;
         private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.Label label1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }

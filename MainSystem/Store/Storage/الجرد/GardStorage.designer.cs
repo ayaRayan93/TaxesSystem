@@ -604,10 +604,10 @@
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "تقرير";
-            this.btnReport.Location = new System.Drawing.Point(417, 4);
+            this.btnReport.Location = new System.Drawing.Point(415, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(96, 52);
+            this.btnReport.Size = new System.Drawing.Size(97, 52);
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 

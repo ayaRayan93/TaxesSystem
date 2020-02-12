@@ -24,7 +24,6 @@ namespace MainSystem
         MainForm storeMainForm = null;
         bool loaded = false;
         bool load = false;
-        //DataGridViewRow row1;
         public  Product_Record product_Record = null;
         public Product_Update product_Update = null;
         TipImage tipImage=null;
@@ -407,27 +406,34 @@ namespace MainSystem
                 DataRowView row1 = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
                 if (row1 != null)
                 {
-                    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dialogResult == DialogResult.Yes)
+                    if (!checkItemUseage((int)row1[0]))
                     {
-                        string query = "delete from data where Data_ID=" + row1[0].ToString();
-                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                        dbconnection.Open();
-                        comand.ExecuteNonQuery();
+                        DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete the item?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            string query = "delete from data where Data_ID=" + row1[0].ToString();
+                            MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                            dbconnection.Open();
+                            comand.ExecuteNonQuery();
 
-                        query = "ALTER TABLE data AUTO_INCREMENT = 1;";
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.ExecuteNonQuery(); 
+                            query = "ALTER TABLE data AUTO_INCREMENT = 1;";
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
 
-                        UserControl.ItemRecord("data", "حذف",Convert.ToInt32(row1[0].ToString()), DateTime.Now,"", dbconnection);
+                            UserControl.ItemRecord("data", "حذف", Convert.ToInt32(row1[0].ToString()), DateTime.Now, "", dbconnection);
 
-                        //if (chBoxSelectAll.Checked)
-                        //    displayProducts();
-                        //else
-                        //    displayAllProducts();
+                            //if (chBoxSelectAll.Checked)
+                            //    displayProducts();
+                            //else
+                            //    displayAllProducts();
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        { }
                     }
-                    else if (dialogResult == DialogResult.No)
-                    { }
+                    else
+                    {
+                        MessageBox.Show("هذا البند تم استخدامه من قبل لا يمكن حذفه");
+                    }
                 }
                 else
                 {
@@ -619,7 +625,27 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-       
+        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
+                if (e.Column.Name == "colالكرتنة")
+                {
+                    GridView lView = (GridView)sender;
+                    DataRow dataRow = lView.GetDataRow(e.RowHandle);
+                    dbconnection.Open();
+                    string query = "update data set Carton=" + e.Value + " where Data_ID=" + dataRow[0].ToString();
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    com.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
         //function
         public void displayProducts()
         {
@@ -1008,28 +1034,6 @@ namespace MainSystem
             }
         
         }
-
-        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-            try
-            {
-                if (e.Column.Name == "colالكرتنة")
-                {
-                    GridView lView =  (GridView) sender;
-                    DataRow dataRow = lView.GetDataRow(e.RowHandle);
-                    dbconnection.Open();
-                    string query = "update data set Carton="+e.Value+" where Data_ID="+ dataRow[0].ToString();
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    com.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
         public void filterSize()
         {
             if (comFactory.Text != "")
@@ -1044,6 +1048,82 @@ namespace MainSystem
                 comProduct.Text = "";
                 txtProduct.Text = "";
             }
+        }
+        public bool checkItemUseage(int DataID)
+        {
+            dbconnection.Open();
+            bool flag = false;
+            //sales
+            string query = "select ProductBill_ID from product_bill where Data_ID="+DataID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                dbconnection.Close();
+                return true;
+            }
+            query = "select CustomerReturnBillDetails_ID from customer_return_bill_details where Data_ID=" + DataID;
+            com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                dbconnection.Close();
+                return true;
+            }
+            query = "select CustomerReturnPermissionDetails_ID from customer_return_permission_details where Data_ID=" + DataID;
+            com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                dbconnection.Close();
+                return true;
+            }
+            //purchases    
+            query = "select Supplier_Permission_Details_ID from supplier_permission_details where Data_ID=" + DataID;
+            com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                dbconnection.Close();
+                return true;
+            }
+            query = "select ReturnBillDetails_ID from supplier_return_bill_details where Data_ID=" + DataID;
+            com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                dbconnection.Close();
+                return true;
+            }
+            query = "select ImportStorageReturnDetails_ID from import_storage_return_details where Data_ID=" + DataID;
+            com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                dbconnection.Close();
+                return true;
+            }
+            //storage
+
+            query = "select sum(Total_Meters) from storage group by Data_ID having Data_ID=" + DataID;
+            com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                double quantity = Convert.ToDouble(com.ExecuteScalar());
+                if (quantity > 0)
+                {
+                    dbconnection.Close();
+                    return true;
+                }
+            }
+            dbconnection.Close();
+            return flag;
+           
+        }
+
+        public bool producItemUsed(string columnName,int ProductItem_ID)
+        {
+            string query = "select Data_ID from data "+columnName+"="+ ProductItem_ID+" limit 1";
+            MySqlCommand com = new MySqlCommand(query,dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                return true;
+            }
+            return false;
         }
 
     }

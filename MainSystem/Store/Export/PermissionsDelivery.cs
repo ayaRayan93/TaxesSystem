@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Grid;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -328,25 +329,25 @@ namespace MainSystem
             str1 += 0;
 
             string query = "";
-            if (d== d2)
-                query = "select distinct Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل',Bill_Date as 'تاريخ الفاتورة',Shipped_Date as 'تاريخ الاستلام' from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1+") and Shipped_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and  case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end " + subQuery;
+            if (d == d2)
+                query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and  case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end " + subQuery;
             else
-
-                query = "select distinct Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل',Bill_Date as 'تاريخ الفاتورة',Shipped_Date as 'تاريخ الاستلام' from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date between '" + d +"' and '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end  " + subQuery;
+                query = "select distinct Branch_BillNumber ,Branch_Name ,Customer_Name ,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date between '" + d + "' and '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end  " + subQuery;
 
             if (UserControl.userType == 1)
             {
                 if (d == d2)
-                    query = "select distinct Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل',Bill_Date as 'تاريخ الفاتورة',Shipped_Date as 'تاريخ الاستلام' from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا'  " + subQuery;
+                    query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا'  " + subQuery;
                 else
-                    query = "select distinct Branch_BillNumber as 'كود الفاتورة',Branch_Name as 'الفرع' ,Branch_ID,Customer_Name as 'مهندس مقاول',Client_Name as 'العميل',Bill_Date as 'تاريخ الفاتورة',Shipped_Date as 'تاريخ الاستلام' from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date between '" + d + "' and '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا'   " + subQuery;
+                    query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date between '" + d + "' and '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا'   " + subQuery;
             }
 
-            MySqlDataAdapter da = new MySqlDataAdapter(query,dbconnection);
+            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl2.DataSource = dt;
             gridView2.Columns[2].Visible = false;
+      
             AddUnboundColumngridView2();
             AddRepositorygridView2();
         }
@@ -376,8 +377,17 @@ namespace MainSystem
             edit.Buttons[0].Caption = "تسليم اذن";
             edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
             gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
-       
+            
         }
+        
+        private void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        {
+            if (e.IsGetData)
+            {
+                e.Value = gridView2.GetRowHandle(e.ListSourceRowIndex) + 1;
+            }
+        }
+
         private void AddUnboundColumngridView2()
         {
             if (gridView2.Columns["تسليم اذن"] == null)

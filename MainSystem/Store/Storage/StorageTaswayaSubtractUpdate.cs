@@ -605,7 +605,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             try
@@ -614,11 +613,18 @@ namespace MainSystem
                 {
                     GridView view = (GridView)sender;
                     DataRow dataRow = view.GetFocusedDataRow();
-                    double SubtractQuantity = Convert.ToDouble(dataRow["الكمية المخصومة"].ToString());
-                    double totalBeforSubtract = Convert.ToDouble(dataRow["الكمية قبل الخصم"].ToString());
-
-                    view.SetRowCellValue(view.GetSelectedRows()[0], "الكمية بعد الخصم", totalBeforSubtract - SubtractQuantity);
-
+                    double currentQuantity = MainForm.currentItemQuantity((int)dataRow[0], (int)comStore.SelectedValue, dbconnection);
+                    double taswayaQuantit = Convert.ToDouble(dataRow["الكمية بعد الخصم"].ToString());
+                    if (currentQuantity == taswayaQuantit)
+                    {
+                        double SubtractQuantity = Convert.ToDouble(dataRow["الكمية المخصومة"].ToString());
+                        double totalBeforSubtract = Convert.ToDouble(dataRow["الكمية قبل الخصم"].ToString());
+                        view.SetRowCellValue(view.GetSelectedRows()[0], "الكمية بعد الخصم", totalBeforSubtract - SubtractQuantity);
+                    }
+                    else
+                    {
+                        MessageBox.Show("لا يمكن التعديل البند تم استخدامه");
+                    }
                 }
 
             }
@@ -627,7 +633,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -649,7 +654,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void btnRemove_Click(object sender, EventArgs e)
         {
             try

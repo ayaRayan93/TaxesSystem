@@ -616,12 +616,22 @@ namespace MainSystem
                 {
                     GridView view = (GridView)sender;
                     DataRow dataRow = view.GetFocusedDataRow();
-                    double addingQuantity = Convert.ToDouble(dataRow["الكمية المضافة"].ToString());
-                    double totalBeforAdding = Convert.ToDouble(dataRow["اجمالي عدد الوحدات قبل الاضافة"].ToString());
-
-                    view.SetRowCellValue(view.GetSelectedRows()[0], "رصيد البند", totalBeforAdding + addingQuantity);
-
-                }
+                    dbconnection.Close();
+                    dbconnection.Open();
+                    double currentQuantity= MainForm.currentItemQuantity((int)dataRow[0],(int)comStore.SelectedValue,dbconnection);
+                    double taswayaQuantit = Convert.ToDouble(dataRow["الكمية بعد الاضافة"].ToString());
+                    if (currentQuantity == taswayaQuantit)
+                    {
+                        dbconnection.Close();
+                        double addingQuantity = Convert.ToDouble(dataRow["الكمية المضافة"].ToString());
+                        double totalBeforAdding = Convert.ToDouble(dataRow["الكمية قبل الاضافة"].ToString());
+                        view.SetRowCellValue(view.GetSelectedRows()[0], "الكمية بعد الاضافة", totalBeforAdding + addingQuantity);
+                    }
+                    else
+                    {
+                        MessageBox.Show("لا يمكن التعديل البند تم استخدامه");
+                    }
+              }
 
             }
             catch (Exception ex)
@@ -860,13 +870,13 @@ namespace MainSystem
                 com.Parameters.Add("@Data_ID", MySqlDbType.Int16);
                 com.Parameters["@Data_ID"].Value = d[0];
                 com.Parameters.Add("@CurrentQuantity", MySqlDbType.Decimal);
-                com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(d[4]) - Convert.ToDouble(d[3]);
+                com.Parameters["@CurrentQuantity"].Value = Convert.ToDouble(d[3]);
                 com.Parameters.Add("@AddingQuantity", MySqlDbType.Decimal);
-                com.Parameters["@AddingQuantity"].Value = Convert.ToDouble(d[3]);
+                com.Parameters["@AddingQuantity"].Value = Convert.ToDouble(d[4]);
                 com.Parameters.Add("@QuantityAfterAdding", MySqlDbType.Decimal);
-                com.Parameters["@QuantityAfterAdding"].Value = Convert.ToDouble(d[4]);
+                com.Parameters["@QuantityAfterAdding"].Value = Convert.ToDouble(d[5]);
                 com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                com.Parameters["@Note"].Value = d[5];
+                com.Parameters["@Note"].Value = d[6];
 
                 com.ExecuteNonQuery();
             }
@@ -888,8 +898,9 @@ namespace MainSystem
             dt.Columns.Add("Data_ID", typeof(int));
             dt.Columns.Add("كود", typeof(string));
             dt.Columns.Add("البند", typeof(string));
+            dt.Columns.Add("الكمية قبل الاضافة", typeof(double));
             dt.Columns.Add("الكمية المضافة", typeof(double));
-            dt.Columns.Add("رصيد البند", typeof(double));
+            dt.Columns.Add("الكمية بعد الاضافة", typeof(double));
             dt.Columns.Add("ملاحظة", typeof(string));
 
             return dt;
@@ -981,7 +992,7 @@ namespace MainSystem
             }
             dr.Close();
             string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-            query = "SELECT data.Data_ID, data.Code as 'الكود' ," + itemName + ",AddingQuantity as 'الكمية المضافة',QuantityAfterAdding as 'الكمية بعد الاضافة',addstorage.Note as 'ملاحظة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  inner join addstorage on addstorage.Data_ID=data.Data_ID inner join taswayaa_adding_permision on taswayaa_adding_permision.PermissionNum=addstorage.PermissionNum  WHERE taswayaa_adding_permision.PermissionNum=" + labPermissionNum.Text;
+            query = "SELECT data.Data_ID, data.Code as 'الكود' ," + itemName + ",CurrentQuantity as 'الكمية قبل الاضافة',AddingQuantity as 'الكمية المضافة',QuantityAfterAdding as 'الكمية بعد الاضافة',addstorage.Note as 'ملاحظة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID  inner join addstorage on addstorage.Data_ID=data.Data_ID inner join taswayaa_adding_permision on taswayaa_adding_permision.PermissionNum=addstorage.PermissionNum  WHERE taswayaa_adding_permision.PermissionNum=" + labPermissionNum.Text;
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -990,7 +1001,7 @@ namespace MainSystem
             gridView2.Columns[0].Visible = false;
             gridView2.Columns[1].OptionsColumn.AllowEdit = false;
             gridView2.Columns[2].OptionsColumn.AllowEdit = false;
-            gridView2.Columns[4].OptionsColumn.AllowEdit = false;
+            gridView2.Columns[3].OptionsColumn.AllowEdit = false;
             gridView2.BestFitColumns();
             if (dt != null)
                 btnReport.Enabled = true;

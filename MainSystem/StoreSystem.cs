@@ -1468,6 +1468,42 @@ namespace MainSystem
             }
         }
 
+
+        public void GetExpectedOrders(object sender, EventArgs e)
+        {
+            try
+            {
+                ExpectedOrdersFunction();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+
+        private void StoreMainForm_Resize(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SetUpdate.tipImage != null)
+                {
+                    SetUpdate.tipImage.Close();
+                    SetUpdate.tipImage = null;
+                }
+                if (SetRecord.tipImage != null)
+                {
+                    SetRecord.tipImage.Close();
+                    SetRecord.tipImage = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
         //functions
         //Stores
         public void bindDisplayStoresForm(XtraTabPage xtraTabPage)
@@ -2083,7 +2119,6 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-
         public void bindDisplayExpectedOrdersReport(XtraTabPage xtraTabPage)
         {
             searchReciveDate = new SearchRecive_Date(this, xtraTabControlStoresContent);
@@ -2141,19 +2176,7 @@ namespace MainSystem
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
-        }
-        public void GetExpectedOrders(object sender, EventArgs e)
-        {
-            try
-            {
-                ExpectedOrdersFunction();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
+        }      
         public void ExpectedOrdersFunction()
         {
             int count = 0;
@@ -2181,27 +2204,13 @@ namespace MainSystem
                 labelStoreExpectedOrder.Visible = true;
             }
         }
-        private void StoreMainForm_Resize(object sender, EventArgs e)
+        
+        public static double currentItemQuantity(int Data_ID ,int Store_ID,MySqlConnection dbconnection)
         {
-            try
-            {
-                if (SetUpdate.tipImage != null)
-                {
-                    SetUpdate.tipImage.Close();
-                    SetUpdate.tipImage = null;
-                }
-                if (SetRecord.tipImage != null)
-                {
-                    SetRecord.tipImage.Close();
-                    SetRecord.tipImage = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
+            string query = "select Total_Meters from storage where Data_ID="+ Data_ID+ " and Store_ID="+ Store_ID;
+            MySqlCommand com = new MySqlCommand(query,dbconnection);
+            double storageQuantity = Convert.ToDouble(com.ExecuteScalar());
+            return storageQuantity;
         }
-        //
     }
 }

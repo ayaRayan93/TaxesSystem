@@ -88,7 +88,7 @@ namespace MainSystem
                         com.Parameters["@Note"].Value = txtNote.Text;
                     }
                     com.Parameters.Add("@Expenses_Type", MySqlDbType.VarChar);
-                    com.Parameters["@Expenses_Type"].Value = comType.Text;
+                    com.Parameters["@Expenses_Type"].Value = comType.SelectedValue;
                     double cost;
                     if (double.TryParse(txtCost.Text, out cost))
                     {
