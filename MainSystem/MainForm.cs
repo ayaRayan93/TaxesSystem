@@ -637,9 +637,7 @@ namespace MainSystem
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
                 pictureBoxBell.Visible = true;
-
-              
-
+                
                 btnStores.Enabled = true;
                 btnStores.Checked = true;
 
@@ -676,6 +674,56 @@ namespace MainSystem
                 navBarItemSalesTransitions.Visible = false;
                 navBarItemInformationFactoryReport.Visible = false;
                 navBarItemFactoryProduct.Visible = false;
+                navBarItemFactoriesTransitionReport.Visible = false;
+            }
+            else if (UserControl.userType == 25)
+            {
+                btnReception.Enabled = true;
+                btnReception.Checked = true;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                pictureBoxBell.Visible = true;
+
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+
+                navBarGroup1.Visible = false;
+                navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup6.Visible = false;
+                // navBarGroup54.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup12.Visible = false;
+                navBarItemStoreReturn.Visible = false;
+                navBarItemConfirmTransferFromStore.Visible = false;
+                navBarGroup13.Visible = false;
+                navBarGroup39.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarItemTransportationStoreBill.Visible = false;
+                //new
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+                navBarGroup39.Visible = false;
+                navBarGroup13.Visible = false;
+                navBarGroup14.Visible = false;
+                navBarGroup15.Visible = false;
+                navBarGroup16.Visible = false;
+                //navBarGroup17.Visible = false;
+                navBarItemTotalSales.Visible = false;
+                navBarItemTotalSalesDetails.Visible = false;
+                btnTaswayAgalBills.Visible = false;
+                navBarItem153.Visible = false;
+
+                navBarItemConfirmTransferToStore.Visible = false;
+                navBarItemSalesTransitions.Visible = false;
+                //navBarItemInformationFactoryReport.Visible = false;
+                //navBarItemFactoryProduct.Visible = false;
                 navBarItemFactoriesTransitionReport.Visible = false;
             }
             labUserName.Text = UserControl.EmpName;
