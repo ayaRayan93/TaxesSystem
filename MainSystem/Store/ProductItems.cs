@@ -41,7 +41,7 @@ namespace MainSystem
                 mTC_Content.SelectedIndex = 6;
                 displayType();
                 txtType.Focus();
-                //DeletePermission();
+                DeletePermission();
             }
             catch (Exception e)
             {
@@ -3543,8 +3543,8 @@ namespace MainSystem
         }
         public void DeletePermission()
         {
-            //if (UserControl.userType != 1)
-            //{
+            if (UserControl.userType != 1)
+            {
                 btnDelete.Enabled = false;
                 btnTypeDelete.Enabled = false;
                 btnFactoryDelete.Enabled = false;
@@ -3552,7 +3552,7 @@ namespace MainSystem
                 btnDeleteGroup.Enabled = false;
                 btnDeleteProduct.Enabled = false;
                 bunifuTileButton1.Enabled = false;
-            //}
+            }
         }
         public bool producItemUsed(string columnName, int ProductItem_ID)
         {

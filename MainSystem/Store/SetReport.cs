@@ -98,13 +98,13 @@ namespace MainSystem
             Image pageImage = MainSystem.Properties.Resources.logo_option2;
 
             // Display the PageImageBrick containing the DevExpress logo.
-            pageImageBrick = brickGraphics.DrawPageImage(pageImage, new Rectangle(856, 0, 100, 80), BorderSide.None, Color.Transparent);
+            pageImageBrick = brickGraphics.DrawPageImage(pageImage, new Rectangle(846, 10, 100, 120), BorderSide.None, Color.Transparent);
             pageImageBrick.Alignment = BrickAlignment.Far;
 
             // Display the PageInfoBrick containing date-time information. Date-time information is displayed
             // in the left part of the MarginalHeader section using the FullDateTimePattern.
             //{0:F}
-            pageInfoBrick = brickGraphics.DrawPageInfo(PageInfo.DateTime, "{0:MM/dd/yyyy hh:mm tt}", Color.Black, new Rectangle(840, 90, 120, 50), BorderSide.None);
+            pageInfoBrick = brickGraphics.DrawPageInfo(PageInfo.DateTime, "{0:MM/dd/yyyy hh:mm tt}", Color.Black, new Rectangle(840, 130, 120, 50), BorderSide.None);
             pageInfoBrick.Alignment = BrickAlignment.Far;
 
 
