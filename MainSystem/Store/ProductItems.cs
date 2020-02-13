@@ -29,6 +29,7 @@ namespace MainSystem
         bool flagFactoryP = false;//in product tap
         bool flagGroup = false;//in product tap
         bool flagItemCheckGroup = true;
+
         List<factory_Group> listFactory_Group = new List<factory_Group>();
         AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
         public ProductItems()

@@ -613,7 +613,9 @@ namespace MainSystem
                 {
                     GridView view = (GridView)sender;
                     DataRow dataRow = view.GetFocusedDataRow();
+                    dbconnection.Open();
                     double currentQuantity = MainForm.currentItemQuantity((int)dataRow[0], (int)comStore.SelectedValue, dbconnection);
+                    dbconnection.Close();
                     double taswayaQuantit = Convert.ToDouble(dataRow["الكمية بعد الخصم"].ToString());
                     if (currentQuantity == taswayaQuantit)
                     {

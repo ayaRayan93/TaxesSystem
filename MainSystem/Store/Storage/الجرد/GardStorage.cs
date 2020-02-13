@@ -583,6 +583,7 @@ namespace MainSystem
                     GridView view = (GridView)sender;
                     DataRow dataRow = view.GetFocusedDataRow();
                     int Data_ID = Convert.ToInt32(dataRow["Data_ID"].ToString());
+                    dbconnection.Close();
                     dbconnection.Open();
                     double currentQuantity = MainForm.currentItemQuantity(Data_ID, (int)comStore.SelectedValue, dbconnection);
                     string query = "SELECT Current_Quantity  from inventory inner join inventory_details on inventory.Inventory_ID=inventory_details.Inventory_ID where Inventory_Num=" + labGardPermission.Text + " and Store_ID=" + txtStoreID.Text + " and Data_ID=" + Data_ID;
