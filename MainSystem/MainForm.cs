@@ -719,6 +719,7 @@ namespace MainSystem
                 navBarItemTotalSalesDetails.Visible = false;
                 btnTaswayAgalBills.Visible = false;
                 navBarItem153.Visible = false;
+                navBarItemBillsAgleTransitionsReport.Visible = false;
 
                 navBarItemConfirmTransferToStore.Visible = false;
                 navBarItemSalesTransitions.Visible = false;
