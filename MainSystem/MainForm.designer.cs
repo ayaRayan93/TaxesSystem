@@ -142,6 +142,13 @@
             this.xtraTabPageSales = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlSalesContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup18 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillsAgleTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem230 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup15 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemConfirmBill = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup16 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -159,13 +166,6 @@
             this.navBarGroup39 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemOfferReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemOfferStorage = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup18 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemBillsAgleTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem230 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup58 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemTotalSales = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemTotalSalesDetails = new DevExpress.XtraNavBar.NavBarItem();
@@ -1871,7 +1871,7 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup18;
+            this.navBarControl2.ActiveGroup = this.navBarGroup15;
             this.navBarControl2.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Background.Options.UseFont = true;
             this.navBarControl2.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1964,11 +1964,62 @@
             this.navBarControl2.TabIndex = 3;
             this.navBarControl2.Text = "navBarControl2";
             // 
+            // navBarGroup18
+            // 
+            this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup18.Appearance.Options.UseFont = true;
+            this.navBarGroup18.Caption = "تقارير فواتير المبيعات";
+            this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnedBillCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransitionCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillsAgleTransitionsReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem230)});
+            this.navBarGroup18.Name = "navBarGroup18";
+            // 
+            // navBarItemSalesTransitions
+            // 
+            this.navBarItemSalesTransitions.Caption = "حركة المبيعات";
+            this.navBarItemSalesTransitions.Name = "navBarItemSalesTransitions";
+            this.navBarItemSalesTransitions.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesTransitions_LinkClicked);
+            // 
+            // navBarItemBillCopy
+            // 
+            this.navBarItemBillCopy.Caption = "استعلام عن فاتورة";
+            this.navBarItemBillCopy.Name = "navBarItemBillCopy";
+            this.navBarItemBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillCopy_LinkClicked);
+            // 
+            // navBarItemReturnedBillCopy
+            // 
+            this.navBarItemReturnedBillCopy.Caption = "استعلام عن مرتجع";
+            this.navBarItemReturnedBillCopy.Name = "navBarItemReturnedBillCopy";
+            this.navBarItemReturnedBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedBillCopy_LinkClicked);
+            // 
+            // navBarItemTransitionCopy
+            // 
+            this.navBarItemTransitionCopy.Caption = "استعلام عن سداد";
+            this.navBarItemTransitionCopy.Name = "navBarItemTransitionCopy";
+            this.navBarItemTransitionCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransitionCopy_LinkClicked);
+            // 
+            // navBarItemBillsAgleTransitionsReport
+            // 
+            this.navBarItemBillsAgleTransitionsReport.Caption = "حركة فواتير الآجل";
+            this.navBarItemBillsAgleTransitionsReport.Name = "navBarItemBillsAgleTransitionsReport";
+            this.navBarItemBillsAgleTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillsAgleTransitionsReport_LinkClicked);
+            // 
+            // navBarItem230
+            // 
+            this.navBarItem230.Caption = "فواتير لم يتم سدادها بالكامل";
+            this.navBarItem230.Name = "navBarItem230";
+            this.navBarItem230.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateLeastBills_LinkClicked);
+            // 
             // navBarGroup15
             // 
             this.navBarGroup15.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.navBarGroup15.Appearance.Options.UseFont = true;
             this.navBarGroup15.Caption = "تاكيد البيع";
+            this.navBarGroup15.Expanded = true;
             this.navBarGroup15.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmBill)});
             this.navBarGroup15.Name = "navBarGroup15";
@@ -2088,57 +2139,6 @@
             this.navBarItemOfferStorage.Caption = "تجميع وفك";
             this.navBarItemOfferStorage.Name = "navBarItemOfferStorage";
             this.navBarItemOfferStorage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOfferStorage_LinkClicked);
-            // 
-            // navBarGroup18
-            // 
-            this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup18.Appearance.Options.UseFont = true;
-            this.navBarGroup18.Caption = "تقارير فواتير المبيعات";
-            this.navBarGroup18.Expanded = true;
-            this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnedBillCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransitionCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillsAgleTransitionsReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem230)});
-            this.navBarGroup18.Name = "navBarGroup18";
-            // 
-            // navBarItemSalesTransitions
-            // 
-            this.navBarItemSalesTransitions.Caption = "حركة المبيعات";
-            this.navBarItemSalesTransitions.Name = "navBarItemSalesTransitions";
-            this.navBarItemSalesTransitions.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesTransitions_LinkClicked);
-            // 
-            // navBarItemBillCopy
-            // 
-            this.navBarItemBillCopy.Caption = "استعلام عن فاتورة";
-            this.navBarItemBillCopy.Name = "navBarItemBillCopy";
-            this.navBarItemBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillCopy_LinkClicked);
-            // 
-            // navBarItemReturnedBillCopy
-            // 
-            this.navBarItemReturnedBillCopy.Caption = "استعلام عن مرتجع";
-            this.navBarItemReturnedBillCopy.Name = "navBarItemReturnedBillCopy";
-            this.navBarItemReturnedBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedBillCopy_LinkClicked);
-            // 
-            // navBarItemTransitionCopy
-            // 
-            this.navBarItemTransitionCopy.Caption = "استعلام عن سداد";
-            this.navBarItemTransitionCopy.Name = "navBarItemTransitionCopy";
-            this.navBarItemTransitionCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransitionCopy_LinkClicked);
-            // 
-            // navBarItemBillsAgleTransitionsReport
-            // 
-            this.navBarItemBillsAgleTransitionsReport.Caption = "حركة فواتير الآجل";
-            this.navBarItemBillsAgleTransitionsReport.Name = "navBarItemBillsAgleTransitionsReport";
-            this.navBarItemBillsAgleTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillsAgleTransitionsReport_LinkClicked);
-            // 
-            // navBarItem230
-            // 
-            this.navBarItem230.Caption = "فواتير لم يتم سدادها بالكامل";
-            this.navBarItem230.Name = "navBarItem230";
-            this.navBarItem230.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateLeastBills_LinkClicked);
             // 
             // navBarGroup58
             // 
