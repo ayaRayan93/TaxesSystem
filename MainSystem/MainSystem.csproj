@@ -66,6 +66,10 @@
     <ApplicationIcon>logo_gUy_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AxInterop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CCCSystem1\CCCSystem\packages\WMPLib.1.0.0\lib\AxInterop.WMPLib.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
       <Private>True</Private>
@@ -440,6 +444,12 @@
       <DependentUpon>Report_SupplierType.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Reports\supplierType\SupplierType_Items.cs" />
+    <Compile Include="Reception\CustomerServiceAfterReceived_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reception\CustomerServiceAfterReceived_Report.designer.cs">
+      <DependentUpon>CustomerServiceAfterReceived_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="RequestsSystem.cs" />
     <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
       <SubType>Component</SubType>
@@ -3319,6 +3329,9 @@
     <EmbeddedResource Include="Purchases\Reports\supplierType\Report_SupplierType.resx">
       <DependentUpon>Report_SupplierType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reception\CustomerServiceAfterReceived_Report.resx">
+      <DependentUpon>CustomerServiceAfterReceived_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Requests\Least Quantity\Print_LeastQuantity.resx">
       <DependentUpon>Print_LeastQuantity.cs</DependentUpon>
     </EmbeddedResource>
@@ -4633,14 +4646,6 @@
     <None Include="Store\packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="AxWMPLib">
-      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
     <COMReference Include="stdole">
       <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>2</VersionMajor>

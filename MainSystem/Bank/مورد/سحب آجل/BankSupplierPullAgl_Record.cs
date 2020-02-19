@@ -79,12 +79,12 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 radCash.Enabled = true;
-                radCredit.Enabled = true;
+                radCredit.Enabled = false;
+                radCredit.Checked = false;
                 radBankAccount.Enabled = false;
-                //radVisa.Enabled = false;
                 radBankAccount.Checked = false;
-                //radVisa.Checked = false;
-                //layoutControlItemBank.Text = "خزينة";
+                radDeposit.Enabled = false;
+                radDeposit.Checked = false;
                 layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelBank.Visible = true;
                 labelBank.Text = "*";
@@ -179,12 +179,10 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 radCash.Enabled = false;
-                radCredit.Enabled = false;
                 radCash.Checked = false;
-                radCredit.Checked = false;
+                radCredit.Enabled = true;
                 radBankAccount.Enabled = true;
-                //radVisa.Enabled = true;
-                radBankAccount.Checked = true;
+                radDeposit.Enabled = true;
                 layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelBank.Visible = true;
                 labelBank.Text = "*";
@@ -197,6 +195,7 @@ namespace MainSystem
                 labelCheckNumber.Visible = true;
                 labelCheckNumber.Text = "*";
                 groupBox1.Enabled = false;
+                radCredit.Checked = true;
                 loadedPayType = true;
             }
             catch (Exception ex)
@@ -240,6 +239,38 @@ namespace MainSystem
             dbconnection.Close();
         }
         
+        private void radDeposit_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RadioButton r = (RadioButton)sender;
+                PaymentMethod = r.Text;
+                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelDate.Visible = true;
+                labelDate.Text = "*";
+                layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelCheckNumber.Visible = true;
+                labelCheckNumber.Text = "*";
+                layoutControlItemPayDate.Text = "تاريخ الاستحقاق";
+                layoutControlItemCheck.Text = "رقم الشيك";
+                groupBox1.Enabled = false;
+                layoutControlItemBank.Text = "بنك";
+
+                string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmbBank.DataSource = dt;
+                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                cmbBank.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -256,6 +287,10 @@ namespace MainSystem
                 else if (PaymentMethod == "حساب بنكى")
                 {
                     check = ( comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                }
+                else if (PaymentMethod == "حساب بنكى")
+                {
+                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
 
                 if (check)
@@ -304,7 +339,7 @@ namespace MainSystem
                         com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
                         com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
 
-                        if (PaymentMethod == "نقدى")
+                        if (PaymentMethod != "شيك")
                         {
                             MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                             double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
@@ -1114,7 +1149,7 @@ namespace MainSystem
 
             return flag5;
         }
-
+        
         //functions
         //public void DecreaseClientPaied()
         //{

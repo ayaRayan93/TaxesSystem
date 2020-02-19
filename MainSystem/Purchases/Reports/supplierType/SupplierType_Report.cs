@@ -387,7 +387,7 @@ namespace MainSystem
                                 while (dr3.Read())
                                 {
                                     totalBillQuantity = Convert.ToDouble(dr3["الكمية"].ToString());
-                                    totalBillCost = Convert.ToDouble(dr3["المبلغ"].ToString());
+                                    totalBillCost = Convert.ToDouble(dr3["المبلغ"].ToString())* Convert.ToDouble(dr3["الكمية"].ToString());
 
                                     string query4 = "SELECT sum(supplier_return_bill_details.Total_Meters) as 'الكمية',sum(supplier_return_bill_details.Purchasing_Price) as 'المبلغ',data.Sort_ID FROM supplier_return_bill_details INNER JOIN supplier_return_bill ON supplier_return_bill_details.ReturnBill_ID = supplier_return_bill.ReturnBill_ID INNER JOIN data ON data.Data_ID = supplier_return_bill_details.Data_ID INNER JOIN supplier_factory ON data.Factory_ID = supplier_factory.Factory_ID  and supplier_return_bill.Supplier_ID = supplier_factory.Supplier_ID where Date(supplier_return_bill.Date) >= '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and Date(supplier_return_bill.Date) <= '" + dateTimePickerTo.Value.ToString("yyyy-MM-dd") + "' and supplier_return_bill.Supplier_ID=" + supplierId + " and data.Factory_ID=" + factoryId + " and data.Type_ID=" + dr["Type_ID"].ToString() + " and data.Classification='" + dr2["Classification"].ToString() + "' group by data.Sort_ID";
                                     MySqlCommand comand4 = new MySqlCommand(query4, dbconnection4);
@@ -399,7 +399,7 @@ namespace MainSystem
                                             if (dr4["المبلغ"].ToString() != "")
                                             {
                                                 totalReturnsQuantity = Convert.ToDouble(dr4["الكمية"].ToString());
-                                                totalReturnsCost = Convert.ToDouble(dr4["المبلغ"].ToString());
+                                                totalReturnsCost = Convert.ToDouble(dr4["المبلغ"].ToString())* Convert.ToDouble(dr4["الكمية"].ToString());
                                             }
                                         }
                                     }
