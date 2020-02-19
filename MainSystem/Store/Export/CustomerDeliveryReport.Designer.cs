@@ -219,6 +219,8 @@
             this.gridView2.AppearancePrint.HeaderPanel.Options.UseFont = true;
             this.gridView2.AppearancePrint.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView2.AppearancePrint.Row.Options.UseFont = true;
+            this.gridView2.AppearancePrint.Row.Options.UseTextOptions = true;
+            this.gridView2.AppearancePrint.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView2.GridControl = this.dataGridView1;
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.AllowSortAnimation = DevExpress.Utils.DefaultBoolean.False;
