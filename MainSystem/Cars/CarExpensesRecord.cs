@@ -70,7 +70,7 @@ namespace MainSystem
                 dbconnection.Open();
                 if (txtCost.Text != "" && comCarNumber.Text != "" && comType.Text != "")
                 {
-                    string query = "insert into car_expenses  (Car_ID,Cost,Note,Date,Expenses_Type)values(@Car_ID,@Cost,@Note,@Date,@Expenses_Type)";
+                    string query = "insert into car_expenses  (Car_ID,Cost,Note,Date,Expenses_Type,Expenses_Type_ID)values(@Car_ID,@Cost,@Note,@Date,@Expenses_Type,@Expenses_Type_ID)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                     com.Parameters.Add("@Date", MySqlDbType.Date);
@@ -88,7 +88,10 @@ namespace MainSystem
                         com.Parameters["@Note"].Value = txtNote.Text;
                     }
                     com.Parameters.Add("@Expenses_Type", MySqlDbType.VarChar);
-                    com.Parameters["@Expenses_Type"].Value = comType.SelectedValue;
+                    com.Parameters["@Expenses_Type"].Value = comType.Text;
+                    com.Parameters.Add("@Expenses_Type_ID", MySqlDbType.Int16);
+                    com.Parameters["@Expenses_Type_ID"].Value = comType.SelectedValue;
+
                     double cost;
                     if (double.TryParse(txtCost.Text, out cost))
                     {
@@ -157,21 +160,7 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        private void txtCost_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                XtraTabPage xtraTabPage = getTabPage("تسجيل مصروف");
-                if (!IsClear())
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                else
-                    xtraTabPage.ImageOptions.Image = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+    
 
         //function
         public XtraTabPage getTabPage(string text)

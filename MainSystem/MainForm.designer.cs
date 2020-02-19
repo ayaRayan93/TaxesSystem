@@ -142,13 +142,6 @@
             this.xtraTabPageSales = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlSalesContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup18 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemBillsAgleTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem230 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup15 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemConfirmBill = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup16 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -166,6 +159,13 @@
             this.navBarGroup39 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemOfferReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemOfferStorage = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup18 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillsAgleTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem230 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup58 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemTotalSales = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemTotalSalesDetails = new DevExpress.XtraNavBar.NavBarItem();
@@ -654,6 +654,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem265 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -750,7 +751,7 @@
             this.xtraTabControlMainContainer.Name = "xtraTabControlMainContainer";
             this.xtraTabControlMainContainer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.xtraTabControlMainContainer.SelectedTabPage = this.xtraTabPageMain;
-            this.xtraTabControlMainContainer.Size = new System.Drawing.Size(1177, 704);
+            this.xtraTabControlMainContainer.Size = new System.Drawing.Size(899, 712);
             this.xtraTabControlMainContainer.TabIndex = 1;
             this.xtraTabControlMainContainer.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageMain,
@@ -1964,56 +1965,6 @@
             this.navBarControl2.TabIndex = 3;
             this.navBarControl2.Text = "navBarControl2";
             // 
-            // navBarGroup18
-            // 
-            this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup18.Appearance.Options.UseFont = true;
-            this.navBarGroup18.Caption = "تقارير فواتير المبيعات";
-            this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnedBillCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransitionCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillsAgleTransitionsReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem230)});
-            this.navBarGroup18.Name = "navBarGroup18";
-            // 
-            // navBarItemSalesTransitions
-            // 
-            this.navBarItemSalesTransitions.Caption = "حركة المبيعات";
-            this.navBarItemSalesTransitions.Name = "navBarItemSalesTransitions";
-            this.navBarItemSalesTransitions.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesTransitions_LinkClicked);
-            // 
-            // navBarItemBillCopy
-            // 
-            this.navBarItemBillCopy.Caption = "استعلام عن فاتورة";
-            this.navBarItemBillCopy.Name = "navBarItemBillCopy";
-            this.navBarItemBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillCopy_LinkClicked);
-            // 
-            // navBarItemReturnedBillCopy
-            // 
-            this.navBarItemReturnedBillCopy.Caption = "استعلام عن مرتجع";
-            this.navBarItemReturnedBillCopy.Name = "navBarItemReturnedBillCopy";
-            this.navBarItemReturnedBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedBillCopy_LinkClicked);
-            // 
-            // navBarItemTransitionCopy
-            // 
-            this.navBarItemTransitionCopy.Caption = "استعلام عن سداد";
-            this.navBarItemTransitionCopy.Name = "navBarItemTransitionCopy";
-            this.navBarItemTransitionCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransitionCopy_LinkClicked);
-            // 
-            // navBarItemBillsAgleTransitionsReport
-            // 
-            this.navBarItemBillsAgleTransitionsReport.Caption = "حركة فواتير الآجل";
-            this.navBarItemBillsAgleTransitionsReport.Name = "navBarItemBillsAgleTransitionsReport";
-            this.navBarItemBillsAgleTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillsAgleTransitionsReport_LinkClicked);
-            // 
-            // navBarItem230
-            // 
-            this.navBarItem230.Caption = "فواتير لم يتم سدادها بالكامل";
-            this.navBarItem230.Name = "navBarItem230";
-            this.navBarItem230.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateLeastBills_LinkClicked);
-            // 
             // navBarGroup15
             // 
             this.navBarGroup15.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
@@ -2139,6 +2090,56 @@
             this.navBarItemOfferStorage.Caption = "تجميع وفك";
             this.navBarItemOfferStorage.Name = "navBarItemOfferStorage";
             this.navBarItemOfferStorage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOfferStorage_LinkClicked);
+            // 
+            // navBarGroup18
+            // 
+            this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup18.Appearance.Options.UseFont = true;
+            this.navBarGroup18.Caption = "تقارير فواتير المبيعات";
+            this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnedBillCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransitionCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillsAgleTransitionsReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem230)});
+            this.navBarGroup18.Name = "navBarGroup18";
+            // 
+            // navBarItemSalesTransitions
+            // 
+            this.navBarItemSalesTransitions.Caption = "حركة المبيعات";
+            this.navBarItemSalesTransitions.Name = "navBarItemSalesTransitions";
+            this.navBarItemSalesTransitions.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesTransitions_LinkClicked);
+            // 
+            // navBarItemBillCopy
+            // 
+            this.navBarItemBillCopy.Caption = "استعلام عن فاتورة";
+            this.navBarItemBillCopy.Name = "navBarItemBillCopy";
+            this.navBarItemBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillCopy_LinkClicked);
+            // 
+            // navBarItemReturnedBillCopy
+            // 
+            this.navBarItemReturnedBillCopy.Caption = "استعلام عن مرتجع";
+            this.navBarItemReturnedBillCopy.Name = "navBarItemReturnedBillCopy";
+            this.navBarItemReturnedBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedBillCopy_LinkClicked);
+            // 
+            // navBarItemTransitionCopy
+            // 
+            this.navBarItemTransitionCopy.Caption = "استعلام عن سداد";
+            this.navBarItemTransitionCopy.Name = "navBarItemTransitionCopy";
+            this.navBarItemTransitionCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransitionCopy_LinkClicked);
+            // 
+            // navBarItemBillsAgleTransitionsReport
+            // 
+            this.navBarItemBillsAgleTransitionsReport.Caption = "حركة فواتير الآجل";
+            this.navBarItemBillsAgleTransitionsReport.Name = "navBarItemBillsAgleTransitionsReport";
+            this.navBarItemBillsAgleTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillsAgleTransitionsReport_LinkClicked);
+            // 
+            // navBarItem230
+            // 
+            this.navBarItem230.Caption = "فواتير لم يتم سدادها بالكامل";
+            this.navBarItem230.Name = "navBarItem230";
+            this.navBarItem230.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateLeastBills_LinkClicked);
             // 
             // navBarGroup58
             // 
@@ -2623,7 +2624,7 @@
             this.xtraTabPageCars.Controls.Add(this.navBarControl4);
             this.xtraTabPageCars.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabPageCars.Name = "xtraTabPageCars";
-            this.xtraTabPageCars.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageCars.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageCars.Text = "ادارة السيارات";
             // 
             // xtraTabControlCarsContent
@@ -2648,14 +2649,14 @@
             this.xtraTabControlCarsContent.MultiLine = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabControlCarsContent.Name = "xtraTabControlCarsContent";
             this.xtraTabControlCarsContent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.xtraTabControlCarsContent.Size = new System.Drawing.Size(981, 702);
+            this.xtraTabControlCarsContent.Size = new System.Drawing.Size(703, 710);
             this.xtraTabControlCarsContent.TabIndex = 4;
             this.xtraTabControlCarsContent.Visible = false;
             this.xtraTabControlCarsContent.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
             // navBarControl4
             // 
-            this.navBarControl4.ActiveGroup = this.navBarGroup26;
+            this.navBarControl4.ActiveGroup = this.navBarGroup25;
             this.navBarControl4.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl4.Appearance.Background.Options.UseFont = true;
             this.navBarControl4.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -2724,12 +2725,13 @@
             this.navBarItem75,
             this.navBarItem64,
             this.navBarItem232,
-            this.navBarItem233});
-            this.navBarControl4.Location = new System.Drawing.Point(981, 0);
+            this.navBarItem233,
+            this.navBarItem265});
+            this.navBarControl4.Location = new System.Drawing.Point(703, 0);
             this.navBarControl4.Name = "navBarControl4";
             this.navBarControl4.OptionsNavPane.ExpandedWidth = 164;
             this.navBarControl4.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl4.Size = new System.Drawing.Size(164, 702);
+            this.navBarControl4.Size = new System.Drawing.Size(164, 710);
             this.navBarControl4.TabIndex = 3;
             this.navBarControl4.Text = "navBarControl4";
             // 
@@ -2738,7 +2740,6 @@
             this.navBarGroup26.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.navBarGroup26.Appearance.Options.UseFont = true;
             this.navBarGroup26.Caption = "التكويد";
-            this.navBarGroup26.Expanded = true;
             this.navBarGroup26.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem65),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem66),
@@ -2819,9 +2820,11 @@
             this.navBarGroup25.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.navBarGroup25.Appearance.Options.UseFont = true;
             this.navBarGroup25.Caption = "المصروفات";
+            this.navBarGroup25.Expanded = true;
             this.navBarGroup25.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem63),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem64)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem64),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem265)});
             this.navBarGroup25.Name = "navBarGroup25";
             // 
             // navBarItem63
@@ -5870,7 +5873,7 @@
             this.panMain.Location = new System.Drawing.Point(0, 0);
             this.panMain.Margin = new System.Windows.Forms.Padding(0);
             this.panMain.Name = "panMain";
-            this.panMain.Size = new System.Drawing.Size(1177, 746);
+            this.panMain.Size = new System.Drawing.Size(899, 754);
             this.panMain.TabIndex = 2;
             // 
             // panContent
@@ -5880,7 +5883,7 @@
             this.panContent.Location = new System.Drawing.Point(0, 42);
             this.panContent.Margin = new System.Windows.Forms.Padding(0);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(1177, 704);
+            this.panContent.Size = new System.Drawing.Size(899, 712);
             this.panContent.TabIndex = 1;
             // 
             // panHeader
@@ -5908,7 +5911,7 @@
             this.panHeader.Location = new System.Drawing.Point(0, 0);
             this.panHeader.Margin = new System.Windows.Forms.Padding(0);
             this.panHeader.Name = "panHeader";
-            this.panHeader.Size = new System.Drawing.Size(1177, 42);
+            this.panHeader.Size = new System.Drawing.Size(899, 42);
             this.panHeader.TabIndex = 0;
             this.panHeader.Tag = "اعدادات";
             // 
@@ -5918,7 +5921,7 @@
             this.labelStoreExpectedOrder.AutoSize = true;
             this.labelStoreExpectedOrder.BackColor = System.Drawing.Color.Red;
             this.labelStoreExpectedOrder.ForeColor = System.Drawing.Color.White;
-            this.labelStoreExpectedOrder.Location = new System.Drawing.Point(860, 5);
+            this.labelStoreExpectedOrder.Location = new System.Drawing.Point(582, 5);
             this.labelStoreExpectedOrder.Name = "labelStoreExpectedOrder";
             this.labelStoreExpectedOrder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labelStoreExpectedOrder.Size = new System.Drawing.Size(13, 13);
@@ -5933,7 +5936,7 @@
             this.labelBaskt.AutoSize = true;
             this.labelBaskt.BackColor = System.Drawing.Color.Red;
             this.labelBaskt.ForeColor = System.Drawing.Color.White;
-            this.labelBaskt.Location = new System.Drawing.Point(910, 5);
+            this.labelBaskt.Location = new System.Drawing.Point(632, 5);
             this.labelBaskt.Name = "labelBaskt";
             this.labelBaskt.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labelBaskt.Size = new System.Drawing.Size(13, 13);
@@ -5948,7 +5951,7 @@
             this.labelNotifySpecialOrderSales.AutoSize = true;
             this.labelNotifySpecialOrderSales.BackColor = System.Drawing.Color.Red;
             this.labelNotifySpecialOrderSales.ForeColor = System.Drawing.Color.White;
-            this.labelNotifySpecialOrderSales.Location = new System.Drawing.Point(810, 5);
+            this.labelNotifySpecialOrderSales.Location = new System.Drawing.Point(532, 5);
             this.labelNotifySpecialOrderSales.Name = "labelNotifySpecialOrderSales";
             this.labelNotifySpecialOrderSales.Size = new System.Drawing.Size(13, 13);
             this.labelNotifySpecialOrderSales.TabIndex = 23;
@@ -5962,7 +5965,7 @@
             this.labelNotifySpecialOrderPurchase.AutoSize = true;
             this.labelNotifySpecialOrderPurchase.BackColor = System.Drawing.Color.Red;
             this.labelNotifySpecialOrderPurchase.ForeColor = System.Drawing.Color.White;
-            this.labelNotifySpecialOrderPurchase.Location = new System.Drawing.Point(760, 5);
+            this.labelNotifySpecialOrderPurchase.Location = new System.Drawing.Point(482, 5);
             this.labelNotifySpecialOrderPurchase.Name = "labelNotifySpecialOrderPurchase";
             this.labelNotifySpecialOrderPurchase.Size = new System.Drawing.Size(13, 13);
             this.labelNotifySpecialOrderPurchase.TabIndex = 9;
@@ -5976,7 +5979,7 @@
             this.labelPurchaseLeast.AutoSize = true;
             this.labelPurchaseLeast.BackColor = System.Drawing.Color.Red;
             this.labelPurchaseLeast.ForeColor = System.Drawing.Color.White;
-            this.labelPurchaseLeast.Location = new System.Drawing.Point(710, 5);
+            this.labelPurchaseLeast.Location = new System.Drawing.Point(432, 5);
             this.labelPurchaseLeast.Name = "labelPurchaseLeast";
             this.labelPurchaseLeast.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labelPurchaseLeast.Size = new System.Drawing.Size(13, 13);
@@ -5991,7 +5994,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Red;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(660, 5);
+            this.label2.Location = new System.Drawing.Point(382, 5);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(13, 13);
             this.label2.TabIndex = 13;
@@ -6006,7 +6009,7 @@
             this.pictureBoxPurchase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxPurchase.Image = global::MainSystem.Properties.Resources.icons8_Paste_Special_32;
             this.pictureBoxPurchase.ImageLocation = "";
-            this.pictureBoxPurchase.Location = new System.Drawing.Point(724, 4);
+            this.pictureBoxPurchase.Location = new System.Drawing.Point(446, 4);
             this.pictureBoxPurchase.Name = "pictureBoxPurchase";
             this.pictureBoxPurchase.Size = new System.Drawing.Size(44, 34);
             this.pictureBoxPurchase.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -6022,7 +6025,7 @@
             this.pictureBoxStoreExpectedOrder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxStoreExpectedOrder.Image = global::MainSystem.Properties.Resources.icons8_Deliveries_32;
             this.pictureBoxStoreExpectedOrder.ImageLocation = "";
-            this.pictureBoxStoreExpectedOrder.Location = new System.Drawing.Point(824, 4);
+            this.pictureBoxStoreExpectedOrder.Location = new System.Drawing.Point(546, 4);
             this.pictureBoxStoreExpectedOrder.Name = "pictureBoxStoreExpectedOrder";
             this.pictureBoxStoreExpectedOrder.Size = new System.Drawing.Size(44, 34);
             this.pictureBoxStoreExpectedOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -6048,7 +6051,7 @@
             this.pictureBoxSales.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxSales.Image = global::MainSystem.Properties.Resources.icons8_Order_History_32;
             this.pictureBoxSales.ImageLocation = "";
-            this.pictureBoxSales.Location = new System.Drawing.Point(774, 4);
+            this.pictureBoxSales.Location = new System.Drawing.Point(496, 4);
             this.pictureBoxSales.Name = "pictureBoxSales";
             this.pictureBoxSales.Size = new System.Drawing.Size(44, 34);
             this.pictureBoxSales.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -6064,7 +6067,7 @@
             this.pictureBoxSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxSetting.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSetting.Image")));
             this.pictureBoxSetting.ImageLocation = "";
-            this.pictureBoxSetting.Location = new System.Drawing.Point(1124, 5);
+            this.pictureBoxSetting.Location = new System.Drawing.Point(846, 5);
             this.pictureBoxSetting.Name = "pictureBoxSetting";
             this.pictureBoxSetting.Size = new System.Drawing.Size(30, 30);
             this.pictureBoxSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -6079,7 +6082,7 @@
             this.pictureBoxPurchaseLeast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxPurchaseLeast.Image = global::MainSystem.Properties.Resources.icons8_Electricity_32;
             this.pictureBoxPurchaseLeast.ImageLocation = "";
-            this.pictureBoxPurchaseLeast.Location = new System.Drawing.Point(674, 4);
+            this.pictureBoxPurchaseLeast.Location = new System.Drawing.Point(396, 4);
             this.pictureBoxPurchaseLeast.Name = "pictureBoxPurchaseLeast";
             this.pictureBoxPurchaseLeast.Size = new System.Drawing.Size(44, 34);
             this.pictureBoxPurchaseLeast.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -6138,7 +6141,7 @@
             this.pictureBoxCar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxCar.Image = global::MainSystem.Properties.Resources.Car_Service_50px;
             this.pictureBoxCar.ImageLocation = "";
-            this.pictureBoxCar.Location = new System.Drawing.Point(624, 4);
+            this.pictureBoxCar.Location = new System.Drawing.Point(346, 4);
             this.pictureBoxCar.Name = "pictureBoxCar";
             this.pictureBoxCar.Size = new System.Drawing.Size(44, 34);
             this.pictureBoxCar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -6153,7 +6156,7 @@
             this.pictureBoxBell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBoxBell.Image = global::MainSystem.Properties.Resources.Shopping_Cart_30px;
             this.pictureBoxBell.ImageLocation = "";
-            this.pictureBoxBell.Location = new System.Drawing.Point(874, 4);
+            this.pictureBoxBell.Location = new System.Drawing.Point(596, 4);
             this.pictureBoxBell.Name = "pictureBoxBell";
             this.pictureBoxBell.Size = new System.Drawing.Size(44, 34);
             this.pictureBoxBell.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -6168,7 +6171,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 14F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(924, 9);
+            this.label1.Location = new System.Drawing.Point(646, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(192, 23);
             this.label1.TabIndex = 1;
@@ -6201,11 +6204,17 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
+            // navBarItem265
+            // 
+            this.navBarItem265.Caption = "تقرير ";
+            this.navBarItem265.Name = "navBarItem265";
+            this.navBarItem265.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem265_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1177, 746);
+            this.ClientSize = new System.Drawing.Size(899, 754);
             this.Controls.Add(this.panMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
@@ -6884,6 +6893,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemOneOrder2;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPurchaseQuantityReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPurchasePriceReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem265;
     }
 }
 

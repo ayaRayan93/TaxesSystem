@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version1.71\</PublishUrl>
+    <PublishUrl>D:\التكويد\version1.73\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>247</ApplicationRevision>
+    <ApplicationRevision>249</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -249,6 +249,12 @@
     </Compile>
     <Compile Include="Bank\تقارير\Print_BankTransition_Report.designer.cs">
       <DependentUpon>Print_BankTransition_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarExpensesReport2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarExpensesReport2.Designer.cs">
+      <DependentUpon>CarExpensesReport2.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerServiceSystem.cs" />
     <Compile Include="CustomerService\displayCustomerBill.cs">
@@ -3174,6 +3180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\تقارير\Print_BankTransition_Report.resx">
       <DependentUpon>Print_BankTransition_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CarExpensesReport2.resx">
+      <DependentUpon>CarExpensesReport2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\displayCustomerBill.resx">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>

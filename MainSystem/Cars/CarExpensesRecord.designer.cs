@@ -63,7 +63,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(204, 24);
             this.dateTimePicker1.TabIndex = 55;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.txtCost_TextChanged);
             // 
             // comCarNumber
             // 
@@ -74,7 +73,6 @@
             this.comCarNumber.Name = "comCarNumber";
             this.comCarNumber.Size = new System.Drawing.Size(180, 24);
             this.comCarNumber.TabIndex = 54;
-            this.comCarNumber.TextChanged += new System.EventHandler(this.txtCost_TextChanged);
             // 
             // label5
             // 
@@ -97,7 +95,6 @@
             this.comType.Name = "comType";
             this.comType.Size = new System.Drawing.Size(180, 24);
             this.comType.TabIndex = 57;
-            this.comType.TextChanged += new System.EventHandler(this.txtCost_TextChanged);
             // 
             // label2
             // 
@@ -107,7 +104,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label2.Location = new System.Drawing.Point(605, 171);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 19);
+            this.label2.Size = new System.Drawing.Size(104, 19);
             this.label2.TabIndex = 58;
             this.label2.Text = "نوع المصروفات";
             // 
@@ -119,7 +116,6 @@
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(180, 24);
             this.txtCost.TabIndex = 59;
-            this.txtCost.TextChanged += new System.EventHandler(this.txtCost_TextChanged);
             // 
             // label3
             // 
@@ -129,7 +125,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.label3.Location = new System.Drawing.Point(605, 217);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 19);
+            this.label3.Size = new System.Drawing.Size(46, 19);
             this.label3.TabIndex = 60;
             this.label3.Text = "المبلغ";
             // 
@@ -154,7 +150,6 @@
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(274, 65);
             this.txtNote.TabIndex = 61;
-            this.txtNote.TextChanged += new System.EventHandler(this.txtCost_TextChanged);
             // 
             // tableLayoutPanel2
             // 

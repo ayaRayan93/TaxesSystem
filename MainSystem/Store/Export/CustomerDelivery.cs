@@ -1106,11 +1106,11 @@ namespace MainSystem
             //gridView1.Columns["Store_ID"].Visible = false;
             //txtDelegate.Text = gridView1.GetDataRow(0)["Delegate_Name"].ToString();
         }
-
         public string getDeliveredDataItems(string type)
         {
             string query = "select group_concat(distinct Data_ID) from customer_permissions_details inner join customer_permissions on customer_permissions.Customer_Permissin_ID=customer_permissions_details.Customer_Permissin_ID where ItemType='" + type+"' and BranchBillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
             MySqlCommand com = new MySqlCommand(query,dbconnection);
+
             string result = com.ExecuteScalar().ToString();
 
             return result;
@@ -1215,8 +1215,6 @@ namespace MainSystem
             com.ExecuteNonQuery();
             dbconnection1.Close();
         }
-
-
         public void checkIfItemRecivedTotaly(int customerBill_ID)
         {
             dbconnection.Close();
@@ -1267,6 +1265,7 @@ namespace MainSystem
                 }
             }
             dr.Close();
+
             if (flag)
             {
                 query = "update customer_bill set RecivedFlag='تم' where CustomerBill_ID=" + customerBill_ID;
