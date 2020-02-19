@@ -47,21 +47,25 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.layoutControl4 = new DevExpress.XtraLayout.LayoutControl();
+            this.label5 = new System.Windows.Forms.Label();
+            this.radDeposit = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.radBankAccount = new System.Windows.Forms.RadioButton();
+            this.radCredit = new System.Windows.Forms.RadioButton();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
+            this.label4 = new System.Windows.Forms.Label();
             this.radCash = new System.Windows.Forms.RadioButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.radCredit = new System.Windows.Forms.RadioButton();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             this.radioButtonSafe = new System.Windows.Forms.RadioButton();
             this.radioButtonBank = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
@@ -173,13 +177,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
             this.layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
@@ -425,49 +431,89 @@
             // 
             // label14
             // 
-            this.label14.Location = new System.Drawing.Point(156, 12);
+            this.label14.Location = new System.Drawing.Point(186, 12);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(92, 25);
+            this.label14.Size = new System.Drawing.Size(109, 25);
             this.label14.TabIndex = 64;
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(429, 12);
+            this.label13.Location = new System.Drawing.Point(464, 12);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(74, 25);
+            this.label13.Size = new System.Drawing.Size(39, 25);
             this.label13.TabIndex = 63;
             // 
             // layoutControl4
             // 
+            this.layoutControl4.Controls.Add(this.label5);
+            this.layoutControl4.Controls.Add(this.radDeposit);
             this.layoutControl4.Controls.Add(this.label2);
             this.layoutControl4.Controls.Add(this.radBankAccount);
+            this.layoutControl4.Controls.Add(this.radCredit);
             this.layoutControl4.Location = new System.Drawing.Point(12, 41);
             this.layoutControl4.Name = "layoutControl4";
             this.layoutControl4.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl4.Root = this.layoutControlGroup4;
-            this.layoutControl4.Size = new System.Drawing.Size(236, 59);
+            this.layoutControl4.Size = new System.Drawing.Size(283, 59);
             this.layoutControl4.TabIndex = 62;
             this.layoutControl4.Text = "layoutControl4";
             // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(79, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(20, 25);
+            this.label5.TabIndex = 40;
+            // 
+            // radDeposit
+            // 
+            this.radDeposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.radDeposit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.radDeposit.Location = new System.Drawing.Point(12, 12);
+            this.radDeposit.Name = "radDeposit";
+            this.radDeposit.Size = new System.Drawing.Size(63, 25);
+            this.radDeposit.TabIndex = 39;
+            this.radDeposit.TabStop = true;
+            this.radDeposit.Text = "ايداع";
+            this.radDeposit.UseVisualStyleBackColor = true;
+            this.radDeposit.CheckedChanged += new System.EventHandler(this.radDeposit_CheckedChanged);
+            // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(162, 12);
+            this.label2.Location = new System.Drawing.Point(194, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 25);
+            this.label2.Size = new System.Drawing.Size(20, 25);
             this.label2.TabIndex = 5;
             // 
             // radBankAccount
             // 
             this.radBankAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.radBankAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.radBankAccount.Location = new System.Drawing.Point(12, 12);
+            this.radBankAccount.Location = new System.Drawing.Point(103, 12);
             this.radBankAccount.Name = "radBankAccount";
-            this.radBankAccount.Size = new System.Drawing.Size(146, 25);
+            this.radBankAccount.Size = new System.Drawing.Size(87, 25);
             this.radBankAccount.TabIndex = 4;
             this.radBankAccount.TabStop = true;
             this.radBankAccount.Text = "حساب بنكى";
             this.radBankAccount.UseVisualStyleBackColor = true;
             this.radBankAccount.CheckedChanged += new System.EventHandler(this.radBankAccount_CheckedChanged);
+            // 
+            // radCredit
+            // 
+            this.radCredit.BackColor = System.Drawing.Color.White;
+            this.radCredit.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.radCredit.Enabled = false;
+            this.radCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.radCredit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.radCredit.Location = new System.Drawing.Point(218, 12);
+            this.radCredit.Name = "radCredit";
+            this.radCredit.Size = new System.Drawing.Size(53, 25);
+            this.radCredit.TabIndex = 38;
+            this.radCredit.Text = "شيك";
+            this.radCredit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.radCredit.UseVisualStyleBackColor = false;
+            this.radCredit.Visible = false;
+            this.radCredit.CheckedChanged += new System.EventHandler(this.radCredit_CheckedChanged);
             // 
             // layoutControlGroup4
             // 
@@ -476,17 +522,20 @@
             this.layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem30,
             this.emptySpaceItem4,
-            this.layoutControlItem10});
+            this.layoutControlItem10,
+            this.layoutControlItem4,
+            this.layoutControlItem6,
+            this.layoutControlItem9});
             this.layoutControlGroup4.Name = "layoutControlGroup4";
-            this.layoutControlGroup4.Size = new System.Drawing.Size(236, 59);
+            this.layoutControlGroup4.Size = new System.Drawing.Size(283, 59);
             this.layoutControlGroup4.TextVisible = false;
             // 
             // layoutControlItem30
             // 
             this.layoutControlItem30.Control = this.radBankAccount;
-            this.layoutControlItem30.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem30.Location = new System.Drawing.Point(91, 0);
             this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(150, 29);
+            this.layoutControlItem30.Size = new System.Drawing.Size(91, 29);
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
             // 
@@ -495,71 +544,78 @@
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(0, 29);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(216, 10);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(263, 10);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.label2;
-            this.layoutControlItem10.Location = new System.Drawing.Point(150, 0);
+            this.layoutControlItem10.Location = new System.Drawing.Point(182, 0);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(66, 29);
+            this.layoutControlItem10.Size = new System.Drawing.Size(24, 29);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.radCredit;
+            this.layoutControlItem4.Location = new System.Drawing.Point(206, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(57, 29);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
+            // layoutControlItem6
+            // 
+            this.layoutControlItem6.Control = this.radDeposit;
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem6.Name = "layoutControlItem6";
+            this.layoutControlItem6.Size = new System.Drawing.Size(67, 29);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem6.TextVisible = false;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.label5;
+            this.layoutControlItem9.Location = new System.Drawing.Point(67, 0);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(24, 29);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
             // layoutControl3
             // 
+            this.layoutControl3.Controls.Add(this.label4);
             this.layoutControl3.Controls.Add(this.radCash);
-            this.layoutControl3.Controls.Add(this.label6);
-            this.layoutControl3.Controls.Add(this.radCredit);
-            this.layoutControl3.Location = new System.Drawing.Point(277, 41);
+            this.layoutControl3.Location = new System.Drawing.Point(323, 41);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.OptionsView.RightToLeftMirroringApplied = true;
             this.layoutControl3.Root = this.layoutControlGroup3;
-            this.layoutControl3.Size = new System.Drawing.Size(226, 59);
+            this.layoutControl3.Size = new System.Drawing.Size(180, 59);
             this.layoutControl3.TabIndex = 61;
             this.layoutControl3.Text = "layoutControl3";
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(142, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(26, 25);
+            this.label4.TabIndex = 38;
             // 
             // radCash
             // 
             this.radCash.BackColor = System.Drawing.Color.White;
-            this.radCash.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.radCash.Enabled = false;
             this.radCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.radCash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.radCash.Location = new System.Drawing.Point(134, 12);
+            this.radCash.Location = new System.Drawing.Point(12, 12);
             this.radCash.Name = "radCash";
-            this.radCash.Size = new System.Drawing.Size(80, 25);
+            this.radCash.Size = new System.Drawing.Size(126, 25);
             this.radCash.TabIndex = 37;
             this.radCash.Text = "نقدى";
-            this.radCash.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.radCash.UseVisualStyleBackColor = false;
             this.radCash.Visible = false;
             this.radCash.CheckedChanged += new System.EventHandler(this.radCash_CheckedChanged);
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(109, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(21, 25);
-            this.label6.TabIndex = 40;
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // radCredit
-            // 
-            this.radCredit.BackColor = System.Drawing.Color.White;
-            this.radCredit.Enabled = false;
-            this.radCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.radCredit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.radCredit.Location = new System.Drawing.Point(12, 12);
-            this.radCredit.Name = "radCredit";
-            this.radCredit.Size = new System.Drawing.Size(93, 25);
-            this.radCredit.TabIndex = 38;
-            this.radCredit.Text = "شيك";
-            this.radCredit.UseVisualStyleBackColor = false;
-            this.radCredit.Visible = false;
-            this.radCredit.CheckedChanged += new System.EventHandler(this.radCredit_CheckedChanged);
             // 
             // layoutControlGroup3
             // 
@@ -568,18 +624,17 @@
             this.layoutControlGroup3.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem19,
             this.emptySpaceItem3,
-            this.layoutControlItem1,
-            this.layoutControlItem20});
+            this.layoutControlItem1});
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(226, 59);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(180, 59);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.radCash;
-            this.layoutControlItem19.Location = new System.Drawing.Point(122, 0);
+            this.layoutControlItem19.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(84, 29);
+            this.layoutControlItem19.Size = new System.Drawing.Size(130, 29);
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
             // 
@@ -588,35 +643,26 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 29);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(206, 10);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(160, 10);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.label6;
-            this.layoutControlItem1.Location = new System.Drawing.Point(97, 0);
+            this.layoutControlItem1.Control = this.label4;
+            this.layoutControlItem1.Location = new System.Drawing.Point(130, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(25, 29);
+            this.layoutControlItem1.Size = new System.Drawing.Size(30, 29);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // layoutControlItem20
-            // 
-            this.layoutControlItem20.Control = this.radCredit;
-            this.layoutControlItem20.Location = new System.Drawing.Point(0, 0);
-            this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(97, 29);
-            this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem20.TextVisible = false;
             // 
             // radioButtonSafe
             // 
             this.radioButtonSafe.BackColor = System.Drawing.Color.White;
             this.radioButtonSafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonSafe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radioButtonSafe.Location = new System.Drawing.Point(277, 12);
+            this.radioButtonSafe.Location = new System.Drawing.Point(323, 12);
             this.radioButtonSafe.Name = "radioButtonSafe";
-            this.radioButtonSafe.Size = new System.Drawing.Size(148, 25);
+            this.radioButtonSafe.Size = new System.Drawing.Size(137, 25);
             this.radioButtonSafe.TabIndex = 58;
             this.radioButtonSafe.Text = "خزينة";
             this.radioButtonSafe.UseVisualStyleBackColor = false;
@@ -629,7 +675,7 @@
             this.radioButtonBank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radioButtonBank.Location = new System.Drawing.Point(12, 12);
             this.radioButtonBank.Name = "radioButtonBank";
-            this.radioButtonBank.Size = new System.Drawing.Size(140, 25);
+            this.radioButtonBank.Size = new System.Drawing.Size(170, 25);
             this.radioButtonBank.TabIndex = 59;
             this.radioButtonBank.Text = "بنك";
             this.radioButtonBank.UseVisualStyleBackColor = false;
@@ -638,9 +684,9 @@
             // label11
             // 
             this.label11.BackColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(252, 12);
+            this.label11.Location = new System.Drawing.Point(299, 12);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(21, 88);
+            this.label11.Size = new System.Drawing.Size(20, 88);
             this.label11.TabIndex = 60;
             // 
             // Root
@@ -662,18 +708,18 @@
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.radioButtonSafe;
-            this.layoutControlItem11.Location = new System.Drawing.Point(265, 0);
+            this.layoutControlItem11.Location = new System.Drawing.Point(311, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(152, 29);
+            this.layoutControlItem11.Size = new System.Drawing.Size(141, 29);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.label11;
-            this.layoutControlItem23.Location = new System.Drawing.Point(240, 0);
+            this.layoutControlItem23.Location = new System.Drawing.Point(287, 0);
             this.layoutControlItem23.Name = "layoutControlItem23";
-            this.layoutControlItem23.Size = new System.Drawing.Size(25, 92);
+            this.layoutControlItem23.Size = new System.Drawing.Size(24, 92);
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem23.TextVisible = false;
             // 
@@ -682,7 +728,7 @@
             this.layoutControlItem22.Control = this.radioButtonBank;
             this.layoutControlItem22.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem22.Name = "layoutControlItem22";
-            this.layoutControlItem22.Size = new System.Drawing.Size(144, 29);
+            this.layoutControlItem22.Size = new System.Drawing.Size(174, 29);
             this.layoutControlItem22.Text = "بنك";
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
@@ -690,9 +736,9 @@
             // layoutControlItem28
             // 
             this.layoutControlItem28.Control = this.layoutControl3;
-            this.layoutControlItem28.Location = new System.Drawing.Point(265, 29);
+            this.layoutControlItem28.Location = new System.Drawing.Point(311, 29);
             this.layoutControlItem28.Name = "layoutControlItem28";
-            this.layoutControlItem28.Size = new System.Drawing.Size(230, 63);
+            this.layoutControlItem28.Size = new System.Drawing.Size(184, 63);
             this.layoutControlItem28.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem28.TextVisible = false;
             // 
@@ -701,25 +747,25 @@
             this.layoutControlItem29.Control = this.layoutControl4;
             this.layoutControlItem29.Location = new System.Drawing.Point(0, 29);
             this.layoutControlItem29.Name = "layoutControlItem29";
-            this.layoutControlItem29.Size = new System.Drawing.Size(240, 63);
+            this.layoutControlItem29.Size = new System.Drawing.Size(287, 63);
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
             // 
             // layoutControlItem57
             // 
             this.layoutControlItem57.Control = this.label13;
-            this.layoutControlItem57.Location = new System.Drawing.Point(417, 0);
+            this.layoutControlItem57.Location = new System.Drawing.Point(452, 0);
             this.layoutControlItem57.Name = "layoutControlItem57";
-            this.layoutControlItem57.Size = new System.Drawing.Size(78, 29);
+            this.layoutControlItem57.Size = new System.Drawing.Size(43, 29);
             this.layoutControlItem57.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem57.TextVisible = false;
             // 
             // layoutControlItem58
             // 
             this.layoutControlItem58.Control = this.label14;
-            this.layoutControlItem58.Location = new System.Drawing.Point(144, 0);
+            this.layoutControlItem58.Location = new System.Drawing.Point(174, 0);
             this.layoutControlItem58.Name = "layoutControlItem58";
-            this.layoutControlItem58.Size = new System.Drawing.Size(96, 29);
+            this.layoutControlItem58.Size = new System.Drawing.Size(113, 29);
             this.layoutControlItem58.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem58.TextVisible = false;
             // 
@@ -1843,13 +1889,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
             this.layoutControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
@@ -1935,7 +1983,6 @@
         private System.Windows.Forms.TextBox txtPullMoney;
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RadioButton radCredit;
         private System.Windows.Forms.RadioButton radCash;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
@@ -2012,8 +2059,6 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem19;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
         private DevExpress.XtraLayout.LayoutControl layoutControl4;
         private System.Windows.Forms.RadioButton radBankAccount;
@@ -2055,6 +2100,13 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private System.Windows.Forms.Label label3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private System.Windows.Forms.Label label4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton radDeposit;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
     }
 }
 
