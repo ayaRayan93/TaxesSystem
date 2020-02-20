@@ -370,7 +370,7 @@
             this.gridView2.OptionsView.ShowGroupPanel = false;
             this.gridView2.OptionsView.ShowIndicator = false;
             this.gridView2.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.gridView2_CustomUnboundColumnData);
-           // 
+            // 
             // gridColumn7
             // 
             this.gridColumn7.Caption = "رقم التسلسل";

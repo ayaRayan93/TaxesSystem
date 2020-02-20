@@ -93,6 +93,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtStoreKeeper = new System.Windows.Forms.TextBox();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
@@ -504,7 +506,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 447F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 449F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -529,7 +531,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(449, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(451, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(94, 45);
@@ -807,6 +809,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.txtNote);
@@ -836,7 +840,7 @@
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label9.Location = new System.Drawing.Point(585, 18);
+            this.label9.Location = new System.Drawing.Point(563, 9);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 19);
             this.label9.TabIndex = 228;
@@ -856,7 +860,7 @@
             // 
             this.txtDeliverPerson.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDeliverPerson.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtDeliverPerson.Location = new System.Drawing.Point(428, 18);
+            this.txtDeliverPerson.Location = new System.Drawing.Point(406, 9);
             this.txtDeliverPerson.Name = "txtDeliverPerson";
             this.txtDeliverPerson.Size = new System.Drawing.Size(151, 27);
             this.txtDeliverPerson.TabIndex = 227;
@@ -887,6 +891,26 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label13.Location = new System.Drawing.Point(564, 41);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(138, 19);
+            this.label13.TabIndex = 243;
+            this.label13.Text = "رقم تلفون المستلم";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.textBox1.Location = new System.Drawing.Point(407, 41);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(151, 27);
+            this.textBox1.TabIndex = 242;
             // 
             // CustomerDelivery
             // 
@@ -988,6 +1012,8 @@
         private System.Windows.Forms.TextBox txtStoreKeeper;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

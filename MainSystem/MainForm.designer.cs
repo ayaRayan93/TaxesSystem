@@ -230,6 +230,10 @@
             this.xtraTabPageCars = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlCarsContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl4 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup25 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem63 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem64 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem265 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup26 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem65 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem66 = new DevExpress.XtraNavBar.NavBarItem();
@@ -241,9 +245,6 @@
             this.navBarItem233 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup28 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem70 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup25 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem63 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem64 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup29 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem71 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup30 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -654,7 +655,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem265 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem266 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -783,7 +784,7 @@
             this.xtraTabPageMain.Name = "xtraTabPageMain";
             this.xtraTabPageMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.xtraTabPageMain.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
-            this.xtraTabPageMain.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageMain.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageMain.Text = "الرئيسية";
             // 
             // tableLayoutPanel1
@@ -800,7 +801,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1145, 702);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(867, 710);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel2
@@ -831,7 +832,7 @@
             this.tcMainContent.Name = "tcMainContent";
             this.tcMainContent.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.tcMainContent.Padding = new System.Windows.Forms.Padding(30);
-            this.tcMainContent.Size = new System.Drawing.Size(1145, 702);
+            this.tcMainContent.Size = new System.Drawing.Size(867, 710);
             this.tcMainContent.TabIndex = 0;
             this.tcMainContent.Text = "tileControl1";
             // 
@@ -1171,7 +1172,7 @@
             this.xtraTabPageStores.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabPageStores.Name = "xtraTabPageStores";
             this.xtraTabPageStores.ShowCloseButton = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabPageStores.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageStores.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageStores.Text = "المخازن";
             // 
             // panStoreContent
@@ -1181,7 +1182,7 @@
             this.panStoreContent.Location = new System.Drawing.Point(0, 0);
             this.panStoreContent.Margin = new System.Windows.Forms.Padding(0);
             this.panStoreContent.Name = "panStoreContent";
-            this.panStoreContent.Size = new System.Drawing.Size(920, 702);
+            this.panStoreContent.Size = new System.Drawing.Size(642, 710);
             this.panStoreContent.TabIndex = 1;
             // 
             // xtraTabControlStoresContent
@@ -1206,7 +1207,7 @@
             this.xtraTabControlStoresContent.MultiLine = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabControlStoresContent.Name = "xtraTabControlStoresContent";
             this.xtraTabControlStoresContent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.xtraTabControlStoresContent.Size = new System.Drawing.Size(920, 702);
+            this.xtraTabControlStoresContent.Size = new System.Drawing.Size(642, 710);
             this.xtraTabControlStoresContent.TabIndex = 2;
             this.xtraTabControlStoresContent.Visible = false;
             this.xtraTabControlStoresContent.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
@@ -1329,11 +1330,11 @@
             this.navBarItemStorageReport,
             this.navBarItemInformationStorageReport});
             this.navBarControl1.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInGroup;
-            this.navBarControl1.Location = new System.Drawing.Point(920, 0);
+            this.navBarControl1.Location = new System.Drawing.Point(642, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 225;
             this.navBarControl1.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl1.Size = new System.Drawing.Size(225, 702);
+            this.navBarControl1.Size = new System.Drawing.Size(225, 710);
             this.navBarControl1.StoreDefaultPaintStyleName = true;
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
@@ -1839,7 +1840,7 @@
             this.xtraTabPageSales.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabPageSales.Name = "xtraTabPageSales";
             this.xtraTabPageSales.ShowCloseButton = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabPageSales.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageSales.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageSales.Text = "المبيعات";
             // 
             // xtraTabControlSalesContent
@@ -1865,7 +1866,7 @@
             this.xtraTabControlSalesContent.Name = "xtraTabControlSalesContent";
             this.xtraTabControlSalesContent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.xtraTabControlSalesContent.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabControlSalesContent.Size = new System.Drawing.Size(950, 702);
+            this.xtraTabControlSalesContent.Size = new System.Drawing.Size(672, 710);
             this.xtraTabControlSalesContent.TabIndex = 4;
             this.xtraTabControlSalesContent.Visible = false;
             this.xtraTabControlSalesContent.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
@@ -1957,11 +1958,11 @@
             this.navBarItemSalesProductsFactoryBranch,
             this.navBarItemSalesProductsBills2,
             this.navBarItemSaleProductBillDetailsReport});
-            this.navBarControl2.Location = new System.Drawing.Point(950, 0);
+            this.navBarControl2.Location = new System.Drawing.Point(672, 0);
             this.navBarControl2.Name = "navBarControl2";
             this.navBarControl2.OptionsNavPane.ExpandedWidth = 195;
             this.navBarControl2.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl2.Size = new System.Drawing.Size(195, 702);
+            this.navBarControl2.Size = new System.Drawing.Size(195, 710);
             this.navBarControl2.TabIndex = 3;
             this.navBarControl2.Text = "navBarControl2";
             // 
@@ -2275,7 +2276,7 @@
             this.xtraTabPageHR.Controls.Add(this.navBarControl3);
             this.xtraTabPageHR.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabPageHR.Name = "xtraTabPageHR";
-            this.xtraTabPageHR.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageHR.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageHR.Text = "شئون العاملين";
             // 
             // xtraTabControlHRContent
@@ -2300,7 +2301,7 @@
             this.xtraTabControlHRContent.MultiLine = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabControlHRContent.Name = "xtraTabControlHRContent";
             this.xtraTabControlHRContent.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.xtraTabControlHRContent.Size = new System.Drawing.Size(931, 702);
+            this.xtraTabControlHRContent.Size = new System.Drawing.Size(653, 710);
             this.xtraTabControlHRContent.TabIndex = 4;
             this.xtraTabControlHRContent.Visible = false;
             this.xtraTabControlHRContent.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
@@ -2382,11 +2383,11 @@
             this.navBarItem49,
             this.navBarItem50,
             this.navBarItemUserReport});
-            this.navBarControl3.Location = new System.Drawing.Point(931, 0);
+            this.navBarControl3.Location = new System.Drawing.Point(653, 0);
             this.navBarControl3.Name = "navBarControl3";
             this.navBarControl3.OptionsNavPane.ExpandedWidth = 214;
             this.navBarControl3.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl3.Size = new System.Drawing.Size(214, 702);
+            this.navBarControl3.Size = new System.Drawing.Size(214, 710);
             this.navBarControl3.TabIndex = 3;
             this.navBarControl3.Text = "navBarControl3";
             // 
@@ -2735,6 +2736,36 @@
             this.navBarControl4.TabIndex = 3;
             this.navBarControl4.Text = "navBarControl4";
             // 
+            // navBarGroup25
+            // 
+            this.navBarGroup25.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup25.Appearance.Options.UseFont = true;
+            this.navBarGroup25.Caption = "المصروفات";
+            this.navBarGroup25.Expanded = true;
+            this.navBarGroup25.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem63),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem64),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem265)});
+            this.navBarGroup25.Name = "navBarGroup25";
+            // 
+            // navBarItem63
+            // 
+            this.navBarItem63.Caption = "تسجيل مصروف";
+            this.navBarItem63.Name = "navBarItem63";
+            this.navBarItem63.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem6_LinkClicked);
+            // 
+            // navBarItem64
+            // 
+            this.navBarItem64.Caption = "تسجيل نوع المصروف";
+            this.navBarItem64.Name = "navBarItem64";
+            this.navBarItem64.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem12_LinkClicked);
+            // 
+            // navBarItem265
+            // 
+            this.navBarItem265.Caption = "تقرير ";
+            this.navBarItem265.Name = "navBarItem265";
+            this.navBarItem265.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem265_LinkClicked);
+            // 
             // navBarGroup26
             // 
             this.navBarGroup26.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
@@ -2814,30 +2845,6 @@
             this.navBarItem70.Caption = "تسجيل العهدة";
             this.navBarItem70.Name = "navBarItem70";
             this.navBarItem70.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem5_LinkClicked);
-            // 
-            // navBarGroup25
-            // 
-            this.navBarGroup25.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup25.Appearance.Options.UseFont = true;
-            this.navBarGroup25.Caption = "المصروفات";
-            this.navBarGroup25.Expanded = true;
-            this.navBarGroup25.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem63),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem64),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem265)});
-            this.navBarGroup25.Name = "navBarGroup25";
-            // 
-            // navBarItem63
-            // 
-            this.navBarItem63.Caption = "تسجيل مصروف";
-            this.navBarItem63.Name = "navBarItem63";
-            this.navBarItem63.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem6_LinkClicked);
-            // 
-            // navBarItem64
-            // 
-            this.navBarItem64.Caption = "تسجيل نوع المصروف";
-            this.navBarItem64.Name = "navBarItem64";
-            this.navBarItem64.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem12_LinkClicked);
             // 
             // navBarGroup29
             // 
@@ -2943,7 +2950,7 @@
             this.xtraTabPagePOS.Controls.Add(this.xtraTabControlPointSale);
             this.xtraTabPagePOS.Controls.Add(this.navBarControlPointSaleReport);
             this.xtraTabPagePOS.Name = "xtraTabPagePOS";
-            this.xtraTabPagePOS.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPagePOS.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPagePOS.Text = "نقطة البيع";
             // 
             // xtraTabControlPointSale
@@ -2962,7 +2969,7 @@
             this.xtraTabControlPointSale.PaintStyleName = "WindowsXP";
             this.xtraTabControlPointSale.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.xtraTabControlPointSale.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabControlPointSale.Size = new System.Drawing.Size(985, 702);
+            this.xtraTabControlPointSale.Size = new System.Drawing.Size(707, 710);
             this.xtraTabControlPointSale.TabIndex = 2;
             this.xtraTabControlPointSale.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlPointSale_SelectedPageChanged);
             this.xtraTabControlPointSale.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
@@ -3006,13 +3013,13 @@
             this.navBarItemProductsReport,
             this.navBarItemInformationProductsReport,
             this.navBarItemDelegateBill_Return});
-            this.navBarControlPointSaleReport.Location = new System.Drawing.Point(985, 0);
+            this.navBarControlPointSaleReport.Location = new System.Drawing.Point(707, 0);
             this.navBarControlPointSaleReport.Name = "navBarControlPointSaleReport";
             this.navBarControlPointSaleReport.OptionsNavPane.ExpandedWidth = 160;
             this.navBarControlPointSaleReport.OptionsNavPane.ShowGroupImageInHeader = true;
             this.navBarControlPointSaleReport.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
             this.navBarControlPointSaleReport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.navBarControlPointSaleReport.Size = new System.Drawing.Size(160, 702);
+            this.navBarControlPointSaleReport.Size = new System.Drawing.Size(160, 710);
             this.navBarControlPointSaleReport.StoreDefaultPaintStyleName = true;
             this.navBarControlPointSaleReport.TabIndex = 3;
             this.navBarControlPointSaleReport.Text = "navBarControl1";
@@ -3212,7 +3219,7 @@
             this.xtraTabPageBank.Controls.Add(this.MainTabControlBank);
             this.xtraTabPageBank.Controls.Add(this.navBarControlBankReport);
             this.xtraTabPageBank.Name = "xtraTabPageBank";
-            this.xtraTabPageBank.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageBank.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageBank.Text = "النقدية والبنوك";
             // 
             // MainTabControlBank
@@ -3231,7 +3238,7 @@
             this.MainTabControlBank.PaintStyleName = "WindowsXP";
             this.MainTabControlBank.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.MainTabControlBank.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
-            this.MainTabControlBank.Size = new System.Drawing.Size(985, 702);
+            this.MainTabControlBank.Size = new System.Drawing.Size(707, 710);
             this.MainTabControlBank.TabIndex = 2;
             this.MainTabControlBank.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
@@ -3268,13 +3275,13 @@
             this.navBarItem98,
             this.navBarItem89,
             this.navBarItemBankTransitionReport});
-            this.navBarControlBankReport.Location = new System.Drawing.Point(985, 0);
+            this.navBarControlBankReport.Location = new System.Drawing.Point(707, 0);
             this.navBarControlBankReport.Name = "navBarControlBankReport";
             this.navBarControlBankReport.OptionsNavPane.ExpandedWidth = 160;
             this.navBarControlBankReport.OptionsNavPane.ShowGroupImageInHeader = true;
             this.navBarControlBankReport.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
             this.navBarControlBankReport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.navBarControlBankReport.Size = new System.Drawing.Size(160, 702);
+            this.navBarControlBankReport.Size = new System.Drawing.Size(160, 710);
             this.navBarControlBankReport.StoreDefaultPaintStyleName = true;
             this.navBarControlBankReport.TabIndex = 3;
             this.navBarControlBankReport.Text = "navBarControl1";
@@ -3493,7 +3500,7 @@
             this.xtraTabPageReception.Controls.Add(this.xtraTabControlReception);
             this.xtraTabPageReception.Controls.Add(this.navBarControl5);
             this.xtraTabPageReception.Name = "xtraTabPageReception";
-            this.xtraTabPageReception.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageReception.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageReception.Text = "الاستقبال";
             // 
             // xtraTabControlReception
@@ -3512,7 +3519,7 @@
             this.xtraTabControlReception.PaintStyleName = "WindowsXP";
             this.xtraTabControlReception.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.xtraTabControlReception.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabControlReception.Size = new System.Drawing.Size(985, 702);
+            this.xtraTabControlReception.Size = new System.Drawing.Size(707, 710);
             this.xtraTabControlReception.TabIndex = 2;
             this.xtraTabControlReception.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
@@ -3568,13 +3575,13 @@
             this.navBarItemDelegateBillTime,
             this.navBarItemAttendance,
             this.navBarItemDelegateBill2});
-            this.navBarControl5.Location = new System.Drawing.Point(985, 0);
+            this.navBarControl5.Location = new System.Drawing.Point(707, 0);
             this.navBarControl5.Name = "navBarControl5";
             this.navBarControl5.OptionsNavPane.ExpandedWidth = 160;
             this.navBarControl5.OptionsNavPane.ShowGroupImageInHeader = true;
             this.navBarControl5.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
             this.navBarControl5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.navBarControl5.Size = new System.Drawing.Size(160, 702);
+            this.navBarControl5.Size = new System.Drawing.Size(160, 710);
             this.navBarControl5.StoreDefaultPaintStyleName = true;
             this.navBarControl5.TabIndex = 3;
             this.navBarControl5.Text = "navBarControl1";
@@ -3874,7 +3881,7 @@
             this.xtraTabPageShipping.Controls.Add(this.xtraTabControlShipping);
             this.xtraTabPageShipping.Controls.Add(this.navBarControlShippingReport);
             this.xtraTabPageShipping.Name = "xtraTabPageShipping";
-            this.xtraTabPageShipping.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageShipping.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageShipping.Text = "الشحن";
             // 
             // xtraTabControlShipping
@@ -3893,7 +3900,7 @@
             this.xtraTabControlShipping.PaintStyleName = "WindowsXP";
             this.xtraTabControlShipping.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.xtraTabControlShipping.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabControlShipping.Size = new System.Drawing.Size(985, 702);
+            this.xtraTabControlShipping.Size = new System.Drawing.Size(707, 710);
             this.xtraTabControlShipping.TabIndex = 2;
             this.xtraTabControlShipping.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
@@ -3936,13 +3943,13 @@
             this.navBarItemShipping_Record,
             this.navBarItemPermissionsReport,
             this.navBarItemDisplayWantedShippingBills});
-            this.navBarControlShippingReport.Location = new System.Drawing.Point(985, 0);
+            this.navBarControlShippingReport.Location = new System.Drawing.Point(707, 0);
             this.navBarControlShippingReport.Name = "navBarControlShippingReport";
             this.navBarControlShippingReport.OptionsNavPane.ExpandedWidth = 160;
             this.navBarControlShippingReport.OptionsNavPane.ShowGroupImageInHeader = true;
             this.navBarControlShippingReport.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
             this.navBarControlShippingReport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.navBarControlShippingReport.Size = new System.Drawing.Size(160, 702);
+            this.navBarControlShippingReport.Size = new System.Drawing.Size(160, 710);
             this.navBarControlShippingReport.StoreDefaultPaintStyleName = true;
             this.navBarControlShippingReport.TabIndex = 3;
             this.navBarControlShippingReport.Text = "navBarControl1";
@@ -4115,7 +4122,7 @@
             this.xtraTabPageAccounting.Controls.Add(this.xtraTabControlAccounting);
             this.xtraTabPageAccounting.Controls.Add(this.navBarAccounting);
             this.xtraTabPageAccounting.Name = "xtraTabPageAccounting";
-            this.xtraTabPageAccounting.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageAccounting.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageAccounting.Text = "الحسابات";
             // 
             // xtraTabControlAccounting
@@ -4140,7 +4147,7 @@
             this.xtraTabControlAccounting.MultiLine = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabControlAccounting.Name = "xtraTabControlAccounting";
             this.xtraTabControlAccounting.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.xtraTabControlAccounting.Size = new System.Drawing.Size(927, 702);
+            this.xtraTabControlAccounting.Size = new System.Drawing.Size(649, 710);
             this.xtraTabControlAccounting.TabIndex = 6;
             this.xtraTabControlAccounting.Visible = false;
             this.xtraTabControlAccounting.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
@@ -4221,11 +4228,11 @@
             this.navBarItem228,
             this.navBarItem229,
             this.navBarItem231});
-            this.navBarAccounting.Location = new System.Drawing.Point(927, 0);
+            this.navBarAccounting.Location = new System.Drawing.Point(649, 0);
             this.navBarAccounting.Name = "navBarAccounting";
             this.navBarAccounting.OptionsNavPane.ExpandedWidth = 218;
             this.navBarAccounting.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarAccounting.Size = new System.Drawing.Size(218, 702);
+            this.navBarAccounting.Size = new System.Drawing.Size(218, 710);
             this.navBarAccounting.TabIndex = 5;
             this.navBarAccounting.Text = "navBarControl6";
             // 
@@ -4450,7 +4457,7 @@
             this.xtraTabPageExpenses.Controls.Add(this.xtraTabControlExpenses);
             this.xtraTabPageExpenses.Controls.Add(this.navBarControl6);
             this.xtraTabPageExpenses.Name = "xtraTabPageExpenses";
-            this.xtraTabPageExpenses.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageExpenses.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageExpenses.Text = "المصروفات";
             // 
             // xtraTabControlExpenses
@@ -4469,7 +4476,7 @@
             this.xtraTabControlExpenses.PaintStyleName = "WindowsXP";
             this.xtraTabControlExpenses.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.xtraTabControlExpenses.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabControlExpenses.Size = new System.Drawing.Size(976, 702);
+            this.xtraTabControlExpenses.Size = new System.Drawing.Size(698, 710);
             this.xtraTabControlExpenses.TabIndex = 4;
             this.xtraTabControlExpenses.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
@@ -4515,13 +4522,13 @@
             this.navBarItemExpenseRecord,
             this.navBarItemExpensesTransitionsReport,
             this.navBarItemSubExpensesTransitionsReport});
-            this.navBarControl6.Location = new System.Drawing.Point(976, 0);
+            this.navBarControl6.Location = new System.Drawing.Point(698, 0);
             this.navBarControl6.Name = "navBarControl6";
             this.navBarControl6.OptionsNavPane.ExpandedWidth = 169;
             this.navBarControl6.OptionsNavPane.ShowGroupImageInHeader = true;
             this.navBarControl6.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
             this.navBarControl6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.navBarControl6.Size = new System.Drawing.Size(169, 702);
+            this.navBarControl6.Size = new System.Drawing.Size(169, 710);
             this.navBarControl6.StoreDefaultPaintStyleName = true;
             this.navBarControl6.TabIndex = 5;
             this.navBarControl6.Text = "navBarControl1";
@@ -4715,7 +4722,7 @@
             this.xtraTabPagePurchases.Controls.Add(this.xtraTabControlPurchases);
             this.xtraTabPagePurchases.Controls.Add(this.navBarControl7);
             this.xtraTabPagePurchases.Name = "xtraTabPagePurchases";
-            this.xtraTabPagePurchases.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPagePurchases.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPagePurchases.Text = "المشتريات";
             // 
             // xtraTabControlPurchases
@@ -4740,7 +4747,7 @@
             this.xtraTabControlPurchases.MultiLine = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabControlPurchases.Name = "xtraTabControlPurchases";
             this.xtraTabControlPurchases.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.xtraTabControlPurchases.Size = new System.Drawing.Size(909, 702);
+            this.xtraTabControlPurchases.Size = new System.Drawing.Size(631, 710);
             this.xtraTabControlPurchases.TabIndex = 6;
             this.xtraTabControlPurchases.Visible = false;
             this.xtraTabControlPurchases.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
@@ -4855,11 +4862,11 @@
             this.navBarItemSupplierTypeReport,
             this.navBarItemPurchaseQuantityReport,
             this.navBarItemPurchasePriceReport});
-            this.navBarControl7.Location = new System.Drawing.Point(909, 0);
+            this.navBarControl7.Location = new System.Drawing.Point(631, 0);
             this.navBarControl7.Name = "navBarControl7";
             this.navBarControl7.OptionsNavPane.ExpandedWidth = 236;
             this.navBarControl7.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
-            this.navBarControl7.Size = new System.Drawing.Size(236, 702);
+            this.navBarControl7.Size = new System.Drawing.Size(236, 710);
             this.navBarControl7.TabIndex = 5;
             this.navBarControl7.Text = "navBarControl7";
             // 
@@ -5314,7 +5321,7 @@
             this.xtraTabPageCustomerService.Controls.Add(this.xtraTabControlCustomerService);
             this.xtraTabPageCustomerService.Controls.Add(this.navBarControl8);
             this.xtraTabPageCustomerService.Name = "xtraTabPageCustomerService";
-            this.xtraTabPageCustomerService.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageCustomerService.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageCustomerService.Text = "خدمة العملاء";
             // 
             // xtraTabControlCustomerService
@@ -5333,7 +5340,7 @@
             this.xtraTabControlCustomerService.PaintStyleName = "WindowsXP";
             this.xtraTabControlCustomerService.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.xtraTabControlCustomerService.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabControlCustomerService.Size = new System.Drawing.Size(980, 702);
+            this.xtraTabControlCustomerService.Size = new System.Drawing.Size(702, 710);
             this.xtraTabControlCustomerService.TabIndex = 6;
             // 
             // navBarControl8
@@ -5373,14 +5380,15 @@
             this.navBarItem235,
             this.navBarItem236,
             this.navBarItem237,
-            this.navBarItemSearchByPhone});
-            this.navBarControl8.Location = new System.Drawing.Point(980, 0);
+            this.navBarItemSearchByPhone,
+            this.navBarItem266});
+            this.navBarControl8.Location = new System.Drawing.Point(702, 0);
             this.navBarControl8.Name = "navBarControl8";
             this.navBarControl8.OptionsNavPane.ExpandedWidth = 165;
             this.navBarControl8.OptionsNavPane.ShowGroupImageInHeader = true;
             this.navBarControl8.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
             this.navBarControl8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.navBarControl8.Size = new System.Drawing.Size(165, 702);
+            this.navBarControl8.Size = new System.Drawing.Size(165, 710);
             this.navBarControl8.StoreDefaultPaintStyleName = true;
             this.navBarControl8.TabIndex = 7;
             this.navBarControl8.Text = "navBarControl1";
@@ -5392,12 +5400,13 @@
             this.navBarGroup49.Caption = "تقارير";
             this.navBarGroup49.Expanded = true;
             this.navBarGroup49.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSearchByPhone)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSearchByPhone),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem266)});
             this.navBarGroup49.Name = "navBarGroup49";
             // 
             // navBarItemSearchByPhone
             // 
-            this.navBarItemSearchByPhone.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemSearchByPhone.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarItemSearchByPhone.Appearance.Options.UseFont = true;
             this.navBarItemSearchByPhone.Caption = "بحث برقم التلفون";
             this.navBarItemSearchByPhone.Name = "navBarItemSearchByPhone";
@@ -5535,7 +5544,7 @@
             this.xtraTabPageRequest.Controls.Add(this.xtraTabControlRequests);
             this.xtraTabPageRequest.Controls.Add(this.navBarControl9);
             this.xtraTabPageRequest.Name = "xtraTabPageRequest";
-            this.xtraTabPageRequest.Size = new System.Drawing.Size(1145, 702);
+            this.xtraTabPageRequest.Size = new System.Drawing.Size(867, 710);
             this.xtraTabPageRequest.Text = "الطلبيات";
             // 
             // xtraTabControlRequests
@@ -5554,7 +5563,7 @@
             this.xtraTabControlRequests.PaintStyleName = "WindowsXP";
             this.xtraTabControlRequests.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.xtraTabControlRequests.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabControlRequests.Size = new System.Drawing.Size(970, 702);
+            this.xtraTabControlRequests.Size = new System.Drawing.Size(692, 710);
             this.xtraTabControlRequests.TabIndex = 7;
             // 
             // navBarControl9
@@ -5607,13 +5616,13 @@
             this.navBarItemExpectedOrders2,
             this.navBarItemRequestedOrders2,
             this.navBarItemOneOrder2});
-            this.navBarControl9.Location = new System.Drawing.Point(970, 0);
+            this.navBarControl9.Location = new System.Drawing.Point(692, 0);
             this.navBarControl9.Name = "navBarControl9";
             this.navBarControl9.OptionsNavPane.ExpandedWidth = 175;
             this.navBarControl9.OptionsNavPane.ShowGroupImageInHeader = true;
             this.navBarControl9.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
             this.navBarControl9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.navBarControl9.Size = new System.Drawing.Size(175, 702);
+            this.navBarControl9.Size = new System.Drawing.Size(175, 710);
             this.navBarControl9.StoreDefaultPaintStyleName = true;
             this.navBarControl9.TabIndex = 6;
             this.navBarControl9.Text = "navBarControl1";
@@ -6204,11 +6213,13 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
-            // navBarItem265
+            // navBarItem266
             // 
-            this.navBarItem265.Caption = "تقرير ";
-            this.navBarItem265.Name = "navBarItem265";
-            this.navBarItem265.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem265_LinkClicked);
+            this.navBarItem266.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem266.Appearance.Options.UseFont = true;
+            this.navBarItem266.Caption = "فواتير تم تسليمها";
+            this.navBarItem266.Name = "navBarItem266";
+            this.navBarItem266.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem266_LinkClicked);
             // 
             // MainForm
             // 
@@ -6894,6 +6905,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemPurchaseQuantityReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPurchasePriceReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItem265;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem266;
     }
 }
 

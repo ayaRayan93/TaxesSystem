@@ -369,16 +369,7 @@ namespace MainSystem
                 unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             }
         }
-        private void AddRepositorygridView2()
-        {
-            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
-            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            edit.ButtonClick += gridView2_ButtonClick;
-            edit.Buttons[0].Caption = "تسليم اذن";
-            edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
-            gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
-            
-        }
+     
         
         private void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
@@ -387,7 +378,16 @@ namespace MainSystem
                 e.Value = gridView2.GetRowHandle(e.ListSourceRowIndex) + 1;
             }
         }
+        private void AddRepositorygridView2()
+        {
+            RepositoryItemButtonEdit edit = new RepositoryItemButtonEdit();
+            edit.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            edit.ButtonClick += gridView2_ButtonClick;
+            edit.Buttons[0].Caption = "تسليم اذن";
+            edit.Buttons[0].Kind = DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph;
+            gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
 
+        }
         private void AddUnboundColumngridView2()
         {
             if (gridView2.Columns["تسليم اذن"] == null)

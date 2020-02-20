@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version1.73\</PublishUrl>
+    <PublishUrl>D:\التكويد\version1.74\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>249</ApplicationRevision>
+    <ApplicationRevision>251</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -261,6 +261,12 @@
       <DependentUpon>CarExpensesReport2.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerServiceSystem.cs" />
+    <Compile Include="CustomerService\CustomerDeliveredBills.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerService\CustomerDeliveredBills.Designer.cs">
+      <DependentUpon>CustomerDeliveredBills.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerService\displayCustomerBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3193,6 +3199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CarExpensesReport2.resx">
       <DependentUpon>CarExpensesReport2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerService\CustomerDeliveredBills.resx">
+      <DependentUpon>CustomerDeliveredBills.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\displayCustomerBill.resx">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
