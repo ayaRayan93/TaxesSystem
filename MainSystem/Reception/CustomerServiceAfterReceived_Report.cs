@@ -23,14 +23,18 @@ namespace MainSystem
         int branchID = 0;
         bool loaded = false;
         DataRow selRow = null;
-
-        public CustomerServiceAfterReceived_Report(MainForm BankMainForm/*, DataRow selrow*/)
+        int CustomerBill_ID = 0;
+        public CustomerServiceAfterReceived_Report()
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
-            //selRow = selrow;
-            //bankMainForm = BankMainForm;
-            //MainTabControlBank = MainForm.tabControlBank;
+        
+        }
+        public CustomerServiceAfterReceived_Report(DataRow dataRow)
+        {
+            InitializeComponent();
+            dbconnection = new MySqlConnection(connection.connectionString);
+            selRow = dataRow;
         }
 
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
@@ -60,7 +64,7 @@ namespace MainSystem
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = comBranch.SelectedValue.ToString();
                 com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBillNum.Text;
-                com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11).Value = selRow["CustomerBill_ID"].ToString();
+                com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11).Value = CustomerBill_ID;
                 com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = txtDelegate.Text;
                 com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
                 com.Parameters.Add("@Customer_Phone", MySqlDbType.VarChar, 255).Value = txtPhone.Text;
@@ -100,9 +104,14 @@ namespace MainSystem
             txtBillNum.Text = selRow["رقم الفاتورة"].ToString();
             txtClient.Text = selRow["المستلم"].ToString();
             txtPhone.Text = selRow["تلفون المستلم"].ToString();
-            txtDelegate.Text = selRow["المندوب"].ToString();
             dateTimePicker1.Value = Convert.ToDateTime(selRow["التاريخ"].ToString());
             txtAddress.Text = selRow["العنوان"].ToString();
+            query = "select CustomerBill_ID from customer_bill where Branch_Name='"+ comBranch.Text+"' and Branch_BillNumber=" + txtBillNum.Text;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            CustomerBill_ID = Convert.ToInt16(com.ExecuteScalar());
+            query = "select GROUP_CONCAT(DISTINCT delegate.Delegate_Name) from product_bill INNER JOIN delegate on   product_bill.Delegate_ID=delegate.Delegate_ID where CustomerBill_ID="+CustomerBill_ID;
+            com = new MySqlCommand(query, dbconnection);
+            txtDelegate.Text = com.ExecuteScalar().ToString();
 
             loaded = true;
         }

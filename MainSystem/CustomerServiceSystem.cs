@@ -4,6 +4,7 @@ using DevExpress.XtraTab;
 using MainSystem.CustomerService;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -101,6 +102,29 @@ namespace MainSystem
             xtraTabPage.Controls.Clear();
             xtraTabPage.Controls.Add(objForm);
             xtraTabControlCustomerService.SelectedTabPage = xtraTabPage;
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindDisplayDeliveryBillsForm(DataRow dataRow)
+        {
+            if (!xtraTabControlCustomerService.Visible)
+                xtraTabControlCustomerService.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlCustomerService, "استبيان");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlCustomerService.TabPages.Add("استبيان");
+                xtraTabPage = getTabPage(xtraTabControlCustomerService, "استبيان");
+            }
+
+            xtraTabPage.Controls.Clear();
+            xtraTabControlCustomerService.SelectedTabPage = xtraTabPage;
+
+            CustomerServiceAfterReceived_Report objForm = new CustomerServiceAfterReceived_Report(dataRow);
+
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
