@@ -655,6 +655,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup68 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSurvayRecord = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem265 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem266 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
@@ -3525,7 +3528,7 @@
             // 
             // navBarControl5
             // 
-            this.navBarControl5.ActiveGroup = this.navBarGroupDelegateMovement;
+            this.navBarControl5.ActiveGroup = this.navBarGroup68;
             this.navBarControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControl5.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControl5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3536,7 +3539,8 @@
             this.navBarGroup35,
             this.navBarGroup36,
             this.navBarGroup37,
-            this.navBarGroup38});
+            this.navBarGroup38,
+            this.navBarGroup68});
             this.navBarControl5.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarItem110,
             this.navBarItem111,
@@ -3574,8 +3578,9 @@
             this.navBarItemDelegateBusyBill,
             this.navBarItemDelegateBillTime,
             this.navBarItemAttendance,
-            this.navBarItemDelegateBill2});
-            this.navBarControl5.Location = new System.Drawing.Point(707, 0);
+            this.navBarItemDelegateBill2,
+            this.navBarItemSurvayRecord});
+            this.navBarControl5.Location = new System.Drawing.Point(985, 0);
             this.navBarControl5.Name = "navBarControl5";
             this.navBarControl5.OptionsNavPane.ExpandedWidth = 160;
             this.navBarControl5.OptionsNavPane.ShowGroupImageInHeader = true;
@@ -3591,7 +3596,6 @@
             this.navBarGroupDelegateMovement.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
             this.navBarGroupDelegateMovement.Appearance.Options.UseFont = true;
             this.navBarGroupDelegateMovement.Caption = "حركة المندوبين";
-            this.navBarGroupDelegateMovement.Expanded = true;
             this.navBarGroupDelegateMovement.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemAttendance),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem107)});
@@ -6213,7 +6217,25 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
-            // navBarItem266
+            // navBarGroup68
+            // 
+            this.navBarGroup68.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup68.Appearance.Options.UseFont = true;
+            this.navBarGroup68.Caption = "خدمة العملاء";
+            this.navBarGroup68.Expanded = true;
+            this.navBarGroup68.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSurvayRecord)});
+            this.navBarGroup68.Name = "navBarGroup68";
+            // 
+            // navBarItemSurvayRecord
+            // 
+            this.navBarItemSurvayRecord.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemSurvayRecord.Appearance.Options.UseFont = true;
+            this.navBarItemSurvayRecord.Caption = "استبيان";
+            this.navBarItemSurvayRecord.Name = "navBarItemSurvayRecord";
+            this.navBarItemSurvayRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSurvayRecord_LinkClicked);
+            // 
+            // navBarItem265
             // 
             this.navBarItem266.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarItem266.Appearance.Options.UseFont = true;
@@ -6904,6 +6926,8 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemOneOrder2;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPurchaseQuantityReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPurchasePriceReport;
+        private DevExpress.XtraNavBar.NavBarGroup navBarGroup68;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemSurvayRecord;
         private DevExpress.XtraNavBar.NavBarItem navBarItem265;
         private DevExpress.XtraNavBar.NavBarItem navBarItem266;
     }
