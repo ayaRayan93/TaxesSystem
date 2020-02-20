@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -42,14 +41,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.ratingControl1 = new DevExpress.XtraEditors.RatingControl();
-            this.ratingControl2 = new DevExpress.XtraEditors.RatingControl();
-            this.ratingControl3 = new DevExpress.XtraEditors.RatingControl();
+            this.ratingControlPurchasing = new DevExpress.XtraEditors.RatingControl();
+            this.ratingControlDelegate = new DevExpress.XtraEditors.RatingControl();
+            this.ratingControlShowroom = new DevExpress.XtraEditors.RatingControl();
             this.comBranch = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.radEmail = new System.Windows.Forms.RadioButton();
             this.txtBillNum = new System.Windows.Forms.TextBox();
-            this.txtConnection = new System.Windows.Forms.TextBox();
+            this.txtCommunication = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.radWhatsApp = new System.Windows.Forms.RadioButton();
@@ -63,15 +62,15 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ratingControl1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ratingControl2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ratingControl3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ratingControlPurchasing.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ratingControlDelegate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ratingControlShowroom.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -152,7 +151,7 @@
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.radEmail);
             this.panel4.Controls.Add(this.txtBillNum);
-            this.panel4.Controls.Add(this.txtConnection);
+            this.panel4.Controls.Add(this.txtCommunication);
             this.panel4.Controls.Add(this.txtPhone);
             this.panel4.Controls.Add(this.label20);
             this.panel4.Controls.Add(this.radWhatsApp);
@@ -225,9 +224,9 @@
             this.tableLayoutPanel4.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.label8, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label9, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.ratingControl1, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.ratingControl2, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.ratingControl3, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.ratingControlPurchasing, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.ratingControlDelegate, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.ratingControlShowroom, 1, 2);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(11, 313);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
@@ -270,44 +269,41 @@
             this.label9.TabIndex = 19;
             this.label9.Text = "ما هو تقييمك لممثل المبيعات";
             // 
-            // ratingControl1
+            // ratingControlPurchasing
             // 
-            this.ratingControl1.Location = new System.Drawing.Point(359, 6);
-            this.ratingControl1.Name = "ratingControl1";
-            this.ratingControl1.Rating = new decimal(new int[] {
+            this.ratingControlPurchasing.Location = new System.Drawing.Point(359, 6);
+            this.ratingControlPurchasing.Name = "ratingControlPurchasing";
+            this.ratingControlPurchasing.Rating = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.ratingControl1.Size = new System.Drawing.Size(87, 16);
-            this.ratingControl1.TabIndex = 47;
-            this.ratingControl1.Text = "ratingControl1";
+            this.ratingControlPurchasing.Size = new System.Drawing.Size(87, 16);
+            this.ratingControlPurchasing.TabIndex = 47;
             // 
-            // ratingControl2
+            // ratingControlDelegate
             // 
-            this.ratingControl2.Location = new System.Drawing.Point(359, 39);
-            this.ratingControl2.Name = "ratingControl2";
-            this.ratingControl2.Rating = new decimal(new int[] {
+            this.ratingControlDelegate.Location = new System.Drawing.Point(359, 39);
+            this.ratingControlDelegate.Name = "ratingControlDelegate";
+            this.ratingControlDelegate.Rating = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.ratingControl2.Size = new System.Drawing.Size(87, 16);
-            this.ratingControl2.TabIndex = 48;
-            this.ratingControl2.Text = "ratingControl2";
+            this.ratingControlDelegate.Size = new System.Drawing.Size(87, 16);
+            this.ratingControlDelegate.TabIndex = 48;
             // 
-            // ratingControl3
+            // ratingControlShowroom
             // 
-            this.ratingControl3.Location = new System.Drawing.Point(359, 72);
-            this.ratingControl3.Name = "ratingControl3";
-            this.ratingControl3.Rating = new decimal(new int[] {
+            this.ratingControlShowroom.Location = new System.Drawing.Point(359, 72);
+            this.ratingControlShowroom.Name = "ratingControlShowroom";
+            this.ratingControlShowroom.Rating = new decimal(new int[] {
             0,
             0,
             0,
             0});
-            this.ratingControl3.Size = new System.Drawing.Size(87, 16);
-            this.ratingControl3.TabIndex = 49;
-            this.ratingControl3.Text = "ratingControl3";
+            this.ratingControlShowroom.Size = new System.Drawing.Size(87, 16);
+            this.ratingControlShowroom.TabIndex = 49;
             // 
             // comBranch
             // 
@@ -345,6 +341,7 @@
             this.radEmail.TabStop = true;
             this.radEmail.Text = "البريد الالكترونى";
             this.radEmail.UseVisualStyleBackColor = true;
+            this.radEmail.CheckedChanged += new System.EventHandler(this.radEmail_CheckedChanged);
             // 
             // txtBillNum
             // 
@@ -356,14 +353,14 @@
             this.txtBillNum.Size = new System.Drawing.Size(86, 23);
             this.txtBillNum.TabIndex = 8;
             // 
-            // txtConnection
+            // txtCommunication
             // 
-            this.txtConnection.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtConnection.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConnection.Location = new System.Drawing.Point(11, 246);
-            this.txtConnection.Name = "txtConnection";
-            this.txtConnection.Size = new System.Drawing.Size(448, 23);
-            this.txtConnection.TabIndex = 22;
+            this.txtCommunication.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCommunication.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCommunication.Location = new System.Drawing.Point(11, 246);
+            this.txtCommunication.Name = "txtCommunication";
+            this.txtCommunication.Size = new System.Drawing.Size(448, 23);
+            this.txtCommunication.TabIndex = 22;
             // 
             // txtPhone
             // 
@@ -398,6 +395,7 @@
             this.radWhatsApp.TabStop = true;
             this.radWhatsApp.Text = "واتساب";
             this.radWhatsApp.UseVisualStyleBackColor = true;
+            this.radWhatsApp.CheckedChanged += new System.EventHandler(this.radWhatsApp_CheckedChanged);
             // 
             // radInstagram
             // 
@@ -411,6 +409,7 @@
             this.radInstagram.TabStop = true;
             this.radInstagram.Text = "انستجرام";
             this.radInstagram.UseVisualStyleBackColor = true;
+            this.radInstagram.CheckedChanged += new System.EventHandler(this.radInstagram_CheckedChanged);
             // 
             // radFaceBook
             // 
@@ -424,6 +423,7 @@
             this.radFaceBook.TabStop = true;
             this.radFaceBook.Text = "فيس بوك";
             this.radFaceBook.UseVisualStyleBackColor = true;
+            this.radFaceBook.CheckedChanged += new System.EventHandler(this.radFaceBook_CheckedChanged);
             // 
             // label13
             // 
@@ -535,9 +535,9 @@
             this.panel4.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ratingControl1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ratingControl2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ratingControl3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ratingControlPurchasing.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ratingControlDelegate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ratingControlShowroom.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -560,7 +560,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtConnection;
+        private System.Windows.Forms.TextBox txtCommunication;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtComplaint;
@@ -573,9 +573,9 @@
         private System.Windows.Forms.RadioButton radInstagram;
         private System.Windows.Forms.RadioButton radFaceBook;
         private System.Windows.Forms.Label label2;
-        private DevExpress.XtraEditors.RatingControl ratingControl1;
-        private DevExpress.XtraEditors.RatingControl ratingControl2;
-        private DevExpress.XtraEditors.RatingControl ratingControl3;
+        private DevExpress.XtraEditors.RatingControl ratingControlPurchasing;
+        private DevExpress.XtraEditors.RatingControl ratingControlDelegate;
+        private DevExpress.XtraEditors.RatingControl ratingControlShowroom;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtClient;
         private System.Windows.Forms.TextBox txtDelegate;
