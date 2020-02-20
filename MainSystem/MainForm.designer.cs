@@ -656,6 +656,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup68 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSurvayRecord = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem265 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem266 = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -5399,8 +5403,9 @@
             this.navBarItem235,
             this.navBarItem236,
             this.navBarItem237,
-            this.navBarItemSearchByPhone});
-            this.navBarControl8.Location = new System.Drawing.Point(836, 0);
+            this.navBarItemSearchByPhone,
+            this.navBarItem266});
+            this.navBarControl8.Location = new System.Drawing.Point(702, 0);
             this.navBarControl8.Name = "navBarControl8";
             this.navBarControl8.OptionsNavPane.ExpandedWidth = 165;
             this.navBarControl8.OptionsNavPane.ShowGroupImageInHeader = true;
@@ -5418,12 +5423,13 @@
             this.navBarGroup49.Caption = "تقارير";
             this.navBarGroup49.Expanded = true;
             this.navBarGroup49.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSearchByPhone)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSearchByPhone),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem266)});
             this.navBarGroup49.Name = "navBarGroup49";
             // 
             // navBarItemSearchByPhone
             // 
-            this.navBarItemSearchByPhone.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemSearchByPhone.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarItemSearchByPhone.Appearance.Options.UseFont = true;
             this.navBarItemSearchByPhone.Caption = "بحث برقم التلفون";
             this.navBarItemSearchByPhone.Name = "navBarItemSearchByPhone";
@@ -6230,6 +6236,32 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
+            // navBarGroup68
+            // 
+            this.navBarGroup68.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup68.Appearance.Options.UseFont = true;
+            this.navBarGroup68.Caption = "خدمة العملاء";
+            this.navBarGroup68.Expanded = true;
+            this.navBarGroup68.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSurvayRecord)});
+            this.navBarGroup68.Name = "navBarGroup68";
+            // 
+            // navBarItemSurvayRecord
+            // 
+            this.navBarItemSurvayRecord.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemSurvayRecord.Appearance.Options.UseFont = true;
+            this.navBarItemSurvayRecord.Caption = "استبيان";
+            this.navBarItemSurvayRecord.Name = "navBarItemSurvayRecord";
+            this.navBarItemSurvayRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSurvayRecord_LinkClicked);
+            // 
+            // navBarItem265
+            // 
+            this.navBarItem266.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem266.Appearance.Options.UseFont = true;
+            this.navBarItem266.Caption = "فواتير تم تسليمها";
+            this.navBarItem266.Name = "navBarItem266";
+            this.navBarItem266.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem266_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -6916,6 +6948,7 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup68;
         private DevExpress.XtraNavBar.NavBarItem navBarItemSurvayRecord;
         private DevExpress.XtraNavBar.NavBarItem navBarItem265;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem266;
     }
 }
 

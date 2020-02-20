@@ -623,7 +623,7 @@ namespace MainSystem
                     xtraTabPage.Controls.Clear();
                     xtraTabControlReception.SelectedTabPage = xtraTabPage;
 
-                    CustomerServiceAfterReceived_Report objForm = new CustomerServiceAfterReceived_Report(this);
+                    CustomerServiceAfterReceived_Report objForm = new CustomerServiceAfterReceived_Report();
 
                     objForm.TopLevel = false;
                     xtraTabPage.Controls.Add(objForm);
