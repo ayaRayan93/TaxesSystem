@@ -729,7 +729,6 @@ namespace MainSystem
             }
             labUserName.Text = UserControl.EmpName;
         }
-
         static void BackupMethod()
         {
             string fbd = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -1051,7 +1050,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnRequests_ItemClick(object sender, TileItemEventArgs e)
         {
             try
@@ -1075,7 +1073,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -1299,6 +1296,8 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+       
     }
 
     public static class connection

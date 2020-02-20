@@ -51,7 +51,7 @@ namespace MainSystem
                 comCarNumber.ValueMember = dt.Columns["Car_ID"].ToString();
                 comCarNumber.Text = row[1].ToString();
 
-                query = "select * from expenses_type";
+                query = "select * from expense_type";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
@@ -81,7 +81,7 @@ namespace MainSystem
         {
             try
             {
-                string query = "update car_expenses set Car_ID=" + comCarNumber.SelectedValue + " ,Cost=" + txtCost.Text + " , Note='" + txtNote.Text + "' ,Date='" + dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + "' , Expenses_Type='" + comType.Text + "' where ID=" + row[0].ToString();
+                string query = "update car_expenses set Car_ID=" + comCarNumber.SelectedValue + " ,Cost=" + txtCost.Text + " , Note='" + txtNote.Text + "' ,Date='" + dateTimePicker1.Value.Date.ToString("yyyy-MM-dd") + "' , Expenses_Type='" + comType.Text + "', Expenses_Type_ID=" + comType.SelectedValue + " where ID=" + row[0].ToString();
                 dbconnection.Open();
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 comand.ExecuteNonQuery();
@@ -115,24 +115,24 @@ namespace MainSystem
             dbconnection.Close();
         }
         
-        private void txtCost_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (load)
-                {
-                    XtraTabPage xtraTabPage = getTabPage("تعديل مصروف");
-                    if (!IsClear())
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                    else
-                        xtraTabPage.ImageOptions.Image = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //private void txtCost_TextChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (load)
+        //        {
+        //            XtraTabPage xtraTabPage = getTabPage("تعديل مصروف");
+        //            if (!IsClear())
+        //                xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+        //            else
+        //                xtraTabPage.ImageOptions.Image = null;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
         //functions
         public XtraTabPage getTabPage(string text)

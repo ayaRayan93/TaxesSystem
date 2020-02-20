@@ -63,7 +63,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(196, 24);
             this.dateTimePicker1.TabIndex = 45;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.txtCost_TextChanged);
             // 
             // comCarNumber
             // 
@@ -74,7 +73,6 @@
             this.comCarNumber.Name = "comCarNumber";
             this.comCarNumber.Size = new System.Drawing.Size(176, 24);
             this.comCarNumber.TabIndex = 44;
-            this.comCarNumber.TextChanged += new System.EventHandler(this.txtCost_TextChanged);
             // 
             // label5
             // 
@@ -109,8 +107,7 @@
             this.txtNote.Name = "txtNote";
             this.txtNote.Size = new System.Drawing.Size(241, 62);
             this.txtNote.TabIndex = 67;
-            this.txtNote.TextChanged += new System.EventHandler(this.txtCost_TextChanged);
-            // 
+           // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -131,8 +128,7 @@
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(176, 24);
             this.txtCost.TabIndex = 65;
-            this.txtCost.TextChanged += new System.EventHandler(this.txtCost_TextChanged);
-            // 
+           // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -154,8 +150,7 @@
             this.comType.Name = "comType";
             this.comType.Size = new System.Drawing.Size(176, 24);
             this.comType.TabIndex = 63;
-            this.comType.TextChanged += new System.EventHandler(this.txtCost_TextChanged);
-            // 
+           // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));

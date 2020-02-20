@@ -410,6 +410,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItem265_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlCarsContent.Visible)
+                    xtraTabControlCarsContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlCarsContent, "تقرير");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlCarsContent.TabPages.Add("تقرير");
+                    xtraTabPage = getTabPage(xtraTabControlCarsContent, "تقرير");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlCarsContent.SelectedTabPage = xtraTabPage;
+
+                CarExpensesReport2 objForm = new CarExpensesReport2(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         //function
         //cars
         public void bindRecordCarForm(Cars cars)
