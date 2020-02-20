@@ -23,12 +23,17 @@ namespace MainSystem
         bool loaded = false;
         DataRow selRow = null;
         string CommunicationWay = "";
+        int CustomerBill_ID = 0;
+        MainForm mainForm = null;
+        XtraTabControl tabControlCustomerService = null;
 
-        public CustomerServiceAfterReceived_Report(MainForm BankMainForm/*, DataRow selrow*/)
+        public CustomerServiceAfterReceived_Report(XtraTabControl tabControlCustomerservice, MainForm mainform, DataRow dataRow)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             selRow = dataRow;
+            mainForm = mainform;
+            tabControlCustomerService = tabControlCustomerservice;
         }
 
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
@@ -73,6 +78,9 @@ namespace MainSystem
                 com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                 com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
                 com.ExecuteNonQuery();
+
+                XtraTabPage xtraTabPage = getTabPage("استبيان");
+                tabControlCustomerService.TabPages.Remove(xtraTabPage);
             }
             catch (Exception ex)
             {
@@ -95,7 +103,7 @@ namespace MainSystem
             comBranch.SelectedIndex = -1;
             comBranch.Text = selRow["الفرع"].ToString();
             txtBillNum.Text = selRow["رقم الفاتورة"].ToString();
-            txtClient.Text = selRow["اسم المستلم"].ToString();
+            txtClient.Text = selRow["المستلم"].ToString();
             txtPhone.Text = selRow["تلفون المستلم"].ToString();
             dateTimePicker1.Value = Convert.ToDateTime(selRow["التاريخ"].ToString());
             txtAddress.Text = selRow["العنوان"].ToString();
@@ -108,26 +116,17 @@ namespace MainSystem
 
             loaded = true;
         }
-        
-        public void clearCom()
-        {
-            foreach (Control co in this.tableLayoutPanel4.Controls)
-            {
-                if (co is System.Windows.Forms.ComboBox)
-                {
-                    co.Text = "";
-                }
-                else if (co is TextBox)
-                {
-                    co.Text = "";
-                }
-                else if (co is DateTimePicker)
-                {
-                    dateTimePicker1.Value = DateTime.Now;
-                }
-            }
-        }
 
+        public XtraTabPage getTabPage(string text)
+        {
+            for (int i = 0; i < tabControlCustomerService.TabPages.Count; i++)
+                if (tabControlCustomerService.TabPages[i].Text == text)
+                {
+                    return tabControlCustomerService.TabPages[i];
+                }
+            return null;
+        }
+        
         private void radFaceBook_CheckedChanged(object sender, EventArgs e)
         {
             CommunicationWay = "FaceBook";

@@ -176,7 +176,7 @@
             this.txtDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDelegate.Enabled = false;
             this.txtDelegate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDelegate.Location = new System.Drawing.Point(8, 161);
+            this.txtDelegate.Location = new System.Drawing.Point(11, 125);
             this.txtDelegate.Name = "txtDelegate";
             this.txtDelegate.Size = new System.Drawing.Size(278, 23);
             this.txtDelegate.TabIndex = 37;
@@ -186,7 +186,7 @@
             this.txtClient.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtClient.Enabled = false;
             this.txtClient.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClient.Location = new System.Drawing.Point(607, 126);
+            this.txtClient.Location = new System.Drawing.Point(610, 90);
             this.txtClient.Name = "txtClient";
             this.txtClient.Size = new System.Drawing.Size(200, 23);
             this.txtClient.TabIndex = 36;
@@ -196,9 +196,9 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(292, 164);
+            this.label6.Location = new System.Drawing.Point(295, 127);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 19);
+            this.label6.Size = new System.Drawing.Size(93, 19);
             this.label6.TabIndex = 35;
             this.label6.Text = "اسم المندوب";
             // 
@@ -208,9 +208,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(620, 75);
+            this.label3.Location = new System.Drawing.Point(620, 33);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 23);
+            this.label3.Size = new System.Drawing.Size(40, 23);
             this.label3.TabIndex = 5;
             this.label3.Text = "فرع";
             // 
@@ -227,7 +227,7 @@
             this.tableLayoutPanel4.Controls.Add(this.ratingControlPurchasing, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.ratingControlDelegate, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.ratingControlShowroom, 1, 2);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(11, 313);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(11, 317);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -241,9 +241,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(613, 69);
+            this.label2.Location = new System.Drawing.Point(612, 69);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(281, 19);
+            this.label2.Size = new System.Drawing.Size(282, 19);
             this.label2.TabIndex = 46;
             this.label2.Text = "ما هو تقييمك عن شمول المعرض باحتياجاتك";
             // 
@@ -252,9 +252,9 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(650, 3);
+            this.label8.Location = new System.Drawing.Point(649, 3);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(244, 19);
+            this.label8.Size = new System.Drawing.Size(245, 19);
             this.label8.TabIndex = 17;
             this.label8.Text = "ما هو تقييمك لعملية الشراء والمعرض";
             // 
@@ -263,9 +263,9 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(699, 36);
+            this.label9.Location = new System.Drawing.Point(697, 36);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(195, 19);
+            this.label9.Size = new System.Drawing.Size(197, 19);
             this.label9.TabIndex = 19;
             this.label9.Text = "ما هو تقييمك لممثل المبيعات";
             // 
@@ -312,7 +312,7 @@
             this.comBranch.Enabled = false;
             this.comBranch.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(464, 74);
+            this.comBranch.Location = new System.Drawing.Point(464, 32);
             this.comBranch.Name = "comBranch";
             this.comBranch.Size = new System.Drawing.Size(150, 24);
             this.comBranch.TabIndex = 6;
@@ -323,7 +323,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(353, 75);
+            this.label4.Location = new System.Drawing.Point(353, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 23);
             this.label4.TabIndex = 7;
@@ -334,9 +334,9 @@
             this.radEmail.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radEmail.AutoSize = true;
             this.radEmail.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.radEmail.Location = new System.Drawing.Point(8, 268);
+            this.radEmail.Location = new System.Drawing.Point(11, 229);
             this.radEmail.Name = "radEmail";
-            this.radEmail.Size = new System.Drawing.Size(129, 23);
+            this.radEmail.Size = new System.Drawing.Size(130, 23);
             this.radEmail.TabIndex = 29;
             this.radEmail.TabStop = true;
             this.radEmail.Text = "البريد الالكترونى";
@@ -348,7 +348,7 @@
             this.txtBillNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtBillNum.Enabled = false;
             this.txtBillNum.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBillNum.Location = new System.Drawing.Point(261, 75);
+            this.txtBillNum.Location = new System.Drawing.Point(261, 33);
             this.txtBillNum.Name = "txtBillNum";
             this.txtBillNum.Size = new System.Drawing.Size(86, 23);
             this.txtBillNum.TabIndex = 8;
@@ -357,9 +357,9 @@
             // 
             this.txtCommunication.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCommunication.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCommunication.Location = new System.Drawing.Point(11, 246);
+            this.txtCommunication.Location = new System.Drawing.Point(11, 258);
             this.txtCommunication.Name = "txtCommunication";
-            this.txtCommunication.Size = new System.Drawing.Size(448, 23);
+            this.txtCommunication.Size = new System.Drawing.Size(446, 23);
             this.txtCommunication.TabIndex = 22;
             // 
             // txtPhone
@@ -367,7 +367,7 @@
             this.txtPhone.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPhone.Enabled = false;
             this.txtPhone.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(607, 161);
+            this.txtPhone.Location = new System.Drawing.Point(610, 125);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(200, 23);
             this.txtPhone.TabIndex = 12;
@@ -377,9 +377,9 @@
             this.label20.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(292, 198);
+            this.label20.Location = new System.Drawing.Point(295, 162);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(54, 19);
+            this.label20.Size = new System.Drawing.Size(55, 19);
             this.label20.TabIndex = 31;
             this.label20.Text = "العنوان";
             // 
@@ -388,9 +388,9 @@
             this.radWhatsApp.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radWhatsApp.AutoSize = true;
             this.radWhatsApp.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.radWhatsApp.Location = new System.Drawing.Point(163, 268);
+            this.radWhatsApp.Location = new System.Drawing.Point(161, 229);
             this.radWhatsApp.Name = "radWhatsApp";
-            this.radWhatsApp.Size = new System.Drawing.Size(75, 23);
+            this.radWhatsApp.Size = new System.Drawing.Size(74, 23);
             this.radWhatsApp.TabIndex = 28;
             this.radWhatsApp.TabStop = true;
             this.radWhatsApp.Text = "واتساب";
@@ -402,9 +402,9 @@
             this.radInstagram.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radInstagram.AutoSize = true;
             this.radInstagram.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.radInstagram.Location = new System.Drawing.Point(263, 268);
+            this.radInstagram.Location = new System.Drawing.Point(261, 229);
             this.radInstagram.Name = "radInstagram";
-            this.radInstagram.Size = new System.Drawing.Size(82, 23);
+            this.radInstagram.Size = new System.Drawing.Size(80, 23);
             this.radInstagram.TabIndex = 27;
             this.radInstagram.TabStop = true;
             this.radInstagram.Text = "انستجرام";
@@ -416,9 +416,9 @@
             this.radFaceBook.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radFaceBook.AutoSize = true;
             this.radFaceBook.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.radFaceBook.Location = new System.Drawing.Point(367, 268);
+            this.radFaceBook.Location = new System.Drawing.Point(368, 229);
             this.radFaceBook.Name = "radFaceBook";
-            this.radFaceBook.Size = new System.Drawing.Size(86, 23);
+            this.radFaceBook.Size = new System.Drawing.Size(89, 23);
             this.radFaceBook.TabIndex = 26;
             this.radFaceBook.TabStop = true;
             this.radFaceBook.Text = "فيس بوك";
@@ -430,9 +430,9 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(519, 270);
+            this.label13.Location = new System.Drawing.Point(522, 231);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(378, 19);
+            this.label13.Size = new System.Drawing.Size(383, 19);
             this.label13.TabIndex = 25;
             this.label13.Text = "اى وســيــلـة تـواصــل تــود ان تـســتـقـبــل عـلـيــهـا مـراســلاتـنــا";
             // 
@@ -440,7 +440,7 @@
             // 
             this.txtComplaint.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtComplaint.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtComplaint.Location = new System.Drawing.Point(464, 198);
+            this.txtComplaint.Location = new System.Drawing.Point(467, 162);
             this.txtComplaint.Multiline = true;
             this.txtComplaint.Name = "txtComplaint";
             this.txtComplaint.Size = new System.Drawing.Size(343, 50);
@@ -451,7 +451,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(813, 198);
+            this.label11.Location = new System.Drawing.Point(816, 162);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(68, 19);
             this.label11.TabIndex = 23;
@@ -462,7 +462,7 @@
             this.txtAddress.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtAddress.Enabled = false;
             this.txtAddress.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(8, 198);
+            this.txtAddress.Location = new System.Drawing.Point(11, 162);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(278, 50);
@@ -473,7 +473,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(292, 130);
+            this.label1.Location = new System.Drawing.Point(295, 92);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 19);
             this.label1.TabIndex = 0;
@@ -485,7 +485,7 @@
             this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
             this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(85, 129);
+            this.dateTimePicker1.Location = new System.Drawing.Point(88, 91);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.RightToLeftLayout = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(201, 20);
@@ -496,9 +496,9 @@
             this.label19.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(813, 130);
+            this.label19.Location = new System.Drawing.Point(816, 92);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(90, 19);
+            this.label19.Size = new System.Drawing.Size(89, 19);
             this.label19.TabIndex = 28;
             this.label19.Text = "اسم المستلم";
             // 
@@ -507,9 +507,9 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(813, 163);
+            this.label5.Location = new System.Drawing.Point(816, 127);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 19);
+            this.label5.Size = new System.Drawing.Size(88, 19);
             this.label5.TabIndex = 11;
             this.label5.Text = "رقم التليفون";
             // 

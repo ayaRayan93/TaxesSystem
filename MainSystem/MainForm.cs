@@ -1296,8 +1296,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-      
     }
 
     public static class connection

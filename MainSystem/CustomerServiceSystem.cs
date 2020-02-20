@@ -121,7 +121,7 @@ namespace MainSystem
             xtraTabPage.Controls.Clear();
             xtraTabControlCustomerService.SelectedTabPage = xtraTabPage;
 
-            CustomerServiceAfterReceived_Report objForm = new CustomerServiceAfterReceived_Report(dataRow);
+            CustomerServiceAfterReceived_Report objForm = new CustomerServiceAfterReceived_Report(xtraTabControlCustomerService, this, dataRow);
 
             objForm.TopLevel = false;
             xtraTabPage.Controls.Add(objForm);
