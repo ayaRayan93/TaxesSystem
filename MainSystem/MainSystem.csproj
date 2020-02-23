@@ -450,10 +450,10 @@
       <DependentUpon>Report_SupplierType.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Reports\supplierType\SupplierType_Items.cs" />
-    <Compile Include="Reception\CustomerServiceAfterReceived_Report.cs">
+    <Compile Include="CustomerService\CustomerServiceAfterReceived_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reception\CustomerServiceAfterReceived_Report.designer.cs">
+    <Compile Include="CustomerService\CustomerServiceAfterReceived_Report.designer.cs">
       <DependentUpon>CustomerServiceAfterReceived_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="RequestsSystem.cs" />
@@ -3338,7 +3338,7 @@
     <EmbeddedResource Include="Purchases\Reports\supplierType\Report_SupplierType.resx">
       <DependentUpon>Report_SupplierType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reception\CustomerServiceAfterReceived_Report.resx">
+    <EmbeddedResource Include="CustomerService\CustomerServiceAfterReceived_Report.resx">
       <DependentUpon>CustomerServiceAfterReceived_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Requests\Least Quantity\Print_LeastQuantity.resx">

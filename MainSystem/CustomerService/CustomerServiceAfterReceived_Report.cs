@@ -20,21 +20,20 @@ namespace MainSystem
     public partial class CustomerServiceAfterReceived_Report : Form
     {
         MySqlConnection dbconnection;
-        int branchID = 0;
         bool loaded = false;
         DataRow selRow = null;
+        string CommunicationWay = "";
         int CustomerBill_ID = 0;
-        public CustomerServiceAfterReceived_Report()
-        {
-            InitializeComponent();
-            dbconnection = new MySqlConnection(connection.connectionString);
-        
-        }
-        public CustomerServiceAfterReceived_Report(DataRow dataRow)
+        MainForm mainForm = null;
+        XtraTabControl tabControlCustomerService = null;
+
+        public CustomerServiceAfterReceived_Report(XtraTabControl tabControlCustomerservice, MainForm mainform, DataRow dataRow)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             selRow = dataRow;
+            mainForm = mainform;
+            tabControlCustomerService = tabControlCustomerservice;
         }
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
         {
@@ -57,7 +56,7 @@ namespace MainSystem
             {
                 dbconnection.Open();
 
-                string query = "insert into customer_service_survey () values(@)";
+                string query = "insert into customer_service_survey (Branch_ID,BranchBillNumber,CustomerBill_ID,Delegate_Name,Customer_Name,Customer_Phone,Customer_Address,Bill_Date,Description,Communication_Way,Communication_Info,Purchasing_Survey,Delegate_Survey,Showroom_Survey,Date,Employee_ID) values(@Branch_ID,@BranchBillNumber,@CustomerBill_ID,@Delegate_Name,@Customer_Name,@Customer_Phone,@Customer_Address,@Bill_Date,@Description,@Communication_Way,@Communication_Info,@Purchasing_Survey,@Delegate_Survey,@Showroom_Survey,@Date,@Employee_ID)";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = comBranch.SelectedValue.ToString();
                 com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBillNum.Text;
@@ -68,15 +67,17 @@ namespace MainSystem
                 com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255).Value = txtAddress.Text;
                 com.Parameters.Add("@Bill_Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.Date;
                 com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtComplaint.Text;
-                com.Parameters.Add("@Communication_Way", MySqlDbType.VarChar, 255).Value = "";
-                com.Parameters.Add("@Communication_Info", MySqlDbType.VarChar, 255).Value = txtConnection;
-                com.Parameters.Add("@Purchasing_Survey", MySqlDbType.Int16, 11).Value = 0;
-                com.Parameters.Add("@Delegate_Survey", MySqlDbType.Int16, 11).Value = 0;
-                com.Parameters.Add("@Showroom_Survey", MySqlDbType.Int16, 11).Value = 0;
+                com.Parameters.Add("@Communication_Way", MySqlDbType.VarChar, 255).Value = CommunicationWay;
+                com.Parameters.Add("@Communication_Info", MySqlDbType.VarChar, 255).Value = txtCommunication.Text;
+                com.Parameters.Add("@Purchasing_Survey", MySqlDbType.Int16, 11).Value = ratingControlPurchasing.EditValue.ToString();
+                com.Parameters.Add("@Delegate_Survey", MySqlDbType.Int16, 11).Value = ratingControlDelegate.EditValue.ToString();
+                com.Parameters.Add("@Showroom_Survey", MySqlDbType.Int16, 11).Value = ratingControlShowroom.EditValue.ToString();
                 com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                 com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
-
                 com.ExecuteNonQuery();
+
+                XtraTabPage xtraTabPage = getTabPage("استبيان");
+                tabControlCustomerService.TabPages.Remove(xtraTabPage);
             }
             catch (Exception ex)
             {
@@ -111,24 +112,40 @@ namespace MainSystem
             txtDelegate.Text = com.ExecuteScalar().ToString();
 
             loaded = true;
-        }       
-        public void clearCom()
+        }
+
+        public XtraTabPage getTabPage(string text)
         {
-            foreach (Control co in this.tableLayoutPanel4.Controls)
-            {
-                if (co is System.Windows.Forms.ComboBox)
+            for (int i = 0; i < tabControlCustomerService.TabPages.Count; i++)
+                if (tabControlCustomerService.TabPages[i].Text == text)
                 {
-                    co.Text = "";
+                    return tabControlCustomerService.TabPages[i];
                 }
-                else if (co is TextBox)
-                {
-                    co.Text = "";
-                }
-                else if (co is DateTimePicker)
-                {
-                    dateTimePicker1.Value = DateTime.Now;
-                }
-            }
+            return null;
+        }
+        
+        private void radFaceBook_CheckedChanged(object sender, EventArgs e)
+        {
+            CommunicationWay = "FaceBook";
+            txtCommunication.Text = "";
+        }
+
+        private void radInstagram_CheckedChanged(object sender, EventArgs e)
+        {
+            CommunicationWay = "Instagram";
+            txtCommunication.Text = "";
+        }
+
+        private void radWhatsApp_CheckedChanged(object sender, EventArgs e)
+        {
+            CommunicationWay = "WhatsApp";
+            txtCommunication.Text = txtPhone.Text;
+        }
+
+        private void radEmail_CheckedChanged(object sender, EventArgs e)
+        {
+            CommunicationWay = "Email";
+            txtCommunication.Text = "";
         }
     }
 }
