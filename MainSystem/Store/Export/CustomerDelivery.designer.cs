@@ -86,6 +86,8 @@
             this.NumOfCarton = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ItemType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtDeliverPhone = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
@@ -93,8 +95,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtStoreKeeper = new System.Windows.Forms.TextBox();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPut)).BeginInit();
@@ -506,7 +506,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 449F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 451F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -531,7 +531,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(451, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(452, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(94, 45);
@@ -810,7 +810,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.label13);
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.txtDeliverPhone);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.txtNote);
@@ -823,6 +823,26 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(996, 70);
             this.panel3.TabIndex = 233;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label13.Location = new System.Drawing.Point(564, 41);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(138, 19);
+            this.label13.TabIndex = 243;
+            this.label13.Text = "رقم تلفون المستلم";
+            // 
+            // txtDeliverPhone
+            // 
+            this.txtDeliverPhone.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDeliverPhone.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtDeliverPhone.Location = new System.Drawing.Point(407, 41);
+            this.txtDeliverPhone.Name = "txtDeliverPhone";
+            this.txtDeliverPhone.Size = new System.Drawing.Size(151, 27);
+            this.txtDeliverPhone.TabIndex = 242;
             // 
             // label5
             // 
@@ -891,26 +911,6 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 4;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label13.Location = new System.Drawing.Point(564, 41);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(138, 19);
-            this.label13.TabIndex = 243;
-            this.label13.Text = "رقم تلفون المستلم";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.textBox1.Location = new System.Drawing.Point(407, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 27);
-            this.textBox1.TabIndex = 242;
             // 
             // CustomerDelivery
             // 
@@ -1013,7 +1013,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDeliverPhone;
     }
 }
 

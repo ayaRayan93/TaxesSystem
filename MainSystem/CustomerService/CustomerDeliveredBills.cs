@@ -97,14 +97,16 @@ namespace MainSystem.CustomerService
             }
         }
   
-
         //function
         public void displayProducts()
         {
             try
             {
                 string subQuery = " date(customer_permissions.Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "'";
-            
+
+                string query = "select GROUP_CONCAT(CustomerBill_ID) from customer_return_permission where date(Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "'";
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                string returnCustomerBill_ID = com.ExecuteScalar().ToString();
                 if (comBranch.Text != "")
                 {
                     subQuery += " and customer_permissions.Branch_ID=" + comBranch.SelectedValue;
@@ -114,7 +116,9 @@ namespace MainSystem.CustomerService
                 {
                     subQuery = " customer_permissions.BranchBillNumber=" + txtBranch.Text;
                 }
-                string query = "SELECT Customer_Permissin_ID,branch.Branch_Name as 'الفرع',customer_permissions.BranchBillNumber as 'رقم الفاتورة',customer_permissions.Customer_Name as 'مهندس/مقاول/تاجر',GROUP_CONCAT(c2.Phone)as 'تلفون م/م/ت',customer_permissions.Client_Name as 'العميل',GROUP_CONCAT(c1.Phone)as 'تلفون العميل',DeliveredPerson as 'المستلم',DeliveredPersonPhone as 'تلفون المستلم',CustomerAddress as 'العنوان',customer_permissions.Date as 'التاريخ' FROM customer_permissions left join customer_phone as c1 on customer_permissions.Client_ID=c1.Customer_ID left join customer_phone as c2 on customer_permissions.Customer_ID=c2.Customer_ID INNER JOIN store ON store.Store_ID = customer_permissions.Store_ID inner join branch on branch.Branch_ID=customer_permissions.Branch_ID   WHERE " + subQuery + " group by customer_permissions.BranchBillNumber";
+
+
+                query = "SELECT Customer_Permissin_ID,branch.Branch_Name as 'الفرع',customer_permissions.BranchBillNumber as 'رقم الفاتورة',customer_permissions.Customer_Name as 'مهندس/مقاول/تاجر',GROUP_CONCAT(c2.Phone)as 'تلفون م/م/ت',customer_permissions.Client_Name as 'العميل',GROUP_CONCAT(c1.Phone)as 'تلفون العميل',DeliveredPerson as 'المستلم',DeliveredPersonPhone as 'تلفون المستلم',CustomerAddress as 'العنوان',customer_permissions.Date as 'التاريخ' FROM customer_permissions left join customer_phone as c1 on customer_permissions.Client_ID=c1.Customer_ID left join customer_phone as c2 on customer_permissions.Customer_ID=c2.Customer_ID INNER JOIN store ON store.Store_ID = customer_permissions.Store_ID inner join branch on branch.Branch_ID=customer_permissions.Branch_ID   WHERE " + subQuery + " and CustomerBill_ID not in (" + returnCustomerBill_ID + ") group by customer_permissions.BranchBillNumber";
 
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();

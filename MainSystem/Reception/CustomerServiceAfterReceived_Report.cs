@@ -36,7 +36,6 @@ namespace MainSystem
             dbconnection = new MySqlConnection(connection.connectionString);
             selRow = dataRow;
         }
-
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
         {
             try
@@ -52,8 +51,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -114,8 +111,7 @@ namespace MainSystem
             txtDelegate.Text = com.ExecuteScalar().ToString();
 
             loaded = true;
-        }
-        
+        }       
         public void clearCom()
         {
             foreach (Control co in this.tableLayoutPanel4.Controls)

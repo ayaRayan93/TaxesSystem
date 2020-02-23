@@ -339,6 +339,8 @@ namespace MainSystem
                 //navBarGroupSupplierPayments.Visible = false;
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
+                btnCustomerService.Enabled = true;
+                btnCustomerService.Checked = true;
                 AccountingSystem.Enabled = true;
                 AccountingSystem.Checked = true;
                 navBarGroupBillRecord.Visible = false;
@@ -1308,3 +1310,4 @@ namespace MainSystem
        // public static string connectionString = "SERVER=localhost;DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8";
     }
 }
+
