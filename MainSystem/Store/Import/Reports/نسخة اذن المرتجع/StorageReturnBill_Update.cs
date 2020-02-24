@@ -890,7 +890,7 @@ namespace MainSystem
                                 gridView2.FocusedRowHandle = gridView2.RowCount - 1;
                             }
 
-                            DataRow row2 = gridView2.GetDataRow(rowHandle);
+                            DataRow row2 = gridView2.GetDataRow(gridView2.RowCount - 1);
 
                             dbconnection.Open();
                             dbconnection2.Open();
