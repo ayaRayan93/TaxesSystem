@@ -593,6 +593,27 @@ namespace MainSystem
                 layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelID.Text = "";
             }
+            else if (cmbType.Text == "خزينة ادارة السيارات")
+            {
+                layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelBranch.Text = "*";
+                layoutControlItemName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelName.Text = "*";
+                layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelStock.Text = "*";
+                layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelDate.Text = "*";
+                layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelInfo.Text = "";
+                layoutControlItemAccountNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelAccountNumber.Text = "";
+                layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelAccountType.Text = "";
+                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelBank.Text = "";
+                layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelID.Text = "";
+            }
             labelEmp.Visible = true;
             comBankUsers.Visible = true;
             btnAddUserToBank.Visible = true;

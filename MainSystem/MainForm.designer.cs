@@ -232,6 +232,7 @@
             this.navBarGroup25 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem63 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem64 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem265 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2655 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup26 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem65 = new DevExpress.XtraNavBar.NavBarItem();
@@ -2727,7 +2728,9 @@
             this.navBarItem64,
             this.navBarItem232,
             this.navBarItem233,
-            this.navBarItem265});
+            this.navBarItem265
+
+            });
             this.navBarControl4.Location = new System.Drawing.Point(837, 0);
             this.navBarControl4.Name = "navBarControl4";
             this.navBarControl4.OptionsNavPane.ExpandedWidth = 164;
