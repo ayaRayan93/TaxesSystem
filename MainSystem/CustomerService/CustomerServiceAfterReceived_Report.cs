@@ -35,7 +35,6 @@ namespace MainSystem
             mainForm = mainform;
             tabControlCustomerService = tabControlCustomerservice;
         }
-
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
         {
             try
@@ -51,8 +50,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
