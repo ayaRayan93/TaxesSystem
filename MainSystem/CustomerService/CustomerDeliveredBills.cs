@@ -104,7 +104,7 @@ namespace MainSystem.CustomerService
             {
                 string subQuery = " date(customer_permissions.Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "'";
 
-                string query = "select GROUP_CONCAT(CustomerBill_ID) from customer_return_permission where date(Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "'";
+                string query = "select GROUP_CONCAT(CustomerBill_ID) from customer_return_permission where date(Date) between '" + dateTimeFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimeTo.Value.ToString("yyyy-MM-dd") + "' and CustomerBill_ID !=0";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 string returnCustomerBill_ID = com.ExecuteScalar().ToString();
                 if (comBranch.Text != "")
