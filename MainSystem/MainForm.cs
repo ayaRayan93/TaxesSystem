@@ -209,6 +209,8 @@ namespace MainSystem
             {
                 btnReception.Enabled = true;
                 btnReception.Checked = true;
+                btnCustomerService.Enabled = true;
+                btnCustomerService.Checked = true;
             }
             else if (UserControl.userType == 5)
             {

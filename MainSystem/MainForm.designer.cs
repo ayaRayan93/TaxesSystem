@@ -234,6 +234,7 @@
             this.navBarItem63 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem64 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem265 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem2655 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup26 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem65 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem66 = new DevExpress.XtraNavBar.NavBarItem();
