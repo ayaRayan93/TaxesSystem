@@ -142,7 +142,14 @@ namespace MainSystem
                         dbconnection.Close();
                         return;
                     }
-                    
+                    //update bank
+                    query = "select Bank_Stock from bank where Bank_ID=13";
+                    com = new MySqlCommand(query, dbconnection);
+                    double bankMoney = Convert.ToDouble(com.ExecuteScalar());
+                    bankMoney -= Convert.ToDouble(txtCost.Text);
+                    query = "update bank  set Bank_Stock=" + bankMoney + " where  Bank_ID=13";
+                    com = new MySqlCommand(query, dbconnection);
+                    com.ExecuteNonQuery();
                     MessageBox.Show("Done");
                     carExpenses.displayData();
                     clear();

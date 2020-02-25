@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraReports.UI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -42,7 +43,16 @@ namespace MainSystem.Store.Export
             {
                 DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData,customerName,customerPhone,delegateName,date, BranchBillNumber, PerNum,branchId,branchName, storeKeeper, customerdelivery,customerdeliveryPhone, store_Name,flag,customerAddress);
                 documentViewer1.DocumentSource = DeliveryPermissionReport;
-                DeliveryPermissionReport.CreateDocument();
+                XtraReport1 report = new XtraReport1();
+                ReportPrintTool printTool = new ReportPrintTool(DeliveryPermissionReport);
+                // Invoke the Print dialog.
+                printTool.PrintDialog();
+                // Send the report to the default printer.
+                printTool.Print();
+                // Send the report to the specified printer.
+                printTool.Print("myPrinter");
+              //  DeliveryPermissionReport.CreateDocument();
+
             }
             catch (Exception ex)
             {
