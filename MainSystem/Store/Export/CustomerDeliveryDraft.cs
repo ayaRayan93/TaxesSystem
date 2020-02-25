@@ -16,7 +16,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class CustomerDelivery : Form
+    public partial class CustomerDeliveryDraft : Form
     {
         MySqlConnection dbconnection, dbconnection1;
         string Store_ID = "0";
@@ -30,7 +30,7 @@ namespace MainSystem
         string branchID = "", BranchName = "";
         string TypeBuy = "";
 
-        public CustomerDelivery()
+        public CustomerDeliveryDraft()
         {
             try
             {
@@ -43,7 +43,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        public CustomerDelivery(string permissionNum,string branchID,int flag)
+        public CustomerDeliveryDraft(string permissionNum,string branchID,int flag)
         {
             try
             {
@@ -709,7 +709,8 @@ namespace MainSystem
             try
             {
         
-               
+                if (txtDeliverPhone.Text != "" && txtDeliverPerson.Text != "" && txtAddress.Text != "")
+                {
                     if (gridView1.RowCount > 0 && txtPermBillNumber.Text != "")
                     {
                         dbconnection.Open();
@@ -785,7 +786,11 @@ namespace MainSystem
                     {
                         MessageBox.Show("insert correct value");
                     }
-              
+                }
+                else
+                {
+                    MessageBox.Show("ادخل بيانات المستلم والعنوان");
+                }
             }
             catch (Exception ex)
             {

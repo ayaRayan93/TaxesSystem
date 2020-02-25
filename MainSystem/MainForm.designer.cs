@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
@@ -371,7 +372,6 @@
             this.navBarItem129 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem130 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem131 = new DevExpress.XtraNavBar.NavBarItem();
-            //this.navBarItemSurvayRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabPageShipping = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlShipping = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControlShippingReport = new DevExpress.XtraNavBar.NavBarControl();
@@ -632,6 +632,7 @@
             this.navBarItem234 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem263 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem264 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem2655 = new DevExpress.XtraNavBar.NavBarItem();
             this.panMain = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
             this.panHeader = new System.Windows.Forms.Panel();
@@ -653,7 +654,7 @@
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.pictureBoxBell = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
@@ -3575,8 +3576,7 @@
             this.navBarItemDelegateBusyBill,
             this.navBarItemDelegateBillTime,
             this.navBarItemAttendance,
-            this.navBarItemDelegateBill2,
-            /*this.navBarItemSurvayRecord*/});
+            this.navBarItemDelegateBill2});
             this.navBarControl5.Location = new System.Drawing.Point(841, 0);
             this.navBarControl5.Name = "navBarControl5";
             this.navBarControl5.OptionsNavPane.ExpandedWidth = 160;
@@ -3875,14 +3875,6 @@
             // navBarItem131
             // 
             this.navBarItem131.Name = "navBarItem131";
-            // 
-            // navBarItemSurvayRecord
-            // 
-            //this.navBarItemSurvayRecord.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            //this.navBarItemSurvayRecord.Appearance.Options.UseFont = true;
-            //this.navBarItemSurvayRecord.Caption = "استبيان";
-            //this.navBarItemSurvayRecord.Name = "navBarItemSurvayRecord";
-            //this.navBarItemSurvayRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSurvayRecord_LinkClicked);
             // 
             // xtraTabPageShipping
             // 
@@ -5352,6 +5344,7 @@
             this.xtraTabControlCustomerService.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControlCustomerService.Size = new System.Drawing.Size(836, 710);
             this.xtraTabControlCustomerService.TabIndex = 6;
+            this.xtraTabControlCustomerService.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
             // navBarControl8
             // 
@@ -5891,6 +5884,10 @@
             this.navBarItem264.Appearance.Options.UseFont = true;
             this.navBarItem264.Caption = "تسجيل مصروف";
             this.navBarItem264.Name = "navBarItem264";
+            // 
+            // navBarItem2655
+            // 
+            this.navBarItem2655.Name = "navBarItem2655";
             // 
             // panMain
             // 

@@ -100,8 +100,10 @@ namespace MainSystem
                 xtraTabPage = getTabPage(xtraTabControlCustomerService, title);
             }
             xtraTabPage.Controls.Clear();
-            xtraTabPage.Controls.Add(objForm);
             xtraTabControlCustomerService.SelectedTabPage = xtraTabPage;
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+        
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
