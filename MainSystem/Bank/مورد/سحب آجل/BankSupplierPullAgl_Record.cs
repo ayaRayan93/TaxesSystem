@@ -99,7 +99,8 @@ namespace MainSystem
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
-
+                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                
                 radCash.Checked = true;
                 
                 loadedPayType = true;
@@ -157,6 +158,7 @@ namespace MainSystem
                 layoutControlItemCheck.Text = "رقم الشيك";
                 groupBox1.Enabled = false;
                 layoutControlItemBank.Text = "بنك";
+                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
                 string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -194,6 +196,7 @@ namespace MainSystem
                 layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelCheckNumber.Visible = true;
                 labelCheckNumber.Text = "*";
+                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 groupBox1.Enabled = false;
                 radCredit.Checked = true;
                 loadedPayType = true;
@@ -222,6 +225,7 @@ namespace MainSystem
                 labelOperationNumber.Text = "";
                 layoutControlItemPayDate.Text = "تاريخ السحب";
                 layoutControlItemCheck.Text = "رقم الحساب";
+                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
                 string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -255,6 +259,7 @@ namespace MainSystem
                 layoutControlItemCheck.Text = "رقم الشيك";
                 groupBox1.Enabled = false;
                 layoutControlItemBank.Text = "بنك";
+                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
                 string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -288,7 +293,7 @@ namespace MainSystem
                 {
                     check = ( comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
-                else if (PaymentMethod == "حساب بنكى")
+                else if (PaymentMethod == "ايداع")
                 {
                     check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
@@ -1149,7 +1154,12 @@ namespace MainSystem
 
             return flag5;
         }
-        
+
+        private void cmbBank_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         //functions
         //public void DecreaseClientPaied()
         //{
