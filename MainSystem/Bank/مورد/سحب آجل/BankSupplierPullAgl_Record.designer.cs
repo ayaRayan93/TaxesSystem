@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.txtSupBankAccountNum = new System.Windows.Forms.TextBox();
+            this.comBankSupplier = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comSupplier = new System.Windows.Forms.ComboBox();
             this.labelOperationNumber = new System.Windows.Forms.Label();
@@ -145,7 +146,6 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItemBank = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemMoney = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemComment = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemPayDate = new DevExpress.XtraLayout.LayoutControlItem();
@@ -166,8 +166,9 @@
             this.layoutControlItem62 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.comBankSupplier = new System.Windows.Forms.ComboBox();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItemBank = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -233,7 +234,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemBank)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMoney)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemPayDate)).BeginInit();
@@ -255,6 +255,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemBank)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -268,6 +270,7 @@
             // 
             // dataLayoutControl1
             // 
+            this.dataLayoutControl1.Controls.Add(this.txtSupBankAccountNum);
             this.dataLayoutControl1.Controls.Add(this.comBankSupplier);
             this.dataLayoutControl1.Controls.Add(this.label3);
             this.dataLayoutControl1.Controls.Add(this.comSupplier);
@@ -302,6 +305,21 @@
             this.dataLayoutControl1.TabIndex = 1;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
             // 
+            // txtSupBankAccountNum
+            // 
+            this.txtSupBankAccountNum.Location = new System.Drawing.Point(510, 345);
+            this.txtSupBankAccountNum.Name = "txtSupBankAccountNum";
+            this.txtSupBankAccountNum.Size = new System.Drawing.Size(152, 24);
+            this.txtSupBankAccountNum.TabIndex = 86;
+            // 
+            // comBankSupplier
+            // 
+            this.comBankSupplier.FormattingEnabled = true;
+            this.comBankSupplier.Location = new System.Drawing.Point(510, 196);
+            this.comBankSupplier.Name = "comBankSupplier";
+            this.comBankSupplier.Size = new System.Drawing.Size(152, 24);
+            this.comBankSupplier.TabIndex = 85;
+            // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.White;
@@ -315,7 +333,7 @@
             this.comSupplier.FormattingEnabled = true;
             this.comSupplier.Location = new System.Drawing.Point(538, 31);
             this.comSupplier.Name = "comSupplier";
-            this.comSupplier.Size = new System.Drawing.Size(398, 24);
+            this.comSupplier.Size = new System.Drawing.Size(389, 24);
             this.comSupplier.TabIndex = 83;
             this.comSupplier.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -403,7 +421,7 @@
             // 
             this.txtOperationNumber.Location = new System.Drawing.Point(510, 401);
             this.txtOperationNumber.Name = "txtOperationNumber";
-            this.txtOperationNumber.Size = new System.Drawing.Size(426, 24);
+            this.txtOperationNumber.Size = new System.Drawing.Size(417, 24);
             this.txtOperationNumber.TabIndex = 63;
             this.txtOperationNumber.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -411,7 +429,7 @@
             // 
             this.txtVisaType.Location = new System.Drawing.Point(510, 373);
             this.txtVisaType.Name = "txtVisaType";
-            this.txtVisaType.Size = new System.Drawing.Size(426, 24);
+            this.txtVisaType.Size = new System.Drawing.Size(417, 24);
             this.txtVisaType.TabIndex = 62;
             this.txtVisaType.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -548,7 +566,7 @@
             this.emptySpaceItem4.AllowHotTrack = false;
             this.emptySpaceItem4.Location = new System.Drawing.Point(0, 29);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(267, 10);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(283, 10);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem10
@@ -647,7 +665,7 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 29);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(163, 10);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(173, 10);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem1
@@ -800,9 +818,9 @@
             // 
             // txtCheckNumber
             // 
-            this.txtCheckNumber.Location = new System.Drawing.Point(510, 345);
+            this.txtCheckNumber.Location = new System.Drawing.Point(775, 345);
             this.txtCheckNumber.Name = "txtCheckNumber";
-            this.txtCheckNumber.Size = new System.Drawing.Size(426, 24);
+            this.txtCheckNumber.Size = new System.Drawing.Size(152, 24);
             this.txtCheckNumber.TabIndex = 49;
             this.txtCheckNumber.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -815,7 +833,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(426, 20);
+            this.dateEdit1.Size = new System.Drawing.Size(417, 20);
             this.dateEdit1.StyleController = this.dataLayoutControl1;
             this.dateEdit1.TabIndex = 48;
             this.dateEdit1.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
@@ -825,14 +843,14 @@
             this.txtDescrip.Location = new System.Drawing.Point(510, 252);
             this.txtDescrip.Multiline = true;
             this.txtDescrip.Name = "txtDescrip";
-            this.txtDescrip.Size = new System.Drawing.Size(426, 61);
+            this.txtDescrip.Size = new System.Drawing.Size(417, 61);
             this.txtDescrip.TabIndex = 47;
             // 
             // txtPullMoney
             // 
             this.txtPullMoney.Location = new System.Drawing.Point(510, 224);
             this.txtPullMoney.Name = "txtPullMoney";
-            this.txtPullMoney.Size = new System.Drawing.Size(426, 24);
+            this.txtPullMoney.Size = new System.Drawing.Size(417, 24);
             this.txtPullMoney.TabIndex = 46;
             this.txtPullMoney.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -841,7 +859,7 @@
             this.cmbBank.FormattingEnabled = true;
             this.cmbBank.Location = new System.Drawing.Point(775, 196);
             this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(161, 24);
+            this.cmbBank.Size = new System.Drawing.Size(152, 24);
             this.cmbBank.TabIndex = 44;
             this.cmbBank.SelectedIndexChanged += new System.EventHandler(this.cmbBank_SelectedIndexChanged);
             this.cmbBank.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
@@ -1577,7 +1595,8 @@
             this.layoutControlItem18,
             this.layoutControlItem3,
             this.layoutControlItem17,
-            this.layoutControlItemBank});
+            this.layoutControlItemBank,
+            this.layoutControlItem20});
             this.layoutControlGroup1.MoveFocusRightToLeft = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
@@ -1619,22 +1638,6 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // layoutControlItemBank
-            // 
-            this.layoutControlItemBank.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.layoutControlItemBank.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.layoutControlItemBank.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItemBank.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItemBank.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItemBank.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItemBank.Control = this.cmbBank;
-            this.layoutControlItemBank.Location = new System.Drawing.Point(768, 189);
-            this.layoutControlItemBank.Name = "layoutControlItemBank";
-            this.layoutControlItemBank.Size = new System.Drawing.Size(265, 28);
-            this.layoutControlItemBank.Text = "خزينة";
-            this.layoutControlItemBank.TextSize = new System.Drawing.Size(97, 24);
-            this.layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            // 
             // layoutControlItemMoney
             // 
             this.layoutControlItemMoney.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1648,7 +1651,7 @@
             this.layoutControlItemMoney.Name = "layoutControlItemMoney";
             this.layoutControlItemMoney.Size = new System.Drawing.Size(530, 28);
             this.layoutControlItemMoney.Text = "المبلغ المسحوب";
-            this.layoutControlItemMoney.TextSize = new System.Drawing.Size(97, 24);
+            this.layoutControlItemMoney.TextSize = new System.Drawing.Size(106, 24);
             this.layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemComment
@@ -1667,7 +1670,7 @@
             this.layoutControlItemComment.Size = new System.Drawing.Size(530, 65);
             this.layoutControlItemComment.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemComment.Text = "البيان";
-            this.layoutControlItemComment.TextSize = new System.Drawing.Size(97, 24);
+            this.layoutControlItemComment.TextSize = new System.Drawing.Size(106, 24);
             this.layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemPayDate
@@ -1683,7 +1686,7 @@
             this.layoutControlItemPayDate.Name = "layoutControlItemPayDate";
             this.layoutControlItemPayDate.Size = new System.Drawing.Size(530, 28);
             this.layoutControlItemPayDate.Text = "تاريخ الاستحقاق";
-            this.layoutControlItemPayDate.TextSize = new System.Drawing.Size(97, 24);
+            this.layoutControlItemPayDate.TextSize = new System.Drawing.Size(106, 24);
             this.layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemCheck
@@ -1695,11 +1698,13 @@
             this.layoutControlItemCheck.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemCheck.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemCheck.Control = this.txtCheckNumber;
-            this.layoutControlItemCheck.Location = new System.Drawing.Point(503, 338);
+            this.layoutControlItemCheck.Location = new System.Drawing.Point(768, 338);
+            this.layoutControlItemCheck.MinSize = new System.Drawing.Size(133, 28);
             this.layoutControlItemCheck.Name = "layoutControlItemCheck";
-            this.layoutControlItemCheck.Size = new System.Drawing.Size(530, 28);
+            this.layoutControlItemCheck.Size = new System.Drawing.Size(265, 28);
+            this.layoutControlItemCheck.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemCheck.Text = "رقم الشيك";
-            this.layoutControlItemCheck.TextSize = new System.Drawing.Size(97, 24);
+            this.layoutControlItemCheck.TextSize = new System.Drawing.Size(106, 24);
             this.layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItem31
@@ -1756,7 +1761,7 @@
             this.layoutControlItemVisaType.Name = "layoutControlItemVisaType";
             this.layoutControlItemVisaType.Size = new System.Drawing.Size(530, 28);
             this.layoutControlItemVisaType.Text = "نوع الكارت";
-            this.layoutControlItemVisaType.TextSize = new System.Drawing.Size(97, 24);
+            this.layoutControlItemVisaType.TextSize = new System.Drawing.Size(106, 24);
             this.layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemOperationNumber
@@ -1772,7 +1777,7 @@
             this.layoutControlItemOperationNumber.Name = "layoutControlItemOperationNumber";
             this.layoutControlItemOperationNumber.Size = new System.Drawing.Size(530, 28);
             this.layoutControlItemOperationNumber.Text = "رقم العملية";
-            this.layoutControlItemOperationNumber.TextSize = new System.Drawing.Size(97, 24);
+            this.layoutControlItemOperationNumber.TextSize = new System.Drawing.Size(106, 24);
             this.layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItem8
@@ -1862,7 +1867,7 @@
             this.layoutControlItem18.Name = "layoutControlItem18";
             this.layoutControlItem18.Size = new System.Drawing.Size(502, 25);
             this.layoutControlItem18.Text = "المورد";
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(97, 20);
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(106, 20);
             // 
             // layoutControlItem3
             // 
@@ -1876,14 +1881,6 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // comBankSupplier
-            // 
-            this.comBankSupplier.FormattingEnabled = true;
-            this.comBankSupplier.Location = new System.Drawing.Point(510, 196);
-            this.comBankSupplier.Name = "comBankSupplier";
-            this.comBankSupplier.Size = new System.Drawing.Size(161, 24);
-            this.comBankSupplier.TabIndex = 85;
-            // 
             // layoutControlItem17
             // 
             this.layoutControlItem17.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
@@ -1895,11 +1892,51 @@
             this.layoutControlItem17.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem17.Control = this.comBankSupplier;
             this.layoutControlItem17.Location = new System.Drawing.Point(503, 189);
+            this.layoutControlItem17.MaxSize = new System.Drawing.Size(265, 28);
+            this.layoutControlItem17.MinSize = new System.Drawing.Size(265, 28);
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(265, 28);
+            this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem17.Text = "بنك المورد";
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(97, 24);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(106, 24);
             this.layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlItemBank
+            // 
+            this.layoutControlItemBank.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItemBank.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItemBank.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItemBank.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItemBank.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItemBank.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItemBank.Control = this.cmbBank;
+            this.layoutControlItemBank.Location = new System.Drawing.Point(768, 189);
+            this.layoutControlItemBank.MinSize = new System.Drawing.Size(133, 28);
+            this.layoutControlItemBank.Name = "layoutControlItemBank";
+            this.layoutControlItemBank.Size = new System.Drawing.Size(265, 28);
+            this.layoutControlItemBank.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItemBank.Text = "خزينة";
+            this.layoutControlItemBank.TextSize = new System.Drawing.Size(106, 24);
+            this.layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+            // 
+            // layoutControlItem20
+            // 
+            this.layoutControlItem20.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.layoutControlItem20.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem20.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem20.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem20.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem20.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem20.Control = this.txtSupBankAccountNum;
+            this.layoutControlItem20.Location = new System.Drawing.Point(503, 338);
+            this.layoutControlItem20.MaxSize = new System.Drawing.Size(265, 28);
+            this.layoutControlItem20.MinSize = new System.Drawing.Size(265, 28);
+            this.layoutControlItem20.Name = "layoutControlItem20";
+            this.layoutControlItem20.Size = new System.Drawing.Size(265, 28);
+            this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem20.Text = "رقم حساب المورد";
+            this.layoutControlItem20.TextSize = new System.Drawing.Size(106, 24);
+            this.layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // BankSupplierPullAgl_Record
             // 
@@ -1978,7 +2015,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemBank)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemMoney)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemPayDate)).EndInit();
@@ -2000,6 +2036,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemBank)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2145,6 +2183,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private System.Windows.Forms.ComboBox comBankSupplier;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private System.Windows.Forms.TextBox txtSupBankAccountNum;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
     }
 }
 
