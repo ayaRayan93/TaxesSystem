@@ -100,7 +100,8 @@ namespace MainSystem
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
                 layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                
+                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
                 radCash.Checked = true;
                 
                 loadedPayType = true;
@@ -159,6 +160,7 @@ namespace MainSystem
                 groupBox1.Enabled = false;
                 layoutControlItemBank.Text = "بنك";
                 layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
                 string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -197,6 +199,7 @@ namespace MainSystem
                 labelCheckNumber.Visible = true;
                 labelCheckNumber.Text = "*";
                 layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 groupBox1.Enabled = false;
                 radCredit.Checked = true;
                 loadedPayType = true;
@@ -226,6 +229,7 @@ namespace MainSystem
                 layoutControlItemPayDate.Text = "تاريخ السحب";
                 layoutControlItemCheck.Text = "رقم الحساب";
                 layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
                 string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -235,6 +239,15 @@ namespace MainSystem
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
                 cmbBank.SelectedIndex = -1;
+
+                query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comBankSupplier.DataSource = dt;
+                comBankSupplier.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                comBankSupplier.ValueMember = dt.Columns["Bank_ID"].ToString();
+                comBankSupplier.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -260,6 +273,7 @@ namespace MainSystem
                 groupBox1.Enabled = false;
                 layoutControlItemBank.Text = "بنك";
                 layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
                 string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -283,19 +297,19 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = ( comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "");
+                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = ( comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = ( comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "ايداع")
                 {
-                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "" && comBankSupplier.Text != "" && txtSupBankAccountNum.Text != "");
                 }
 
                 if (check)
@@ -330,7 +344,7 @@ namespace MainSystem
                         
                         dbconnection.Open();
 
-                        string query = "insert into supplier_transitions (Transition,Supplier_ID,Supplier_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID,Employee_Name) values(@Transition,@Supplier_ID,@Supplier_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID,@Employee_Name)";
+                        string query = "insert into supplier_transitions (Transition,Supplier_ID,Supplier_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,SupplierBank_ID,SupplierBank_Name,Supplier_BankAccount_Number,Error,Employee_ID,Employee_Name) values(@Transition,@Supplier_ID,@Supplier_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@SupplierBank_ID,@SupplierBank_Name,@Supplier_BankAccount_Number,@Error,@Employee_ID,@Employee_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سداد";
                         com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
@@ -338,6 +352,8 @@ namespace MainSystem
                         com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
                         com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
                         com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
+                        com.Parameters.Add("@SupplierBank_ID", MySqlDbType.Int16, 11).Value = comBankSupplier.SelectedValue;
+                        com.Parameters.Add("@SupplierBank_Name", MySqlDbType.VarChar, 255).Value = comBankSupplier.Text;
                         com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                         com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                         com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
@@ -377,6 +393,15 @@ namespace MainSystem
                         else
                         {
                             com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
+                        }
+
+                        if (txtSupBankAccountNum.Text != "")
+                        {
+                            com.Parameters.Add("@Supplier_BankAccount_Number", MySqlDbType.VarChar, 255).Value = txtSupBankAccountNum.Text;
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@Supplier_BankAccount_Number", MySqlDbType.VarChar, 255).Value = null;
                         }
                         com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
                         com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpName;

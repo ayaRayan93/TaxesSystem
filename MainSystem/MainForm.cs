@@ -354,7 +354,7 @@ namespace MainSystem
                 navBarGroup47.Visible = false;
                 navBarGroup15.Visible = false;
                 navBarGroup16.Visible = false;
-                navBarItemSalesTransitions.Visible = false;
+                //navBarItemSalesTransitions.Visible = false;
                 navBarGroupBillRecord.Visible = false;
                 navBarGroup58.Visible = false;
             }

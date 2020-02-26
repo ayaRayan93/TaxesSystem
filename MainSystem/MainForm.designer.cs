@@ -143,6 +143,13 @@
             this.xtraTabPageSales = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlSalesContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup18 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillsAgleTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem230 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup15 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemConfirmBill = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup16 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -160,13 +167,6 @@
             this.navBarGroup39 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemOfferReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemOfferStorage = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup18 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemBillsAgleTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem230 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup58 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemTotalSales = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemTotalSalesDetails = new DevExpress.XtraNavBar.NavBarItem();
@@ -733,7 +733,7 @@
             this.xtraTabControlMainContainer.AppearancePage.HeaderActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.xtraTabControlMainContainer.AppearancePage.HeaderActive.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.xtraTabControlMainContainer.AppearancePage.HeaderActive.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.xtraTabControlMainContainer.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabControlMainContainer.AppearancePage.HeaderActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabControlMainContainer.AppearancePage.HeaderActive.ForeColor = System.Drawing.Color.White;
             this.xtraTabControlMainContainer.AppearancePage.HeaderActive.Options.UseBackColor = true;
             this.xtraTabControlMainContainer.AppearancePage.HeaderActive.Options.UseBorderColor = true;
@@ -869,7 +869,7 @@
             // btnSales
             // 
             this.btnSales.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(95)))), ((int)(((byte)(169)))));
-            this.btnSales.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSales.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSales.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnSales.AppearanceItem.Normal.Options.UseFont = true;
             this.btnSales.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -888,7 +888,7 @@
             // btnStores
             // 
             this.btnStores.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(33)))), ((int)(((byte)(122)))));
-            this.btnStores.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStores.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStores.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnStores.AppearanceItem.Normal.Options.UseFont = true;
             this.btnStores.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -907,7 +907,7 @@
             // btnCars
             // 
             this.btnCars.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(50)))), ((int)(((byte)(179)))));
-            this.btnCars.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCars.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCars.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCars.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCars.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -933,7 +933,7 @@
             this.TIElsha7n.AppearanceItem.Hovered.Options.UseForeColor = true;
             this.TIElsha7n.AppearanceItem.Hovered.Options.UseImage = true;
             this.TIElsha7n.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(88)))), ((int)(((byte)(192)))));
-            this.TIElsha7n.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TIElsha7n.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TIElsha7n.AppearanceItem.Normal.Options.UseBackColor = true;
             this.TIElsha7n.AppearanceItem.Normal.Options.UseFont = true;
             this.TIElsha7n.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -962,7 +962,7 @@
             this.btnCustomerService.AppearanceItem.Hovered.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnCustomerService.AppearanceItem.Hovered.Options.UseFont = true;
             this.btnCustomerService.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(146)))), ((int)(((byte)(209)))));
-            this.btnCustomerService.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomerService.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomerService.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCustomerService.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCustomerService.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -981,7 +981,7 @@
             // btnPOS
             // 
             this.btnPOS.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(129)))), ((int)(((byte)(214)))));
-            this.btnPOS.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPOS.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPOS.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnPOS.AppearanceItem.Normal.Options.UseFont = true;
             this.btnPOS.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -1001,7 +1001,7 @@
             // 
             this.btnReception.AppearanceItem.Normal.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnReception.AppearanceItem.Normal.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.btnReception.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReception.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReception.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnReception.AppearanceItem.Normal.Options.UseBorderColor = true;
             this.btnReception.AppearanceItem.Normal.Options.UseFont = true;
@@ -1021,7 +1021,7 @@
             // btnRequests
             // 
             this.btnRequests.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(174)))), ((int)(((byte)(65)))));
-            this.btnRequests.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnRequests.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnRequests.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnRequests.AppearanceItem.Normal.Options.UseFont = true;
             this.btnRequests.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -1040,7 +1040,7 @@
             // btnPurchases
             // 
             this.btnPurchases.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(184)))), ((int)(((byte)(74)))));
-            this.btnPurchases.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPurchases.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPurchases.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnPurchases.AppearanceItem.Normal.Options.UseFont = true;
             this.btnPurchases.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -1068,7 +1068,7 @@
             // btnReports
             // 
             this.btnReports.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(100)))), ((int)(((byte)(103)))));
-            this.btnReports.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReports.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReports.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnReports.AppearanceItem.Normal.Options.UseFont = true;
             this.btnReports.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -1086,7 +1086,7 @@
             // btnExpenses
             // 
             this.btnExpenses.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(75)))), ((int)(((byte)(79)))));
-            this.btnExpenses.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExpenses.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExpenses.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnExpenses.AppearanceItem.Normal.Options.UseFont = true;
             this.btnExpenses.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -1105,7 +1105,7 @@
             // btnHR
             // 
             this.btnHR.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(52)))), ((int)(((byte)(56)))));
-            this.btnHR.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHR.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHR.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnHR.AppearanceItem.Normal.Options.UseFont = true;
             this.btnHR.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -1124,7 +1124,7 @@
             // btnBank
             // 
             this.btnBank.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(186)))), ((int)(((byte)(108)))));
-            this.btnBank.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBank.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBank.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnBank.AppearanceItem.Normal.Options.UseFont = true;
             this.btnBank.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -1143,7 +1143,7 @@
             // AccountingSystem
             // 
             this.AccountingSystem.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(210)))), ((int)(((byte)(115)))));
-            this.AccountingSystem.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AccountingSystem.AppearanceItem.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AccountingSystem.AppearanceItem.Normal.Options.UseBackColor = true;
             this.AccountingSystem.AppearanceItem.Normal.Options.UseFont = true;
             this.AccountingSystem.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
@@ -1192,7 +1192,7 @@
             this.xtraTabControlStoresContent.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.xtraTabControlStoresContent.Appearance.Options.UseFont = true;
             this.xtraTabControlStoresContent.AppearancePage.Header.BorderColor = System.Drawing.Color.Transparent;
-            this.xtraTabControlStoresContent.AppearancePage.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.xtraTabControlStoresContent.AppearancePage.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.xtraTabControlStoresContent.AppearancePage.Header.Options.UseBackColor = true;
             this.xtraTabControlStoresContent.AppearancePage.Header.Options.UseBorderColor = true;
             this.xtraTabControlStoresContent.AppearancePage.Header.Options.UseFont = true;
@@ -1229,7 +1229,7 @@
             this.navBarControl1.Appearance.ButtonPressed.Options.UseFont = true;
             this.navBarControl1.Appearance.GroupBackground.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl1.Appearance.GroupBackground.Options.UseFont = true;
-            this.navBarControl1.Appearance.GroupHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl1.Appearance.GroupHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl1.Appearance.GroupHeader.Options.UseFont = true;
             this.navBarControl1.Appearance.GroupHeaderActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl1.Appearance.GroupHeaderActive.Options.UseFont = true;
@@ -1240,7 +1240,7 @@
             this.navBarControl1.Appearance.Hint.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl1.Appearance.Hint.Options.UseFont = true;
             this.navBarControl1.Appearance.Item.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.navBarControl1.Appearance.Item.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl1.Appearance.Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl1.Appearance.Item.Options.UseBackColor = true;
             this.navBarControl1.Appearance.Item.Options.UseFont = true;
             this.navBarControl1.Appearance.ItemActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
@@ -1260,10 +1260,10 @@
             this.navBarControl1.Appearance.ItemPressed.Options.UseFont = true;
             this.navBarControl1.Appearance.LinkDropTarget.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl1.Appearance.LinkDropTarget.Options.UseFont = true;
-            this.navBarControl1.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl1.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl1.Appearance.NavigationPaneHeader.Options.UseFont = true;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.navBarControl1.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup1,
             this.navBarGroup2,
@@ -1401,7 +1401,7 @@
             // 
             // navBarGroup1
             // 
-            this.navBarGroup1.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup1.Appearance.Options.UseFont = true;
             this.navBarGroup1.Caption = "الرصيد الافتتاحي";
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1430,7 +1430,7 @@
             // 
             // navBarGroup2
             // 
-            this.navBarGroup2.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup2.Appearance.Options.UseFont = true;
             this.navBarGroup2.Caption = "التكويد";
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1474,7 +1474,7 @@
             // 
             // navBarGroup3
             // 
-            this.navBarGroup3.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup3.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup3.Appearance.Options.UseFont = true;
             this.navBarGroup3.Caption = "البوابة";
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1504,7 +1504,7 @@
             // 
             // navBarGroup4
             // 
-            this.navBarGroup4.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup4.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup4.Appearance.Options.UseFont = true;
             this.navBarGroup4.Caption = "الوارد";
             this.navBarGroup4.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1532,7 +1532,7 @@
             // 
             // navBarGroup5
             // 
-            this.navBarGroup5.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup5.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup5.Appearance.Options.UseFont = true;
             this.navBarGroup5.Caption = "المرتجعات";
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1562,7 +1562,7 @@
             // 
             // navBarGroup7
             // 
-            this.navBarGroup7.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup7.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup7.Appearance.Options.UseFont = true;
             this.navBarGroup7.Caption = "الهالك";
             this.navBarGroup7.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1577,7 +1577,7 @@
             // 
             // navBarGroup8
             // 
-            this.navBarGroup8.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup8.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup8.Appearance.Options.UseFont = true;
             this.navBarGroup8.Caption = "التحويلات";
             this.navBarGroup8.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1636,7 +1636,7 @@
             // 
             // navBarGroup9
             // 
-            this.navBarGroup9.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup9.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup9.Appearance.Options.UseFont = true;
             this.navBarGroup9.Caption = "الجرد";
             this.navBarGroup9.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1673,7 +1673,7 @@
             // 
             // navBarGroup10
             // 
-            this.navBarGroup10.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup10.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup10.Appearance.Options.UseFont = true;
             this.navBarGroup10.Caption = "ادارة المعدات";
             this.navBarGroup10.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1694,7 +1694,7 @@
             // 
             // navBarGroup11
             // 
-            this.navBarGroup11.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup11.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup11.Appearance.Options.UseFont = true;
             this.navBarGroup11.Caption = "تسوية المخزون";
             this.navBarGroup11.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1731,7 +1731,7 @@
             // 
             // navBarGroupProductsTicket
             // 
-            this.navBarGroupProductsTicket.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupProductsTicket.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupProductsTicket.Appearance.Options.UseFont = true;
             this.navBarGroupProductsTicket.Caption = "طباعة تيكت البنود";
             this.navBarGroupProductsTicket.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1747,7 +1747,7 @@
             // 
             // navBarGroup54
             // 
-            this.navBarGroup54.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup54.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup54.Appearance.Options.UseFont = true;
             this.navBarGroup54.Caption = "تقارير المبيعات";
             this.navBarGroup54.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1799,7 +1799,7 @@
             // 
             // navBarGroup12
             // 
-            this.navBarGroup12.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup12.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup12.Appearance.Options.UseFont = true;
             this.navBarGroup12.Caption = "التقارير";
             this.navBarGroup12.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -1839,10 +1839,10 @@
             // 
             // xtraTabPageSales
             // 
-            this.xtraTabPageSales.Appearance.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPageSales.Appearance.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabPageSales.Appearance.Header.Options.UseFont = true;
             this.xtraTabPageSales.Appearance.HeaderActive.BackColor = System.Drawing.Color.DarkBlue;
-            this.xtraTabPageSales.Appearance.HeaderActive.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPageSales.Appearance.HeaderActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabPageSales.Appearance.HeaderActive.ForeColor = System.Drawing.Color.White;
             this.xtraTabPageSales.Appearance.HeaderActive.Options.UseBackColor = true;
             this.xtraTabPageSales.Appearance.HeaderActive.Options.UseFont = true;
@@ -1861,7 +1861,7 @@
             this.xtraTabControlSalesContent.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.xtraTabControlSalesContent.Appearance.Options.UseFont = true;
             this.xtraTabControlSalesContent.AppearancePage.Header.BorderColor = System.Drawing.Color.Transparent;
-            this.xtraTabControlSalesContent.AppearancePage.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.xtraTabControlSalesContent.AppearancePage.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.xtraTabControlSalesContent.AppearancePage.Header.Options.UseBackColor = true;
             this.xtraTabControlSalesContent.AppearancePage.Header.Options.UseBorderColor = true;
             this.xtraTabControlSalesContent.AppearancePage.Header.Options.UseFont = true;
@@ -1897,7 +1897,7 @@
             this.navBarControl2.Appearance.ButtonPressed.Options.UseFont = true;
             this.navBarControl2.Appearance.GroupBackground.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.GroupBackground.Options.UseFont = true;
-            this.navBarControl2.Appearance.GroupHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl2.Appearance.GroupHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl2.Appearance.GroupHeader.Options.UseFont = true;
             this.navBarControl2.Appearance.GroupHeaderActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.GroupHeaderActive.Options.UseFont = true;
@@ -1907,7 +1907,7 @@
             this.navBarControl2.Appearance.GroupHeaderPressed.Options.UseFont = true;
             this.navBarControl2.Appearance.Hint.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Hint.Options.UseFont = true;
-            this.navBarControl2.Appearance.Item.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl2.Appearance.Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl2.Appearance.Item.Options.UseFont = true;
             this.navBarControl2.Appearance.ItemActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.ItemActive.Options.UseFont = true;
@@ -1919,10 +1919,10 @@
             this.navBarControl2.Appearance.ItemPressed.Options.UseFont = true;
             this.navBarControl2.Appearance.LinkDropTarget.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.LinkDropTarget.Options.UseFont = true;
-            this.navBarControl2.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl2.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl2.Appearance.NavigationPaneHeader.Options.UseFont = true;
             this.navBarControl2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.navBarControl2.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl2.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup15,
             this.navBarGroup16,
@@ -1979,135 +1979,9 @@
             this.navBarControl2.TabIndex = 3;
             this.navBarControl2.Text = "navBarControl2";
             // 
-            // navBarGroup15
-            // 
-            this.navBarGroup15.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup15.Appearance.Options.UseFont = true;
-            this.navBarGroup15.Caption = "تاكيد البيع";
-            this.navBarGroup15.Expanded = true;
-            this.navBarGroup15.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmBill)});
-            this.navBarGroup15.Name = "navBarGroup15";
-            // 
-            // navBarItemConfirmBill
-            // 
-            this.navBarItemConfirmBill.Caption = "تاكيد الفاتورة";
-            this.navBarItemConfirmBill.Name = "navBarItemConfirmBill";
-            this.navBarItemConfirmBill.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemConfirmBill_LinkClicked2);
-            // 
-            // navBarGroup16
-            // 
-            this.navBarGroup16.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup16.Appearance.Options.UseFont = true;
-            this.navBarGroup16.Caption = "المرتجعات";
-            this.navBarGroup16.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnBillRecord),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnWithPermision)});
-            this.navBarGroup16.Name = "navBarGroup16";
-            // 
-            // navBarItemReturnBillRecord
-            // 
-            this.navBarItemReturnBillRecord.Caption = "تسجيل مرتجع";
-            this.navBarItemReturnBillRecord.Name = "navBarItemReturnBillRecord";
-            this.navBarItemReturnBillRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnBillRecord_LinkClicked);
-            // 
-            // navBarItemReturnWithPermision
-            // 
-            this.navBarItemReturnWithPermision.Caption = "تسجيل مرتجع باذن مخزن";
-            this.navBarItemReturnWithPermision.Name = "navBarItemReturnWithPermision";
-            this.navBarItemReturnWithPermision.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnWithPermision_LinkClicked);
-            // 
-            // navBarGroup14
-            // 
-            this.navBarGroup14.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup14.Appearance.Options.UseFont = true;
-            this.navBarGroup14.Caption = "العملاء";
-            this.navBarGroup14.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemCustomers)});
-            this.navBarGroup14.Name = "navBarGroup14";
-            // 
-            // navBarItemCustomers
-            // 
-            this.navBarItemCustomers.Caption = "تسجيل العملاء";
-            this.navBarItemCustomers.Name = "navBarItemCustomers";
-            this.navBarItemCustomers.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemCustomers_LinkClicked);
-            // 
-            // navBarGroup17
-            // 
-            this.navBarGroup17.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup17.Appearance.Options.UseFont = true;
-            this.navBarGroup17.Caption = "حسابات العملاء";
-            this.navBarGroup17.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.btnCustomerAccountStatment),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.btnAgalAcountStatment),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.btnTaswayAgalBills),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem153)});
-            this.navBarGroup17.Name = "navBarGroup17";
-            // 
-            // btnCustomerAccountStatment
-            // 
-            this.btnCustomerAccountStatment.Caption = "حركة عملاء لفترة";
-            this.btnCustomerAccountStatment.Name = "btnCustomerAccountStatment";
-            this.btnCustomerAccountStatment.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnCustomerAccountStatment_LinkClicked);
-            // 
-            // btnAgalAcountStatment
-            // 
-            this.btnAgalAcountStatment.Caption = "كشف حساب عميل";
-            this.btnAgalAcountStatment.Name = "btnAgalAcountStatment";
-            this.btnAgalAcountStatment.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnAgalAcountStatment_LinkClicked);
-            // 
-            // btnTaswayAgalBills
-            // 
-            this.btnTaswayAgalBills.Caption = "تسوية فواتير الاجل";
-            this.btnTaswayAgalBills.Name = "btnTaswayAgalBills";
-            this.btnTaswayAgalBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnTaswayAgalBills_LinkClicked);
-            // 
-            // navBarItem153
-            // 
-            this.navBarItem153.Caption = "تسويات العملاء";
-            this.navBarItem153.Name = "navBarItem153";
-            this.navBarItem153.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnCustomerTaswaya_LinkClicked);
-            // 
-            // navBarGroup13
-            // 
-            this.navBarGroup13.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup13.Appearance.Options.UseFont = true;
-            this.navBarGroup13.Caption = "اسعار البيع";
-            this.navBarGroup13.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4)});
-            this.navBarGroup13.Name = "navBarGroup13";
-            // 
-            // navBarItem4
-            // 
-            this.navBarItem4.Caption = "تسجيل اسعار البيع";
-            this.navBarItem4.Name = "navBarItem4";
-            this.navBarItem4.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnProductSellPrice_LinkClicked);
-            // 
-            // navBarGroup39
-            // 
-            this.navBarGroup39.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup39.Appearance.Options.UseFont = true;
-            this.navBarGroup39.Caption = "تكويد العروض";
-            this.navBarGroup39.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOfferReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOfferStorage)});
-            this.navBarGroup39.Name = "navBarGroup39";
-            // 
-            // navBarItemOfferReport
-            // 
-            this.navBarItemOfferReport.Caption = "تسجيل";
-            this.navBarItemOfferReport.Name = "navBarItemOfferReport";
-            this.navBarItemOfferReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOfferReport_LinkClicked);
-            // 
-            // navBarItemOfferStorage
-            // 
-            this.navBarItemOfferStorage.Caption = "تجميع وفك";
-            this.navBarItemOfferStorage.Name = "navBarItemOfferStorage";
-            this.navBarItemOfferStorage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOfferStorage_LinkClicked);
-            // 
             // navBarGroup18
             // 
-            this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup18.Appearance.Options.UseFont = true;
             this.navBarGroup18.Caption = "تقارير فواتير المبيعات";
             this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2155,9 +2029,135 @@
             this.navBarItem230.Name = "navBarItem230";
             this.navBarItem230.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateLeastBills_LinkClicked);
             // 
+            // navBarGroup15
+            // 
+            this.navBarGroup15.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup15.Appearance.Options.UseFont = true;
+            this.navBarGroup15.Caption = "تاكيد البيع";
+            this.navBarGroup15.Expanded = true;
+            this.navBarGroup15.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmBill)});
+            this.navBarGroup15.Name = "navBarGroup15";
+            // 
+            // navBarItemConfirmBill
+            // 
+            this.navBarItemConfirmBill.Caption = "تاكيد الفاتورة";
+            this.navBarItemConfirmBill.Name = "navBarItemConfirmBill";
+            this.navBarItemConfirmBill.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemConfirmBill_LinkClicked2);
+            // 
+            // navBarGroup16
+            // 
+            this.navBarGroup16.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup16.Appearance.Options.UseFont = true;
+            this.navBarGroup16.Caption = "المرتجعات";
+            this.navBarGroup16.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnBillRecord),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnWithPermision)});
+            this.navBarGroup16.Name = "navBarGroup16";
+            // 
+            // navBarItemReturnBillRecord
+            // 
+            this.navBarItemReturnBillRecord.Caption = "تسجيل مرتجع";
+            this.navBarItemReturnBillRecord.Name = "navBarItemReturnBillRecord";
+            this.navBarItemReturnBillRecord.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnBillRecord_LinkClicked);
+            // 
+            // navBarItemReturnWithPermision
+            // 
+            this.navBarItemReturnWithPermision.Caption = "تسجيل مرتجع باذن مخزن";
+            this.navBarItemReturnWithPermision.Name = "navBarItemReturnWithPermision";
+            this.navBarItemReturnWithPermision.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnWithPermision_LinkClicked);
+            // 
+            // navBarGroup14
+            // 
+            this.navBarGroup14.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup14.Appearance.Options.UseFont = true;
+            this.navBarGroup14.Caption = "العملاء";
+            this.navBarGroup14.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemCustomers)});
+            this.navBarGroup14.Name = "navBarGroup14";
+            // 
+            // navBarItemCustomers
+            // 
+            this.navBarItemCustomers.Caption = "تسجيل العملاء";
+            this.navBarItemCustomers.Name = "navBarItemCustomers";
+            this.navBarItemCustomers.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemCustomers_LinkClicked);
+            // 
+            // navBarGroup17
+            // 
+            this.navBarGroup17.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup17.Appearance.Options.UseFont = true;
+            this.navBarGroup17.Caption = "حسابات العملاء";
+            this.navBarGroup17.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnCustomerAccountStatment),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnAgalAcountStatment),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.btnTaswayAgalBills),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem153)});
+            this.navBarGroup17.Name = "navBarGroup17";
+            // 
+            // btnCustomerAccountStatment
+            // 
+            this.btnCustomerAccountStatment.Caption = "حركة عملاء لفترة";
+            this.btnCustomerAccountStatment.Name = "btnCustomerAccountStatment";
+            this.btnCustomerAccountStatment.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnCustomerAccountStatment_LinkClicked);
+            // 
+            // btnAgalAcountStatment
+            // 
+            this.btnAgalAcountStatment.Caption = "كشف حساب عميل";
+            this.btnAgalAcountStatment.Name = "btnAgalAcountStatment";
+            this.btnAgalAcountStatment.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnAgalAcountStatment_LinkClicked);
+            // 
+            // btnTaswayAgalBills
+            // 
+            this.btnTaswayAgalBills.Caption = "تسوية فواتير الاجل";
+            this.btnTaswayAgalBills.Name = "btnTaswayAgalBills";
+            this.btnTaswayAgalBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnTaswayAgalBills_LinkClicked);
+            // 
+            // navBarItem153
+            // 
+            this.navBarItem153.Caption = "تسويات العملاء";
+            this.navBarItem153.Name = "navBarItem153";
+            this.navBarItem153.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnCustomerTaswaya_LinkClicked);
+            // 
+            // navBarGroup13
+            // 
+            this.navBarGroup13.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup13.Appearance.Options.UseFont = true;
+            this.navBarGroup13.Caption = "اسعار البيع";
+            this.navBarGroup13.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4)});
+            this.navBarGroup13.Name = "navBarGroup13";
+            // 
+            // navBarItem4
+            // 
+            this.navBarItem4.Caption = "تسجيل اسعار البيع";
+            this.navBarItem4.Name = "navBarItem4";
+            this.navBarItem4.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnProductSellPrice_LinkClicked);
+            // 
+            // navBarGroup39
+            // 
+            this.navBarGroup39.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup39.Appearance.Options.UseFont = true;
+            this.navBarGroup39.Caption = "تكويد العروض";
+            this.navBarGroup39.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOfferReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemOfferStorage)});
+            this.navBarGroup39.Name = "navBarGroup39";
+            // 
+            // navBarItemOfferReport
+            // 
+            this.navBarItemOfferReport.Caption = "تسجيل";
+            this.navBarItemOfferReport.Name = "navBarItemOfferReport";
+            this.navBarItemOfferReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOfferReport_LinkClicked);
+            // 
+            // navBarItemOfferStorage
+            // 
+            this.navBarItemOfferStorage.Caption = "تجميع وفك";
+            this.navBarItemOfferStorage.Name = "navBarItemOfferStorage";
+            this.navBarItemOfferStorage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOfferStorage_LinkClicked);
+            // 
             // navBarGroup58
             // 
-            this.navBarGroup58.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup58.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup58.Appearance.Options.UseFont = true;
             this.navBarGroup58.Caption = "تقارير اصناف المبيعات";
             this.navBarGroup58.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2283,7 +2283,7 @@
             // 
             // xtraTabPageHR
             // 
-            this.xtraTabPageHR.Appearance.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPageHR.Appearance.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabPageHR.Appearance.Header.Options.UseFont = true;
             this.xtraTabPageHR.Controls.Add(this.xtraTabControlHRContent);
             this.xtraTabPageHR.Controls.Add(this.navBarControl3);
@@ -2406,7 +2406,7 @@
             // 
             // navBarGroup20
             // 
-            this.navBarGroup20.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup20.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup20.Appearance.Options.UseFont = true;
             this.navBarGroup20.Caption = "الموظفين";
             this.navBarGroup20.Expanded = true;
@@ -2450,7 +2450,7 @@
             // 
             // navBarGroup19
             // 
-            this.navBarGroup19.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup19.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup19.Appearance.Options.UseFont = true;
             this.navBarGroup19.Caption = "البيانات المالية";
             this.navBarGroup19.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2489,7 +2489,7 @@
             // 
             // navBarGroup21
             // 
-            this.navBarGroup21.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup21.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup21.Appearance.Options.UseFont = true;
             this.navBarGroup21.Caption = "التقييم";
             this.navBarGroup21.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2521,7 +2521,7 @@
             // 
             // navBarGroup22
             // 
-            this.navBarGroup22.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup22.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup22.Appearance.Options.UseFont = true;
             this.navBarGroup22.Caption = "الجزاءات";
             this.navBarGroup22.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2553,7 +2553,7 @@
             // 
             // navBarGroup23
             // 
-            this.navBarGroup23.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup23.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup23.Appearance.Options.UseFont = true;
             this.navBarGroup23.Caption = "الاجازات";
             this.navBarGroup23.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2567,7 +2567,7 @@
             // 
             // navBarGroup24
             // 
-            this.navBarGroup24.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup24.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup24.Appearance.Options.UseFont = true;
             this.navBarGroup24.Caption = "الادوات";
             this.navBarGroup24.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2632,7 +2632,7 @@
             // 
             // xtraTabPageCars
             // 
-            this.xtraTabPageCars.Appearance.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPageCars.Appearance.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabPageCars.Appearance.Header.Options.UseFont = true;
             this.xtraTabPageCars.Controls.Add(this.xtraTabControlCarsContent);
             this.xtraTabPageCars.Controls.Add(this.navBarControl4);
@@ -2646,7 +2646,7 @@
             this.xtraTabControlCarsContent.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.xtraTabControlCarsContent.Appearance.Options.UseFont = true;
             this.xtraTabControlCarsContent.AppearancePage.Header.BorderColor = System.Drawing.Color.Transparent;
-            this.xtraTabControlCarsContent.AppearancePage.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.xtraTabControlCarsContent.AppearancePage.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.xtraTabControlCarsContent.AppearancePage.Header.Options.UseBackColor = true;
             this.xtraTabControlCarsContent.AppearancePage.Header.Options.UseBorderColor = true;
             this.xtraTabControlCarsContent.AppearancePage.Header.Options.UseFont = true;
@@ -2681,7 +2681,7 @@
             this.navBarControl4.Appearance.ButtonPressed.Options.UseFont = true;
             this.navBarControl4.Appearance.GroupBackground.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl4.Appearance.GroupBackground.Options.UseFont = true;
-            this.navBarControl4.Appearance.GroupHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl4.Appearance.GroupHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl4.Appearance.GroupHeader.Options.UseFont = true;
             this.navBarControl4.Appearance.GroupHeaderActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl4.Appearance.GroupHeaderActive.Options.UseFont = true;
@@ -2691,7 +2691,7 @@
             this.navBarControl4.Appearance.GroupHeaderPressed.Options.UseFont = true;
             this.navBarControl4.Appearance.Hint.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl4.Appearance.Hint.Options.UseFont = true;
-            this.navBarControl4.Appearance.Item.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl4.Appearance.Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl4.Appearance.Item.Options.UseFont = true;
             this.navBarControl4.Appearance.ItemActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl4.Appearance.ItemActive.Options.UseFont = true;
@@ -2703,10 +2703,10 @@
             this.navBarControl4.Appearance.ItemPressed.Options.UseFont = true;
             this.navBarControl4.Appearance.LinkDropTarget.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl4.Appearance.LinkDropTarget.Options.UseFont = true;
-            this.navBarControl4.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl4.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl4.Appearance.NavigationPaneHeader.Options.UseFont = true;
             this.navBarControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.navBarControl4.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl4.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup26,
             this.navBarGroup27,
@@ -2751,7 +2751,7 @@
             // 
             // navBarGroup25
             // 
-            this.navBarGroup25.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup25.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup25.Appearance.Options.UseFont = true;
             this.navBarGroup25.Caption = "المصروفات";
             this.navBarGroup25.Expanded = true;
@@ -2781,7 +2781,7 @@
             // 
             // navBarGroup26
             // 
-            this.navBarGroup26.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup26.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup26.Appearance.Options.UseFont = true;
             this.navBarGroup26.Caption = "التكويد";
             this.navBarGroup26.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2810,7 +2810,7 @@
             // 
             // navBarGroup27
             // 
-            this.navBarGroup27.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup27.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup27.Appearance.Options.UseFont = true;
             this.navBarGroup27.Caption = "الايرادات";
             this.navBarGroup27.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2846,7 +2846,7 @@
             // 
             // navBarGroup28
             // 
-            this.navBarGroup28.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup28.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup28.Appearance.Options.UseFont = true;
             this.navBarGroup28.Caption = "العهدة";
             this.navBarGroup28.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2861,7 +2861,7 @@
             // 
             // navBarGroup29
             // 
-            this.navBarGroup29.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup29.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup29.Appearance.Options.UseFont = true;
             this.navBarGroup29.Caption = "العداد";
             this.navBarGroup29.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2876,7 +2876,7 @@
             // 
             // navBarGroup30
             // 
-            this.navBarGroup30.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup30.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup30.Appearance.Options.UseFont = true;
             this.navBarGroup30.Caption = "التقرير";
             this.navBarGroup30.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -2958,7 +2958,7 @@
             // 
             // xtraTabPagePOS
             // 
-            this.xtraTabPagePOS.Appearance.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPagePOS.Appearance.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabPagePOS.Appearance.Header.Options.UseFont = true;
             this.xtraTabPagePOS.Controls.Add(this.xtraTabControlPointSale);
             this.xtraTabPagePOS.Controls.Add(this.navBarControlPointSaleReport);
@@ -3039,7 +3039,7 @@
             // 
             // navBarGroupBillRecord
             // 
-            this.navBarGroupBillRecord.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupBillRecord.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupBillRecord.Appearance.Options.UseFont = true;
             this.navBarGroupBillRecord.Caption = "تسجيل فاتورة";
             this.navBarGroupBillRecord.Expanded = true;
@@ -3057,7 +3057,7 @@
             // 
             // navBarGroup31
             // 
-            this.navBarGroup31.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup31.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup31.Appearance.Options.UseFont = true;
             this.navBarGroup31.Caption = "تقارير المبيعات";
             this.navBarGroup31.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3107,7 +3107,7 @@
             // 
             // navBarGroupReportPointSale
             // 
-            this.navBarGroupReportPointSale.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupReportPointSale.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupReportPointSale.Appearance.Options.UseFont = true;
             this.navBarGroupReportPointSale.Caption = "العملاء";
             this.navBarGroupReportPointSale.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3124,7 +3124,7 @@
             // 
             // navBarGroup50
             // 
-            this.navBarGroup50.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup50.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup50.Appearance.Options.UseFont = true;
             this.navBarGroup50.Caption = "تقارير";
             this.navBarGroup50.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3227,7 +3227,7 @@
             // 
             // xtraTabPageBank
             // 
-            this.xtraTabPageBank.Appearance.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPageBank.Appearance.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabPageBank.Appearance.Header.Options.UseFont = true;
             this.xtraTabPageBank.Controls.Add(this.MainTabControlBank);
             this.xtraTabPageBank.Controls.Add(this.navBarControlBankReport);
@@ -3301,7 +3301,7 @@
             // 
             // navBarGroupDeposit
             // 
-            this.navBarGroupDeposit.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupDeposit.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupDeposit.Appearance.Options.UseFont = true;
             this.navBarGroupDeposit.Caption = "ايداع";
             this.navBarGroupDeposit.Expanded = true;
@@ -3357,7 +3357,7 @@
             // 
             // navBarGroupPullOut
             // 
-            this.navBarGroupPullOut.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupPullOut.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupPullOut.Appearance.Options.UseFont = true;
             this.navBarGroupPullOut.Caption = "سحب";
             this.navBarGroupPullOut.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3403,7 +3403,7 @@
             // 
             // navBarGroupTransfers
             // 
-            this.navBarGroupTransfers.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupTransfers.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupTransfers.Appearance.Options.UseFont = true;
             this.navBarGroupTransfers.Caption = "تحويلات";
             this.navBarGroupTransfers.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3420,7 +3420,7 @@
             // 
             // navBarGroupReportBank
             // 
-            this.navBarGroupReportBank.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupReportBank.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupReportBank.Appearance.Options.UseFont = true;
             this.navBarGroupReportBank.Caption = "تكويد";
             this.navBarGroupReportBank.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3429,7 +3429,7 @@
             // 
             // navBarItemBanks
             // 
-            this.navBarItemBanks.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItemBanks.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarItemBanks.Appearance.Options.UseFont = true;
             this.navBarItemBanks.Caption = "تقارير الخزائن/البنوك";
             this.navBarItemBanks.Name = "navBarItemBanks";
@@ -3437,7 +3437,7 @@
             // 
             // navBarGroup61
             // 
-            this.navBarGroup61.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup61.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup61.Appearance.Options.UseFont = true;
             this.navBarGroup61.Caption = "تقارير";
             this.navBarGroup61.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3446,7 +3446,7 @@
             // 
             // navBarItemBankTransitionReport
             // 
-            this.navBarItemBankTransitionReport.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItemBankTransitionReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarItemBankTransitionReport.Appearance.Options.UseFont = true;
             this.navBarItemBankTransitionReport.Caption = "حركة الخزنة";
             this.navBarItemBankTransitionReport.Name = "navBarItemBankTransitionReport";
@@ -3508,7 +3508,7 @@
             // 
             // xtraTabPageReception
             // 
-            this.xtraTabPageReception.Appearance.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPageReception.Appearance.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabPageReception.Appearance.Header.Options.UseFont = true;
             this.xtraTabPageReception.Controls.Add(this.xtraTabControlReception);
             this.xtraTabPageReception.Controls.Add(this.navBarControl5);
@@ -3601,7 +3601,7 @@
             // 
             // navBarGroupDelegateMovement
             // 
-            this.navBarGroupDelegateMovement.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupDelegateMovement.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupDelegateMovement.Appearance.Options.UseFont = true;
             this.navBarGroupDelegateMovement.Caption = "حركة المندوبين";
             this.navBarGroupDelegateMovement.Expanded = true;
@@ -3629,7 +3629,7 @@
             // 
             // navBarGroup33
             // 
-            this.navBarGroup33.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup33.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup33.Appearance.Options.UseFont = true;
             this.navBarGroup33.Caption = "تقارير";
             this.navBarGroup33.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3686,7 +3686,7 @@
             // 
             // navBarGroup34
             // 
-            this.navBarGroup34.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup34.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup34.Appearance.Options.UseFont = true;
             this.navBarGroup34.Caption = "تقارير يومية";
             this.navBarGroup34.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3713,7 +3713,7 @@
             // 
             // navBarGroup35
             // 
-            this.navBarGroup35.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup35.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup35.Appearance.Options.UseFont = true;
             this.navBarGroup35.Caption = "تقارير شهرية";
             this.navBarGroup35.Name = "navBarGroup35";
@@ -3721,7 +3721,7 @@
             // 
             // navBarGroup36
             // 
-            this.navBarGroup36.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup36.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup36.Appearance.Options.UseFont = true;
             this.navBarGroup36.Caption = "تقارير بيانية";
             this.navBarGroup36.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3775,7 +3775,7 @@
             // 
             // navBarGroup37
             // 
-            this.navBarGroup37.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup37.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup37.Appearance.Options.UseFont = true;
             this.navBarGroup37.Caption = "تقارير بيانية يومية";
             this.navBarGroup37.Name = "navBarGroup37";
@@ -3783,7 +3783,7 @@
             // 
             // navBarGroup38
             // 
-            this.navBarGroup38.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup38.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup38.Appearance.Options.UseFont = true;
             this.navBarGroup38.Caption = "تقارير بيانية شهرية";
             this.navBarGroup38.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3889,7 +3889,7 @@
             // 
             // xtraTabPageShipping
             // 
-            this.xtraTabPageShipping.Appearance.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPageShipping.Appearance.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabPageShipping.Appearance.Header.Options.UseFont = true;
             this.xtraTabPageShipping.Controls.Add(this.xtraTabControlShipping);
             this.xtraTabPageShipping.Controls.Add(this.navBarControlShippingReport);
@@ -3969,7 +3969,7 @@
             // 
             // navBarGroupShippingRecord
             // 
-            this.navBarGroupShippingRecord.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupShippingRecord.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupShippingRecord.Appearance.Options.UseFont = true;
             this.navBarGroupShippingRecord.Caption = "تسجيل شحنة";
             this.navBarGroupShippingRecord.Expanded = true;
@@ -3987,7 +3987,7 @@
             // 
             // navBarGroup41
             // 
-            this.navBarGroup41.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup41.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup41.Appearance.Options.UseFont = true;
             this.navBarGroup41.Caption = "شحن من المخزن";
             this.navBarGroup41.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4004,7 +4004,7 @@
             // 
             // navBarGroupZoonReport
             // 
-            this.navBarGroupZoonReport.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupZoonReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupZoonReport.Appearance.Options.UseFont = true;
             this.navBarGroupZoonReport.Caption = "مناطق & زون";
             this.navBarGroupZoonReport.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4021,7 +4021,7 @@
             // 
             // navBarGroupReportShipping
             // 
-            this.navBarGroupReportShipping.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupReportShipping.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupReportShipping.Appearance.Options.UseFont = true;
             this.navBarGroupReportShipping.Caption = "تقارير";
             this.navBarGroupReportShipping.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4130,7 +4130,7 @@
             // 
             // xtraTabPageAccounting
             // 
-            this.xtraTabPageAccounting.Appearance.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabPageAccounting.Appearance.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xtraTabPageAccounting.Appearance.Header.Options.UseFont = true;
             this.xtraTabPageAccounting.Controls.Add(this.xtraTabControlAccounting);
             this.xtraTabPageAccounting.Controls.Add(this.navBarAccounting);
@@ -4143,7 +4143,7 @@
             this.xtraTabControlAccounting.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.xtraTabControlAccounting.Appearance.Options.UseFont = true;
             this.xtraTabControlAccounting.AppearancePage.Header.BorderColor = System.Drawing.Color.Transparent;
-            this.xtraTabControlAccounting.AppearancePage.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.xtraTabControlAccounting.AppearancePage.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.xtraTabControlAccounting.AppearancePage.Header.Options.UseBackColor = true;
             this.xtraTabControlAccounting.AppearancePage.Header.Options.UseBorderColor = true;
             this.xtraTabControlAccounting.AppearancePage.Header.Options.UseFont = true;
@@ -4178,7 +4178,7 @@
             this.navBarAccounting.Appearance.ButtonPressed.Options.UseFont = true;
             this.navBarAccounting.Appearance.GroupBackground.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarAccounting.Appearance.GroupBackground.Options.UseFont = true;
-            this.navBarAccounting.Appearance.GroupHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarAccounting.Appearance.GroupHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarAccounting.Appearance.GroupHeader.Options.UseFont = true;
             this.navBarAccounting.Appearance.GroupHeaderActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarAccounting.Appearance.GroupHeaderActive.Options.UseFont = true;
@@ -4188,7 +4188,7 @@
             this.navBarAccounting.Appearance.GroupHeaderPressed.Options.UseFont = true;
             this.navBarAccounting.Appearance.Hint.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarAccounting.Appearance.Hint.Options.UseFont = true;
-            this.navBarAccounting.Appearance.Item.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarAccounting.Appearance.Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarAccounting.Appearance.Item.Options.UseFont = true;
             this.navBarAccounting.Appearance.ItemActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarAccounting.Appearance.ItemActive.Options.UseFont = true;
@@ -4200,10 +4200,10 @@
             this.navBarAccounting.Appearance.ItemPressed.Options.UseFont = true;
             this.navBarAccounting.Appearance.LinkDropTarget.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarAccounting.Appearance.LinkDropTarget.Options.UseFont = true;
-            this.navBarAccounting.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarAccounting.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarAccounting.Appearance.NavigationPaneHeader.Options.UseFont = true;
             this.navBarAccounting.Dock = System.Windows.Forms.DockStyle.Right;
-            this.navBarAccounting.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarAccounting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarAccounting.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup40,
             this.navBarGroup47});
@@ -4251,7 +4251,7 @@
             // 
             // navBarGroup40
             // 
-            this.navBarGroup40.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup40.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup40.Appearance.Options.UseFont = true;
             this.navBarGroup40.Caption = "تقارير حسابات المناديب";
             this.navBarGroup40.Expanded = true;
@@ -4339,7 +4339,7 @@
             // 
             // navBarGroup47
             // 
-            this.navBarGroup47.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup47.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup47.Appearance.Options.UseFont = true;
             this.navBarGroup47.Caption = "تقارير";
             this.navBarGroup47.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4548,7 +4548,7 @@
             // 
             // navBarGroup42
             // 
-            this.navBarGroup42.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup42.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup42.Appearance.Options.UseFont = true;
             this.navBarGroup42.Caption = "تكويد";
             this.navBarGroup42.Expanded = true;
@@ -4566,7 +4566,7 @@
             // 
             // navBarGroup56
             // 
-            this.navBarGroup56.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup56.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup56.Appearance.Options.UseFont = true;
             this.navBarGroup56.Caption = "ايداع";
             this.navBarGroup56.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4583,7 +4583,7 @@
             // 
             // navBarGroup57
             // 
-            this.navBarGroup57.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup57.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup57.Appearance.Options.UseFont = true;
             this.navBarGroup57.Caption = "مصروف";
             this.navBarGroup57.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4600,7 +4600,7 @@
             // 
             // navBarGroup32
             // 
-            this.navBarGroup32.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup32.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup32.Appearance.Options.UseFont = true;
             this.navBarGroup32.Caption = "تقارير";
             this.navBarGroup32.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4743,7 +4743,7 @@
             this.xtraTabControlPurchases.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.xtraTabControlPurchases.Appearance.Options.UseFont = true;
             this.xtraTabControlPurchases.AppearancePage.Header.BorderColor = System.Drawing.Color.Transparent;
-            this.xtraTabControlPurchases.AppearancePage.Header.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.xtraTabControlPurchases.AppearancePage.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.xtraTabControlPurchases.AppearancePage.Header.Options.UseBackColor = true;
             this.xtraTabControlPurchases.AppearancePage.Header.Options.UseBorderColor = true;
             this.xtraTabControlPurchases.AppearancePage.Header.Options.UseFont = true;
@@ -4778,7 +4778,7 @@
             this.navBarControl7.Appearance.ButtonPressed.Options.UseFont = true;
             this.navBarControl7.Appearance.GroupBackground.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.GroupBackground.Options.UseFont = true;
-            this.navBarControl7.Appearance.GroupHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl7.Appearance.GroupHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl7.Appearance.GroupHeader.Options.UseFont = true;
             this.navBarControl7.Appearance.GroupHeaderActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.GroupHeaderActive.Options.UseFont = true;
@@ -4788,7 +4788,7 @@
             this.navBarControl7.Appearance.GroupHeaderPressed.Options.UseFont = true;
             this.navBarControl7.Appearance.Hint.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.Hint.Options.UseFont = true;
-            this.navBarControl7.Appearance.Item.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl7.Appearance.Item.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl7.Appearance.Item.Options.UseFont = true;
             this.navBarControl7.Appearance.ItemActive.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.ItemActive.Options.UseFont = true;
@@ -4800,10 +4800,10 @@
             this.navBarControl7.Appearance.ItemPressed.Options.UseFont = true;
             this.navBarControl7.Appearance.LinkDropTarget.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.LinkDropTarget.Options.UseFont = true;
-            this.navBarControl7.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl7.Appearance.NavigationPaneHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl7.Appearance.NavigationPaneHeader.Options.UseFont = true;
             this.navBarControl7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.navBarControl7.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
+            this.navBarControl7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.navBarControl7.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup43,
             this.navBarGroup44,
@@ -4885,7 +4885,7 @@
             // 
             // navBarGroup43
             // 
-            this.navBarGroup43.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup43.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup43.Appearance.Options.UseFont = true;
             this.navBarGroup43.Caption = "فاتورة شراء";
             this.navBarGroup43.Expanded = true;
@@ -4901,7 +4901,7 @@
             // 
             // navBarGroup44
             // 
-            this.navBarGroup44.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup44.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup44.Appearance.Options.UseFont = true;
             this.navBarGroup44.Caption = "فاتورة مرتجع";
             this.navBarGroup44.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4916,7 +4916,7 @@
             // 
             // navBarGroup51
             // 
-            this.navBarGroup51.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup51.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup51.Appearance.Options.UseFont = true;
             this.navBarGroup51.Caption = "بدء طلبيات";
             this.navBarGroup51.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4932,7 +4932,7 @@
             // 
             // navBarGroup46
             // 
-            this.navBarGroup46.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup46.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup46.Appearance.Options.UseFont = true;
             this.navBarGroup46.Caption = "تاكيد الطلبيات";
             this.navBarGroup46.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4948,7 +4948,7 @@
             // 
             // navBarGroup52
             // 
-            this.navBarGroup52.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup52.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup52.Appearance.Options.UseFont = true;
             this.navBarGroup52.Caption = "بدء طلبيات خاصة";
             this.navBarGroup52.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4964,7 +4964,7 @@
             // 
             // navBarGroup53
             // 
-            this.navBarGroup53.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup53.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup53.Appearance.Options.UseFont = true;
             this.navBarGroup53.Caption = "تاكيد الطلبيات الخاصة xxx";
             this.navBarGroup53.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4979,7 +4979,7 @@
             // 
             // navBarGroupLeastQuantity
             // 
-            this.navBarGroupLeastQuantity.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupLeastQuantity.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupLeastQuantity.Appearance.Options.UseFont = true;
             this.navBarGroupLeastQuantity.Caption = "الحد الادنى للبنود";
             this.navBarGroupLeastQuantity.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -4995,7 +4995,7 @@
             // 
             // navBarGroup48
             // 
-            this.navBarGroup48.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup48.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup48.Appearance.Options.UseFont = true;
             this.navBarGroup48.Caption = "اسعار الشراء";
             this.navBarGroup48.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5010,7 +5010,7 @@
             // 
             // navBarGroupSupplier
             // 
-            this.navBarGroupSupplier.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupSupplier.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupSupplier.Appearance.Options.UseFont = true;
             this.navBarGroupSupplier.Caption = "تقرير الموردين";
             this.navBarGroupSupplier.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5025,7 +5025,7 @@
             // 
             // navBarGroupPurchasesReport
             // 
-            this.navBarGroupPurchasesReport.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroupPurchasesReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupPurchasesReport.Appearance.Options.UseFont = true;
             this.navBarGroupPurchasesReport.Caption = "تقارير الطلبيات";
             this.navBarGroupPurchasesReport.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5055,7 +5055,7 @@
             // 
             // navBarGroup45
             // 
-            this.navBarGroup45.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup45.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup45.Appearance.Options.UseFont = true;
             this.navBarGroup45.Caption = "تقارير فواتير الشراء";
             this.navBarGroup45.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5084,7 +5084,7 @@
             // 
             // navBarGroup55
             // 
-            this.navBarGroup55.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup55.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup55.Appearance.Options.UseFont = true;
             this.navBarGroup55.Caption = "سدادات مورد";
             this.navBarGroup55.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5106,7 +5106,7 @@
             // 
             // navBarGroup59
             // 
-            this.navBarGroup59.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup59.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup59.Appearance.Options.UseFont = true;
             this.navBarGroup59.Caption = "تسويات الموردين";
             this.navBarGroup59.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5121,7 +5121,7 @@
             // 
             // navBarGroup60
             // 
-            this.navBarGroup60.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup60.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup60.Appearance.Options.UseFont = true;
             this.navBarGroup60.Caption = "تقارير";
             this.navBarGroup60.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5409,7 +5409,7 @@
             // 
             // navBarGroup49
             // 
-            this.navBarGroup49.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup49.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup49.Appearance.Options.UseFont = true;
             this.navBarGroup49.Caption = "تقارير";
             this.navBarGroup49.Expanded = true;
@@ -5651,7 +5651,7 @@
             // 
             // navBarGroup65
             // 
-            this.navBarGroup65.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup65.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup65.Appearance.Options.UseFont = true;
             this.navBarGroup65.Caption = "بدء طلبيات";
             this.navBarGroup65.Expanded = true;
@@ -5669,7 +5669,7 @@
             // 
             // navBarGroup62
             // 
-            this.navBarGroup62.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup62.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup62.Appearance.Options.UseFont = true;
             this.navBarGroup62.Caption = "تاكيد الطلبيات";
             this.navBarGroup62.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5686,7 +5686,7 @@
             // 
             // navBarGroup63
             // 
-            this.navBarGroup63.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup63.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup63.Appearance.Options.UseFont = true;
             this.navBarGroup63.Caption = "بدء الطلبيات الخاصة";
             this.navBarGroup63.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5703,7 +5703,7 @@
             // 
             // navBarGroup64
             // 
-            this.navBarGroup64.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup64.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup64.Appearance.Options.UseFont = true;
             this.navBarGroup64.Caption = "تاكيد الطلبيات الخاصة";
             this.navBarGroup64.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5719,7 +5719,7 @@
             // 
             // navBarGroup66
             // 
-            this.navBarGroup66.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup66.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup66.Appearance.Options.UseFont = true;
             this.navBarGroup66.Caption = "الحد الادنى للبنود";
             this.navBarGroup66.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -5736,7 +5736,7 @@
             // 
             // navBarGroup67
             // 
-            this.navBarGroup67.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup67.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup67.Appearance.Options.UseFont = true;
             this.navBarGroup67.Caption = "تقارير الطلبيات";
             this.navBarGroup67.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -6200,11 +6200,11 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 14F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(780, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 23);
+            this.label1.Size = new System.Drawing.Size(167, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "المركز التجاري للسيراميك";
             // 
