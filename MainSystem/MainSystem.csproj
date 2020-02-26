@@ -1038,6 +1038,12 @@
       <DependentUpon>CustomerDeliveryReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Export\DeliveryListPermissionClass.cs" />
+    <Compile Include="Store\Export\PermissionsDeliveryBillsConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\PermissionsDeliveryBillsConfirm.Designer.cs">
+      <DependentUpon>PermissionsDeliveryBillsConfirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Export\PermissionsDeliveryBills.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3476,6 +3482,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\CustomerDeliveryDraft.resx">
       <DependentUpon>CustomerDeliveryDraft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\PermissionsDeliveryBillsConfirm.resx">
+      <DependentUpon>PermissionsDeliveryBillsConfirm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\PermissionsDeliveryBills.resx">
       <DependentUpon>PermissionsDeliveryBills.cs</DependentUpon>

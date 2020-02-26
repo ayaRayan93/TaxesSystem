@@ -1330,6 +1330,38 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void navBarItemConfirmDelivery_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlStoresContent.Visible)
+                    xtraTabControlStoresContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "الفواتير المراد تاكيد تسليمها");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlStoresContent.TabPages.Add("الفواتير المراد تاكيد تسليمها");
+                    xtraTabPage = getTabPage(xtraTabControlStoresContent, "الفواتير المراد تاكيد تسليمها");
+                }
+                xtraTabPage.Controls.Clear();
+                xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+                PermissionsDeliveryBillsConfirm objForm = new PermissionsDeliveryBillsConfirm(this);
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void navBarItemStorageReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -2120,6 +2152,30 @@ namespace MainSystem
 
             //  CustomerDelivery objForm = new CustomerDelivery(permissionNum, branchID, flag);
             CustomerDeliveryDraft objForm = new CustomerDeliveryDraft(permissionNum, branchID, flag);
+
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+        public void bindDisplayDeliveryConfirmForm(string permissionNum, string branchID, int flag)
+        {
+            if (!xtraTabControlStoresContent.Visible)
+                xtraTabControlStoresContent.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تاكيد تسليم");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تاكيد تسليم");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تاكيد تسليم");
+            }
+
+            xtraTabPage.Controls.Clear();
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            //  CustomerDelivery objForm = new CustomerDelivery(permissionNum, branchID, flag);
+            CustomerDelivery objForm = new CustomerDelivery(permissionNum, branchID, flag);
 
             objForm.TopLevel = false;
             xtraTabPage.Controls.Add(objForm);

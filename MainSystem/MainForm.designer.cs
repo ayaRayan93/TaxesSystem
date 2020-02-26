@@ -80,6 +80,7 @@
             this.navBarItem203 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemCustomerDeliverReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPermissionRestBill = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemDeliveryBills = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
@@ -656,7 +657,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemDeliveryBills = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemConfirmDelivery = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -833,7 +834,6 @@
             this.tcMainContent.Name = "tcMainContent";
             this.tcMainContent.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.tcMainContent.Padding = new System.Windows.Forms.Padding(30);
-            this.tcMainContent.Position = 78;
             this.tcMainContent.Size = new System.Drawing.Size(1001, 710);
             this.tcMainContent.TabIndex = 0;
             this.tcMainContent.Text = "tileControl1";
@@ -1331,7 +1331,8 @@
             this.navBarItemPermissionRestBill,
             this.navBarItemStorageReport,
             this.navBarItemInformationStorageReport,
-            this.navBarItemDeliveryBills});
+            this.navBarItemDeliveryBills,
+            this.navBarItemConfirmDelivery});
             this.navBarControl1.LinkSelectionMode = DevExpress.XtraNavBar.LinkSelectionModeType.OneInGroup;
             this.navBarControl1.Location = new System.Drawing.Point(776, 0);
             this.navBarControl1.Name = "navBarControl1";
@@ -1354,9 +1355,10 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem203),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemCustomerDeliverReport),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionRestBill),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDeliveryBills)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDeliveryBills),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmDelivery)});
             this.navBarGroup6.Name = "navBarGroup6";
-            this.navBarGroup6.SelectedLinkIndex = 5;
+            this.navBarGroup6.SelectedLinkIndex = 6;
             this.navBarGroup6.TopVisibleLinkIndex = 2;
             // 
             // navBarItemDelivery
@@ -1390,6 +1392,12 @@
             this.navBarItemPermissionRestBill.Caption = "أذونات لم يتم تسليمها بالكامل";
             this.navBarItemPermissionRestBill.Name = "navBarItemPermissionRestBill";
             this.navBarItemPermissionRestBill.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionRestBill_LinkClicked);
+            // 
+            // navBarItemDeliveryBills
+            // 
+            this.navBarItemDeliveryBills.Caption = "فواتير مراد تسليمها";
+            this.navBarItemDeliveryBills.Name = "navBarItemDeliveryBills";
+            this.navBarItemDeliveryBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDeliveryBills_LinkClicked);
             // 
             // navBarGroup1
             // 
@@ -6227,11 +6235,11 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
-            // navBarItemDeliveryBills
+            // navBarItemConfirmDelivery
             // 
-            this.navBarItemDeliveryBills.Caption = "فواتير مراد تسليمها";
-            this.navBarItemDeliveryBills.Name = "navBarItemDeliveryBills";
-            this.navBarItemDeliveryBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDeliveryBills_LinkClicked);
+            this.navBarItemConfirmDelivery.Caption = "تاكيد التسليم";
+            this.navBarItemConfirmDelivery.Name = "navBarItemConfirmDelivery";
+            this.navBarItemConfirmDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemConfirmDelivery_LinkClicked);
             // 
             // MainForm
             // 
@@ -6921,6 +6929,7 @@
        // private DevExpress.XtraNavBar.NavBarItem navBarItem2655;
         private DevExpress.XtraNavBar.NavBarItem navBarItem266;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDeliveryBills;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemConfirmDelivery;
     }
 }
 
