@@ -184,7 +184,7 @@ namespace MainSystem
                 }
             }
         }
-       private void radioButton_CheckedChanged(object sender, EventArgs e)
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
@@ -221,9 +221,6 @@ namespace MainSystem
                     {
                         displayData();
                     }
-                    //DataHelper dh = new DataHelper(DSparametr.simpleDS);
-                    //gridControl2.DataSource = dh.DataSet;
-                    //gridControl2.DataMember = dh.DataMember;
                 }
             }
             catch (Exception ex)
@@ -255,86 +252,75 @@ namespace MainSystem
             {
             }
         }
-    private void btnPrint_Click(object sender, EventArgs e)
+        private void btnPrint_Click(object sender, EventArgs e)
         {
             try
             {
-        
-                    if (gridView1.RowCount > 0 && txtPermBillNumber.Text != "")
+
+                if (gridView1.RowCount > 0 && txtPermBillNumber.Text != "")
+                {
+                    dbconnection.Open();
+                    List<DeliveryPermissionClass> listOfData = new List<DeliveryPermissionClass>();
+                    for (int i = 0; i < gridView1.RowCount; i++)
                     {
-                        dbconnection.Open();
-                        List<DeliveryPermissionClass> listOfData = new List<DeliveryPermissionClass>();
-                        for (int i = 0; i < gridView1.RowCount; i++)
+                        DataRow row1 = gridView1.GetDataRow(gridView1.GetRowHandle(i));
+
+                        DeliveryPermissionClass deliveryPermissionClass = new DeliveryPermissionClass();
+                        deliveryPermissionClass.ID = i + 1;
+                        deliveryPermissionClass.Data_ID = (int)row1["Data_ID"];
+
+                        deliveryPermissionClass.Code = row1[1].ToString();
+                        if (row1["الفئة"].ToString() == "عرض")
                         {
-                            DataRow row1 = gridView1.GetDataRow(gridView1.GetRowHandle(i));
-
-                            DeliveryPermissionClass deliveryPermissionClass = new DeliveryPermissionClass();
-                            deliveryPermissionClass.ID = i + 1;
-                            deliveryPermissionClass.Data_ID = (int)row1["Data_ID"];
-
-                            deliveryPermissionClass.Code = row1[1].ToString();
-                            if (row1["الفئة"].ToString() == "عرض")
+                            string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+                            string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
+                            string query = "select Code as'الكود'," + itemName + " from offer inner join offer_details on offer.Offer_ID=offer_details.Offer_ID inner join data on data.Data_ID=offer_details.Data_ID " + DataTableRelations + "  where offer.Offer_ID=" + (int)row1["Data_ID"];
+                            MySqlCommand com = new MySqlCommand(query, dbconnection);
+                            MySqlDataReader dr = com.ExecuteReader();
+                            string str = "";
+                            int cont = 1;
+                            while (dr.Read())
                             {
-                                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
-                                string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                                string query = "select Code as'الكود'," + itemName + " from offer inner join offer_details on offer.Offer_ID=offer_details.Offer_ID inner join data on data.Data_ID=offer_details.Data_ID " + DataTableRelations + "  where offer.Offer_ID=" + (int)row1["Data_ID"];
-                                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                                MySqlDataReader dr = com.ExecuteReader();
-                                string str = "";
-                                int cont = 1;
-                                while (dr.Read())
-                                {
-                                    str += cont + "-" + dr[1].ToString() + "\n";
-                                    cont++;
-                                }
-                                dr.Close();
-                                deliveryPermissionClass.ItemName = "-" + row1[2].ToString() + "\n" + str;
+                                str += cont + "-" + dr[1].ToString() + "\n";
+                                cont++;
                             }
-                            else
-                            {
-                                deliveryPermissionClass.Type = row1[2].ToString();
-                                deliveryPermissionClass.ItemName = row1[3].ToString();
-                            }
-                            deliveryPermissionClass.TotalQuantity = Convert.ToDouble(row1[6]);
-                            if (row1[5].ToString() != "" && Convert.ToDouble(row1[5]) != 0)
-                            {
-                                deliveryPermissionClass.NumOfCarton = Convert.ToDouble(row1[6]) / Convert.ToDouble(row1[5]);
-                            }
-                            else
-                            {
-                                deliveryPermissionClass.NumOfCarton = Convert.ToDouble(row1[6]);
-                            }
-                            deliveryPermissionClass.DeliveryQuantity = row1[7].ToString();
-                            deliveryPermissionClass.StoreName = row1[9].ToString();
-                            listOfData.Add(deliveryPermissionClass);
+                            dr.Close();
+                            deliveryPermissionClass.ItemName = "-" + row1[2].ToString() + "\n" + str;
                         }
-                        //DeliveryPermissionReportViewer DeliveryPermissionReport;//= new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
-
-                        //if (txtClientID.Text != "")
-                        //{
-                        //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text, "", txtDeliverPerson.Text, txtDeliverPhone.Text, "", true, txtAddress.Text);
-                        //    DeliveryPermissionReport.Show();
-                        //}
-                        //else if (txtCustomerID.Text != "")
-                        //{
-                        //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text, "", txtDeliverPerson.Text, txtDeliverPhone.Text, "", true, txtAddress.Text);
-                        //    DeliveryPermissionReport.Show();
-                        //}
-                        DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy,"" /*id.ToString()*/, txtBranchID.ToString(), comBranch.Text,"","", "", comStore.Text, false,"");
-
-                        XtraReport1 report = new XtraReport1();
-                        ReportPrintTool printTool = new ReportPrintTool(DeliveryPermissionReport);
-                        // Invoke the Print dialog.
-                        printTool.PrintDialog();
-                        // Send the report to the default printer.
-                       // printTool.Print();
-                        // Send the report to the specified printer.
-                       // printTool.Print("myPrinter");
+                        else
+                        {
+                            deliveryPermissionClass.Type = row1[2].ToString();
+                            deliveryPermissionClass.ItemName = row1[3].ToString();
+                        }
+                        deliveryPermissionClass.TotalQuantity = Convert.ToDouble(row1[6]);
+                        if (row1[5].ToString() != "" && Convert.ToDouble(row1[5]) != 0)
+                        {
+                            deliveryPermissionClass.NumOfCarton = Convert.ToDouble(row1[6]) / Convert.ToDouble(row1[5]);
+                        }
+                        else
+                        {
+                            deliveryPermissionClass.NumOfCarton = Convert.ToDouble(row1[6]);
+                        }
+                        deliveryPermissionClass.DeliveryQuantity = row1[7].ToString();
+                        deliveryPermissionClass.StoreName = row1[9].ToString();
+                        listOfData.Add(deliveryPermissionClass);
                     }
-                    else
-                    {
-                        MessageBox.Show("insert correct value");
-                    }
+                
+                    DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "" /*id.ToString()*/, txtBranchID.ToString(), comBranch.Text, "", "", "", comStore.Text, true, "");
+
+                    XtraReport1 report = new XtraReport1();
+                    ReportPrintTool printTool = new ReportPrintTool(DeliveryPermissionReport);
+                    // Invoke the Print dialog.
+                    printTool.PrintDialog();
+               
+                    string query1 = "update customer_bill set RecivedFlag='Draft' where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
+                    MySqlCommand com1 = new MySqlCommand(query1, dbconnection);
+                    com1.ExecuteNonQuery();
+                }
+                else
+                {
+                    MessageBox.Show("insert correct value");
+                }
              
             }
             catch (Exception ex)
@@ -371,7 +357,6 @@ namespace MainSystem
                 txtClientName.Text = dr["Client_Name"].ToString();
                 txtClientID.Text = dr["Client_ID"].ToString();
                 txtPhoneNumber.Text = dr["Phone"].ToString();
-                //txtAddress.Text = dr["Address"].ToString();
             }
             dr.Close();
 
@@ -391,7 +376,6 @@ namespace MainSystem
             }
             dr.Close();
         }
-  
         public void displayPermission()
         {
             if (radioBtnDriverDelivery.Checked)
@@ -481,8 +465,7 @@ namespace MainSystem
                 gridView1.Columns[7].Visible = false;
                 displayBillDataFromCustomerBill(txtBranchID.Text,permissionNum);
             }
-        }
-   
+        } 
         public void displayData()
         {
             string query = "select CustomerBill_ID,Type_Buy from customer_bill where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
@@ -797,6 +780,7 @@ namespace MainSystem
             }
             dbconnection1.Close();
         }
+
     }
     
 }
