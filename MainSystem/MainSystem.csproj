@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version1.76\</PublishUrl>
+    <PublishUrl>D:\التكويد\version1.77\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>255</ApplicationRevision>
+    <ApplicationRevision>256</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -1038,6 +1038,18 @@
       <DependentUpon>CustomerDeliveryReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Export\DeliveryListPermissionClass.cs" />
+    <Compile Include="Store\Export\PermissionsDeliveryBillsConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\PermissionsDeliveryBillsConfirm.Designer.cs">
+      <DependentUpon>PermissionsDeliveryBillsConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Store\Export\PermissionsDeliveryBills.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Store\Export\PermissionsDeliveryBills.Designer.cs">
+      <DependentUpon>PermissionsDeliveryBills.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Export\RestDeliveryItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3470,6 +3482,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\CustomerDeliveryDraft.resx">
       <DependentUpon>CustomerDeliveryDraft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\PermissionsDeliveryBillsConfirm.resx">
+      <DependentUpon>PermissionsDeliveryBillsConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Store\Export\PermissionsDeliveryBills.resx">
+      <DependentUpon>PermissionsDeliveryBills.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\RestDeliveryItems.resx">
       <DependentUpon>RestDeliveryItems.cs</DependentUpon>

@@ -251,6 +251,10 @@ namespace MainSystem
                 navBarGroup39.Visible = false;
                 navBarItemTransportationStore.Visible = false;
                 navBarGroup58.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
             }
             //حسابات العملاء
             else if (UserControl.userType == 7)
@@ -423,6 +427,10 @@ namespace MainSystem
                 btnTaswayAgalBills.Visible = false;
                 navBarItem153.Visible = false;
                 navBarGroup58.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
             }
             //eslam
             else if (UserControl.userType == 17)
@@ -634,6 +642,10 @@ namespace MainSystem
                 navBarGroup12.Visible = false;
                 navBarItem17.Visible = false;
                 navBarItemTransportationStore.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
             }
             //مبيعات ومخازن - عمرو عاطف و محمد جمال
             else if (UserControl.userType == 24)
@@ -1300,6 +1312,8 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+    
     }
 
     public static class connection

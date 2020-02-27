@@ -49,7 +49,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnPut = new Bunifu.Framework.UI.BunifuImageButton();
-            this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnRemove = new Bunifu.Framework.UI.BunifuImageButton();
             this.label11 = new System.Windows.Forms.Label();
             this.txtRecivedQuantity = new System.Windows.Forms.TextBox();
@@ -320,7 +319,6 @@
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox3.Controls.Add(this.btnPut);
-            this.groupBox3.Controls.Add(this.btnPrint);
             this.groupBox3.Controls.Add(this.btnRemove);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.txtRecivedQuantity);
@@ -351,28 +349,6 @@
             this.btnPut.TabStop = false;
             this.btnPut.Zoom = 10;
             this.btnPut.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Image = null;
-            this.btnPrint.ImagePosition = 1;
-            this.btnPrint.ImageZoom = 0;
-            this.btnPrint.LabelPosition = 26;
-            this.btnPrint.LabelText = "طباعة الاذن";
-            this.btnPrint.Location = new System.Drawing.Point(27, 16);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(83, 38);
-            this.btnPrint.TabIndex = 2;
-            this.btnPrint.Visible = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnRemove
             // 
@@ -506,7 +482,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 451F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 452F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -531,7 +507,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(452, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(453, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(94, 45);
@@ -988,7 +964,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn ItemName;
         private DevExpress.XtraGrid.Columns.GridColumn Quantity;
         private DevExpress.XtraGrid.Columns.GridColumn Carton;
-        private Bunifu.Framework.UI.BunifuTileButton btnPrint;
         private DevExpress.XtraGrid.Columns.GridColumn DeliveryQuantity;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn NumOfCarton;
