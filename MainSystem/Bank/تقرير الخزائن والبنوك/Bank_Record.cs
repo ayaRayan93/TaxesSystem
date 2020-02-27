@@ -312,7 +312,7 @@ namespace MainSystem
                                 if (Int32.TryParse(t200.Text, out tt200) && Int32.TryParse(t100.Text, out tt100) && Int32.TryParse(t50.Text, out tt50) && Int32.TryParse(t20.Text, out tt20) && Int32.TryParse(t10.Text, out tt10) && Int32.TryParse(t5.Text, out tt5) && Int32.TryParse(t1.Text, out tt1) && Int32.TryParse(tH.Text, out ttH) && Int32.TryParse(tQ.Text, out ttQ))
                                 {
                                     MySqlCommand command = dbconnection.CreateCommand();
-                                    command.CommandText = "INSERT INTO bank (Bank_Type,Bank_Name,Branch_ID,Branch_Name,Bank_Stock,Start_Date,Bank_Info,Bank_Account,BankAccount_Type,BankVisa_ID,BankVisa,Machine_ID) VALUES (?Bank_Type,?Bank_Name,?Branch_ID,?Branch_Name,?Bank_Stock,?Start_Date,?Bank_Info,?Bank_Account,?BankAccount_Type,?BankVisa_ID,?BankVisa,?Machine_ID)";
+                                    command.CommandText = "INSERT INTO bank (Bank_Type,Bank_Name,Branch_ID,Branch_Name,Bank_Stock,Start_Date,Bank_Info,Bank_Account,BankAccount_Type,BankVisa_ID,BankVisa,Machine_ID,Supplier_ID) VALUES (?Bank_Type,?Bank_Name,?Branch_ID,?Branch_Name,?Bank_Stock,?Start_Date,?Bank_Info,?Bank_Account,?BankAccount_Type,?BankVisa_ID,?BankVisa,?Machine_ID,?Supplier_ID)";
 
                                     if (cmbType.Text == "خزينة")
                                     {
@@ -325,11 +325,20 @@ namespace MainSystem
                                         command.Parameters.AddWithValue("?BankVisa_ID", null);
                                         command.Parameters.AddWithValue("?BankVisa", null);
                                         command.Parameters.AddWithValue("?Machine_ID", null);
+                                        command.Parameters.AddWithValue("?Supplier_ID", null);
                                     }
                                     else if (cmbType.Text == "حساب بنكى")
                                     {
                                         command.Parameters.AddWithValue("?Bank_Type", "حساب بنكى");
                                         command.Parameters.AddWithValue("?Bank_Name", txtName.Text);
+                                        if(comSupplier.SelectedValue != null)
+                                        {
+                                            command.Parameters.AddWithValue("?Supplier_ID", comSupplier.SelectedValue.ToString());
+                                        }
+                                        else
+                                        {
+                                            command.Parameters.AddWithValue("?Supplier_ID", null);
+                                        }
                                         command.Parameters.AddWithValue("?Branch_ID", null);
                                         command.Parameters.AddWithValue("?Branch_Name", null);
                                         command.Parameters.AddWithValue("?Bank_Account", txtAccountNumber.Text);
@@ -349,6 +358,7 @@ namespace MainSystem
                                         command.Parameters.AddWithValue("?BankVisa_ID", cmbBank.SelectedValue);
                                         command.Parameters.AddWithValue("?BankVisa", cmbBank.Text);
                                         command.Parameters.AddWithValue("?Machine_ID", txtMachineID.Text);
+                                        command.Parameters.AddWithValue("?Supplier_ID", null);
                                     }
                                     if (cmbType.Text == "خزينة مصروفات")
                                     {
@@ -361,6 +371,7 @@ namespace MainSystem
                                         command.Parameters.AddWithValue("?BankVisa_ID", null);
                                         command.Parameters.AddWithValue("?BankVisa", null);
                                         command.Parameters.AddWithValue("?Machine_ID", null);
+                                        command.Parameters.AddWithValue("?Supplier_ID", null);
                                     }
 
                                     command.Parameters.AddWithValue("?Bank_Stock", stock);
@@ -529,6 +540,7 @@ namespace MainSystem
                 labelBank.Text = "";
                 layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelID.Text = "";
+                layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             }
             else if (cmbType.Text == "حساب بنكى")
             {
@@ -550,6 +562,7 @@ namespace MainSystem
                 labelBank.Text = "";
                 layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelID.Text = "";
+                layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             }
             else if (cmbType.Text == "فيزا")
             {
@@ -571,6 +584,7 @@ namespace MainSystem
                 labelBank.Text = "*";
                 layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelID.Text = "*";
+                layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             }
             else if (cmbType.Text == "خزينة مصروفات")
             {
@@ -592,6 +606,7 @@ namespace MainSystem
                 labelBank.Text = "";
                 layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelID.Text = "";
+                layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             }
             else if (cmbType.Text == "خزينة ادارة السيارات")
             {
@@ -733,6 +748,15 @@ namespace MainSystem
             comBankUsers.DisplayMember = dt.Columns["Employee_Name"].ToString();
             comBankUsers.ValueMember = dt.Columns["Employee_ID"].ToString();
             comBankUsers.SelectedIndex = -1;
+
+            query = "select * from supplier";
+            da = new MySqlDataAdapter(query, dbconnection);
+            dt = new DataTable();
+            da.Fill(dt);
+            comSupplier.DataSource = dt;
+            comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
+            comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+            comSupplier.SelectedIndex = -1;
 
             loaded = true;
         }

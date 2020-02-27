@@ -339,7 +339,7 @@ namespace MainSystem
             {
                 if (row1 != null)
                 {
-                    if (row1["سعر الشراء"].ToString() != "")
+                    if (txtPurchasePrice.Text != "" && (radioList.Checked || radioQata3y.Checked))
                     {
                         if (txtTotalMeter.Text != "" && txtPrice.Text != "" && txtCategoricalIncrease.Text != "" && txtDiscount.Text != "" && txtNormalIncrease.Text != "" && txtTax.Text != "" && txtPurchasePrice.Text != "")
                         {
