@@ -177,6 +177,11 @@ namespace MainSystem
                 navBarGroup3.Visible = false;
                 navBarGroup4.Visible = false;
                 navBarItemStoreReturn.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             else if (UserControl.userType == 3)
             {
@@ -204,6 +209,11 @@ namespace MainSystem
                 navBarGroup12.Visible = false;
 
                 navBarGroupReportBank.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             else if (UserControl.userType == 4)
             {
@@ -255,6 +265,7 @@ namespace MainSystem
                 navBarItemCustomerDeliverReport.Visible = false;
                 navBarItem203.Visible = false;
                 navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             //حسابات العملاء
             else if (UserControl.userType == 7)
@@ -281,6 +292,11 @@ namespace MainSystem
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
                 navBarGroupBillRecord.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             else if (UserControl.userType == 8)
             {
@@ -357,6 +373,7 @@ namespace MainSystem
                 //navBarItemSalesTransitions.Visible = false;
                 navBarGroupBillRecord.Visible = false;
                 navBarGroup58.Visible = false;
+
             }
             //شيخون
             else if (UserControl.userType == 14)
@@ -401,6 +418,10 @@ namespace MainSystem
                 navBarGroupReportPointSale.Visible = false;
                 navBarGroup58.Visible = false;
 
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
                 userAccess();
             }
             else if (UserControl.userType == 16)
@@ -646,6 +667,7 @@ namespace MainSystem
                 navBarItemCustomerDeliverReport.Visible = false;
                 navBarItem203.Visible = false;
                 navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             //مبيعات ومخازن - عمرو عاطف و محمد جمال
             else if (UserControl.userType == 24)
@@ -1313,7 +1335,7 @@ namespace MainSystem
             }
         }
 
-    
+     
     }
 
     public static class connection

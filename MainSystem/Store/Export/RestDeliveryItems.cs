@@ -106,7 +106,7 @@ namespace MainSystem.Store.Export
             {
 
                 DataRow dataRow = gridView2.GetDataRow(gridView2.FocusedRowHandle);
-                MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[2].ToString(), 2);
+                MainForm.bindDisplayRestDeliveryForm(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[2].ToString(), 2);
             }
             catch (Exception ex)
             {

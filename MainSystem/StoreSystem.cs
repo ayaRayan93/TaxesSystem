@@ -2159,6 +2159,29 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+        public void bindDisplayRestDeliveryForm(string permissionNum, string branchID, int flag)
+        {
+            if (!xtraTabControlStoresContent.Visible)
+                xtraTabControlStoresContent.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم باقي اذن");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlStoresContent.TabPages.Add("تسليم باقي اذن");
+                xtraTabPage = getTabPage(xtraTabControlStoresContent, "تسليم باقي اذن");
+            }
+
+            xtraTabPage.Controls.Clear();
+            xtraTabControlStoresContent.SelectedTabPage = xtraTabPage;
+
+            CustomerDelivery objForm = new CustomerDelivery(permissionNum, branchID, flag);
+           
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
         public void bindDisplayDeliveryConfirmForm(string permissionNum, string branchID, int flag)
         {
             if (!xtraTabControlStoresContent.Visible)

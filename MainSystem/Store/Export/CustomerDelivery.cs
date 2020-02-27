@@ -48,7 +48,6 @@ namespace MainSystem
             try
             {
                 InitializeComponent();
-                btnPrint.Visible = true;
                 dbconnection = new MySqlConnection(connection.connectionString);
                 dbconnection1 = new MySqlConnection(connection.connectionString);
                 dbconnection.Open();
@@ -272,9 +271,7 @@ namespace MainSystem
                     {
                         displayData();
                     }
-                    //DataHelper dh = new DataHelper(DSparametr.simpleDS);
-                    //gridControl2.DataSource = dh.DataSet;
-                    //gridControl2.DataMember = dh.DataMember;
+      
                 }
             }
             catch (Exception ex)
@@ -531,28 +528,7 @@ namespace MainSystem
                     }
                     checkIfItemRecivedTotaly(CustomerBill_ID);
                     checkIfBillRecivedTotaly(CustomerBill_ID);
-                    //DeliveryPermissionReportViewer DeliveryPermissionReport;//= new DeliveryPermissionReportViewer(listOfData, txtPermBillNumber.Text);
-
-                    //if (txtClientID.Text != "")
-                    //{
-                    //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text,txtStoreKeeper.Text,txtDeliverPerson.Text, txtDeliverPhone.Text, comStore.Text,false,txtAddress.Text);
-                    //   // DeliveryPermissionReport.Show();
-                    //}
-                    //else if (txtCustomerID.Text != "")
-                    //{
-                    //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text , txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text, txtStoreKeeper.Text, txtDeliverPerson.Text, txtDeliverPhone.Text, comStore.Text,false, txtAddress.Text);
-                    //   // DeliveryPermissionReport.Show();
-                    //}
-                    DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, id.ToString(), txtBranchID.ToString(), comBranch.Text, txtStoreKeeper.Text, txtDeliverPerson.Text, txtDeliverPhone.Text, comStore.Text, false, txtAddress.Text);
-
-                    XtraReport1 report = new XtraReport1();
-                    ReportPrintTool printTool = new ReportPrintTool(DeliveryPermissionReport);
-                    // Invoke the Print dialog.
-                    printTool.PrintDialog();
-                    // Send the report to the default printer.
-                    printTool.Print();
-                    // Send the report to the specified printer.
-                    printTool.Print("myPrinter");
+     
                     clear();
                 }
                 else
@@ -770,16 +746,7 @@ namespace MainSystem
                         //    DeliveryPermissionReport = new DeliveryPermissionReportViewer(listOfData, txtCustomerName.Text + " " + txtCustomerID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "", txtBranchID.ToString(), comBranch.Text, "", txtDeliverPerson.Text, txtDeliverPhone.Text, "", true, txtAddress.Text);
                         //    DeliveryPermissionReport.Show();
                         //}
-                        DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy,"" /*id.ToString()*/, txtBranchID.ToString(), comBranch.Text, txtStoreKeeper.Text, txtDeliverPerson.Text, txtDeliverPhone.Text, comStore.Text, false, txtAddress.Text);
-
-                        XtraReport1 report = new XtraReport1();
-                        ReportPrintTool printTool = new ReportPrintTool(DeliveryPermissionReport);
-                        // Invoke the Print dialog.
-                        printTool.PrintDialog();
-                        // Send the report to the default printer.
-                       // printTool.Print();
-                        // Send the report to the specified printer.
-                       // printTool.Print("myPrinter");
+                    
                     }
                     else
                     {
