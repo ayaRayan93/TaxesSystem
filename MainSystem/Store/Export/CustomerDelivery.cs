@@ -48,7 +48,7 @@ namespace MainSystem
             try
             {
                 InitializeComponent();
-                btnPrint.Visible = true;
+                //btnPrint.Visible = true;
                 dbconnection = new MySqlConnection(connection.connectionString);
                 dbconnection1 = new MySqlConnection(connection.connectionString);
                 dbconnection.Open();

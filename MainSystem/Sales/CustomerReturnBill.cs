@@ -811,6 +811,7 @@ namespace MainSystem
                 string strQuery = "";
                 try
                 {
+                    dbconnection.Close();
                     dbconnection.Open();
 
                     if (clientID > 0)
