@@ -62,7 +62,8 @@ namespace MainSystem
                 com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBillNum.Text;
                 com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11).Value = CustomerBill_ID;
                 com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = txtDelegate.Text;
-                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
+                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue.ToString();
+                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comClient.Text;
                 com.Parameters.Add("@Customer_Phone", MySqlDbType.VarChar, 255).Value = txtPhone.Text;
                 com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255).Value = txtAddress.Text;
                 com.Parameters.Add("@Bill_Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.Date;
@@ -100,7 +101,7 @@ namespace MainSystem
             comBranch.SelectedIndex = -1;
             comBranch.Text = selRow["الفرع"].ToString();
             txtBillNum.Text = selRow["رقم الفاتورة"].ToString();
-            txtClient.Text = selRow["المستلم"].ToString();
+            comClient.SelectedValue = selRow["المستلم"].ToString();
             txtPhone.Text = selRow["تلفون المستلم"].ToString();
             dateTimePicker1.Value = Convert.ToDateTime(selRow["التاريخ"].ToString());
             txtAddress.Text = selRow["العنوان"].ToString();
