@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.txtSupBankAccountNum = new System.Windows.Forms.TextBox();
@@ -42,7 +43,6 @@
             this.labelPullMoney = new System.Windows.Forms.Label();
             this.labelBank = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtOperationNumber = new System.Windows.Forms.TextBox();
             this.txtVisaType = new System.Windows.Forms.TextBox();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.label14 = new System.Windows.Forms.Label();
@@ -155,7 +155,6 @@
             this.layoutControlItem66 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemVisaType = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItemOperationNumber = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -243,7 +242,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem66)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemVisaType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOperationNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
@@ -282,7 +280,6 @@
             this.dataLayoutControl1.Controls.Add(this.labelPullMoney);
             this.dataLayoutControl1.Controls.Add(this.labelBank);
             this.dataLayoutControl1.Controls.Add(this.label1);
-            this.dataLayoutControl1.Controls.Add(this.txtOperationNumber);
             this.dataLayoutControl1.Controls.Add(this.txtVisaType);
             this.dataLayoutControl1.Controls.Add(this.layoutControl2);
             this.dataLayoutControl1.Controls.Add(this.label24);
@@ -343,7 +340,7 @@
             this.labelOperationNumber.ForeColor = System.Drawing.Color.Red;
             this.labelOperationNumber.Location = new System.Drawing.Point(486, 401);
             this.labelOperationNumber.Name = "labelOperationNumber";
-            this.labelOperationNumber.Size = new System.Drawing.Size(20, 24);
+            this.labelOperationNumber.Size = new System.Drawing.Size(550, 24);
             this.labelOperationNumber.TabIndex = 80;
             this.labelOperationNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -416,14 +413,6 @@
             this.label1.TabIndex = 73;
             this.label1.Text = "*";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtOperationNumber
-            // 
-            this.txtOperationNumber.Location = new System.Drawing.Point(510, 401);
-            this.txtOperationNumber.Name = "txtOperationNumber";
-            this.txtOperationNumber.Size = new System.Drawing.Size(417, 24);
-            this.txtOperationNumber.TabIndex = 63;
-            this.txtOperationNumber.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
             // txtVisaType
             // 
@@ -516,7 +505,7 @@
             this.radBankAccount.Size = new System.Drawing.Size(94, 25);
             this.radBankAccount.TabIndex = 4;
             this.radBankAccount.TabStop = true;
-            this.radBankAccount.Text = "حساب بنكى";
+            this.radBankAccount.Text = "تحويل بنكى";
             this.radBankAccount.UseVisualStyleBackColor = true;
             this.radBankAccount.CheckedChanged += new System.EventHandler(this.radBankAccount_CheckedChanged);
             // 
@@ -1583,7 +1572,6 @@
             this.layoutControlItem66,
             this.layoutControlItem2,
             this.layoutControlItemVisaType,
-            this.layoutControlItemOperationNumber,
             this.layoutControlItem8,
             this.layoutControlItem12,
             this.layoutControlItem13,
@@ -1760,25 +1748,9 @@
             this.layoutControlItemVisaType.Location = new System.Drawing.Point(503, 366);
             this.layoutControlItemVisaType.Name = "layoutControlItemVisaType";
             this.layoutControlItemVisaType.Size = new System.Drawing.Size(530, 28);
-            this.layoutControlItemVisaType.Text = "نوع الكارت";
+            this.layoutControlItemVisaType.Text = "رقم حساب البنك";
             this.layoutControlItemVisaType.TextSize = new System.Drawing.Size(106, 24);
             this.layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            // 
-            // layoutControlItemOperationNumber
-            // 
-            this.layoutControlItemOperationNumber.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.layoutControlItemOperationNumber.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.layoutControlItemOperationNumber.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItemOperationNumber.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItemOperationNumber.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItemOperationNumber.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItemOperationNumber.Control = this.txtOperationNumber;
-            this.layoutControlItemOperationNumber.Location = new System.Drawing.Point(503, 394);
-            this.layoutControlItemOperationNumber.Name = "layoutControlItemOperationNumber";
-            this.layoutControlItemOperationNumber.Size = new System.Drawing.Size(530, 28);
-            this.layoutControlItemOperationNumber.Text = "رقم العملية";
-            this.layoutControlItemOperationNumber.TextSize = new System.Drawing.Size(106, 24);
-            this.layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItem8
             // 
@@ -1850,7 +1822,7 @@
             this.layoutControlItem62.Control = this.labelOperationNumber;
             this.layoutControlItem62.Location = new System.Drawing.Point(479, 394);
             this.layoutControlItem62.Name = "layoutControlItem62";
-            this.layoutControlItem62.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem62.Size = new System.Drawing.Size(554, 28);
             this.layoutControlItem62.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem62.TextVisible = false;
             // 
@@ -2024,7 +1996,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem66)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemVisaType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOperationNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
@@ -2148,10 +2119,8 @@
         private System.Windows.Forms.Label label13;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem57;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem58;
-        private System.Windows.Forms.TextBox txtOperationNumber;
         private System.Windows.Forms.TextBox txtVisaType;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItemVisaType;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOperationNumber;
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private System.Windows.Forms.Label labelOperationNumber;

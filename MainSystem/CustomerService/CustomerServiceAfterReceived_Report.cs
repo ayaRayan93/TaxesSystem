@@ -101,6 +101,8 @@ namespace MainSystem
             comBranch.SelectedIndex = -1;
             comBranch.Text = selRow["الفرع"].ToString();
             txtBillNum.Text = selRow["رقم الفاتورة"].ToString();
+            comClient.SelectedValue = selRow["المستلم"].ToString();
+            txtPhone.Text = selRow["تلفون المستلم"].ToString();
 
             query = "select * from customer";
             da = new MySqlDataAdapter(query, dbconnection);

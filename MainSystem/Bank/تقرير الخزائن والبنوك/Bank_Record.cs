@@ -16,10 +16,8 @@ namespace MainSystem
     public partial class Bank_Record : Form
     {
         MySqlConnection dbconnection;
-        bool loaded = false;
         XtraTabPage xtraTabPage;
         int[] arrOFPhaatPlus;
-        //int[] arrOFPhaatMinus;
         int[] arrPaidMoneyPlus;
         bool flag = false;
 
@@ -29,33 +27,11 @@ namespace MainSystem
             dbconnection = new MySqlConnection(connection.connectionString);
             
             arrOFPhaatPlus = new int[9];
-            //arrOFPhaatMinus = new int[9];
             arrPaidMoneyPlus = new int[9];
-
-            cmbType.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbType.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            cmbBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-            cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
-            cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void Bank_Record_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (!loaded)
-                {
-                    loadBranch();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
         }
 
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
@@ -259,24 +235,16 @@ namespace MainSystem
         {
             try
             {
-                if (cmbType.Text != "")
+                if (cmbType.Text != "" && cmbMain.Text != "")
                 {
                     bool check = false;
                     if (cmbType.Text == "خزينة")
                     {
-                        check = (txtName.Text != "" && cmbBranch.Text != "" && txtStock.Text != "" && dateEdit1.Text != "");
+                        check = (txtName_AccountNum.Text != "" && comBranch.Text != "" && txtStock.Text != "" && dateEdit1.Text != "");
                     }
                     else if (cmbType.Text == "حساب بنكى")
                     {
-                        check = (txtName.Text != "" && txtAccountNumber.Text != "" && txtAccountType.Text != "" && txtStock.Text != "" && dateEdit1.Text != "");
-                    }
-                    else if (cmbType.Text == "فيزا")
-                    {
-                        check = (txtName.Text != "" && cmbBranch.Text != "" && txtAccountNumber.Text != "" && txtAccountType.Text != "" && txtStock.Text != "" && txtMachineID.Text != "" && dateEdit1.Text != "");
-                    }
-                    else if (cmbType.Text == "خزينة مصروفات")
-                    {
-                        check = (txtName.Text != "" && cmbBranch.Text != "" && txtStock.Text != "" && dateEdit1.Text != "");
+                        check = (txtName_AccountNum.Text != "" && txtAccountType.Text != "" && txtStock.Text != "" && dateEdit1.Text != "");
                     }
 
                     if (check)
@@ -284,19 +252,11 @@ namespace MainSystem
                         string query = "";
                         if (cmbType.Text == "خزينة")
                         {
-                            query = "select Bank_Name from bank where Branch_ID=" + cmbBranch.SelectedValue.ToString() + " and Bank_Name='" + txtName.Text + "'";
+                            query = "select BankName_AccountNumber from bank where Branch_ID=" + comBranch.SelectedValue.ToString() + " and BankName_AccountNumber='" + txtName_AccountNum.Text + "'";
                         }
                         else if (cmbType.Text == "حساب بنكى")
                         {
-                            query = "select Bank_Account from bank where Bank_Account='" + txtAccountNumber.Text + "' and Bank_Name='" + txtName.Text + "'";
-                        }
-                        else if (cmbType.Text == "فيزا")
-                        {
-                            query = "SELECT Machine_ID FROM bank where Branch_ID=" + cmbBranch.SelectedValue.ToString() + " and Machine_ID='" + txtMachineID.Text + "' and Bank_Name='" + txtName.Text + "' and BankVisa_ID=" + cmbBank.SelectedValue;
-                        }
-                        else if (cmbType.Text == "خزينة مصروفات")
-                        {
-                            query = "select Bank_Name from bank where Branch_ID=" + cmbBranch.SelectedValue.ToString() + " and Bank_Name='" + txtName.Text + "'";
+                            query = "select BankName_AccountNumber from bank where BankName_AccountNumber='" + txtName_AccountNum.Text + "'";
                         }
 
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -304,7 +264,6 @@ namespace MainSystem
 
                         if (com.ExecuteScalar() == null)
                         {
-                            dbconnection.Close();
                             double stock = 0;
                             if (double.TryParse(txtStock.Text, out stock))
                             {
@@ -312,63 +271,37 @@ namespace MainSystem
                                 if (Int32.TryParse(t200.Text, out tt200) && Int32.TryParse(t100.Text, out tt100) && Int32.TryParse(t50.Text, out tt50) && Int32.TryParse(t20.Text, out tt20) && Int32.TryParse(t10.Text, out tt10) && Int32.TryParse(t5.Text, out tt5) && Int32.TryParse(t1.Text, out tt1) && Int32.TryParse(tH.Text, out ttH) && Int32.TryParse(tQ.Text, out ttQ))
                                 {
                                     MySqlCommand command = dbconnection.CreateCommand();
-                                    command.CommandText = "INSERT INTO bank (Bank_Type,Bank_Name,Branch_ID,Branch_Name,Bank_Stock,Start_Date,Bank_Info,Bank_Account,BankAccount_Type,BankVisa_ID,BankVisa,Machine_ID) VALUES (?Bank_Type,?Bank_Name,?Branch_ID,?Branch_Name,?Bank_Stock,?Start_Date,?Bank_Info,?Bank_Account,?BankAccount_Type,?BankVisa_ID,?BankVisa,?Machine_ID)";
+                                    command.CommandText = "INSERT INTO bank (MainBank_ID,BankName_AccountNumber,Branch_ID,Branch_Name,Initial_Balance,Bank_Stock,Start_Date,Bank_Info,BankAccount_Type,Supplier_ID) VALUES (?MainBank_ID,?BankName_AccountNumber,?Branch_ID,?Branch_Name,?Initial_Balance,?Bank_Stock,?Start_Date,?Bank_Info,?BankAccount_Type,?Supplier_ID)";
 
                                     if (cmbType.Text == "خزينة")
                                     {
-                                        command.Parameters.AddWithValue("?Bank_Type", "خزينة");
-                                        command.Parameters.AddWithValue("?Bank_Name", txtName.Text);
-                                        command.Parameters.AddWithValue("?Branch_ID", cmbBranch.SelectedValue.ToString());
-                                        command.Parameters.AddWithValue("?Branch_Name", cmbBranch.Text);
-                                        command.Parameters.AddWithValue("?Bank_Account", "");
-                                        command.Parameters.AddWithValue("?BankAccount_Type", "");
-                                        command.Parameters.AddWithValue("?BankVisa_ID", null);
-                                        command.Parameters.AddWithValue("?BankVisa", null);
-                                        command.Parameters.AddWithValue("?Machine_ID", null);
+                                        command.Parameters.AddWithValue("?BankName_AccountNumber", txtName_AccountNum.Text);
+                                        command.Parameters.AddWithValue("?Branch_ID", comBranch.SelectedValue.ToString());
+                                        command.Parameters.AddWithValue("?Branch_Name", comBranch.Text);
+                                        command.Parameters.AddWithValue("?BankAccount_Type", null);
+                                        command.Parameters.AddWithValue("?Supplier_ID", null);
                                     }
                                     else if (cmbType.Text == "حساب بنكى")
                                     {
-                                        command.Parameters.AddWithValue("?Bank_Type", "حساب بنكى");
-                                        command.Parameters.AddWithValue("?Bank_Name", txtName.Text);
+                                        command.Parameters.AddWithValue("?BankName_AccountNumber", txtName_AccountNum.Text);
                                         command.Parameters.AddWithValue("?Branch_ID", null);
                                         command.Parameters.AddWithValue("?Branch_Name", null);
-                                        command.Parameters.AddWithValue("?Bank_Account", txtAccountNumber.Text);
                                         command.Parameters.AddWithValue("?BankAccount_Type", txtAccountType.Text);
-                                        command.Parameters.AddWithValue("?BankVisa_ID", null);
-                                        command.Parameters.AddWithValue("?BankVisa", null);
-                                        command.Parameters.AddWithValue("?Machine_ID", null);
-                                    }
-                                    else if (cmbType.Text == "فيزا")
-                                    {
-                                        command.Parameters.AddWithValue("?Bank_Type", "فيزا");
-                                        command.Parameters.AddWithValue("?Bank_Name", txtName.Text);
-                                        command.Parameters.AddWithValue("?Branch_ID", cmbBranch.SelectedValue.ToString());
-                                        command.Parameters.AddWithValue("?Branch_Name", cmbBranch.Text);
-                                        command.Parameters.AddWithValue("?Bank_Account", txtAccountNumber.Text);
-                                        command.Parameters.AddWithValue("?BankAccount_Type", txtAccountType.Text);
-                                        command.Parameters.AddWithValue("?BankVisa_ID", cmbBank.SelectedValue);
-                                        command.Parameters.AddWithValue("?BankVisa", cmbBank.Text);
-                                        command.Parameters.AddWithValue("?Machine_ID", txtMachineID.Text);
-                                    }
-                                    if (cmbType.Text == "خزينة مصروفات")
-                                    {
-                                        command.Parameters.AddWithValue("?Bank_Type", "خزينة مصروفات");
-                                        command.Parameters.AddWithValue("?Bank_Name", txtName.Text);
-                                        command.Parameters.AddWithValue("?Branch_ID", cmbBranch.SelectedValue.ToString());
-                                        command.Parameters.AddWithValue("?Branch_Name", cmbBranch.Text);
-                                        command.Parameters.AddWithValue("?Bank_Account", "");
-                                        command.Parameters.AddWithValue("?BankAccount_Type", "");
-                                        command.Parameters.AddWithValue("?BankVisa_ID", null);
-                                        command.Parameters.AddWithValue("?BankVisa", null);
-                                        command.Parameters.AddWithValue("?Machine_ID", null);
+                                        if(comSupplier.SelectedValue != null)
+                                        {
+                                            command.Parameters.AddWithValue("?Supplier_ID", comSupplier.SelectedValue.ToString());
+                                        }
+                                        else
+                                        {
+                                            command.Parameters.AddWithValue("?Supplier_ID", null);
+                                        }
                                     }
 
+                                    command.Parameters.AddWithValue("?MainBank_ID", cmbMain.SelectedValue.ToString());
+                                    command.Parameters.AddWithValue("?Initial_Balance", stock);
                                     command.Parameters.AddWithValue("?Bank_Stock", stock);
                                     command.Parameters.AddWithValue("?Start_Date", dateEdit1.DateTime.Date);
                                     command.Parameters.AddWithValue("?Bank_Info", txtInformation.Text);
-                                    //command.Parameters.AddWithValue("?User_ID", UserControl.userID);
-                                    //command.Parameters.AddWithValue("?User_Name", UserControl.userName);
-                                    dbconnection.Open();
                                     command.ExecuteNonQuery();
 
                                     //////////record adding/////////////
@@ -387,46 +320,57 @@ namespace MainSystem
                                     com.ExecuteNonQuery();
                                     //////////////////////
 
-                                    for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
+                                    if (cmbType.Text == "خزينة")
                                     {
-                                        query = "insert into bank_employee (Bank_ID,Employee_ID) values (@Bank_ID,@Employee_ID)";
-                                        command = new MySqlCommand(query, dbconnection);
-                                        command.Parameters.AddWithValue("@Bank_ID", BankID);
-                                        command.Parameters.AddWithValue("@Employee_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
-                                        command.ExecuteNonQuery();
+                                        for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
+                                        {
+                                            query = "insert into bank_employee (Bank_ID,Employee_ID) values (@Bank_ID,@Employee_ID)";
+                                            command = new MySqlCommand(query, dbconnection);
+                                            command.Parameters.AddWithValue("@Bank_ID", BankID);
+                                            command.Parameters.AddWithValue("@Employee_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
+                                            command.ExecuteNonQuery();
+                                        }
+
+                                        query = "insert into categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,Bank_ID,Bank_Name) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@Bank_ID,@Bank_Name)";
+                                        com = new MySqlCommand(query, dbconnection);
+                                        com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = t200.Text;
+                                        com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = t100.Text;
+                                        com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = t50.Text;
+                                        com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = t20.Text;
+                                        com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = t10.Text;
+                                        com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = t5.Text;
+                                        com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = t1.Text;
+                                        com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = tH.Text;
+                                        com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = tQ.Text;
+                                        com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = BankID;
+                                        com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = txtName_AccountNum.Text;
+                                        com.ExecuteNonQuery();
+                                    }
+                                    else if (cmbType.Text == "حساب بنكى")
+                                    {
+                                        for (int i = 0; i < checkedListBoxControlVisaID.ItemCount; i++)
+                                        {
+                                            query = "insert into bank_visa (Bank_ID,Machine_ID) values (@Bank_ID,@Machine_ID)";
+                                            command = new MySqlCommand(query, dbconnection);
+                                            command.Parameters.AddWithValue("@Bank_ID", BankID);
+                                            command.Parameters.AddWithValue("@Machine_ID", checkedListBoxControlVisaID.Items[i].Value.ToString());
+                                            command.ExecuteNonQuery();
+                                        }
                                     }
 
-                                    query = "insert into categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,Bank_ID,Bank_Name) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@Bank_ID,@Bank_Name)";
-                                    com = new MySqlCommand(query, dbconnection);
-                                    com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = t200.Text;
-                                    com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = t100.Text;
-                                    com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = t50.Text;
-                                    com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = t20.Text;
-                                    com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = t10.Text;
-                                    com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = t5.Text;
-                                    com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = t1.Text;
-                                    com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = tH.Text;
-                                    com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = tQ.Text;
-                                    com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = BankID;
-                                    com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = txtName.Text;
-                                    com.ExecuteNonQuery();
-
                                     dbconnection.Close();
-                                    //MessageBox.Show("تمت الاضافة");
                                     cmbType.SelectedIndex = -1;
-                                    txtName.Text = "";
-                                    cmbBranch.SelectedIndex = -1;
+                                    cmbMain.SelectedIndex = -1;
+                                    txtName_AccountNum.Text = "";
+                                    comBranch.SelectedIndex = -1;
                                     txtStock.Text = "";
                                     dateEdit1.Text = "";
                                     txtInformation.Text = "";
-                                    txtAccountNumber.Text = "";
                                     txtAccountType.Text = "";
-                                    cmbBank.SelectedIndex = -1;
-                                    txtMachineID.Text = "";
 
                                     layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                     labelBranch.Text = "";
-                                    layoutControlItemName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                     labelName.Text = "";
                                     layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                     labelStock.Text = "";
@@ -434,14 +378,12 @@ namespace MainSystem
                                     labelDate.Text = "";
                                     layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                     labelInfo.Text = "";
-                                    layoutControlItemAccountNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelAccountNumber.Text = "";
                                     layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                     labelAccountType.Text = "";
-                                    layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelBank.Text = "";
-                                    layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelID.Text = "";
+                                    //layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelBank.Text = "";
+                                    //layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelID.Text = "";
 
                                     comBankUsers.SelectedIndex = -1;
                                     int cont = checkedListBoxControlUser.ItemCount;
@@ -454,11 +396,14 @@ namespace MainSystem
                                     {
                                         checkedListBoxControlUserID.Items.RemoveAt(0);
                                     }
-                                    labelEmp.Visible = false;
-                                    comBankUsers.Visible = false;
-                                    btnAddUserToBank.Visible = false;
-                                    checkedListBoxControlUser.Visible = false;
-                                    btnDeleteUser.Visible = false;
+                                    cont = checkedListBoxControlVisaID.ItemCount;
+                                    for (int i = 0; i < cont; i++)
+                                    {
+                                        checkedListBoxControlVisaID.Items.RemoveAt(0);
+                                    }
+                                    groupBoxEmployee.Visible = false;
+                                    groupBoxVisa.Visible = false;
+                                    groupBoxCategories.Visible = false;
 
                                     t200.Text = "0";
                                     t100.Text = "0";
@@ -475,8 +420,7 @@ namespace MainSystem
                                         arrPaidMoneyPlus[i] = 0;
                                     for (int i = 0; i < arrOFPhaatPlus.Length; i++)
                                         arrOFPhaatPlus[i] = 0;
-
-                                    loadBranch();
+                                    
                                     xtraTabPage.ImageOptions.Image = null;
                                 }
                                 else
@@ -513,7 +457,7 @@ namespace MainSystem
             {
                 layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelBranch.Text = "*";
-                layoutControlItemName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelName.Text = "*";
                 layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelStock.Text = "*";
@@ -521,20 +465,48 @@ namespace MainSystem
                 labelDate.Text = "*";
                 layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelInfo.Text = "";
-                layoutControlItemAccountNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelAccountNumber.Text = "";
                 layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelAccountType.Text = "";
-                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelBank.Text = "";
-                layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelID.Text = "";
+                layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+                string query = "select * from bank_main where MainBank_Type='خزينة'";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmbMain.DataSource = dt;
+                cmbMain.DisplayMember = dt.Columns["MainBank_Name"].ToString();
+                cmbMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
+                cmbMain.SelectedIndex = -1;
+                cmbMain.Text = "";
+                
+                query = "SELECT Branch_Name,Branch_ID FROM branch";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comBranch.DataSource = dt;
+                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                comBranch.SelectedIndex = -1;
+                
+                query = "select Employee_ID,Employee_Name from employee where employee.Employee_ID Not in(" + "select bank_employee.Employee_ID from bank_employee " + ")";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comBankUsers.DataSource = dt;
+                comBankUsers.DisplayMember = dt.Columns["Employee_Name"].ToString();
+                comBankUsers.ValueMember = dt.Columns["Employee_ID"].ToString();
+                comBankUsers.SelectedIndex = -1;
+                comBankUsers.Text = "";
+
+                groupBoxEmployee.Visible = true;
+                groupBoxCategories.Visible = true;
+                groupBoxVisa.Visible = false;
             }
             else if (cmbType.Text == "حساب بنكى")
             {
                 layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelBranch.Text = "";
-                layoutControlItemName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelName.Text = "*";
                 layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelStock.Text = "*";
@@ -542,100 +514,48 @@ namespace MainSystem
                 labelDate.Text = "*";
                 layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelInfo.Text = "";
-                layoutControlItemAccountNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelAccountNumber.Text = "*";
                 layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelAccountType.Text = "*";
-                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelBank.Text = "";
-                layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelID.Text = "";
+                layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+
+                string query = "select * from bank_main where MainBank_Type='حساب بنكى'";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmbMain.DataSource = dt;
+                cmbMain.DisplayMember = dt.Columns["MainBank_Name"].ToString();
+                cmbMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
+                cmbMain.SelectedIndex = -1;
+                cmbMain.Text = "";
+                
+                query = "select * from supplier";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comSupplier.DataSource = dt;
+                comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
+                comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+                comSupplier.SelectedIndex = -1;
+                comSupplier.Text = "";
+
+                groupBoxEmployee.Visible = false;
+                groupBoxCategories.Visible = false;
+                groupBoxVisa.Visible = true;
             }
-            else if (cmbType.Text == "فيزا")
-            {
-                layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelBranch.Text = "*";
-                layoutControlItemName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelName.Text = "*";
-                layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelStock.Text = "*";
-                layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDate.Text = "*";
-                layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelInfo.Text = "";
-                layoutControlItemAccountNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelAccountNumber.Text = "*";
-                layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelAccountType.Text = "*";
-                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelBank.Text = "*";
-                layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelID.Text = "*";
-            }
-            else if (cmbType.Text == "خزينة مصروفات")
-            {
-                layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelBranch.Text = "*";
-                layoutControlItemName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelName.Text = "*";
-                layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelStock.Text = "*";
-                layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDate.Text = "*";
-                layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelInfo.Text = "";
-                layoutControlItemAccountNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelAccountNumber.Text = "";
-                layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelAccountType.Text = "";
-                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelBank.Text = "";
-                layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelID.Text = "";
-            }
-            else if (cmbType.Text == "خزينة ادارة السيارات")
-            {
-                layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelBranch.Text = "*";
-                layoutControlItemName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelName.Text = "*";
-                layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelStock.Text = "*";
-                layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDate.Text = "*";
-                layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelInfo.Text = "";
-                layoutControlItemAccountNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelAccountNumber.Text = "";
-                layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelAccountType.Text = "";
-                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelBank.Text = "";
-                layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelID.Text = "";
-            }
-            labelEmp.Visible = true;
-            comBankUsers.Visible = true;
-            btnAddUserToBank.Visible = true;
-            checkedListBoxControlUser.Visible = true;
-            btnDeleteUser.Visible = true;
         }
 
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (loaded)
+                xtraTabPage = getTabPage("tabPageAddBank");
+                if (!IsClear())
                 {
-                    xtraTabPage = getTabPage("tabPageAddBank");
-                    if (!IsClear())
-                    {
-                        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                    }
-                    else
-                    {
-                        xtraTabPage.ImageOptions.Image = null;
-                    }
+                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+                }
+                else
+                {
+                    xtraTabPage.ImageOptions.Image = null;
                 }
             }
             catch (Exception ex)
@@ -702,41 +622,7 @@ namespace MainSystem
 
             return flag5;
         }
-
-        //functions
-        private void loadBranch()
-        {
-            dbconnection.Open();
-            string query = "select * from branch";
-            MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cmbBranch.DataSource = dt;
-            cmbBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-            cmbBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-            cmbBranch.SelectedIndex = -1;
-
-            query = "select * from bank where Branch_ID is null and BankVisa_ID is null";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
-            da.Fill(dt);
-            cmbBank.DataSource = dt;
-            cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
-            cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-            cmbBank.SelectedIndex = -1;
-
-            query = "select Employee_ID,Employee_Name from employee where employee.Employee_ID Not in(" + "select bank_employee.Employee_ID from bank_employee " + ")";
-            da = new MySqlDataAdapter(query, dbconnection);
-            dt = new DataTable();
-            da.Fill(dt);
-            comBankUsers.DataSource = dt;
-            comBankUsers.DisplayMember = dt.Columns["Employee_Name"].ToString();
-            comBankUsers.ValueMember = dt.Columns["Employee_ID"].ToString();
-            comBankUsers.SelectedIndex = -1;
-
-            loaded = true;
-        }
-
+        
         private void btnAddUserToBank_Click(object sender, EventArgs e)
         {
             try
@@ -790,6 +676,57 @@ namespace MainSystem
                     foreach (object item in tempId)
                     {
                         checkedListBoxControlUserID.Items.Remove(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAddVisa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtVisaID.Text != "")
+                {
+                    for (int i = 0; i < checkedListBoxControlVisaID.ItemCount; i++)
+                    {
+                        if (txtVisaID.Text == checkedListBoxControlVisaID.Items[i].Value.ToString())
+                        {
+                            MessageBox.Show("هذه الفيزا تم اضافتها من قبل");
+                            return;
+                        }
+                    }
+
+                    checkedListBoxControlVisaID.Items.Add(txtVisaID.Text);
+                    txtVisaID.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRemoveVisa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (checkedListBoxControlVisaID.CheckedItemsCount > 0)
+                {
+                    if (MessageBox.Show("هل انت متاكد انك تريد الحذف؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                        return;
+
+                    ArrayList temp = new ArrayList();
+                    foreach (int index in checkedListBoxControlVisaID.CheckedIndices)
+                    {
+                        temp.Add(checkedListBoxControlVisaID.Items[index]);
+                    }
+                    foreach (object item in temp)
+                    {
+                        checkedListBoxControlVisaID.Items.Remove(item);
                     }
                 }
             }

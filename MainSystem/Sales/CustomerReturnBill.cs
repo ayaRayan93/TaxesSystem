@@ -26,7 +26,7 @@ namespace MainSystem
         int EmpBranchId = 0;
         //int customerBillId = 0;
         MainForm salesMainForm;
-        string type = "كاش";
+        string type = "";
 
         public CustomerReturnBill(MainForm SalesMainForm)
         {
@@ -338,6 +338,15 @@ namespace MainSystem
                                 //customerBillId = Convert.ToInt32(dr["CustomerBill_ID"].ToString());
                                 txtBillTotalCostAD.Text = dr["Total_CostAD"].ToString();
                                 labBillDate.Text = Convert.ToDateTime(dr["Bill_Date"].ToString()).ToShortDateString();
+
+                                if (dr["Type_Buy"].ToString() == "كاش")
+                                {
+                                    rdbCash.Checked = true;
+                                }
+                                else if (dr["Type_Buy"].ToString() == "آجل")
+                                {
+                                    rdbSoon.Checked = true;
+                                }
 
                                 if (!listBoxControlCustomerBill.Items.Contains(comBillNumber.SelectedValue.ToString()))
                                 {
@@ -808,6 +817,9 @@ namespace MainSystem
             {
                 labBillNumber.Visible = true;
                 comBillNumber.Visible = true;
+                rdbCash.Checked = false;
+                rdbSoon.Checked = false;
+                type = "";
                 string strQuery = "";
                 try
                 {
@@ -864,6 +876,9 @@ namespace MainSystem
                 comBranch.Text = "";
                 txtBranchID.Text = "";
                 txtInfo.Text /*= txtStorePermission.Text */= "";
+                rdbCash.Checked = false;
+                rdbSoon.Checked = false;
+                type = "";
 
                 listBoxControlBills.Items.Clear();
                 listBoxControlCustomerBill.Items.Clear();
@@ -925,6 +940,10 @@ namespace MainSystem
             txtBillTotalCostAD.Text = "";
             labBillDate.Text = "";
             txtTotalReturnBillAD.Text = "";
+
+            rdbCash.Checked = false;
+            rdbSoon.Checked = false;
+            type = "";
         }
 
         bool IsAdded(DataGridViewRow row1)

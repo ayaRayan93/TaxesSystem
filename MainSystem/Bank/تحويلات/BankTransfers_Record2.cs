@@ -54,45 +54,14 @@ namespace MainSystem
         {
             try
             {
-                fromSafeLoad = false;
-                if (UserControl.userType == 1)
-                {
-                    string query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comFromBank.DataSource = dt;
-                    comFromBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                    comFromBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                    fromSafeLoad = true;
-                    comFromBank.SelectedIndex = -1;
-                }
-                else
-                {
-                    string query = "select * from bank where Bank_Type='خزينة' and Branch_ID=" + UserControl.EmpBranchID;
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comFromBank.DataSource = dt;
-                    comFromBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                    comFromBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                    fromSafeLoad = true;
-                    comFromBank.SelectedIndex = -1;
-
-                    dbconnection.Open();
-                    string q = "SELECT bank.Bank_Name,bank_employee.Bank_ID FROM bank_employee INNER JOIN bank ON bank.Bank_ID = bank_employee.Bank_ID where bank_employee.Employee_ID=" + UserControl.EmpID;
-                    MySqlCommand com = new MySqlCommand(q, dbconnection);
-                    MySqlDataReader dr = com.ExecuteReader();
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            comFromBank.Text = dr["Bank_Name"].ToString();
-                            comFromBank.SelectedValue = dr["Bank_ID"].ToString();
-                        }
-                        dr.Close();
-                    }
-                }
+                string query = "select * from bank_main where MainBank_Type='خزينة'";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                comFromMain.DataSource = dt;
+                comFromMain.DisplayMember = dt.Columns["MainBank_Name"].ToString();
+                comFromMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
+                comFromMain.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -105,14 +74,14 @@ namespace MainSystem
         {
             try
             {
-                string query = "select * from bank where Bank_Type='حساب بنكى'";
+                string query = "select * from bank_main where MainBank_Type='حساب بنكى'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                comFromBank.DataSource = dt;
-                comFromBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                comFromBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                comFromBank.SelectedIndex = -1;
+                comFromMain.DataSource = dt;
+                comFromMain.DisplayMember = dt.Columns["MainBank_Name"].ToString();
+                comFromMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
+                comFromMain.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -708,6 +677,90 @@ namespace MainSystem
             }
 
             return flag5;
+        }
+
+        private void comFromMain_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                fromSafeLoad = false;
+                if (UserControl.userType == 1)
+                {
+                    string query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comFromBank.DataSource = dt;
+                    comFromBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                    comFromBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                    fromSafeLoad = true;
+                    comFromBank.SelectedIndex = -1;
+                }
+                else
+                {
+                    string query = "select * from bank where Bank_Type='خزينة' and Branch_ID=" + UserControl.EmpBranchID;
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comFromBank.DataSource = dt;
+                    comFromBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                    comFromBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                    fromSafeLoad = true;
+                    comFromBank.SelectedIndex = -1;
+
+                    dbconnection.Open();
+                    string q = "SELECT bank.Bank_Name,bank_employee.Bank_ID FROM bank_employee INNER JOIN bank ON bank.Bank_ID = bank_employee.Bank_ID where bank_employee.Employee_ID=" + UserControl.EmpID;
+                    MySqlCommand com = new MySqlCommand(q, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            comFromBank.Text = dr["Bank_Name"].ToString();
+                            comFromBank.SelectedValue = dr["Bank_ID"].ToString();
+                        }
+                        dr.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+        private void comToMain_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (UserControl.userType == 1)
+                {
+                    string query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comToBank.DataSource = dt;
+                    comToBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                    comToBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                    comToBank.SelectedIndex = -1;
+                }
+                else
+                {
+                    string query = "select * from bank where (Bank_Type='خزينة' and Bank_ID=3) or Bank_Type='خزينة مصروفات'";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comToBank.DataSource = dt;
+                    comToBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                    comToBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
     }
 }

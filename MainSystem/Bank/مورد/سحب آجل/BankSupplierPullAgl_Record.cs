@@ -96,7 +96,6 @@ namespace MainSystem
                 layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelVisaType.Visible = false;
                 labelVisaType.Text = "";
-                layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
                 layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -223,7 +222,6 @@ namespace MainSystem
                 layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelVisaType.Visible = false;
                 labelVisaType.Text = "";
-                layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
                 layoutControlItemPayDate.Text = "تاريخ السحب";
@@ -303,7 +301,7 @@ namespace MainSystem
                 {
                     check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
-                else if (PaymentMethod == "حساب بنكى")
+                else if (PaymentMethod == "تحويل بنكى")
                 {
                     check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
@@ -325,23 +323,6 @@ namespace MainSystem
                     double outParse;
                     if (double.TryParse(txtPullMoney.Text, out outParse))
                     {
-
-                        string opNumString = null;
-                        if (txtOperationNumber.Text != "")
-                        {
-                            int OpNum = 0;
-                            if (int.TryParse(txtOperationNumber.Text, out OpNum))
-                            {
-                                opNumString = txtOperationNumber.Text;
-                            }
-                            else
-                            {
-                                MessageBox.Show("رقم العملية يجب ان يكون عدد");
-                                dbconnection.Close();
-                                return;
-                            }
-                        }
-                        
                         dbconnection.Open();
 
                         string query = "insert into supplier_transitions (Transition,Supplier_ID,Supplier_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,SupplierBank_ID,SupplierBank_Name,Supplier_BankAccount_Number,Error,Employee_ID,Employee_Name) values(@Transition,@Supplier_ID,@Supplier_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@SupplierBank_ID,@SupplierBank_Name,@Supplier_BankAccount_Number,@Error,@Employee_ID,@Employee_Name)";
@@ -355,7 +336,7 @@ namespace MainSystem
                         com.Parameters.Add("@SupplierBank_ID", MySqlDbType.Int16, 11).Value = comBankSupplier.SelectedValue;
                         com.Parameters.Add("@SupplierBank_Name", MySqlDbType.VarChar, 255).Value = comBankSupplier.Text;
                         com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-                        com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
+                        //com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                         com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                         com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
                         com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;

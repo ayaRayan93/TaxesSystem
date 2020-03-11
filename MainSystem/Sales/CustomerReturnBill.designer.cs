@@ -181,10 +181,10 @@
             // 
             this.labClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labClient.AutoSize = true;
-            this.labClient.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.labClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.labClient.Location = new System.Drawing.Point(289, 41);
             this.labClient.Name = "labClient";
-            this.labClient.Size = new System.Drawing.Size(38, 18);
+            this.labClient.Size = new System.Drawing.Size(34, 18);
             this.labClient.TabIndex = 108;
             this.labClient.Text = "عميل";
             // 
@@ -192,10 +192,10 @@
             // 
             this.labCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labCustomer.AutoSize = true;
-            this.labCustomer.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.labCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.labCustomer.Location = new System.Drawing.Point(247, 15);
             this.labCustomer.Name = "labCustomer";
-            this.labCustomer.Size = new System.Drawing.Size(121, 18);
+            this.labCustomer.Size = new System.Drawing.Size(100, 18);
             this.labCustomer.TabIndex = 105;
             this.labCustomer.Text = "مهندس/مقاول/تاجر";
             // 
@@ -214,11 +214,11 @@
             // 
             this.radClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radClient.AutoSize = true;
-            this.radClient.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radClient.Location = new System.Drawing.Point(272, 5);
+            this.radClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.radClient.Location = new System.Drawing.Point(276, 5);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radClient.Size = new System.Drawing.Size(56, 22);
+            this.radClient.Size = new System.Drawing.Size(52, 22);
             this.radClient.TabIndex = 159;
             this.radClient.Text = "عميل";
             this.radClient.UseVisualStyleBackColor = true;
@@ -228,11 +228,11 @@
             // 
             this.radEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radEng.AutoSize = true;
-            this.radEng.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radEng.Location = new System.Drawing.Point(127, 5);
+            this.radEng.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.radEng.Location = new System.Drawing.Point(137, 5);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radEng.Size = new System.Drawing.Size(69, 22);
+            this.radEng.Size = new System.Drawing.Size(59, 22);
             this.radEng.TabIndex = 158;
             this.radEng.Text = "مهندس";
             this.radEng.UseVisualStyleBackColor = true;
@@ -242,11 +242,11 @@
             // 
             this.radCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radCon.AutoSize = true;
-            this.radCon.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
-            this.radCon.Location = new System.Drawing.Point(203, 5);
+            this.radCon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.radCon.Location = new System.Drawing.Point(212, 5);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(63, 22);
+            this.radCon.Size = new System.Drawing.Size(54, 22);
             this.radCon.TabIndex = 157;
             this.radCon.Text = "مقاول";
             this.radCon.UseVisualStyleBackColor = true;
@@ -256,10 +256,10 @@
             // 
             this.labBillNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labBillNumber.AutoSize = true;
-            this.labBillNumber.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.labBillNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.labBillNumber.Location = new System.Drawing.Point(393, 48);
             this.labBillNumber.Name = "labBillNumber";
-            this.labBillNumber.Size = new System.Drawing.Size(69, 18);
+            this.labBillNumber.Size = new System.Drawing.Size(58, 18);
             this.labBillNumber.TabIndex = 161;
             this.labBillNumber.Text = "فاتورة رقم";
             // 
@@ -437,10 +437,10 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label6.Location = new System.Drawing.Point(501, 34);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(126, 18);
+            this.label6.Size = new System.Drawing.Size(106, 18);
             this.label6.TabIndex = 172;
             this.label6.Text = "الاجمالي بعد الخصم";
             // 
@@ -458,10 +458,10 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label1.Location = new System.Drawing.Point(865, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 18);
+            this.label1.Size = new System.Drawing.Size(32, 18);
             this.label1.TabIndex = 166;
             this.label1.Text = "الكود";
             // 
@@ -479,10 +479,10 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label2.Location = new System.Drawing.Point(501, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 18);
+            this.label2.Size = new System.Drawing.Size(37, 18);
             this.label2.TabIndex = 168;
             this.label2.Text = "الكمية";
             // 
@@ -515,10 +515,10 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label4.Location = new System.Drawing.Point(429, 8);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 18);
+            this.label4.Size = new System.Drawing.Size(42, 18);
             this.label4.TabIndex = 177;
             this.label4.Text = "التاريخ";
             // 
@@ -526,10 +526,10 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label5.Location = new System.Drawing.Point(744, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 18);
+            this.label5.Size = new System.Drawing.Size(139, 18);
             this.label5.TabIndex = 175;
             this.label5.Text = "اجمالي الفاتورة بعد الخصم";
             // 
@@ -548,10 +548,10 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label7.Location = new System.Drawing.Point(865, 34);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(107, 18);
+            this.label7.Size = new System.Drawing.Size(93, 18);
             this.label7.TabIndex = 186;
             this.label7.Text = "السعر بعد الخصم";
             // 
@@ -559,10 +559,10 @@
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label13.Location = new System.Drawing.Point(808, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(206, 18);
+            this.label13.Size = new System.Drawing.Size(175, 18);
             this.label13.TabIndex = 191;
             this.label13.Text = "اجمالي فاتورة المرتجع بعد الخصم";
             // 
@@ -593,10 +593,10 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label10.Location = new System.Drawing.Point(393, 13);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 18);
+            this.label10.Size = new System.Drawing.Size(34, 18);
             this.label10.TabIndex = 195;
             this.label10.Text = "الفرع";
             // 
@@ -604,10 +604,10 @@
             // 
             this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label14.Location = new System.Drawing.Point(548, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(96, 18);
+            this.label14.Size = new System.Drawing.Size(88, 18);
             this.label14.TabIndex = 197;
             this.label14.Text = "سبب الاسترجاع";
             // 
@@ -671,7 +671,7 @@
             this.btnCreateReturnBill.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnCreateReturnBill.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCreateReturnBill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCreateReturnBill.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateReturnBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateReturnBill.ForeColor = System.Drawing.Color.White;
             this.btnCreateReturnBill.Image = global::MainSystem.Properties.Resources.File_32;
             this.btnCreateReturnBill.ImagePosition = 2;
@@ -722,13 +722,11 @@
             // 
             this.rdbCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdbCash.AutoSize = true;
-            this.rdbCash.Checked = true;
             this.rdbCash.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rdbCash.Location = new System.Drawing.Point(24, 26);
             this.rdbCash.Name = "rdbCash";
             this.rdbCash.Size = new System.Drawing.Size(52, 20);
             this.rdbCash.TabIndex = 98;
-            this.rdbCash.TabStop = true;
             this.rdbCash.Text = "كاش";
             this.rdbCash.UseVisualStyleBackColor = true;
             this.rdbCash.CheckedChanged += new System.EventHandler(this.rdbCash_CheckedChanged);
@@ -742,7 +740,6 @@
             this.rdbSoon.Name = "rdbSoon";
             this.rdbSoon.Size = new System.Drawing.Size(47, 20);
             this.rdbSoon.TabIndex = 99;
-            this.rdbSoon.TabStop = true;
             this.rdbSoon.Text = "آجل";
             this.rdbSoon.UseVisualStyleBackColor = true;
             this.rdbSoon.CheckedChanged += new System.EventHandler(this.rdbSoon_CheckedChanged);
@@ -778,7 +775,7 @@
             this.btnNewChooes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnNewChooes.FlatAppearance.BorderSize = 0;
             this.btnNewChooes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewChooes.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.btnNewChooes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.btnNewChooes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNewChooes.Location = new System.Drawing.Point(17, 10);
             this.btnNewChooes.Name = "btnNewChooes";
@@ -833,7 +830,7 @@
             // 
             this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.radioButton1.Location = new System.Drawing.Point(70, 5);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -912,10 +909,10 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.label8.Location = new System.Drawing.Point(189, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 18);
+            this.label8.Size = new System.Drawing.Size(94, 18);
             this.label8.TabIndex = 188;
             this.label8.Text = "الكمية المسترجعة";
             // 
