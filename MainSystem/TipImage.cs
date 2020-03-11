@@ -15,28 +15,28 @@ namespace MainSystem
 {
     public partial class TipImage : Form
     {
-        string code = "";
+        string Data_ID ;
         string type = "";
         MySqlConnection dbconnection;
         byte[] bin;
         int bufferSize = 1024;
         MemoryStream ms = null;
         Image image = null;
-        public TipImage(String code)
+        public TipImage(string Data_ID)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             bin = new byte[bufferSize];
             image = null;
-            this.code = code;
+            this.Data_ID = Data_ID;
         }
-        public TipImage(String code, String Type)
+        public TipImage(string Data_ID, String Type)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             bin = new byte[bufferSize];
             image = null;
-            this.code = code;
+            this.Data_ID = Data_ID;
             type = Type;
         }
         private void TipImage_Load(object sender, EventArgs e)
@@ -67,10 +67,9 @@ namespace MainSystem
             {
                 dbconnection.Open();
                
-                string query = "select Photo from data_photo where Code='" + code+"'";
+                string query = "select Photo from data_photo where Data_ID=" + Data_ID + "";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-
-               
+                
                 if (com.ExecuteScalar() != null)
                 {
                     bin = (byte[])com.ExecuteScalar();
@@ -104,18 +103,17 @@ namespace MainSystem
                 string query = "";
                 if (type == "بند")
                 {
-                    query = "select Photo from data_photo where Data_ID=" + code;
+                    query = "select Photo from data_photo where Data_ID=" + Data_ID;
                 }
                 else if (type == "طقم")
                 {
-                    query = "select Photo from set_photo where Set_ID=" + code;
+                    query = "select Photo from set_photo where Set_ID=" + Data_ID;
                 }
                 else if (type == "عرض")
                 {
-                    query = "select Photo from offer_photo where Offer_ID=" + code;
+                    query = "select Photo from offer_photo where Offer_ID=" + Data_ID;
                 }
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-
 
                 if (com.ExecuteScalar() != null)
                 {
@@ -138,7 +136,6 @@ namespace MainSystem
                 // MessageBox.Show(ex.Message);
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox1.Image = Properties.Resources.Delete_52px;
-
             }
             dbconnection.Close();
         }

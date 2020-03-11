@@ -12,7 +12,7 @@ namespace MainSystem
         bool flag = false;
         List<DeliveryPermissionClass> listOfData;
         int rowCount = 0,count=0;
-        public DeliveryPermissionReport(List<DeliveryPermissionClass> listOfData, string customerName, string customerPhone, string delegateName, string date,string BranchBillNumber1, string PerNum, string branchId, string branchName,string storeKeeper,string customerdelivery, string CustomerdeliveryPhone, string store_Name,bool flag,string customerAddress)
+        public DeliveryPermissionReport(List<DeliveryPermissionClass> listOfData, string customerName, string clientName, string customerPhone, string delegateName, string date,string BranchBillNumber1, string PerNum, string branchId, string branchName,string storeKeeper,string customerdelivery, string CustomerdeliveryPhone, string store_Name,bool flag,string customerAddress)
         {
             try
             {
@@ -21,7 +21,8 @@ namespace MainSystem
                 rowCount = listOfData.Count;
                 PermissionNumber.Value = PerNum;
                 BranchBillNumber.Value = BranchBillNumber1;
-                Client_Name.Value = customerName;
+                Client_Name.Value = clientName;
+                Customer_Name.Value = clientName;
                 PhoneNum.Value = customerPhone;
                 Bill_Date.Value = date;
                 Delegate_Name.Value = delegateName;

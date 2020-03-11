@@ -56,13 +56,14 @@ namespace MainSystem
             {
                 dbconnection.Open();
 
-                string query = "insert into customer_service_survey (Branch_ID,BranchBillNumber,CustomerBill_ID,Delegate_Name,Customer_Name,Customer_Phone,Customer_Address,Bill_Date,Description,Communication_Way,Communication_Info,Purchasing_Survey,Delegate_Survey,Showroom_Survey,Date,Employee_ID) values(@Branch_ID,@BranchBillNumber,@CustomerBill_ID,@Delegate_Name,@Customer_Name,@Customer_Phone,@Customer_Address,@Bill_Date,@Description,@Communication_Way,@Communication_Info,@Purchasing_Survey,@Delegate_Survey,@Showroom_Survey,@Date,@Employee_ID)";
+                string query = "insert into customer_service_survey (Branch_ID,BranchBillNumber,CustomerBill_ID,Delegate_Name,Customer_ID,Customer_Name,Customer_Phone,Customer_Address,Bill_Date,Description,Communication_Way,Communication_Info,Purchasing_Survey,Delegate_Survey,Showroom_Survey,Date,Employee_ID) values(@Branch_ID,@BranchBillNumber,@CustomerBill_ID,@Delegate_Name,@Customer_ID,@Customer_Name,@Customer_Phone,@Customer_Address,@Bill_Date,@Description,@Communication_Way,@Communication_Info,@Purchasing_Survey,@Delegate_Survey,@Showroom_Survey,@Date,@Employee_ID)";
                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                 com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = comBranch.SelectedValue.ToString();
                 com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBillNum.Text;
                 com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11).Value = CustomerBill_ID;
                 com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = txtDelegate.Text;
-                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
+                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue;
+                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comClient.Text;
                 com.Parameters.Add("@Customer_Phone", MySqlDbType.VarChar, 255).Value = txtPhone.Text;
                 com.Parameters.Add("@Customer_Address", MySqlDbType.VarChar, 255).Value = txtAddress.Text;
                 com.Parameters.Add("@Bill_Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.Date;
@@ -100,8 +101,27 @@ namespace MainSystem
             comBranch.SelectedIndex = -1;
             comBranch.Text = selRow["الفرع"].ToString();
             txtBillNum.Text = selRow["رقم الفاتورة"].ToString();
-            txtClient.Text = selRow["المستلم"].ToString();
-            txtPhone.Text = selRow["تلفون المستلم"].ToString();
+
+            query = "select * from customer";
+            da = new MySqlDataAdapter(query, dbconnection);
+            dt = new DataTable();
+            da.Fill(dt);
+            comClient.DataSource = dt;
+            comClient.DisplayMember = dt.Columns["Customer_Name"].ToString();
+            comClient.ValueMember = dt.Columns["Customer_ID"].ToString();
+            comClient.SelectedIndex = -1;
+            if (selRow["العميل"].ToString() != "")
+            {
+                comClient.Text = selRow["العميل"].ToString();
+                comClient.SelectedValue = selRow["Client_ID"].ToString();
+                txtPhone.Text = selRow["تلفون العميل"].ToString();
+            }
+            else if(selRow["مهندس/مقاول/تاجر"].ToString() != "")
+            {
+                comClient.Text = selRow["مهندس/مقاول/تاجر"].ToString();
+                comClient.SelectedValue = selRow["Customer_ID"].ToString();
+                txtPhone.Text = selRow["تلفون م/م/ت"].ToString();
+            }
             dateTimePicker1.Value = Convert.ToDateTime(selRow["التاريخ"].ToString());
             txtAddress.Text = selRow["العنوان"].ToString();
             query = "select CustomerBill_ID from customer_bill where Branch_Name='"+ comBranch.Text+"' and Branch_BillNumber=" + txtBillNum.Text;

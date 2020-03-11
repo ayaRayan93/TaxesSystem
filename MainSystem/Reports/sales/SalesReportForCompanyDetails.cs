@@ -131,6 +131,7 @@ namespace MainSystem.Reports.sales
                                 comFactory.Text = "";
                                 txtFactory.Text = "";
                                 dbconnection.Close();
+
                                 dbconnection.Open();
                                 query = "select TypeCoding_Method from type where Type_ID=" + txtType.Text;
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);

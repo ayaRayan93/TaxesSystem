@@ -26,7 +26,7 @@ namespace MainSystem
         bool load = false;
         public  Product_Record product_Record = null;
         public Product_Update product_Update = null;
-        TipImage tipImage=null;
+        DisplayImage tipImage =null;
         char[] arrCode=null;
 
         public Products(MainForm storeMainForm)
@@ -53,6 +53,14 @@ namespace MainSystem
                 if (UserControl.userType != 1&& UserControl.userID!=31)
                 {
                     btnDelete.Enabled = false;
+                }
+                if (UserControl.userType == 19)
+                {
+                    btnAdd.Visible = false;
+                    btnDelete.Visible = false;
+                    btnUpdate.Visible = false;
+                    btnReport.Visible = false;
+                    chBoxSelectAll.Visible = false;
                 }
                 dbconnection.Open();
 
@@ -446,33 +454,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                DataRowView row1 = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
-                if (load)
-                {
-                    if (tipImage == null)
-                    {
-                        tipImage = new TipImage(row1[1].ToString());
-                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                        tipImage.Show();
-                    }
-                    else
-                    {
-                        tipImage.Close();
-                        tipImage = new TipImage(row1[1].ToString());
-                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
-                        tipImage.Show();
-                    }
-                }
-            }
-            catch
-            {
-             //   MessageBox.Show(ex.Message);
-            }
-        }
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             try
@@ -645,7 +626,33 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
+        private void gridView2_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            try
+            {
+                DataRowView row1 = (DataRowView)(((GridView)dataGridView1.MainView).GetRow(((GridView)dataGridView1.MainView).GetSelectedRows()[0]));
+                if (load)
+                {
+                    if (tipImage == null)
+                    {
+                        tipImage = new DisplayImage(row1[0].ToString());
+                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                        tipImage.Show();
+                    }
+                    else
+                    {
+                        tipImage.Close();
+                        tipImage = new DisplayImage(row1[0].ToString());
+                        tipImage.Location = new Point(Cursor.Position.X, Cursor.Position.Y);
+                        tipImage.Show();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                 MessageBox.Show(ex.Message);
+            }
+        }
         //function
         public void displayProducts()
         {
@@ -709,7 +716,7 @@ namespace MainSystem
                     adapter.Fill(dataSet);
                     dataGridView1.DataSource = null;
                     GridView lView = new GridView(dataGridView1);
-
+                    lView.BestFitColumns();
                     dataGridView1.MainView = lView;
                     lView.Appearance.Row.Font = gridView2.Appearance.Row.Font;
                     lView.Appearance.Row.TextOptions.HAlignment = gridView2.Appearance.Row.TextOptions.HAlignment;
@@ -731,7 +738,7 @@ namespace MainSystem
                     adapter.Fill(dataSet);
                     dataGridView1.DataSource = null;
                     GridView lView = new GridView(dataGridView1);
-
+                    lView.BestFitColumns();
                     dataGridView1.MainView = lView;
                     lView.Appearance.Row.Font = gridView2.Appearance.Row.Font;
                     lView.Appearance.Row.TextOptions.HAlignment = gridView2.Appearance.Row.TextOptions.HAlignment;
@@ -793,15 +800,15 @@ namespace MainSystem
                 }
                 if (txtProduct.Text == "")
                 {
-                    q5 = "";
+                    q5 = "select Size_ID from size";
                 }
                 else
                 {
-                    q5 = "and  data.Size_ID="+ txtProduct.Text;
+                    q5 = txtProduct.Text;
                 }
                 if (txtType.Text != "1" && txtType.Text != "2" && txtType.Text != "9")
                 {
-                    string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID, data.Code as 'الكود',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                    string query = "SELECT data.Data_ID,data.Color_ID  ,data.Size_ID ,data.Sort_ID ,data.Code as 'الكود',type.Type_Name as 'النوع',groupo.Group_Name as 'المجموعة',factory.Factory_Name as 'المصنع',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',data.Description as 'الوصف',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Carton as 'الكرتنة',data.Classification as 'التصنيف' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Product_ID  IN(" + q3 + ") and data.Group_ID IN (" + q4 + ")  order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
                     DataSet dataSet = new DataSet();
                     adapter.Fill(dataSet);
@@ -820,14 +827,15 @@ namespace MainSystem
                     lView.Columns[3].Visible = false;
                     lView.Columns[4].Width = 200;
                     lView.CellValueChanged += gridView2_CellValueChanged;
+
                 }
                 else
                 {
-                    string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID, data.Code as 'الكود',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',product.Product_Name as 'الصنف',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") "+q5+" and data.Group_ID IN (" + q4 + ") order by  SUBSTR(data.Code,1,16) ,color.Color_Name ,data.Sort_ID";
+                    string query = "SELECT data.Data_ID,data.Color_ID ,data.Size_ID ,data.Sort_ID , data.Code as 'الكود',type.Type_Name as 'النوع',groupo.Group_Name as 'المجموعة',factory.Factory_Name as 'المصنع',product.Product_Name as 'الصنف',color.Color_Name as 'اللون',data.Description as 'الوصف',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Carton as 'الكرتنة',data.Classification as 'التصنيف' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and  data.Size_ID  IN(" + q5 + ") and data.Group_ID IN (" + q4 + ")  order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
                     DataSet dataSet = new DataSet();
                     adapter.Fill(dataSet);
-                   // dataGridView1.DataSource = null;
+                    dataGridView1.DataSource = null;
                     GridView lView = new GridView(dataGridView1);
 
                     dataGridView1.MainView = lView;
@@ -857,10 +865,10 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 loaded = false;
-                string q1, q2, q3, q4;
+                string q1, q2, q3, q4, q5;
                 if (txtType.Text == "")
                 {
-                    q1 = "select Type_ID from sets";
+                    q1 = "select Type_ID from type";
                 }
                 else
                 {
@@ -868,40 +876,59 @@ namespace MainSystem
                 }
                 if (txtFactory.Text == "")
                 {
-                    q2 = "select Factory_ID from sets";
+                    q2 = "select Factory_ID from factory";
                 }
                 else
                 {
                     q2 = txtFactory.Text;
                 }
-                if (txtFactory.Text == "")
+                if (txtProduct.Text == "")
                 {
                     q3 = "select Product_ID from product";
                 }
                 else
                 {
-                    q3 = txtFactory.Text;
+                    q3 = txtProduct.Text;
                 }
                 if (txtGroup.Text == "")
                 {
-                    q4 = "select Group_ID from sets";
+                    q4 = "select Group_ID from groupo";
                 }
                 else
                 {
                     q4 = txtGroup.Text;
                 }
+                if (txtProduct.Text == "")
+                {
+                    q5 = "";
+                }
+                else
+                {
+                    q5 = "and  data.Size_ID=" + txtProduct.Text;
+                }
 
                 dataGridView1.DataSource = null;
-                string query = "SELECT distinct data.Code as 'الكود',data_photo.Photo as 'الصورة',product.Product_Name as 'الصنف',type.Type_Name as 'النوع',factory.Factory_Name as 'المصنع',groupo.Group_Name as 'المجموعة',color.Color_Name as 'اللون',size.Size_Value as 'المقاس',sort.Sort_Value as 'الفرز',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID INNER JOIN data_photo on data.Data_ID=data_photo.Data_ID  ";
+                string query = "SELECT distinct data.Data_ID, data.Code as 'الكود',concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(size.Size_Value,'') )as 'البند',sort.Sort_Value as 'الفرز',color.Color_Name as 'اللون',data.Classification as 'التصنيف',data.Description as 'الوصف',data.Carton as 'الكرتنة',data_photo.Photo as 'الصورة' from data INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN data_photo on data.Data_ID=data_photo.Data_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") " + q5 + " and data.Group_ID IN (" + q4 + ") order by  SUBSTR(data.Code,1,16) ,color.Color_Name ,data.Sort_ID";
                 MySqlDataAdapter AdapterProducts = new MySqlDataAdapter(query, dbconnection);
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(query, dbconnection);
                 DataSet dataSet = new DataSet();
                 adapter.Fill(dataSet);
-                LayoutView lView = new LayoutView(dataGridView1);
+                GridView lView = new GridView(dataGridView1);
+                lView.Appearance.Row.Font = gridView2.Appearance.Row.Font;
+                lView.Appearance.Row.TextOptions.HAlignment = gridView2.Appearance.Row.TextOptions.HAlignment;
+                lView.Appearance.HeaderPanel.Font = gridView2.Appearance.HeaderPanel.Font;
+                lView.Appearance.HeaderPanel.TextOptions.HAlignment = gridView2.Appearance.HeaderPanel.TextOptions.HAlignment;
+                lView.RowHeight = 80;
+                lView.BestFitColumns();
+            
                 dataGridView1.MainView = lView;
                 dataGridView1.DataSource = dataSet.Tables[0];
-                
+                lView.Columns[0].Visible = false;
+                lView.Columns[1].Width = 200;
+                lView.Columns[2].Width = 250;
+                lView.Columns[8].Width = 150;
+                lView.RowCellClick += gridView2_RowCellClick;
                 loaded = true;
 
             }
@@ -1114,7 +1141,6 @@ namespace MainSystem
             return flag;
            
         }
-
         public bool producItemUsed(string columnName,int ProductItem_ID)
         {
             string query = "select Data_ID from data "+columnName+"="+ ProductItem_ID+" limit 1";

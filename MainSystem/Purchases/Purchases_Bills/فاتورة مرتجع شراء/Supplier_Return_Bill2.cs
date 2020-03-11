@@ -770,7 +770,7 @@ namespace MainSystem
                         com.Parameters.Add("@Total_Price_AD", MySqlDbType.Decimal);
                         com.Parameters["@Total_Price_AD"].Value = Convert.ToDouble(labelTotalSafy.Text);
                         com.Parameters.Add("@Date", MySqlDbType.DateTime);
-                        com.Parameters["@Date"].Value = DateTime.Now;
+                        com.Parameters["@Date"].Value = dateTimePicker1.Value.Date;// DateTime.Now;
                         if (comSupPerm.Text != "" && comSupPerm.SelectedValue != null)
                         {
                             com.Parameters.Add("@Supplier_Permission_Number", MySqlDbType.Int16);
@@ -887,7 +887,7 @@ namespace MainSystem
                         }
                         addabtiveTax = Convert.ToDouble(txtAllTax.Text);
                         Report_SupplierReturnBill f = new Report_SupplierReturnBill();
-                        f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), comSupPerm.Text, Convert.ToDouble(labelTotalDiscount.Text), Convert.ToDouble(labelTotalA.Text), addabtiveTax, Convert.ToDouble(labelTotalSafy.Text), bi);
+                        f.PrintInvoice(storeName, BillNo.ToString(), comSupplier.Text, billNum.ToString(), comSupPerm.Text, Convert.ToDouble(labelTotalDiscount.Text), Convert.ToDouble(labelTotalA.Text), addabtiveTax, Convert.ToDouble(labelTotalSafy.Text), dateTimePicker1.Value.Date, bi);
                         f.ShowDialog();
                         #endregion
 

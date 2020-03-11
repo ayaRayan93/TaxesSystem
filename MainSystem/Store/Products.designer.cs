@@ -261,7 +261,12 @@
             this.gridView2.OptionsFilter.AllowColumnMRUFilterList = false;
             this.gridView2.OptionsFilter.AllowFilterEditor = false;
             this.gridView2.OptionsFilter.AllowMRUFilterList = false;
+            this.gridView2.OptionsView.BestFitMode = DevExpress.XtraGrid.Views.Grid.GridBestFitMode.Full;
+            this.gridView2.OptionsView.ColumnAutoWidth = false;
+            this.gridView2.OptionsView.RowAutoHeight = true;
+            this.gridView2.RowHeight = 80;
             this.gridView2.ViewCaption = "بند";
+            this.gridView2.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView2_RowCellClick);
             this.gridView2.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView2_CellValueChanged);
             // 
             // panelControl1

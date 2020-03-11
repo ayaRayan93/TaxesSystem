@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version1.79\</PublishUrl>
+    <PublishUrl>D:\التكويد\version1.87\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>258</ApplicationRevision>
+    <ApplicationRevision>265</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -420,6 +420,12 @@
     <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.designer.cs">
       <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </Compile>
+    <Compile Include="DisplayImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplayImage.designer.cs">
+      <DependentUpon>DisplayImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Reports\PurchasesPrice\Print_PurchasePriceDetails.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -555,12 +561,6 @@
     </Compile>
     <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record.designer.cs">
       <DependentUpon>SafeExpense_Record.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Requests\Least Quantity\Print_LeastQuantity.cs">
       <SubType>Component</SubType>
@@ -3306,6 +3306,9 @@
     <EmbeddedResource Include="Expenses\المصروفات\مصروف\SafeExpense_Record2.resx">
       <DependentUpon>SafeExpense_Record2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DisplayImage.resx">
+      <DependentUpon>DisplayImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Reports\PurchasesPrice\Print_PurchasePriceDetails.resx">
       <DependentUpon>Print_PurchasePriceDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -3362,9 +3365,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\مصروف\SafeExpense_Record.resx">
       <DependentUpon>SafeExpense_Record.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Reports\supplierType\Print_SupplierType.resx">
       <DependentUpon>Print_SupplierType.cs</DependentUpon>
@@ -4789,6 +4789,8 @@
   <ItemGroup>
     <Content Include="logo_gUy_icon.ico" />
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\img_520108.ico" />
+    <None Include="Resources\img_431660.ico" />
     <None Include="Resources\icons8_Create_48.png" />
     <None Include="Resources\icons8_Create_64.png" />
     <None Include="Resources\icons8_Task_32.png" />

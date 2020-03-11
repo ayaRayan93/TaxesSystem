@@ -237,6 +237,19 @@ namespace MainSystem.Store.Export
             gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
 
         }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.bindReportPermissionForm(gridControl2, "تقرير أذونات لم يتم تسليمها بالكامل");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void AddUnboundColumngridView2()
         {
             if (gridView2.Columns["تسليم اذن"] == null)
