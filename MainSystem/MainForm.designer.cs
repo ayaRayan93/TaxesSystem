@@ -74,22 +74,15 @@
             this.panStoreContent = new System.Windows.Forms.Panel();
             this.xtraTabControlStoresContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup6 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemDelivery = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem14 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem203 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemCustomerDeliverReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemPermissionRestBill = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemDeliveryBills = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.btnStoreRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.btnProductItems = new DevExpress.XtraNavBar.NavBarItem();
             this.btnProducts = new DevExpress.XtraNavBar.NavBarItem();
             this.btnAtaqm = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemBranchReport2 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemSignInRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSignOutRecord = new DevExpress.XtraNavBar.NavBarItem();
@@ -102,6 +95,14 @@
             this.navBarItem11 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemStoreReturn = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemCustomerReturnBillOfPeriod = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup6 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemDelivery = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem14 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem203 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemCustomerDeliverReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPermissionRestBill = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemDeliveryBills = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemConfirmDelivery = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup7 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem15 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup8 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -143,13 +144,6 @@
             this.xtraTabPageSales = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlSalesContent = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl2 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup18 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemBillsAgleTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem230 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup15 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemConfirmBill = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup16 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -167,6 +161,13 @@
             this.navBarGroup39 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemOfferReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemOfferStorage = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup18 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemSalesTransitions = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemReturnedBillCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemTransitionCopy = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillsAgleTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem230 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup58 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemTotalSales = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemTotalSalesDetails = new DevExpress.XtraNavBar.NavBarItem();
@@ -657,7 +658,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemConfirmDelivery = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -1216,7 +1216,7 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.navBarGroup6;
+            this.navBarControl1.ActiveGroup = this.navBarGroup2;
             this.navBarControl1.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl1.Appearance.Background.Options.UseFont = true;
             this.navBarControl1.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1343,96 +1343,12 @@
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
-            // navBarGroup6
-            // 
-            this.navBarGroup6.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.navBarGroup6.Appearance.Options.UseFont = true;
-            this.navBarGroup6.Caption = "التسليم";
-            this.navBarGroup6.Expanded = true;
-            this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelivery),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem203),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemCustomerDeliverReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionRestBill),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDeliveryBills),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmDelivery)});
-            this.navBarGroup6.Name = "navBarGroup6";
-            this.navBarGroup6.SelectedLinkIndex = 6;
-            this.navBarGroup6.TopVisibleLinkIndex = 2;
-            // 
-            // navBarItemDelivery
-            // 
-            this.navBarItemDelivery.Caption = "تسليم فاتورة";
-            this.navBarItemDelivery.Name = "navBarItemDelivery";
-            this.navBarItemDelivery.Visible = false;
-            this.navBarItemDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelivery_LinkClicked);
-            // 
-            // navBarItem14
-            // 
-            this.navBarItem14.Caption = "تسليم طلب خاص";
-            this.navBarItem14.Enabled = false;
-            this.navBarItem14.Name = "navBarItem14";
-            this.navBarItem14.Visible = false;
-            // 
-            // navBarItem203
-            // 
-            this.navBarItem203.Caption = "الاذونات المتوقع تسليمها";
-            this.navBarItem203.Name = "navBarItem203";
-            this.navBarItem203.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionDelivery_LinkClicked);
-            // 
-            // navBarItemCustomerDeliverReport
-            // 
-            this.navBarItemCustomerDeliverReport.Caption = "تقرير اذونات التسليم";
-            this.navBarItemCustomerDeliverReport.Name = "navBarItemCustomerDeliverReport";
-            this.navBarItemCustomerDeliverReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemCustomerDeliverReport_LinkClicked);
-            // 
-            // navBarItemPermissionRestBill
-            // 
-            this.navBarItemPermissionRestBill.Caption = "أذونات لم يتم تسليمها بالكامل";
-            this.navBarItemPermissionRestBill.Name = "navBarItemPermissionRestBill";
-            this.navBarItemPermissionRestBill.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionRestBill_LinkClicked);
-            // 
-            // navBarItemDeliveryBills
-            // 
-            this.navBarItemDeliveryBills.Caption = "فواتير مراد تسليمها";
-            this.navBarItemDeliveryBills.Name = "navBarItemDeliveryBills";
-            this.navBarItemDeliveryBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDeliveryBills_LinkClicked);
-            // 
-            // navBarGroup1
-            // 
-            this.navBarGroup1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.navBarGroup1.Appearance.Options.UseFont = true;
-            this.navBarGroup1.Caption = "الرصيد الافتتاحي";
-            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
-            this.navBarGroup1.Name = "navBarGroup1";
-            this.navBarGroup1.SelectedLinkIndex = 0;
-            // 
-            // navBarItem1
-            // 
-            this.navBarItem1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.navBarItem1.Appearance.Options.UseBackColor = true;
-            this.navBarItem1.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.navBarItem1.AppearanceDisabled.Options.UseBackColor = true;
-            this.navBarItem1.AppearanceHotTracked.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.navBarItem1.AppearanceHotTracked.Options.UseBackColor = true;
-            this.navBarItem1.Caption = "تسجيل كميات البنود";
-            this.navBarItem1.Name = "navBarItem1";
-            this.navBarItem1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemstorage_LinkClicked);
-            // 
-            // navBarItem3
-            // 
-            this.navBarItem3.Caption = "تسجيل كميات الاطقم";
-            this.navBarItem3.Name = "navBarItem3";
-            this.navBarItem3.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemAtaqmTagame3_LinkClicked);
-            // 
             // navBarGroup2
             // 
             this.navBarGroup2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup2.Appearance.Options.UseFont = true;
             this.navBarGroup2.Caption = "التكويد";
+            this.navBarGroup2.Expanded = true;
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnStoreRecord),
             new DevExpress.XtraNavBar.NavBarItemLink(this.btnProductItems),
@@ -1471,6 +1387,35 @@
             this.navBarItemBranchReport2.Caption = "تسجيل الافرع";
             this.navBarItemBranchReport2.Name = "navBarItemBranchReport2";
             this.navBarItemBranchReport2.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.btnCodingItems_LinkClicked);
+            // 
+            // navBarGroup1
+            // 
+            this.navBarGroup1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup1.Appearance.Options.UseFont = true;
+            this.navBarGroup1.Caption = "الرصيد الافتتاحي";
+            this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3)});
+            this.navBarGroup1.Name = "navBarGroup1";
+            this.navBarGroup1.SelectedLinkIndex = 0;
+            // 
+            // navBarItem1
+            // 
+            this.navBarItem1.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.navBarItem1.Appearance.Options.UseBackColor = true;
+            this.navBarItem1.AppearanceDisabled.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.navBarItem1.AppearanceDisabled.Options.UseBackColor = true;
+            this.navBarItem1.AppearanceHotTracked.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.navBarItem1.AppearanceHotTracked.Options.UseBackColor = true;
+            this.navBarItem1.Caption = "تسجيل كميات البنود";
+            this.navBarItem1.Name = "navBarItem1";
+            this.navBarItem1.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemstorage_LinkClicked);
+            // 
+            // navBarItem3
+            // 
+            this.navBarItem3.Caption = "تسجيل كميات الاطقم";
+            this.navBarItem3.Name = "navBarItem3";
+            this.navBarItem3.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemAtaqmTagame3_LinkClicked);
             // 
             // navBarGroup3
             // 
@@ -1559,6 +1504,67 @@
             this.navBarItemCustomerReturnBillOfPeriod.Caption = "تقرير مرتجعات العملاء لفترة";
             this.navBarItemCustomerReturnBillOfPeriod.Name = "navBarItemCustomerReturnBillOfPeriod";
             this.navBarItemCustomerReturnBillOfPeriod.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemCustomerReturnItemsReport_LinkClicked);
+            // 
+            // navBarGroup6
+            // 
+            this.navBarGroup6.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup6.Appearance.Options.UseFont = true;
+            this.navBarGroup6.Caption = "التسليم";
+            this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDelivery),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem14),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem203),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemCustomerDeliverReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionRestBill),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDeliveryBills),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmDelivery)});
+            this.navBarGroup6.Name = "navBarGroup6";
+            this.navBarGroup6.SelectedLinkIndex = 0;
+            this.navBarGroup6.TopVisibleLinkIndex = 3;
+            // 
+            // navBarItemDelivery
+            // 
+            this.navBarItemDelivery.Caption = "تسليم فاتورة";
+            this.navBarItemDelivery.Name = "navBarItemDelivery";
+            this.navBarItemDelivery.Visible = false;
+            this.navBarItemDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelivery_LinkClicked);
+            // 
+            // navBarItem14
+            // 
+            this.navBarItem14.Caption = "تسليم طلب خاص";
+            this.navBarItem14.Enabled = false;
+            this.navBarItem14.Name = "navBarItem14";
+            this.navBarItem14.Visible = false;
+            // 
+            // navBarItem203
+            // 
+            this.navBarItem203.Caption = "الاذونات المتوقع تسليمها";
+            this.navBarItem203.Name = "navBarItem203";
+            this.navBarItem203.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionDelivery_LinkClicked);
+            // 
+            // navBarItemCustomerDeliverReport
+            // 
+            this.navBarItemCustomerDeliverReport.Caption = "تقرير اذونات التسليم";
+            this.navBarItemCustomerDeliverReport.Name = "navBarItemCustomerDeliverReport";
+            this.navBarItemCustomerDeliverReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemCustomerDeliverReport_LinkClicked);
+            // 
+            // navBarItemPermissionRestBill
+            // 
+            this.navBarItemPermissionRestBill.Caption = "أذونات لم يتم تسليمها بالكامل";
+            this.navBarItemPermissionRestBill.Name = "navBarItemPermissionRestBill";
+            this.navBarItemPermissionRestBill.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPermissionRestBill_LinkClicked);
+            // 
+            // navBarItemDeliveryBills
+            // 
+            this.navBarItemDeliveryBills.Caption = "فواتير مراد تسليمها";
+            this.navBarItemDeliveryBills.Name = "navBarItemDeliveryBills";
+            this.navBarItemDeliveryBills.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDeliveryBills_LinkClicked);
+            // 
+            // navBarItemConfirmDelivery
+            // 
+            this.navBarItemConfirmDelivery.Caption = "تاكيد التسليم";
+            this.navBarItemConfirmDelivery.Name = "navBarItemConfirmDelivery";
+            this.navBarItemConfirmDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemConfirmDelivery_LinkClicked);
             // 
             // navBarGroup7
             // 
@@ -1979,56 +1985,6 @@
             this.navBarControl2.TabIndex = 3;
             this.navBarControl2.Text = "navBarControl2";
             // 
-            // navBarGroup18
-            // 
-            this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.navBarGroup18.Appearance.Options.UseFont = true;
-            this.navBarGroup18.Caption = "تقارير فواتير المبيعات";
-            this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnedBillCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransitionCopy),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillsAgleTransitionsReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem230)});
-            this.navBarGroup18.Name = "navBarGroup18";
-            // 
-            // navBarItemSalesTransitions
-            // 
-            this.navBarItemSalesTransitions.Caption = "حركة المبيعات";
-            this.navBarItemSalesTransitions.Name = "navBarItemSalesTransitions";
-            this.navBarItemSalesTransitions.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesTransitions_LinkClicked);
-            // 
-            // navBarItemBillCopy
-            // 
-            this.navBarItemBillCopy.Caption = "استعلام عن فاتورة";
-            this.navBarItemBillCopy.Name = "navBarItemBillCopy";
-            this.navBarItemBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillCopy_LinkClicked);
-            // 
-            // navBarItemReturnedBillCopy
-            // 
-            this.navBarItemReturnedBillCopy.Caption = "استعلام عن مرتجع";
-            this.navBarItemReturnedBillCopy.Name = "navBarItemReturnedBillCopy";
-            this.navBarItemReturnedBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedBillCopy_LinkClicked);
-            // 
-            // navBarItemTransitionCopy
-            // 
-            this.navBarItemTransitionCopy.Caption = "استعلام عن سداد";
-            this.navBarItemTransitionCopy.Name = "navBarItemTransitionCopy";
-            this.navBarItemTransitionCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransitionCopy_LinkClicked);
-            // 
-            // navBarItemBillsAgleTransitionsReport
-            // 
-            this.navBarItemBillsAgleTransitionsReport.Caption = "حركة فواتير الآجل";
-            this.navBarItemBillsAgleTransitionsReport.Name = "navBarItemBillsAgleTransitionsReport";
-            this.navBarItemBillsAgleTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillsAgleTransitionsReport_LinkClicked);
-            // 
-            // navBarItem230
-            // 
-            this.navBarItem230.Caption = "فواتير لم يتم سدادها بالكامل";
-            this.navBarItem230.Name = "navBarItem230";
-            this.navBarItem230.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateLeastBills_LinkClicked);
-            // 
             // navBarGroup15
             // 
             this.navBarGroup15.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -2154,6 +2110,56 @@
             this.navBarItemOfferStorage.Caption = "تجميع وفك";
             this.navBarItemOfferStorage.Name = "navBarItemOfferStorage";
             this.navBarItemOfferStorage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemOfferStorage_LinkClicked);
+            // 
+            // navBarGroup18
+            // 
+            this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup18.Appearance.Options.UseFont = true;
+            this.navBarGroup18.Caption = "تقارير فواتير المبيعات";
+            this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemReturnedBillCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemTransitionCopy),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillsAgleTransitionsReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem230)});
+            this.navBarGroup18.Name = "navBarGroup18";
+            // 
+            // navBarItemSalesTransitions
+            // 
+            this.navBarItemSalesTransitions.Caption = "حركة المبيعات";
+            this.navBarItemSalesTransitions.Name = "navBarItemSalesTransitions";
+            this.navBarItemSalesTransitions.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSalesTransitions_LinkClicked);
+            // 
+            // navBarItemBillCopy
+            // 
+            this.navBarItemBillCopy.Caption = "استعلام عن فاتورة";
+            this.navBarItemBillCopy.Name = "navBarItemBillCopy";
+            this.navBarItemBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillCopy_LinkClicked);
+            // 
+            // navBarItemReturnedBillCopy
+            // 
+            this.navBarItemReturnedBillCopy.Caption = "استعلام عن مرتجع";
+            this.navBarItemReturnedBillCopy.Name = "navBarItemReturnedBillCopy";
+            this.navBarItemReturnedBillCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemReturnedBillCopy_LinkClicked);
+            // 
+            // navBarItemTransitionCopy
+            // 
+            this.navBarItemTransitionCopy.Caption = "استعلام عن سداد";
+            this.navBarItemTransitionCopy.Name = "navBarItemTransitionCopy";
+            this.navBarItemTransitionCopy.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemTransitionCopy_LinkClicked);
+            // 
+            // navBarItemBillsAgleTransitionsReport
+            // 
+            this.navBarItemBillsAgleTransitionsReport.Caption = "حركة فواتير الآجل";
+            this.navBarItemBillsAgleTransitionsReport.Name = "navBarItemBillsAgleTransitionsReport";
+            this.navBarItemBillsAgleTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillsAgleTransitionsReport_LinkClicked);
+            // 
+            // navBarItem230
+            // 
+            this.navBarItem230.Caption = "فواتير لم يتم سدادها بالكامل";
+            this.navBarItem230.Name = "navBarItem230";
+            this.navBarItem230.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDelegateLeastBills_LinkClicked);
             // 
             // navBarGroup58
             // 
@@ -6234,12 +6240,6 @@
             // 
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
-            // 
-            // navBarItemConfirmDelivery
-            // 
-            this.navBarItemConfirmDelivery.Caption = "تاكيد التسليم";
-            this.navBarItemConfirmDelivery.Name = "navBarItemConfirmDelivery";
-            this.navBarItemConfirmDelivery.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemConfirmDelivery_LinkClicked);
             // 
             // MainForm
             // 

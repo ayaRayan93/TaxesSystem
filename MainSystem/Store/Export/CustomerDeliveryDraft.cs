@@ -306,7 +306,7 @@ namespace MainSystem
                         listOfData.Add(deliveryPermissionClass);
                     }
                 
-                    DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData, txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "" /*id.ToString()*/, txtBranchID.ToString(), comBranch.Text, "", "", "", comStore.Text, true, "");
+                    DeliveryPermissionReport DeliveryPermissionReport = new DeliveryPermissionReport(listOfData,txtCustomerName.Text+""+txtCustomerID.Text,txtClientName.Text + " " + txtClientID.Text, txtPhoneNumber.Text, txtDelegate.Text, labDate.Text, txtPermBillNumber.Text + "  " + TypeBuy, "" /*id.ToString()*/, txtBranchID.ToString(), comBranch.Text, "", "", "", comStore.Text, true, "");
 
                     XtraReport1 report = new XtraReport1();
                     ReportPrintTool printTool = new ReportPrintTool(DeliveryPermissionReport);

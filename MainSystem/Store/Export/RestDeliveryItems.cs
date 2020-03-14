@@ -106,7 +106,7 @@ namespace MainSystem.Store.Export
             {
 
                 DataRow dataRow = gridView2.GetDataRow(gridView2.FocusedRowHandle);
-                MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[2].ToString(), 2);
+                MainForm.bindDisplayRestDeliveryForm(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[2].ToString(), 2);
             }
             catch (Exception ex)
             {
@@ -237,6 +237,19 @@ namespace MainSystem.Store.Export
             gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
 
         }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MainForm.bindReportPermissionForm(gridControl2, "تقرير أذونات لم يتم تسليمها بالكامل");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void AddUnboundColumngridView2()
         {
             if (gridView2.Columns["تسليم اذن"] == null)

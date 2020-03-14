@@ -135,7 +135,7 @@ namespace MainSystem
             {
 
                 DataRow dataRow = gridView2.GetDataRow(gridView2.FocusedRowHandle);
-                MainForm.bindDisplayDeliveryForm(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[2].ToString(), 2);
+                MainForm.bindDisplayDeliveryConfirmForm(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[2].ToString(), 2);
             }
             catch (Exception ex)
             {
@@ -368,9 +368,7 @@ namespace MainSystem
                 unbColumn.VisibleIndex = gridView1.Columns.Count;
                 unbColumn.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             }
-        }
-     
-        
+        }     
         private void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             if (e.IsGetData)

@@ -90,6 +90,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label22 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -101,6 +104,7 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label11
@@ -550,13 +554,15 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.tableLayoutPanel4.ColumnCount = 4;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel4.Controls.Add(this.btnReport, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btnSave, 1, 0);
+            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.4482F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.91712F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.36364F));
+            this.tableLayoutPanel4.Controls.Add(this.btnReport, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.btnSave, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel4, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 645);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -580,10 +586,10 @@
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "تقرير";
-            this.btnReport.Location = new System.Drawing.Point(372, 4);
+            this.btnReport.Location = new System.Drawing.Point(338, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(85, 46);
+            this.btnReport.Size = new System.Drawing.Size(77, 46);
             this.btnReport.TabIndex = 7;
             this.btnReport.Visible = false;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
@@ -602,10 +608,10 @@
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 18;
             this.btnSave.LabelText = "حفظ";
-            this.btnSave.Location = new System.Drawing.Point(463, 4);
+            this.btnSave.Location = new System.Drawing.Point(421, 4);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(85, 46);
+            this.btnSave.Size = new System.Drawing.Size(77, 46);
             this.btnSave.TabIndex = 8;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -861,7 +867,7 @@
             this.radioQata3y.Location = new System.Drawing.Point(377, 39);
             this.radioQata3y.Name = "radioQata3y";
             this.radioQata3y.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioQata3y.Size = new System.Drawing.Size(62, 20);
+            this.radioQata3y.Size = new System.Drawing.Size(63, 20);
             this.radioQata3y.TabIndex = 150;
             this.radioQata3y.Text = "قطعي";
             this.radioQata3y.UseVisualStyleBackColor = true;
@@ -928,6 +934,40 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label22);
+            this.panel4.Controls.Add(this.dateTimePicker1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(504, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(250, 48);
+            this.panel4.TabIndex = 9;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 3);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dateTimePicker1.RightToLeftLayout = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(144, 24);
+            this.dateTimePicker1.TabIndex = 213;
+            // 
+            // label22
+            // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label22.Location = new System.Drawing.Point(153, 7);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(83, 17);
+            this.label22.TabIndex = 214;
+            this.label22.Text = "تاريخ المرتجع";
+            // 
             // Supplier_Return_Bill2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -951,6 +991,8 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1018,6 +1060,9 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtAllTax;
         private System.Windows.Forms.ComboBox comPermessionNum;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

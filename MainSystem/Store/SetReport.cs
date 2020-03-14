@@ -117,7 +117,7 @@ namespace MainSystem
 
             // Display the DevExpress text string.
             SizeF size = brickGraphics2.MeasureString(devexpress);
-            pageInfoBrick = brickGraphics2.DrawPageInfo(PageInfo.None, devexpress, Color.Black, new RectangleF(new PointF(440, 50), size), BorderSide.None);
+            pageInfoBrick = brickGraphics2.DrawPageInfo(PageInfo.None, devexpress, Color.Black, new RectangleF(new PointF(400, 50), size), BorderSide.None);
             pageInfoBrick.Alignment = BrickAlignment.Center;
         }
     }

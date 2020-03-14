@@ -177,6 +177,11 @@ namespace MainSystem
                 navBarGroup3.Visible = false;
                 navBarGroup4.Visible = false;
                 navBarItemStoreReturn.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             else if (UserControl.userType == 3)
             {
@@ -204,6 +209,11 @@ namespace MainSystem
                 navBarGroup12.Visible = false;
 
                 navBarGroupReportBank.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             else if (UserControl.userType == 4)
             {
@@ -255,6 +265,7 @@ namespace MainSystem
                 navBarItemCustomerDeliverReport.Visible = false;
                 navBarItem203.Visible = false;
                 navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             //حسابات العملاء
             else if (UserControl.userType == 7)
@@ -281,6 +292,11 @@ namespace MainSystem
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
                 navBarGroupBillRecord.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             else if (UserControl.userType == 8)
             {
@@ -357,6 +373,7 @@ namespace MainSystem
                 //navBarItemSalesTransitions.Visible = false;
                 navBarGroupBillRecord.Visible = false;
                 navBarGroup58.Visible = false;
+
             }
             //شيخون
             else if (UserControl.userType == 14)
@@ -401,6 +418,10 @@ namespace MainSystem
                 navBarGroupReportPointSale.Visible = false;
                 navBarGroup58.Visible = false;
 
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
                 userAccess();
             }
             else if (UserControl.userType == 16)
@@ -466,6 +487,9 @@ namespace MainSystem
 
                 navBarGroup1.Visible = false;
                 navBarGroup2.Visible = false;
+          
+
+
                 navBarGroup3.Visible = false;
                 navBarGroup4.Visible = false;
                 navBarGroup5.Visible = false;
@@ -538,7 +562,12 @@ namespace MainSystem
                 navBarGroupReportPointSale.Visible = false;
 
                 navBarGroup1.Visible = false;
-                navBarGroup2.Visible = false;
+                //navBarGroup2.Visible = false;
+                navBarItemBranchReport2.Visible = false;
+                btnAtaqm.Visible = false;
+                btnProductItems.Visible = false;
+                btnStoreRecord.Visible = false;
+
                 navBarGroup3.Visible = false;
                 navBarGroup4.Visible = false;
                 navBarGroup5.Visible = false;
@@ -646,6 +675,7 @@ namespace MainSystem
                 navBarItemCustomerDeliverReport.Visible = false;
                 navBarItem203.Visible = false;
                 navBarItemPermissionRestBill.Visible = false;
+                navBarItemConfirmDelivery.Visible = false;
             }
             //مبيعات ومخازن - عمرو عاطف و محمد جمال
             else if (UserControl.userType == 24)
@@ -1253,6 +1283,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void pictureBoxLogout_Click(object sender, EventArgs e)
         {
             try
@@ -1266,6 +1297,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void pictureBoxProfile_Click(object sender, EventArgs e)
         {
             //if (UserControl.userType == 1)
@@ -1281,12 +1313,14 @@ namespace MainSystem
                 }
             //}
         }
+
         public void userAccess()
         {
             navBarGroup16.Visible = false;
             navBarGroup13.Visible = false;
             navBarGroup39.Visible = false;
         }
+
         public void userAccessStore()
         {
             navBarGroup1.Visible = false;
@@ -1300,6 +1334,7 @@ namespace MainSystem
             navBarGroup13.Visible = false;
             navBarGroup39.Visible = false;
         }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             try
@@ -1313,7 +1348,7 @@ namespace MainSystem
             }
         }
 
-    
+     
     }
 
     public static class connection
@@ -1323,5 +1358,6 @@ namespace MainSystem
         public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
        // public static string connectionString = "SERVER=localhost;DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8";
     }
+
 }
 

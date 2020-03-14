@@ -345,8 +345,17 @@ namespace MainSystem
                                         gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الزيادة القطعية"], System.Math.Round(CategoricalIncrease, 2)/*""*/);
                                     }
                                     //gridView2.SetRowCellValue(rowHandl, gridView2.Columns["ضريبة القيمة المضافة"], VAT);
-                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر بالزيادة"], System.Math.Round(Convert.ToDouble(txtLastPrice.Text), 2));
-                                    gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], System.Math.Round(purchasePrice, 2));
+                                    if (purchasePrice == 0)
+                                    {
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], purchasePrice);
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر بالزيادة"], 0);
+
+                                    }
+                                    else
+                                    {
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["سعر الشراء"], System.Math.Round(purchasePrice, 2));
+                                        gridView2.SetRowCellValue(rowHandl, gridView2.Columns["السعر بالزيادة"], System.Math.Round(Convert.ToDouble(txtLastPrice.Text), 2));
+                                    }
                                     gridView2.SetRowCellValue(rowHandl, gridView2.Columns["متر/قطعة"], quantity);
                                     gridView2.SetRowCellValue(rowHandl, gridView2.Columns["الاجمالى بعد"], System.Math.Round(purchasePrice, 2) * quantity);
                                     gridView2.SetRowCellValue(rowHandl, gridView2.Columns["PurchasingPrice_ID"], row1["PurchasingPrice_ID"].ToString());
