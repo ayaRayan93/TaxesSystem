@@ -294,6 +294,7 @@ namespace MainSystem
             if (supplierId == 0)
             {
                 #region first row
+                dataGridView1.Sort(dataGridView1.Columns["Date"], ListSortDirection.Ascending);
                 string query = "SELECT sum(supplier_bill.Total_Price_A) as 'المبلغ' FROM supplier_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where Date(supplier_bill.Date) < '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "'";
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
@@ -552,7 +553,7 @@ namespace MainSystem
                         }
                     }
                     dr.Close();
-                    
+             
                     n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells["Debit"].Value = allTotalBills + allTotalTaswyaAdd;
                     dataGridView1.Rows[n].Cells["Credit"].Value = allTotalTransition + allTotalReturns + allTotalTaswyaDiscount;
@@ -560,6 +561,7 @@ namespace MainSystem
                 #endregion
 
                 #region Summary
+            
                 double totalDebit = 0, totalCredit = 0;
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
@@ -589,6 +591,7 @@ namespace MainSystem
             else
             {
                 #region first row
+                dataGridView1.Sort(dataGridView1.Columns["Date"], ListSortDirection.Ascending);
                 string query = "SELECT sum(supplier_bill.Total_Price_A) as 'المبلغ' FROM supplier_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID where Date(supplier_bill.Date) < '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and supplier.Supplier_ID=" + supplierId;
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
@@ -855,6 +858,8 @@ namespace MainSystem
                 #endregion
 
                 #region Summary
+                
+
                 double totalDebit = 0, totalCredit = 0;
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {

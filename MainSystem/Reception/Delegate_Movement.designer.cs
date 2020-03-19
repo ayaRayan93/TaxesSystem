@@ -54,7 +54,7 @@
             this.labBill = new System.Windows.Forms.Label();
             this.txtBill = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+         //   this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -84,7 +84,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+          //  ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -297,7 +297,7 @@
             this.tableLayoutPanel2.Controls.Add(this.btnSound, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.axWindowsMediaPlayer1, 1, 0);
+        //    this.tableLayoutPanel2.Controls.Add(this.axWindowsMediaPlayer1, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 543);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -432,14 +432,14 @@
             // 
             // axWindowsMediaPlayer1
             // 
-            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(626, 3);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(97, 48);
-            this.axWindowsMediaPlayer1.TabIndex = 27;
-            this.axWindowsMediaPlayer1.Visible = false;
+            //this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.axWindowsMediaPlayer1.Enabled = true;
+            //this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(626, 3);
+            //this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            //this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            //this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(97, 48);
+            //this.axWindowsMediaPlayer1.TabIndex = 27;
+            //this.axWindowsMediaPlayer1.Visible = false;
             // 
             // tableLayoutPanel5
             // 
@@ -693,7 +693,7 @@
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+         //   ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -733,7 +733,7 @@
         private System.Windows.Forms.Button btnReload;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private DevExpress.XtraGrid.Columns.GridColumn colTimer;
-        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        //private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.RadioButton radDealer;
         private System.Windows.Forms.ComboBox comEngCon;
         private System.Windows.Forms.ComboBox comClient;
