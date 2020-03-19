@@ -93,11 +93,7 @@ namespace MainSystem
                 labelPullMoney.Text = "*";
                 layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDescrip.Visible = true;
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
-                labelOperationNumber.Visible = false;
-                labelOperationNumber.Text = "";
+                
                 layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
@@ -219,11 +215,7 @@ namespace MainSystem
                 layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDate.Visible = true;
                 labelDate.Text = "*";
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
-                labelOperationNumber.Visible = false;
-                labelOperationNumber.Text = "";
+                
                 layoutControlItemPayDate.Text = "تاريخ السحب";
                 layoutControlItemCheck.Text = "رقم الحساب";
                 layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -325,7 +317,7 @@ namespace MainSystem
                     {
                         dbconnection.Open();
 
-                        string query = "insert into supplier_transitions (Transition,Supplier_ID,Supplier_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,SupplierBank_ID,SupplierBank_Name,Supplier_BankAccount_Number,Error,Employee_ID,Employee_Name) values(@Transition,@Supplier_ID,@Supplier_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@SupplierBank_ID,@SupplierBank_Name,@Supplier_BankAccount_Number,@Error,@Employee_ID,@Employee_Name)";
+                        string query = "insert into supplier_transitions (Transition,Supplier_ID,Supplier_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Operation_Number,SupplierBank_ID,SupplierBank_Name,Supplier_BankAccount_Number,Error,Employee_ID,Employee_Name) values(@Transition,@Supplier_ID,@Supplier_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Operation_Number,@SupplierBank_ID,@SupplierBank_Name,@Supplier_BankAccount_Number,@Error,@Employee_ID,@Employee_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سداد";
                         com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
@@ -349,15 +341,7 @@ namespace MainSystem
                             MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                             com3.ExecuteNonQuery();
                         }
-                        if (txtVisaType.Text != "")
-                        {
-                            com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = txtVisaType.Text;
-                        }
-                        else
-                        {
-                            com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = null;
-                        }
-
+                        
                         if (dateEdit1.Text != "")
                         {
                             com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;

@@ -94,9 +94,7 @@ namespace MainSystem
                 labelPullMoney.Text = "*";
                 layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDescrip.Visible = true;
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
+                
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
@@ -139,9 +137,7 @@ namespace MainSystem
                 labelPullMoney.Text = "*";
                 layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDescrip.Visible = true;
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
+                
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
@@ -192,9 +188,7 @@ namespace MainSystem
                 layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDate.Visible = true;
                 labelDate.Text = "*";
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
+                
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
@@ -258,7 +252,7 @@ namespace MainSystem
                         }
                         
                         dbconnection.Open();
-                        string query = "insert into supplier_transitions (Transition,Supplier_ID,Supplier_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Visa_Type,Operation_Number,Error,Employee_ID,Employee_Name) values(@Transition,@Supplier_ID,@Supplier_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Visa_Type,@Operation_Number,@Error,@Employee_ID,@Employee_Name)";
+                        string query = "insert into supplier_transitions (Transition,Supplier_ID,Supplier_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Operation_Number,Error,Employee_ID,Employee_Name) values(@Transition,@Supplier_ID,@Supplier_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Operation_Number,@Error,@Employee_ID,@Employee_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سداد";
@@ -273,15 +267,6 @@ namespace MainSystem
                         com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
                         com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
                         
-                        if (txtVisaType.Text != "")
-                        {
-                            com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = txtVisaType.Text;
-                        }
-                        else
-                        {
-                            com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = null;
-                        }
-
                         if (dateEdit1.Text != "")
                         {
                             com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;

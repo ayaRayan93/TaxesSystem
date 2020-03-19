@@ -18,14 +18,14 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void PrintInvoice(DateTime dateNow, string TransitionID, string TransitionBranchName, string branchName, int billNumber, string clientName, DateTime billDate, double PaidMoney, string PaymentMethod, string bank, string CheckNumber, string Payday, string VisaType, string OperationNumber, string Description, string ConfirmEmp, string BankUserName, int q200, int q100, int q50, int q20, int q10, int q5, int q1, int qH, int qQ, int r200, int r100, int r50, int r20, int r10, int r5, int r1, int rH, int rQ)
+        public void PrintInvoice(DateTime dateNow, string TransitionID, string TransitionBranchName, string branchName, int billNumber, string clientName, DateTime billDate, double PaidMoney, string PaymentMethod, string bank, string CheckNumber, string Payday, string OperationNumber, string Description, string ConfirmEmp, string BankUserName, int q200, int q100, int q50, int q20, int q10, int q5, int q1, int qH, int qQ, int r200, int r100, int r50, int r20, int r10, int r5, int r1, int rH, int rQ)
         {
             ReturnedBillCashCopy report = new ReturnedBillCashCopy();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
             }
-            report.InitData(dateNow, TransitionID, TransitionBranchName, branchName, billNumber, clientName, billDate, PaidMoney, PaymentMethod, bank, CheckNumber, Payday, VisaType, OperationNumber, Description, ConfirmEmp, BankUserName, q200, q100, q50, q20, q10, q5, q1, qH, qQ, r200, r100, r50, r20, r10, r5, r1, rH, rQ);
+            report.InitData(dateNow, TransitionID, TransitionBranchName, branchName, billNumber, clientName, billDate, PaidMoney, PaymentMethod, bank, CheckNumber, Payday, OperationNumber, Description, ConfirmEmp, BankUserName, q200, q100, q50, q20, q10, q5, q1, qH, qQ, r200, r100, r50, r20, r10, r5, r1, rH, rQ);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }

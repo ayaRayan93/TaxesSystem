@@ -110,9 +110,7 @@ namespace MainSystem
                 labelPullMoney.Text = "*";
                 layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDescrip.Visible = true;
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
+                
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
@@ -219,9 +217,7 @@ namespace MainSystem
                 layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDate.Visible = true;
                 labelDate.Text = "*";
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
+                
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
@@ -357,7 +353,7 @@ namespace MainSystem
 
                                 dbconnection.Open();
 
-                                string query = "update transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
+                                string query = "update transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
@@ -370,16 +366,7 @@ namespace MainSystem
                                 amount2 -= outParse;
                                 MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                                 com3.ExecuteNonQuery();
-
-                                if (txtVisaType.Text != "")
-                                {
-                                    com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = txtVisaType.Text;
-                                }
-                                else
-                                {
-                                    com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = null;
-                                }
-
+                                
                                 if (dateEdit1.Text != "")
                                 {
                                     com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
@@ -1215,8 +1202,7 @@ namespace MainSystem
             {
                 dateEdit1.Text = Convert.ToDateTime(selRow["تاريخ الاستحقاق"].ToString()).ToShortDateString();
             }
-            txtCheckNumber.Text = selRow["رقم الشيك/الكارت"].ToString();
-            txtVisaType.Text = selRow["نوع الكارت"].ToString();
+            txtCheckNumber.Text = selRow["رقم الشيك"].ToString();
             txtOperationNumber.Text = selRow["رقم العملية"].ToString();
             txtDescrip.Text = selRow["البيان"].ToString();
 
@@ -1388,11 +1374,11 @@ namespace MainSystem
             Print_SupplierReturnedAglCategoriesBill_Report f = new Print_SupplierReturnedAglCategoriesBill_Report();
             if (comClient.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), UserControl.EmpBranchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), UserControl.EmpBranchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             else if (comEng.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), UserControl.EmpBranchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, selRow[0].ToString(), UserControl.EmpBranchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)

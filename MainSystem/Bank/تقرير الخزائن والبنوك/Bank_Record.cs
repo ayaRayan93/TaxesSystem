@@ -630,8 +630,6 @@ namespace MainSystem
             {
                 if (comBankUsers.Text != "" && comBankUsers.SelectedIndex != -1 && comBankUsers.SelectedValue != null)
                 {
-                    dbconnection.Open();
-                    
                     for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
                     {
                         if (comBankUsers.SelectedValue.ToString() == checkedListBoxControlUserID.Items[i].Value.ToString())
@@ -651,7 +649,6 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            dbconnection.Close();
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)

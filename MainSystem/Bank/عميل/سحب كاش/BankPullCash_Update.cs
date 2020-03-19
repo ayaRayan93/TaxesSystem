@@ -220,36 +220,66 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 radCash.Enabled = true;
+                radCash.Checked = false;
                 radCredit.Enabled = true;
+                radCredit.Checked = false;
                 radBankAccount.Enabled = false;
-                //radVisa.Enabled = false;
                 radBankAccount.Checked = false;
-                //radVisa.Checked = false;
+                
+                ///////////////////////
                 layoutControlItemBank.Text = "خزينة";
-                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelBank.Visible = true;
-                labelBank.Text = "*";
-                layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelPaidMoney.Visible = true;
-                labelPaidMoney.Text = "*";
-                layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDescrip.Visible = true;
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
+                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelBank.Visible = false;
+                labelBank.Text = "";
+                layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelPaidMoney.Visible = false;
+                labelPaidMoney.Text = "";
+                layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelDescrip.Visible = false;
+                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelDate.Visible = false;
+                labelDate.Text = "";
+                layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelCheckNumber.Visible = false;
+                labelCheckNumber.Text = "";
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
+                /////////////////////////////////////
 
-                radCash.Checked = true;
-                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة'";
+                //radCash.Checked = true;
+
+                string query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where Branch_ID=" + transitionbranchID + " and MainBank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 cmbBank.DataSource = dt;
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
+                if (UserControl.userType == 1)
+                {
+                    cmbBank.SelectedIndex = -1;
+                }
+                else
+                {
+                    dbconnection.Open();
+                    string q = "SELECT bank.Bank_Name,bank_employee.Bank_ID FROM bank_employee INNER JOIN bank ON bank.Bank_ID = bank_employee.Bank_ID where bank_employee.Employee_ID=" + UserControl.EmpID;
+                    MySqlCommand com = new MySqlCommand(q, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            cmbBank.Text = dr["Bank_Name"].ToString();
+                            cmbBank.SelectedValue = dr["Bank_ID"].ToString();
+                        }
+                        dr.Close();
+                    }
+                    else
+                    {
+                        cmbBank.SelectedIndex = -1;
+                    }
+                }
                 loadedPayType = true;
             }
             catch (Exception ex)
@@ -265,6 +295,19 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
+
+                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelBank.Visible = true;
+                labelBank.Text = "*";
+                layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelPaidMoney.Visible = true;
+                labelPaidMoney.Text = "*";
+                layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelDescrip.Visible = true;
+                //groupBox1.Enabled = false;
+                loadedPayType = true;
+
+                //////////////////////////////////
                 layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelDate.Visible = false;
                 labelDate.Text = "";
@@ -294,6 +337,17 @@ namespace MainSystem
                 layoutControlItemPayDate.Text = "تاريخ الاستحقاق";
                 layoutControlItemCheck.Text = "رقم الشيك";
                 groupBox1.Enabled = false;
+
+                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelBank.Visible = true;
+                labelBank.Text = "*";
+                layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelPaidMoney.Visible = true;
+                labelPaidMoney.Text = "*";
+                layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelDescrip.Visible = true;
+                //groupBox1.Enabled = false;
+                loadedPayType = true;
             }
             catch (Exception ex)
             {
@@ -307,25 +361,31 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 radCash.Enabled = false;
-                radCredit.Enabled = false;
                 radCash.Checked = false;
+                radCredit.Enabled = false;
                 radCredit.Checked = false;
                 radBankAccount.Enabled = true;
-                //radVisa.Enabled = true;
-                radBankAccount.Checked = true;
-                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelBank.Visible = true;
-                labelBank.Text = "*";
-                layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelPaidMoney.Visible = true;
-                labelPaidMoney.Text = "*";
-                layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDescrip.Visible = true;
-                layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelCheckNumber.Visible = true;
-                labelCheckNumber.Text = "*";
-                groupBox1.Enabled = false;
-                loadedPayType = true;
+                radBankAccount.Checked = false;
+
+                ///////////////////////
+                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelBank.Visible = false;
+                labelBank.Text = "";
+                layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelPaidMoney.Visible = false;
+                labelPaidMoney.Text = "";
+                layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelDescrip.Visible = false;
+                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelDate.Visible = false;
+                labelDate.Text = "";
+                layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelCheckNumber.Visible = false;
+                labelCheckNumber.Text = "";
+                layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                labelOperationNumber.Visible = false;
+                labelOperationNumber.Text = "";
+                /////////////////////////////////////
             }
             catch (Exception ex)
             {
@@ -339,20 +399,29 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
+
+                ////////////////////////////////
                 layoutControlItemBank.Text = "بنك";
+                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelBank.Visible = true;
+                labelBank.Text = "*";
                 layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDate.Visible = true;
                 labelDate.Text = "*";
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
+                layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelPaidMoney.Visible = true;
+                labelPaidMoney.Text = "*";
+                layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                labelDescrip.Visible = true;
+                //////////////////////////////////
+                
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
                 layoutControlItemPayDate.Text = "تاريخ الايداع";
                 layoutControlItemCheck.Text = "رقم الحساب";
 
-                string query = "select * from bank where Bank_Type = 'حساب بنكى' and Branch_ID is null and BankVisa_ID is null";
+                string query = "select concat(MainBank_Name,' ',Bank_Name) as Bank_Name,Bank_ID from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -367,41 +436,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-        private void radVisa_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                RadioButton r = (RadioButton)sender;
-                PaymentMethod = r.Text;
-                layoutControlItemBank.Text = "فيزا";
-                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelDate.Visible = false;
-                labelDate.Text = "";
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelVisaType.Visible = true;
-                labelVisaType.Text = "*";
-                layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelOperationNumber.Visible = true;
-                labelOperationNumber.Text = "*";
-                layoutControlItemCheck.Text = "رقم الكارت";
-
-                string query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbBank.DataSource = dt;
-                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -476,7 +511,7 @@ namespace MainSystem
                                 if (textBox.Text != "")
                                 {
                                     dbconnection.Open();
-                                    string query = "update transitions set Amount=@Amount,Data=@Data,Date=@Date,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
+                                    string query = "update transitions set Amount=@Amount,Data=@Data,Date=@Date,PayDay=@PayDay,Check_Number=@Check_Number,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
                                     MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                     com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
@@ -490,16 +525,7 @@ namespace MainSystem
                                     amount2 -= outParse;
                                     MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                                     com3.ExecuteNonQuery();
-
-                                    if (txtVisaType.Text != "")
-                                    {
-                                        com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = txtVisaType.Text;
-                                    }
-                                    else
-                                    {
-                                        com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = null;
-                                    }
-
+                                    
                                     if (dateEdit1.Text != "")
                                     {
                                         com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
@@ -1328,8 +1354,7 @@ namespace MainSystem
             {
                 dateEdit1.Text = Convert.ToDateTime(selRow["تاريخ الاستحقاق"].ToString()).ToShortDateString();
             }
-            txtCheckNumber.Text = selRow["رقم الشيك/الكارت"].ToString();
-            txtVisaType.Text = selRow["نوع الكارت"].ToString();
+            txtCheckNumber.Text = selRow["رقم الشيك"].ToString();
             txtOperationNumber.Text = selRow["رقم العملية"].ToString();
             txtDescrip.Text = selRow["البيان"].ToString();
 
@@ -1442,11 +1467,11 @@ namespace MainSystem
             Print_ReturnedCategoriesBill_Report f = new Print_ReturnedCategoriesBill_Report();
             if (selRow["Client_ID"].ToString() != "")
             {
-                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["العميل"].ToString() + " " + selRow["Client_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["العميل"].ToString() + " " + selRow["Client_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             else if (selRow["Customer_ID"].ToString() != "")
             {
-                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["المهندس/المقاول/التاجر"].ToString() + " " + selRow["Customer_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtVisaType.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(Convert.ToDateTime(dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss")), selRow[0].ToString(), UserControl.EmpBranchName, cmbBranch.Text, billNumber, selRow["المهندس/المقاول/التاجر"].ToString() + " " + selRow["Customer_ID"].ToString(), Convert.ToDateTime(selRow["التاريخ"].ToString()), Convert.ToDouble(txtPullMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, ConfirmEmp, selRow["الموظف"].ToString(), arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)

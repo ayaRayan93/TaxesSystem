@@ -85,9 +85,7 @@ namespace MainSystem
                 labelPaidMoney.Text = "*";
                 layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDescrip.Visible = true;
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
+                
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
@@ -192,9 +190,7 @@ namespace MainSystem
                 layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelDate.Visible = true;
                 labelDate.Text = "*";
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelVisaType.Visible = false;
-                labelVisaType.Text = "";
+                
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelOperationNumber.Visible = false;
                 labelOperationNumber.Text = "";
@@ -227,13 +223,10 @@ namespace MainSystem
                 layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 labelDate.Visible = false;
                 labelDate.Text = "";
-                layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelVisaType.Visible = true;
-                labelVisaType.Text = "*";
+                
                 layoutControlItemOperationNumber.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelOperationNumber.Visible = true;
                 labelOperationNumber.Text = "*";
-                layoutControlItemCheck.Text = "رقم الكارت";
 
                 string query = "select * from bank where Branch_ID=" + branchID + " and Bank_Type='فيزا' and BankVisa_ID is not null";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -270,7 +263,7 @@ namespace MainSystem
                 }
                 else if (PaymentMethod == "فيزا")
                 {
-                    check = (txtName.Text != "" && txtPhone.Text != "" && txtEmployee.Text != "" && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtCheckNumber.Text != "" && txtVisaType.Text != "" && txtOperationNumber.Text != "");
+                    check = (txtName.Text != "" && txtPhone.Text != "" && txtEmployee.Text != "" && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtOperationNumber.Text != "");
                 }
 
                 if (check)
@@ -326,7 +319,7 @@ namespace MainSystem
 
                                 dbconnection.Open();
 
-                                string query = "update transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Visa_Type=@Visa_Type,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
+                                string query = "update transitions set Amount=@Amount,Data=@Data,PayDay=@PayDay,Check_Number=@Check_Number,Operation_Number=@Operation_Number where Transition_ID=" + selRow[0].ToString();
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                                 com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
@@ -340,15 +333,6 @@ namespace MainSystem
                                 MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                                 com3.ExecuteNonQuery();
                                 
-                                if (txtVisaType.Text != "")
-                                {
-                                    com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = txtVisaType.Text;
-                                }
-                                else
-                                {
-                                    com.Parameters.Add("@Visa_Type", MySqlDbType.VarChar, 255).Value = null;
-                                }
-
                                 if (dateEdit1.Text != "")
                                 {
                                     com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
@@ -1141,7 +1125,7 @@ namespace MainSystem
             dr.Close();
             txtEmployee.Text = selRow[15].ToString();
 
-            //Transition_ID,Bill_Number,Branch_Name,Transition_Case,Transition_Amount,Transition_Date,Transition_Type,Client_ID,Client_Name,Payday,Check_Number,Visa_Type,Operation_Number,Transition_Data,Taswya,Employee
+            //Transition_ID,Bill_Number,Branch_Name,Transition_Case,Transition_Amount,Transition_Date,Transition_Type,Client_ID,Client_Name,Payday,Check_Number,Operation_Number,Transition_Data,Taswya,Employee
             if (selRow[6].ToString() == "نقدى")
             {
                 radioButtonSafe.Checked = true;
@@ -1186,7 +1170,6 @@ namespace MainSystem
                 dateEdit1.Text = Convert.ToDateTime(selRow[9].ToString()).ToShortDateString();
             }
             txtCheckNumber.Text = selRow[10].ToString();
-            txtVisaType.Text = selRow[11].ToString();
             txtOperationNumber.Text = selRow[12].ToString();
             txtDescrip.Text = selRow[13].ToString();
 

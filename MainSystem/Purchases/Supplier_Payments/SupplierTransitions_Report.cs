@@ -132,7 +132,7 @@ namespace MainSystem
             double totalTransition = 0;
             double TotalReturns = 0;
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Transition as 'النوع',supplier.Supplier_Name as 'المورد',supplier_transitions.Payment_Method as 'طريقة الدفع',bank.Bank_Name as 'الخزينة/البنك',supplier_transitions.Date as 'التاريخ',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Data as 'البيان',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك',supplier_transitions.Visa_Type as 'نوع الفيزا/الكارت',supplier_transitions.Operation_Number as 'رقم العملية' FROM supplier_transitions INNER JOIN supplier ON supplier.Supplier_ID = supplier_transitions.Supplier_ID INNER JOIN bank ON bank.Bank_ID = supplier_transitions.Bank_ID where supplier_transitions.Paid='تم' and supplier_transitions.Error=0 and supplier_transitions.SupplierTransition_ID=0", dbconnection);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Transition as 'النوع',supplier.Supplier_Name as 'المورد',supplier_transitions.Payment_Method as 'طريقة الدفع',bank.Bank_Name as 'الخزينة/البنك',supplier_transitions.Date as 'التاريخ',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Data as 'البيان',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك',supplier_transitions.Operation_Number as 'رقم العملية' FROM supplier_transitions INNER JOIN supplier ON supplier.Supplier_ID = supplier_transitions.Supplier_ID INNER JOIN bank ON bank.Bank_ID = supplier_transitions.Bank_ID where supplier_transitions.Paid='تم' and supplier_transitions.Error=0 and supplier_transitions.SupplierTransition_ID=0", dbconnection);
             DataTable dtf = new DataTable();
             adapter.Fill(dtf);
             gridControl1.DataSource = dtf;
@@ -141,7 +141,7 @@ namespace MainSystem
             dbconnection6.Open();
             if (supplierId == 0)
             {
-                string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Transition as 'النوع',supplier.Supplier_Name as 'المورد',supplier_transitions.Payment_Method as 'طريقة الدفع',bank.Bank_Name as 'الخزينة/البنك',supplier_transitions.Date as 'التاريخ',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Data as 'البيان',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك/الكارت',supplier_transitions.Visa_Type as 'نوع الكارت',supplier_transitions.Operation_Number as 'رقم العملية' FROM supplier_transitions INNER JOIN supplier ON supplier.Supplier_ID = supplier_transitions.Supplier_ID INNER JOIN bank ON bank.Bank_ID = supplier_transitions.Bank_ID where supplier_transitions.Paid='تم' and supplier_transitions.Error=0";
+                string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Transition as 'النوع',supplier.Supplier_Name as 'المورد',supplier_transitions.Payment_Method as 'طريقة الدفع',bank.Bank_Name as 'الخزينة/البنك',supplier_transitions.Date as 'التاريخ',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Data as 'البيان',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك',supplier_transitions.Operation_Number as 'رقم العملية' FROM supplier_transitions INNER JOIN supplier ON supplier.Supplier_ID = supplier_transitions.Supplier_ID INNER JOIN bank ON bank.Bank_ID = supplier_transitions.Bank_ID where supplier_transitions.Paid='تم' and supplier_transitions.Error=0";
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
@@ -159,8 +159,7 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["البيان"], dr["البيان"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["تاريخ الاستحقاق"], dr["تاريخ الاستحقاق"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الشيك/الكارت"], dr["رقم الشيك/الكارت"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نوع الكارت"], dr["نوع الكارت"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الشيك"], dr["رقم الشيك"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم العملية"], dr["رقم العملية"]);
                     }
                 }
@@ -168,7 +167,7 @@ namespace MainSystem
             }
             else
             {
-                string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Transition as 'النوع',supplier.Supplier_Name as 'المورد',supplier_transitions.Payment_Method as 'طريقة الدفع',bank.Bank_Name as 'الخزينة/البنك',supplier_transitions.Date as 'التاريخ',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Data as 'البيان',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك/الكارت',supplier_transitions.Visa_Type as 'نوع الكارت',supplier_transitions.Operation_Number as 'رقم العملية' FROM supplier_transitions INNER JOIN supplier ON supplier.Supplier_ID = supplier_transitions.Supplier_ID INNER JOIN bank ON bank.Bank_ID = supplier_transitions.Bank_ID where supplier_transitions.Paid='تم' and supplier_transitions.Error=0 and supplier_transitions.Supplier_ID=" + supplierId;
+                string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Transition as 'النوع',supplier.Supplier_Name as 'المورد',supplier_transitions.Payment_Method as 'طريقة الدفع',bank.Bank_Name as 'الخزينة/البنك',supplier_transitions.Date as 'التاريخ',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Data as 'البيان',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك',supplier_transitions.Operation_Number as 'رقم العملية' FROM supplier_transitions INNER JOIN supplier ON supplier.Supplier_ID = supplier_transitions.Supplier_ID INNER JOIN bank ON bank.Bank_ID = supplier_transitions.Bank_ID where supplier_transitions.Paid='تم' and supplier_transitions.Error=0 and supplier_transitions.Supplier_ID=" + supplierId;
                 MySqlCommand comand = new MySqlCommand(query, dbconnection);
                 MySqlDataReader dr = comand.ExecuteReader();
                 while (dr.Read())
@@ -186,8 +185,7 @@ namespace MainSystem
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["البيان"], dr["البيان"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["تاريخ الاستحقاق"], dr["تاريخ الاستحقاق"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الشيك/الكارت"], dr["رقم الشيك/الكارت"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نوع الكارت"], dr["نوع الكارت"]);
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم الشيك"], dr["رقم الشيك"]);
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم العملية"], dr["رقم العملية"]);
                     }
                 }

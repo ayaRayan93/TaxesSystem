@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class BankTransfers_Record2 : Form
+    public partial class BankTransfers_Update2 : Form
     {
         MySqlConnection dbconnection;
         bool loaded = true;
@@ -26,7 +26,7 @@ namespace MainSystem
         bool fromSafeLoad = false;
         bool toMainLoad = false;
 
-        public BankTransfers_Record2()
+        public BankTransfers_Update2()
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);

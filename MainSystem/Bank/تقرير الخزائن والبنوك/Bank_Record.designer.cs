@@ -37,6 +37,12 @@
             this.comSupplier = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBoxVisa = new System.Windows.Forms.GroupBox();
+            this.txtVisaID = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnRemoveVisa = new System.Windows.Forms.Button();
+            this.btnAddVisa = new System.Windows.Forms.Button();
+            this.checkedListBoxControlVisaID = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.groupBoxEmployee = new System.Windows.Forms.GroupBox();
             this.checkedListBoxControlUserID = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.labelEmp = new System.Windows.Forms.Label();
@@ -117,16 +123,12 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.groupBoxVisa = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnRemoveVisa = new System.Windows.Forms.Button();
-            this.btnAddVisa = new System.Windows.Forms.Button();
-            this.checkedListBoxControlVisaID = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.txtVisaID = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBoxVisa.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlVisaID)).BeginInit();
             this.groupBoxEmployee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlUserID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlUser)).BeginInit();
@@ -176,8 +178,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
-            this.groupBoxVisa.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlVisaID)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -280,6 +280,82 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1029, 355);
             this.panel2.TabIndex = 48;
+            // 
+            // groupBoxVisa
+            // 
+            this.groupBoxVisa.Controls.Add(this.txtVisaID);
+            this.groupBoxVisa.Controls.Add(this.label6);
+            this.groupBoxVisa.Controls.Add(this.btnRemoveVisa);
+            this.groupBoxVisa.Controls.Add(this.btnAddVisa);
+            this.groupBoxVisa.Controls.Add(this.checkedListBoxControlVisaID);
+            this.groupBoxVisa.Location = new System.Drawing.Point(324, 60);
+            this.groupBoxVisa.Name = "groupBoxVisa";
+            this.groupBoxVisa.Size = new System.Drawing.Size(260, 172);
+            this.groupBoxVisa.TabIndex = 90;
+            this.groupBoxVisa.TabStop = false;
+            this.groupBoxVisa.Visible = false;
+            // 
+            // txtVisaID
+            // 
+            this.txtVisaID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtVisaID.Location = new System.Drawing.Point(54, 27);
+            this.txtVisaID.Name = "txtVisaID";
+            this.txtVisaID.Size = new System.Drawing.Size(142, 24);
+            this.txtVisaID.TabIndex = 59;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label6.Location = new System.Drawing.Point(202, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(46, 17);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "فيزا ID";
+            // 
+            // btnRemoveVisa
+            // 
+            this.btnRemoveVisa.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnRemoveVisa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnRemoveVisa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveVisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveVisa.ForeColor = System.Drawing.Color.White;
+            this.btnRemoveVisa.Location = new System.Drawing.Point(20, 123);
+            this.btnRemoveVisa.Name = "btnRemoveVisa";
+            this.btnRemoveVisa.Size = new System.Drawing.Size(28, 31);
+            this.btnRemoveVisa.TabIndex = 58;
+            this.btnRemoveVisa.Text = "-";
+            this.btnRemoveVisa.UseVisualStyleBackColor = false;
+            this.btnRemoveVisa.Click += new System.EventHandler(this.btnRemoveVisa_Click);
+            // 
+            // btnAddVisa
+            // 
+            this.btnAddVisa.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAddVisa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAddVisa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddVisa.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.btnAddVisa.ForeColor = System.Drawing.Color.White;
+            this.btnAddVisa.Location = new System.Drawing.Point(20, 27);
+            this.btnAddVisa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAddVisa.Name = "btnAddVisa";
+            this.btnAddVisa.Size = new System.Drawing.Size(28, 31);
+            this.btnAddVisa.TabIndex = 29;
+            this.btnAddVisa.Text = "+";
+            this.btnAddVisa.UseVisualStyleBackColor = false;
+            this.btnAddVisa.Click += new System.EventHandler(this.btnAddVisa_Click);
+            // 
+            // checkedListBoxControlVisaID
+            // 
+            this.checkedListBoxControlVisaID.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.checkedListBoxControlVisaID.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkedListBoxControlVisaID.Appearance.Options.UseFont = true;
+            this.checkedListBoxControlVisaID.Cursor = System.Windows.Forms.Cursors.Default;
+            this.checkedListBoxControlVisaID.Location = new System.Drawing.Point(54, 57);
+            this.checkedListBoxControlVisaID.Name = "checkedListBoxControlVisaID";
+            this.checkedListBoxControlVisaID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkedListBoxControlVisaID.Size = new System.Drawing.Size(142, 97);
+            this.checkedListBoxControlVisaID.TabIndex = 57;
             // 
             // groupBoxEmployee
             // 
@@ -1274,103 +1350,6 @@
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
             // 
-            // groupBoxVisa
-            // 
-            this.groupBoxVisa.Controls.Add(this.txtVisaID);
-            this.groupBoxVisa.Controls.Add(this.label6);
-            this.groupBoxVisa.Controls.Add(this.btnRemoveVisa);
-            this.groupBoxVisa.Controls.Add(this.btnAddVisa);
-            this.groupBoxVisa.Controls.Add(this.checkedListBoxControlVisaID);
-            this.groupBoxVisa.Location = new System.Drawing.Point(324, 60);
-            this.groupBoxVisa.Name = "groupBoxVisa";
-            this.groupBoxVisa.Size = new System.Drawing.Size(260, 172);
-            this.groupBoxVisa.TabIndex = 90;
-            this.groupBoxVisa.TabStop = false;
-            this.groupBoxVisa.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.label6.Location = new System.Drawing.Point(202, 31);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 17);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "فيزا ID";
-            // 
-            // btnRemoveVisa
-            // 
-            this.btnRemoveVisa.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnRemoveVisa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnRemoveVisa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveVisa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveVisa.ForeColor = System.Drawing.Color.White;
-            this.btnRemoveVisa.Location = new System.Drawing.Point(20, 123);
-            this.btnRemoveVisa.Name = "btnRemoveVisa";
-            this.btnRemoveVisa.Size = new System.Drawing.Size(28, 31);
-            this.btnRemoveVisa.TabIndex = 58;
-            this.btnRemoveVisa.Text = "-";
-            this.btnRemoveVisa.UseVisualStyleBackColor = false;
-            this.btnRemoveVisa.Click += new System.EventHandler(this.btnRemoveVisa_Click);
-            // 
-            // btnAddVisa
-            // 
-            this.btnAddVisa.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAddVisa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAddVisa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddVisa.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.btnAddVisa.ForeColor = System.Drawing.Color.White;
-            this.btnAddVisa.Location = new System.Drawing.Point(20, 27);
-            this.btnAddVisa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAddVisa.Name = "btnAddVisa";
-            this.btnAddVisa.Size = new System.Drawing.Size(28, 31);
-            this.btnAddVisa.TabIndex = 29;
-            this.btnAddVisa.Text = "+";
-            this.btnAddVisa.UseVisualStyleBackColor = false;
-            this.btnAddVisa.Click += new System.EventHandler(this.btnAddVisa_Click);
-            // 
-            // checkedListBoxControlVisaID
-            // 
-            this.checkedListBoxControlVisaID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.checkedListBoxControlVisaID.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkedListBoxControlVisaID.Appearance.Options.UseFont = true;
-            this.checkedListBoxControlVisaID.Cursor = System.Windows.Forms.Cursors.Default;
-            this.checkedListBoxControlVisaID.Location = new System.Drawing.Point(54, 57);
-            this.checkedListBoxControlVisaID.Name = "checkedListBoxControlVisaID";
-            this.checkedListBoxControlVisaID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkedListBoxControlVisaID.Size = new System.Drawing.Size(142, 97);
-            this.checkedListBoxControlVisaID.TabIndex = 57;
-            // 
-            // txtVisaID
-            // 
-            this.txtVisaID.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtVisaID.Location = new System.Drawing.Point(54, 27);
-            this.txtVisaID.Name = "txtVisaID";
-            this.txtVisaID.Size = new System.Drawing.Size(142, 24);
-            this.txtVisaID.TabIndex = 59;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
-            this.btnAdd.ImagePosition = 1;
-            this.btnAdd.ImageZoom = 25;
-            this.btnAdd.LabelPosition = 18;
-            this.btnAdd.LabelText = "حفظ";
-            this.btnAdd.Location = new System.Drawing.Point(462, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(106, 51);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // Bank_Record
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -1387,6 +1366,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.groupBoxVisa.ResumeLayout(false);
+            this.groupBoxVisa.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlVisaID)).EndInit();
             this.groupBoxEmployee.ResumeLayout(false);
             this.groupBoxEmployee.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlUserID)).EndInit();
@@ -1437,9 +1419,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
-            this.groupBoxVisa.ResumeLayout(false);
-            this.groupBoxVisa.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControlVisaID)).EndInit();
             this.ResumeLayout(false);
 
         }

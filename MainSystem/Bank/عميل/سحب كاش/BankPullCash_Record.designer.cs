@@ -36,14 +36,12 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.labelOperationNumber = new System.Windows.Forms.Label();
-            this.labelVisaType = new System.Windows.Forms.Label();
             this.labelCheckNumber = new System.Windows.Forms.Label();
             this.labelDescrip = new System.Windows.Forms.Label();
             this.labelDate = new System.Windows.Forms.Label();
             this.labelPaidMoney = new System.Windows.Forms.Label();
             this.labelBank = new System.Windows.Forms.Label();
             this.txtOperationNumber = new System.Windows.Forms.TextBox();
-            this.txtVisaType = new System.Windows.Forms.TextBox();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -169,14 +167,12 @@
             this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem66 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItemVisaType = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItemOperationNumber = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem59 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem60 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem61 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem62 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem63 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem64 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem65 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -263,14 +259,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem66)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemVisaType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOperationNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem61)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem62)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem63)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem64)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem65)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
@@ -294,14 +288,12 @@
             this.dataLayoutControl1.Controls.Add(this.dateTimePicker1);
             this.dataLayoutControl1.Controls.Add(this.label2);
             this.dataLayoutControl1.Controls.Add(this.labelOperationNumber);
-            this.dataLayoutControl1.Controls.Add(this.labelVisaType);
             this.dataLayoutControl1.Controls.Add(this.labelCheckNumber);
             this.dataLayoutControl1.Controls.Add(this.labelDescrip);
             this.dataLayoutControl1.Controls.Add(this.labelDate);
             this.dataLayoutControl1.Controls.Add(this.labelPaidMoney);
             this.dataLayoutControl1.Controls.Add(this.labelBank);
             this.dataLayoutControl1.Controls.Add(this.txtOperationNumber);
-            this.dataLayoutControl1.Controls.Add(this.txtVisaType);
             this.dataLayoutControl1.Controls.Add(this.layoutControl2);
             this.dataLayoutControl1.Controls.Add(this.label24);
             this.dataLayoutControl1.Controls.Add(this.cmbBranch);
@@ -378,22 +370,11 @@
             this.labelOperationNumber.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelOperationNumber.Visible = false;
             // 
-            // labelVisaType
-            // 
-            this.labelVisaType.BackColor = System.Drawing.Color.White;
-            this.labelVisaType.ForeColor = System.Drawing.Color.Red;
-            this.labelVisaType.Location = new System.Drawing.Point(524, 442);
-            this.labelVisaType.Name = "labelVisaType";
-            this.labelVisaType.Size = new System.Drawing.Size(20, 24);
-            this.labelVisaType.TabIndex = 69;
-            this.labelVisaType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelVisaType.Visible = false;
-            // 
             // labelCheckNumber
             // 
             this.labelCheckNumber.BackColor = System.Drawing.Color.White;
             this.labelCheckNumber.ForeColor = System.Drawing.Color.Red;
-            this.labelCheckNumber.Location = new System.Drawing.Point(524, 414);
+            this.labelCheckNumber.Location = new System.Drawing.Point(524, 442);
             this.labelCheckNumber.Name = "labelCheckNumber";
             this.labelCheckNumber.Size = new System.Drawing.Size(20, 24);
             this.labelCheckNumber.TabIndex = 68;
@@ -406,7 +387,7 @@
             this.labelDescrip.ForeColor = System.Drawing.Color.Red;
             this.labelDescrip.Location = new System.Drawing.Point(524, 331);
             this.labelDescrip.Name = "labelDescrip";
-            this.labelDescrip.Size = new System.Drawing.Size(20, 51);
+            this.labelDescrip.Size = new System.Drawing.Size(20, 79);
             this.labelDescrip.TabIndex = 67;
             this.labelDescrip.Visible = false;
             // 
@@ -414,7 +395,7 @@
             // 
             this.labelDate.BackColor = System.Drawing.Color.White;
             this.labelDate.ForeColor = System.Drawing.Color.Red;
-            this.labelDate.Location = new System.Drawing.Point(524, 386);
+            this.labelDate.Location = new System.Drawing.Point(524, 414);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(20, 24);
             this.labelDate.TabIndex = 66;
@@ -449,13 +430,6 @@
             this.txtOperationNumber.Name = "txtOperationNumber";
             this.txtOperationNumber.Size = new System.Drawing.Size(388, 24);
             this.txtOperationNumber.TabIndex = 63;
-            // 
-            // txtVisaType
-            // 
-            this.txtVisaType.Location = new System.Drawing.Point(548, 442);
-            this.txtVisaType.Name = "txtVisaType";
-            this.txtVisaType.Size = new System.Drawing.Size(388, 24);
-            this.txtVisaType.TabIndex = 62;
             // 
             // layoutControl2
             // 
@@ -812,7 +786,7 @@
             // 
             // txtCheckNumber
             // 
-            this.txtCheckNumber.Location = new System.Drawing.Point(548, 414);
+            this.txtCheckNumber.Location = new System.Drawing.Point(548, 442);
             this.txtCheckNumber.Name = "txtCheckNumber";
             this.txtCheckNumber.Size = new System.Drawing.Size(388, 24);
             this.txtCheckNumber.TabIndex = 49;
@@ -821,7 +795,7 @@
             // dateEdit1
             // 
             this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(548, 386);
+            this.dateEdit1.Location = new System.Drawing.Point(548, 414);
             this.dateEdit1.Name = "dateEdit1";
             this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -837,7 +811,7 @@
             this.txtDescrip.Location = new System.Drawing.Point(548, 331);
             this.txtDescrip.Multiline = true;
             this.txtDescrip.Name = "txtDescrip";
-            this.txtDescrip.Size = new System.Drawing.Size(388, 51);
+            this.txtDescrip.Size = new System.Drawing.Size(388, 79);
             this.txtDescrip.TabIndex = 47;
             // 
             // txtPullMoney
@@ -1670,14 +1644,12 @@
             this.layoutControlItem33,
             this.layoutControlItem66,
             this.layoutControlItem2,
-            this.layoutControlItemVisaType,
             this.layoutControlItemOperationNumber,
             this.layoutControlItem59,
             this.layoutControlItem60,
             this.layoutControlItem61,
             this.layoutControlItem62,
             this.layoutControlItem63,
-            this.layoutControlItem64,
             this.layoutControlItem65,
             this.layoutControlItem3,
             this.layoutControlItem10,
@@ -1855,7 +1827,7 @@
             this.layoutControlItemComment.Control = this.txtDescrip;
             this.layoutControlItemComment.Location = new System.Drawing.Point(541, 324);
             this.layoutControlItemComment.Name = "layoutControlItemComment";
-            this.layoutControlItemComment.Size = new System.Drawing.Size(492, 55);
+            this.layoutControlItemComment.Size = new System.Drawing.Size(492, 83);
             this.layoutControlItemComment.Text = "البيان";
             this.layoutControlItemComment.TextSize = new System.Drawing.Size(97, 24);
             this.layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
@@ -1869,7 +1841,7 @@
             this.layoutControlItemPayDate.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemPayDate.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemPayDate.Control = this.dateEdit1;
-            this.layoutControlItemPayDate.Location = new System.Drawing.Point(541, 379);
+            this.layoutControlItemPayDate.Location = new System.Drawing.Point(541, 407);
             this.layoutControlItemPayDate.Name = "layoutControlItemPayDate";
             this.layoutControlItemPayDate.Size = new System.Drawing.Size(492, 28);
             this.layoutControlItemPayDate.Text = "تاريخ الاستحقاق";
@@ -1885,7 +1857,7 @@
             this.layoutControlItemCheck.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItemCheck.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItemCheck.Control = this.txtCheckNumber;
-            this.layoutControlItemCheck.Location = new System.Drawing.Point(541, 407);
+            this.layoutControlItemCheck.Location = new System.Drawing.Point(541, 435);
             this.layoutControlItemCheck.Name = "layoutControlItemCheck";
             this.layoutControlItemCheck.Size = new System.Drawing.Size(492, 28);
             this.layoutControlItemCheck.Text = "رقم الشيك";
@@ -1949,22 +1921,6 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // layoutControlItemVisaType
-            // 
-            this.layoutControlItemVisaType.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.layoutControlItemVisaType.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.layoutControlItemVisaType.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItemVisaType.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItemVisaType.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItemVisaType.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItemVisaType.Control = this.txtVisaType;
-            this.layoutControlItemVisaType.Location = new System.Drawing.Point(541, 435);
-            this.layoutControlItemVisaType.Name = "layoutControlItemVisaType";
-            this.layoutControlItemVisaType.Size = new System.Drawing.Size(492, 28);
-            this.layoutControlItemVisaType.Text = "نوع الكارت";
-            this.layoutControlItemVisaType.TextSize = new System.Drawing.Size(97, 24);
-            this.layoutControlItemVisaType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            // 
             // layoutControlItemOperationNumber
             // 
             this.layoutControlItemOperationNumber.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
@@ -2002,7 +1958,7 @@
             // layoutControlItem61
             // 
             this.layoutControlItem61.Control = this.labelDate;
-            this.layoutControlItem61.Location = new System.Drawing.Point(517, 379);
+            this.layoutControlItem61.Location = new System.Drawing.Point(517, 407);
             this.layoutControlItem61.Name = "layoutControlItem61";
             this.layoutControlItem61.Size = new System.Drawing.Size(24, 28);
             this.layoutControlItem61.TextSize = new System.Drawing.Size(0, 0);
@@ -2013,27 +1969,18 @@
             this.layoutControlItem62.Control = this.labelDescrip;
             this.layoutControlItem62.Location = new System.Drawing.Point(517, 324);
             this.layoutControlItem62.Name = "layoutControlItem62";
-            this.layoutControlItem62.Size = new System.Drawing.Size(24, 55);
+            this.layoutControlItem62.Size = new System.Drawing.Size(24, 83);
             this.layoutControlItem62.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem62.TextVisible = false;
             // 
             // layoutControlItem63
             // 
             this.layoutControlItem63.Control = this.labelCheckNumber;
-            this.layoutControlItem63.Location = new System.Drawing.Point(517, 407);
+            this.layoutControlItem63.Location = new System.Drawing.Point(517, 435);
             this.layoutControlItem63.Name = "layoutControlItem63";
             this.layoutControlItem63.Size = new System.Drawing.Size(24, 28);
             this.layoutControlItem63.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem63.TextVisible = false;
-            // 
-            // layoutControlItem64
-            // 
-            this.layoutControlItem64.Control = this.labelVisaType;
-            this.layoutControlItem64.Location = new System.Drawing.Point(517, 435);
-            this.layoutControlItem64.Name = "layoutControlItem64";
-            this.layoutControlItem64.Size = new System.Drawing.Size(24, 28);
-            this.layoutControlItem64.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem64.TextVisible = false;
             // 
             // layoutControlItem65
             // 
@@ -2189,14 +2136,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem66)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemVisaType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItemOperationNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem59)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem61)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem62)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem63)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem64)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem65)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
@@ -2334,11 +2279,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem57;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem58;
         private System.Windows.Forms.TextBox txtOperationNumber;
-        private System.Windows.Forms.TextBox txtVisaType;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItemVisaType;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItemOperationNumber;
         private System.Windows.Forms.Label labelOperationNumber;
-        private System.Windows.Forms.Label labelVisaType;
         private System.Windows.Forms.Label labelCheckNumber;
         private System.Windows.Forms.Label labelDescrip;
         private System.Windows.Forms.Label labelDate;
@@ -2349,7 +2291,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem61;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem62;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem63;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem64;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem65;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;

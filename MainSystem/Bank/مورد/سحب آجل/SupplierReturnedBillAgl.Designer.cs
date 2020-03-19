@@ -103,12 +103,10 @@
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
@@ -178,7 +176,6 @@
             this.Bank = new DevExpress.XtraReports.Parameters.Parameter();
             this.CheckNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.Payday = new DevExpress.XtraReports.Parameters.Parameter();
-            this.VisaType = new DevExpress.XtraReports.Parameters.Parameter();
             this.OperationNumber = new DevExpress.XtraReports.Parameters.Parameter();
             this.BankUserName = new DevExpress.XtraReports.Parameters.Parameter();
             this.q200 = new DevExpress.XtraReports.Parameters.Parameter();
@@ -1019,12 +1016,10 @@
             this.xrLabel3,
             this.xrLabel8,
             this.xrLabel9,
-            this.xrLabel10,
             this.xrLabel11,
             this.xrLabel12,
             this.xrLabel13,
             this.xrLabel16,
-            this.xrLabel18,
             this.xrLabel19,
             this.xrLabel20,
             this.xrLabel21,
@@ -1117,18 +1112,6 @@
             this.xrLabel9.Text = ":الخزنــــــــــــــــة";
             this.xrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
-            // xrLabel10
-            // 
-            this.xrLabel10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(220.4165F, 110F);
-            this.xrLabel10.Name = "xrLabel10";
-            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel10.SizeF = new System.Drawing.SizeF(101.04F, 25F);
-            this.xrLabel10.StylePriority.UseFont = false;
-            this.xrLabel10.StylePriority.UseTextAlignment = false;
-            this.xrLabel10.Text = ":نـــوع الكـــــارت";
-            this.xrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
             // xrLabel11
             // 
             this.xrLabel11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1144,7 +1127,7 @@
             // xrLabel12
             // 
             this.xrLabel12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(220.4165F, 135F);
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(220.4165F, 109.9999F);
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel12.SizeF = new System.Drawing.SizeF(101.04F, 25F);
@@ -1179,19 +1162,6 @@
             this.xrLabel16.StylePriority.UseFont = false;
             this.xrLabel16.StylePriority.UseTextAlignment = false;
             this.xrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
-            // xrLabel18
-            // 
-            this.xrLabel18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[VisaType]")});
-            this.xrLabel18.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(24.58335F, 110F);
-            this.xrLabel18.Name = "xrLabel18";
-            this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel18.SizeF = new System.Drawing.SizeF(195.83F, 25F);
-            this.xrLabel18.StylePriority.UseFont = false;
-            this.xrLabel18.StylePriority.UseTextAlignment = false;
-            this.xrLabel18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // xrLabel19
             // 
@@ -1265,7 +1235,7 @@
             this.xrLabel24.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[OperationNumber]")});
             this.xrLabel24.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel24.LocationFloat = new DevExpress.Utils.PointFloat(24.58332F, 135F);
+            this.xrLabel24.LocationFloat = new DevExpress.Utils.PointFloat(24.58332F, 109.9999F);
             this.xrLabel24.Name = "xrLabel24";
             this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel24.SizeF = new System.Drawing.SizeF(195.83F, 25F);
@@ -1985,11 +1955,7 @@
             // 
             this.Payday.Description = "Payday";
             this.Payday.Name = "Payday";
-            // 
-            // VisaType
-            // 
-            this.VisaType.Description = "VisaType";
-            this.VisaType.Name = "VisaType";
+            
             // 
             // OperationNumber
             // 
@@ -2152,7 +2118,6 @@
             this.Bank,
             this.CheckNumber,
             this.Payday,
-            this.VisaType,
             this.OperationNumber,
             this.BankUserName,
             this.q200,
@@ -2215,12 +2180,10 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel10;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
         private DevExpress.XtraReports.UI.XRLabel xrLabel16;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel18;
         private DevExpress.XtraReports.UI.XRLabel xrLabel19;
         private DevExpress.XtraReports.UI.XRLabel xrLabel20;
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
@@ -2286,7 +2249,6 @@
         private DevExpress.XtraReports.Parameters.Parameter Bank;
         private DevExpress.XtraReports.Parameters.Parameter CheckNumber;
         private DevExpress.XtraReports.Parameters.Parameter Payday;
-        private DevExpress.XtraReports.Parameters.Parameter VisaType;
         private DevExpress.XtraReports.Parameters.Parameter OperationNumber;
         private DevExpress.XtraReports.Parameters.Parameter BankUserName;
         private DevExpress.XtraReports.Parameters.Parameter q200;

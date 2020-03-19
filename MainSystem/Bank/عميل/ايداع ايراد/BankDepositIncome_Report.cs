@@ -216,7 +216,7 @@ namespace MainSystem
         //functions
         public void search()
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT transitions.Transition_ID as 'التسلسل',transitions.Bill_Number as 'الفاتورة',transitions.Branch_Name as 'الفرع',Bank_ID,transitions.Bank_Name as 'الخزينة',transitions.Amount as 'المبلغ',transitions.Date as 'التاريخ',transitions.Payment_Method as 'طريقة الدفع',transitions.Client_Name as 'العميل',transitions.Payday as 'تاريخ الاستحقاق',transitions.Check_Number as 'رقم الشيك/الكارت',transitions.Visa_Type as 'نوع الكارت',transitions.Operation_Number as 'رقم العملية',transitions.Data as 'البيان',income.IncomeType as 'نوع الايراد',transitions.Error FROM transitions inner join income on income.Income_ID=transitions.Bill_Number where transitions.Transition='ايداع' and transitions.Type='ايراد' order by transitions.Date", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT transitions.Transition_ID as 'التسلسل',transitions.Bill_Number as 'الفاتورة',transitions.Branch_Name as 'الفرع',Bank_ID,transitions.Bank_Name as 'الخزينة',transitions.Amount as 'المبلغ',transitions.Date as 'التاريخ',transitions.Payment_Method as 'طريقة الدفع',transitions.Client_Name as 'العميل',transitions.Payday as 'تاريخ الاستحقاق',transitions.Check_Number as 'رقم الشيك',transitions.Operation_Number as 'رقم العملية',transitions.Data as 'البيان',income.IncomeType as 'نوع الايراد',transitions.Error FROM transitions inner join income on income.Income_ID=transitions.Bill_Number where transitions.Transition='ايداع' and transitions.Type='ايراد' order by transitions.Date", conn);
 
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
@@ -294,7 +294,7 @@ namespace MainSystem
                             comand.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
                             comand.ExecuteNonQuery();
 
-                            //Transition_ID,Bill_Number,Branch_Name,Bank_ID,Transition_Case,Transition_Amount,Transition_Date,Transition_Type,Client_Name,Payday,Check_Number,Visa_Type,Operation_Number,Transition_Data,IncomeType,Error
+                            //Transition_ID,Bill_Number,Branch_Name,Bank_ID,Transition_Case,Transition_Amount,Transition_Date,Transition_Type,Client_Name,Payday,Check_Number,Operation_Number,Transition_Data,IncomeType,Error
                             MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + selRow[3].ToString(), conn);
                             double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
                             amount2 -= Convert.ToDouble(selRow[5].ToString());
