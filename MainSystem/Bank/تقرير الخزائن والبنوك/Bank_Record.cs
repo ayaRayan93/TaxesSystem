@@ -252,11 +252,11 @@ namespace MainSystem
                         string query = "";
                         if (cmbType.Text == "خزينة")
                         {
-                            query = "select BankName_AccountNumber from bank where Branch_ID=" + comBranch.SelectedValue.ToString() + " and BankName_AccountNumber='" + txtName_AccountNum.Text + "'";
+                            query = "select Bank_Name from bank where Branch_ID=" + comBranch.SelectedValue.ToString() + " and Bank_Name='" + txtName_AccountNum.Text + "'";
                         }
                         else if (cmbType.Text == "حساب بنكى")
                         {
-                            query = "select BankName_AccountNumber from bank where BankName_AccountNumber='" + txtName_AccountNum.Text + "'";
+                            query = "select Bank_Name from bank where Bank_Name='" + txtName_AccountNum.Text + "'";
                         }
 
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -271,11 +271,11 @@ namespace MainSystem
                                 if (Int32.TryParse(t200.Text, out tt200) && Int32.TryParse(t100.Text, out tt100) && Int32.TryParse(t50.Text, out tt50) && Int32.TryParse(t20.Text, out tt20) && Int32.TryParse(t10.Text, out tt10) && Int32.TryParse(t5.Text, out tt5) && Int32.TryParse(t1.Text, out tt1) && Int32.TryParse(tH.Text, out ttH) && Int32.TryParse(tQ.Text, out ttQ))
                                 {
                                     MySqlCommand command = dbconnection.CreateCommand();
-                                    command.CommandText = "INSERT INTO bank (MainBank_ID,BankName_AccountNumber,Branch_ID,Branch_Name,Initial_Balance,Bank_Stock,Start_Date,Bank_Info,BankAccount_Type,Supplier_ID) VALUES (?MainBank_ID,?BankName_AccountNumber,?Branch_ID,?Branch_Name,?Initial_Balance,?Bank_Stock,?Start_Date,?Bank_Info,?BankAccount_Type,?Supplier_ID)";
+                                    command.CommandText = "INSERT INTO bank (MainBank_ID,Bank_Name,Branch_ID,Branch_Name,Initial_Balance,Bank_Stock,Start_Date,Bank_Info,BankAccount_Type,Supplier_ID) VALUES (?MainBank_ID,?Bank_Name,?Branch_ID,?Branch_Name,?Initial_Balance,?Bank_Stock,?Start_Date,?Bank_Info,?BankAccount_Type,?Supplier_ID)";
 
                                     if (cmbType.Text == "خزينة")
                                     {
-                                        command.Parameters.AddWithValue("?BankName_AccountNumber", txtName_AccountNum.Text);
+                                        command.Parameters.AddWithValue("?Bank_Name", txtName_AccountNum.Text);
                                         command.Parameters.AddWithValue("?Branch_ID", comBranch.SelectedValue.ToString());
                                         command.Parameters.AddWithValue("?Branch_Name", comBranch.Text);
                                         command.Parameters.AddWithValue("?BankAccount_Type", null);
@@ -283,7 +283,7 @@ namespace MainSystem
                                     }
                                     else if (cmbType.Text == "حساب بنكى")
                                     {
-                                        command.Parameters.AddWithValue("?BankName_AccountNumber", txtName_AccountNum.Text);
+                                        command.Parameters.AddWithValue("?Bank_Name", txtName_AccountNum.Text);
                                         command.Parameters.AddWithValue("?Branch_ID", null);
                                         command.Parameters.AddWithValue("?Branch_Name", null);
                                         command.Parameters.AddWithValue("?BankAccount_Type", txtAccountType.Text);
@@ -380,6 +380,7 @@ namespace MainSystem
                                     labelInfo.Text = "";
                                     layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                     labelAccountType.Text = "";
+                                    layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                     //layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                     //labelBank.Text = "";
                                     //layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;

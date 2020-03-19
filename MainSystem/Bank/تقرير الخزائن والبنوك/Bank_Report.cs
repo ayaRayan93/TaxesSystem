@@ -292,9 +292,9 @@ namespace MainSystem
             // left join bank on bank.MainBank_ID=bank_main.MainBank_ID left join bank_Visa on bank.Bank_ID=bank_visa.Bank_ID
             MySqlDataAdapter adapterMain = new MySqlDataAdapter("select bank_main.MainBank_ID as 'التسلسل', MainBank_Type as 'النوع', MainBank_Name as 'الاسم' from bank_main", conn);
             //left join bank_Visa on bank.Bank_ID=bank_visa.Bank_ID
-            MySqlDataAdapter adapterBank = new MySqlDataAdapter("select bank.Bank_ID as 'التسلسل', BankName_AccountNumber as 'الاسم/رقم الحساب',Branch_Name as 'الفرع',Initial_Balance as 'الرصيد الافتتاحى',Bank_Stock as 'الرصيد', Start_Date as 'تاريخ بدء التعامل',BankAccount_Type as 'نوع الحساب',Bank_Info as 'بيانات اضافية',bank_main.MainBank_ID as 'ID' from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID ", conn);
+            MySqlDataAdapter adapterBank = new MySqlDataAdapter("select bank.Bank_ID as 'التسلسل', Bank_Name as 'الاسم/رقم الحساب',Branch_Name as 'الفرع',Initial_Balance as 'الرصيد الافتتاحى',Bank_Stock as 'الرصيد', Start_Date as 'تاريخ بدء التعامل',BankAccount_Type as 'نوع الحساب',Bank_Info as 'بيانات اضافية',bank_main.MainBank_ID as 'ID' from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID ", conn);
 
-            MySqlDataAdapter adapterVisa = new MySqlDataAdapter("select bank_Visa.Visa_ID as 'التسلسل',bank.BankName_AccountNumber as 'على بنك',bank_Visa.Machine_ID as 'رقم المكنة',bank_Visa.Bank_ID as 'ID' from bank_Visa inner join bank on bank.Bank_ID=bank_visa.Bank_ID inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID", conn);
+            MySqlDataAdapter adapterVisa = new MySqlDataAdapter("select bank_Visa.Visa_ID as 'التسلسل',bank.Bank_Name as 'على بنك',bank_Visa.Machine_ID as 'رقم المكنة',bank_Visa.Bank_ID as 'ID' from bank_Visa inner join bank on bank.Bank_ID=bank_visa.Bank_ID inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID", conn);
 
             DataSet sourceDataSet = new DataSet();
             adapterMain.Fill(sourceDataSet, "bank_main");

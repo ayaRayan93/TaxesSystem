@@ -66,6 +66,9 @@
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
+            this.label16 = new System.Windows.Forms.Label();
+            this.comToMain = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -82,8 +85,14 @@
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem39 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comFromMain = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -94,12 +103,15 @@
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem37 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new Bunifu.Framework.UI.BunifuTileButton();
             this.label13 = new System.Windows.Forms.Label();
@@ -123,18 +135,6 @@
             this.layoutControlItem56 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comFromMain = new System.Windows.Forms.ComboBox();
-            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label8 = new System.Windows.Forms.Label();
-            this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label9 = new System.Windows.Forms.Label();
-            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label3 = new System.Windows.Forms.Label();
-            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.comToMain = new System.Windows.Forms.ComboBox();
-            this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label16 = new System.Windows.Forms.Label();
-            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -164,18 +164,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem39)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
             this.layoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
@@ -195,12 +201,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             this.SuspendLayout();
             // 
             // txtMoney
@@ -266,7 +266,7 @@
             // 
             // label21
             // 
-            this.label21.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label21.ForeColor = System.Drawing.Color.Red;
             this.label21.Location = new System.Drawing.Point(470, 202);
             this.label21.Name = "label21";
@@ -626,6 +626,33 @@
             this.layoutControl3.TabIndex = 0;
             this.layoutControl3.Text = "layoutControl3";
             // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label16.Location = new System.Drawing.Point(12, 41);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(20, 24);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "*";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // comToMain
+            // 
+            this.comToMain.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comToMain.FormattingEnabled = true;
+            this.comToMain.Location = new System.Drawing.Point(36, 41);
+            this.comToMain.Name = "comToMain";
+            this.comToMain.Size = new System.Drawing.Size(291, 24);
+            this.comToMain.TabIndex = 15;
+            this.comToMain.SelectedValueChanged += new System.EventHandler(this.comToMain_SelectedValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(12, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(366, 20);
+            this.label3.TabIndex = 14;
+            // 
             // label24
             // 
             this.label24.Location = new System.Drawing.Point(382, 41);
@@ -652,18 +679,18 @@
             this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label5.Location = new System.Drawing.Point(12, 93);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(21, 24);
+            this.label5.Size = new System.Drawing.Size(20, 24);
             this.label5.TabIndex = 7;
             this.label5.Text = "*";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comToBank
             // 
             this.comToBank.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comToBank.FormattingEnabled = true;
-            this.comToBank.Location = new System.Drawing.Point(37, 93);
+            this.comToBank.Location = new System.Drawing.Point(36, 93);
             this.comToBank.Name = "comToBank";
-            this.comToBank.Size = new System.Drawing.Size(290, 24);
+            this.comToBank.Size = new System.Drawing.Size(291, 24);
             this.comToBank.TabIndex = 6;
             this.comToBank.TextChanged += new System.EventHandler(this.txtBox_TextChanged);
             // 
@@ -748,9 +775,9 @@
             this.layoutControlItem17.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem17.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.layoutControlItem17.Control = this.comToBank;
-            this.layoutControlItem17.Location = new System.Drawing.Point(25, 81);
+            this.layoutControlItem17.Location = new System.Drawing.Point(24, 81);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(345, 28);
+            this.layoutControlItem17.Size = new System.Drawing.Size(346, 28);
             this.layoutControlItem17.Text = "الاسم";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(48, 24);
             // 
@@ -759,7 +786,7 @@
             this.layoutControlItem21.Control = this.label5;
             this.layoutControlItem21.Location = new System.Drawing.Point(0, 81);
             this.layoutControlItem21.Name = "layoutControlItem21";
-            this.layoutControlItem21.Size = new System.Drawing.Size(25, 28);
+            this.layoutControlItem21.Size = new System.Drawing.Size(24, 28);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
             // 
@@ -789,6 +816,42 @@
             this.layoutControlItem39.Size = new System.Drawing.Size(24, 80);
             this.layoutControlItem39.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem39.TextVisible = false;
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.label3;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 57);
+            this.layoutControlItem9.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(24, 24);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(370, 24);
+            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
+            // 
+            // layoutControlItem29
+            // 
+            this.layoutControlItem29.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.layoutControlItem29.AppearanceItemCaption.ForeColor = System.Drawing.Color.Gray;
+            this.layoutControlItem29.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem29.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem29.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem29.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem29.Control = this.comToMain;
+            this.layoutControlItem29.Location = new System.Drawing.Point(24, 29);
+            this.layoutControlItem29.Name = "layoutControlItem29";
+            this.layoutControlItem29.Size = new System.Drawing.Size(346, 28);
+            this.layoutControlItem29.Text = "الرئيسى";
+            this.layoutControlItem29.TextSize = new System.Drawing.Size(48, 24);
+            // 
+            // layoutControlItem30
+            // 
+            this.layoutControlItem30.Control = this.label16;
+            this.layoutControlItem30.Location = new System.Drawing.Point(0, 29);
+            this.layoutControlItem30.Name = "layoutControlItem30";
+            this.layoutControlItem30.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem30.TextVisible = false;
             // 
             // groupBox1
             // 
@@ -823,6 +886,33 @@
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.label9.Location = new System.Drawing.Point(12, 93);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(20, 24);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "*";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(12, 69);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(368, 20);
+            this.label8.TabIndex = 16;
+            // 
+            // comFromMain
+            // 
+            this.comFromMain.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.comFromMain.FormattingEnabled = true;
+            this.comFromMain.Location = new System.Drawing.Point(36, 41);
+            this.comFromMain.Name = "comFromMain";
+            this.comFromMain.Size = new System.Drawing.Size(293, 24);
+            this.comFromMain.TabIndex = 15;
+            this.comFromMain.SelectedValueChanged += new System.EventHandler(this.comFromMain_SelectedValueChanged);
+            // 
             // label23
             // 
             this.label23.Location = new System.Drawing.Point(384, 41);
@@ -853,7 +943,7 @@
             this.label1.Size = new System.Drawing.Size(20, 24);
             this.label1.TabIndex = 7;
             this.label1.Text = "*";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comFromBank
             // 
@@ -930,30 +1020,6 @@
             this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem34.TextVisible = false;
             // 
-            // layoutControlItem14
-            // 
-            this.layoutControlItem14.Control = this.label1;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 29);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(24, 28);
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem14.TextVisible = false;
-            // 
-            // layoutControlItem1
-            // 
-            this.layoutControlItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.layoutControlItem1.AppearanceItemCaption.ForeColor = System.Drawing.Color.Gray;
-            this.layoutControlItem1.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem1.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem1.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem1.Control = this.comFromBank;
-            this.layoutControlItem1.Location = new System.Drawing.Point(24, 81);
-            this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(348, 28);
-            this.layoutControlItem1.Text = "الاسم";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 24);
-            // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
@@ -988,6 +1054,66 @@
             this.layoutControlItem37.Size = new System.Drawing.Size(24, 80);
             this.layoutControlItem37.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem37.TextVisible = false;
+            // 
+            // layoutControlItem20
+            // 
+            this.layoutControlItem20.Control = this.label8;
+            this.layoutControlItem20.Location = new System.Drawing.Point(0, 57);
+            this.layoutControlItem20.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem20.MinSize = new System.Drawing.Size(24, 24);
+            this.layoutControlItem20.Name = "layoutControlItem20";
+            this.layoutControlItem20.Size = new System.Drawing.Size(372, 24);
+            this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem20.TextVisible = false;
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.label1;
+            this.layoutControlItem14.Location = new System.Drawing.Point(0, 29);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem14.TextVisible = false;
+            // 
+            // layoutControlItem28
+            // 
+            this.layoutControlItem28.Control = this.label9;
+            this.layoutControlItem28.Location = new System.Drawing.Point(0, 81);
+            this.layoutControlItem28.Name = "layoutControlItem28";
+            this.layoutControlItem28.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem28.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem28.TextVisible = false;
+            // 
+            // layoutControlItem1
+            // 
+            this.layoutControlItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.layoutControlItem1.AppearanceItemCaption.ForeColor = System.Drawing.Color.Gray;
+            this.layoutControlItem1.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem1.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem1.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem1.Control = this.comFromBank;
+            this.layoutControlItem1.Location = new System.Drawing.Point(24, 81);
+            this.layoutControlItem1.Name = "layoutControlItem1";
+            this.layoutControlItem1.Size = new System.Drawing.Size(348, 28);
+            this.layoutControlItem1.Text = "الاسم";
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(48, 24);
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.layoutControlItem18.AppearanceItemCaption.ForeColor = System.Drawing.Color.Gray;
+            this.layoutControlItem18.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem18.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem18.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem18.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem18.Control = this.comFromMain;
+            this.layoutControlItem18.Location = new System.Drawing.Point(24, 29);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(348, 28);
+            this.layoutControlItem18.Text = "الرئيسى";
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(48, 24);
             // 
             // tableLayoutPanel2
             // 
@@ -1257,128 +1383,6 @@
             this.panel1.Size = new System.Drawing.Size(884, 600);
             this.panel1.TabIndex = 17;
             // 
-            // comFromMain
-            // 
-            this.comFromMain.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comFromMain.FormattingEnabled = true;
-            this.comFromMain.Location = new System.Drawing.Point(36, 41);
-            this.comFromMain.Name = "comFromMain";
-            this.comFromMain.Size = new System.Drawing.Size(293, 24);
-            this.comFromMain.TabIndex = 15;
-            this.comFromMain.SelectedValueChanged += new System.EventHandler(this.comFromMain_SelectedValueChanged);
-            // 
-            // layoutControlItem18
-            // 
-            this.layoutControlItem18.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.layoutControlItem18.AppearanceItemCaption.ForeColor = System.Drawing.Color.Gray;
-            this.layoutControlItem18.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem18.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem18.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem18.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem18.Control = this.comFromMain;
-            this.layoutControlItem18.Location = new System.Drawing.Point(24, 29);
-            this.layoutControlItem18.Name = "layoutControlItem18";
-            this.layoutControlItem18.Size = new System.Drawing.Size(348, 28);
-            this.layoutControlItem18.Text = "الرئيسى";
-            this.layoutControlItem18.TextSize = new System.Drawing.Size(48, 24);
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(12, 69);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(368, 20);
-            this.label8.TabIndex = 16;
-            // 
-            // layoutControlItem20
-            // 
-            this.layoutControlItem20.Control = this.label8;
-            this.layoutControlItem20.Location = new System.Drawing.Point(0, 57);
-            this.layoutControlItem20.MaxSize = new System.Drawing.Size(0, 24);
-            this.layoutControlItem20.MinSize = new System.Drawing.Size(24, 24);
-            this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(372, 24);
-            this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem20.TextVisible = false;
-            // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(12, 93);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(20, 24);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "*";
-            // 
-            // layoutControlItem28
-            // 
-            this.layoutControlItem28.Control = this.label9;
-            this.layoutControlItem28.Location = new System.Drawing.Point(0, 81);
-            this.layoutControlItem28.Name = "layoutControlItem28";
-            this.layoutControlItem28.Size = new System.Drawing.Size(24, 28);
-            this.layoutControlItem28.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem28.TextVisible = false;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(12, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(366, 20);
-            this.label3.TabIndex = 14;
-            // 
-            // layoutControlItem9
-            // 
-            this.layoutControlItem9.Control = this.label3;
-            this.layoutControlItem9.Location = new System.Drawing.Point(0, 57);
-            this.layoutControlItem9.MaxSize = new System.Drawing.Size(0, 24);
-            this.layoutControlItem9.MinSize = new System.Drawing.Size(24, 24);
-            this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(370, 24);
-            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem9.TextVisible = false;
-            // 
-            // comToMain
-            // 
-            this.comToMain.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comToMain.FormattingEnabled = true;
-            this.comToMain.Location = new System.Drawing.Point(36, 41);
-            this.comToMain.Name = "comToMain";
-            this.comToMain.Size = new System.Drawing.Size(291, 24);
-            this.comToMain.TabIndex = 15;
-            this.comToMain.SelectedValueChanged += new System.EventHandler(this.comToMain_SelectedValueChanged);
-            // 
-            // layoutControlItem29
-            // 
-            this.layoutControlItem29.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
-            this.layoutControlItem29.AppearanceItemCaption.ForeColor = System.Drawing.Color.Gray;
-            this.layoutControlItem29.AppearanceItemCaption.Options.UseFont = true;
-            this.layoutControlItem29.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem29.AppearanceItemCaption.Options.UseTextOptions = true;
-            this.layoutControlItem29.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.layoutControlItem29.Control = this.comToMain;
-            this.layoutControlItem29.Location = new System.Drawing.Point(24, 29);
-            this.layoutControlItem29.Name = "layoutControlItem29";
-            this.layoutControlItem29.Size = new System.Drawing.Size(346, 28);
-            this.layoutControlItem29.Text = "الرئيسى";
-            this.layoutControlItem29.TextSize = new System.Drawing.Size(48, 24);
-            // 
-            // label16
-            // 
-            this.label16.Location = new System.Drawing.Point(12, 41);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(20, 24);
-            this.label16.TabIndex = 16;
-            this.label16.Text = "*";
-            // 
-            // layoutControlItem30
-            // 
-            this.layoutControlItem30.Control = this.label16;
-            this.layoutControlItem30.Location = new System.Drawing.Point(0, 29);
-            this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(24, 28);
-            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem30.TextVisible = false;
-            // 
             // BankTransfers_Record2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1420,18 +1424,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem39)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).EndInit();
             this.layoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
@@ -1451,12 +1461,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem54)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             this.ResumeLayout(false);
 
         }
