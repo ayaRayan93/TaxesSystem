@@ -639,7 +639,7 @@ namespace MainSystem
 
                 navBarGroup1.Visible = false;
                 navBarGroup2.Visible = false;
-                navBarGroup3.Visible = false;
+              //  navBarGroup3.Visible = false;
                 navBarItem11.Visible = false;
                 navBarItemCustomerReturnBillOfPeriod.Visible = false;
                 navBarGroup6.Visible = false;
@@ -1356,7 +1356,7 @@ namespace MainSystem
         static string supString = File.ReadAllText("IP_Address.txt");//'35.232.25.153'
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
         public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
-       // public static string connectionString = "SERVER=localhost;DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8";
+       //public static string connectionString = "SERVER=localhost;DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8";
     }
 
 }

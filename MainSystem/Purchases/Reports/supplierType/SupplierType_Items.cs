@@ -15,6 +15,8 @@ namespace MainSystem
         public string CostS2 { get; set; }
         public string QuantityS3 { get; set; }
         public string CostS3 { get; set; }
+        public string QuantityS4 { get; set; }
+        public string CostS4 { get; set; }
         public string QuantitySF { get; set; }
         public string CostSF { get; set; }
     }

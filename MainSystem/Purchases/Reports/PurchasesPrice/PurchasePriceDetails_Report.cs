@@ -514,10 +514,29 @@ namespace MainSystem
             {
                 gridView1.FocusedRowHandle = gridView1.RowCount - 1;
             }
+            query = "SELECT sum(DISTINCT supplier_bill.Total_Price_A) as 'المبلغ' FROM supplier_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID inner join supplier_bill_details on supplier_bill.Bill_ID=supplier_bill_details.Bill_ID inner join data on data.Data_ID=supplier_bill_details.Data_ID where date(supplier_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Factory_ID=" + comFactory.SelectedValue.ToString();
+            MySqlCommand comand = new MySqlCommand(query, dbconnection2);
+            double Total_Price_A = Convert.ToDouble(comand.ExecuteScalar());
+            if (Total_Price_A > totalQuantity)
 
-            txtSale.Text = totalQuantity.ToString();
-            txtReturn.Text = totalReturnedQuantity.ToString();
-            txtFinal.Text = (totalQuantity - totalReturnedQuantity).ToString();
+            {
+                double taxValue = totalQuantity * 14 / 100;
+                totalQuantity += taxValue;
+                txtSale.Text = totalQuantity.ToString();
+                taxValue = totalReturnedQuantity * 14 / 100;
+                totalReturnedQuantity += taxValue;
+                txtReturn.Text = totalReturnedQuantity.ToString();
+                txtFinal.Text = (totalQuantity - totalReturnedQuantity).ToString();
+            }
+            else if (Total_Price_A == totalQuantity)
+            {
+                txtReturn.Text = totalReturnedQuantity.ToString();
+                txtFinal.Text = (totalQuantity - totalReturnedQuantity).ToString();
+            }
+            else
+            {
+                MessageBox.Show("يوجد خطأ");
+            }
         }
 
         private void btnNewChosen_Click(object sender, EventArgs e)

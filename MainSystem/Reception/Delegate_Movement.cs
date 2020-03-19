@@ -14,7 +14,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WMPLib;
+//using WMPLib;
 
 namespace MainSystem
 {
@@ -43,7 +43,7 @@ namespace MainSystem
 
         //List<Delegate> lstDelegate = new List<Delegate>();
 
-        public static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
+      //  public static WMPLib.WindowsMediaPlayer wplayer = new WMPLib.WindowsMediaPlayer();
 
         Timer timer = new Timer();
         

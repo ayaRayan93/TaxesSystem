@@ -22,7 +22,7 @@ namespace MainSystem
                 PermissionNumber.Value = PerNum;
                 BranchBillNumber.Value = BranchBillNumber1;
                 Client_Name.Value = clientName;
-                Customer_Name.Value = clientName;
+                Customer_Name.Value = customerName;
                 PhoneNum.Value = customerPhone;
                 Bill_Date.Value = date;
                 Delegate_Name.Value = delegateName;

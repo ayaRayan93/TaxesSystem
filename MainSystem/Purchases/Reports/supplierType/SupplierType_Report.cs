@@ -19,7 +19,7 @@ namespace MainSystem
         bool loaded = false;
         bool loadedFactory = false;
         XtraTabControl tabControlContent;
-
+        double totalq = 0, totalc = 0;
         public SupplierType_Report(MainForm mainform, XtraTabControl TabControlContent)
         {
             InitializeComponent();
@@ -123,11 +123,11 @@ namespace MainSystem
         {
             try
             {
-                string[] monthes = {  "الاجمالى","ف3", "ف2", "ف1" };
+                string[] monthes = {  "الاجمالى", "ديكور", "ف3", "ف2", "ف1" };
                 Rectangle r2 = this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
                 Rectangle r1 = this.dataGridView1.GetCellDisplayRectangle(0, -1, true);
 
-                for (int j = 0; j < 8;)
+                for (int j = 0; j < 10;)
                 {
                     /*if (j == 1)
                     {
@@ -345,7 +345,7 @@ namespace MainSystem
             dbconnection4.Open();
 
             #region others
-            string query = "SELECT distinct type.Type_Name,data.Type_ID FROM supplier_bill_details INNER JOIN supplier_bill ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN supplier_factory ON data.Factory_ID = supplier_factory.Factory_ID and supplier_bill.Supplier_ID = supplier_factory.Supplier_ID inner join type on type.Type_ID=data.Type_ID where Date(supplier_bill.Date) >= '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and Date(supplier_bill.Date) <= '" + dateTimePickerTo.Value.ToString("yyyy-MM-dd") + "' and supplier_bill.Supplier_ID=" + supplierId + " and data.Factory_ID=" + factoryId;
+            string query = "SELECT distinct type.Type_Name,data.Type_ID FROM supplier_bill_details INNER JOIN supplier_bill ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN supplier_factory ON data.Factory_ID = supplier_factory.Factory_ID and supplier_bill.Supplier_ID = supplier_factory.Supplier_ID inner join type on type.Type_ID=data.Type_ID where Date(supplier_bill.Date) >= '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and Date(supplier_bill.Date) <= '" + dateTimePickerTo.Value.ToString("yyyy-MM-dd") + "' and (data.Type_ID=1 or data.Type_ID=2 or data.Type_ID=9) and supplier_bill.Supplier_ID=" + supplierId + " and data.Factory_ID=" + factoryId;
             MySqlCommand comand = new MySqlCommand(query, dbconnection);
             MySqlDataReader dr = comand.ExecuteReader();
             if (dr.HasRows)
@@ -358,6 +358,8 @@ namespace MainSystem
                     double BillCostS2 = 0;
                     double BillQuantityS3 = 0;
                     double BillCostS3 = 0;
+                    double BillQuantityS4 = 0;
+                    double BillCostS4 = 0;
 
                     int n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells["Descripe"].Value = dr["Type_Name"].ToString();
@@ -379,7 +381,7 @@ namespace MainSystem
                             double totalFQuantity = 0;
                             double totalFCost = 0;
 
-                            string query3 = "SELECT sum(supplier_bill_details.Total_Meters) as 'الكمية',sum(supplier_bill_details.Purchasing_Price) as 'المبلغ',data.Sort_ID FROM supplier_bill_details INNER JOIN supplier_bill ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN supplier_factory ON data.Factory_ID = supplier_factory.Factory_ID  and supplier_bill.Supplier_ID = supplier_factory.Supplier_ID where Date(supplier_bill.Date) >= '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and Date(supplier_bill.Date) <= '" + dateTimePickerTo.Value.ToString("yyyy-MM-dd") + "' and supplier_bill.Supplier_ID=" + supplierId + " and data.Factory_ID=" + factoryId + " and data.Type_ID=" + dr["Type_ID"].ToString() + " and data.Classification='" + dr2["Classification"].ToString() + "' group by data.Sort_ID";
+                            string query3 = "SELECT sum(supplier_bill_details.Total_Meters) as 'الكمية',sum(supplier_bill_details.Purchasing_Price*supplier_bill_details.Total_Meters) as 'المبلغ',data.Sort_ID FROM supplier_bill_details INNER JOIN supplier_bill ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN supplier_factory ON data.Factory_ID = supplier_factory.Factory_ID  and supplier_bill.Supplier_ID = supplier_factory.Supplier_ID where Date(supplier_bill.Date) >= '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and Date(supplier_bill.Date) <= '" + dateTimePickerTo.Value.ToString("yyyy-MM-dd") + "' and supplier_bill.Supplier_ID=" + supplierId + " and data.Factory_ID=" + factoryId + " and data.Type_ID=" + dr["Type_ID"].ToString() + " and data.Classification='" + dr2["Classification"].ToString() + "' group by data.Sort_ID";
                             MySqlCommand comand3 = new MySqlCommand(query3, dbconnection3);
                             MySqlDataReader dr3 = comand3.ExecuteReader();
                             if (dr3.HasRows)
@@ -387,7 +389,7 @@ namespace MainSystem
                                 while (dr3.Read())
                                 {
                                     totalBillQuantity = Convert.ToDouble(dr3["الكمية"].ToString());
-                                    totalBillCost = Convert.ToDouble(dr3["المبلغ"].ToString())* Convert.ToDouble(dr3["الكمية"].ToString());
+                                    totalBillCost = Convert.ToDouble(dr3["المبلغ"].ToString());// * Convert.ToDouble(dr3["الكمية"].ToString());
 
                                     string query4 = "SELECT sum(supplier_return_bill_details.Total_Meters) as 'الكمية',sum(supplier_return_bill_details.Purchasing_Price) as 'المبلغ',data.Sort_ID FROM supplier_return_bill_details INNER JOIN supplier_return_bill ON supplier_return_bill_details.ReturnBill_ID = supplier_return_bill.ReturnBill_ID INNER JOIN data ON data.Data_ID = supplier_return_bill_details.Data_ID INNER JOIN supplier_factory ON data.Factory_ID = supplier_factory.Factory_ID  and supplier_return_bill.Supplier_ID = supplier_factory.Supplier_ID where Date(supplier_return_bill.Date) >= '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and Date(supplier_return_bill.Date) <= '" + dateTimePickerTo.Value.ToString("yyyy-MM-dd") + "' and supplier_return_bill.Supplier_ID=" + supplierId + " and data.Factory_ID=" + factoryId + " and data.Type_ID=" + dr["Type_ID"].ToString() + " and data.Classification='" + dr2["Classification"].ToString() + "' group by data.Sort_ID";
                                     MySqlCommand comand4 = new MySqlCommand(query4, dbconnection4);
@@ -404,7 +406,7 @@ namespace MainSystem
                                         }
                                     }
                                     dr4.Close();
-
+                              
                                     if (dr3["Sort_ID"].ToString() == "1")
                                     {
                                         dataGridView1.Rows[n].Cells["QuantityF1"].Value = totalBillQuantity - totalReturnsQuantity;
@@ -439,15 +441,30 @@ namespace MainSystem
                                         BillCostS3 += totalBillCost - totalReturnsCost;
                                     }
                                 }
+                        
                             }
                             dr3.Close();
+                            if (dr[1].ToString() == "9")
+                            {
+                                string x = getTotalDecorCost(supplierId, factoryId, dr2["Classification"].ToString());
+                                string[] arr = x.Split(',');
+                                dataGridView1.Rows[n].Cells["QuantityF4"].Value = arr[0];
+                                dataGridView1.Rows[n].Cells["CostF4"].Value = arr[1];
+                                BillQuantityS4 += Convert.ToDouble(arr[0]);
+                                BillCostS4 += Convert.ToDouble(arr[1]);
 
-                            dataGridView1.Rows[n].Cells["TotalQuantity"].Value = totalFQuantity;
-                            dataGridView1.Rows[n].Cells["TotalCost"].Value = totalFCost;
+                                dataGridView1.Rows[n].Cells["TotalQuantity"].Value = BillQuantityS4;
+                                dataGridView1.Rows[n].Cells["TotalCost"].Value = BillCostS4;
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[n].Cells["TotalQuantity"].Value = totalFQuantity;
+                                dataGridView1.Rows[n].Cells["TotalCost"].Value = totalFCost;
+                            }
                         }
                     }
                     dr2.Close();
-
+                
 
                     n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells["Descripe"].Value = "الاجمالى";
@@ -461,12 +478,18 @@ namespace MainSystem
                     dataGridView1.Rows[n].Cells["CostF2"].Value = BillCostS2;
                     dataGridView1.Rows[n].Cells["QuantityF3"].Value = BillQuantityS3;
                     dataGridView1.Rows[n].Cells["CostF3"].Value = BillCostS3;
-                    dataGridView1.Rows[n].Cells["TotalQuantity"].Value = BillQuantityS1 + BillQuantityS2 + BillQuantityS3;
-                    dataGridView1.Rows[n].Cells["TotalCost"].Value = BillCostS1 + BillCostS2 + BillCostS3;
+                    dataGridView1.Rows[n].Cells["QuantityF4"].Value = BillQuantityS4;
+                    dataGridView1.Rows[n].Cells["CostF4"].Value = BillCostS4;
+                    dataGridView1.Rows[n].Cells["TotalQuantity"].Value = BillQuantityS1 + BillQuantityS2 + BillQuantityS3+ BillQuantityS4;
+                    dataGridView1.Rows[n].Cells["TotalCost"].Value = BillCostS1 + BillCostS2 + BillCostS3+ BillCostS4;
+                    totalq+= BillQuantityS1 + BillQuantityS2 + BillQuantityS3 + BillQuantityS4;
+                    totalc += BillCostS1 + BillCostS2 + BillCostS3 + BillCostS4;
                 }
             }
             dr.Close();
             #endregion
+            txtTotalQuantity.Text = totalq.ToString();
+            txtTotalCost.Text = totalc.ToString();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -478,7 +501,7 @@ namespace MainSystem
                     List<SupplierType_Items> bi = new List<SupplierType_Items>();
                     for (int i = 0; i < dataGridView1.RowCount; i++)
                     {
-                        string descripe = "", QS1 = "", CS1 = "", QS2 = "", CS2 = "", QS3 = "", CS3 = "", QF = "", CF = "";
+                        string descripe = "", QS1 = "", CS1 = "", QS2 = "", CS2 = "", QS3 = "", CS3 = "", QS4 = "", CS4 = "", QF = "", CF = "";
 
                         if (dataGridView1.Rows[i].Cells["Descripe"].Value != null)
                         {
@@ -496,6 +519,10 @@ namespace MainSystem
                         {
                             QS3 = dataGridView1.Rows[i].Cells["QuantityF3"].Value.ToString();
                         }
+                        if (dataGridView1.Rows[i].Cells["QuantityF4"].Value != null)
+                        {
+                            QS4 = dataGridView1.Rows[i].Cells["QuantityF4"].Value.ToString();
+                        }
                         if (dataGridView1.Rows[i].Cells["CostF1"].Value != null)
                         {
                             CS1 = dataGridView1.Rows[i].Cells["CostF1"].Value.ToString();
@@ -508,6 +535,10 @@ namespace MainSystem
                         {
                             CS3 = dataGridView1.Rows[i].Cells["CostF3"].Value.ToString();
                         }
+                        if (dataGridView1.Rows[i].Cells["CostF4"].Value != null)
+                        {
+                            CS4 = dataGridView1.Rows[i].Cells["CostF4"].Value.ToString();
+                        }
                         if (dataGridView1.Rows[i].Cells["TotalQuantity"].Value != null)
                         {
                             QF = dataGridView1.Rows[i].Cells["TotalQuantity"].Value.ToString();
@@ -516,11 +547,11 @@ namespace MainSystem
                         {
                             CF = dataGridView1.Rows[i].Cells["TotalCost"].Value.ToString();
                         }
-                        SupplierType_Items item = new SupplierType_Items() { Description = descripe, CostS1 = CS1, CostS2 = CS2, CostS3 = CS3, CostSF = CF, QuantityS1 = QS1, QuantityS2 = QS2, QuantityS3 = QS3, QuantitySF = QF };
+                        SupplierType_Items item = new SupplierType_Items() { Description = descripe, CostS1 = CS1, CostS2 = CS2, CostS3 = CS3, CostS4 = CS4, CostSF = CF, QuantityS1 = QS1, QuantityS2 = QS2, QuantityS3 = QS3, QuantityS4 = QS4, QuantitySF = QF };
                         bi.Add(item);
                     }
                     Report_SupplierType f = new Report_SupplierType();
-                    f.PrintInvoice(comSupplier.Text, comFactory.Text, dateTimePickerFrom.Value.Date.ToString(), dateTimePickerTo.Value.Date.ToString(), bi);
+                    f.PrintInvoice(comSupplier.Text, comFactory.Text, dateTimePickerFrom.Value.Date.ToString(), dateTimePickerTo.Value.Date.ToString(),Convert.ToDouble(txtTotalQuantity.Text),Convert.ToDouble(txtTotalCost.Text), bi);
                     f.ShowDialog();
                 }
                 catch (Exception ex)
@@ -534,6 +565,44 @@ namespace MainSystem
             }
         }
 
+
+        public string getTotalDecorCost(int supplierId,int factoryId,string classv)
+        {
+            double totalReturnsQuantity=0, totalReturnsCost=0, totalQuantity = 0, totalCost = 0;
+            string query4 = "SELECT sum(supplier_return_bill_details.Total_Meters) as 'الكمية',sum(supplier_return_bill_details.Purchasing_Price*supplier_return_bill_details.Total_Meters) as 'المبلغ' FROM supplier_return_bill_details INNER JOIN supplier_return_bill ON supplier_return_bill_details.ReturnBill_ID = supplier_return_bill.ReturnBill_ID INNER JOIN data ON data.Data_ID = supplier_return_bill_details.Data_ID INNER JOIN supplier_factory ON data.Factory_ID = supplier_factory.Factory_ID  and supplier_return_bill.Supplier_ID = supplier_factory.Supplier_ID where Date(supplier_return_bill.Date) >= '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and Date(supplier_return_bill.Date) <= '" + dateTimePickerTo.Value.ToString("yyyy-MM-dd") + "' and supplier_return_bill.Supplier_ID=" + supplierId + " and data.Factory_ID=" + factoryId + " and data.Type_ID=9  and data.Classification='" +classv + "' group by data.Classification";
+            MySqlCommand comand4 = new MySqlCommand(query4, dbconnection4);
+            MySqlDataReader dr4 = comand4.ExecuteReader();
+            if (dr4.HasRows)
+            {
+                while (dr4.Read())
+                {
+                    if (dr4["المبلغ"].ToString() != "")
+                    {
+                        totalReturnsQuantity = Convert.ToDouble(dr4["الكمية"].ToString());
+                        totalReturnsCost = Convert.ToDouble(dr4["المبلغ"].ToString());// * Convert.ToDouble(dr4["الكمية"].ToString());
+                    }
+                }
+            }
+            dr4.Close();
+            query4 = "SELECT sum(supplier_bill_details.Total_Meters) as 'الكمية',sum(supplier_bill_details.Purchasing_Price*supplier_bill_details.Total_Meters) as 'المبلغ' FROM supplier_bill_details INNER JOIN supplier_bill ON supplier_bill_details.Bill_ID = supplier_bill.Bill_ID INNER JOIN data ON data.Data_ID = supplier_bill_details.Data_ID INNER JOIN supplier_factory ON data.Factory_ID = supplier_factory.Factory_ID  and supplier_bill.Supplier_ID = supplier_factory.Supplier_ID where Date(supplier_bill.Date) >= '" + dateTimePickerFrom.Value.ToString("yyyy-MM-dd") + "' and Date(supplier_bill.Date) <= '" + dateTimePickerTo.Value.ToString("yyyy-MM-dd") + "' and supplier_bill.Supplier_ID=" + supplierId + " and data.Factory_ID=" + factoryId + " and data.Type_ID=9  and data.Classification='" + classv + "' group by data.Classification";
+            comand4 = new MySqlCommand(query4, dbconnection4);
+            dr4 = comand4.ExecuteReader();
+            if (dr4.HasRows)
+            {
+                while (dr4.Read())
+                {
+                    if (dr4["المبلغ"].ToString() != "")
+                    {
+                        totalQuantity = Convert.ToDouble(dr4["الكمية"].ToString());
+                        totalCost = Convert.ToDouble(dr4["المبلغ"].ToString());// * Convert.ToDouble(dr4["الكمية"].ToString());
+                    }
+                }
+            }
+            dr4.Close();
+            totalQuantity -= totalReturnsQuantity;
+            totalCost -= totalReturnsCost;
+            return totalQuantity + "," + totalCost;
+        }
         public XtraTabPage getTabPage(XtraTabControl tabControl, string text)
         {
             for (int i = 0; i < tabControl.TabPages.Count; i++)
