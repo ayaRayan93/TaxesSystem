@@ -140,7 +140,7 @@ namespace MainSystem
                                 panelUpdateBankTransfer.Dock = DockStyle.Fill;
 
                                 panelUpdateBankTransfer.Controls.Clear();
-                                BankTransfers_Update form = new BankTransfers_Update(selRow);
+                                BankTransfers_Update2 form = new BankTransfers_Update2(selRow);
                                 form.Size = new Size(1059, 638);
                                 form.TopLevel = false;
                                 form.FormBorderStyle = FormBorderStyle.None;
@@ -169,7 +169,7 @@ namespace MainSystem
                                 {
                                     panelUpdateBankTransfer.Controls.Clear();
                                     MainTabPageUpdateBankTransfer.ImageOptions.Image = null;
-                                    BankTransfers_Update form = new BankTransfers_Update(selRow);
+                                    BankTransfers_Update2 form = new BankTransfers_Update2(selRow);
                                     form.Size = new Size(1059, 638);
                                     form.TopLevel = false;
                                     form.FormBorderStyle = FormBorderStyle.None;
@@ -324,11 +324,13 @@ namespace MainSystem
         //functions
         public void search()
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT BankTransfer_ID as 'التسلسل',FromBank_ID,CONCAT(FromBank_Name,',',COALESCE(FromBranch_Name,'')) as 'من',ToBank_ID,CONCAT(ToBank_Name,',',COALESCE(ToBranch_Name,'')) as 'الى',Money as 'المبلغ',Date as 'تاريخ التحويل',Description as 'البيان',Error FROM bank_transfer", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT BankTransfer_ID as 'التسلسل',bank_mainFrom.MainBank_Type as 'From النوع',bank_mainFrom.MainBank_ID as 'FromMainBank_ID',FromBank_ID,CONCAT(FromBank_Name,',',COALESCE(FromBranch_Name,'')) as 'من',bank_mainTo.MainBank_Type as 'To النوع',bank_mainTo.MainBank_ID as 'ToMainBank_ID',ToBank_ID,CONCAT(ToBank_Name,',',COALESCE(ToBranch_Name,'')) as 'الى',Money as 'المبلغ',Date as 'تاريخ التحويل',Description as 'البيان',Error FROM bank_transfer INNER JOIN bank bankFrom ON bank_transfer.FromBank_ID = bankFrom.Bank_ID INNER JOIN bank bankTo ON bank_transfer.ToBank_ID = bankTo.Bank_ID INNER JOIN bank_main as bank_mainFrom ON bank_mainFrom.MainBank_ID = bankFrom.MainBank_ID INNER JOIN bank_main as bank_mainTo ON bank_mainTo.MainBank_ID = bankTo.MainBank_ID", conn);
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
 
             gridControl1.DataSource = sourceDataSet.Tables[0];
+            gridView1.Columns["FromMainBank_ID"].Visible = false;
+            gridView1.Columns["ToMainBank_ID"].Visible = false;
             gridView1.Columns["FromBank_ID"].Visible = false;
             gridView1.Columns["ToBank_ID"].Visible = false;
             gridView1.Columns["Error"].Visible = false;

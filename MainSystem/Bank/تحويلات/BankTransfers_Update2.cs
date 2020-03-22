@@ -20,16 +20,18 @@ namespace MainSystem
         int[] arrOFPhaatPlus;
         int[] arrOFPhaatMinus;
         int[] arrPaidMoneyPlus;
+        DataRowView selRow;
         bool flag = false;
         bool flagCategoriesSuccess = false;
         bool fromMainLoad = false;
         bool fromSafeLoad = false;
         bool toMainLoad = false;
 
-        public BankTransfers_Update2()
+        public BankTransfers_Update2(DataRowView SelRow)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            selRow = SelRow;
             arrOFPhaatPlus = new int[9];
             arrOFPhaatMinus = new int[9];
             arrPaidMoneyPlus = new int[9];
@@ -37,19 +39,97 @@ namespace MainSystem
 
         private void BankTransfers_Record_Load(object sender, EventArgs e)
         {
-            if (UserControl.userType == 3)
+            try
             {
-                radFromSafe.Enabled = false;
-                radFromBank.Enabled = false;
-                radToBank.Enabled = false;
-                radToSafe.Enabled = false;
-                comFromMain.Enabled = false;
-                comFromBank.Enabled = false;
-                comToMain.Enabled = false;
-                comToBank.Enabled = false;
-                radFromSafe.Checked = true;
-                radToSafe.Checked = true;
+                dbconnection.Open();
+                
+                if (selRow["From النوع"].ToString() == "خزينة")
+                {
+                    radFromSafe.Checked = true;
+                }
+                else if (selRow["From النوع"].ToString() == "حساب بنكى")
+                {
+                    radFromBank.Checked = true;
+                }
+
+                if (selRow["To النوع"].ToString() == "خزينة")
+                {
+                    radToSafe.Checked = true;
+                }
+                else if (selRow["To النوع"].ToString() == "حساب بنكى")
+                {
+                    radToBank.Checked = true;
+                }
+
+                comFromMain.SelectedValue = selRow["FromMainBank_ID"].ToString();
+                comToMain.SelectedValue = selRow["ToMainBank_ID"].ToString();
+                comFromBank.SelectedValue = selRow["FromBank_ID"].ToString();
+                comToBank.SelectedValue = selRow["ToBank_ID"].ToString();
+                txtMoney.Text = selRow["المبلغ"].ToString();
+                txtDescription.Text = selRow["البيان"].ToString();
+
+                dbconnection.Open();
+                string query = "select * from transfer_categories_money where BankTransfer_ID=" + selRow[0].ToString();
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                MySqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    t200.Text = dr["a200"].ToString();
+                    if (dr["a200"].ToString() != "")
+                    {
+                        arrPaidMoneyPlus[0] = Convert.ToInt32(dr["a200"].ToString());
+                    }
+                    t100.Text = dr["a100"].ToString();
+                    if (dr["a100"].ToString() != "")
+                    {
+                        arrPaidMoneyPlus[1] = Convert.ToInt32(dr["a100"].ToString());
+                    }
+                    t50.Text = dr["a50"].ToString();
+                    if (dr["a50"].ToString() != "")
+                    {
+                        arrPaidMoneyPlus[2] = Convert.ToInt32(dr["a50"].ToString());
+                    }
+                    t20.Text = dr["a20"].ToString();
+                    if (dr["a20"].ToString() != "")
+                    {
+                        arrPaidMoneyPlus[3] = Convert.ToInt32(dr["a20"].ToString());
+                    }
+                    t10.Text = dr["a10"].ToString();
+                    if (dr["a10"].ToString() != "")
+                    {
+                        arrPaidMoneyPlus[4] = Convert.ToInt32(dr["a10"].ToString());
+                    }
+                    t5.Text = dr["a5"].ToString();
+                    if (dr["a5"].ToString() != "")
+                    {
+                        arrPaidMoneyPlus[5] = Convert.ToInt32(dr["a5"].ToString());
+                    }
+                    t1.Text = dr["a1"].ToString();
+                    if (dr["a1"].ToString() != "")
+                    {
+                        arrPaidMoneyPlus[6] = Convert.ToInt32(dr["a1"].ToString());
+                    }
+                    tH.Text = dr["aH"].ToString();
+                    if (dr["aH"].ToString() != "")
+                    {
+                        arrPaidMoneyPlus[7] = Convert.ToInt32(dr["aH"].ToString());
+                    }
+                    tQ.Text = dr["aQ"].ToString();
+                    if (dr["aQ"].ToString() != "")
+                    {
+                        arrPaidMoneyPlus[8] = Convert.ToInt32(dr["aQ"].ToString());
+                    }
+                }
+                dr.Close();
+                dbconnection.Close();
+
+                loaded = true;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
 
         private void radFromSafe_CheckedChanged(object sender, EventArgs e)
@@ -267,28 +347,6 @@ namespace MainSystem
 
         private void comFromBank_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (fromSafeLoad)
-            {
-                try
-                {
-                    if (comFromBank.SelectedValue != null)
-                    {
-                        dbconnection.Open();
-                        string query = "select Bank_Stock from bank where Bank_ID=" + comFromBank.SelectedValue;
-                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                        txtMoney.Text = comand.ExecuteScalar().ToString();
-                    }
-                    else
-                    {
-                        txtMoney.Text = "";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                dbconnection.Close();
-            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -297,163 +355,117 @@ namespace MainSystem
             {
                 if (comFromBank.SelectedIndex != -1 && comToBank.SelectedIndex != -1 && txtMoney.Text != "")
                 {
-                    if ((comFromBank.Text) != (comToBank.Text))
+                    dbconnection.Open();
+                    string query = "select Bank_Stock from bank where Bank_ID=" + comFromBank.SelectedValue;
+                    MySqlCommand comand = new MySqlCommand(query, dbconnection);
+                    double FromBank_Stock = Convert.ToDouble(comand.ExecuteScalar().ToString());
+                    FromBank_Stock += Convert.ToDouble(selRow["المبلغ"].ToString());
+
+                    query = "select Bank_Stock from bank where Bank_ID=" + comToBank.SelectedValue;
+                    comand = new MySqlCommand(query, dbconnection);
+                    double ToBank_Stock = Convert.ToDouble(comand.ExecuteScalar().ToString());
+                    ToBank_Stock -= Convert.ToDouble(selRow["المبلغ"].ToString());
+
+                    double money = 0;
+                    if (double.TryParse(txtMoney.Text, out money))
                     {
-                        dbconnection.Open();
-                        string query = "select Bank_Stock from bank where Bank_ID=" + comFromBank.SelectedValue;
-                        MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                        double FromBank_Stock = Convert.ToDouble(comand.ExecuteScalar().ToString());
-
-                        query = "select Bank_Stock from bank where Bank_ID=" + comToBank.SelectedValue;
-                        comand = new MySqlCommand(query, dbconnection);
-                        double ToBank_Stock = Convert.ToDouble(comand.ExecuteScalar().ToString());
-
-                        double money = 0;
-                        if (double.TryParse(txtMoney.Text, out money))
+                        if (money > FromBank_Stock)
                         {
-                            if (money > FromBank_Stock)
-                            {
-                                MessageBox.Show("لا يوجد ما يكفى");
-                                dbconnection.Close();
-                                return;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("المبلغ المدفوع يجب ان يكون عدد");
+                            MessageBox.Show("لا يوجد ما يكفى");
                             dbconnection.Close();
                             return;
                         }
-
-                        if (!flagCategoriesSuccess)
-                        {
-                            if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                            {
-                                return;
-                            }
-                        }
-
-                        int FromBranchId = 0, ToBranchId = 0;
-                        string FromBranchName = "", ToBranchName = "";
-                        if (radFromSafe.Checked)
-                        {
-                            string q = "SELECT Branch_ID FROM bank where Bank_ID=" + comFromBank.SelectedValue;
-                            MySqlCommand command = new MySqlCommand(q, dbconnection);
-                            FromBranchId = Convert.ToInt16(command.ExecuteScalar().ToString());
-
-                            q = "SELECT Branch_Name FROM bank where Bank_ID=" + comFromBank.SelectedValue;
-                            command = new MySqlCommand(q, dbconnection);
-                            FromBranchName = command.ExecuteScalar().ToString();
-                        }
-
-                        if (radToSafe.Checked)
-                        {
-                            string q = "SELECT Branch_ID FROM bank where Bank_ID=" + comToBank.SelectedValue;
-                            MySqlCommand command = new MySqlCommand(q, dbconnection);
-                            ToBranchId = Convert.ToInt16(command.ExecuteScalar().ToString());
-
-                            q = "SELECT Branch_Name FROM bank where Bank_ID=" + comToBank.SelectedValue;
-                            command = new MySqlCommand(q, dbconnection);
-                            ToBranchName = command.ExecuteScalar().ToString();
-                        }
-
-                        string q2 = "UPDATE bank SET Bank_Stock = " + (FromBank_Stock - money) + " where Bank_ID=" + comFromBank.SelectedValue;
-                        MySqlCommand command2 = new MySqlCommand(q2, dbconnection);
-                        command2.ExecuteNonQuery();
-
-                        q2 = "UPDATE bank SET Bank_Stock = " + (ToBank_Stock + money) + " where Bank_ID=" + comToBank.SelectedValue;
-                        command2 = new MySqlCommand(q2, dbconnection);
-                        command2.ExecuteNonQuery();
-
-                        MySqlCommand com = dbconnection.CreateCommand();
-                        com.CommandText = "INSERT INTO bank_Transfer (FromBranch_ID,FromBranch_Name,FromBank_ID,FromBank_Name,ToBranch_ID,ToBranch_Name,ToBank_ID,ToBank_Name,Money,Date,Description,Error) VALUES (@FromBranch_ID,@FromBranch_Name,@FromBank_ID,@FromBank_Name,@ToBranch_ID,@ToBranch_Name,@ToBank_ID,@ToBank_Name,@Money,@Date,@Description,@Error)";
-                        if (radFromSafe.Checked)
-                        {
-                            com.Parameters.Add("@FromBranch_ID", MySqlDbType.Int16, 11).Value = FromBranchId;
-                            com.Parameters.Add("@FromBranch_Name", MySqlDbType.VarChar, 255).Value = FromBranchName;
-                        }
-                        else
-                        {
-                            com.Parameters.Add("@FromBranch_ID", MySqlDbType.Int16, 11).Value = null;
-                            com.Parameters.Add("@FromBranch_Name", MySqlDbType.VarChar, 255).Value = null;
-                        }
-                        com.Parameters.Add("@FromBank_ID", MySqlDbType.Int16, 11).Value = comFromBank.SelectedValue;
-                        com.Parameters.Add("@FromBank_Name", MySqlDbType.VarChar, 255).Value = comFromBank.Text;
-                        if (radToSafe.Checked)
-                        {
-                            com.Parameters.Add("@ToBranch_ID", MySqlDbType.Int16, 11).Value = ToBranchId;
-                            com.Parameters.Add("@ToBranch_Name", MySqlDbType.VarChar, 255).Value = ToBranchName;
-                        }
-                        else
-                        {
-                            com.Parameters.Add("@ToBranch_ID", MySqlDbType.Int16, 11).Value = null;
-                            com.Parameters.Add("@ToBranch_Name", MySqlDbType.VarChar, 255).Value = null;
-                        }
-                        com.Parameters.Add("@ToBank_ID", MySqlDbType.Int16, 11).Value = comToBank.SelectedValue;
-                        com.Parameters.Add("@ToBank_Name", MySqlDbType.VarChar, 255).Value = comToBank.Text;
-                        com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = money;
-                        com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-                        com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescription.Text;
-                        com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
-                        com.ExecuteNonQuery();
-
-                        //////////record adding/////////////
-                        query = "select BankTransfer_ID from bank_Transfer order by BankTransfer_ID desc limit 1";
-                        com = new MySqlCommand(query, dbconnection);
-                        string bankTransferID = com.ExecuteScalar().ToString();
-
-                        query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
-                        com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                        com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "bank_Transfer";
-                        com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "اضافة";
-                        com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = bankTransferID;
-                        com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-                        com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
-                        com.ExecuteNonQuery();
-                        //////////////////////
-
-                        query = "insert into transfer_categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,BankTransfer_ID) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@BankTransfer_ID)";
-                        com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[0];
-                        com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[1];
-                        com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[2];
-                        com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[3];
-                        com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[4];
-                        com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[5];
-                        com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[6];
-                        com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[7];
-                        com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[8];
-                        com.Parameters.Add("@BankTransfer_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt32(bankTransferID);
-                        com.ExecuteNonQuery();
-
-                        dbconnection.Close();
-                        flagCategoriesSuccess = false;
-
-                        clear();
-                        t200.Text = "";
-                        t100.Text = "";
-                        t50.Text = "";
-                        t20.Text = "";
-                        t10.Text = "";
-                        t5.Text = "";
-                        t1.Text = "";
-                        tH.Text = "";
-                        tQ.Text = "";
-                        PaidMoney.Text = "0";
-
-                        for (int i = 0; i < arrPaidMoneyPlus.Length; i++)
-                            arrPaidMoneyPlus[i] = 0;
-                        for (int i = 0; i < arrOFPhaatPlus.Length; i++)
-                            arrOFPhaatPlus[i] = 0;
-                        for (int i = 0; i < arrOFPhaatMinus.Length; i++)
-                            arrOFPhaatMinus[i] = 0;
-                        xtraTabPage.ImageOptions.Image = null;
                     }
                     else
                     {
-                        MessageBox.Show("لا يمكنك التحويل الى نفس المصدر");
+                        MessageBox.Show("المبلغ المدفوع يجب ان يكون عدد");
+                        dbconnection.Close();
+                        return;
                     }
+
+                    Form prompt = new Form()
+                    {
+                        Width = 500,
+                        Height = 220,
+                        FormBorderStyle = FormBorderStyle.FixedDialog,
+                        Text = "",
+                        StartPosition = FormStartPosition.CenterScreen,
+                        MaximizeBox = false,
+                        MinimizeBox = false
+                    };
+                    Label textLabel = new Label() { Left = 340, Top = 20, Text = "ما هو سبب التعديل؟" };
+                    TextBox textBox = new TextBox() { Left = 50, Top = 50, Width = 385, Multiline = true, Height = 80, RightToLeft = RightToLeft };
+                    Button confirmation = new Button() { Text = "تأكيد", Left = 200, Width = 100, Top = 140, DialogResult = DialogResult.OK };
+                    prompt.Controls.Add(textBox);
+                    prompt.Controls.Add(confirmation);
+                    prompt.Controls.Add(textLabel);
+                    prompt.AcceptButton = confirmation;
+                    if (prompt.ShowDialog() == DialogResult.OK)
+                    {
+                        if (textBox.Text != "")
+                        {
+                            if (!flagCategoriesSuccess)
+                            {
+                                if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "تنبية", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                                {
+                                    return;
+                                }
+                            }
+
+                            string q = "UPDATE bank SET Bank_Stock = " + (FromBank_Stock - money) + " where Bank_ID=" + comFromBank.SelectedValue;
+                            MySqlCommand command = new MySqlCommand(q, dbconnection);
+                            command.ExecuteNonQuery();
+
+                            q = "UPDATE bank SET Bank_Stock = " + (ToBank_Stock + money) + " where Bank_ID=" + comToBank.SelectedValue;
+                            command = new MySqlCommand(q, dbconnection);
+                            command.ExecuteNonQuery();
+
+                            MySqlCommand com = dbconnection.CreateCommand();
+                            com.CommandText = "update bank_Transfer set Money=@Money,Description=@Description where BankTransfer_ID=" + selRow["التسلسل"].ToString();
+                            com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = money;
+                            com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescription.Text;
+                            com.ExecuteNonQuery();
+
+                            //////////record adding/////////////
+                            query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
+                            com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "bank_Transfer";
+                            com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "تعديل";
+                            com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = selRow["التسلسل"].ToString();
+                            com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
+                            com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
+                            com.ExecuteNonQuery();
+                            //////////////////////
+
+                            query = "update transfer_categories_money set a200=@a200,a100=@a100,a50=@a50,a20=@a20,a10=@a10,a5=@a5,a1=@a1,aH=@aH,aQ=@aQ where BankTransfer_ID=" + selRow[0].ToString();
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[0];
+                            com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[1];
+                            com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[2];
+                            com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[3];
+                            com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[4];
+                            com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[5];
+                            com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[6];
+                            com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[7];
+                            com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoneyPlus[8];
+                            com.ExecuteNonQuery();
+
+                            dbconnection.Close();
+                            flagCategoriesSuccess = false;
+                            for (int i = 0; i < arrPaidMoneyPlus.Length; i++)
+                                arrPaidMoneyPlus[i] = 0;
+
+                            xtraTabPage.ImageOptions.Image = null;
+                            MainForm.tabControlBank.TabPages.Remove(BankTransfers_Report.MainTabPageUpdateBankTransfer);
+                        }
+                        else
+                        {
+                            MessageBox.Show("يجب كتابة السبب");
+                        }
+                    }
+                    else
+                    { }
                 }
                 else
                 {
@@ -728,7 +740,7 @@ namespace MainSystem
             {
                 if (loaded)
                 {
-                    xtraTabPage = getTabPage("tabPageRecordBankTransfer");
+                    xtraTabPage = getTabPage("tabPageUpdateBankTransfer");
                     if (!IsClear())
                     {
                         xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;

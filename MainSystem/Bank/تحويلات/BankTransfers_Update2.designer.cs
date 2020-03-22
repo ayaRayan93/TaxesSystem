@@ -638,6 +638,7 @@
             // 
             // comToMain
             // 
+            this.comToMain.Enabled = false;
             this.comToMain.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comToMain.FormattingEnabled = true;
             this.comToMain.Location = new System.Drawing.Point(36, 41);
@@ -686,6 +687,7 @@
             // 
             // comToBank
             // 
+            this.comToBank.Enabled = false;
             this.comToBank.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comToBank.FormattingEnabled = true;
             this.comToBank.Location = new System.Drawing.Point(36, 93);
@@ -696,6 +698,7 @@
             // 
             // radToBank
             // 
+            this.radToBank.Enabled = false;
             this.radToBank.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.radToBank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radToBank.Location = new System.Drawing.Point(12, 12);
@@ -709,6 +712,7 @@
             // 
             // radToSafe
             // 
+            this.radToSafe.Enabled = false;
             this.radToSafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.radToSafe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radToSafe.Location = new System.Drawing.Point(223, 12);
@@ -905,6 +909,7 @@
             // 
             // comFromMain
             // 
+            this.comFromMain.Enabled = false;
             this.comFromMain.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.comFromMain.FormattingEnabled = true;
             this.comFromMain.Location = new System.Drawing.Point(36, 41);
@@ -947,6 +952,7 @@
             // 
             // comFromBank
             // 
+            this.comFromBank.Enabled = false;
             this.comFromBank.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comFromBank.FormattingEnabled = true;
             this.comFromBank.Location = new System.Drawing.Point(36, 93);
@@ -958,6 +964,7 @@
             // 
             // radFromBank
             // 
+            this.radFromBank.Enabled = false;
             this.radFromBank.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.radFromBank.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radFromBank.Location = new System.Drawing.Point(12, 12);
@@ -971,6 +978,7 @@
             // 
             // radFromSafe
             // 
+            this.radFromSafe.Enabled = false;
             this.radFromSafe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.radFromSafe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
             this.radFromSafe.Location = new System.Drawing.Point(216, 12);
@@ -1383,7 +1391,7 @@
             this.panel1.Size = new System.Drawing.Size(884, 600);
             this.panel1.TabIndex = 17;
             // 
-            // BankTransfers_Record2
+            // BankTransfers_Update2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1391,7 +1399,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.Name = "BankTransfers_Record2";
+            this.Name = "BankTransfers_Update2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BankTransfers_Record";
             this.Load += new System.EventHandler(this.BankTransfers_Record_Load);
