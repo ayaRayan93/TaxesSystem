@@ -37,11 +37,11 @@ namespace MainSystem
             string query = "";
             if (UserControl.userType == 1 || UserControl.userType == 7)
             {
-                query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة'";
             }
             else
             {
-                query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + UserControl.EmpBranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + " and Bank_Type='خزينة'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + UserControl.EmpBranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + " and MainBank_Type='خزينة'";
             }
             MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
             DataTable dt = new DataTable();
