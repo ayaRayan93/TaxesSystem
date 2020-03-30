@@ -30,11 +30,11 @@ namespace MainSystem
         XtraTabControl tabControlBank;
         int transitionbranchID = 0;
 
-        public BankDepositDesign_Record(BankDepositAgl_Report form, XtraTabControl MainTabControlBank)
+        public BankDepositDesign_Record()//BankDepositAgl_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
-            tabControlBank = MainTabControlBank;
+           // tabControlBank = MainTabControlBank;
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];

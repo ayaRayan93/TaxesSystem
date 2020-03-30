@@ -519,6 +519,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemDesign_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!MainTabControlBank.Visible)
+                    MainTabControlBank.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "حركة الخزينة");
+                if (xtraTabPage == null)
+                {
+                    MainTabControlBank.TabPages.Add("حركة الخزينة");
+                    xtraTabPage = getTabPage(MainTabControlBank, "حركة الخزينة");
+                }
+
+                xtraTabPage.Controls.Clear();
+                MainTabControlBank.SelectedTabPage = xtraTabPage;
+
+                BankDepositDesign_Record objForm = new BankDepositDesign_Record();
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //functions
         public void bindRecordDepositAglForm(BankDepositAgl_Report form)
         {

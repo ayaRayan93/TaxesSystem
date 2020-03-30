@@ -331,12 +331,19 @@ namespace MainSystem
         {
             int supplierId = Convert.ToInt16(comSupplier.SelectedValue.ToString());
             int factoryId = Convert.ToInt16(comFactory.SelectedValue.ToString());
-            
+            double TBillQuantityS1 = 0;
+            double TBillCostS1 = 0;
+            double TBillQuantityS2 = 0;
+            double TBillCostS2 = 0;
+            double TBillQuantityS3 = 0;
+            double TBillCostS3 = 0;
+            double TBillQuantityS4 = 0;
+            double TBillCostS4 = 0;
             double totalBillQuantity = 0;
             double totalReturnsQuantity = 0;
             double totalBillCost = 0;
             double totalReturnsCost = 0;
-            
+            int n;
             dataGridView1.Rows.Clear();
 
             dbconnection.Open();
@@ -361,7 +368,7 @@ namespace MainSystem
                     double BillQuantityS4 = 0;
                     double BillCostS4 = 0;
 
-                    int n = dataGridView1.Rows.Add();
+                     n = dataGridView1.Rows.Add();
                     dataGridView1.Rows[n].Cells["Descripe"].Value = dr["Type_Name"].ToString();
                     dataGridView1.Rows[n].DefaultCellStyle.BackColor = Color.FromArgb(64, 78, 156);
                     dataGridView1.Rows[n].DefaultCellStyle.ForeColor = Color.White;
@@ -417,6 +424,9 @@ namespace MainSystem
 
                                         BillQuantityS1 += totalBillQuantity - totalReturnsQuantity;
                                         BillCostS1 += totalBillCost - totalReturnsCost;
+
+                                        TBillQuantityS1 += totalBillQuantity - totalReturnsQuantity;
+                                        TBillCostS1 += totalBillCost - totalReturnsCost;
                                     }
                                     else if (dr3["Sort_ID"].ToString() == "2")
                                     {
@@ -428,6 +438,9 @@ namespace MainSystem
 
                                         BillQuantityS2 += totalBillQuantity - totalReturnsQuantity;
                                         BillCostS2 += totalBillCost - totalReturnsCost;
+
+                                        TBillQuantityS2 += totalBillQuantity - totalReturnsQuantity;
+                                        TBillCostS2 += totalBillCost - totalReturnsCost;
                                     }
                                     else if (dr3["Sort_ID"].ToString() == "3")
                                     {
@@ -439,6 +452,9 @@ namespace MainSystem
 
                                         BillQuantityS3 += totalBillQuantity - totalReturnsQuantity;
                                         BillCostS3 += totalBillCost - totalReturnsCost;
+
+                                        TBillQuantityS3 += totalBillQuantity - totalReturnsQuantity;
+                                        TBillCostS3 += totalBillCost - totalReturnsCost;
                                     }
                                 }
                         
@@ -453,6 +469,8 @@ namespace MainSystem
                                 BillQuantityS4 += Convert.ToDouble(arr[0]);
                                 BillCostS4 += Convert.ToDouble(arr[1]);
 
+                                TBillQuantityS4 += Convert.ToDouble(arr[0]);
+                                TBillCostS4 += Convert.ToDouble(arr[1]);
                                 dataGridView1.Rows[n].Cells["TotalQuantity"].Value = BillQuantityS4;
                                 dataGridView1.Rows[n].Cells["TotalCost"].Value = BillCostS4;
                             }
@@ -467,7 +485,7 @@ namespace MainSystem
                 
 
                     n = dataGridView1.Rows.Add();
-                    dataGridView1.Rows[n].Cells["Descripe"].Value = "الاجمالى";
+                    dataGridView1.Rows[n].Cells["Descripe"].Value =   "اجمالي ال"+ dr["Type_Name"].ToString();
                     dataGridView1.Rows[n].DefaultCellStyle.BackColor = Color.LightGray;
                     dataGridView1.Rows[n].DefaultCellStyle.SelectionBackColor = Color.LightSteelBlue;
                     dataGridView1.Rows[n].DefaultCellStyle.SelectionForeColor = Color.Black;
@@ -488,8 +506,25 @@ namespace MainSystem
             }
             dr.Close();
             #endregion
-            txtTotalQuantity.Text = totalq.ToString();
-            txtTotalCost.Text = totalc.ToString();
+            n = dataGridView1.Rows.Add();
+            dataGridView1.Rows[n].Cells["Descripe"].Value = "الاجمالي";
+            dataGridView1.Rows[n].DefaultCellStyle.BackColor = Color.DarkGray;
+            dataGridView1.Rows[n].DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView1.Rows[n].DefaultCellStyle.SelectionBackColor = Color.DarkGray;
+            dataGridView1.Rows[n].DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dataGridView1.Rows[n].Cells["QuantityF1"].Value = TBillQuantityS1;
+            dataGridView1.Rows[n].Cells["CostF1"].Value = TBillCostS1;
+            dataGridView1.Rows[n].Cells["QuantityF2"].Value = TBillQuantityS2;
+            dataGridView1.Rows[n].Cells["CostF2"].Value = TBillCostS2;
+            dataGridView1.Rows[n].Cells["QuantityF3"].Value = TBillQuantityS3;
+            dataGridView1.Rows[n].Cells["CostF3"].Value = TBillCostS3;
+            dataGridView1.Rows[n].Cells["QuantityF4"].Value = TBillQuantityS4;
+            dataGridView1.Rows[n].Cells["CostF4"].Value = TBillCostS4;
+            dataGridView1.Rows[n].Cells["TotalQuantity"].Value = TBillQuantityS1 + TBillQuantityS2 + TBillQuantityS3 + TBillQuantityS4;
+            dataGridView1.Rows[n].Cells["TotalCost"].Value = TBillCostS1 + TBillCostS2 + TBillCostS3 + TBillCostS4;
+            //txtTotalQuantity.Text = totalq.ToString();
+            //txtTotalCost.Text = totalc.ToString();
         }
 
         private void btnReport_Click(object sender, EventArgs e)
@@ -551,7 +586,7 @@ namespace MainSystem
                         bi.Add(item);
                     }
                     Report_SupplierType f = new Report_SupplierType();
-                    f.PrintInvoice(comSupplier.Text, comFactory.Text, dateTimePickerFrom.Value.Date.ToString(), dateTimePickerTo.Value.Date.ToString(),Convert.ToDouble(txtTotalQuantity.Text),Convert.ToDouble(txtTotalCost.Text), bi);
+                    f.PrintInvoice(comSupplier.Text, comFactory.Text, dateTimePickerFrom.Value.Date.ToString(), dateTimePickerTo.Value.Date.ToString(), bi);
                     f.ShowDialog();
                 }
                 catch (Exception ex)
