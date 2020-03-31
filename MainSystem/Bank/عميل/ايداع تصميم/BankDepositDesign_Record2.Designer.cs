@@ -79,12 +79,12 @@
             this.t50 = new System.Windows.Forms.TextBox();
             this.t100 = new System.Windows.Forms.TextBox();
             this.t200 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelOperationNumber = new System.Windows.Forms.Label();
+            this.labelchekNumber = new System.Windows.Forms.Label();
+            this.labDate = new System.Windows.Forms.Label();
+            this.labelDescrip = new System.Windows.Forms.Label();
+            this.labelPaidMoney = new System.Windows.Forms.Label();
+            this.labType = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -119,6 +119,7 @@
             this.label37 = new System.Windows.Forms.Label();
             this.radioAgel = new System.Windows.Forms.RadioButton();
             this.radioCash = new System.Windows.Forms.RadioButton();
+            this.panelContent = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -128,6 +129,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -186,28 +188,17 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.panelContent);
             this.panel1.Controls.Add(this.radioCash);
             this.panel1.Controls.Add(this.radioAgel);
             this.panel1.Controls.Add(this.label37);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.txtOperationNumber);
-            this.panel1.Controls.Add(this.txtCheckNumber);
-            this.panel1.Controls.Add(this.dateEdit1);
-            this.panel1.Controls.Add(this.txtDescrip);
-            this.panel1.Controls.Add(this.txtPaidMoney);
-            this.panel1.Controls.Add(this.cmbBank);
             this.panel1.Controls.Add(this.comDelegate);
             this.panel1.Controls.Add(this.comEngDesign);
             this.panel1.Controls.Add(this.txtClientID);
@@ -748,71 +739,71 @@
             this.t200.TabIndex = 26;
             this.t200.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
-            // label11
+            // labelOperationNumber
             // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(873, 493);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 19);
-            this.label11.TabIndex = 122;
-            this.label11.Text = "رقم العملية";
+            this.labelOperationNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelOperationNumber.AutoSize = true;
+            this.labelOperationNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOperationNumber.Location = new System.Drawing.Point(415, 234);
+            this.labelOperationNumber.Name = "labelOperationNumber";
+            this.labelOperationNumber.Size = new System.Drawing.Size(67, 19);
+            this.labelOperationNumber.TabIndex = 122;
+            this.labelOperationNumber.Text = "رقم العملية";
             // 
-            // label10
+            // labelchekNumber
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(873, 465);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 19);
-            this.label10.TabIndex = 121;
-            this.label10.Text = "رقم الشيك";
+            this.labelchekNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelchekNumber.AutoSize = true;
+            this.labelchekNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelchekNumber.Location = new System.Drawing.Point(415, 206);
+            this.labelchekNumber.Name = "labelchekNumber";
+            this.labelchekNumber.Size = new System.Drawing.Size(62, 19);
+            this.labelchekNumber.TabIndex = 121;
+            this.labelchekNumber.Text = "رقم الشيك";
             // 
-            // label9
+            // labDate
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(873, 442);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(94, 19);
-            this.label9.TabIndex = 120;
-            this.label9.Text = "تاريخ الاستحقاق";
+            this.labDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labDate.AutoSize = true;
+            this.labDate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labDate.Location = new System.Drawing.Point(415, 183);
+            this.labDate.Name = "labDate";
+            this.labDate.Size = new System.Drawing.Size(94, 19);
+            this.labDate.TabIndex = 120;
+            this.labDate.Text = "تاريخ الاستحقاق";
             // 
-            // label8
+            // labelDescrip
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(873, 327);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 19);
-            this.label8.TabIndex = 119;
-            this.label8.Text = "البيان";
+            this.labelDescrip.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelDescrip.AutoSize = true;
+            this.labelDescrip.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescrip.Location = new System.Drawing.Point(415, 68);
+            this.labelDescrip.Name = "labelDescrip";
+            this.labelDescrip.Size = new System.Drawing.Size(38, 19);
+            this.labelDescrip.TabIndex = 119;
+            this.labelDescrip.Text = "البيان";
             // 
-            // label7
+            // labelPaidMoney
             // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(873, 303);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 19);
-            this.label7.TabIndex = 118;
-            this.label7.Text = "المبلغ المدفوع";
+            this.labelPaidMoney.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labelPaidMoney.AutoSize = true;
+            this.labelPaidMoney.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPaidMoney.Location = new System.Drawing.Point(415, 44);
+            this.labelPaidMoney.Name = "labelPaidMoney";
+            this.labelPaidMoney.Size = new System.Drawing.Size(85, 19);
+            this.labelPaidMoney.TabIndex = 118;
+            this.labelPaidMoney.Text = "المبلغ المدفوع";
             // 
-            // label6
+            // labType
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(873, 276);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(47, 19);
-            this.label6.TabIndex = 117;
-            this.label6.Text = "الخزينة";
+            this.labType.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labType.AutoSize = true;
+            this.labType.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labType.Location = new System.Drawing.Point(415, 17);
+            this.labType.Name = "labType";
+            this.labType.Size = new System.Drawing.Size(47, 19);
+            this.labType.TabIndex = 117;
+            this.labType.Text = "الخزينة";
             // 
             // label5
             // 
@@ -969,7 +960,7 @@
             // txtOperationNumber
             // 
             this.txtOperationNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtOperationNumber.Location = new System.Drawing.Point(500, 495);
+            this.txtOperationNumber.Location = new System.Drawing.Point(42, 236);
             this.txtOperationNumber.Name = "txtOperationNumber";
             this.txtOperationNumber.Size = new System.Drawing.Size(367, 20);
             this.txtOperationNumber.TabIndex = 110;
@@ -977,7 +968,7 @@
             // txtCheckNumber
             // 
             this.txtCheckNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCheckNumber.Location = new System.Drawing.Point(500, 467);
+            this.txtCheckNumber.Location = new System.Drawing.Point(42, 208);
             this.txtCheckNumber.Name = "txtCheckNumber";
             this.txtCheckNumber.Size = new System.Drawing.Size(367, 20);
             this.txtCheckNumber.TabIndex = 109;
@@ -986,7 +977,7 @@
             // 
             this.dateEdit1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(500, 439);
+            this.dateEdit1.Location = new System.Drawing.Point(42, 180);
             this.dateEdit1.Name = "dateEdit1";
             this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -998,7 +989,7 @@
             // txtDescrip
             // 
             this.txtDescrip.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDescrip.Location = new System.Drawing.Point(500, 329);
+            this.txtDescrip.Location = new System.Drawing.Point(42, 70);
             this.txtDescrip.Multiline = true;
             this.txtDescrip.Name = "txtDescrip";
             this.txtDescrip.Size = new System.Drawing.Size(367, 106);
@@ -1007,7 +998,7 @@
             // txtPaidMoney
             // 
             this.txtPaidMoney.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPaidMoney.Location = new System.Drawing.Point(500, 301);
+            this.txtPaidMoney.Location = new System.Drawing.Point(42, 42);
             this.txtPaidMoney.Name = "txtPaidMoney";
             this.txtPaidMoney.Size = new System.Drawing.Size(367, 20);
             this.txtPaidMoney.TabIndex = 106;
@@ -1016,7 +1007,7 @@
             // 
             this.cmbBank.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(500, 273);
+            this.cmbBank.Location = new System.Drawing.Point(42, 14);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(367, 21);
             this.cmbBank.TabIndex = 105;
@@ -1219,6 +1210,26 @@
             this.radioCash.Text = "كاش";
             this.radioCash.UseVisualStyleBackColor = false;
             // 
+            // panelContent
+            // 
+            this.panelContent.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panelContent.Controls.Add(this.txtDescrip);
+            this.panelContent.Controls.Add(this.cmbBank);
+            this.panelContent.Controls.Add(this.txtPaidMoney);
+            this.panelContent.Controls.Add(this.dateEdit1);
+            this.panelContent.Controls.Add(this.labelOperationNumber);
+            this.panelContent.Controls.Add(this.txtCheckNumber);
+            this.panelContent.Controls.Add(this.labelchekNumber);
+            this.panelContent.Controls.Add(this.txtOperationNumber);
+            this.panelContent.Controls.Add(this.labDate);
+            this.panelContent.Controls.Add(this.labType);
+            this.panelContent.Controls.Add(this.labelDescrip);
+            this.panelContent.Controls.Add(this.labelPaidMoney);
+            this.panelContent.Location = new System.Drawing.Point(454, 252);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(518, 263);
+            this.panelContent.TabIndex = 129;
+            // 
             // BankDepositDesign_Record2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1227,6 +1238,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BankDepositDesign_Record2";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.BankDepositAgl_Record_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -1238,6 +1250,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panelContent.ResumeLayout(false);
+            this.panelContent.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1273,12 +1287,12 @@
         private System.Windows.Forms.TextBox txtDescrip;
         private System.Windows.Forms.TextBox txtPaidMoney;
         private System.Windows.Forms.ComboBox cmbBank;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelOperationNumber;
+        private System.Windows.Forms.Label labelchekNumber;
+        private System.Windows.Forms.Label labDate;
+        private System.Windows.Forms.Label labelDescrip;
+        private System.Windows.Forms.Label labelPaidMoney;
+        private System.Windows.Forms.Label labType;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -1335,5 +1349,6 @@
         private System.Windows.Forms.RadioButton radioCash;
         private System.Windows.Forms.RadioButton radioAgel;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Panel panelContent;
     }
 }
