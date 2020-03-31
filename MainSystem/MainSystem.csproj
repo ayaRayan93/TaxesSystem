@@ -287,6 +287,12 @@
     <Compile Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record.designer.cs">
       <DependentUpon>BankDepositDesign_Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record2.Designer.cs">
+      <DependentUpon>BankDepositDesign_Record2.cs</DependentUpon>
+    </Compile>
     <Compile Include="CarExpensesReport2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3259,6 +3265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record.resx">
       <DependentUpon>BankDepositDesign_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record2.resx">
+      <DependentUpon>BankDepositDesign_Record2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CarExpensesReport2.resx">
       <DependentUpon>CarExpensesReport2.cs</DependentUpon>

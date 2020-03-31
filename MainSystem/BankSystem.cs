@@ -539,7 +539,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 MainTabControlBank.SelectedTabPage = xtraTabPage;
 
-                BankDepositDesign_Record objForm = new BankDepositDesign_Record();
+                BankDepositDesign_Record2 objForm = new BankDepositDesign_Record2();
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);
