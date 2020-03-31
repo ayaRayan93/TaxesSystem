@@ -514,10 +514,10 @@ namespace MainSystem
             {
                 gridView1.FocusedRowHandle = gridView1.RowCount - 1;
             }
-            query = "SELECT sum(DISTINCT supplier_bill.Total_Price_A) as 'المبلغ' FROM supplier_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID inner join supplier_bill_details on supplier_bill.Bill_ID=supplier_bill_details.Bill_ID inner join data on data.Data_ID=supplier_bill_details.Data_ID where date(supplier_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Factory_ID=" + comFactory.SelectedValue.ToString();
+            query = "SELECT DISTINCT supplier_bill.Value_Additive_Tax FROM supplier_bill INNER JOIN supplier ON supplier.Supplier_ID = supplier_bill.Supplier_ID inner join supplier_bill_details on supplier_bill.Bill_ID=supplier_bill_details.Bill_ID inner join data on data.Data_ID=supplier_bill_details.Data_ID where date(supplier_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and data.Factory_ID=" + comFactory.SelectedValue.ToString();
             MySqlCommand comand = new MySqlCommand(query, dbconnection2);
-            double Total_Price_A = Convert.ToDouble(comand.ExecuteScalar());
-            if (Total_Price_A > totalQuantity)
+            double Value_Additive_Tax = Convert.ToDouble(comand.ExecuteScalar());
+            if (Value_Additive_Tax > 0)
 
             {
                 double taxValue = totalQuantity * 14 / 100;
@@ -528,8 +528,9 @@ namespace MainSystem
                 txtReturn.Text = totalReturnedQuantity.ToString();
                 txtFinal.Text = (totalQuantity - totalReturnedQuantity).ToString();
             }
-            else if (Total_Price_A == totalQuantity)
+            else if (Value_Additive_Tax == 0)
             {
+                txtSale.Text = totalQuantity.ToString();
                 txtReturn.Text = totalReturnedQuantity.ToString();
                 txtFinal.Text = (totalQuantity - totalReturnedQuantity).ToString();
             }

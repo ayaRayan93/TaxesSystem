@@ -658,6 +658,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemDesign = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -3293,7 +3294,8 @@
             this.navBarItem97,
             this.navBarItem98,
             this.navBarItem89,
-            this.navBarItemBankTransitionReport});
+            this.navBarItemBankTransitionReport,
+            this.navBarItemDesign});
             this.navBarControlBankReport.Location = new System.Drawing.Point(841, 0);
             this.navBarControlBankReport.Name = "navBarControlBankReport";
             this.navBarControlBankReport.OptionsNavPane.ExpandedWidth = 160;
@@ -3316,7 +3318,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem91),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem93),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem92),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem94)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem94),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDesign)});
             this.navBarGroupDeposit.Name = "navBarGroupDeposit";
             // 
             // navBarItem90
@@ -6241,6 +6244,14 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
+            // navBarItemDesign
+            // 
+            this.navBarItemDesign.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItemDesign.Appearance.Options.UseFont = true;
+            this.navBarItemDesign.Caption = "ايداع تصميم";
+            this.navBarItemDesign.Name = "navBarItemDesign";
+            this.navBarItemDesign.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDesign_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -6930,6 +6941,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem266;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDeliveryBills;
         private DevExpress.XtraNavBar.NavBarItem navBarItemConfirmDelivery;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemDesign;
     }
 }
 
