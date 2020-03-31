@@ -754,7 +754,7 @@
             this.xtraTabControlMainContainer.Name = "xtraTabControlMainContainer";
             this.xtraTabControlMainContainer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.xtraTabControlMainContainer.SelectedTabPage = this.xtraTabPageMain;
-            this.xtraTabControlMainContainer.Size = new System.Drawing.Size(1033, 712);
+            this.xtraTabControlMainContainer.Size = new System.Drawing.Size(1033, 707);
             this.xtraTabControlMainContainer.TabIndex = 1;
             this.xtraTabControlMainContainer.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageMain,
@@ -786,7 +786,7 @@
             this.xtraTabPageMain.Name = "xtraTabPageMain";
             this.xtraTabPageMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.xtraTabPageMain.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
-            this.xtraTabPageMain.Size = new System.Drawing.Size(1001, 710);
+            this.xtraTabPageMain.Size = new System.Drawing.Size(1001, 705);
             this.xtraTabPageMain.Text = "الرئيسية";
             // 
             // tableLayoutPanel1
@@ -803,7 +803,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1001, 710);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1001, 705);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // panel2
@@ -834,7 +834,7 @@
             this.tcMainContent.Name = "tcMainContent";
             this.tcMainContent.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.tcMainContent.Padding = new System.Windows.Forms.Padding(30);
-            this.tcMainContent.Size = new System.Drawing.Size(1001, 710);
+            this.tcMainContent.Size = new System.Drawing.Size(1001, 705);
             this.tcMainContent.TabIndex = 0;
             this.tcMainContent.Text = "tileControl1";
             // 
@@ -1507,7 +1507,7 @@
             // 
             // navBarGroup6
             // 
-            this.navBarGroup6.Appearance.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
+            this.navBarGroup6.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup6.Appearance.Options.UseFont = true;
             this.navBarGroup6.Caption = "التسليم";
             this.navBarGroup6.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
@@ -3238,7 +3238,7 @@
             this.xtraTabPageBank.Controls.Add(this.MainTabControlBank);
             this.xtraTabPageBank.Controls.Add(this.navBarControlBankReport);
             this.xtraTabPageBank.Name = "xtraTabPageBank";
-            this.xtraTabPageBank.Size = new System.Drawing.Size(1001, 710);
+            this.xtraTabPageBank.Size = new System.Drawing.Size(1001, 705);
             this.xtraTabPageBank.Text = "النقدية والبنوك";
             // 
             // MainTabControlBank
@@ -3257,7 +3257,7 @@
             this.MainTabControlBank.PaintStyleName = "WindowsXP";
             this.MainTabControlBank.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.MainTabControlBank.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
-            this.MainTabControlBank.Size = new System.Drawing.Size(841, 710);
+            this.MainTabControlBank.Size = new System.Drawing.Size(841, 705);
             this.MainTabControlBank.TabIndex = 2;
             this.MainTabControlBank.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
@@ -3300,7 +3300,7 @@
             this.navBarControlBankReport.OptionsNavPane.ShowGroupImageInHeader = true;
             this.navBarControlBankReport.PaintStyleKind = DevExpress.XtraNavBar.NavBarViewKind.NavigationPane;
             this.navBarControlBankReport.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.navBarControlBankReport.Size = new System.Drawing.Size(160, 710);
+            this.navBarControlBankReport.Size = new System.Drawing.Size(160, 705);
             this.navBarControlBankReport.StoreDefaultPaintStyleName = true;
             this.navBarControlBankReport.TabIndex = 3;
             this.navBarControlBankReport.Text = "navBarControl1";
@@ -5910,7 +5910,7 @@
             this.panMain.Location = new System.Drawing.Point(0, 0);
             this.panMain.Margin = new System.Windows.Forms.Padding(0);
             this.panMain.Name = "panMain";
-            this.panMain.Size = new System.Drawing.Size(1033, 754);
+            this.panMain.Size = new System.Drawing.Size(1033, 749);
             this.panMain.TabIndex = 2;
             // 
             // panContent
@@ -5920,7 +5920,7 @@
             this.panContent.Location = new System.Drawing.Point(0, 42);
             this.panContent.Margin = new System.Windows.Forms.Padding(0);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(1033, 712);
+            this.panContent.Size = new System.Drawing.Size(1033, 707);
             this.panContent.TabIndex = 1;
             // 
             // panHeader
@@ -6245,7 +6245,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1033, 754);
+            this.ClientSize = new System.Drawing.Size(1033, 749);
             this.Controls.Add(this.panMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";

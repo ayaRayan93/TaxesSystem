@@ -43,8 +43,10 @@ namespace MainSystem
                 comMain.DisplayMember = dt.Columns["MainExpense_Name"].ToString();
                 comMain.ValueMember = dt.Columns["MainExpense_ID"].ToString();
                 comMain.SelectedIndex = -1;
-                
-                query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
+
+
+                //query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة'";
                 da = new MySqlDataAdapter(query, conn);
                 dt = new DataTable();
                 da.Fill(dt);
@@ -161,7 +163,8 @@ namespace MainSystem
 
             if (comSafe.SelectedValue == null && comSafe.Text == "")
             {
-                qSafe = "select Bank_ID from bank";
+                //qSafe = "select Bank_ID from bank";
+                qSafe = "select bank.Bank_ID from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة'";
             }
             else
             {
