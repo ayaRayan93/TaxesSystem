@@ -203,8 +203,7 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
-
-
+        
         private void radioButtonSafe_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -423,8 +422,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
-
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -432,19 +430,19 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = ((comClient.Text != "" || comEng.Text != "")/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
+                    check = ((radioAgel.Checked || radioCash.Checked) && comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "")/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = ((radioAgel.Checked || radioCash.Checked) && comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = ((radioAgel.Checked || radioCash.Checked) && comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "فيزا")
                 {
-                    check = ((comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtOperationNumber.Text != "");
+                    check = ((radioAgel.Checked || radioCash.Checked) && comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtOperationNumber.Text != "");
                 }
 
                 if (check)
@@ -613,7 +611,7 @@ namespace MainSystem
 
                         dbconnection.Close();
 
-                        IncreaseClientPaied();
+                        //IncreaseClientPaied();
 
                         //print bill
                         printCategoriesBill();
@@ -754,66 +752,10 @@ namespace MainSystem
 
             return flag5;
         }
-
-        public void IncreaseClientPaied()
-        {
-            double paidMoney = Convert.ToDouble(txtPaidMoney.Text);
-            string q1 = "";
-            if (comClient.Text != "")
-            {
-                q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID Is Null";
-            }
-            if (comEng.Text != "")
-            {
-                if (q1 == "")
-                {
-                    q1 = " where Customer_ID=" + comEng.SelectedValue.ToString() + " and Client_ID IS Null";
-                }
-                else
-                {
-                    q1 = " where Client_ID=" + comClient.SelectedValue.ToString() + " and Customer_ID=" + comEng.SelectedValue.ToString();
-                }
-            }
-
-            dbconnection.Open();
-            string query = "select Money from client_rest_money " + q1;
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            if (com.ExecuteScalar() != null)
-            {
-                double restMoney = Convert.ToDouble(com.ExecuteScalar());
-                query = "update client_rest_money set Money=" + (restMoney + paidMoney) + q1;
-                com = new MySqlCommand(query, dbconnection);
-            }
-            else
-            {
-                query = "insert into client_rest_money (Client_ID,Customer_ID,Money) values (@Client_ID,@Customer_ID,@Money)";
-                com = new MySqlCommand(query, dbconnection);
-                if (comClient.Text != "")
-                {
-                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue;
-                }
-                else
-                {
-                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
-                }
-                if (comEng.Text != "")
-                {
-                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = comEng.SelectedValue;
-                }
-                else
-                {
-                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
-                }
-                com.Parameters.Add("@Money", MySqlDbType.Decimal, 10).Value = paidMoney;
-            }
-            com.ExecuteNonQuery();
-            dbconnection.Close();
-
-        }
-
+        
         void printCategoriesBill()
         {
-            Print_AglCategoriesBill_Report f = new Print_AglCategoriesBill_Report();
+            /*Print_AglCategoriesBill_Report f = new Print_AglCategoriesBill_Report();
             if (comClient.Text != "")
             {
                 f.PrintInvoice(DateTime.Now, TransitionID, branchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
@@ -826,31 +768,45 @@ namespace MainSystem
             for (int i = 0; i < arrPaidMoney.Length; i++)
                 arrPaidMoney[i] = arrRestMoney[i] = 0;
             for (int i = 0; i < arrRestMoney.Length; i++)
-                arrRestMoney[i] = arrPaidMoney[i] = 0;
+                arrRestMoney[i] = arrPaidMoney[i] = 0;*/
         }
 
         public int addCustomerDesign()
         {
-
-            string query = "INSERT INTO customer_design(CustomerName,CustomerID,ClientName,ClientID,EngineerName,EngineerID,Date,PaidMoney,BranchBillNumber,BranchName)VALUES(@IDCustomerDesign,@CustomerName,@CustomerID,@ClientName,@ClientID,@EngineerName,@EngineerID,@Date,@PaidMoney,@BranchBillNumber,@BranchName)";
+            //,BranchBillNumber,BranchName
+            string query = "INSERT INTO customer_design(Customer_Name,Customer_ID,Client_Name,Client_ID,Engineer_Name,Engineer_ID,Delegate_ID,Delegate_Name,Date,PaidMoney) VALUES(@Customer_Name,@Customer_ID,@Client_Name,@Client_ID,@Engineer_Name,@Engineer_ID,@Delegate_ID,@Delegate_Name,@Date,@PaidMoney)";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
-            com.Parameters.Add("@CustomerName", MySqlDbType.VarChar, 255).Value = comEng.Text;
-            com.Parameters.Add("@CustomerID", MySqlDbType.Int16, 11).Value = comEng.SelectedValue;
-            com.Parameters.Add("@ClientName", MySqlDbType.VarChar, 255).Value = comClient.Text;
-            com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue;
-            com.Parameters.Add("@EngineerName", MySqlDbType.VarChar, 255).Value = comEngDesign.Text;
-            com.Parameters.Add("@EngineerID", MySqlDbType.Int16, 11).Value = comEngDesign.SelectedValue;
+            if (comEng.SelectedValue != null)
+            {
+                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comEng.Text;
+                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = comEng.SelectedValue;
+            }
+            else
+            {
+                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = null;
+                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
+            }
+            if (comClient.SelectedValue != null)
+            {
+                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = comClient.Text;
+                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue;
+            }
+            else
+            {
+                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = null;
+                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
+            }
+            com.Parameters.Add("@Engineer_Name", MySqlDbType.VarChar, 255).Value = comEngDesign.Text;
+            com.Parameters.Add("@Engineer_ID", MySqlDbType.Int16, 11).Value = comEngDesign.SelectedValue;
+            com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = comDelegate.Text;
+            com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = comDelegate.SelectedValue;
             com.Parameters.Add("@Date", MySqlDbType.Date).Value = DateTime.Now.Date;
-            com.Parameters.Add("@PaidMoney", MySqlDbType.Double).Value = comClient.SelectedValue;
-
+            com.Parameters.Add("@PaidMoney", MySqlDbType.Double).Value = txtPaidMoney.Text;
             com.ExecuteNonQuery();
 
-            query = "select IDCustomerDesign from customer_design order by IDCustomerDesign desc limit 1";
+            query = "select CustomerDesign_ID from customer_design order by CustomerDesign_ID desc limit 1";
             com = new MySqlCommand(query, dbconnection);
             return Convert.ToInt16(com.ExecuteScalar());
-
         }
-
-    
     }
 }

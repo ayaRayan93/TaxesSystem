@@ -301,6 +301,12 @@
             this.xtraTabPageBank = new DevExpress.XtraTab.XtraTabPage();
             this.MainTabControlBank = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControlBankReport = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroupPullOut = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItem95 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem96 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem97 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem98 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPullDesign = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupDeposit = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem90 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem91 = new DevExpress.XtraNavBar.NavBarItem();
@@ -308,11 +314,6 @@
             this.navBarItem92 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem94 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemDesign = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroupPullOut = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem95 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem96 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem97 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem98 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupTransfers = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem89 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupReportBank = new DevExpress.XtraNavBar.NavBarGroup();
@@ -659,7 +660,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemPullDesign = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillsTransitionPaymentTypeReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -3265,7 +3266,7 @@
             // 
             // navBarControlBankReport
             // 
-            this.navBarControlBankReport.ActiveGroup = this.navBarGroupPullOut;
+            this.navBarControlBankReport.ActiveGroup = this.navBarGroup61;
             this.navBarControlBankReport.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControlBankReport.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControlBankReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3297,7 +3298,8 @@
             this.navBarItem89,
             this.navBarItemBankTransitionReport,
             this.navBarItemDesign,
-            this.navBarItemPullDesign});
+            this.navBarItemPullDesign,
+            this.navBarItemBillsTransitionPaymentTypeReport});
             this.navBarControlBankReport.Location = new System.Drawing.Point(841, 0);
             this.navBarControlBankReport.Name = "navBarControlBankReport";
             this.navBarControlBankReport.OptionsNavPane.ExpandedWidth = 160;
@@ -3308,6 +3310,61 @@
             this.navBarControlBankReport.StoreDefaultPaintStyleName = true;
             this.navBarControlBankReport.TabIndex = 3;
             this.navBarControlBankReport.Text = "navBarControl1";
+            // 
+            // navBarGroupPullOut
+            // 
+            this.navBarGroupPullOut.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroupPullOut.Appearance.Options.UseFont = true;
+            this.navBarGroupPullOut.Caption = "سحب";
+            this.navBarGroupPullOut.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem95),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem96),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem97),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem98),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPullDesign)});
+            this.navBarGroupPullOut.Name = "navBarGroupPullOut";
+            // 
+            // navBarItem95
+            // 
+            this.navBarItem95.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItem95.Appearance.Options.UseFont = true;
+            this.navBarItem95.Caption = "فاتورة كاش لعميل";
+            this.navBarItem95.Name = "navBarItem95";
+            this.navBarItem95.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullCash_LinkClicked);
+            // 
+            // navBarItem96
+            // 
+            this.navBarItem96.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItem96.Appearance.Options.UseFont = true;
+            this.navBarItem96.Caption = "لحساب عميل (آجل)";
+            this.navBarItem96.Name = "navBarItem96";
+            this.navBarItem96.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullAgl_LinkClicked);
+            // 
+            // navBarItem97
+            // 
+            this.navBarItem97.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItem97.Appearance.Options.UseFont = true;
+            this.navBarItem97.Caption = "مصروف";
+            this.navBarItem97.Enabled = false;
+            this.navBarItem97.Name = "navBarItem97";
+            this.navBarItem97.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpense_LinkClicked);
+            // 
+            // navBarItem98
+            // 
+            this.navBarItem98.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItem98.Appearance.Options.UseFont = true;
+            this.navBarItem98.Caption = "تحت حساب";
+            this.navBarItem98.Enabled = false;
+            this.navBarItem98.Name = "navBarItem98";
+            this.navBarItem98.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullPayAccount_LinkClicked);
+            // 
+            // navBarItemPullDesign
+            // 
+            this.navBarItemPullDesign.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItemPullDesign.Appearance.Options.UseFont = true;
+            this.navBarItemPullDesign.Caption = "سحب تصميم";
+            this.navBarItemPullDesign.Name = "navBarItemPullDesign";
+            this.navBarItemPullDesign.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullDesign_LinkClicked);
             // 
             // navBarGroupDeposit
             // 
@@ -3373,54 +3430,6 @@
             this.navBarItemDesign.Name = "navBarItemDesign";
             this.navBarItemDesign.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDesign_LinkClicked);
             // 
-            // navBarGroupPullOut
-            // 
-            this.navBarGroupPullOut.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.navBarGroupPullOut.Appearance.Options.UseFont = true;
-            this.navBarGroupPullOut.Caption = "سحب";
-            this.navBarGroupPullOut.Expanded = true;
-            this.navBarGroupPullOut.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem95),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem96),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem97),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem98),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPullDesign)});
-            this.navBarGroupPullOut.Name = "navBarGroupPullOut";
-            // 
-            // navBarItem95
-            // 
-            this.navBarItem95.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItem95.Appearance.Options.UseFont = true;
-            this.navBarItem95.Caption = "فاتورة كاش لعميل";
-            this.navBarItem95.Name = "navBarItem95";
-            this.navBarItem95.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullCash_LinkClicked);
-            // 
-            // navBarItem96
-            // 
-            this.navBarItem96.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItem96.Appearance.Options.UseFont = true;
-            this.navBarItem96.Caption = "لحساب عميل (آجل)";
-            this.navBarItem96.Name = "navBarItem96";
-            this.navBarItem96.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullAgl_LinkClicked);
-            // 
-            // navBarItem97
-            // 
-            this.navBarItem97.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItem97.Appearance.Options.UseFont = true;
-            this.navBarItem97.Caption = "مصروف";
-            this.navBarItem97.Enabled = false;
-            this.navBarItem97.Name = "navBarItem97";
-            this.navBarItem97.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpense_LinkClicked);
-            // 
-            // navBarItem98
-            // 
-            this.navBarItem98.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItem98.Appearance.Options.UseFont = true;
-            this.navBarItem98.Caption = "تحت حساب";
-            this.navBarItem98.Enabled = false;
-            this.navBarItem98.Name = "navBarItem98";
-            this.navBarItem98.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullPayAccount_LinkClicked);
-            // 
             // navBarGroupTransfers
             // 
             this.navBarGroupTransfers.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -3460,8 +3469,10 @@
             this.navBarGroup61.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup61.Appearance.Options.UseFont = true;
             this.navBarGroup61.Caption = "تقارير";
+            this.navBarGroup61.Expanded = true;
             this.navBarGroup61.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBankTransitionReport)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBankTransitionReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillsTransitionPaymentTypeReport)});
             this.navBarGroup61.Name = "navBarGroup61";
             // 
             // navBarItemBankTransitionReport
@@ -6255,13 +6266,13 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
-            // navBarItemPullDesign
+            // navBarItemBillsTransitionPaymentTypeReport
             // 
-            this.navBarItemPullDesign.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.navBarItemPullDesign.Appearance.Options.UseFont = true;
-            this.navBarItemPullDesign.Caption = "سحب تصميم";
-            this.navBarItemPullDesign.Name = "navBarItemPullDesign";
-            this.navBarItemPullDesign.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullDesign_LinkClicked);
+            this.navBarItemBillsTransitionPaymentTypeReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.navBarItemBillsTransitionPaymentTypeReport.Appearance.Options.UseFont = true;
+            this.navBarItemBillsTransitionPaymentTypeReport.Caption = "حركة اليومية";
+            this.navBarItemBillsTransitionPaymentTypeReport.Name = "navBarItemBillsTransitionPaymentTypeReport";
+            this.navBarItemBillsTransitionPaymentTypeReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillsTransitionPaymentTypeReport_LinkClicked);
             // 
             // MainForm
             // 
@@ -6954,6 +6965,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemConfirmDelivery;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDesign;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPullDesign;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemBillsTransitionPaymentTypeReport;
     }
 }
 
