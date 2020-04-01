@@ -120,6 +120,11 @@
             this.radClient = new System.Windows.Forms.RadioButton();
             this.radContractor = new System.Windows.Forms.RadioButton();
             this.radDealer = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtDesignNum = new System.Windows.Forms.TextBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -188,6 +193,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.radioButton2);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.txtDesignNum);
             this.panel1.Controls.Add(this.panelContent);
             this.panel1.Controls.Add(this.radioCash);
             this.panel1.Controls.Add(this.radioAgel);
@@ -242,6 +252,7 @@
             this.txtDescrip.Location = new System.Drawing.Point(34, 104);
             this.txtDescrip.Multiline = true;
             this.txtDescrip.Name = "txtDescrip";
+            this.txtDescrip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtDescrip.Size = new System.Drawing.Size(367, 106);
             this.txtDescrip.TabIndex = 107;
             // 
@@ -252,6 +263,7 @@
             this.cmbBank.FormattingEnabled = true;
             this.cmbBank.Location = new System.Drawing.Point(34, 48);
             this.cmbBank.Name = "cmbBank";
+            this.cmbBank.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cmbBank.Size = new System.Drawing.Size(367, 24);
             this.cmbBank.TabIndex = 105;
             // 
@@ -261,6 +273,7 @@
             this.txtPaidMoney.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidMoney.Location = new System.Drawing.Point(34, 76);
             this.txtPaidMoney.Name = "txtPaidMoney";
+            this.txtPaidMoney.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtPaidMoney.Size = new System.Drawing.Size(367, 23);
             this.txtPaidMoney.TabIndex = 106;
             // 
@@ -276,6 +289,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dateEdit1.Size = new System.Drawing.Size(367, 22);
             this.dateEdit1.TabIndex = 108;
             // 
@@ -296,6 +310,7 @@
             this.txtCheckNumber.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCheckNumber.Location = new System.Drawing.Point(34, 242);
             this.txtCheckNumber.Name = "txtCheckNumber";
+            this.txtCheckNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCheckNumber.Size = new System.Drawing.Size(367, 23);
             this.txtCheckNumber.TabIndex = 109;
             // 
@@ -316,6 +331,7 @@
             this.txtOperationNumber.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtOperationNumber.Location = new System.Drawing.Point(34, 270);
             this.txtOperationNumber.Name = "txtOperationNumber";
+            this.txtOperationNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtOperationNumber.Size = new System.Drawing.Size(367, 23);
             this.txtOperationNumber.TabIndex = 110;
             // 
@@ -369,7 +385,7 @@
             this.radioCash.BackColor = System.Drawing.Color.White;
             this.radioCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioCash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radioCash.Location = new System.Drawing.Point(209, 58);
+            this.radioCash.Location = new System.Drawing.Point(154, 64);
             this.radioCash.Name = "radioCash";
             this.radioCash.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radioCash.Size = new System.Drawing.Size(60, 25);
@@ -383,10 +399,10 @@
             this.radioAgel.BackColor = System.Drawing.Color.White;
             this.radioAgel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioAgel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radioAgel.Location = new System.Drawing.Point(117, 58);
+            this.radioAgel.Location = new System.Drawing.Point(88, 64);
             this.radioAgel.Name = "radioAgel";
             this.radioAgel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioAgel.Size = new System.Drawing.Size(88, 25);
+            this.radioAgel.Size = new System.Drawing.Size(60, 25);
             this.radioAgel.TabIndex = 127;
             this.radioAgel.Text = "آجل";
             this.radioAgel.UseVisualStyleBackColor = false;
@@ -396,7 +412,7 @@
             this.label37.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(306, 64);
+            this.label37.Location = new System.Drawing.Point(229, 67);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(70, 19);
             this.label37.TabIndex = 126;
@@ -1085,6 +1101,7 @@
             this.comDelegate.FormattingEnabled = true;
             this.comDelegate.Location = new System.Drawing.Point(88, 111);
             this.comDelegate.Name = "comDelegate";
+            this.comDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDelegate.Size = new System.Drawing.Size(211, 27);
             this.comDelegate.TabIndex = 98;
             // 
@@ -1095,6 +1112,7 @@
             this.comEngDesign.FormattingEnabled = true;
             this.comEngDesign.Location = new System.Drawing.Point(88, 145);
             this.comEngDesign.Name = "comEngDesign";
+            this.comEngDesign.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comEngDesign.Size = new System.Drawing.Size(211, 27);
             this.comEngDesign.TabIndex = 97;
             // 
@@ -1105,6 +1123,7 @@
             this.txtClientID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClientID.Location = new System.Drawing.Point(565, 145);
             this.txtClientID.Name = "txtClientID";
+            this.txtClientID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientID.Size = new System.Drawing.Size(68, 27);
             this.txtClientID.TabIndex = 96;
             // 
@@ -1116,6 +1135,7 @@
             this.comClient.FormattingEnabled = true;
             this.comClient.Location = new System.Drawing.Point(639, 145);
             this.comClient.Name = "comClient";
+            this.comClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comClient.Size = new System.Drawing.Size(215, 27);
             this.comClient.TabIndex = 95;
             this.comClient.SelectedIndexChanged += new System.EventHandler(this.comClient_SelectedValueChanged);
@@ -1124,6 +1144,7 @@
             // 
             this.labelName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelName.BackColor = System.Drawing.Color.White;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelName.ForeColor = System.Drawing.Color.Red;
             this.labelName.Location = new System.Drawing.Point(535, 145);
             this.labelName.Name = "labelName";
@@ -1141,6 +1162,7 @@
             this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCustomerID.Location = new System.Drawing.Point(565, 111);
             this.txtCustomerID.Name = "txtCustomerID";
+            this.txtCustomerID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCustomerID.Size = new System.Drawing.Size(68, 27);
             this.txtCustomerID.TabIndex = 92;
             // 
@@ -1152,6 +1174,7 @@
             this.comEng.FormattingEnabled = true;
             this.comEng.Location = new System.Drawing.Point(639, 111);
             this.comEng.Name = "comEng";
+            this.comEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comEng.Size = new System.Drawing.Size(215, 27);
             this.comEng.TabIndex = 91;
             this.comEng.SelectedIndexChanged += new System.EventHandler(this.comCustomer_SelectedValueChanged);
@@ -1160,8 +1183,9 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(540, 111);
+            this.label1.Location = new System.Drawing.Point(539, 111);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(19, 21);
@@ -1176,9 +1200,9 @@
             this.panel2.Controls.Add(this.radClient);
             this.panel2.Controls.Add(this.radContractor);
             this.panel2.Controls.Add(this.radDealer);
-            this.panel2.Location = new System.Drawing.Point(517, 57);
+            this.panel2.Location = new System.Drawing.Point(547, 57);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(337, 40);
+            this.panel2.Size = new System.Drawing.Size(315, 40);
             this.panel2.TabIndex = 72;
             // 
             // radEng
@@ -1186,7 +1210,7 @@
             this.radEng.BackColor = System.Drawing.Color.White;
             this.radEng.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radEng.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radEng.Location = new System.Drawing.Point(246, 7);
+            this.radEng.Location = new System.Drawing.Point(228, 7);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(72, 25);
@@ -1194,13 +1218,14 @@
             this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
             this.radEng.UseVisualStyleBackColor = false;
+            this.radEng.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // radClient
             // 
             this.radClient.BackColor = System.Drawing.Color.White;
             this.radClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radClient.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radClient.Location = new System.Drawing.Point(12, 7);
+            this.radClient.Location = new System.Drawing.Point(4, 7);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radClient.Size = new System.Drawing.Size(75, 25);
@@ -1208,13 +1233,14 @@
             this.radClient.TabStop = true;
             this.radClient.Text = "عميل";
             this.radClient.UseVisualStyleBackColor = false;
+            this.radClient.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // radContractor
             // 
             this.radContractor.BackColor = System.Drawing.Color.White;
             this.radContractor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radContractor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radContractor.Location = new System.Drawing.Point(171, 7);
+            this.radContractor.Location = new System.Drawing.Point(153, 7);
             this.radContractor.Name = "radContractor";
             this.radContractor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radContractor.Size = new System.Drawing.Size(69, 25);
@@ -1222,13 +1248,14 @@
             this.radContractor.TabStop = true;
             this.radContractor.Text = "مقاول";
             this.radContractor.UseVisualStyleBackColor = false;
+            this.radContractor.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // radDealer
             // 
             this.radDealer.BackColor = System.Drawing.Color.White;
             this.radDealer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radDealer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radDealer.Location = new System.Drawing.Point(93, 7);
+            this.radDealer.Location = new System.Drawing.Point(75, 7);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radDealer.Size = new System.Drawing.Size(72, 25);
@@ -1236,6 +1263,70 @@
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
             this.radDealer.UseVisualStyleBackColor = false;
+            this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label6.Location = new System.Drawing.Point(639, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 19);
+            this.label6.TabIndex = 131;
+            this.label6.Text = "رقم الديزاين";
+            // 
+            // txtDesignNum
+            // 
+            this.txtDesignNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDesignNum.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesignNum.Location = new System.Drawing.Point(506, 12);
+            this.txtDesignNum.Name = "txtDesignNum";
+            this.txtDesignNum.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtDesignNum.Size = new System.Drawing.Size(127, 27);
+            this.txtDesignNum.TabIndex = 130;
+            this.txtDesignNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDesignNum_KeyDown);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radioButton1.BackColor = System.Drawing.Color.White;
+            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
+            this.radioButton1.Location = new System.Drawing.Point(255, 13);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radioButton1.Size = new System.Drawing.Size(75, 25);
+            this.radioButton1.TabIndex = 134;
+            this.radioButton1.Text = "فاتورة";
+            this.radioButton1.UseVisualStyleBackColor = false;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radioButton2.BackColor = System.Drawing.Color.White;
+            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
+            this.radioButton2.Location = new System.Drawing.Point(161, 13);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radioButton2.Size = new System.Drawing.Size(88, 25);
+            this.radioButton2.TabIndex = 133;
+            this.radioButton2.Text = "مرتجع";
+            this.radioButton2.UseVisualStyleBackColor = false;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label7.Location = new System.Drawing.Point(344, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(91, 19);
+            this.label7.TabIndex = 132;
+            this.label7.Text = "سبب الاسترجاع";
             // 
             // BankPullDesign_Record
             // 
@@ -1357,5 +1448,10 @@
         private System.Windows.Forms.RadioButton radioAgel;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Panel panelContent;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtDesignNum;
     }
 }

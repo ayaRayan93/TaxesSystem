@@ -18,7 +18,7 @@ namespace MainSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BillsTransitions_PaymentType_Report(null));
+            Application.Run(new Login());
         }
     }
 }
