@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class BankDepositDesign_Record2 : Form
+    public partial class BankPullDesign_Record : Form
     {
         MySqlConnection dbconnection;
         bool flag = false;
@@ -30,7 +30,7 @@ namespace MainSystem
         XtraTabControl tabControlBank;
         int transitionbranchID = 0;
 
-        public BankDepositDesign_Record2()//BankDepositAgl_Report form, XtraTabControl MainTabControlBank)
+        public BankPullDesign_Record()//BankDepositAgl_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -99,6 +99,11 @@ namespace MainSystem
             dbconnection.Close();
         }
 
+        private void txtDesignNum_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
         //when select customer(مهندس,مقاول)display in comCustomer the all clients of th customer 
         private void comCustomer_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -118,8 +123,8 @@ namespace MainSystem
                     comClient.Text = "";
                     comClient.SelectedIndex = -1;
                     txtClientID.Text = "";
-                    txtClientID.Enabled = true;
-                    comClient.Enabled = true;
+                    //txtClientID.Enabled = true;
+                    //comClient.Enabled = true;
                     loaded = true;
                 }
                 catch (Exception ex)
@@ -203,7 +208,7 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
-        
+
         private void radioButtonSafe_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -284,13 +289,11 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
-                
+
                 txtCheckNumber.Visible = false;
                 labDate.Visible = false;
                 dateEdit1.Visible = false;
                 labelchekNumber.Visible = false;
-                labelOperationNumber.Visible = false;
-                txtOperationNumber.Visible = false;
 
                 cmbBank.Visible = true;
                 labType.Visible = true;
@@ -314,7 +317,7 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
-           
+
                 txtCheckNumber.Visible = true;
                 labDate.Text = "تاريخ الاستحقاق";
                 labDate.Visible = true;
@@ -329,8 +332,7 @@ namespace MainSystem
                 txtDescrip.Visible = true;
                 labelDescrip.Visible = true;
                 loadedPayType = true;
-                labelOperationNumber.Visible = false;
-                txtOperationNumber.Visible = false;
+
                 panelContent.Visible = true;
             }
             catch (Exception ex)
@@ -379,8 +381,7 @@ namespace MainSystem
                 labelOperationNumber.Visible = false;
                 txtOperationNumber.Visible = false;
                 labDate.Text = "تاريخ الايداع";
-                labelchekNumber.Visible = false;
-                txtCheckNumber.Visible = false;
+                labelchekNumber.Text = "رقم الحساب";
 
                 string query = "select concat(MainBank_Name,' ',Bank_Name) as Bank_Name,Bank_ID from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -407,9 +408,7 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
-                txtOperationNumber.Visible = true;
-                labelOperationNumber.Visible = true;
-                
+
                 string query = "select concat(MainBank_Name,' ',Bank_Name,' - ',Machine_ID) as Machine_ID,Visa_ID from bank_visa inner join bank on bank_visa.Bank_ID=bank.Bank_ID inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -428,7 +427,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -613,7 +612,7 @@ namespace MainSystem
                         com.ExecuteNonQuery();
                         flagCategoriesSuccess = false;
 
-                   
+
 
                         dbconnection.Close();
 
@@ -665,10 +664,10 @@ namespace MainSystem
                     comEng.Text = "";
                     txtClientID.Text = "";
                     txtCustomerID.Text = "";
-                    txtClientID.Enabled = true;
-                    comClient.Enabled = true;
-                    txtCustomerID.Enabled = false;
-                    comEng.Enabled = false;
+                    //txtClientID.Enabled = true;
+                    //comClient.Enabled = true;
+                    //txtCustomerID.Enabled = false;
+                    //comEng.Enabled = false;
                 }
                 else
                 {
@@ -683,10 +682,10 @@ namespace MainSystem
                     comClient.Text = "";
                     txtClientID.Text = "";
                     txtCustomerID.Text = "";
-                    txtClientID.Enabled = false;
-                    comClient.Enabled = false;
-                    txtCustomerID.Enabled = true;
-                    comEng.Enabled = true;
+                    //txtClientID.Enabled = false;
+                    //comClient.Enabled = false;
+                    //txtCustomerID.Enabled = true;
+                    //comEng.Enabled = true;
                 }
                 loaded = true;
             }
@@ -758,7 +757,7 @@ namespace MainSystem
 
             return flag5;
         }
-        
+
         void printCategoriesBill()
         {
             /*Print_AglCategoriesBill_Report f = new Print_AglCategoriesBill_Report();

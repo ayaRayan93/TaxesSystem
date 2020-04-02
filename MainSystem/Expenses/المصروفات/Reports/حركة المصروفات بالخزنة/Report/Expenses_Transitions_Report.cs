@@ -151,7 +151,15 @@ namespace MainSystem
 
             if (comSafe.SelectedValue == null && comSafe.Text == "")
             {
-                qSafe = "select Bank_ID from bank";
+                //qSafe = "select Bank_ID from bank";
+                if (UserControl.userType == 1 || UserControl.userType == 7)
+                {
+                    qSafe = "select bank.Bank_ID from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة'";
+                }
+                else
+                {
+                    qSafe = "select bank.Bank_ID from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + UserControl.EmpBranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + " and MainBank_Type='خزينة'";
+                }
             }
             else
             {
