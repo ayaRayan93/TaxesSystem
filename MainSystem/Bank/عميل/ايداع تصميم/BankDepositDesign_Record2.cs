@@ -290,6 +290,8 @@ namespace MainSystem
                 labDate.Visible = false;
                 dateEdit1.Visible = false;
                 labelchekNumber.Visible = false;
+                labelOperationNumber.Visible = false;
+                txtOperationNumber.Visible = false;
 
                 cmbBank.Visible = true;
                 labType.Visible = true;
@@ -328,7 +330,8 @@ namespace MainSystem
                 txtDescrip.Visible = true;
                 labelDescrip.Visible = true;
                 loadedPayType = true;
-
+                labelOperationNumber.Visible = false;
+                txtOperationNumber.Visible = false;
                 panelContent.Visible = true;
             }
             catch (Exception ex)
@@ -377,7 +380,8 @@ namespace MainSystem
                 labelOperationNumber.Visible = false;
                 txtOperationNumber.Visible = false;
                 labDate.Text = "تاريخ الايداع";
-                labelchekNumber.Text = "رقم الحساب";
+                labelchekNumber.Visible = false;
+                txtCheckNumber.Visible = false;
 
                 string query = "select concat(MainBank_Name,' ',Bank_Name) as Bank_Name,Bank_ID from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -404,6 +408,8 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
+                txtOperationNumber.Visible = true;
+                labelOperationNumber.Visible = true;
                 
                 string query = "select concat(MainBank_Name,' ',Bank_Name,' - ',Machine_ID) as Machine_ID,Visa_ID from bank_visa inner join bank on bank_visa.Bank_ID=bank.Bank_ID inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);

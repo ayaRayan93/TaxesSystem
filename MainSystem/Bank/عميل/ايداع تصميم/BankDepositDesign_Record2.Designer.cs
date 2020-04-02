@@ -1128,6 +1128,7 @@
             this.radEng.TabStop = true;
             this.radEng.Text = "مهندس";
             this.radEng.UseVisualStyleBackColor = false;
+            this.radEng.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // radClient
             // 
@@ -1142,6 +1143,7 @@
             this.radClient.TabStop = true;
             this.radClient.Text = "عميل";
             this.radClient.UseVisualStyleBackColor = false;
+            this.radClient.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // radContractor
             // 
@@ -1156,6 +1158,7 @@
             this.radContractor.TabStop = true;
             this.radContractor.Text = "مقاول";
             this.radContractor.UseVisualStyleBackColor = false;
+            this.radContractor.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // radDealer
             // 
@@ -1170,6 +1173,7 @@
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
             this.radDealer.UseVisualStyleBackColor = false;
+            this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
             // label37
             // 
