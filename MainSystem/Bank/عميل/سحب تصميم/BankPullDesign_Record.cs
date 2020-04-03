@@ -101,7 +101,58 @@ namespace MainSystem
 
         private void txtDesignNum_KeyDown(object sender, KeyEventArgs e)
         {
+            try
+            {
+                dbconnection.Open();
+                string query = "SELECT customer1.Customer_Type,customer_design.Client_ID,customer_design.Customer_ID,customer_design.Customer_Name,customer_design.Client_Name,customer_design.Engineer_ID,customer_design.Engineer_Name,customer_design.Delegate_ID,customer_design.Delegate_Name,customer_design.Date,customer_design.PaidMoney,customer_design.BranchBillNumber,customer_design.Branch_Name FROM customer_design left JOIN customer as customer1 ON customer1.Customer_ID = customer_design.Customer_ID left JOIN customer as client ON client.Customer_ID = customer_design.Client_ID where customer_design.CustomerDesign_ID=" + txtDesignNum.Text;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                MySqlDataReader dr = com.ExecuteReader();
+                while(dr.Read())
+                {
+                    comDelegate.Text = dr["Delegate_Name"].ToString();
+                    comDelegate.SelectedValue = dr["Delegate_ID"].ToString();
+                    comEngDesign.Text = dr["Engineer_Name"].ToString();
+                    comEngDesign.SelectedValue = dr["Engineer_ID"].ToString();
 
+                    if (dr["Client_ID"].ToString() != "")
+                    {
+                        radClient.Checked = true;
+                        loaded = false;
+                        comClient.SelectedIndex = -1;
+                        loaded = true;
+                        comClient.Text = dr["Client_Name"].ToString();
+                        comClient.SelectedValue = dr["Client_ID"].ToString();
+                        txtClientID.Text = dr["Client_ID"].ToString();
+                    }
+                    else
+                    {
+                        if (dr["Customer_Type"].ToString() == "مهندس")
+                        {
+                            radEng.Checked = true;
+                        }
+                        else if (dr["Customer_Type"].ToString() == "مقاول")
+                        {
+                            radContractor.Checked = true;
+                        }
+                        else if (dr["Customer_Type"].ToString() == "تاجر")
+                        {
+                            radDealer.Checked = true;
+                        }
+                        loaded = false;
+                        comEng.SelectedIndex = -1;
+                        loaded = true;
+                        comEng.Text = dr["Customer_Name"].ToString();
+                        comEng.SelectedValue = dr["Customer_ID"].ToString();
+                        txtCustomerID.Text = dr["Customer_ID"].ToString();
+                    }
+                }
+                dr.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
 
         //when select customer(مهندس,مقاول)display in comCustomer the all clients of th customer 
