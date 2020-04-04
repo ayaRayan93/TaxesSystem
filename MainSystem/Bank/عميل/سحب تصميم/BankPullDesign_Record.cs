@@ -101,7 +101,44 @@ namespace MainSystem
 
         private void txtDesignNum_KeyDown(object sender, KeyEventArgs e)
         {
+            try
+            {
+                dbconnection.Open();
+                string query = "select * from customer_design where CustomerDesign_ID="+txtDesignNum.Text;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                MySqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    string designstatus = dr["Design_Status"].ToString();
+                    if (designstatus == "ايداع تصميم")
+                    {
+                        btnAdd.Enabled = true;
+                        comEng.Text = dr["Customer_Name"].ToString();
+                        txtCustomerID.Text = dr["Customer_ID"].ToString();
 
+                        comClient.Text = dr["Client_Name"].ToString();
+                        txtClientID.Text = dr["Client_ID"].ToString();
+
+                        comDelegate.Text = dr["Delegate_Name"].ToString();
+                        comEngDesign.Text = dr["Engineer_Name"].ToString();
+
+                        labPaidMoney.Text = dr["PaidMoney"].ToString();
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("هذا التصميم تم سحبه من قبل");
+                        btnAdd.Enabled = false;
+                    }
+                }
+                dr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
         }
 
         //when select customer(مهندس,مقاول)display in comCustomer the all clients of th customer 
@@ -481,12 +518,12 @@ namespace MainSystem
 
                         dbconnection.Open();
 
-                        int customerDesignID = addCustomerDesign();
+                        updateCustomerDesign();
 
                         string query = "insert into transitions (TransitionBranch_ID,TransitionBranch_Name,Client_ID,Client_Name,Customer_ID,Customer_Name,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Operation_Number,Type,Error,Employee_ID,Employee_Name,Delegate_ID,Delegate_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Operation_Number,@Type,@Error,@Employee_ID,@Employee_Name,@Delegate_ID,@Delegate_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                        com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "ايداع تصميم";
+                        com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب تصميم";
                         if (radioAgel.Checked)
                         {
                             com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "آجل";
@@ -505,7 +542,7 @@ namespace MainSystem
                         com.Parameters.Add("@TransitionBranch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
                         com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
                         com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = branchName;
-                        com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = customerDesignID;
+                        com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = txtDesignNum.Text;
                         com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
                         com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
                         com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
@@ -776,42 +813,29 @@ namespace MainSystem
                 arrRestMoney[i] = arrPaidMoney[i] = 0;*/
         }
 
-        public int addCustomerDesign()
+        public void updateCustomerDesign()
         {
             //,BranchBillNumber,BranchName
-            string query = "INSERT INTO customer_design(Customer_Name,Customer_ID,Client_Name,Client_ID,Engineer_Name,Engineer_ID,Delegate_ID,Delegate_Name,Date,PaidMoney) VALUES(@Customer_Name,@Customer_ID,@Client_Name,@Client_ID,@Engineer_Name,@Engineer_ID,@Delegate_ID,@Delegate_Name,@Date,@PaidMoney)";
-            MySqlCommand com = new MySqlCommand(query, dbconnection);
-            if (comEng.SelectedValue != null)
+     
+            if (radDesignCancel.Checked)
             {
-                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comEng.Text;
-                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = comEng.SelectedValue;
+                string query = "update customer_design set Design_Status=@Design_Status where CustomerDesign_ID=" + txtDesignNum.Text;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@Design_Status", MySqlDbType.VarChar, 255).Value = "الغاء التصميم";
+                com.ExecuteNonQuery();
             }
             else
             {
-                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = null;
-                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
+                string query = "update customer_design set Design_Status=@Design_Status ,BranchBillNumber=@BranchBillNumber ,Branch_Name=@Branch_Name where CustomerDesign_ID=" + txtDesignNum.Text;
+                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@Design_Status", MySqlDbType.VarChar, 255).Value = "اتمام فاتورة";
+                com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value =comBranchName.Text;
+                com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBranchBillNumber.Text;
+                com.ExecuteNonQuery();
             }
-            if (comClient.SelectedValue != null)
-            {
-                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = comClient.Text;
-                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue;
-            }
-            else
-            {
-                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = null;
-                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
-            }
-            com.Parameters.Add("@Engineer_Name", MySqlDbType.VarChar, 255).Value = comEngDesign.Text;
-            com.Parameters.Add("@Engineer_ID", MySqlDbType.Int16, 11).Value = comEngDesign.SelectedValue;
-            com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = comDelegate.Text;
-            com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = comDelegate.SelectedValue;
-            com.Parameters.Add("@Date", MySqlDbType.Date).Value = DateTime.Now.Date;
-            com.Parameters.Add("@PaidMoney", MySqlDbType.Double).Value = txtPaidMoney.Text;
-            com.ExecuteNonQuery();
+            
+      
 
-            query = "select CustomerDesign_ID from customer_design order by CustomerDesign_ID desc limit 1";
-            com = new MySqlCommand(query, dbconnection);
-            return Convert.ToInt16(com.ExecuteScalar());
         }
     }
 }
