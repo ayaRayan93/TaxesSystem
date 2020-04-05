@@ -301,6 +301,24 @@
     <Compile Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record2.Designer.cs">
       <DependentUpon>BankDepositDesign_Record2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\DesignPrint.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\DesignPrint.Designer.cs">
+      <DependentUpon>DesignPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\Print_Design_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\Print_Design_Report.designer.cs">
+      <DependentUpon>Print_Design_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\عميل\ايداع كاش\BankDepositCash_RecordX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\ايداع كاش\BankDepositCash_RecordX.designer.cs">
+      <DependentUpon>BankDepositCash_RecordX.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bank\عميل\سحب تصميم\BankPullDesign_Record.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -879,6 +897,12 @@
     </Compile>
     <Compile Include="Reports\sales\SalesReportForDelegateProductDetails.Designer.cs">
       <DependentUpon>SalesReportForDelegateProductDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير حركة السدادات\Bills_Transitions_ReportX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير حركة السدادات\Bills_Transitions_ReportX.designer.cs">
+      <DependentUpon>Bills_Transitions_ReportX.cs</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sales Report\تفاصيل الاصناف المباعة\Items_Bills_Details.cs" />
     <Compile Include="Sales\Sales Report\تفاصيل الاصناف المباعة\Print_ProductsBillsDetails.cs">
@@ -3286,6 +3310,15 @@
     <EmbeddedResource Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record2.resx">
       <DependentUpon>BankDepositDesign_Record2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\ايداع تصميم\DesignPrint.resx">
+      <DependentUpon>DesignPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\ايداع تصميم\Print_Design_Report.resx">
+      <DependentUpon>Print_Design_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\ايداع كاش\BankDepositCash_RecordX.resx">
+      <DependentUpon>BankDepositCash_RecordX.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bank\عميل\سحب تصميم\BankPullDesign_Record.resx">
       <DependentUpon>BankPullDesign_Record.cs</DependentUpon>
     </EmbeddedResource>
@@ -3528,6 +3561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\sales\SalesReportForDelegateProductDetails.resx">
       <DependentUpon>SalesReportForDelegateProductDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\تقرير حركة السدادات\Bills_Transitions_ReportX.resx">
+      <DependentUpon>Bills_Transitions_ReportX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Sales Report\تفاصيل الاصناف المباعة\Print_ProductsBillsDetails.resx">
       <DependentUpon>Print_ProductsBillsDetails.cs</DependentUpon>

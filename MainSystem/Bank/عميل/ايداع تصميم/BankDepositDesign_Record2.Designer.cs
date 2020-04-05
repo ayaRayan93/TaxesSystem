@@ -45,9 +45,6 @@
             this.labType = new System.Windows.Forms.Label();
             this.labelDescrip = new System.Windows.Forms.Label();
             this.labelPaidMoney = new System.Windows.Forms.Label();
-            this.radioCash = new System.Windows.Forms.RadioButton();
-            this.radioAgel = new System.Windows.Forms.RadioButton();
-            this.label37 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -144,7 +141,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.03409F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.965912F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 783);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 749);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -156,12 +153,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.51347F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 707);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 677);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(978, 73);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(978, 69);
             this.tableLayoutPanel2.TabIndex = 11;
             // 
             // btnAdd
@@ -181,7 +178,7 @@
             this.btnAdd.Location = new System.Drawing.Point(439, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(101, 65);
+            this.btnAdd.Size = new System.Drawing.Size(101, 61);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -189,9 +186,6 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.Controls.Add(this.panelContent);
-            this.panel1.Controls.Add(this.radioCash);
-            this.panel1.Controls.Add(this.radioAgel);
-            this.panel1.Controls.Add(this.label37);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
@@ -212,7 +206,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(984, 704);
+            this.panel1.Size = new System.Drawing.Size(984, 674);
             this.panel1.TabIndex = 12;
             // 
             // panelContent
@@ -230,7 +224,7 @@
             this.panelContent.Controls.Add(this.labType);
             this.panelContent.Controls.Add(this.labelDescrip);
             this.panelContent.Controls.Add(this.labelPaidMoney);
-            this.panelContent.Location = new System.Drawing.Point(451, 302);
+            this.panelContent.Location = new System.Drawing.Point(451, 269);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(518, 331);
             this.panelContent.TabIndex = 129;
@@ -369,45 +363,6 @@
             this.labelPaidMoney.TabIndex = 118;
             this.labelPaidMoney.Text = "المبلغ المدفوع";
             // 
-            // radioCash
-            // 
-            this.radioCash.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.radioCash.BackColor = System.Drawing.Color.White;
-            this.radioCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioCash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radioCash.Location = new System.Drawing.Point(154, 64);
-            this.radioCash.Name = "radioCash";
-            this.radioCash.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioCash.Size = new System.Drawing.Size(60, 25);
-            this.radioCash.TabIndex = 128;
-            this.radioCash.Text = "كاش";
-            this.radioCash.UseVisualStyleBackColor = false;
-            // 
-            // radioAgel
-            // 
-            this.radioAgel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.radioAgel.BackColor = System.Drawing.Color.White;
-            this.radioAgel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioAgel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radioAgel.Location = new System.Drawing.Point(88, 64);
-            this.radioAgel.Name = "radioAgel";
-            this.radioAgel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioAgel.Size = new System.Drawing.Size(60, 25);
-            this.radioAgel.TabIndex = 127;
-            this.radioAgel.Text = "آجل";
-            this.radioAgel.UseVisualStyleBackColor = false;
-            // 
-            // label37
-            // 
-            this.label37.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(229, 67);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(70, 19);
-            this.label37.TabIndex = 126;
-            this.label37.Text = "طريقة الدفع";
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -458,7 +413,7 @@
             this.groupBox1.Controls.Add(this.t100);
             this.groupBox1.Controls.Add(this.t200);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(38, 236);
+            this.groupBox1.Location = new System.Drawing.Point(38, 188);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox1.Size = new System.Drawing.Size(386, 439);
@@ -983,7 +938,7 @@
             this.panel4.Controls.Add(this.radCredit);
             this.panel4.Controls.Add(this.radCash);
             this.panel4.Controls.Add(this.radVisa);
-            this.panel4.Location = new System.Drawing.Point(474, 267);
+            this.panel4.Location = new System.Drawing.Point(474, 234);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(423, 31);
             this.panel4.TabIndex = 112;
@@ -1051,7 +1006,7 @@
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel3.Controls.Add(this.radioButtonSafe);
             this.panel3.Controls.Add(this.radioButtonBank);
-            this.panel3.Location = new System.Drawing.Point(514, 226);
+            this.panel3.Location = new System.Drawing.Point(514, 193);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(342, 35);
             this.panel3.TabIndex = 111;
@@ -1143,7 +1098,6 @@
             this.labelName.TabIndex = 94;
             this.labelName.Text = "*";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelName.Visible = false;
             // 
             // txtCustomerID
             // 
@@ -1259,7 +1213,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 783);
+            this.ClientSize = new System.Drawing.Size(984, 749);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BankDepositDesign_Record2";
             this.Text = "Form1";
@@ -1371,9 +1325,6 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.RadioButton radioCash;
-        private System.Windows.Forms.RadioButton radioAgel;
-        private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Panel panelContent;
     }
 }

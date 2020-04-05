@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Bills_Transitions_Report : Form
+    public partial class Bills_Transitions_ReportX : Form
     {
         MySqlConnection conn;
         MainForm bankMainForm = null;
@@ -31,7 +31,7 @@ namespace MainSystem
         bool loaded = false;
         bool loadedBranch = false;
 
-        public Bills_Transitions_Report(MainForm BankMainForm)
+        public Bills_Transitions_ReportX(MainForm BankMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
@@ -325,7 +325,7 @@ namespace MainSystem
                     {
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns["العميل"], dr["المهندس/المقاول/التاجر"].ToString());
                     }
-                    if (dr["عملية"].ToString() == "ايداع" || dr["عملية"].ToString() == "ايداع تصميم")
+                    if (dr["عملية"].ToString() == "ايداع")
                     {
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns["دائن"], dr["المبلغ"].ToString());
                         totalSale += Convert.ToDouble(dr["المبلغ"].ToString());
