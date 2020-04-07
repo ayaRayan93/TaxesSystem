@@ -78,17 +78,19 @@ namespace MainSystem
             try
             {
                 RadioButton r = (RadioButton)sender;
-                //radCash.Enabled = true;
-                //radCredit.Enabled = false;
-                //radCredit.Checked = false;
-                //radBankAccount.Enabled = false;
-                //radBankAccount.Checked = false;
-                //radDeposit.Enabled = false;
-                //radDeposit.Checked = false;
-         
-                //radCash.Checked = true;
+                radCash.Enabled = true;
 
-                //loadedPayType = true;
+                radioButtonBank.Enabled = true;
+                radCredit.Enabled = false;
+                //radCredit.Checked = false;
+                radBankAccount.Enabled = false;
+               // radBankAccount.Checked = false;
+                radDeposit.Enabled = false;
+              //  radDeposit.Checked = false;
+
+                radCash.Checked = true;
+
+                loadedPayType = true;
             }
             catch (Exception ex)
             {
