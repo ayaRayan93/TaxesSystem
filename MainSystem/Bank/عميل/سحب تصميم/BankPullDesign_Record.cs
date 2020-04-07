@@ -119,16 +119,16 @@ namespace MainSystem
                         if (designstatus == "ايداع تصميم")
                         {
                             btnAdd.Enabled = true;
-                            comEng.SelectedIndex = -1;
                             comEng.Text = dr["Customer_Name"].ToString();
                             txtCustomerID.Text = dr["Customer_ID"].ToString();
-
-                            comClient.SelectedIndex = -1;
+                            
                             comClient.Text = dr["Client_Name"].ToString();
                             txtClientID.Text = dr["Client_ID"].ToString();
 
                             comDelegate.Text = dr["Delegate_Name"].ToString();
+                            comDelegate.SelectedValue = dr["Delegate_ID"].ToString();
                             comEngDesign.Text = dr["Engineer_Name"].ToString();
+                            comEngDesign.SelectedValue = dr["Engineer_ID"].ToString();
 
                             txtPaidMoney.Text = dr["PaidMoney"].ToString();
 
@@ -136,6 +136,7 @@ namespace MainSystem
                             panel3.Visible = true;
                             panel4.Visible = true;
                             panelContent.Visible = true;
+                            radDesignCancel.Enabled = true;
                         }
                         else
                         {
@@ -149,7 +150,7 @@ namespace MainSystem
                                     panel3.Visible = false;
                                     panel4.Visible = false;
                                     panelContent.Visible = false;
-
+                                    radDesignCancel.Enabled = false;
                                 }
                                 else
                                 {
@@ -164,6 +165,7 @@ namespace MainSystem
                                 panelContent.Visible = false;
                                 btnAdd.Enabled = false;
                                 btnAdd.LabelText = "حفظ";
+                                radDesignCancel.Enabled = true;
                             }
                         }
                     }
@@ -466,7 +468,7 @@ namespace MainSystem
                             com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                             if (comClient.Text != "")
                             {
-                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = comClient.SelectedValue;
+                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = txtClientID.Text;
                                 com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = comClient.Text;
                             }
                             else
@@ -476,7 +478,7 @@ namespace MainSystem
                             }
                             if (comEng.Text != "")
                             {
-                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = comEng.SelectedValue;
+                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = txtCustomerID.Text;
                                 com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comEng.Text;
                             }
                             else
@@ -600,7 +602,12 @@ namespace MainSystem
                         com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBranchBillNumber.Text;
                         com.ExecuteNonQuery();
 
+                        MessageBox.Show("تم");
                         clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("يجب ادخال رقم الفاتورة");
                     }
                 }
             }
@@ -1248,11 +1255,11 @@ namespace MainSystem
             Print_PullDesign_Report f = new Print_PullDesign_Report();
             if (comClient.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + txtClientID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             else if (comEng.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + txtCustomerID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)
