@@ -481,7 +481,7 @@ namespace MainSystem
 
                         int customerDesignID = addCustomerDesign();
                         //,Type
-                        string query = "insert into transitions (TransitionBranch_ID,TransitionBranch_Name,Client_ID,Client_Name,Customer_ID,Customer_Name,Transition,Type,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Operation_Number,Error,Employee_ID,Employee_Name,Delegate_ID,Delegate_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Transition,@Type,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Operation_Number,@Error,@Employee_ID,@Employee_Name,@Delegate_ID,@Delegate_Name)";
+                        string query = "insert into transitions (TransitionBranch_ID,TransitionBranch_Name,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Customer_ID,Customer_Name,Transition,Type,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Operation_Number,Error,Employee_ID,Employee_Name,Delegate_ID,Delegate_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Transition,@Type,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Operation_Number,@Error,@Employee_ID,@Employee_Name,@Delegate_ID,@Delegate_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "ايداع تصميم";
@@ -502,8 +502,8 @@ namespace MainSystem
                         //}
                         com.Parameters.Add("@TransitionBranch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
                         com.Parameters.Add("@TransitionBranch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
-                        com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = null;
-                        com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = null;
+                        com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
+                        com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
                         com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = customerDesignID;
                         com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
                         com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
@@ -744,8 +744,10 @@ namespace MainSystem
         public int addCustomerDesign()
         {
             //,BranchBillNumber,BranchName
-            string query = "INSERT INTO customer_design(Customer_Name,Customer_ID,Client_Name,Client_ID,Engineer_Name,Engineer_ID,Delegate_ID,Delegate_Name,Date,PaidMoney) VALUES(@Customer_Name,@Customer_ID,@Client_Name,@Client_ID,@Engineer_Name,@Engineer_ID,@Delegate_ID,@Delegate_Name,@Date,@PaidMoney)";
+            string query = "INSERT INTO customer_design(Branch_ID,Branch_Name,Customer_Name,Customer_ID,Client_Name,Client_ID,Engineer_Name,Engineer_ID,Delegate_ID,Delegate_Name,Date,PaidMoney) VALUES(@Branch_ID,@Branch_Name,@Customer_Name,@Customer_ID,@Client_Name,@Client_ID,@Engineer_Name,@Engineer_ID,@Delegate_ID,@Delegate_Name,@Date,@PaidMoney)";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
+            com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
+            com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
             if (comEng.SelectedValue != null)
             {
                 com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comEng.Text;

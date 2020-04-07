@@ -325,6 +325,18 @@
     <Compile Include="Bank\عميل\سحب تصميم\BankPullDesign_Record.Designer.cs">
       <DependentUpon>BankPullDesign_Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bank\عميل\سحب تصميم\DesignPullPrint.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\سحب تصميم\DesignPullPrint.Designer.cs">
+      <DependentUpon>DesignPullPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\عميل\سحب تصميم\Print_PullDesign_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\سحب تصميم\Print_PullDesign_Report.designer.cs">
+      <DependentUpon>Print_PullDesign_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Record2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3327,6 +3339,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\عميل\سحب تصميم\BankPullDesign_Record.resx">
       <DependentUpon>BankPullDesign_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\سحب تصميم\DesignPullPrint.resx">
+      <DependentUpon>DesignPullPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\سحب تصميم\Print_PullDesign_Report.resx">
+      <DependentUpon>Print_PullDesign_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Record2.resx">
       <DependentUpon>BankSupplierPullAgl_Record2.cs</DependentUpon>
