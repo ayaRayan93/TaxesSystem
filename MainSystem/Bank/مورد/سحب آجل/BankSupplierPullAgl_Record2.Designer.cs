@@ -918,7 +918,6 @@
             this.radCredit.Text = "شيك";
             this.radCredit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.radCredit.UseVisualStyleBackColor = false;
-            this.radCredit.Visible = false;
             this.radCredit.CheckedChanged += new System.EventHandler(this.radCredit_CheckedChanged);
             // 
             // radCash
