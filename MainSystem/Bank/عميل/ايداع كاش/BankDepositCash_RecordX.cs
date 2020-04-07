@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class BankDepositCash_Record : Form
+    public partial class BankDepositCash_RecordX : Form
     {
         MySqlConnection dbconnection, myConnection, connectionReader, connectionReader1, connectionReader2, connectionReader3, connectionReader4, connectionReader5;
         
@@ -48,7 +48,7 @@ namespace MainSystem
         XtraTabControl tabControlBank;
         int transitionbranchID = 0;
 
-        public BankDepositCash_Record(BankDepositCash_Report form, XtraTabControl MainTabControlBank)
+        public BankDepositCash_RecordX(BankDepositCash_Report form, XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -680,7 +680,19 @@ namespace MainSystem
                                         return;
                                     }
                                 }
-                                
+                                if (txtDesignNum.Text != "")
+                                {
+                                    if (int.TryParse(txtDesignNum.Text, out DesignNum))
+                                    {
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("رقم التصميم يجب ان يكون عدد");
+                                        dbconnection.Close();
+                                        return;
+                                    }
+                                }
+
                                 dbconnection.Open();
                                 connectionReader4.Open();
                                 string qt = "SELECT * FROM transitions where (transitions.Type='كاش' or transitions.Type='آجل') and Transition='ايداع' and transitions.Branch_ID=" + branchID + " and transitions.Bill_Number=" + billNumber;
@@ -822,7 +834,23 @@ namespace MainSystem
                                 
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
-                                
+
+                                if(txtDesignNum.Text != "")
+                                { 
+                                    query = "select customer_design.CustomerDesign_ID from customer_design where customer_design.CustomerDesign_ID=" + DesignNum + " and customer_design.BranchBillNumber=0";
+                                    com = new MySqlCommand(query, dbconnection);
+                                    if (com.ExecuteScalar() != null)
+                                    {
+                                        query = "update customer_design set CustomerBill_ID=" + ID + ",BranchBillNumber=" + billNumber + ",Branch_ID=" + cmbBranch.SelectedValue + ",Branch_Name=" + cmbBranch.Text + " where CustomerDesign_ID=" + DesignNum;
+                                        com = new MySqlCommand(query, dbconnection);
+                                        com.ExecuteNonQuery();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("هذا التصميم غير متاح");
+                                    }
+                                }
+
                                 dbconnection.Close();
 
                                 if (!flagBillNotFirstTime)
@@ -1528,7 +1556,7 @@ namespace MainSystem
             }
         }
 
-        /*private void txtDesignNum_KeyDown(object sender, KeyEventArgs e)
+        private void txtDesignNum_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -1569,8 +1597,8 @@ namespace MainSystem
                     txtDesignValue.Text = "";
                 }
             }
-        }*/
-        
+        }
+
         public XtraTabPage getTabPage(string text)
         {
             for (int i = 0; i < tabControlBank.TabPages.Count; i++)

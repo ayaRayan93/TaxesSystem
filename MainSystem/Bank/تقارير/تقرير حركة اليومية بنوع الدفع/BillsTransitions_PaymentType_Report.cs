@@ -27,7 +27,6 @@ namespace MainSystem
 
         public static BillsTransitions_Print bankPrint;
 
-        public static GridControl gridcontrol;
         bool loaded = false;
         bool loadedBranch = false;
 
@@ -40,40 +39,16 @@ namespace MainSystem
             MainTabPagePrintingTransitions = new XtraTabPage();
             panelPrintingTransitions = new Panel();
             
-            gridcontrol = gridControl1;
-
             comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
             comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
-
-        private void GridView1_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
-        {
-            GridView view = sender as GridView;
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[0], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[1], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[2], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[3], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[4], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[5], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[6], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[7], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[8], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[9], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[10], "");
-            view.SetRowCellValue(e.RowHandle, gridView1.Columns[11], "");
-        }
-
+        
         private void Bills_Transitions_Report_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!loadedBranch)
                 {
-                    DataHelperClassBillsTransitions dh = new DataHelperClassBillsTransitions(DSparametrBillsTransitions.doubleDS);
-                    gridControl1.DataSource = dh.DataSet;
-                    gridControl1.DataMember = dh.DataMember;
-                    gridView1.InitNewRow += GridView1_InitNewRow;
-
                     loadBranch();
 
                     if(UserControl.userType != 1 && UserControl.userType != 13 && UserControl.userType != 7)
@@ -145,7 +120,7 @@ namespace MainSystem
                     }
 
                     Print_Transition_Report f = new Print_Transition_Report();
-                    f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text, bi);
+                    f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text + " - " + comPaymentMethod.Text, bi);
                     f.ShowDialog();
                 }
                 else
@@ -178,74 +153,7 @@ namespace MainSystem
         public void search()
         {
             conn.Open();
-            double totalBill = 0;
-            double totalReturned = 0;
             
-            while (gridView1.RowCount != 0)
-            {
-                gridView1.SelectAll();
-                gridView1.DeleteSelectedRows();
-            }
-
-            string query = "SELECT distinct customer_bill.CustomerBill_ID as 'ID',customer_bill.Branch_BillNumber as 'الفاتورة',customer_bill.Type_Buy as 'نوع الفاتورة',customer_bill.Bill_Date as 'التاريخ',customer_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_bill.Client_ID) as 'العميل',customer_bill.Total_CostBD as 'الاجمالى',customer_bill.Total_Discount as 'الخصم',customer_bill.Total_CostAD as 'الصافى' FROM customer_bill left join customer as customer1 on customer1.Customer_ID=customer_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_bill.Client_ID INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID where customer_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_bill.Bill_Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'";
-            MySqlCommand comand = new MySqlCommand(query, conn);
-            MySqlDataReader dr = comand.ExecuteReader();
-            while (dr.Read())
-            {
-                gridView1.AddNewRow();
-                int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                if (gridView1.IsNewItemRow(rowHandle))
-                {
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColID"], dr["ID"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColType"], "بيع");
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColBill"], dr["الفاتورة"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColBillType"], dr["نوع الفاتورة"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColDate"], dr["التاريخ"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColCustomer_ID"], dr["Customer_ID"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColCustomer"], dr["المهندس/المقاول/التاجر"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColClient_ID"], dr["Client_ID"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColClient"], dr["العميل"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColTotal"], dr["الاجمالى"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColDiscount"], dr["الخصم"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColSafy"], dr["الصافى"].ToString());
-                    totalBill += Convert.ToDouble(dr["الصافى"].ToString());
-                }
-            }
-            dr.Close();
-
-            query = "SELECT distinct customer_return_bill.CustomerReturnBill_ID as 'ID',customer_return_bill.Branch_BillNumber as 'الفاتورة',customer_return_bill.Type_Buy as 'نوع الفاتورة',customer_return_bill.Date as 'التاريخ',customer_return_bill.Customer_ID,concat(customer1.Customer_Name,' ',customer_return_bill.Customer_ID) as 'المهندس/المقاول/التاجر',customer_return_bill.Client_ID,concat(customer2.Customer_Name,' ',customer_return_bill.Client_ID) as 'العميل',customer_return_bill.TotalCostAD as 'الصافى' FROM customer_return_bill left join customer as customer1 on customer1.Customer_ID=customer_return_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_return_bill.Client_ID INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID where customer_return_bill.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(customer_return_bill.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "'";
-            comand = new MySqlCommand(query, conn);
-            dr = comand.ExecuteReader();
-            while (dr.Read())
-            {
-                gridView1.AddNewRow();
-                int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                if (gridView1.IsNewItemRow(rowHandle))
-                {
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColID"], dr["ID"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColType"], "مرتجع");
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColBill"], dr["الفاتورة"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColBillType"], dr["نوع الفاتورة"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColDate"], dr["التاريخ"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColCustomer_ID"], dr["Customer_ID"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColCustomer"], dr["المهندس/المقاول/التاجر"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColClient_ID"], dr["Client_ID"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColClient"], dr["العميل"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["ColSafy"], dr["الصافى"].ToString());
-                    totalReturned += Convert.ToDouble(dr["الصافى"].ToString());
-                }
-            }
-            dr.Close();
-
-            if (gridView1.IsLastVisibleRow)
-            {
-                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
-            }
-            
-            txtTotalBills.Text = totalBill.ToString();
-            txtTotalReturn.Text = totalReturned.ToString();
-            txtSafy.Text = (totalBill - totalReturned).ToString();
-            /////////////////////////////////////////
             double totalSale = 0;
             double totalReturn = 0;
 
@@ -254,9 +162,9 @@ namespace MainSystem
             adapter.Fill(sourceDataSet);
             gridControl2.DataSource = sourceDataSet.Tables[0];
 
-            query = "SELECT transitions.Transition_ID as 'التسلسل',transitions.Transition as 'عملية',transitions.Type as 'النوع',transitions.Bill_Number as 'الفاتورة',transitions.Branch_Name as 'الفرع',transitions.Date as 'التاريخ',concat(customer1.Customer_Name,' ',transitions.Customer_ID) as 'المهندس/المقاول/التاجر',concat(customer2.Customer_Name,' ',transitions.Client_ID) as 'العميل',transitions.Amount as 'المبلغ',transitions.Data as 'البيان',bank.Bank_Name as 'الخزينة',transitions.Payday as 'تاريخ الاستحقاق',transitions.Check_Number as 'رقم الشيك',transitions.Operation_Number as 'رقم العملية',transitions.Bank_ID,transitions.Customer_ID,transitions.Client_ID FROM transitions INNER JOIN bank ON bank.Bank_ID = transitions.Bank_ID left join customer as customer1 on customer1.Customer_ID=transitions.Customer_ID left join customer as customer2 on customer2.Customer_ID=transitions.Client_ID where transitions.TransitionBranch_ID=" + comBranch.SelectedValue.ToString() + " and transitions.Error=0 and date(transitions.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and transitions.Payment_Method='" + comPaymentMethod.Text + "' order by transitions.Date";
-            comand = new MySqlCommand(query, conn);
-            dr = comand.ExecuteReader();
+            string query = "SELECT transitions.Transition_ID as 'التسلسل',transitions.Transition as 'عملية',transitions.Type as 'النوع',transitions.Bill_Number as 'الفاتورة',transitions.Branch_Name as 'الفرع',transitions.Date as 'التاريخ',concat(customer1.Customer_Name,' ',transitions.Customer_ID) as 'المهندس/المقاول/التاجر',concat(customer2.Customer_Name,' ',transitions.Client_ID) as 'العميل',transitions.Amount as 'المبلغ',transitions.Data as 'البيان',bank.Bank_Name as 'الخزينة',transitions.Payday as 'تاريخ الاستحقاق',transitions.Check_Number as 'رقم الشيك',transitions.Operation_Number as 'رقم العملية',transitions.Bank_ID,transitions.Customer_ID,transitions.Client_ID FROM transitions INNER JOIN bank ON bank.Bank_ID = transitions.Bank_ID left join customer as customer1 on customer1.Customer_ID=transitions.Customer_ID left join customer as customer2 on customer2.Customer_ID=transitions.Client_ID where transitions.TransitionBranch_ID=" + comBranch.SelectedValue.ToString() + " and transitions.Error=0 and date(transitions.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and transitions.Payment_Method='" + comPaymentMethod.Text + "' order by transitions.Date";
+            MySqlCommand comand = new MySqlCommand(query, conn);
+            MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
             {
                 gridView2.AddNewRow();
@@ -275,7 +183,7 @@ namespace MainSystem
                     {
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns["العميل"], dr["المهندس/المقاول/التاجر"].ToString());
                     }
-                    if (dr["عملية"].ToString() == "ايداع")
+                    if (dr["عملية"].ToString() == "ايداع" || dr["عملية"].ToString() == "ايداع تصميم")
                     {
                         gridView2.SetRowCellValue(rowHandle, gridView2.Columns["دائن"], dr["المبلغ"].ToString());
                         totalSale += Convert.ToDouble(dr["المبلغ"].ToString());
@@ -331,18 +239,11 @@ namespace MainSystem
             try
             {
                 clearCom();
-                while (gridView1.RowCount != 0)
-                {
-                    gridView1.SelectAll();
-                    gridView1.DeleteSelectedRows();
-                }
+                
                 gridControl2.DataSource = null;
                 txtSale.Text = "0";
                 txtReturn.Text = "0";
                 txtFinal.Text = "0";
-                txtTotalBills.Text = "0";
-                txtTotalReturn.Text = "0";
-                txtSafy.Text = "0";
             }
             catch (Exception ex)
             {
@@ -388,28 +289,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void btnBillReport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (comBranch.Text != "" && txtBranchID.Text != "")
-                {
-                    gridcontrol = gridControl1;
-                    BillsTransitions_Print f = new BillsTransitions_Print();
-                    //Print_Transition_Report f = new Print_Transition_Report();
-                    //f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text, bi);
-                    f.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("يجب اختيار فرع");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
     }
 }

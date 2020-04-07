@@ -45,9 +45,6 @@
             this.labType = new System.Windows.Forms.Label();
             this.labelDescrip = new System.Windows.Forms.Label();
             this.labelPaidMoney = new System.Windows.Forms.Label();
-            this.radioCash = new System.Windows.Forms.RadioButton();
-            this.radioAgel = new System.Windows.Forms.RadioButton();
-            this.label37 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -144,7 +141,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.03409F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.965912F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 783);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 749);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -156,12 +153,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.51347F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 707);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 677);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(978, 73);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(978, 69);
             this.tableLayoutPanel2.TabIndex = 11;
             // 
             // btnAdd
@@ -181,17 +178,15 @@
             this.btnAdd.Location = new System.Drawing.Point(439, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(101, 65);
+            this.btnAdd.Size = new System.Drawing.Size(101, 61);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.Controls.Add(this.panelContent);
-            this.panel1.Controls.Add(this.radioCash);
-            this.panel1.Controls.Add(this.radioAgel);
-            this.panel1.Controls.Add(this.label37);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
@@ -212,7 +207,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(984, 704);
+            this.panel1.Size = new System.Drawing.Size(984, 674);
             this.panel1.TabIndex = 12;
             // 
             // panelContent
@@ -230,7 +225,7 @@
             this.panelContent.Controls.Add(this.labType);
             this.panelContent.Controls.Add(this.labelDescrip);
             this.panelContent.Controls.Add(this.labelPaidMoney);
-            this.panelContent.Location = new System.Drawing.Point(451, 302);
+            this.panelContent.Location = new System.Drawing.Point(451, 269);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(518, 331);
             this.panelContent.TabIndex = 129;
@@ -369,45 +364,6 @@
             this.labelPaidMoney.TabIndex = 118;
             this.labelPaidMoney.Text = "المبلغ المدفوع";
             // 
-            // radioCash
-            // 
-            this.radioCash.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.radioCash.BackColor = System.Drawing.Color.White;
-            this.radioCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioCash.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radioCash.Location = new System.Drawing.Point(154, 64);
-            this.radioCash.Name = "radioCash";
-            this.radioCash.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioCash.Size = new System.Drawing.Size(60, 25);
-            this.radioCash.TabIndex = 128;
-            this.radioCash.Text = "كاش";
-            this.radioCash.UseVisualStyleBackColor = false;
-            // 
-            // radioAgel
-            // 
-            this.radioAgel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.radioAgel.BackColor = System.Drawing.Color.White;
-            this.radioAgel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioAgel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(70)))), ((int)(((byte)(151)))));
-            this.radioAgel.Location = new System.Drawing.Point(88, 64);
-            this.radioAgel.Name = "radioAgel";
-            this.radioAgel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radioAgel.Size = new System.Drawing.Size(60, 25);
-            this.radioAgel.TabIndex = 127;
-            this.radioAgel.Text = "آجل";
-            this.radioAgel.UseVisualStyleBackColor = false;
-            // 
-            // label37
-            // 
-            this.label37.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(229, 67);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(70, 19);
-            this.label37.TabIndex = 126;
-            this.label37.Text = "طريقة الدفع";
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -458,7 +414,7 @@
             this.groupBox1.Controls.Add(this.t100);
             this.groupBox1.Controls.Add(this.t200);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(38, 236);
+            this.groupBox1.Location = new System.Drawing.Point(38, 188);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox1.Size = new System.Drawing.Size(386, 439);
@@ -517,7 +473,7 @@
             this.label26.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(129, 289);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(37, 19);
+            this.label26.Size = new System.Drawing.Size(38, 19);
             this.label26.TabIndex = 137;
             this.label26.Text = "0.25";
             // 
@@ -528,7 +484,7 @@
             this.label27.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.Location = new System.Drawing.Point(129, 265);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(29, 19);
+            this.label27.Size = new System.Drawing.Size(30, 19);
             this.label27.TabIndex = 136;
             this.label27.Text = "0.5";
             // 
@@ -638,7 +594,7 @@
             this.label23.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(315, 291);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(37, 19);
+            this.label23.Size = new System.Drawing.Size(38, 19);
             this.label23.TabIndex = 126;
             this.label23.Text = "0.25";
             // 
@@ -649,7 +605,7 @@
             this.label17.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(315, 267);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(29, 19);
+            this.label17.Size = new System.Drawing.Size(30, 19);
             this.label17.TabIndex = 125;
             this.label17.Text = "0.5";
             // 
@@ -937,7 +893,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(306, 152);
+            this.label5.Location = new System.Drawing.Point(297, 152);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 19);
             this.label5.TabIndex = 116;
@@ -948,7 +904,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(306, 113);
+            this.label4.Location = new System.Drawing.Point(297, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 19);
             this.label4.TabIndex = 115;
@@ -959,7 +915,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(861, 152);
+            this.label3.Location = new System.Drawing.Point(852, 152);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 19);
             this.label3.TabIndex = 114;
@@ -970,7 +926,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(861, 114);
+            this.label2.Location = new System.Drawing.Point(852, 114);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 19);
             this.label2.TabIndex = 113;
@@ -983,7 +939,7 @@
             this.panel4.Controls.Add(this.radCredit);
             this.panel4.Controls.Add(this.radCash);
             this.panel4.Controls.Add(this.radVisa);
-            this.panel4.Location = new System.Drawing.Point(474, 267);
+            this.panel4.Location = new System.Drawing.Point(474, 234);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(423, 31);
             this.panel4.TabIndex = 112;
@@ -1051,7 +1007,7 @@
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel3.Controls.Add(this.radioButtonSafe);
             this.panel3.Controls.Add(this.radioButtonBank);
-            this.panel3.Location = new System.Drawing.Point(514, 226);
+            this.panel3.Location = new System.Drawing.Point(514, 193);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(342, 35);
             this.panel3.TabIndex = 111;
@@ -1089,7 +1045,7 @@
             this.comDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comDelegate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comDelegate.FormattingEnabled = true;
-            this.comDelegate.Location = new System.Drawing.Point(88, 111);
+            this.comDelegate.Location = new System.Drawing.Point(79, 111);
             this.comDelegate.Name = "comDelegate";
             this.comDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDelegate.Size = new System.Drawing.Size(211, 27);
@@ -1100,7 +1056,7 @@
             this.comEngDesign.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comEngDesign.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comEngDesign.FormattingEnabled = true;
-            this.comEngDesign.Location = new System.Drawing.Point(88, 149);
+            this.comEngDesign.Location = new System.Drawing.Point(79, 149);
             this.comEngDesign.Name = "comEngDesign";
             this.comEngDesign.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comEngDesign.Size = new System.Drawing.Size(211, 27);
@@ -1111,7 +1067,7 @@
             this.txtClientID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtClientID.Enabled = false;
             this.txtClientID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClientID.Location = new System.Drawing.Point(565, 149);
+            this.txtClientID.Location = new System.Drawing.Point(556, 149);
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientID.Size = new System.Drawing.Size(68, 27);
@@ -1123,7 +1079,7 @@
             this.comClient.Enabled = false;
             this.comClient.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(639, 149);
+            this.comClient.Location = new System.Drawing.Point(630, 149);
             this.comClient.Name = "comClient";
             this.comClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comClient.Size = new System.Drawing.Size(215, 27);
@@ -1136,21 +1092,20 @@
             this.labelName.BackColor = System.Drawing.Color.White;
             this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelName.ForeColor = System.Drawing.Color.Red;
-            this.labelName.Location = new System.Drawing.Point(535, 149);
+            this.labelName.Location = new System.Drawing.Point(526, 149);
             this.labelName.Name = "labelName";
             this.labelName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labelName.Size = new System.Drawing.Size(23, 21);
             this.labelName.TabIndex = 94;
             this.labelName.Text = "*";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelName.Visible = false;
             // 
             // txtCustomerID
             // 
             this.txtCustomerID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCustomerID.Enabled = false;
             this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomerID.Location = new System.Drawing.Point(565, 111);
+            this.txtCustomerID.Location = new System.Drawing.Point(556, 111);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCustomerID.Size = new System.Drawing.Size(68, 27);
@@ -1162,7 +1117,7 @@
             this.comEng.Enabled = false;
             this.comEng.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comEng.FormattingEnabled = true;
-            this.comEng.Location = new System.Drawing.Point(639, 111);
+            this.comEng.Location = new System.Drawing.Point(630, 111);
             this.comEng.Name = "comEng";
             this.comEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comEng.Size = new System.Drawing.Size(215, 27);
@@ -1175,7 +1130,7 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(539, 111);
+            this.label1.Location = new System.Drawing.Point(530, 111);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(19, 21);
@@ -1190,7 +1145,7 @@
             this.panel2.Controls.Add(this.radClient);
             this.panel2.Controls.Add(this.radContractor);
             this.panel2.Controls.Add(this.radDealer);
-            this.panel2.Location = new System.Drawing.Point(529, 57);
+            this.panel2.Location = new System.Drawing.Point(520, 57);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(337, 40);
             this.panel2.TabIndex = 72;
@@ -1259,7 +1214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 783);
+            this.ClientSize = new System.Drawing.Size(984, 749);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "BankDepositDesign_Record2";
             this.Text = "Form1";
@@ -1371,9 +1326,6 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.RadioButton radioCash;
-        private System.Windows.Forms.RadioButton radioAgel;
-        private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Panel panelContent;
     }
 }
