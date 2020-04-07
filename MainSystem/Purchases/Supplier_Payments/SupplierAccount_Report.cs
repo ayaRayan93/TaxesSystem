@@ -143,7 +143,7 @@ namespace MainSystem
                     }
                     xtraTabPage.Controls.Clear();
                     tabControlContent.SelectedTabPage = xtraTabPage;
-                    BankSupplierPullAgl_Record objForm = new BankSupplierPullAgl_Record(tabControlContent);
+                    BankSupplierPullAgl_Record2 objForm = new BankSupplierPullAgl_Record2(tabControlContent);
 
                     objForm.TopLevel = false;
                     xtraTabPage.Controls.Add(objForm);

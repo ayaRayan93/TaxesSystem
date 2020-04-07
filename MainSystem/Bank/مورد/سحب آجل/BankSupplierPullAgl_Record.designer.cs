@@ -1650,7 +1650,6 @@
             this.layoutControlItemCheck.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemCheck.Text = "رقم الشيك";
             this.layoutControlItemCheck.TextSize = new System.Drawing.Size(106, 24);
-            this.layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItem31
             // 
@@ -1794,7 +1793,6 @@
             this.layoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem17.Text = "بنك المورد";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(106, 24);
-            this.layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItemBank
             // 
@@ -1812,7 +1810,6 @@
             this.layoutControlItemBank.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItemBank.Text = "خزينة";
             this.layoutControlItemBank.TextSize = new System.Drawing.Size(106, 24);
-            this.layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // layoutControlItem20
             // 
@@ -1831,7 +1828,6 @@
             this.layoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem20.Text = "رقم حساب المورد";
             this.layoutControlItem20.TextSize = new System.Drawing.Size(106, 24);
-            this.layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             // 
             // BankSupplierPullAgl_Record
             // 

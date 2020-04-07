@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class BankSupplierPullAgl_Record : Form
+    public partial class BankSupplierPullAgl_Record2 : Form
     {
         MySqlConnection dbconnection;
         bool flag = false;
@@ -28,7 +28,7 @@ namespace MainSystem
         bool flagCategoriesSuccess = false;
         int transitionbranchID = 0;
 
-        public BankSupplierPullAgl_Record(/*BankSupplierPullAgl_Report form,*/ XtraTabControl MainTabControlBank)
+        public BankSupplierPullAgl_Record2(/*BankSupplierPullAgl_Report form,*/ XtraTabControl MainTabControlBank)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -36,10 +36,10 @@ namespace MainSystem
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
-            
+
             cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             cmbBank.AutoCompleteSource = AutoCompleteSource.ListItems;
-            
+
             comSupplier.AutoCompleteMode = AutoCompleteMode.Suggest;
             comSupplier.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -78,28 +78,17 @@ namespace MainSystem
             try
             {
                 RadioButton r = (RadioButton)sender;
-                radCash.Enabled = true;
-                radCredit.Enabled = false;
-                radCredit.Checked = false;
-                radBankAccount.Enabled = false;
-                radBankAccount.Checked = false;
-                radDeposit.Enabled = false;
-                radDeposit.Checked = false;
-                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelBank.Visible = true;
-                labelBank.Text = "*";
-                layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelPullMoney.Visible = true;
-                labelPullMoney.Text = "*";
-                layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDescrip.Visible = true;
-                
-                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                //radCash.Enabled = true;
+                //radCredit.Enabled = false;
+                //radCredit.Checked = false;
+                //radBankAccount.Enabled = false;
+                //radBankAccount.Checked = false;
+                //radDeposit.Enabled = false;
+                //radDeposit.Checked = false;
+         
+                //radCash.Checked = true;
 
-                radCash.Checked = true;
-                
-                loadedPayType = true;
+                //loadedPayType = true;
             }
             catch (Exception ex)
             {
@@ -114,14 +103,7 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
-                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelDate.Visible = false;
-                labelDate.Text = "";
-                layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelCheckNumber.Visible = false;
-                labelCheckNumber.Text = "";
-                groupBox1.Enabled = true;
-                layoutControlItemBank.Text = "خزينة";
+              
 
                 string query = "select * from bank_main inner join bank on bank.Bank_ID=bank_main.MainBank_ID where Branch_ID=" + transitionbranchID + " and MainBank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -144,19 +126,9 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
-                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDate.Visible = true;
-                labelDate.Text = "*";
-                layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelCheckNumber.Visible = true;
-                labelCheckNumber.Text = "*";
-                layoutControlItemPayDate.Text = "تاريخ الاستحقاق";
-                layoutControlItemCheck.Text = "رقم الشيك";
+         
                 groupBox1.Enabled = false;
-                layoutControlItemBank.Text = "بنك";
-                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-
+            
                 string query = "select * from bank_main inner join bank on bank.Bank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null ";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -177,27 +149,14 @@ namespace MainSystem
             try
             {
                 RadioButton r = (RadioButton)sender;
-                radCash.Enabled = false;
-                radCash.Checked = false;
-                radCredit.Enabled = true;
-                radBankAccount.Enabled = true;
-                radDeposit.Enabled = true;
-                layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelBank.Visible = true;
-                labelBank.Text = "*";
-                layoutControlItemMoney.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelPullMoney.Visible = true;
-                labelPullMoney.Text = "*";
-                layoutControlItemComment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDescrip.Visible = true;
-                layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelCheckNumber.Visible = true;
-                labelCheckNumber.Text = "*";
-                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                groupBox1.Enabled = false;
-                radCredit.Checked = true;
-                loadedPayType = true;
+                //radCash.Enabled = false;
+                //radCash.Checked = false;
+                //radCredit.Enabled = true;
+                //radBankAccount.Enabled = true;
+                //radDeposit.Enabled = true;
+                //groupBox1.Enabled = false;
+                //radCredit.Checked = true;
+                //loadedPayType = true;
             }
             catch (Exception ex)
             {
@@ -211,16 +170,7 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
-                layoutControlItemBank.Text = "بنك";
-                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDate.Visible = true;
-                labelDate.Text = "*";
-                
-                layoutControlItemPayDate.Text = "تاريخ السحب";
-                layoutControlItemCheck.Text = "رقم الحساب";
-                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-
+              
                 string query = "select * from bank_main inner join bank on bank.Bank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null ";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -245,26 +195,16 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        
+
         private void radDeposit_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
-                layoutControlItemPayDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDate.Visible = true;
-                labelDate.Text = "*";
-                layoutControlItemCheck.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelCheckNumber.Visible = true;
-                labelCheckNumber.Text = "*";
-                layoutControlItemPayDate.Text = "تاريخ الاستحقاق";
-                layoutControlItemCheck.Text = "رقم الشيك";
+   
                 groupBox1.Enabled = false;
-                layoutControlItemBank.Text = "بنك";
-                layoutControlItem17.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                layoutControlItem20.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-
+                
                 string query = "select * from bank_main inner join bank on bank.Bank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null ";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -341,7 +281,7 @@ namespace MainSystem
                             MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                             com3.ExecuteNonQuery();
                         }
-                        
+
                         if (dateEdit1.Text != "")
                         {
                             com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
@@ -412,7 +352,7 @@ namespace MainSystem
                         com.Parameters.Add("@SupplierTransition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt32(TransitionID);
                         com.ExecuteNonQuery();
                         flagCategoriesSuccess = false;
-                        
+
                         DecreaseSupplierAccount();
                         dbconnection.Close();
                         /*DecreaseClientPaied();
@@ -734,15 +674,13 @@ namespace MainSystem
                         {
                             txtPaidRest.Text = ((total - totalPaid) + Convert.ToDouble(RestMoney.Text)).ToString();
                             txtPaidRest2.Text = "0";
-                            layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.Red;
+             
                         }
                         else if ((total - totalPaid) + Convert.ToDouble(RestMoney.Text) == 0)
                         {
                             txtPaidRest.Text = "0";
                             txtPaidRest2.Text = "0";
-                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                    
                         }
                         else
                         {
@@ -750,8 +688,7 @@ namespace MainSystem
                             double sub = (total - totalPaid);
 
                             txtPaidRest2.Text = (-1 * (sub + Convert.ToDouble(RestMoney.Text))).ToString();
-                            layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.Red;
-                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                         
                         }
 
                         if ((Convert.ToDouble(txtPaidRest.Text) == 0) && (Convert.ToDouble(txtPaidRest2.Text) == 0))
@@ -784,14 +721,12 @@ namespace MainSystem
                             PaidMoney.Text = "0";
                             txtPaidRest.Text = "0";
                             txtPaidRest2.Text = "0";
-                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
                             //for (int i = 0; i < arrPaidMoney.Length; i++)
                             //    arrPaidMoney[i] = arrRestMoney[i] = 0;
                             flag = false;
                         }
                         else
-                        {}
+                        { }
                         dbconnection.Close();
                     }
                     else
@@ -971,30 +906,27 @@ namespace MainSystem
                         totalRest = arrRestMoney[0] * 200 + arrRestMoney[1] * 100 + arrRestMoney[2] * 50 + arrRestMoney[3] * 20 + arrRestMoney[4] * 10 + arrRestMoney[5] * 5 + arrRestMoney[6] + arrRestMoney[7] * 0.5 + arrRestMoney[8] * 0.25;
                         RestMoney.Text = totalRest.ToString();
 
-                        if((Convert.ToDouble(RestMoney.Text)- (-1*(Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text))))<0)
+                        if ((Convert.ToDouble(RestMoney.Text) - (-1 * (Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text)))) < 0)
                         {
                             txtPaidRest.Text = "0";
-                            txtPaidRest2.Text = (-1*((Convert.ToDouble(RestMoney.Text) - (-1 * (Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text)))))).ToString();
-                            layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.Red;
-                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                            txtPaidRest2.Text = (-1 * ((Convert.ToDouble(RestMoney.Text) - (-1 * (Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text)))))).ToString();
+                      
                         }
                         else if ((Convert.ToDouble(RestMoney.Text) - (-1 * (Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text)))) == 0)
                         {
                             txtPaidRest2.Text = "0";
-                            layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            
+                         
                             txtPaidRest.Text = "0";
-                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                        
                         }
                         else
                         {
                             double sub = (Convert.ToDouble(txtPullMoney.Text) - Convert.ToDouble(PaidMoney.Text));
                             txtPaidRest.Text = (Convert.ToDouble(RestMoney.Text) - (-1 * sub)).ToString();
                             txtPaidRest2.Text = "0";
-                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.Red;
-                            layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                    
                         }
-                        
+
                         if ((Convert.ToDouble(txtPaidRest.Text) == 0) && (Convert.ToDouble(txtPaidRest2.Text) == 0))
                         {
                             dbconnection.Open();
@@ -1025,14 +957,13 @@ namespace MainSystem
                             PaidMoney.Text = "0";
                             txtPaidRest.Text = "0";
                             txtPaidRest2.Text = "0";
-                            layoutControlItemPull.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
-                            layoutControlItemRest.AppearanceItemCaption.ForeColor = Color.FromArgb(140, 140, 140);
+                          
                             //for (int i = 0; i < arrRestMoney.Length; i++)
                             //    arrRestMoney[i] = arrPaidMoney[i] = 0;
                             flag = false;
                         }
                         else
-                        {}
+                        { }
                         dbconnection.Close();
                     }
                 }
@@ -1049,7 +980,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-        
+
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -1207,3 +1138,4 @@ namespace MainSystem
         //}
     }
 }
+
