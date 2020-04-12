@@ -15,8 +15,6 @@ namespace MainSystem
     public partial class BankDepositDesign_Record2 : Form
     {
         MySqlConnection dbconnection;
-        //int branchID = 0;
-        //string branchName = "";
         string PaymentMethod = "";
         int[] arrOFPhaat; //count of each catagory value of money in store
         int[] arrRestMoney;
@@ -26,6 +24,7 @@ namespace MainSystem
         string TransitionID = "";
         bool flagCategoriesSuccess = false;
         int transitionbranchID = 0;
+        List<DesignItem> listDesignItems;
 
         public BankDepositDesign_Record2()//BankDepositAgl_Report form, XtraTabControl MainTabControlBank)
         {
@@ -35,7 +34,7 @@ namespace MainSystem
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
-
+            listDesignItems = new List<DesignItem>();
             if (UserControl.userType == 1)
             {
                 cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -635,6 +634,7 @@ namespace MainSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+
             }
             dbconnection.Close();
         }
@@ -691,7 +691,450 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        //clear function
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckBox ch = (CheckBox)sender;
+                switch (ch.Text)
+                {
+                    case "حمام":
+                        if (ch.Checked)
+                        {
+
+                            txtSpace1.Enabled = true;
+                            txtNoItem1.Enabled = true;
+                            txtCost1.Enabled = true;
+                            txtSpace1.Focus();
+                            DesignItem designItem = new DesignItem();
+                            designItem.DesignLocation = "حمام";
+                            listDesignItems.Add(designItem);
+                        }
+                        else
+                        {
+                            txtSpace1.Enabled = false;
+                            txtNoItem1.Enabled = false;
+                            txtCost1.Enabled = false;
+                            DesignItem designItem = getDesignItem("حمام");
+                            listDesignItems.Remove(designItem);
+                        }
+                        break;
+                    case "مطبخ":
+                        if (ch.Checked)
+                        {
+
+                            txtSpace2.Enabled = true;
+                            txtNoItem2.Enabled = true;
+                            txtCost2.Enabled = true;
+                            txtSpace2.Focus();
+                            DesignItem designItem = new DesignItem();
+                            designItem.DesignLocation = "مطبخ";
+                            listDesignItems.Add(designItem);
+                        }
+                        else
+                        {
+                            txtSpace2.Enabled = false;
+                            txtNoItem2.Enabled = false;
+                            txtCost2.Enabled = false;
+                            DesignItem designItem = getDesignItem("مطبخ");
+                            listDesignItems.Remove(designItem);
+                        }
+                        break;
+                    case "صالة":
+                        if (ch.Checked)
+                        {
+
+                            txtSpace3.Enabled = true;
+                            txtNoItem3.Enabled = true;
+                            txtCost3.Enabled = true;
+                            txtSpace3.Focus();
+                            DesignItem designItem = new DesignItem();
+                            designItem.DesignLocation = "صالة";
+                            listDesignItems.Add(designItem);
+                        }
+                        else
+                        {
+                            txtSpace3.Enabled = false;
+                            txtNoItem3.Enabled = false;
+                            txtCost3.Enabled = false;
+                            DesignItem designItem = getDesignItem("صالة");
+                            listDesignItems.Remove(designItem);
+                        }
+                        break;
+                    case "غرفة":
+                        if (ch.Checked)
+                        {
+
+                            txtSpace4.Enabled = true;
+                            txtNoItem4.Enabled = true;
+                            txtCost4.Enabled = true;
+                            txtSpace4.Focus();
+                            DesignItem designItem = new DesignItem();
+                            designItem.DesignLocation = "غرفة";
+                            listDesignItems.Add(designItem);
+                        }
+                        else
+                        {
+                            txtSpace4.Enabled = false;
+                            txtNoItem4.Enabled = false;
+                            txtCost4.Enabled = false;
+                            DesignItem designItem = getDesignItem("غرفة");
+                            listDesignItems.Remove(designItem);
+                        }
+                        break;
+                    case "اخري":
+                        if (ch.Checked)
+                        {
+
+                            txtSpace5.Enabled = true;
+                            txtNoItem5.Enabled = true;
+                            txtCost5.Enabled = true;
+                            txtSpace5.Focus();
+                            DesignItem designItem = new DesignItem();
+                            designItem.DesignLocation = "اخري";
+                            listDesignItems.Add(designItem);
+                        }
+                        else
+                        {
+                            txtSpace5.Enabled = true;
+                            txtNoItem5.Enabled = true;
+                            txtCost5.Enabled = true;
+                            DesignItem designItem = getDesignItem("اخري");
+                            listDesignItems.Remove(designItem);
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtSpace_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    double re = 0;
+                    TextBox txtbox = (TextBox)sender;
+                    switch (txtbox.Name)
+                    {
+                        case "txtSpace1":
+
+                            if (!double.TryParse(txtSpace1.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtSpace1.Text = "";
+                                txtSpace1.Focus();
+                            }
+                            else
+                            {
+                                DesignItem designItem = getDesignItem("حمام");
+                                designItem.Space = re;
+                                txtNoItem1.Focus();
+
+                            }
+                            break;
+                        case "txtSpace2":
+                            re = 0;
+                            if (!double.TryParse(txtSpace2.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtSpace2.Text = "";
+                                txtSpace2.Focus();
+                            }
+                            else
+                            {
+                                DesignItem designItem = getDesignItem("مطبخ");
+                                designItem.Space = re;
+                                txtNoItem2.Focus();
+                            
+                            }
+                            break;
+                        case "txtSpace3":
+                            re = 0;
+                            if (!double.TryParse(txtSpace3.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtSpace1.Text = "";
+                                txtSpace1.Focus();
+                            }
+                            else
+                            {
+                                DesignItem designItem = getDesignItem("صالة");
+                                designItem.Space = re;
+                                txtNoItem3.Focus();
+                            }
+                            break;
+                        case "txtSpace4":
+                            re = 0;
+                            if (!double.TryParse(txtSpace4.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtSpace4.Text = "";
+                                txtSpace4.Focus();
+                            }
+                            else
+                            {
+                                DesignItem designItem = getDesignItem("غرفة");
+                                designItem.Space = re;
+                                txtNoItem4.Focus();
+
+                            }
+                            break;
+                        case "txtSpace5":
+                            re = 0;
+                            if (!double.TryParse(txtSpace5.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtSpace5.Text = "";
+                                txtSpace5.Focus();
+                            }
+                            else
+                            {
+                                DesignItem designItem = getDesignItem("اخري");
+                                designItem.Space = re;
+                                txtNoItem5.Focus();
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtNoItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int re = 0;
+                    TextBox txtbox = (TextBox)sender;
+                    switch (txtbox.Name)
+                    {
+                        case "txtNoItem1":
+
+                            if (!int.TryParse(txtNoItem1.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItem1.Text = "";
+                                txtNoItem1.Focus();
+                            }
+                            else
+                            {
+                                txtCost1.Focus();
+                                DesignItem designItem = getDesignItem("حمام");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                        case "txtNoItem2":
+
+                            if (!int.TryParse(txtNoItem2.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItem2.Text = "";
+                                txtNoItem2.Focus();
+                            }
+                            else
+                            {
+                                txtCost2.Focus();
+                                DesignItem designItem = getDesignItem("مطبخ");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                        case "txtNoItem3":
+
+                            if (!int.TryParse(txtNoItem3.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItem3.Text = "";
+                                txtNoItem3.Focus();
+                            }
+                            else
+                            {
+                                txtCost3.Focus();
+                                DesignItem designItem = getDesignItem("صالة");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                        case "txtNoItem4":
+
+                            if (!int.TryParse(txtNoItem4.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItem4.Text = "";
+                                txtNoItem4.Focus();
+                            }
+                            else
+                            {
+                                txtCost4.Focus();
+                                DesignItem designItem = getDesignItem("غرفة");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                        case "txtNoItem5":
+
+                            if (!int.TryParse(txtNoItem5.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItem5.Text = "";
+                                txtNoItem5.Focus();
+                            }
+                            else
+                            {
+                                txtCost5.Focus();
+                                DesignItem designItem = getDesignItem("اخري");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void txtCost_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    double re = 0;
+                    double totalrow = 0;
+                    double total = 0;
+                    TextBox txtbox = (TextBox)sender;
+                    switch (txtbox.Name)
+                    {
+                        case "txtCost1":
+
+                            if (!double.TryParse(txtCost1.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtCost1.Text = "";
+                                txtCost1.Focus();
+                            }
+                            else
+                            {
+                                txtTotal1.Text = (re * (Convert.ToInt16(txtNoItem1.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotal1.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("حمام");
+                                designItem.ItemCost = re;
+                                designItem.Total = re;
+                            }
+                            break;
+                        case "txtCost2":
+
+                            if (!double.TryParse(txtCost2.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItem2.Text = "";
+                                txtNoItem2.Focus();
+                            }
+                            else
+                            {
+                                txtTotal2.Text = (re * (Convert.ToInt16(txtNoItem2.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotal2.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("مطبخ");
+                                designItem.ItemCost = re;
+                                designItem.Total = re;
+                            }
+                            break;
+                        case "txtCost3":
+
+                            if (!double.TryParse(txtCost3.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItem3.Text = "";
+                                txtNoItem3.Focus();
+                            }
+                            else
+                            {
+                                txtTotal3.Text = (re * (Convert.ToInt16(txtNoItem3.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotal3.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("صالة");
+                                designItem.ItemCost = re;
+                                designItem.Total = re;
+                            }
+                            break;
+                        case "txtCost4":
+
+                            if (!double.TryParse(txtCost4.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItem4.Text = "";
+                                txtNoItem4.Focus();
+                            }
+                            else
+                            {
+                                txtTotal4.Text = (re * (Convert.ToInt16(txtNoItem4.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotal4.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("غرفة");
+                                designItem.ItemCost = re;
+                                designItem.Total = re;
+                            }
+                            break;
+                        case "txtCost5":
+
+                            if (!double.TryParse(txtCost5.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItem5.Text = "";
+                                txtNoItem5.Focus();
+                            }
+                            else
+                            {
+                                txtTotal5.Text = (re * (Convert.ToInt16(txtNoItem5.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotal5.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("اخري");
+                                designItem.ItemCost = re;
+                                designItem.Total = re;
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //functions
         public void clear()
         {
             foreach (Control co in this.panel1.Controls)
@@ -721,8 +1164,7 @@ namespace MainSystem
                     }
                 }
             }
-        }
-        
+        }       
         void printCategoriesBill(int customerDesignID)
         {
             Print_Design_Report f = new Print_Design_Report();
@@ -740,7 +1182,6 @@ namespace MainSystem
             for (int i = 0; i < arrRestMoney.Length; i++)
                 arrRestMoney[i] = arrPaidMoney[i] = 0;
         }
-
         public int addCustomerDesign()
         {
             //,BranchBillNumber,BranchName
@@ -778,7 +1219,58 @@ namespace MainSystem
 
             query = "select CustomerDesign_ID from customer_design order by CustomerDesign_ID desc limit 1";
             com = new MySqlCommand(query, dbconnection);
-            return Convert.ToInt16(com.ExecuteScalar());
+            int CustomerDesign_ID = Convert.ToInt16(com.ExecuteScalar());
+
+            query = "INSERT INTO customer_design_details (CustomerDesignID, DesignLocation, Space, NoItems, ItemCost, Total) VALUES (@CustomerDesignID, @DesignLocation, @Space, @NoItems, @ItemCost, @Total) ";
+            com.Parameters.Add("@CustomerDesignID", MySqlDbType.Int16, 11);
+            com.Parameters.Add("@DesignLocation", MySqlDbType.VarChar, 255);
+            com.Parameters.Add("@Space", MySqlDbType.Double);
+            com.Parameters.Add("@ItemCost", MySqlDbType.Double);
+            com.Parameters.Add("@Total", MySqlDbType.Double);
+            foreach (DesignItem item in listDesignItems)
+            {
+                com.Parameters["@CustomerDesignID"].Value = CustomerDesign_ID;
+                com.Parameters[ "@DesignLocation"].Value = item.DesignLocation;
+                com.Parameters["@Space"].Value =item.Space;
+                com.Parameters["@ItemCost"].Value =item.ItemCost;
+                com.Parameters["@Total"].Value = item.Total;
+                com.ExecuteNonQuery();
+            }
+         
+            return CustomerDesign_ID;
         }
+        public void calTotal()
+        {
+            double total1 = Convert.ToDouble(txtTotal1.Text);
+            double total2 = Convert.ToDouble(txtTotal2.Text);
+            double total3 = Convert.ToDouble(txtTotal3.Text);
+            double total4 = Convert.ToDouble(txtTotal4.Text);
+            double total5 = Convert.ToDouble(txtTotal5.Text);
+
+            double total = total1 + total2 + total3 + total4 + total5;
+            txtTotal.Text = total.ToString();
+            txtPaidMoney.Text = total.ToString();
+        }
+        public DesignItem getDesignItem(string DesignLocation)
+        {
+            foreach (DesignItem item in listDesignItems)
+            {
+                if (item.DesignLocation == DesignLocation)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        public class DesignItem {
+
+            public string DesignLocation { get; set; }
+            public double Space { get; set; }
+            public int NoItems { get; set; }
+            public double ItemCost { get; set; }
+            public double Total { get; set; }
+        }
+
     }
 }
