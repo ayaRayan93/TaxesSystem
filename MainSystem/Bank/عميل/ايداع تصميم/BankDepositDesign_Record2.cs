@@ -1222,18 +1222,16 @@ namespace MainSystem
             int CustomerDesign_ID = Convert.ToInt16(com.ExecuteScalar());
 
             query = "INSERT INTO customer_design_details (CustomerDesignID, DesignLocation, Space, NoItems, ItemCost, Total) VALUES (@CustomerDesignID, @DesignLocation, @Space, @NoItems, @ItemCost, @Total) ";
-            com.Parameters.Add("@CustomerDesignID", MySqlDbType.Int16, 11);
-            com.Parameters.Add("@DesignLocation", MySqlDbType.VarChar, 255);
-            com.Parameters.Add("@Space", MySqlDbType.Double);
-            com.Parameters.Add("@ItemCost", MySqlDbType.Double);
-            com.Parameters.Add("@Total", MySqlDbType.Double);
+        
             foreach (DesignItem item in listDesignItems)
             {
-                com.Parameters["@CustomerDesignID"].Value = CustomerDesign_ID;
-                com.Parameters[ "@DesignLocation"].Value = item.DesignLocation;
-                com.Parameters["@Space"].Value =item.Space;
-                com.Parameters["@ItemCost"].Value =item.ItemCost;
-                com.Parameters["@Total"].Value = item.Total;
+                com = new MySqlCommand(query, dbconnection);
+                com.Parameters.Add("@CustomerDesignID", MySqlDbType.Int16, 11).Value = CustomerDesign_ID;
+                com.Parameters.Add("@DesignLocation", MySqlDbType.VarChar, 255).Value = item.DesignLocation;
+                com.Parameters.Add("@Space", MySqlDbType.Double).Value =item.Space;
+                com.Parameters.Add("@NoItems", MySqlDbType.Double).Value =item.NoItems;
+                com.Parameters.Add("@ItemCost", MySqlDbType.Double).Value =item.ItemCost;
+                com.Parameters.Add("@Total", MySqlDbType.Double).Value = item.Total;
                 com.ExecuteNonQuery();
             }
          
