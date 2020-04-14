@@ -13,7 +13,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(DateTime dateNow, int customerDesignID, string transitionID, string branchName, string clientName, double paidMoney, string paymentMethod, string bank, string checkNumber, string payday, string operationNumber, string description, string bankUserName, string engDesign, string DelegateName, double bathroomCm, int bathroomNum, double bathroomPrice, double bathroomTotal, double kitchenCm, int kitchenNum, double kitchenPrice, double kitchenTotal, double hallCm, int hallNum, double hallPrice, double hallTotal, double roomCm, int roomNum, double roomPrice, double roomTotal, double otherCm, int otherNum, double otherPrice, double otherTotal)
+        public void InitData(DateTime dateNow, int customerDesignID, string transitionID, string branchName, string clientName, double paidMoney, string paymentMethod, string bank, string checkNumber, string payday, string operationNumber, string description, string bankUserName, string engDesign, string DelegateName, string bathroomCm, string bathroomNum, string bathroomPrice, string bathroomTotal, string kitchenCm, string kitchenNum, string kitchenPrice, string kitchenTotal, string hallCm, string hallNum, string hallPrice, string hallTotal, string roomCm, string roomNum, string roomPrice, string roomTotal, string otherCm, string otherNum, string otherPrice, string otherTotal)
         {
             DesignNum.Value = customerDesignID;
             TransitionID.Value = transitionID;
