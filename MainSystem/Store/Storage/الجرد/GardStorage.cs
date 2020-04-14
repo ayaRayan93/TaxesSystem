@@ -45,7 +45,6 @@ namespace MainSystem
             }
 
         }
-
         private void GardStorage_Load(object sender, EventArgs e)
         {
             try
@@ -629,8 +628,7 @@ namespace MainSystem
             }
         }
      
-        //functions
- 
+        //functions 
         public void displayProducts()
         {
             string q1, q2, q3, q4, fQuery = "";
@@ -857,8 +855,7 @@ namespace MainSystem
                 comProduct.Text = "";
                 txtProduct.Text = "";
             }
-        }
-    
+        }  
         public void addGardQuantity(int Data_ID, DataRow row)
         {
             dbconnection.Close();
@@ -999,7 +996,6 @@ namespace MainSystem
             }
             return false;
         }
-
    
     }
 

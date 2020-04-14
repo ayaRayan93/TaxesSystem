@@ -92,10 +92,6 @@
             this.t50 = new System.Windows.Forms.TextBox();
             this.t100 = new System.Windows.Forms.TextBox();
             this.t200 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.radBankAccount = new System.Windows.Forms.RadioButton();
             this.radCredit = new System.Windows.Forms.RadioButton();
@@ -104,6 +100,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.radioButtonSafe = new System.Windows.Forms.RadioButton();
             this.radioButtonBank = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.comDelegate = new System.Windows.Forms.ComboBox();
             this.comEngDesign = new System.Windows.Forms.ComboBox();
             this.txtClientID = new System.Windows.Forms.TextBox();
@@ -117,6 +117,42 @@
             this.radClient = new System.Windows.Forms.RadioButton();
             this.radContractor = new System.Windows.Forms.RadioButton();
             this.radDealer = new System.Windows.Forms.RadioButton();
+            this.tabPane1 = new DevExpress.XtraBars.Navigation.TabPane();
+            this.tabNavigationPage1 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.txtTotal3 = new System.Windows.Forms.TextBox();
+            this.txtTotal4 = new System.Windows.Forms.TextBox();
+            this.txtTotal5 = new System.Windows.Forms.TextBox();
+            this.txtTotal2 = new System.Windows.Forms.TextBox();
+            this.txtTotal1 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCost3 = new System.Windows.Forms.TextBox();
+            this.txtCost4 = new System.Windows.Forms.TextBox();
+            this.txtCost5 = new System.Windows.Forms.TextBox();
+            this.txtCost2 = new System.Windows.Forms.TextBox();
+            this.txtCost1 = new System.Windows.Forms.TextBox();
+            this.txtNoItem3 = new System.Windows.Forms.TextBox();
+            this.txtNoItem4 = new System.Windows.Forms.TextBox();
+            this.txtNoItem5 = new System.Windows.Forms.TextBox();
+            this.txtNoItem2 = new System.Windows.Forms.TextBox();
+            this.txtNoItem1 = new System.Windows.Forms.TextBox();
+            this.txtSpace3 = new System.Windows.Forms.TextBox();
+            this.txtSpace4 = new System.Windows.Forms.TextBox();
+            this.txtSpace5 = new System.Windows.Forms.TextBox();
+            this.txtSpace2 = new System.Windows.Forms.TextBox();
+            this.txtSpace1 = new System.Windows.Forms.TextBox();
+            this.chBKitchen = new System.Windows.Forms.CheckBox();
+            this.chkBLiving = new System.Windows.Forms.CheckBox();
+            this.chBRoom = new System.Windows.Forms.CheckBox();
+            this.chBOther = new System.Windows.Forms.CheckBox();
+            this.chBpath = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tabNavigationPage2 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -127,6 +163,11 @@
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).BeginInit();
+            this.tabPane1.SuspendLayout();
+            this.tabNavigationPage1.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.tabNavigationPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -141,7 +182,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.03409F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.965912F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 749);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 722);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -153,12 +194,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.51347F));
             this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 677);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 653);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(978, 69);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(978, 66);
             this.tableLayoutPanel2.TabIndex = 11;
             // 
             // btnAdd
@@ -178,7 +219,7 @@
             this.btnAdd.Location = new System.Drawing.Point(439, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(101, 61);
+            this.btnAdd.Size = new System.Drawing.Size(101, 58);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -188,26 +229,13 @@
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.Controls.Add(this.panelContent);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.comDelegate);
-            this.panel1.Controls.Add(this.comEngDesign);
-            this.panel1.Controls.Add(this.txtClientID);
-            this.panel1.Controls.Add(this.comClient);
-            this.panel1.Controls.Add(this.labelName);
-            this.panel1.Controls.Add(this.txtCustomerID);
-            this.panel1.Controls.Add(this.comEng);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(984, 674);
+            this.panel1.Size = new System.Drawing.Size(984, 650);
             this.panel1.TabIndex = 12;
             // 
             // panelContent
@@ -225,7 +253,7 @@
             this.panelContent.Controls.Add(this.labType);
             this.panelContent.Controls.Add(this.labelDescrip);
             this.panelContent.Controls.Add(this.labelPaidMoney);
-            this.panelContent.Location = new System.Drawing.Point(451, 269);
+            this.panelContent.Location = new System.Drawing.Point(454, 215);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(518, 331);
             this.panelContent.TabIndex = 129;
@@ -255,6 +283,7 @@
             // txtPaidMoney
             // 
             this.txtPaidMoney.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtPaidMoney.Enabled = false;
             this.txtPaidMoney.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaidMoney.Location = new System.Drawing.Point(46, 66);
             this.txtPaidMoney.Name = "txtPaidMoney";
@@ -414,7 +443,7 @@
             this.groupBox1.Controls.Add(this.t100);
             this.groupBox1.Controls.Add(this.t200);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(38, 188);
+            this.groupBox1.Location = new System.Drawing.Point(42, 107);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox1.Size = new System.Drawing.Size(386, 439);
@@ -888,50 +917,6 @@
             this.t200.TabIndex = 26;
             this.t200.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(297, 152);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 19);
-            this.label5.TabIndex = 116;
-            this.label5.Text = "مهندس التصميم";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(297, 113);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 19);
-            this.label4.TabIndex = 115;
-            this.label4.Text = "المندوب";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(852, 152);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 19);
-            this.label3.TabIndex = 114;
-            this.label3.Text = "عميل";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(852, 114);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 19);
-            this.label2.TabIndex = 113;
-            this.label2.Text = "مهندس/مقاول/تاجر";
-            // 
             // panel4
             // 
             this.panel4.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -939,7 +924,7 @@
             this.panel4.Controls.Add(this.radCredit);
             this.panel4.Controls.Add(this.radCash);
             this.panel4.Controls.Add(this.radVisa);
-            this.panel4.Location = new System.Drawing.Point(474, 234);
+            this.panel4.Location = new System.Drawing.Point(490, 163);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(423, 31);
             this.panel4.TabIndex = 112;
@@ -1007,7 +992,7 @@
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panel3.Controls.Add(this.radioButtonSafe);
             this.panel3.Controls.Add(this.radioButtonBank);
-            this.panel3.Location = new System.Drawing.Point(514, 193);
+            this.panel3.Location = new System.Drawing.Point(535, 107);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(342, 35);
             this.panel3.TabIndex = 111;
@@ -1040,12 +1025,56 @@
             this.radioButtonBank.UseVisualStyleBackColor = false;
             this.radioButtonBank.CheckedChanged += new System.EventHandler(this.radioButtonBank_CheckedChanged);
             // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(322, 173);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 19);
+            this.label5.TabIndex = 116;
+            this.label5.Text = "مهندس التصميم";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(322, 134);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 19);
+            this.label4.TabIndex = 115;
+            this.label4.Text = "المندوب";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(824, 170);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 19);
+            this.label3.TabIndex = 114;
+            this.label3.Text = "عميل";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(824, 132);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 19);
+            this.label2.TabIndex = 113;
+            this.label2.Text = "مهندس/مقاول/تاجر";
+            // 
             // comDelegate
             // 
             this.comDelegate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comDelegate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comDelegate.FormattingEnabled = true;
-            this.comDelegate.Location = new System.Drawing.Point(79, 111);
+            this.comDelegate.Location = new System.Drawing.Point(104, 132);
             this.comDelegate.Name = "comDelegate";
             this.comDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDelegate.Size = new System.Drawing.Size(211, 27);
@@ -1056,7 +1085,7 @@
             this.comEngDesign.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comEngDesign.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comEngDesign.FormattingEnabled = true;
-            this.comEngDesign.Location = new System.Drawing.Point(79, 149);
+            this.comEngDesign.Location = new System.Drawing.Point(104, 170);
             this.comEngDesign.Name = "comEngDesign";
             this.comEngDesign.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comEngDesign.Size = new System.Drawing.Size(211, 27);
@@ -1067,7 +1096,7 @@
             this.txtClientID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtClientID.Enabled = false;
             this.txtClientID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClientID.Location = new System.Drawing.Point(556, 149);
+            this.txtClientID.Location = new System.Drawing.Point(528, 167);
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientID.Size = new System.Drawing.Size(68, 27);
@@ -1079,7 +1108,7 @@
             this.comClient.Enabled = false;
             this.comClient.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(630, 149);
+            this.comClient.Location = new System.Drawing.Point(602, 167);
             this.comClient.Name = "comClient";
             this.comClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comClient.Size = new System.Drawing.Size(215, 27);
@@ -1092,7 +1121,7 @@
             this.labelName.BackColor = System.Drawing.Color.White;
             this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelName.ForeColor = System.Drawing.Color.Red;
-            this.labelName.Location = new System.Drawing.Point(526, 149);
+            this.labelName.Location = new System.Drawing.Point(498, 167);
             this.labelName.Name = "labelName";
             this.labelName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.labelName.Size = new System.Drawing.Size(23, 21);
@@ -1105,7 +1134,7 @@
             this.txtCustomerID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCustomerID.Enabled = false;
             this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomerID.Location = new System.Drawing.Point(556, 111);
+            this.txtCustomerID.Location = new System.Drawing.Point(528, 129);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCustomerID.Size = new System.Drawing.Size(68, 27);
@@ -1117,7 +1146,7 @@
             this.comEng.Enabled = false;
             this.comEng.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comEng.FormattingEnabled = true;
-            this.comEng.Location = new System.Drawing.Point(630, 111);
+            this.comEng.Location = new System.Drawing.Point(602, 129);
             this.comEng.Name = "comEng";
             this.comEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comEng.Size = new System.Drawing.Size(215, 27);
@@ -1130,7 +1159,7 @@
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(530, 111);
+            this.label1.Location = new System.Drawing.Point(502, 129);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label1.Size = new System.Drawing.Size(19, 21);
@@ -1145,7 +1174,7 @@
             this.panel2.Controls.Add(this.radClient);
             this.panel2.Controls.Add(this.radContractor);
             this.panel2.Controls.Add(this.radDealer);
-            this.panel2.Location = new System.Drawing.Point(520, 57);
+            this.panel2.Location = new System.Drawing.Point(492, 75);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(337, 40);
             this.panel2.TabIndex = 72;
@@ -1210,19 +1239,493 @@
             this.radDealer.UseVisualStyleBackColor = false;
             this.radDealer.CheckedChanged += new System.EventHandler(this.radiotype_CheckedChanged);
             // 
+            // tabPane1
+            // 
+            this.tabPane1.AllowCollapse = DevExpress.Utils.DefaultBoolean.Default;
+            this.tabPane1.Controls.Add(this.tabNavigationPage1);
+            this.tabPane1.Controls.Add(this.tabNavigationPage2);
+            this.tabPane1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPane1.Location = new System.Drawing.Point(0, 0);
+            this.tabPane1.Name = "tabPane1";
+            this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
+            this.tabNavigationPage1,
+            this.tabNavigationPage2});
+            this.tabPane1.RegularSize = new System.Drawing.Size(984, 749);
+            this.tabPane1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tabPane1.SelectedPage = this.tabNavigationPage1;
+            this.tabPane1.Size = new System.Drawing.Size(984, 749);
+            this.tabPane1.TabIndex = 1;
+            this.tabPane1.Text = "tabPane1";
+            // 
+            // tabNavigationPage1
+            // 
+            this.tabNavigationPage1.Caption = "تفاصيل التصميم";
+            this.tabNavigationPage1.Controls.Add(this.panel5);
+            this.tabNavigationPage1.Name = "tabNavigationPage1";
+            this.tabNavigationPage1.Size = new System.Drawing.Size(984, 722);
+            // 
+            // panel5
+            // 
+            this.panel5.AutoScroll = true;
+            this.panel5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel5.Controls.Add(this.label11);
+            this.panel5.Controls.Add(this.txtTotal);
+            this.panel5.Controls.Add(this.txtTotal3);
+            this.panel5.Controls.Add(this.txtTotal4);
+            this.panel5.Controls.Add(this.txtTotal5);
+            this.panel5.Controls.Add(this.txtTotal2);
+            this.panel5.Controls.Add(this.txtTotal1);
+            this.panel5.Controls.Add(this.label7);
+            this.panel5.Controls.Add(this.comDelegate);
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Controls.Add(this.panel2);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Controls.Add(this.label1);
+            this.panel5.Controls.Add(this.label3);
+            this.panel5.Controls.Add(this.comEng);
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Controls.Add(this.txtCost3);
+            this.panel5.Controls.Add(this.txtCustomerID);
+            this.panel5.Controls.Add(this.txtCost4);
+            this.panel5.Controls.Add(this.labelName);
+            this.panel5.Controls.Add(this.txtCost5);
+            this.panel5.Controls.Add(this.comClient);
+            this.panel5.Controls.Add(this.txtCost2);
+            this.panel5.Controls.Add(this.txtClientID);
+            this.panel5.Controls.Add(this.txtCost1);
+            this.panel5.Controls.Add(this.comEngDesign);
+            this.panel5.Controls.Add(this.txtNoItem3);
+            this.panel5.Controls.Add(this.txtNoItem4);
+            this.panel5.Controls.Add(this.txtNoItem5);
+            this.panel5.Controls.Add(this.txtNoItem2);
+            this.panel5.Controls.Add(this.txtNoItem1);
+            this.panel5.Controls.Add(this.txtSpace3);
+            this.panel5.Controls.Add(this.txtSpace4);
+            this.panel5.Controls.Add(this.txtSpace5);
+            this.panel5.Controls.Add(this.txtSpace2);
+            this.panel5.Controls.Add(this.txtSpace1);
+            this.panel5.Controls.Add(this.chBKitchen);
+            this.panel5.Controls.Add(this.chkBLiving);
+            this.panel5.Controls.Add(this.chBRoom);
+            this.panel5.Controls.Add(this.chBOther);
+            this.panel5.Controls.Add(this.chBpath);
+            this.panel5.Controls.Add(this.label10);
+            this.panel5.Controls.Add(this.label9);
+            this.panel5.Controls.Add(this.label8);
+            this.panel5.Controls.Add(this.label6);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(984, 722);
+            this.panel5.TabIndex = 0;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(246, 586);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 19);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "الاجمالي";
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(163, 583);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTotal.Size = new System.Drawing.Size(66, 26);
+            this.txtTotal.TabIndex = 30;
+            this.txtTotal.Text = "0";
+            // 
+            // txtTotal3
+            // 
+            this.txtTotal3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtTotal3.Enabled = false;
+            this.txtTotal3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal3.Location = new System.Drawing.Point(163, 425);
+            this.txtTotal3.Name = "txtTotal3";
+            this.txtTotal3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTotal3.Size = new System.Drawing.Size(66, 26);
+            this.txtTotal3.TabIndex = 29;
+            this.txtTotal3.Text = "0";
+            // 
+            // txtTotal4
+            // 
+            this.txtTotal4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtTotal4.Enabled = false;
+            this.txtTotal4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal4.Location = new System.Drawing.Point(163, 460);
+            this.txtTotal4.Name = "txtTotal4";
+            this.txtTotal4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTotal4.Size = new System.Drawing.Size(66, 26);
+            this.txtTotal4.TabIndex = 28;
+            this.txtTotal4.Text = "0";
+            // 
+            // txtTotal5
+            // 
+            this.txtTotal5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtTotal5.Enabled = false;
+            this.txtTotal5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal5.Location = new System.Drawing.Point(163, 498);
+            this.txtTotal5.Name = "txtTotal5";
+            this.txtTotal5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTotal5.Size = new System.Drawing.Size(66, 26);
+            this.txtTotal5.TabIndex = 27;
+            this.txtTotal5.Text = "0";
+            // 
+            // txtTotal2
+            // 
+            this.txtTotal2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtTotal2.Enabled = false;
+            this.txtTotal2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal2.Location = new System.Drawing.Point(163, 386);
+            this.txtTotal2.Name = "txtTotal2";
+            this.txtTotal2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTotal2.Size = new System.Drawing.Size(66, 26);
+            this.txtTotal2.TabIndex = 26;
+            this.txtTotal2.Text = "0";
+            // 
+            // txtTotal1
+            // 
+            this.txtTotal1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtTotal1.Enabled = false;
+            this.txtTotal1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal1.Location = new System.Drawing.Point(163, 343);
+            this.txtTotal1.Name = "txtTotal1";
+            this.txtTotal1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTotal1.Size = new System.Drawing.Size(66, 26);
+            this.txtTotal1.TabIndex = 25;
+            this.txtTotal1.Text = "0";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(174, 294);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 19);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "اجمالي";
+            // 
+            // txtCost3
+            // 
+            this.txtCost3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCost3.Enabled = false;
+            this.txtCost3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCost3.Location = new System.Drawing.Point(305, 425);
+            this.txtCost3.Name = "txtCost3";
+            this.txtCost3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCost3.Size = new System.Drawing.Size(66, 26);
+            this.txtCost3.TabIndex = 24;
+            this.txtCost3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCost_KeyDown);
+            // 
+            // txtCost4
+            // 
+            this.txtCost4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCost4.Enabled = false;
+            this.txtCost4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCost4.Location = new System.Drawing.Point(305, 460);
+            this.txtCost4.Name = "txtCost4";
+            this.txtCost4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCost4.Size = new System.Drawing.Size(66, 26);
+            this.txtCost4.TabIndex = 23;
+            this.txtCost4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCost_KeyDown);
+            // 
+            // txtCost5
+            // 
+            this.txtCost5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCost5.Enabled = false;
+            this.txtCost5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCost5.Location = new System.Drawing.Point(305, 498);
+            this.txtCost5.Name = "txtCost5";
+            this.txtCost5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCost5.Size = new System.Drawing.Size(66, 26);
+            this.txtCost5.TabIndex = 22;
+            this.txtCost5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCost_KeyDown);
+            // 
+            // txtCost2
+            // 
+            this.txtCost2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCost2.Enabled = false;
+            this.txtCost2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCost2.Location = new System.Drawing.Point(305, 386);
+            this.txtCost2.Name = "txtCost2";
+            this.txtCost2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCost2.Size = new System.Drawing.Size(66, 26);
+            this.txtCost2.TabIndex = 21;
+            this.txtCost2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCost_KeyDown);
+            // 
+            // txtCost1
+            // 
+            this.txtCost1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCost1.Enabled = false;
+            this.txtCost1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCost1.Location = new System.Drawing.Point(305, 343);
+            this.txtCost1.Name = "txtCost1";
+            this.txtCost1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCost1.Size = new System.Drawing.Size(66, 26);
+            this.txtCost1.TabIndex = 20;
+            this.txtCost1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCost_KeyDown);
+            // 
+            // txtNoItem3
+            // 
+            this.txtNoItem3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNoItem3.Enabled = false;
+            this.txtNoItem3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoItem3.Location = new System.Drawing.Point(451, 426);
+            this.txtNoItem3.Name = "txtNoItem3";
+            this.txtNoItem3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtNoItem3.Size = new System.Drawing.Size(66, 26);
+            this.txtNoItem3.TabIndex = 19;
+            this.txtNoItem3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoItem_KeyDown);
+            // 
+            // txtNoItem4
+            // 
+            this.txtNoItem4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNoItem4.Enabled = false;
+            this.txtNoItem4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoItem4.Location = new System.Drawing.Point(451, 461);
+            this.txtNoItem4.Name = "txtNoItem4";
+            this.txtNoItem4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtNoItem4.Size = new System.Drawing.Size(66, 26);
+            this.txtNoItem4.TabIndex = 18;
+            this.txtNoItem4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoItem_KeyDown);
+            // 
+            // txtNoItem5
+            // 
+            this.txtNoItem5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNoItem5.Enabled = false;
+            this.txtNoItem5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoItem5.Location = new System.Drawing.Point(451, 499);
+            this.txtNoItem5.Name = "txtNoItem5";
+            this.txtNoItem5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtNoItem5.Size = new System.Drawing.Size(66, 26);
+            this.txtNoItem5.TabIndex = 17;
+            this.txtNoItem5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoItem_KeyDown);
+            // 
+            // txtNoItem2
+            // 
+            this.txtNoItem2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNoItem2.Enabled = false;
+            this.txtNoItem2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoItem2.Location = new System.Drawing.Point(451, 387);
+            this.txtNoItem2.Name = "txtNoItem2";
+            this.txtNoItem2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtNoItem2.Size = new System.Drawing.Size(66, 26);
+            this.txtNoItem2.TabIndex = 16;
+            this.txtNoItem2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoItem_KeyDown);
+            // 
+            // txtNoItem1
+            // 
+            this.txtNoItem1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtNoItem1.Enabled = false;
+            this.txtNoItem1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoItem1.Location = new System.Drawing.Point(451, 344);
+            this.txtNoItem1.Name = "txtNoItem1";
+            this.txtNoItem1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtNoItem1.Size = new System.Drawing.Size(66, 26);
+            this.txtNoItem1.TabIndex = 15;
+            this.txtNoItem1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoItem_KeyDown);
+            // 
+            // txtSpace3
+            // 
+            this.txtSpace3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSpace3.Enabled = false;
+            this.txtSpace3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSpace3.Location = new System.Drawing.Point(591, 428);
+            this.txtSpace3.Name = "txtSpace3";
+            this.txtSpace3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSpace3.Size = new System.Drawing.Size(66, 26);
+            this.txtSpace3.TabIndex = 14;
+            this.txtSpace3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
+            // 
+            // txtSpace4
+            // 
+            this.txtSpace4.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSpace4.Enabled = false;
+            this.txtSpace4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSpace4.Location = new System.Drawing.Point(591, 463);
+            this.txtSpace4.Name = "txtSpace4";
+            this.txtSpace4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSpace4.Size = new System.Drawing.Size(66, 26);
+            this.txtSpace4.TabIndex = 13;
+            this.txtSpace4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
+            // 
+            // txtSpace5
+            // 
+            this.txtSpace5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSpace5.Enabled = false;
+            this.txtSpace5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSpace5.Location = new System.Drawing.Point(591, 501);
+            this.txtSpace5.Name = "txtSpace5";
+            this.txtSpace5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSpace5.Size = new System.Drawing.Size(66, 26);
+            this.txtSpace5.TabIndex = 12;
+            this.txtSpace5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
+            // 
+            // txtSpace2
+            // 
+            this.txtSpace2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSpace2.Enabled = false;
+            this.txtSpace2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSpace2.Location = new System.Drawing.Point(591, 389);
+            this.txtSpace2.Name = "txtSpace2";
+            this.txtSpace2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSpace2.Size = new System.Drawing.Size(66, 26);
+            this.txtSpace2.TabIndex = 11;
+            this.txtSpace2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
+            // 
+            // txtSpace1
+            // 
+            this.txtSpace1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtSpace1.Enabled = false;
+            this.txtSpace1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSpace1.Location = new System.Drawing.Point(591, 346);
+            this.txtSpace1.Name = "txtSpace1";
+            this.txtSpace1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtSpace1.Size = new System.Drawing.Size(66, 26);
+            this.txtSpace1.TabIndex = 10;
+            this.txtSpace1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
+            // 
+            // chBKitchen
+            // 
+            this.chBKitchen.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chBKitchen.AutoSize = true;
+            this.chBKitchen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chBKitchen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chBKitchen.Location = new System.Drawing.Point(721, 389);
+            this.chBKitchen.Name = "chBKitchen";
+            this.chBKitchen.Size = new System.Drawing.Size(55, 23);
+            this.chBKitchen.TabIndex = 9;
+            this.chBKitchen.Text = "مطبخ";
+            this.chBKitchen.UseVisualStyleBackColor = true;
+            this.chBKitchen.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // chkBLiving
+            // 
+            this.chkBLiving.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chkBLiving.AutoSize = true;
+            this.chkBLiving.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkBLiving.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBLiving.Location = new System.Drawing.Point(721, 428);
+            this.chkBLiving.Name = "chkBLiving";
+            this.chkBLiving.Size = new System.Drawing.Size(55, 23);
+            this.chkBLiving.TabIndex = 8;
+            this.chkBLiving.Text = "صالة";
+            this.chkBLiving.UseVisualStyleBackColor = true;
+            this.chkBLiving.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // chBRoom
+            // 
+            this.chBRoom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chBRoom.AutoSize = true;
+            this.chBRoom.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chBRoom.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chBRoom.Location = new System.Drawing.Point(721, 463);
+            this.chBRoom.Name = "chBRoom";
+            this.chBRoom.Size = new System.Drawing.Size(54, 23);
+            this.chBRoom.TabIndex = 7;
+            this.chBRoom.Text = "غرفة";
+            this.chBRoom.UseVisualStyleBackColor = true;
+            this.chBRoom.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // chBOther
+            // 
+            this.chBOther.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chBOther.AutoSize = true;
+            this.chBOther.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chBOther.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chBOther.Location = new System.Drawing.Point(720, 501);
+            this.chBOther.Name = "chBOther";
+            this.chBOther.Size = new System.Drawing.Size(57, 23);
+            this.chBOther.TabIndex = 6;
+            this.chBOther.Text = "اخري";
+            this.chBOther.UseVisualStyleBackColor = true;
+            this.chBOther.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // chBpath
+            // 
+            this.chBpath.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chBpath.AutoSize = true;
+            this.chBpath.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chBpath.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chBpath.Location = new System.Drawing.Point(723, 346);
+            this.chBpath.Name = "chBpath";
+            this.chBpath.Size = new System.Drawing.Size(51, 23);
+            this.chBpath.TabIndex = 5;
+            this.chBpath.Text = "حمام";
+            this.chBpath.UseVisualStyleBackColor = true;
+            this.chBpath.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(447, 295);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(74, 19);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "عدد الوحدات";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(598, 297);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 19);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "المساحة";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(304, 294);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(69, 19);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "سعر الوحدة";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(708, 297);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 19);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "موقع التصميم";
+            // 
+            // tabNavigationPage2
+            // 
+            this.tabNavigationPage2.Caption = "دفع قيمة التصميم";
+            this.tabNavigationPage2.Controls.Add(this.tableLayoutPanel1);
+            this.tabNavigationPage2.Name = "tabNavigationPage2";
+            this.tabNavigationPage2.Size = new System.Drawing.Size(984, 722);
+            // 
             // BankDepositDesign_Record2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 749);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tabPane1);
             this.Name = "BankDepositDesign_Record2";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.BankDepositAgl_Record_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panelContent.ResumeLayout(false);
             this.panelContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
@@ -1232,6 +1735,12 @@
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tabPane1)).EndInit();
+            this.tabPane1.ResumeLayout(false);
+            this.tabNavigationPage1.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.tabNavigationPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1327,5 +1836,41 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Panel panelContent;
+        private DevExpress.XtraBars.Navigation.TabPane tabPane1;
+        private DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.TextBox txtTotal3;
+        private System.Windows.Forms.TextBox txtTotal4;
+        private System.Windows.Forms.TextBox txtTotal5;
+        private System.Windows.Forms.TextBox txtTotal2;
+        private System.Windows.Forms.TextBox txtTotal1;
+        private System.Windows.Forms.TextBox txtCost3;
+        private System.Windows.Forms.TextBox txtCost4;
+        private System.Windows.Forms.TextBox txtCost5;
+        private System.Windows.Forms.TextBox txtCost2;
+        private System.Windows.Forms.TextBox txtCost1;
+        private System.Windows.Forms.TextBox txtNoItem3;
+        private System.Windows.Forms.TextBox txtNoItem4;
+        private System.Windows.Forms.TextBox txtNoItem5;
+        private System.Windows.Forms.TextBox txtNoItem2;
+        private System.Windows.Forms.TextBox txtNoItem1;
+        private System.Windows.Forms.TextBox txtSpace3;
+        private System.Windows.Forms.TextBox txtSpace4;
+        private System.Windows.Forms.TextBox txtSpace5;
+        private System.Windows.Forms.TextBox txtSpace2;
+        private System.Windows.Forms.TextBox txtSpace1;
+        private System.Windows.Forms.CheckBox chBKitchen;
+        private System.Windows.Forms.CheckBox chkBLiving;
+        private System.Windows.Forms.CheckBox chBRoom;
+        private System.Windows.Forms.CheckBox chBOther;
+        private System.Windows.Forms.CheckBox chBpath;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private DevExpress.XtraBars.Navigation.TabNavigationPage tabNavigationPage2;
     }
 }

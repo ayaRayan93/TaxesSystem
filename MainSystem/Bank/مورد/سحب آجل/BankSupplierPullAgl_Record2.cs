@@ -151,14 +151,14 @@ namespace MainSystem
             try
             {
                 RadioButton r = (RadioButton)sender;
-                //radCash.Enabled = false;
-                //radCash.Checked = false;
-                //radCredit.Enabled = true;
-                //radBankAccount.Enabled = true;
-                //radDeposit.Enabled = true;
-                //groupBox1.Enabled = false;
-                //radCredit.Checked = true;
-                //loadedPayType = true;
+                radCash.Enabled = false;
+                radCash.Checked = false;
+                radCredit.Enabled = true;
+                radBankAccount.Enabled = true;
+                radDeposit.Enabled = true;
+                groupBox1.Enabled = false;
+                radCredit.Checked = true;
+                loadedPayType = true;
             }
             catch (Exception ex)
             {
@@ -1079,6 +1079,11 @@ namespace MainSystem
         }
 
         private void cmbBank_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdd_Click_1(object sender, EventArgs e)
         {
 
         }
