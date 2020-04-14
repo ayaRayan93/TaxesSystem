@@ -25,7 +25,7 @@ namespace MainSystem
             {
                 p.Visible = false;
             }
-            report.InitData(dateNow, customerDesignID, TransitionID, branchName, clientName, PaidMoney, PaymentMethod, bank, CheckNumber, Payday, OperationNumber, Description, BankUserName, EngDesign, DelegateName, q200, q100, q50, q20, q10, q5, q1, qH, qQ, r200, r100, r50, r20, r10, r5, r1, rH, rQ);
+            report.InitData(dateNow, customerDesignID, TransitionID, branchName, clientName, PaidMoney, PaymentMethod, bank, CheckNumber, Payday, OperationNumber, Description, BankUserName, EngDesign, DelegateName, q200, q100, q50, q20, q10, q5, q1, qH, qQ, r200, r100, r50, r20, r10, r5, r1, rH, rQ, rH, rQ);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }
