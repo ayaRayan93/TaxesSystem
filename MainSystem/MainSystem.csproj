@@ -916,6 +916,18 @@
     <Compile Include="Reports\sales\SalesReportForDelegateProductDetails.Designer.cs">
       <DependentUpon>SalesReportForDelegateProductDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sales\reports\تقرير التصميمات\DesignSearch_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير التصميمات\DesignSearch_Report.designer.cs">
+      <DependentUpon>DesignSearch_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير التصميمات\Designs_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sales\reports\تقرير التصميمات\Designs_Report.designer.cs">
+      <DependentUpon>Designs_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sales\reports\تقرير حركة السدادات\Bills_Transitions_ReportX.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3588,6 +3600,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\sales\SalesReportForDelegateProductDetails.resx">
       <DependentUpon>SalesReportForDelegateProductDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\تقرير التصميمات\DesignSearch_Report.resx">
+      <DependentUpon>DesignSearch_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sales\reports\تقرير التصميمات\Designs_Report.resx">
+      <DependentUpon>Designs_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\reports\تقرير حركة السدادات\Bills_Transitions_ReportX.resx">
       <DependentUpon>Bills_Transitions_ReportX.cs</DependentUpon>
