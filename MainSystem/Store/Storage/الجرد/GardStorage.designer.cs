@@ -147,7 +147,7 @@
             this.label3.Location = new System.Drawing.Point(740, 20);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(79, 18);
+            this.label3.Size = new System.Drawing.Size(78, 18);
             this.label3.TabIndex = 236;
             this.label3.Text = "أذن جرد رقم";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -341,7 +341,7 @@
             this.label9.Location = new System.Drawing.Point(630, 137);
             this.label9.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(31, 16);
+            this.label9.Size = new System.Drawing.Size(30, 16);
             this.label9.TabIndex = 159;
             this.label9.Text = "الفرز";
             // 
@@ -568,7 +568,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(927, 841);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(927, 749);
             this.tableLayoutPanel1.TabIndex = 41;
             // 
             // tableLayoutPanel4
@@ -581,7 +581,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.btnReport, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 781);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 689);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -619,7 +619,7 @@
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
             this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl2.Size = new System.Drawing.Size(921, 525);
+            this.gridControl2.Size = new System.Drawing.Size(921, 433);
             this.gridControl2.TabIndex = 41;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -677,7 +677,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(927, 841);
+            this.ClientSize = new System.Drawing.Size(927, 749);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "GardStorage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
