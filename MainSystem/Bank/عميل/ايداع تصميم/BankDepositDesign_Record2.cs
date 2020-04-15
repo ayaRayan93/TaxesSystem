@@ -718,6 +718,10 @@ namespace MainSystem
                             txtNoItemBath.Text = "";
                             txtCostBath.Enabled = false;
                             txtCostBath.Text = "";
+                            txtTotalBath.Text = "0";
+                            
+                            calTotal();
+                            
                             DesignItem designItem = getDesignItem("حمام");
                             listDesignItems.Remove(designItem);
                         }
@@ -728,7 +732,7 @@ namespace MainSystem
 
                             txtSpaceKitchen.Enabled = true;
                             txtNoItemKitchen.Enabled = true;
-                            txtCosKitchen.Enabled = true;
+                            txtCostKitchen.Enabled = true;
                             txtSpaceKitchen.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "مطبخ";
@@ -740,8 +744,12 @@ namespace MainSystem
                             txtSpaceKitchen.Text = "";
                             txtNoItemKitchen.Enabled = false;
                             txtNoItemKitchen.Text = "";
-                            txtCosKitchen.Enabled = false;
-                            txtCosKitchen.Text = "";
+                            txtCostKitchen.Enabled = false;
+                            txtCostKitchen.Text = "";
+                            txtTotalKitchen.Text = "0";
+
+                            calTotal();
+
                             DesignItem designItem = getDesignItem("مطبخ");
                             listDesignItems.Remove(designItem);
                         }
@@ -765,6 +773,10 @@ namespace MainSystem
                             txtNoItemHall.Text = "";
                             txtCostHall.Enabled = false;
                             txtCostHall.Text = "";
+                            txtTotalHall.Text = "0";
+
+                            calTotal();
+
                             DesignItem designItem = getDesignItem("صالة");
                             listDesignItems.Remove(designItem);
                         }
@@ -789,6 +801,10 @@ namespace MainSystem
                             txtNoItemRoom.Text = "";
                             txtCostRoom.Enabled = false;
                             txtCostRoom.Text = "";
+                            txtTotalRoom.Text = "0";
+
+                            calTotal();
+
                             DesignItem designItem = getDesignItem("غرفة");
                             listDesignItems.Remove(designItem);
                         }
@@ -812,6 +828,10 @@ namespace MainSystem
                             txtNoItemOther.Text = "";
                             txtCostOther.Enabled = false;
                             txtCostOther.Text = "";
+                            txtTotalOther.Text = "0";
+
+                            calTotal();
+
                             DesignItem designItem = getDesignItem("اخري");
                             listDesignItems.Remove(designItem);
                         }
@@ -834,7 +854,7 @@ namespace MainSystem
                     TextBox txtbox = (TextBox)sender;
                     switch (txtbox.Name)
                     {
-                        case "txtSpace1":
+                        case "txtSpaceBath":
 
                             if (!double.TryParse(txtSpaceBath.Text, out re))
                             {
@@ -851,7 +871,7 @@ namespace MainSystem
 
                             }
                             break;
-                        case "txtSpace2":
+                        case "txtSpaceKitchen":
                             re = 0;
                             if (!double.TryParse(txtSpaceKitchen.Text, out re))
                             {
@@ -868,7 +888,7 @@ namespace MainSystem
                             
                             }
                             break;
-                        case "txtSpace3":
+                        case "txtSpaceHall":
                             re = 0;
                             if (!double.TryParse(txtSpaceHall.Text, out re))
                             {
@@ -884,7 +904,7 @@ namespace MainSystem
                                 txtNoItemHall.Focus();
                             }
                             break;
-                        case "txtSpace4":
+                        case "txtSpaceRoom":
                             re = 0;
                             if (!double.TryParse(txtSpaceRoom.Text, out re))
                             {
@@ -901,7 +921,7 @@ namespace MainSystem
 
                             }
                             break;
-                        case "txtSpace5":
+                        case "txtSpaceOther":
                             re = 0;
                             if (!double.TryParse(txtSpaceOther.Text, out re))
                             {
@@ -964,7 +984,7 @@ namespace MainSystem
                             }
                             else
                             {
-                                txtCosKitchen.Focus();
+                                txtCostKitchen.Focus();
                                 DesignItem designItem = getDesignItem("مطبخ");
                                 designItem.NoItems = re;
                             }
@@ -1060,7 +1080,7 @@ namespace MainSystem
                             break;
                         case "txtCostKitchen":
 
-                            if (!double.TryParse(txtCosKitchen.Text, out re))
+                            if (!double.TryParse(txtCostKitchen.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
@@ -1183,11 +1203,11 @@ namespace MainSystem
             Print_Design_Report f = new Print_Design_Report();
             if (comClient.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, txtSpaceBath.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtSpaceKitchen.Text, txtNoItemKitchen.Text, txtCosKitchen.Text, txtTotalKitchen.Text, txtSpaceHall.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtSpaceRoom.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtSpaceOther.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
+                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, txtSpaceBath.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtSpaceKitchen.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtSpaceHall.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtSpaceRoom.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtSpaceOther.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
             }
             else if (comEng.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, txtSpaceBath.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtSpaceKitchen.Text, txtNoItemKitchen.Text, txtCosKitchen.Text, txtTotalKitchen.Text, txtSpaceHall.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtSpaceRoom.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtSpaceOther.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
+                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, txtSpaceBath.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtSpaceKitchen.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtSpaceHall.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtSpaceRoom.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtSpaceOther.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)

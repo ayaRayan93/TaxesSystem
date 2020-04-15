@@ -131,7 +131,7 @@
             this.txtCostHall = new System.Windows.Forms.TextBox();
             this.txtCostRoom = new System.Windows.Forms.TextBox();
             this.txtCostOther = new System.Windows.Forms.TextBox();
-            this.txtCosKitchen = new System.Windows.Forms.TextBox();
+            this.txtCostKitchen = new System.Windows.Forms.TextBox();
             this.txtCostBath = new System.Windows.Forms.TextBox();
             this.txtNoItemHall = new System.Windows.Forms.TextBox();
             this.txtNoItemRoom = new System.Windows.Forms.TextBox();
@@ -1290,7 +1290,7 @@
             this.panel5.Controls.Add(this.labelName);
             this.panel5.Controls.Add(this.txtCostOther);
             this.panel5.Controls.Add(this.comClient);
-            this.panel5.Controls.Add(this.txtCosKitchen);
+            this.panel5.Controls.Add(this.txtCostKitchen);
             this.panel5.Controls.Add(this.txtClientID);
             this.panel5.Controls.Add(this.txtCostBath);
             this.panel5.Controls.Add(this.comEngDesign);
@@ -1449,17 +1449,17 @@
             this.txtCostOther.TabIndex = 22;
             this.txtCostOther.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCost_KeyDown);
             // 
-            // txtCosKitchen
+            // txtCostKitchen
             // 
-            this.txtCosKitchen.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCosKitchen.Enabled = false;
-            this.txtCosKitchen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCosKitchen.Location = new System.Drawing.Point(305, 366);
-            this.txtCosKitchen.Name = "txtCosKitchen";
-            this.txtCosKitchen.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtCosKitchen.Size = new System.Drawing.Size(66, 26);
-            this.txtCosKitchen.TabIndex = 21;
-            this.txtCosKitchen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCost_KeyDown);
+            this.txtCostKitchen.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCostKitchen.Enabled = false;
+            this.txtCostKitchen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCostKitchen.Location = new System.Drawing.Point(305, 366);
+            this.txtCostKitchen.Name = "txtCostKitchen";
+            this.txtCostKitchen.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtCostKitchen.Size = new System.Drawing.Size(66, 26);
+            this.txtCostKitchen.TabIndex = 21;
+            this.txtCostKitchen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCost_KeyDown);
             // 
             // txtCostBath
             // 
@@ -1849,7 +1849,7 @@
         private System.Windows.Forms.TextBox txtCostHall;
         private System.Windows.Forms.TextBox txtCostRoom;
         private System.Windows.Forms.TextBox txtCostOther;
-        private System.Windows.Forms.TextBox txtCosKitchen;
+        private System.Windows.Forms.TextBox txtCostKitchen;
         private System.Windows.Forms.TextBox txtCostBath;
         private System.Windows.Forms.TextBox txtNoItemHall;
         private System.Windows.Forms.TextBox txtNoItemRoom;
