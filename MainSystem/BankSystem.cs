@@ -485,7 +485,7 @@ namespace MainSystem
             }
         }
 
-        private void navBarItemBankTransitionReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        private void navBarItemBankTransReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
             {
@@ -586,7 +586,7 @@ namespace MainSystem
             }
         }
 
-        private void navBarItemBillsTransitionPaymentTypeReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        private void navBarItemBillPayTypeReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
             {
@@ -606,7 +606,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 MainTabControlBank.SelectedTabPage = xtraTabPage;
 
-                BillsTransitions_PaymentType_Report objForm = new BillsTransitions_PaymentType_Report(this);
+                BillPayType_Report objForm = new BillPayType_Report(this);
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);

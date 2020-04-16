@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class BillsTransitions_PaymentType_Report : Form
+    public partial class BillPayType_Report : Form
     {
         MySqlConnection conn;
         MainForm bankMainForm = null;
@@ -30,7 +30,7 @@ namespace MainSystem
         bool loaded = false;
         bool loadedBranch = false;
 
-        public BillsTransitions_PaymentType_Report(MainForm BankMainForm)
+        public BillPayType_Report(MainForm BankMainForm)
         {
             InitializeComponent();
             conn = new MySqlConnection(connection.connectionString);
