@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\CCC\version1.96\</PublishUrl>
+    <PublishUrl>D:\CCC\version2.2\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>279</ApplicationRevision>
+    <ApplicationRevision>286</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -175,8 +175,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.19\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+    <Reference Include="Ubiety.Dns.Core, Version=4.1.2.0, Culture=neutral, PublicKeyToken=62d65a2efdde5827, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ubiety.Dns.Core.4.1.2\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ubiety.Logging.Core, Version=1.2.2.0, Culture=neutral, PublicKeyToken=133e143470e66433, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ubiety.Logging.Core.1.2.2\lib\net452\Ubiety.Logging.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -271,11 +275,11 @@
     <Compile Include="Bank\تقارير\تقرير اجماليات حركة خزن الفرع\Print_BankTransition_Report.designer.cs">
       <DependentUpon>Print_BankTransition_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\BillsTransitions_PaymentType_Report.cs">
+    <Compile Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\BillPayType_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\BillsTransitions_PaymentType_Report.designer.cs">
-      <DependentUpon>BillsTransitions_PaymentType_Report.cs</DependentUpon>
+    <Compile Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\BillPayType_Report.designer.cs">
+      <DependentUpon>BillPayType_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Bank\تقرير الخزائن والبنوك\Bank_Main.cs">
       <SubType>Form</SubType>
@@ -3325,8 +3329,8 @@
     <EmbeddedResource Include="Bank\تقارير\تقرير اجماليات حركة خزن الفرع\Print_BankTransition_Report.resx">
       <DependentUpon>Print_BankTransition_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\BillsTransitions_PaymentType_Report.resx">
-      <DependentUpon>BillsTransitions_PaymentType_Report.cs</DependentUpon>
+    <EmbeddedResource Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\BillPayType_Report.resx">
+      <DependentUpon>BillPayType_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\تقرير الخزائن والبنوك\Bank_Main.resx">
       <DependentUpon>Bank_Main.cs</DependentUpon>
