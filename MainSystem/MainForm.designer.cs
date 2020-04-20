@@ -455,9 +455,9 @@
             this.xtraTabControlExpenses = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl6 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup56 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem292 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem293 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem294 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPropertyCoding = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPropertyIncome = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPropertyExpense = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup42 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemMainSubReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSafeExpenseIncomeRecord = new DevExpress.XtraNavBar.NavBarItem();
@@ -4609,9 +4609,9 @@
             this.navBarItemExpenseRecord,
             this.navBarItemExpensesTransitionsReport,
             this.navBarItemSubExpensesTransitionsReport,
-            this.navBarItem292,
-            this.navBarItem293,
-            this.navBarItem294});
+            this.navBarItemPropertyCoding,
+            this.navBarItemPropertyIncome,
+            this.navBarItemPropertyExpense});
             this.navBarControl6.Location = new System.Drawing.Point(832, 0);
             this.navBarControl6.Name = "navBarControl6";
             this.navBarControl6.OptionsNavPane.ExpandedWidth = 169;
@@ -4630,25 +4630,34 @@
             this.navBarGroup56.Caption = "عقارات";
             this.navBarGroup56.Expanded = true;
             this.navBarGroup56.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem292),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem293),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem294)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPropertyCoding),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPropertyIncome),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPropertyExpense)});
             this.navBarGroup56.Name = "navBarGroup56";
             // 
-            // navBarItem292
+            // navBarItemPropertyCoding
             // 
-            this.navBarItem292.Caption = "navBarItem292";
-            this.navBarItem292.Name = "navBarItem292";
+            this.navBarItemPropertyCoding.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemPropertyCoding.Appearance.Options.UseFont = true;
+            this.navBarItemPropertyCoding.Caption = "تكويد العقارات";
+            this.navBarItemPropertyCoding.Name = "navBarItemPropertyCoding";
+            this.navBarItemPropertyCoding.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPropertyCoding_LinkClicked);
             // 
-            // navBarItem293
+            // navBarItemPropertyIncome
             // 
-            this.navBarItem293.Caption = "navBarItem293";
-            this.navBarItem293.Name = "navBarItem293";
+            this.navBarItemPropertyIncome.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemPropertyIncome.Appearance.Options.UseFont = true;
+            this.navBarItemPropertyIncome.Caption = "تسجيل وارد للعقارات";
+            this.navBarItemPropertyIncome.Name = "navBarItemPropertyIncome";
+            this.navBarItemPropertyIncome.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPropertyIncome_LinkClicked);
             // 
-            // navBarItem294
+            // navBarItemPropertyExpense
             // 
-            this.navBarItem294.Caption = "navBarItem294";
-            this.navBarItem294.Name = "navBarItem294";
+            this.navBarItemPropertyExpense.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemPropertyExpense.Appearance.Options.UseFont = true;
+            this.navBarItemPropertyExpense.Caption = "تسجيل مصروف للعقارات";
+            this.navBarItemPropertyExpense.Name = "navBarItemPropertyExpense";
+            this.navBarItemPropertyExpense.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPropertyExpense_LinkClicked);
             // 
             // navBarGroup42
             // 
@@ -7023,9 +7032,9 @@
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup68;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDesignSearch;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup56;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem292;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem293;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem294;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemPropertyCoding;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemPropertyIncome;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemPropertyExpense;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup57;
     }
 }

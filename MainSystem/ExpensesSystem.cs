@@ -199,6 +199,108 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemPropertyCoding_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "تكويد العقارات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("تكويد العقارات");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "تكويد العقارات");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                Main_SubProperty objFormExpenses = new Main_SubProperty(xtraTabControlExpenses);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemPropertyIncome_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "تسجيل وارد للعقارات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("تسجيل وارد للعقارات");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "تسجيل وارد للعقارات");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                SafePropertyIncome_Record objFormExpenses = new SafePropertyIncome_Record(xtraTabControlExpenses);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemPropertyExpense_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "تسجيل مصروف للعقارات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("تسجيل مصروف للعقارات");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "تسجيل مصروف للعقارات");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                SafePropertyExpense_Record objFormExpenses = new SafePropertyExpense_Record(xtraTabControlExpenses);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void bindUpdateExpenseForm(DataRowView rows, Expenses_Transitions_Report ExpensesTransitionsReport)
         {
             if (!xtraTabControlExpenses.Visible)

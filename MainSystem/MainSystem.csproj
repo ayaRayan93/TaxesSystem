@@ -362,6 +362,36 @@
     <Compile Include="CustomerService\displayCustomerBill.Designer.cs">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\العقارات\Coding\MainProperty_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Coding\MainProperty_Report.designer.cs">
+      <DependentUpon>MainProperty_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Coding\Main_SubProperty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Coding\Main_SubProperty.Designer.cs">
+      <DependentUpon>Main_SubProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Coding\SubProperty_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Coding\SubProperty_Report.designer.cs">
+      <DependentUpon>SubProperty_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\ايداع\SafePropertyIncome_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\ايداع\SafePropertyIncome_Record.designer.cs">
+      <DependentUpon>SafePropertyIncome_Record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\مصروف\SafePropertyExpense_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\مصروف\SafePropertyExpense_Record.designer.cs">
+      <DependentUpon>SafePropertyExpense_Record.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\المصروفات\Coding\MainExpenses_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -478,11 +508,11 @@
     <Compile Include="Expenses\المصروفات\مصروف\Print_Expense2.designer.cs">
       <DependentUpon>Print_Expense2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Expenses\المصروفات\مصروف\Print_Expense.cs">
+    <Compile Include="Expenses\المصروفات\مصروف\Print_ExpenseX.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Expenses\المصروفات\مصروف\Print_Expense.designer.cs">
-      <DependentUpon>Print_Expense.cs</DependentUpon>
+    <Compile Include="Expenses\المصروفات\مصروف\Print_ExpenseX.designer.cs">
+      <DependentUpon>Print_ExpenseX.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\المصروفات\مصروف\Print_Expense_Report.cs">
       <SubType>Form</SubType>
@@ -632,11 +662,11 @@
     <Compile Include="Cars\PartenerCarsReport.designer.cs">
       <DependentUpon>PartenerCarsReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record.cs">
+    <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_RecordX.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_Record.designer.cs">
-      <DependentUpon>SafeExpense_Record.cs</DependentUpon>
+    <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_RecordX.designer.cs">
+      <DependentUpon>SafeExpense_RecordX.cs</DependentUpon>
     </Compile>
     <Compile Include="Requests\Least Quantity\Print_LeastQuantity.cs">
       <SubType>Component</SubType>
@@ -3370,6 +3400,21 @@
     <EmbeddedResource Include="CustomerService\displayCustomerBill.resx">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Coding\MainProperty_Report.resx">
+      <DependentUpon>MainProperty_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Coding\Main_SubProperty.resx">
+      <DependentUpon>Main_SubProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Coding\SubProperty_Report.resx">
+      <DependentUpon>SubProperty_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\ايداع\SafePropertyIncome_Record.resx">
+      <DependentUpon>SafePropertyIncome_Record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\مصروف\SafePropertyExpense_Record.resx">
+      <DependentUpon>SafePropertyExpense_Record.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Coding\MainExpenses_Report.resx">
       <DependentUpon>MainExpenses_Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -3427,8 +3472,8 @@
     <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_Expense2.resx">
       <DependentUpon>Print_Expense2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_Expense.resx">
-      <DependentUpon>Print_Expense.cs</DependentUpon>
+    <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_ExpenseX.resx">
+      <DependentUpon>Print_ExpenseX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_Expense_Report.resx">
       <DependentUpon>Print_Expense_Report.cs</DependentUpon>
@@ -3493,8 +3538,8 @@
     <EmbeddedResource Include="Cars\PartenerCarsReport.resx">
       <DependentUpon>PartenerCarsReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Expenses\المصروفات\مصروف\SafeExpense_Record.resx">
-      <DependentUpon>SafeExpense_Record.cs</DependentUpon>
+    <EmbeddedResource Include="Expenses\المصروفات\مصروف\SafeExpense_RecordX.resx">
+      <DependentUpon>SafeExpense_RecordX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Reports\supplierType\Print_SupplierType.resx">
       <DependentUpon>Print_SupplierType.cs</DependentUpon>
