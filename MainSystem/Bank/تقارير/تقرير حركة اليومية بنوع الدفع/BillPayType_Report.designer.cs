@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class BillsTransitions_PaymentType_Report
+    partial class BillPayType_Report
     {
         /// <summary>
         /// Required designer variable.

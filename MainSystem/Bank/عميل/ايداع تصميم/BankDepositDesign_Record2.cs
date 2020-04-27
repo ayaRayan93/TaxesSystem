@@ -702,19 +702,26 @@ namespace MainSystem
                         if (ch.Checked)
                         {
 
-                            txtSpace1.Enabled = true;
-                            txtNoItem1.Enabled = true;
-                            txtCost1.Enabled = true;
-                            txtSpace1.Focus();
+                            txtSpaceBath.Enabled = true;
+                            txtNoItemBath.Enabled = true;
+                            txtCostBath.Enabled = true;
+                            txtSpaceBath.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "حمام";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpace1.Enabled = false;
-                            txtNoItem1.Enabled = false;
-                            txtCost1.Enabled = false;
+                            txtSpaceBath.Enabled = false;
+                            txtSpaceBath.Text = "";
+                            txtNoItemBath.Enabled = false;
+                            txtNoItemBath.Text = "";
+                            txtCostBath.Enabled = false;
+                            txtCostBath.Text = "";
+                            txtTotalBath.Text = "0";
+                            
+                            calTotal();
+                            
                             DesignItem designItem = getDesignItem("حمام");
                             listDesignItems.Remove(designItem);
                         }
@@ -723,19 +730,26 @@ namespace MainSystem
                         if (ch.Checked)
                         {
 
-                            txtSpace2.Enabled = true;
-                            txtNoItem2.Enabled = true;
-                            txtCost2.Enabled = true;
-                            txtSpace2.Focus();
+                            txtSpaceKitchen.Enabled = true;
+                            txtNoItemKitchen.Enabled = true;
+                            txtCostKitchen.Enabled = true;
+                            txtSpaceKitchen.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "مطبخ";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpace2.Enabled = false;
-                            txtNoItem2.Enabled = false;
-                            txtCost2.Enabled = false;
+                            txtSpaceKitchen.Enabled = false;
+                            txtSpaceKitchen.Text = "";
+                            txtNoItemKitchen.Enabled = false;
+                            txtNoItemKitchen.Text = "";
+                            txtCostKitchen.Enabled = false;
+                            txtCostKitchen.Text = "";
+                            txtTotalKitchen.Text = "0";
+
+                            calTotal();
+
                             DesignItem designItem = getDesignItem("مطبخ");
                             listDesignItems.Remove(designItem);
                         }
@@ -743,20 +757,26 @@ namespace MainSystem
                     case "صالة":
                         if (ch.Checked)
                         {
-
-                            txtSpace3.Enabled = true;
-                            txtNoItem3.Enabled = true;
-                            txtCost3.Enabled = true;
-                            txtSpace3.Focus();
+                            txtSpaceHall.Enabled = true;
+                            txtNoItemHall.Enabled = true;
+                            txtCostHall.Enabled = true;
+                            txtSpaceHall.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "صالة";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpace3.Enabled = false;
-                            txtNoItem3.Enabled = false;
-                            txtCost3.Enabled = false;
+                            txtSpaceHall.Enabled = false;
+                            txtSpaceHall.Text = "";
+                            txtNoItemHall.Enabled = false;
+                            txtNoItemHall.Text = "";
+                            txtCostHall.Enabled = false;
+                            txtCostHall.Text = "";
+                            txtTotalHall.Text = "0";
+
+                            calTotal();
+
                             DesignItem designItem = getDesignItem("صالة");
                             listDesignItems.Remove(designItem);
                         }
@@ -765,19 +785,26 @@ namespace MainSystem
                         if (ch.Checked)
                         {
 
-                            txtSpace4.Enabled = true;
-                            txtNoItem4.Enabled = true;
-                            txtCost4.Enabled = true;
-                            txtSpace4.Focus();
+                            txtSpaceRoom.Enabled = true;
+                            txtNoItemRoom.Enabled = true;
+                            txtCostRoom.Enabled = true;
+                            txtSpaceRoom.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "غرفة";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpace4.Enabled = false;
-                            txtNoItem4.Enabled = false;
-                            txtCost4.Enabled = false;
+                            txtSpaceRoom.Enabled = false;
+                            txtSpaceRoom.Text = "";
+                            txtNoItemRoom.Enabled = false;
+                            txtNoItemRoom.Text = "";
+                            txtCostRoom.Enabled = false;
+                            txtCostRoom.Text = "";
+                            txtTotalRoom.Text = "0";
+
+                            calTotal();
+
                             DesignItem designItem = getDesignItem("غرفة");
                             listDesignItems.Remove(designItem);
                         }
@@ -785,20 +812,26 @@ namespace MainSystem
                     case "اخري":
                         if (ch.Checked)
                         {
-
-                            txtSpace5.Enabled = true;
-                            txtNoItem5.Enabled = true;
-                            txtCost5.Enabled = true;
-                            txtSpace5.Focus();
+                            txtSpaceOther.Enabled = true;
+                            txtNoItemOther.Enabled = true;
+                            txtCostOther.Enabled = true;
+                            txtSpaceOther.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "اخري";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpace5.Enabled = true;
-                            txtNoItem5.Enabled = true;
-                            txtCost5.Enabled = true;
+                            txtSpaceOther.Enabled = false;
+                            txtSpaceOther.Text = "";
+                            txtNoItemOther.Enabled = false;
+                            txtNoItemOther.Text = "";
+                            txtCostOther.Enabled = false;
+                            txtCostOther.Text = "";
+                            txtTotalOther.Text = "0";
+
+                            calTotal();
+
                             DesignItem designItem = getDesignItem("اخري");
                             listDesignItems.Remove(designItem);
                         }
@@ -821,87 +854,87 @@ namespace MainSystem
                     TextBox txtbox = (TextBox)sender;
                     switch (txtbox.Name)
                     {
-                        case "txtSpace1":
+                        case "txtSpaceBath":
 
-                            if (!double.TryParse(txtSpace1.Text, out re))
+                            if (!double.TryParse(txtSpaceBath.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtSpace1.Text = "";
-                                txtSpace1.Focus();
+                                txtSpaceBath.Text = "";
+                                txtSpaceBath.Focus();
                             }
                             else
                             {
                                 DesignItem designItem = getDesignItem("حمام");
                                 designItem.Space = re;
-                                txtNoItem1.Focus();
+                                txtNoItemBath.Focus();
 
                             }
                             break;
-                        case "txtSpace2":
+                        case "txtSpaceKitchen":
                             re = 0;
-                            if (!double.TryParse(txtSpace2.Text, out re))
+                            if (!double.TryParse(txtSpaceKitchen.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtSpace2.Text = "";
-                                txtSpace2.Focus();
+                                txtSpaceKitchen.Text = "";
+                                txtSpaceKitchen.Focus();
                             }
                             else
                             {
                                 DesignItem designItem = getDesignItem("مطبخ");
                                 designItem.Space = re;
-                                txtNoItem2.Focus();
+                                txtNoItemKitchen.Focus();
                             
                             }
                             break;
-                        case "txtSpace3":
+                        case "txtSpaceHall":
                             re = 0;
-                            if (!double.TryParse(txtSpace3.Text, out re))
+                            if (!double.TryParse(txtSpaceHall.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtSpace1.Text = "";
-                                txtSpace1.Focus();
+                                txtSpaceBath.Text = "";
+                                txtSpaceBath.Focus();
                             }
                             else
                             {
                                 DesignItem designItem = getDesignItem("صالة");
                                 designItem.Space = re;
-                                txtNoItem3.Focus();
+                                txtNoItemHall.Focus();
                             }
                             break;
-                        case "txtSpace4":
+                        case "txtSpaceRoom":
                             re = 0;
-                            if (!double.TryParse(txtSpace4.Text, out re))
+                            if (!double.TryParse(txtSpaceRoom.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtSpace4.Text = "";
-                                txtSpace4.Focus();
+                                txtSpaceRoom.Text = "";
+                                txtSpaceRoom.Focus();
                             }
                             else
                             {
                                 DesignItem designItem = getDesignItem("غرفة");
                                 designItem.Space = re;
-                                txtNoItem4.Focus();
+                                txtNoItemRoom.Focus();
 
                             }
                             break;
-                        case "txtSpace5":
+                        case "txtSpaceOther":
                             re = 0;
-                            if (!double.TryParse(txtSpace5.Text, out re))
+                            if (!double.TryParse(txtSpaceOther.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtSpace5.Text = "";
-                                txtSpace5.Focus();
+                                txtSpaceOther.Text = "";
+                                txtSpaceOther.Focus();
                             }
                             else
                             {
                                 DesignItem designItem = getDesignItem("اخري");
                                 designItem.Space = re;
-                                txtNoItem5.Focus();
+                                txtNoItemOther.Focus();
                             }
                             break;
                     }
@@ -924,82 +957,82 @@ namespace MainSystem
                     TextBox txtbox = (TextBox)sender;
                     switch (txtbox.Name)
                     {
-                        case "txtNoItem1":
+                        case "txtNoItemBath":
 
-                            if (!int.TryParse(txtNoItem1.Text, out re))
+                            if (!int.TryParse(txtNoItemBath.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtNoItem1.Text = "";
-                                txtNoItem1.Focus();
+                                txtNoItemBath.Text = "";
+                                txtNoItemBath.Focus();
                             }
                             else
                             {
-                                txtCost1.Focus();
+                                txtCostBath.Focus();
                                 DesignItem designItem = getDesignItem("حمام");
                                 designItem.NoItems = re;
                             }
                             break;
-                        case "txtNoItem2":
+                        case "txtNoItemKitchen":
 
-                            if (!int.TryParse(txtNoItem2.Text, out re))
+                            if (!int.TryParse(txtNoItemKitchen.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtNoItem2.Text = "";
-                                txtNoItem2.Focus();
+                                txtNoItemKitchen.Text = "";
+                                txtNoItemKitchen.Focus();
                             }
                             else
                             {
-                                txtCost2.Focus();
+                                txtCostKitchen.Focus();
                                 DesignItem designItem = getDesignItem("مطبخ");
                                 designItem.NoItems = re;
                             }
                             break;
-                        case "txtNoItem3":
+                        case "txtNoItemHall":
 
-                            if (!int.TryParse(txtNoItem3.Text, out re))
+                            if (!int.TryParse(txtNoItemHall.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtNoItem3.Text = "";
-                                txtNoItem3.Focus();
+                                txtNoItemHall.Text = "";
+                                txtNoItemHall.Focus();
                             }
                             else
                             {
-                                txtCost3.Focus();
+                                txtCostHall.Focus();
                                 DesignItem designItem = getDesignItem("صالة");
                                 designItem.NoItems = re;
                             }
                             break;
-                        case "txtNoItem4":
+                        case "txtNoItemRoom":
 
-                            if (!int.TryParse(txtNoItem4.Text, out re))
+                            if (!int.TryParse(txtNoItemRoom.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtNoItem4.Text = "";
-                                txtNoItem4.Focus();
+                                txtNoItemRoom.Text = "";
+                                txtNoItemRoom.Focus();
                             }
                             else
                             {
-                                txtCost4.Focus();
+                                txtCostRoom.Focus();
                                 DesignItem designItem = getDesignItem("غرفة");
                                 designItem.NoItems = re;
                             }
                             break;
-                        case "txtNoItem5":
+                        case "txtNoItemOther":
 
-                            if (!int.TryParse(txtNoItem5.Text, out re))
+                            if (!int.TryParse(txtNoItemOther.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtNoItem5.Text = "";
-                                txtNoItem5.Focus();
+                                txtNoItemOther.Text = "";
+                                txtNoItemOther.Focus();
                             }
                             else
                             {
-                                txtCost5.Focus();
+                                txtCostOther.Focus();
                                 DesignItem designItem = getDesignItem("اخري");
                                 designItem.NoItems = re;
                             }
@@ -1025,19 +1058,19 @@ namespace MainSystem
                     TextBox txtbox = (TextBox)sender;
                     switch (txtbox.Name)
                     {
-                        case "txtCost1":
+                        case "txtCostBath":
 
-                            if (!double.TryParse(txtCost1.Text, out re))
+                            if (!double.TryParse(txtCostBath.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtCost1.Text = "";
-                                txtCost1.Focus();
+                                txtCostBath.Text = "";
+                                txtCostBath.Focus();
                             }
                             else
                             {
-                                txtTotal1.Text = (re * (Convert.ToInt16(txtNoItem1.Text))).ToString();
-                                totalrow = Convert.ToDouble(txtTotal1.Text);
+                                txtTotalBath.Text = (re * (Convert.ToInt16(txtNoItemBath.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalBath.Text);
                                 total = Convert.ToDouble(txtTotal.Text) + totalrow;
                                 calTotal();
                                 DesignItem designItem = getDesignItem("حمام");
@@ -1045,19 +1078,19 @@ namespace MainSystem
                                 designItem.Total = re * (Convert.ToInt16(txtNoItem1.Text));
                             }
                             break;
-                        case "txtCost2":
+                        case "txtCostKitchen":
 
-                            if (!double.TryParse(txtCost2.Text, out re))
+                            if (!double.TryParse(txtCostKitchen.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtNoItem2.Text = "";
-                                txtNoItem2.Focus();
+                                txtNoItemKitchen.Text = "";
+                                txtNoItemKitchen.Focus();
                             }
                             else
                             {
-                                txtTotal2.Text = (re * (Convert.ToInt16(txtNoItem2.Text))).ToString();
-                                totalrow = Convert.ToDouble(txtTotal2.Text);
+                                txtTotalKitchen.Text = (re * (Convert.ToInt16(txtNoItemKitchen.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalKitchen.Text);
                                 total = Convert.ToDouble(txtTotal.Text) + totalrow;
                                 calTotal();
                                 DesignItem designItem = getDesignItem("مطبخ");
@@ -1065,19 +1098,19 @@ namespace MainSystem
                                 designItem.Total = re * (Convert.ToInt16(txtNoItem2.Text));
                             }
                             break;
-                        case "txtCost3":
+                        case "txtCostHall":
 
-                            if (!double.TryParse(txtCost3.Text, out re))
+                            if (!double.TryParse(txtCostHall.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtNoItem3.Text = "";
-                                txtNoItem3.Focus();
+                                txtNoItemHall.Text = "";
+                                txtNoItemHall.Focus();
                             }
                             else
                             {
-                                txtTotal3.Text = (re * (Convert.ToInt16(txtNoItem3.Text))).ToString();
-                                totalrow = Convert.ToDouble(txtTotal3.Text);
+                                txtTotalHall.Text = (re * (Convert.ToInt16(txtNoItemHall.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalHall.Text);
                                 total = Convert.ToDouble(txtTotal.Text) + totalrow;
                                 calTotal();
                                 DesignItem designItem = getDesignItem("صالة");
@@ -1085,19 +1118,19 @@ namespace MainSystem
                                 designItem.Total = re * (Convert.ToInt16(txtNoItem3.Text));
                             }
                             break;
-                        case "txtCost4":
+                        case "txtCostRoom":
 
-                            if (!double.TryParse(txtCost4.Text, out re))
+                            if (!double.TryParse(txtCostRoom.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtNoItem4.Text = "";
-                                txtNoItem4.Focus();
+                                txtNoItemRoom.Text = "";
+                                txtNoItemRoom.Focus();
                             }
                             else
                             {
-                                txtTotal4.Text = (re * (Convert.ToInt16(txtNoItem4.Text))).ToString();
-                                totalrow = Convert.ToDouble(txtTotal4.Text);
+                                txtTotalRoom.Text = (re * (Convert.ToInt16(txtNoItemRoom.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalRoom.Text);
                                 total = Convert.ToDouble(txtTotal.Text) + totalrow;
                                 calTotal();
                                 DesignItem designItem = getDesignItem("غرفة");
@@ -1105,19 +1138,19 @@ namespace MainSystem
                                 designItem.Total = re * (Convert.ToInt16(txtNoItem4.Text));
                             }
                             break;
-                        case "txtCost5":
+                        case "txtCostOther":
 
-                            if (!double.TryParse(txtCost5.Text, out re))
+                            if (!double.TryParse(txtCostOther.Text, out re))
                             {
                                 MessageBox.Show("ادخل قيمة صحيحة");
 
-                                txtNoItem5.Text = "";
-                                txtNoItem5.Focus();
+                                txtNoItemOther.Text = "";
+                                txtNoItemOther.Focus();
                             }
                             else
                             {
-                                txtTotal5.Text = (re * (Convert.ToInt16(txtNoItem5.Text))).ToString();
-                                totalrow = Convert.ToDouble(txtTotal5.Text);
+                                txtTotalOther.Text = (re * (Convert.ToInt16(txtNoItemOther.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalOther.Text);
                                 total = Convert.ToDouble(txtTotal.Text) + totalrow;
                                 calTotal();
                                 DesignItem designItem = getDesignItem("اخري");
@@ -1170,11 +1203,11 @@ namespace MainSystem
             Print_Design_Report f = new Print_Design_Report();
             if (comClient.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, txtSpaceBath.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtSpaceKitchen.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtSpaceHall.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtSpaceRoom.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtSpaceOther.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
             }
             else if (comEng.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, txtSpaceBath.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtSpaceKitchen.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtSpaceHall.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtSpaceRoom.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtSpaceOther.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)
@@ -1239,11 +1272,11 @@ namespace MainSystem
         }
         public void calTotal()
         {
-            double total1 = Convert.ToDouble(txtTotal1.Text);
-            double total2 = Convert.ToDouble(txtTotal2.Text);
-            double total3 = Convert.ToDouble(txtTotal3.Text);
-            double total4 = Convert.ToDouble(txtTotal4.Text);
-            double total5 = Convert.ToDouble(txtTotal5.Text);
+            double total1 = Convert.ToDouble(txtTotalBath.Text);
+            double total2 = Convert.ToDouble(txtTotalKitchen.Text);
+            double total3 = Convert.ToDouble(txtTotalHall.Text);
+            double total4 = Convert.ToDouble(txtTotalRoom.Text);
+            double total5 = Convert.ToDouble(txtTotalOther.Text);
 
             double total = total1 + total2 + total3 + total4 + total5;
             txtTotal.Text = total.ToString();

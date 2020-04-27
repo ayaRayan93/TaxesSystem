@@ -1002,6 +1002,64 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemDesignsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "حركة التصميمات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("حركة التصميمات");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "حركة التصميمات");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                bindDisplayDesignReportForm(xtraTabPage);
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemDesignSearch_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlSalesContent.Visible)
+                    xtraTabControlSalesContent.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlSalesContent, "استعلام عن تصميم");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlSalesContent.TabPages.Add("استعلام عن تصميم");
+                    xtraTabPage = getTabPage(xtraTabControlSalesContent, "استعلام عن تصميم");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlSalesContent.SelectedTabPage = xtraTabPage;
+                bindDisplayDesignSearchForm(xtraTabPage);
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //functions
         public void bindDisplaySpecialOrderConfirm(XtraTabPage xtraTabPage)
         {
@@ -1392,6 +1450,28 @@ namespace MainSystem
         public void bindDisplaySalesProductsBillsDetailsForm(XtraTabPage xtraTabPage)
         {
             SalesProductsBillsDetails_Report objForm = new SalesProductsBillsDetails_Report(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindDisplayDesignReportForm(XtraTabPage xtraTabPage)
+        {
+            Designs_Report objForm = new Designs_Report(this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindDisplayDesignSearchForm(XtraTabPage xtraTabPage)
+        {
+            DesignSearch_Report objForm = new DesignSearch_Report(this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
