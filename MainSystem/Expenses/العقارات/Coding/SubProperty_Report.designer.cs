@@ -96,7 +96,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 17);
             this.label1.TabIndex = 3;
-            this.label1.Text = "العقار الفرعى";
+            this.label1.Text = "نوع المصروف";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnAddNewSub
@@ -110,7 +110,7 @@
             this.btnAddNewSub.Name = "btnAddNewSub";
             this.btnAddNewSub.Size = new System.Drawing.Size(171, 32);
             this.btnAddNewSub.TabIndex = 12;
-            this.btnAddNewSub.Text = "اضافة عقار فرعى جديد ";
+            this.btnAddNewSub.Text = "اضافة نوع مصروف جديد ";
             this.btnAddNewSub.UseVisualStyleBackColor = false;
             this.btnAddNewSub.Click += new System.EventHandler(this.btnAddNewMain_Click);
             // 
@@ -189,9 +189,9 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label2.Location = new System.Drawing.Point(259, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 17);
+            this.label2.Size = new System.Drawing.Size(81, 17);
             this.label2.TabIndex = 15;
-            this.label2.Text = "اسم المصروف الفرعى";
+            this.label2.Text = "نوع المصروف";
             // 
             // comMainUpdate
             // 
@@ -210,9 +210,9 @@
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label3.Location = new System.Drawing.Point(259, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 17);
+            this.label3.Size = new System.Drawing.Size(38, 17);
             this.label3.TabIndex = 14;
-            this.label3.Text = "المصروف الرئيسى";
+            this.label3.Text = "العقار";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnUpdateSub
@@ -271,9 +271,9 @@
             this.label6.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label6.Location = new System.Drawing.Point(248, 52);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 17);
+            this.label6.Size = new System.Drawing.Size(38, 17);
             this.label6.TabIndex = 12;
-            this.label6.Text = "المصروف الرئيسى";
+            this.label6.Text = "العقار";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnAddSub
@@ -307,9 +307,9 @@
             this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label5.Location = new System.Drawing.Point(248, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 17);
+            this.label5.Size = new System.Drawing.Size(81, 17);
             this.label5.TabIndex = 5;
-            this.label5.Text = "اسم المصروف الفرعى";
+            this.label5.Text = "نوع المصروف";
             // 
             // tableLayoutPanel4
             // 
