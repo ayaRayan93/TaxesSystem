@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\CCC\version2.4\</PublishUrl>
+    <PublishUrl>D:\التكويد\version2.5\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>288</ApplicationRevision>
+    <ApplicationRevision>290</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -138,8 +138,9 @@
       <HintPath>..\packages\MySql.Data.8.0.16\lib\net452\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySqlBackup">
-      <HintPath>..\..\..\..\Desktop\MySqlBackup.dll</HintPath>
+    <Reference Include="MySqlBackup, Version=2.0.9.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\المركز التجارى\backupRestore\backupRestore\bin\Debug\MySqlBackup.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\Desktop\Newtonsoft.Json.dll</HintPath>
@@ -340,7 +341,7 @@
     <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Record2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Record2.Designer.cs">
+    <Compile Include="Bank\مورد\سحب آجل\BankSupplierPullAgl_Record2.designer.cs">
       <DependentUpon>BankSupplierPullAgl_Record2.cs</DependentUpon>
     </Compile>
     <Compile Include="CarExpensesReport2.cs">
@@ -4879,7 +4880,9 @@
     <EmbeddedResource Include="UserUpdate.resx">
       <DependentUpon>UserUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\app.manifest" />
     <None Include="Store\ayatestDataSet.xsc">
       <DependentUpon>ayatestDataSet.xsd</DependentUpon>
