@@ -4906,7 +4906,9 @@
     <None Include="HR\App.config" />
     <None Include="HR\packages.config" />
     <None Include="MainSystem_TemporaryKey.pfx" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
