@@ -455,7 +455,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BankPullExpense_Record";
-            this.Load += new System.EventHandler(this.BankPullExpense_Record_Load);
+            this.Load += new System.EventHandler(this.BankPullProperty_Record_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).EndInit();
             this.dataLayoutControl1.ResumeLayout(false);

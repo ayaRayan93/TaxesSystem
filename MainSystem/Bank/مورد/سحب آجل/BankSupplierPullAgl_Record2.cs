@@ -91,9 +91,6 @@ namespace MainSystem
                 radCash.Checked = true;
 
                 loadedPayType = true;
-                panContent.Visible = true;
-                comAccountNumber.Enabled = false;
-                panCheak.Visible = false;
             }
             catch (Exception ex)
             {
@@ -101,15 +98,16 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         private void radCash_CheckedChanged(object sender, EventArgs e)
         {
             try
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
+              
 
-                loaded = false;
-                string query = "select * from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where Branch_ID=" + transitionbranchID + " and MainBank_Type='خزينة'";
+                string query = "select * from bank_main inner join bank on bank.Bank_ID=bank_main.MainBank_ID where Branch_ID=" + transitionbranchID + " and MainBank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -117,14 +115,36 @@ namespace MainSystem
                 cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
                 cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
                 cmbBank.SelectedIndex = -1;
-                loaded = true;
-               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }     
+        }
+
+        private void radCredit_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RadioButton r = (RadioButton)sender;
+                PaymentMethod = r.Text;
+         
+                groupBox1.Enabled = false;
+            
+                string query = "select * from bank_main inner join bank on bank.Bank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null ";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmbBank.DataSource = dt;
+                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                cmbBank.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void radioButtonBank_CheckedChanged(object sender, EventArgs e)
         {
@@ -139,26 +159,68 @@ namespace MainSystem
                 groupBox1.Enabled = false;
                 radCredit.Checked = true;
                 loadedPayType = true;
-                panContent.Visible = true;
-                comAccountNumber.Enabled = true;
-
-                loaded = false;
-                string query = "select distinct bank_main.MainBank_Name,bank_main.MainBank_ID from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null  and Supplier_ID is null";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbBank.DataSource = dt;
-                cmbBank.DisplayMember = dt.Columns["MainBank_Name"].ToString();
-                cmbBank.ValueMember = dt.Columns["MainBank_ID"].ToString();
-                cmbBank.SelectedIndex = -1;
-                loaded = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-  
+
+        private void radBankAccount_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RadioButton r = (RadioButton)sender;
+                PaymentMethod = r.Text;
+              
+                string query = "select * from bank_main inner join bank on bank.Bank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null ";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmbBank.DataSource = dt;
+                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                cmbBank.SelectedIndex = -1;
+
+                query = "select * from bank_main inner join bank on bank.Bank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null ";
+                da = new MySqlDataAdapter(query, dbconnection);
+                dt = new DataTable();
+                da.Fill(dt);
+                comBankSupplier.DataSource = dt;
+                comBankSupplier.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                comBankSupplier.ValueMember = dt.Columns["Bank_ID"].ToString();
+                comBankSupplier.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
+        private void radDeposit_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RadioButton r = (RadioButton)sender;
+                PaymentMethod = r.Text;
+   
+                groupBox1.Enabled = false;
+                
+                string query = "select * from bank_main inner join bank on bank.Bank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null ";
+                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmbBank.DataSource = dt;
+                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                cmbBank.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -179,7 +241,7 @@ namespace MainSystem
                 }
                 else if (PaymentMethod == "ايداع")
                 {
-                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "" && comBankSupplier.Text != "" && comSupplierAccountName.Text != "");
+                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "" && comBankSupplier.Text != "" && txtSupBankAccountNum.Text != "");
                 }
 
                 if (check)
@@ -197,7 +259,7 @@ namespace MainSystem
                     {
                         dbconnection.Open();
 
-                        string query = "insert into supplier_transitions (Transition,Supplier_ID,Supplier_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,SupplierBank_ID,SupplierBank_Name,Supplier_BankAccount_Number,Error,Employee_ID,Employee_Name,Currency) values(@Transition,@Supplier_ID,@Supplier_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@SupplierBank_ID,@SupplierBank_Name,@Supplier_BankAccount_Number,@Error,@Employee_ID,@Employee_Name,@Currency)";
+                        string query = "insert into supplier_transitions (Transition,Supplier_ID,Supplier_Name,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Operation_Number,SupplierBank_ID,SupplierBank_Name,Supplier_BankAccount_Number,Error,Employee_ID,Employee_Name) values(@Transition,@Supplier_ID,@Supplier_Name,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Operation_Number,@SupplierBank_ID,@SupplierBank_Name,@Supplier_BankAccount_Number,@Error,@Employee_ID,@Employee_Name)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سداد";
                         com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
@@ -240,15 +302,14 @@ namespace MainSystem
                             com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
                         }
 
-                        if (comSupBankAccountNum.Text != "")
+                        if (txtSupBankAccountNum.Text != "")
                         {
-                            com.Parameters.Add("@Supplier_BankAccount_Number", MySqlDbType.VarChar, 255).Value = comSupBankAccountNum.Text;
+                            com.Parameters.Add("@Supplier_BankAccount_Number", MySqlDbType.VarChar, 255).Value = txtSupBankAccountNum.Text;
                         }
                         else
                         {
                             com.Parameters.Add("@Supplier_BankAccount_Number", MySqlDbType.VarChar, 255).Value = null;
                         }
-                        com.Parameters.Add("@Currency", MySqlDbType.VarChar, 255).Value = txtCurrency.Text;
                         com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
                         com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpName;
 
@@ -1017,130 +1078,15 @@ namespace MainSystem
             return flag5;
         }
 
-        private void comSupplier_SelectedValueChanged(object sender, EventArgs e)
+        private void cmbBank_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (loaded)
-                {
-                    loaded = false;
-                    dbconnection.Open();
-                    string query = "select distinct bank_main.MainBank_Name,bank_main.MainBank_ID from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and Supplier_ID= " + comSupplier.SelectedValue;
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comBankSupplier.DataSource = dt;
-                    comBankSupplier.DisplayMember = dt.Columns["MainBank_Name"].ToString();
-                    comBankSupplier.ValueMember = dt.Columns["MainBank_ID"].ToString();
-                    comBankSupplier.SelectedIndex = -1;
-                    loaded = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
+
         }
 
-        private void cmbBank_SelectedValueChanged(object sender, EventArgs e)
+        private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-                if (loaded)
-                {
-                    loaded = false;
-                    dbconnection.Open();
-                    string query = "select distinct Bank_Name,Bank_ID from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and bank_main.MainBank_ID= " + cmbBank.SelectedValue;
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comAccountNumber.DataSource = dt;
-                    comAccountNumber.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                    comAccountNumber.ValueMember = dt.Columns["Bank_ID"].ToString();
-                    comAccountNumber.SelectedIndex = -1;
-                    loaded = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
+
         }
-
-        private void comBankSupplier_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
-                {
-                    loaded = false;
-                    dbconnection.Open();
-                    string query = "select distinct Bank_Name,Bank_ID from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and bank_main.MainBank_ID= " + comBankSupplier.SelectedValue;
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comSupBankAccountNum.DataSource = dt;
-                    comSupBankAccountNum.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                    comSupBankAccountNum.ValueMember = dt.Columns["Bank_ID"].ToString();
-                    comSupBankAccountNum.SelectedIndex = -1;
-                    loaded = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
-        private void comSupBankAccountNum_SelectedValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (loaded)
-                {
-                    loaded = false;
-                    dbconnection.Open();
-                    string query = "select distinct SupplierAccountName from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and bank_main.MainBank_ID= " + comBankSupplier.SelectedValue + " and Bank_Name="+comSupBankAccountNum.Text;
-                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    comSupplierAccountName.DataSource = dt;
-                    comSupplierAccountName.DisplayMember = dt.Columns["SupplierAccountName"].ToString();
-                    loaded = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
-        private void radCredit_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                RadioButton rdio = (RadioButton)sender;
-                if (rdio.Checked)
-                {
-                    panCheak.Visible = true;
-                }
-                else
-                {
-                    panCheak.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-
-
 
         //functions
         //public void DecreaseClientPaied()

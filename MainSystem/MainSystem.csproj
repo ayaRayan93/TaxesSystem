@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version2.3\</PublishUrl>
+    <PublishUrl>D:\CCC\version2.4\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>290</ApplicationRevision>
+    <ApplicationRevision>288</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -72,13 +72,12 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Accessibility" />
     <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Bunifu_UI_v1.5.3">
-      <HintPath>I:\myDraftProject\draft\ccc\Bunifu_UI_v1.5.3.dll</HintPath>
+      <HintPath>..\..\..\..\Downloads\Bunifu_UI_v1.5.3\Bunifu_UI_v1.5.3.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Charts.v18.1.Core, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.CodeParser.v18.1, Version=18.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -127,21 +126,20 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MetroFramework">
-      <HintPath>I:\Release\MetroFramework.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\MetroFramework.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Design">
-      <HintPath>I:\Release\MetroFramework.Design.dll</HintPath>
+      <HintPath>D:\programs\MetroFramework.Design.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Fonts">
-      <HintPath>I:\Release\MetroFramework.Fonts.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=8.0.16.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.16\lib\net452\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySqlBackup, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySqlBackup.1.0.1\lib\MySqlBackup.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MySqlBackup">
+      <HintPath>..\..\..\..\Desktop\MySqlBackup.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\Desktop\Newtonsoft.Json.dll</HintPath>
@@ -163,8 +161,6 @@
       <HintPath>..\..\..\..\Desktop\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\Desktop\System.Web.Http.dll</HintPath>
@@ -179,6 +175,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Ubiety.Logging.Core, Version=1.2.2.0, Culture=neutral, PublicKeyToken=133e143470e66433, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ubiety.Logging.Core.1.2.2\lib\net452\Ubiety.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accounting\checkPaidBillsForm.cs">
@@ -379,6 +379,30 @@
     </Compile>
     <Compile Include="Expenses\العقارات\Coding\SubProperty_Report.designer.cs">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition.designer.cs">
+      <DependentUpon>Print_PropertyTransition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition_Report.designer.cs">
+      <DependentUpon>Print_PropertyTransition_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Property_Transitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Property_Transitions_Report.designer.cs">
+      <DependentUpon>Property_Transitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\SubPropertyTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\SubPropertyTransitions_Report.designer.cs">
+      <DependentUpon>SubPropertyTransitions_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\العقارات\ايداع\SafePropertyIncome_Record.cs">
       <SubType>Form</SubType>
@@ -1432,12 +1456,6 @@
     </Compile>
     <Compile Include="Store\Reports\تقرير رصيد المخازن\Storage_Report.designer.cs">
       <DependentUpon>Storage_Report.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Store\Storage\الجرد\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Store\Storage\الجرد\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\تكويد افرع\Branch_Print.cs">
       <SubType>Form</SubType>
@@ -3415,6 +3433,18 @@
     <EmbeddedResource Include="Expenses\العقارات\Coding\SubProperty_Report.resx">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition.resx">
+      <DependentUpon>Print_PropertyTransition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition_Report.resx">
+      <DependentUpon>Print_PropertyTransition_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Property_Transitions_Report.resx">
+      <DependentUpon>Property_Transitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\SubPropertyTransitions_Report.resx">
+      <DependentUpon>SubPropertyTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\ايداع\SafePropertyIncome_Record.resx">
       <DependentUpon>SafePropertyIncome_Record.cs</DependentUpon>
     </EmbeddedResource>
@@ -3708,9 +3738,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Reports\تقرير رصيد المخازن\Storage_Report.resx">
       <DependentUpon>Storage_Report.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Store\Storage\الجرد\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\تكويد افرع\Branch_Print.resx">
       <DependentUpon>Branch_Print.cs</DependentUpon>

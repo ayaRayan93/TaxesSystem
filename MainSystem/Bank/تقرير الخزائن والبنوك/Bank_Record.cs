@@ -271,7 +271,7 @@ namespace MainSystem
                                 if (Int32.TryParse(t200.Text, out tt200) && Int32.TryParse(t100.Text, out tt100) && Int32.TryParse(t50.Text, out tt50) && Int32.TryParse(t20.Text, out tt20) && Int32.TryParse(t10.Text, out tt10) && Int32.TryParse(t5.Text, out tt5) && Int32.TryParse(t1.Text, out tt1) && Int32.TryParse(tH.Text, out ttH) && Int32.TryParse(tQ.Text, out ttQ))
                                 {
                                     MySqlCommand command = dbconnection.CreateCommand();
-                                    command.CommandText = "INSERT INTO bank (MainBank_ID,Bank_Name,Branch_ID,Branch_Name,Initial_Balance,Bank_Stock,Start_Date,Bank_Info,BankAccount_Type,Supplier_ID,SupplierAccountName) VALUES (?MainBank_ID,?Bank_Name,?Branch_ID,?Branch_Name,?Initial_Balance,?Bank_Stock,?Start_Date,?Bank_Info,?BankAccount_Type,?Supplier_ID,?SupplierAccountName)";
+                                    command.CommandText = "INSERT INTO bank (MainBank_ID,Bank_Name,Branch_ID,Branch_Name,Initial_Balance,Bank_Stock,Start_Date,Bank_Info,BankAccount_Type,Supplier_ID) VALUES (?MainBank_ID,?Bank_Name,?Branch_ID,?Branch_Name,?Initial_Balance,?Bank_Stock,?Start_Date,?Bank_Info,?BankAccount_Type,?Supplier_ID)";
 
                                     if (cmbType.Text == "خزينة")
                                     {
@@ -302,7 +302,6 @@ namespace MainSystem
                                     command.Parameters.AddWithValue("?Bank_Stock", stock);
                                     command.Parameters.AddWithValue("?Start_Date", dateEdit1.DateTime.Date);
                                     command.Parameters.AddWithValue("?Bank_Info", txtInformation.Text);
-                                    command.Parameters.AddWithValue("?SupplierAccountName", txtAccountName.Text);
                                     command.ExecuteNonQuery();
 
                                     //////////record adding/////////////
@@ -386,7 +385,6 @@ namespace MainSystem
                                     //labelBank.Text = "";
                                     //layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                                     //labelID.Text = "";
-                                    layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
                                     comBankUsers.SelectedIndex = -1;
                                     int cont = checkedListBoxControlUser.ItemCount;
@@ -472,8 +470,6 @@ namespace MainSystem
                 labelAccountType.Text = "";
                 layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
-                layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-
                 string query = "select * from bank_main where MainBank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
@@ -522,7 +518,6 @@ namespace MainSystem
                 layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 labelAccountType.Text = "*";
                 layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
                 string query = "select * from bank_main where MainBank_Type='حساب بنكى'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
