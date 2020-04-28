@@ -1433,9 +1433,7 @@
     <Compile Include="Store\Reports\تقرير رصيد المخازن\Storage_Report.designer.cs">
       <DependentUpon>Storage_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Store\Storage\الجرد\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Store\Storage\الجرد\Form1.cs" />
     <Compile Include="Store\Storage\الجرد\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
