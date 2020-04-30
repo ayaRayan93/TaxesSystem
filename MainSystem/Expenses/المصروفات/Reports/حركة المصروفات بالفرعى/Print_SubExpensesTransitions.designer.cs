@@ -38,6 +38,7 @@
             this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -58,6 +59,7 @@
             this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -88,8 +90,6 @@
             this.Main_Expense = new DevExpress.XtraReports.Parameters.Parameter();
             this.Sub_Expense = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable8)).BeginInit();
@@ -188,10 +188,22 @@
             this.xrTableCell17.Text = "xrTableCell17";
             this.xrTableCell17.Weight = 8.32925337657431D;
             // 
+            // xrTableCell5
+            // 
+            this.xrTableCell5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Safe]")});
+            this.xrTableCell5.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrTableCell5.Multiline = true;
+            this.xrTableCell5.Name = "xrTableCell5";
+            this.xrTableCell5.StyleName = "xrControlStyle2";
+            this.xrTableCell5.StylePriority.UseFont = false;
+            this.xrTableCell5.Text = "xrTableCell5";
+            this.xrTableCell5.Weight = 7.753473227620912D;
+            // 
             // xrTableCell22
             // 
             this.xrTableCell22.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SubExpense_Name]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[SubExpenses]")});
             this.xrTableCell22.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell22.Multiline = true;
             this.xrTableCell22.Name = "xrTableCell22";
@@ -203,7 +215,7 @@
             // xrTableCell8
             // 
             this.xrTableCell8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[MainExpense_Name]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[MainExpenses]")});
             this.xrTableCell8.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell8.Multiline = true;
             this.xrTableCell8.Name = "xrTableCell8";
@@ -418,6 +430,17 @@
             this.xrTableCell12.StylePriority.UseFont = false;
             this.xrTableCell12.Text = "المبلغ";
             this.xrTableCell12.Weight = 3.2355269992445708D;
+            // 
+            // xrTableCell2
+            // 
+            this.xrTableCell2.BorderWidth = 1F;
+            this.xrTableCell2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrTableCell2.Multiline = true;
+            this.xrTableCell2.Name = "xrTableCell2";
+            this.xrTableCell2.StylePriority.UseBorderWidth = false;
+            this.xrTableCell2.StylePriority.UseFont = false;
+            this.xrTableCell2.Text = "الخزينة";
+            this.xrTableCell2.Weight = 3.0118611063673724D;
             // 
             // xrTableCell13
             // 
@@ -757,29 +780,6 @@
             // 
             this.objectDataSource1.DataSource = typeof(MainSystem.Item_SubExpensesTransitions);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // xrTableCell2
-            // 
-            this.xrTableCell2.BorderWidth = 1F;
-            this.xrTableCell2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrTableCell2.Multiline = true;
-            this.xrTableCell2.Name = "xrTableCell2";
-            this.xrTableCell2.StylePriority.UseBorderWidth = false;
-            this.xrTableCell2.StylePriority.UseFont = false;
-            this.xrTableCell2.Text = "الخزينة";
-            this.xrTableCell2.Weight = 3.0118611063673724D;
-            // 
-            // xrTableCell5
-            // 
-            this.xrTableCell5.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Safe]")});
-            this.xrTableCell5.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrTableCell5.Multiline = true;
-            this.xrTableCell5.Name = "xrTableCell5";
-            this.xrTableCell5.StyleName = "xrControlStyle2";
-            this.xrTableCell5.StylePriority.UseFont = false;
-            this.xrTableCell5.Text = "xrTableCell5";
-            this.xrTableCell5.Weight = 7.753473227620912D;
             // 
             // Print_SubExpensesTransitions
             // 

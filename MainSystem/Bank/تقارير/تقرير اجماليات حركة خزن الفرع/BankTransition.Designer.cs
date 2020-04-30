@@ -57,11 +57,6 @@
             this.xrLabel24 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
-            this.DateFrom = new DevExpress.XtraReports.Parameters.Parameter();
-            this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
-            this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Sales_Money = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Safe_Name = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
@@ -69,6 +64,11 @@
             this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
+            this.DateFrom = new DevExpress.XtraReports.Parameters.Parameter();
+            this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
+            this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Sales_Money = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Safe_Name = new DevExpress.XtraReports.Parameters.Parameter();
             this.Returned_Money = new DevExpress.XtraReports.Parameters.Parameter();
             this.IncomeExpense_Money = new DevExpress.XtraReports.Parameters.Parameter();
             this.Expense_Money = new DevExpress.XtraReports.Parameters.Parameter();
@@ -229,7 +229,7 @@
             this.xrLabel7.SizeF = new System.Drawing.SizeF(81.66663F, 25F);
             this.xrLabel7.StylePriority.UseFont = false;
             this.xrLabel7.StylePriority.UseTextAlignment = false;
-            this.xrLabel7.Text = ": الـخـزيـنـة";
+            this.xrLabel7.Text = ": الفرع";
             this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel8
@@ -412,36 +412,6 @@
             this.xrLabel17.StylePriority.UseTextAlignment = false;
             this.xrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
-            // DateFrom
-            // 
-            this.DateFrom.Description = "DateFrom";
-            this.DateFrom.Name = "DateFrom";
-            this.DateFrom.Type = typeof(System.DateTime);
-            // 
-            // DateTo
-            // 
-            this.DateTo.Description = "DateTo";
-            this.DateTo.Name = "DateTo";
-            this.DateTo.Type = typeof(System.DateTime);
-            // 
-            // DateNow
-            // 
-            this.DateNow.Description = "dateNow";
-            this.DateNow.Name = "DateNow";
-            this.DateNow.Type = typeof(System.DateTime);
-            // 
-            // Sales_Money
-            // 
-            this.Sales_Money.Description = "Sales_Money";
-            this.Sales_Money.Name = "Sales_Money";
-            this.Sales_Money.Type = typeof(decimal);
-            this.Sales_Money.ValueInfo = "0";
-            // 
-            // Safe_Name
-            // 
-            this.Safe_Name.Description = "Safe_Name";
-            this.Safe_Name.Name = "Safe_Name";
-            // 
             // xrLabel2
             // 
             this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -528,6 +498,36 @@
             this.xrLabel10.StylePriority.UseTextAlignment = false;
             this.xrLabel10.Text = ": الــتــحــويــلات مــن";
             this.xrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // DateFrom
+            // 
+            this.DateFrom.Description = "DateFrom";
+            this.DateFrom.Name = "DateFrom";
+            this.DateFrom.Type = typeof(System.DateTime);
+            // 
+            // DateTo
+            // 
+            this.DateTo.Description = "DateTo";
+            this.DateTo.Name = "DateTo";
+            this.DateTo.Type = typeof(System.DateTime);
+            // 
+            // DateNow
+            // 
+            this.DateNow.Description = "dateNow";
+            this.DateNow.Name = "DateNow";
+            this.DateNow.Type = typeof(System.DateTime);
+            // 
+            // Sales_Money
+            // 
+            this.Sales_Money.Description = "Sales_Money";
+            this.Sales_Money.Name = "Sales_Money";
+            this.Sales_Money.Type = typeof(decimal);
+            this.Sales_Money.ValueInfo = "0";
+            // 
+            // Safe_Name
+            // 
+            this.Safe_Name.Description = "Safe_Name";
+            this.Safe_Name.Name = "Safe_Name";
             // 
             // Returned_Money
             // 
