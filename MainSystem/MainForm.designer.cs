@@ -5715,6 +5715,7 @@
             this.xtraTabControlRequests.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControlRequests.Size = new System.Drawing.Size(826, 705);
             this.xtraTabControlRequests.TabIndex = 7;
+            this.xtraTabControlRequests.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
             // navBarControl9
             // 

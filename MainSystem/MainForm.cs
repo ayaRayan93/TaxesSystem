@@ -191,7 +191,8 @@ namespace MainSystem
                 btnStores.Checked = true;
                 btnExpenses.Enabled = true;
                 btnExpenses.Checked = true;
-                navBarGroup42.Visible = false;
+                //navBarGroup42.Visible = false;
+                navBarItemMainSubReport.Visible = false;
                 navBarItemSubExpensesTransitionsReport.Visible = false;
 
                 navBarGroup1.Visible = false;
