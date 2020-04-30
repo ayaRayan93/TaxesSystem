@@ -1051,7 +1051,7 @@ namespace MainSystem
                 {
                     loaded = false;
                     dbconnection.Open();
-                    string query = "select distinct Bank_Name,Bank_ID from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and bank_main.MainBank_ID= " + cmbBank.SelectedValue;
+                    string query = "select distinct Bank_Name,Bank_ID from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and bank_main.MainBank_ID= " + cmbBank.SelectedValue+ " and Supplier_ID is null ";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -1114,7 +1114,7 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               // MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
         }
