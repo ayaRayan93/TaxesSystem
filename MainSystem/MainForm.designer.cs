@@ -304,6 +304,9 @@
             this.xtraTabPageBank = new DevExpress.XtraTab.XtraTabPage();
             this.MainTabControlBank = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControlBankReport = new DevExpress.XtraNavBar.NavBarControl();
+            this.navBarGroup61 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemBankTransReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemBillTransPayTypeReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupDeposit = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem90 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem91 = new DevExpress.XtraNavBar.NavBarItem();
@@ -321,9 +324,6 @@
             this.navBarItem89 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroupReportBank = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemBanks = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup61 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemBankTransReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemBillTransPayTypeReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemBankRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem100 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem101 = new DevExpress.XtraNavBar.NavBarItem();
@@ -3343,6 +3343,33 @@
             this.navBarControlBankReport.TabIndex = 3;
             this.navBarControlBankReport.Text = "navBarControl1";
             // 
+            // navBarGroup61
+            // 
+            this.navBarGroup61.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup61.Appearance.Options.UseFont = true;
+            this.navBarGroup61.Caption = "تقارير";
+            this.navBarGroup61.Expanded = true;
+            this.navBarGroup61.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBankTransReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillTransPayTypeReport)});
+            this.navBarGroup61.Name = "navBarGroup61";
+            // 
+            // navBarItemBankTransReport
+            // 
+            this.navBarItemBankTransReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItemBankTransReport.Appearance.Options.UseFont = true;
+            this.navBarItemBankTransReport.Caption = "حركة الخزنة";
+            this.navBarItemBankTransReport.Name = "navBarItemBankTransReport";
+            this.navBarItemBankTransReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBankTransReport_LinkClicked);
+            // 
+            // navBarItemBillTransPayTypeReport
+            // 
+            this.navBarItemBillTransPayTypeReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.navBarItemBillTransPayTypeReport.Appearance.Options.UseFont = true;
+            this.navBarItemBillTransPayTypeReport.Caption = "حركة اليومية";
+            this.navBarItemBillTransPayTypeReport.Name = "navBarItemBillTransPayTypeReport";
+            this.navBarItemBillTransPayTypeReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillPayTypeReport_LinkClicked);
+            // 
             // navBarGroupDeposit
             // 
             this.navBarGroupDeposit.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -3502,33 +3529,6 @@
             this.navBarItemBanks.Caption = "تقارير الخزائن/البنوك";
             this.navBarItemBanks.Name = "navBarItemBanks";
             this.navBarItemBanks.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemShow_LinkClicked);
-            // 
-            // navBarGroup61
-            // 
-            this.navBarGroup61.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.navBarGroup61.Appearance.Options.UseFont = true;
-            this.navBarGroup61.Caption = "تقارير";
-            this.navBarGroup61.Expanded = true;
-            this.navBarGroup61.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBankTransReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillTransPayTypeReport)});
-            this.navBarGroup61.Name = "navBarGroup61";
-            // 
-            // navBarItemBankTransReport
-            // 
-            this.navBarItemBankTransReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.navBarItemBankTransReport.Appearance.Options.UseFont = true;
-            this.navBarItemBankTransReport.Caption = "حركة الخزنة";
-            this.navBarItemBankTransReport.Name = "navBarItemBankTransReport";
-            this.navBarItemBankTransReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBankTransReport_LinkClicked);
-            // 
-            // navBarItemBillTransPayTypeReport
-            // 
-            this.navBarItemBillTransPayTypeReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
-            this.navBarItemBillTransPayTypeReport.Appearance.Options.UseFont = true;
-            this.navBarItemBillTransPayTypeReport.Caption = "حركة اليومية";
-            this.navBarItemBillTransPayTypeReport.Name = "navBarItemBillTransPayTypeReport";
-            this.navBarItemBillTransPayTypeReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillPayTypeReport_LinkClicked);
             // 
             // navBarItemBankRecord
             // 
@@ -5715,6 +5715,7 @@
             this.xtraTabControlRequests.RightToLeftLayout = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControlRequests.Size = new System.Drawing.Size(826, 705);
             this.xtraTabControlRequests.TabIndex = 7;
+            this.xtraTabControlRequests.CloseButtonClick += new System.EventHandler(this.xtraTabControlContent_Click);
             // 
             // navBarControl9
             // 

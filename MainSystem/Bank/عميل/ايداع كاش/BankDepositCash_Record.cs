@@ -735,12 +735,26 @@ namespace MainSystem
                                 com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
 
                                 com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPaidMoney.Text;
-                                MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
-                                double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                                amount2 += outParse;
-                                MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
-                                com3.ExecuteNonQuery();
-                                
+                                if (PaymentMethod != "فيزا")
+                                {
+                                    MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                                    double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                                    amount2 += outParse;
+                                    MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                                    com3.ExecuteNonQuery();
+                                }
+                                else
+                                {
+                                    MySqlCommand com2 = new MySqlCommand("select bank.Bank_ID from bank inner join bank_visa on bank.Bank_ID=bank_visa.Bank_ID where Visa_ID=" + cmbBank.SelectedValue, dbconnection);
+                                    string BankVisaId = com2.ExecuteScalar().ToString();
+
+                                    com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + BankVisaId, dbconnection);
+                                    double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                                    amount2 += outParse;
+                                    MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + BankVisaId, dbconnection);
+                                    com3.ExecuteNonQuery();
+                                }
+
                                 if (dateEdit1.Text != "")
                                 {
                                     com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
