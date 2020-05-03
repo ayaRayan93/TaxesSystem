@@ -1126,9 +1126,9 @@
             this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(472, 173);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(73, 19);
+            this.label12.Size = new System.Drawing.Size(82, 19);
             this.label12.TabIndex = 138;
-            this.label12.Text = "تاريخ السداد";
+            this.label12.Text = "تاريخ الاستلام";
             // 
             // BankSupplierPullAgl_Record2
             // 
