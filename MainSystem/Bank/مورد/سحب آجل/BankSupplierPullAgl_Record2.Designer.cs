@@ -37,7 +37,7 @@
             this.panCheak = new System.Windows.Forms.Panel();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
             this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labNumber = new System.Windows.Forms.Label();
             this.txtCheckNumber = new System.Windows.Forms.TextBox();
             this.txtCurrency = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -215,7 +215,9 @@
             this.panContent.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panContent.Controls.Add(this.dateEditPaid);
             this.panContent.Controls.Add(this.label12);
+            this.panContent.Controls.Add(this.labNumber);
             this.panContent.Controls.Add(this.panCheak);
+            this.panContent.Controls.Add(this.txtCheckNumber);
             this.panContent.Controls.Add(this.txtCurrency);
             this.panContent.Controls.Add(this.label11);
             this.panContent.Controls.Add(this.txtDescrip);
@@ -242,11 +244,9 @@
             // 
             this.panCheak.Controls.Add(this.dateEdit1);
             this.panCheak.Controls.Add(this.label5);
-            this.panCheak.Controls.Add(this.label7);
-            this.panCheak.Controls.Add(this.txtCheckNumber);
-            this.panCheak.Location = new System.Drawing.Point(23, 277);
+            this.panCheak.Location = new System.Drawing.Point(23, 313);
             this.panCheak.Name = "panCheak";
-            this.panCheak.Size = new System.Drawing.Size(544, 85);
+            this.panCheak.Size = new System.Drawing.Size(544, 52);
             this.panCheak.TabIndex = 136;
             this.panCheak.Visible = false;
             // 
@@ -276,22 +276,22 @@
             this.label5.TabIndex = 102;
             this.label5.Text = "تاريخ الاستحقاق";
             // 
-            // label7
+            // labNumber
             // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(448, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 19);
-            this.label7.TabIndex = 104;
-            this.label7.Text = "رقم الشيك";
+            this.labNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.labNumber.AutoSize = true;
+            this.labNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labNumber.Location = new System.Drawing.Point(472, 285);
+            this.labNumber.Name = "labNumber";
+            this.labNumber.Size = new System.Drawing.Size(62, 19);
+            this.labNumber.TabIndex = 104;
+            this.labNumber.Text = "رقم الشيك";
             // 
             // txtCheckNumber
             // 
             this.txtCheckNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCheckNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCheckNumber.Location = new System.Drawing.Point(19, 48);
+            this.txtCheckNumber.Location = new System.Drawing.Point(43, 281);
             this.txtCheckNumber.Name = "txtCheckNumber";
             this.txtCheckNumber.Size = new System.Drawing.Size(417, 26);
             this.txtCheckNumber.TabIndex = 96;
@@ -489,6 +489,7 @@
             this.radDeposit.TabStop = true;
             this.radDeposit.Text = "ايداع";
             this.radDeposit.UseVisualStyleBackColor = true;
+            this.radDeposit.CheckedChanged += new System.EventHandler(this.radDeposit_CheckedChanged);
             // 
             // radBankAccount
             // 
@@ -503,6 +504,7 @@
             this.radBankAccount.TabStop = true;
             this.radBankAccount.Text = "تحويل بنكى";
             this.radBankAccount.UseVisualStyleBackColor = true;
+            this.radBankAccount.CheckedChanged += new System.EventHandler(this.radBankAccount_CheckedChanged);
             // 
             // radCredit
             // 
@@ -1126,9 +1128,9 @@
             this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(472, 173);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(73, 19);
+            this.label12.Size = new System.Drawing.Size(82, 19);
             this.label12.TabIndex = 138;
-            this.label12.Text = "تاريخ السداد";
+            this.label12.Text = "تاريخ الاستلام";
             // 
             // BankSupplierPullAgl_Record2
             // 
@@ -1181,7 +1183,7 @@
         private DevExpress.XtraEditors.DateEdit dateEdit1;
         private System.Windows.Forms.TextBox txtCheckNumber;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labNumber;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
