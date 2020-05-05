@@ -278,6 +278,18 @@
     <Compile Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\BillPayType_Report.designer.cs">
       <DependentUpon>BillPayType_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\Print_PayTypeTransition.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\Print_PayTypeTransition.designer.cs">
+      <DependentUpon>Print_PayTypeTransition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\Print_PayType_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\Print_PayType_Report.designer.cs">
+      <DependentUpon>Print_PayType_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bank\تقرير الخزائن والبنوك\Bank_Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3382,6 +3394,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\BillPayType_Report.resx">
       <DependentUpon>BillPayType_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\Print_PayTypeTransition.resx">
+      <DependentUpon>Print_PayTypeTransition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\تقارير\تقرير حركة اليومية بنوع الدفع\Print_PayType_Report.resx">
+      <DependentUpon>Print_PayType_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\تقرير الخزائن والبنوك\Bank_Main.resx">
       <DependentUpon>Bank_Main.cs</DependentUpon>
