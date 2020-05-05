@@ -34,6 +34,13 @@
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
+            this.panCheak = new System.Windows.Forms.Panel();
+            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCheckNumber = new System.Windows.Forms.TextBox();
+            this.txtCurrency = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.txtDescrip = new System.Windows.Forms.TextBox();
             this.comAccountNumber = new System.Windows.Forms.ComboBox();
             this.cmbBank = new System.Windows.Forms.ComboBox();
@@ -42,15 +49,11 @@
             this.comSupplierAccountName = new System.Windows.Forms.ComboBox();
             this.txtPullMoney = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
-            this.txtCheckNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comSupBankAccountNum = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.radDeposit = new System.Windows.Forms.RadioButton();
@@ -109,20 +112,21 @@
             this.label8 = new System.Windows.Forms.Label();
             this.radCash = new System.Windows.Forms.RadioButton();
             this.comSupplier = new System.Windows.Forms.ComboBox();
-            this.txtCurrency = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.panCheak = new System.Windows.Forms.Panel();
+            this.dateEditPaid = new DevExpress.XtraEditors.DateEdit();
+            this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panContent.SuspendLayout();
+            this.panCheak.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panCheak.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditPaid.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditPaid.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -164,7 +168,7 @@
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1114, 54);
             this.tableLayoutPanel2.TabIndex = 11;
             // 
@@ -208,6 +212,8 @@
             // 
             // panContent
             // 
+            this.panContent.Controls.Add(this.dateEditPaid);
+            this.panContent.Controls.Add(this.label12);
             this.panContent.Controls.Add(this.panCheak);
             this.panContent.Controls.Add(this.txtCurrency);
             this.panContent.Controls.Add(this.label11);
@@ -231,11 +237,89 @@
             this.panContent.TabIndex = 134;
             this.panContent.Visible = false;
             // 
+            // panCheak
+            // 
+            this.panCheak.Controls.Add(this.dateEdit1);
+            this.panCheak.Controls.Add(this.label5);
+            this.panCheak.Controls.Add(this.label7);
+            this.panCheak.Controls.Add(this.txtCheckNumber);
+            this.panCheak.Location = new System.Drawing.Point(23, 276);
+            this.panCheak.Name = "panCheak";
+            this.panCheak.Size = new System.Drawing.Size(544, 85);
+            this.panCheak.TabIndex = 136;
+            this.panCheak.Visible = false;
+            // 
+            // dateEdit1
+            // 
+            this.dateEdit1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateEdit1.EditValue = null;
+            this.dateEdit1.Location = new System.Drawing.Point(19, 11);
+            this.dateEdit1.Name = "dateEdit1";
+            this.dateEdit1.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateEdit1.Properties.Appearance.Options.UseFont = true;
+            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEdit1.Size = new System.Drawing.Size(417, 26);
+            this.dateEdit1.TabIndex = 95;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(448, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 19);
+            this.label5.TabIndex = 102;
+            this.label5.Text = "تاريخ الاستحقاق";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(448, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 19);
+            this.label7.TabIndex = 104;
+            this.label7.Text = "رقم الشيك";
+            // 
+            // txtCheckNumber
+            // 
+            this.txtCheckNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCheckNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCheckNumber.Location = new System.Drawing.Point(19, 48);
+            this.txtCheckNumber.Name = "txtCheckNumber";
+            this.txtCheckNumber.Size = new System.Drawing.Size(417, 26);
+            this.txtCheckNumber.TabIndex = 96;
+            // 
+            // txtCurrency
+            // 
+            this.txtCurrency.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtCurrency.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCurrency.Location = new System.Drawing.Point(43, 110);
+            this.txtCurrency.Name = "txtCurrency";
+            this.txtCurrency.Size = new System.Drawing.Size(152, 26);
+            this.txtCurrency.TabIndex = 134;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(199, 114);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 19);
+            this.label11.TabIndex = 135;
+            this.label11.Text = "العملة";
+            // 
             // txtDescrip
             // 
             this.txtDescrip.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDescrip.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescrip.Location = new System.Drawing.Point(43, 183);
+            this.txtDescrip.Location = new System.Drawing.Point(43, 213);
             this.txtDescrip.Multiline = true;
             this.txtDescrip.Name = "txtDescrip";
             this.txtDescrip.Size = new System.Drawing.Size(417, 61);
@@ -314,30 +398,6 @@
             this.label9.TabIndex = 130;
             this.label9.Text = "اسم حساب المورد";
             // 
-            // dateEdit1
-            // 
-            this.dateEdit1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dateEdit1.EditValue = null;
-            this.dateEdit1.Location = new System.Drawing.Point(19, 11);
-            this.dateEdit1.Name = "dateEdit1";
-            this.dateEdit1.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateEdit1.Properties.Appearance.Options.UseFont = true;
-            this.dateEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEdit1.Size = new System.Drawing.Size(417, 26);
-            this.dateEdit1.TabIndex = 95;
-            // 
-            // txtCheckNumber
-            // 
-            this.txtCheckNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCheckNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCheckNumber.Location = new System.Drawing.Point(19, 48);
-            this.txtCheckNumber.Name = "txtCheckNumber";
-            this.txtCheckNumber.Size = new System.Drawing.Size(417, 26);
-            this.txtCheckNumber.TabIndex = 96;
-            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -387,33 +447,11 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(464, 187);
+            this.label4.Location = new System.Drawing.Point(464, 217);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 19);
             this.label4.TabIndex = 101;
             this.label4.Text = "البيان";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(448, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 19);
-            this.label7.TabIndex = 104;
-            this.label7.Text = "رقم الشيك";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(448, 8);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 19);
-            this.label5.TabIndex = 102;
-            this.label5.Text = "تاريخ الاستحقاق";
             // 
             // label6
             // 
@@ -1065,37 +1103,31 @@
             this.comSupplier.TabIndex = 84;
             this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
             // 
-            // txtCurrency
+            // dateEditPaid
             // 
-            this.txtCurrency.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCurrency.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCurrency.Location = new System.Drawing.Point(43, 110);
-            this.txtCurrency.Name = "txtCurrency";
-            this.txtCurrency.Size = new System.Drawing.Size(152, 26);
-            this.txtCurrency.TabIndex = 134;
+            this.dateEditPaid.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateEditPaid.EditValue = null;
+            this.dateEditPaid.Location = new System.Drawing.Point(43, 178);
+            this.dateEditPaid.Name = "dateEditPaid";
+            this.dateEditPaid.Properties.Appearance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateEditPaid.Properties.Appearance.Options.UseFont = true;
+            this.dateEditPaid.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditPaid.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEditPaid.Size = new System.Drawing.Size(417, 26);
+            this.dateEditPaid.TabIndex = 137;
             // 
-            // label11
+            // label12
             // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(199, 114);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(41, 19);
-            this.label11.TabIndex = 135;
-            this.label11.Text = "العملة";
-            // 
-            // panCheak
-            // 
-            this.panCheak.Controls.Add(this.dateEdit1);
-            this.panCheak.Controls.Add(this.label5);
-            this.panCheak.Controls.Add(this.label7);
-            this.panCheak.Controls.Add(this.txtCheckNumber);
-            this.panCheak.Location = new System.Drawing.Point(23, 250);
-            this.panCheak.Name = "panCheak";
-            this.panCheak.Size = new System.Drawing.Size(544, 85);
-            this.panCheak.TabIndex = 136;
-            this.panCheak.Visible = false;
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(465, 180);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(73, 19);
+            this.label12.TabIndex = 138;
+            this.label12.Text = "تاريخ السداد";
             // 
             // BankSupplierPullAgl_Record2
             // 
@@ -1113,14 +1145,16 @@
             this.panel2.PerformLayout();
             this.panContent.ResumeLayout(false);
             this.panContent.PerformLayout();
+            this.panCheak.ResumeLayout(false);
+            this.panCheak.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panCheak.ResumeLayout(false);
-            this.panCheak.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditPaid.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEditPaid.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1211,5 +1245,7 @@
         private System.Windows.Forms.TextBox txtCurrency;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panCheak;
+        private DevExpress.XtraEditors.DateEdit dateEditPaid;
+        private System.Windows.Forms.Label label12;
     }
 }

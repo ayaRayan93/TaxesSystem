@@ -1075,7 +1075,7 @@ namespace MainSystem
                                 calTotal();
                                 DesignItem designItem = getDesignItem("حمام");
                                 designItem.ItemCost = re;
-                                designItem.Total = re * (Convert.ToInt16(txtNoItem1.Text));
+                                designItem.Total = re * (Convert.ToInt16(txtNoItemBath.Text));
                             }
                             break;
                         case "txtCostKitchen":
@@ -1095,7 +1095,7 @@ namespace MainSystem
                                 calTotal();
                                 DesignItem designItem = getDesignItem("مطبخ");
                                 designItem.ItemCost = re;
-                                designItem.Total = re * (Convert.ToInt16(txtNoItem2.Text));
+                                designItem.Total = re * (Convert.ToInt16(txtNoItemKitchen.Text));
                             }
                             break;
                         case "txtCostHall":
@@ -1115,7 +1115,7 @@ namespace MainSystem
                                 calTotal();
                                 DesignItem designItem = getDesignItem("صالة");
                                 designItem.ItemCost = re;
-                                designItem.Total = re * (Convert.ToInt16(txtNoItem3.Text));
+                                designItem.Total = re * (Convert.ToInt16(txtNoItemHall.Text));
                             }
                             break;
                         case "txtCostRoom":
@@ -1135,7 +1135,7 @@ namespace MainSystem
                                 calTotal();
                                 DesignItem designItem = getDesignItem("غرفة");
                                 designItem.ItemCost = re;
-                                designItem.Total = re * (Convert.ToInt16(txtNoItem4.Text));
+                                designItem.Total = re * (Convert.ToInt16(txtNoItemRoom.Text));
                             }
                             break;
                         case "txtCostOther":
@@ -1155,7 +1155,7 @@ namespace MainSystem
                                 calTotal();
                                 DesignItem designItem = getDesignItem("اخري");
                                 designItem.ItemCost = re;
-                                designItem.Total = (re * (Convert.ToInt16(txtNoItem5.Text)));
+                                designItem.Total = (re * (Convert.ToInt16(txtNoItemOther.Text)));
                             }
                             break;
                     }
