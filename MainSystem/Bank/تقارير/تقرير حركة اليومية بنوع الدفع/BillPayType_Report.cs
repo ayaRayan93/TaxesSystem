@@ -120,7 +120,7 @@ namespace MainSystem
                     }
 
                     Print_PayType_Report f = new Print_PayType_Report();
-                    f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text + " - " + comPaymentMethod.Text, bi);
+                    f.PrintInvoice(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, comBranch.Text ,comPaymentMethod.Text, bi);
                     f.ShowDialog();
                 }
                 else
