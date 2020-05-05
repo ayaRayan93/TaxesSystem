@@ -596,11 +596,11 @@ namespace MainSystem
                 if (!MainTabControlBank.Visible)
                     MainTabControlBank.Visible = true;
 
-                XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "حركة اليومية");
+                XtraTabPage xtraTabPage = getTabPage(MainTabControlBank, "حركة الدفع");
                 if (xtraTabPage == null)
                 {
-                    MainTabControlBank.TabPages.Add("حركة اليومية");
-                    xtraTabPage = getTabPage(MainTabControlBank, "حركة اليومية");
+                    MainTabControlBank.TabPages.Add("حركة الدفع");
+                    xtraTabPage = getTabPage(MainTabControlBank, "حركة الدفع");
                 }
 
                 xtraTabPage.Controls.Clear();
