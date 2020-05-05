@@ -101,6 +101,11 @@ namespace MainSystem
                 dateTimePicker1.Visible = true;
                 labelDate.Visible = true;
 
+                if (UserControl.userType == 6 || UserControl.userType == 16)
+                {
+                    rdbSoon.Enabled = false;
+                }
+
                 loaded = true;
             }
             catch (Exception ex)
