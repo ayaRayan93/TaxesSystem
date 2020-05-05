@@ -301,6 +301,74 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemSubPropertyTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة العقارات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("حركة العقارات");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة العقارات");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                SubPropertyTransitions_Report objFormExpenses = new SubPropertyTransitions_Report(xtraTabControlExpenses);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemPropertyTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة العقارات بالخزنة");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("حركة العقارات بالخزنة");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة العقارات بالخزنة");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                Property_Transitions_Report objFormExpenses = new Property_Transitions_Report(xtraTabControlExpenses, this);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void bindUpdateExpenseForm(DataRowView rows, Expenses_Transitions_Report ExpensesTransitionsReport)
         {
             if (!xtraTabControlExpenses.Visible)

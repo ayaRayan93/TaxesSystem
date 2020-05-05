@@ -1326,9 +1326,9 @@
             this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(246, 561);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 19);
+            this.label11.Size = new System.Drawing.Size(47, 19);
             this.label11.TabIndex = 31;
-            this.label11.Text = "الاجمالي";
+            this.label11.Text = "الصافى";
             // 
             // txtTotal
             // 
@@ -1409,9 +1409,9 @@
             this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(174, 274);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 19);
+            this.label7.Size = new System.Drawing.Size(53, 19);
             this.label7.TabIndex = 1;
-            this.label7.Text = "اجمالي";
+            this.label7.Text = "الاجمالي";
             // 
             // txtCostHall
             // 

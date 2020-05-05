@@ -87,7 +87,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 17);
             this.label1.TabIndex = 3;
-            this.label1.Text = "العقار الرئيسى";
+            this.label1.Text = "العقار";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnAddNewMain
@@ -147,7 +147,7 @@
             this.btnAddMain.Name = "btnAddMain";
             this.btnAddMain.Size = new System.Drawing.Size(171, 32);
             this.btnAddMain.TabIndex = 18;
-            this.btnAddMain.Text = "اضافة عقار رئيسى جديد ";
+            this.btnAddMain.Text = "اضافة عقار جديد ";
             this.btnAddMain.UseVisualStyleBackColor = false;
             this.btnAddMain.Click += new System.EventHandler(this.btnAddMain_Click);
             // 

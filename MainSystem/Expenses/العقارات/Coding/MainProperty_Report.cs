@@ -80,10 +80,10 @@ namespace MainSystem
                     dbConnection.Open();
 
                     DataSet sourceDataSet = new DataSet();
-                    string qMain = "select MainProperty_ID as 'التسلسل', MainProperty_Name as 'العقار الرئيسى' from property_main where MainProperty_ID=" + comMain.SelectedValue.ToString();
+                    string qMain = "select MainProperty_ID as 'التسلسل', MainProperty_Name as 'العقار' from property_main where MainProperty_ID=" + comMain.SelectedValue.ToString();
                     MySqlDataAdapter adapterMain = new MySqlDataAdapter(qMain, dbConnection);
 
-                    string qSub = "SELECT property_sub.MainProperty_ID as 'التسلسل',property_sub.SubProperty_Name as 'العقار الفرعى' FROM property_sub where MainProperty_ID=" + comMain.SelectedValue.ToString();
+                    string qSub = "SELECT property_sub.MainProperty_ID as 'التسلسل',property_sub.SubProperty_Name as 'نوع المصروف' FROM property_sub where MainProperty_ID=" + comMain.SelectedValue.ToString();
                     MySqlDataAdapter adapterSub = new MySqlDataAdapter(qSub, dbConnection);
 
                     adapterMain.Fill(sourceDataSet, "property_main");
@@ -92,7 +92,7 @@ namespace MainSystem
                     //Set up a master-detail relationship between the DataTables 
                     DataColumn keyColumn = sourceDataSet.Tables["property_main"].Columns["التسلسل"];
                     DataColumn foreignKeyColumn = sourceDataSet.Tables["property_sub"].Columns["التسلسل"];
-                    sourceDataSet.Relations.Add("العقارات", keyColumn, foreignKeyColumn);
+                    sourceDataSet.Relations.Add("انواع المصروفات", keyColumn, foreignKeyColumn);
 
                     gridControl1.DataSource = sourceDataSet.Tables["property_main"];
 
@@ -220,10 +220,10 @@ namespace MainSystem
         public void displayAllMain()
         {
             DataSet sourceDataSet = new DataSet();
-            string qMain = "select MainProperty_ID as 'التسلسل', MainProperty_Name as 'العقار الرئيسى' from property_main";
+            string qMain = "select MainProperty_ID as 'التسلسل', MainProperty_Name as 'العقار' from property_main";
             MySqlDataAdapter adapterMain = new MySqlDataAdapter(qMain, dbConnection);
 
-            string qSub = "SELECT property_sub.MainProperty_ID as 'التسلسل',property_sub.SubProperty_Name as 'العقار الفرعى' FROM property_sub";
+            string qSub = "SELECT property_sub.MainProperty_ID as 'التسلسل',property_sub.SubProperty_Name as 'نوع المصروف' FROM property_sub";
             MySqlDataAdapter adapterSub = new MySqlDataAdapter(qSub, dbConnection);
 
             adapterMain.Fill(sourceDataSet, "property_main");
@@ -232,7 +232,7 @@ namespace MainSystem
             //Set up a master-detail relationship between the DataTables 
             DataColumn keyColumn = sourceDataSet.Tables["property_main"].Columns["التسلسل"];
             DataColumn foreignKeyColumn = sourceDataSet.Tables["property_sub"].Columns["التسلسل"];
-            sourceDataSet.Relations.Add("العقارات", keyColumn, foreignKeyColumn);
+            sourceDataSet.Relations.Add("انواع المصروفات", keyColumn, foreignKeyColumn);
 
             gridControl1.DataSource = sourceDataSet.Tables["property_main"];
 

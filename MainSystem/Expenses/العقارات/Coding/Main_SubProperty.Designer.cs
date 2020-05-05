@@ -82,7 +82,7 @@
             this.btnSub.Name = "btnSub";
             this.btnSub.Size = new System.Drawing.Size(90, 30);
             this.btnSub.TabIndex = 0;
-            this.btnSub.Text = "فرعية";
+            this.btnSub.Text = "نوع المصروف";
             this.btnSub.UseVisualStyleBackColor = false;
             this.btnSub.Click += new System.EventHandler(this.btnArea_Click);
             // 
@@ -96,7 +96,7 @@
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(90, 30);
             this.btnMain.TabIndex = 1;
-            this.btnMain.Text = "رئيسية";
+            this.btnMain.Text = "عقار";
             this.btnMain.UseVisualStyleBackColor = false;
             this.btnMain.Click += new System.EventHandler(this.btnZone_Click);
             // 
@@ -125,7 +125,7 @@
             this.xtraTabPageMain.Name = "xtraTabPageMain";
             this.xtraTabPageMain.Size = new System.Drawing.Size(951, 672);
             // 
-            // Main_Sub
+            // Main_SubProperty
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
@@ -133,7 +133,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(959, 723);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "Main_Sub";
+            this.Name = "Main_SubProperty";
             this.Text = "Zone_Area";
             this.Load += new System.EventHandler(this.Zone_Area_Load);
             this.tableLayoutPanel1.ResumeLayout(false);

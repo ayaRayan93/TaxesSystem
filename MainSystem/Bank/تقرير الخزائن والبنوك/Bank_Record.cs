@@ -25,7 +25,7 @@ namespace MainSystem
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
-            
+
             arrOFPhaatPlus = new int[9];
             arrPaidMoneyPlus = new int[9];
         }
@@ -267,7 +267,7 @@ namespace MainSystem
                             double stock = 0;
                             if (double.TryParse(txtStock.Text, out stock))
                             {
-                                int tt200,tt100,tt50,tt20,tt10,tt5,tt1,ttH,ttQ = 0;
+                                int tt200, tt100, tt50, tt20, tt10, tt5, tt1, ttH, ttQ = 0;
                                 if (Int32.TryParse(t200.Text, out tt200) && Int32.TryParse(t100.Text, out tt100) && Int32.TryParse(t50.Text, out tt50) && Int32.TryParse(t20.Text, out tt20) && Int32.TryParse(t10.Text, out tt10) && Int32.TryParse(t5.Text, out tt5) && Int32.TryParse(t1.Text, out tt1) && Int32.TryParse(tH.Text, out ttH) && Int32.TryParse(tQ.Text, out ttQ))
                                 {
                                     MySqlCommand command = dbconnection.CreateCommand();
@@ -287,7 +287,7 @@ namespace MainSystem
                                         command.Parameters.AddWithValue("?Branch_ID", null);
                                         command.Parameters.AddWithValue("?Branch_Name", null);
                                         command.Parameters.AddWithValue("?BankAccount_Type", txtAccountType.Text);
-                                        if(comSupplier.SelectedValue != null)
+                                        if (comSupplier.SelectedValue != null)
                                         {
                                             command.Parameters.AddWithValue("?Supplier_ID", comSupplier.SelectedValue.ToString());
                                         }
@@ -423,7 +423,7 @@ namespace MainSystem
                                         arrPaidMoneyPlus[i] = 0;
                                     for (int i = 0; i < arrOFPhaatPlus.Length; i++)
                                         arrOFPhaatPlus[i] = 0;
-                                    
+
                                     xtraTabPage.ImageOptions.Image = null;
                                 }
                                 else
@@ -447,7 +447,7 @@ namespace MainSystem
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -483,7 +483,7 @@ namespace MainSystem
                 cmbMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
                 cmbMain.SelectedIndex = -1;
                 cmbMain.Text = "";
-                
+
                 query = "SELECT Branch_Name,Branch_ID FROM branch";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -492,7 +492,7 @@ namespace MainSystem
                 comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
                 comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 comBranch.SelectedIndex = -1;
-                
+
                 query = "select Employee_ID,Employee_Name from employee where employee.Employee_ID Not in(" + "select bank_employee.Employee_ID from bank_employee " + ")";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -533,7 +533,7 @@ namespace MainSystem
                 cmbMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
                 cmbMain.SelectedIndex = -1;
                 cmbMain.Text = "";
-                
+
                 query = "select * from supplier";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
@@ -628,7 +628,7 @@ namespace MainSystem
 
             return flag5;
         }
-        
+
         private void btnAddUserToBank_Click(object sender, EventArgs e)
         {
             try

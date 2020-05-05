@@ -191,7 +191,8 @@ namespace MainSystem
                 btnStores.Checked = true;
                 btnExpenses.Enabled = true;
                 btnExpenses.Checked = true;
-                navBarGroup42.Visible = false;
+                //navBarGroup42.Visible = false;
+                navBarItemMainSubReport.Visible = false;
                 navBarItemSubExpensesTransitionsReport.Visible = false;
 
                 navBarGroup1.Visible = false;
@@ -209,6 +210,8 @@ namespace MainSystem
                 navBarGroup12.Visible = false;
 
                 navBarGroupReportBank.Visible = false;
+                navBarGroup56.Visible = false;
+                navBarGroup57.Visible = false;
 
                 navBarItemCustomerDeliverReport.Visible = false;
                 navBarItem203.Visible = false;
@@ -281,6 +284,8 @@ namespace MainSystem
                 btnPOS.Checked = true;
                 btnExpenses.Enabled = true;
                 btnExpenses.Checked = true;
+                navBarGroup56.Visible = false;
+                navBarGroup57.Visible = false;
                 //navBarGroup57.Visible = false;
                 navBarGroupBillRecord.Visible = false;
                 //navBarGroupSupplierPayments.Visible = false;
@@ -432,6 +437,8 @@ namespace MainSystem
                 btnBank.Checked = true;
                 btnExpenses.Enabled = true;
                 btnExpenses.Checked = true;
+                navBarGroup56.Visible = false;
+                navBarGroup57.Visible = false;
                 navBarGroup42.Visible = false;
                 navBarItemSubExpensesTransitionsReport.Visible = false;
                 btnReception.Enabled = true;
@@ -772,6 +779,15 @@ namespace MainSystem
                 //navBarItemInformationFactoryReport.Visible = false;
                 //navBarItemFactoryProduct.Visible = false;
                 navBarItemFactoriesTransitionReport.Visible = false;
+            }
+            //العقارات أ/حسين
+            else if (UserControl.userType == 27)
+            {
+                btnExpenses.Enabled = true;
+                btnExpenses.Checked = true;
+
+                navBarGroup42.Visible = false;
+                navBarGroup32.Visible = false;
             }
             labUserName.Text = UserControl.EmpName;
         }
@@ -1353,8 +1369,8 @@ namespace MainSystem
     {
         static string supString = File.ReadAllText("IP_Address.txt");//'35.232.25.153'
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=newschematest;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
-        //public static string connectionString = "SERVER=197.50.31.80;DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
+        //public static string connectionString = "SERVER=197.50.31.80;DATABASE=newschematest;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
 
         //public static string connectionString = "SERVER=localhost;DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8";
     }

@@ -16,20 +16,20 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         bool loaded = false;
-        XtraTabControl tabControlExpense;
+        XtraTabControl tabControlProperty;
         int transitionbranchID = 0;
 
-        public SafePropertyIncome_Record(XtraTabControl MainTabControlExpense)
+        public SafePropertyIncome_Record(XtraTabControl MainTabControlProperty)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
-            tabControlExpense = MainTabControlExpense;
+            tabControlProperty = MainTabControlProperty;
 
             comBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             comBank.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
-        private void BankPullExpense_Record_Load(object sender, EventArgs e)
+        private void BankPullProperty_Record_Load(object sender, EventArgs e)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace MainSystem
                     {
                         dbconnection.Open();
                         
-                        string query = "insert into expense_transition (Branch_ID,Depositor_Name,Bank_ID,Date,Amount,Description,Type,Employee_ID) values(@Branch_ID,@Depositor_Name,@Bank_ID,@Date,@Amount,@Description,@Type,@Employee_ID)";
+                        string query = "insert into property_transition (Branch_ID,Depositor_Name,Bank_ID,Date,Amount,Description,Type,Employee_ID) values(@Branch_ID,@Depositor_Name,@Bank_ID,@Date,@Amount,@Description,@Type,@Employee_ID)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                         com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "ايداع";
@@ -77,21 +77,21 @@ namespace MainSystem
                         com3.ExecuteNonQuery();
 
                         //////////record adding/////////////
-                        query = "select ExpenseTransition_ID from expense_transition order by ExpenseTransition_ID desc limit 1";
+                        query = "select PropertyTransition_ID from property_transition order by PropertyTransition_ID desc limit 1";
                         com = new MySqlCommand(query, dbconnection);
-                        string ExpenseTransitionID = com.ExecuteScalar().ToString();
+                        string PropertyTransitionID = com.ExecuteScalar().ToString();
 
                         query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
                         com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                        com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "expense_transition";
+                        com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "property_transition";
                         com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "اضافة";
-                        com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = ExpenseTransitionID;
+                        com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = PropertyTransitionID;
                         com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                         com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                         com.ExecuteNonQuery();
-                        
-                        printExpense(Convert.ToInt32(ExpenseTransitionID));
+
+                        printProperty(Convert.ToInt32(PropertyTransitionID));
                         clear();
                     }
                     else
@@ -137,17 +137,13 @@ namespace MainSystem
 
             string query = "";
             
-            if (UserControl.userType == 3 || UserControl.userType == 16)
+            if (UserControl.userType == 27)
             {
                 query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + "";
             }
-            //else if (UserControl.userType == 7)
-            //{
-            //    query = "select * from bank where Branch_ID=" + transitionbranchID + " and Bank_Type='خزينة مصروفات'";
-            //}
-            else /*if (UserControl.userType == 1)*/
+            else
             {
-                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and MainBank_Name='خزينة عقارات'";
             }
 
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -162,11 +158,11 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        void printExpense(int ExpenseTransitionID)
+        void printProperty(int PropertyTransitionID)
         {
-            Print_IncomeExpense_Report f = new Print_IncomeExpense_Report();
-            f.PrintInvoice(ExpenseTransitionID, comBank.Text, txtPullMoney.Text, txtClient.Text, txtDescrip.Text);
-            f.ShowDialog();
+            //Print_IncomeExpense_Report f = new Print_IncomeExpense_Report();
+            //f.PrintInvoice(ExpenseTransitionID, comBank.Text, txtPullMoney.Text, txtClient.Text, txtDescrip.Text);
+            //f.ShowDialog();
         }
     }
 }

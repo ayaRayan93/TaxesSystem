@@ -43,11 +43,17 @@ namespace MainSystem
             comSupplier.AutoCompleteMode = AutoCompleteMode.Suggest;
             comSupplier.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            this.dateEdit1.Properties.DisplayFormat.FormatString = "yyyy/MM/dd";
+            this.dateEdit1.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
             this.dateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.EditFormat.FormatString = "yyyy/MM/dd";
+            this.dateEdit1.Properties.EditFormat.FormatString = "dd/MM/yyyy";
             this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.dateEdit1.Properties.Mask.EditMask = "yyyy/MM/dd";
+            this.dateEdit1.Properties.Mask.EditMask = "dd/MM/yyyy";
+
+            this.dateEditPaid.Properties.DisplayFormat.FormatString = "dd/MM/yyyy";
+            this.dateEditPaid.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEditPaid.Properties.EditFormat.FormatString = "dd/MM/yyyy";
+            this.dateEditPaid.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.dateEditPaid.Properties.Mask.EditMask = "dd/MM/yyyy";
         }
 
         private void BankPullAgl_Record_Load(object sender, EventArgs e)
@@ -72,7 +78,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void radioButtonSafe_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -89,11 +94,19 @@ namespace MainSystem
               //  radDeposit.Checked = false;
 
                 radCash.Checked = true;
-
+                groupBox1.Enabled = true;
                 loadedPayType = true;
                 panContent.Visible = true;
                 comAccountNumber.Enabled = false;
                 panCheak.Visible = false;
+
+                comBankSupplier.Visible = true;
+                comSupBankAccountNum.Visible = true;
+                comSupplierAccountName.Visible = true;
+
+                label1.Visible = true;
+                label6.Visible = true;
+                label9.Visible = true;
             }
             catch (Exception ex)
             {
@@ -107,7 +120,9 @@ namespace MainSystem
             {
                 RadioButton r = (RadioButton)sender;
                 PaymentMethod = r.Text;
-
+                PaymentMethod = "نقدى";
+                labNumber.Visible = false;
+                txtCheckNumber.Visible = false;
                 loaded = false;
                 string query = "select * from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where Branch_ID=" + transitionbranchID + " and MainBank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -125,7 +140,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }     
-
         private void radioButtonBank_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -158,8 +172,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-  
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -171,7 +183,7 @@ namespace MainSystem
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (/*comSupplier.Text != "" &&*/ cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "تحويل بنكى")
                 {
@@ -325,7 +337,7 @@ namespace MainSystem
                         txtPaidRest.Text = "0";
                         txtPaidRest2.Text = "0";
 
-                        xtraTabPage.ImageOptions.Image = null;
+                      //  xtraTabPage.ImageOptions.Image = null;
                     }
                     else
                     {
@@ -345,7 +357,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
         {
             double totalPaid = 0;
@@ -684,7 +695,6 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
-
         private void RestMoney_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -921,7 +931,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -977,6 +986,30 @@ namespace MainSystem
                         item.Text = "";
                     }
                 }
+            }
+            foreach (Control item in this.panCheak.Controls)
+            {
+                if (item is ComboBox)
+                {
+                    item.Text = "";
+                }
+                else if (item is TextBox)
+                {
+                    item.Text = "";
+                }
+            }
+            foreach (Control item in this.panContent.Controls)
+            {
+             
+                    if (item is ComboBox)
+                    {
+                        item.Text = "";
+                    }
+                    else if (item is TextBox)
+                    {
+                        item.Text = "";
+                    }
+                
             }
         }
 
@@ -1051,7 +1084,7 @@ namespace MainSystem
                 {
                     loaded = false;
                     dbconnection.Open();
-                    string query = "select distinct Bank_Name,Bank_ID from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and bank_main.MainBank_ID= " + cmbBank.SelectedValue;
+                    string query = "select distinct Bank_Name,Bank_ID from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and bank_main.MainBank_ID= " + cmbBank.SelectedValue+ " and Supplier_ID is null ";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -1114,7 +1147,7 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               // MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
         }
@@ -1126,11 +1159,83 @@ namespace MainSystem
                 RadioButton rdio = (RadioButton)sender;
                 if (rdio.Checked)
                 {
+
+                    PaymentMethod = "شيك";
+
                     panCheak.Visible = true;
+                    comBankSupplier.Visible = false;
+                    comSupBankAccountNum.Visible = false;
+                    comSupplierAccountName.Visible = false;
+
+                    label1.Visible = false;
+                    label6.Visible = false;
+                    label9.Visible = false;
+
+                    labNumber.Text = "رقم الشيك";
+                    labNumber.Visible = true;
+                    txtCheckNumber.Visible = true;
                 }
                 else
                 {
                     panCheak.Visible = false;
+                    comBankSupplier.Visible = true;
+                    comSupBankAccountNum.Visible = true;
+                    comSupplierAccountName.Visible = true;
+
+                    label1.Visible = true;
+                    label6.Visible = true;
+                    label9.Visible = true;
+
+                    labNumber.Visible = false;
+                    txtCheckNumber.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void radBankAccount_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RadioButton rd=(RadioButton)sender;
+                if (rd.Checked)
+                {
+                    PaymentMethod = "تحويل بنكى";
+                    labNumber.Text = "رقم التحويل";
+                    labNumber.Visible = true;
+                    txtCheckNumber.Visible = true;
+                }
+                else
+                {
+                    labNumber.Visible = false;
+                    txtCheckNumber.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void radDeposit_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RadioButton rd = (RadioButton)sender;
+                if (rd.Checked)
+                {
+                    PaymentMethod = "ايداع";
+                    labNumber.Text = "رقم الايداع";
+                    labNumber.Visible = true;
+                    txtCheckNumber.Visible = true;
+                }
+                else
+                {
+                    labNumber.Visible = false;
+                    txtCheckNumber.Visible = false;
                 }
             }
             catch (Exception ex)

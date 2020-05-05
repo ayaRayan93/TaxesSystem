@@ -118,7 +118,7 @@ namespace MainSystem
                 if (loaded)
                 {
                     DataSet sourceDataSet = new DataSet();
-                    MySqlDataAdapter adapterSub = new MySqlDataAdapter("SELECT property_sub.SubProperty_ID as 'التسلسل',property_sub.SubProperty_Name as 'العقار الفرعى',property_main.MainProperty_Name as 'العقار الرئيسى',property_sub.MainProperty_ID FROM property_sub INNER JOIN property_main ON property_sub.MainProperty_ID = property_main.MainProperty_ID where property_sub.SubProperty_ID=" + comSub.SelectedValue.ToString(), dbConnection);
+                    MySqlDataAdapter adapterSub = new MySqlDataAdapter("SELECT property_sub.SubProperty_ID as 'التسلسل',property_sub.SubProperty_Name as 'نوع المصروف',property_main.MainProperty_Name as 'العقار',property_sub.MainProperty_ID FROM property_sub INNER JOIN property_main ON property_sub.MainProperty_ID = property_main.MainProperty_ID where property_sub.SubProperty_ID=" + comSub.SelectedValue.ToString(), dbConnection);
                     adapterSub.Fill(sourceDataSet);
                     gridControl1.DataSource = sourceDataSet.Tables[0];
 
@@ -277,7 +277,7 @@ namespace MainSystem
         //System Functions
         public void displayAllMain()
         {
-            string query = "select SubProperty_ID as 'التسلسل',SubProperty_Name as 'العقار الفرعى',property_main.MainProperty_Name as 'العقار الرئيسى',property_sub.MainProperty_ID from property_sub INNER JOIN property_main ON property_sub.MainProperty_ID = property_main.MainProperty_ID";
+            string query = "select SubProperty_ID as 'التسلسل',SubProperty_Name as 'نوع المصروف',property_main.MainProperty_Name as 'العقار',property_sub.MainProperty_ID from property_sub INNER JOIN property_main ON property_sub.MainProperty_ID = property_main.MainProperty_ID";
             adabter = new MySqlDataAdapter(query, dbConnection);
             dTable = new DataTable();
             adabter.Fill(dTable);

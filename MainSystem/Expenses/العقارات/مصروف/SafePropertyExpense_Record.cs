@@ -16,14 +16,14 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         bool loaded = false;
-        XtraTabControl tabControlExpense;
+        XtraTabControl tabControlProperty;
         int transitionbranchID = 0;
 
-        public SafePropertyExpense_Record(XtraTabControl MainTabControlExpense)
+        public SafePropertyExpense_Record(XtraTabControl MainTabControlProperty)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
-            tabControlExpense = MainTabControlExpense;
+            tabControlProperty = MainTabControlProperty;
 
             comBank.AutoCompleteMode = AutoCompleteMode.Suggest;
             comBank.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -58,13 +58,13 @@ namespace MainSystem
             {
                 try
                 {
-                    string query = "select * from expense_sub where MainExpense_ID=" + comMain.SelectedValue.ToString();
+                    string query = "select * from property_sub where MainProperty_ID=" + comMain.SelectedValue.ToString();
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     comSub.DataSource = dt;
-                    comSub.DisplayMember = dt.Columns["SubExpense_Name"].ToString();
-                    comSub.ValueMember = dt.Columns["SubExpense_ID"].ToString();
+                    comSub.DisplayMember = dt.Columns["SubProperty_Name"].ToString();
+                    comSub.ValueMember = dt.Columns["SubProperty_ID"].ToString();
                     comSub.SelectedIndex = -1;
                 }
                 catch (Exception ex)
@@ -89,12 +89,12 @@ namespace MainSystem
 
                         if ((amount2 - outParse) >= 0)
                         {
-                            string query = "insert into expense_transition (Branch_ID,Depositor_Name,Bank_ID,Date,Amount,Description,SubExpense_ID,Type,Employee_ID) values(@Branch_ID,@Depositor_Name,@Bank_ID,@Date,@Amount,@Description,@SubExpense_ID,@Type,@Employee_ID)";
+                            string query = "insert into property_transition (Branch_ID,Depositor_Name,Bank_ID,Date,Amount,Description,SubProperty_ID,Type,Employee_ID) values(@Branch_ID,@Depositor_Name,@Bank_ID,@Date,@Amount,@Description,@SubProperty_ID,@Type,@Employee_ID)";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                             com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "صرف";
                             com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
-                            com.Parameters.Add("@SubExpense_ID", MySqlDbType.Int16, 11).Value = comSub.SelectedValue.ToString();
+                            com.Parameters.Add("@SubProperty_ID", MySqlDbType.Int16, 11).Value = comSub.SelectedValue.ToString();
                             com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = comBank.SelectedValue;
                             com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                             com.Parameters.Add("@Depositor_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
@@ -108,21 +108,21 @@ namespace MainSystem
                             com3.ExecuteNonQuery();
 
                             //////////record adding/////////////
-                            query = "select ExpenseTransition_ID from expense_transition order by ExpenseTransition_ID desc limit 1";
+                            query = "select PropertyTransition_ID from property_transition order by PropertyTransition_ID desc limit 1";
                             com = new MySqlCommand(query, dbconnection);
-                            string ExpenseTransitionID = com.ExecuteScalar().ToString();
+                            string PropertyTransitionID = com.ExecuteScalar().ToString();
 
                             query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
                             com = new MySqlCommand(query, dbconnection);
                             com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                            com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "expense_transition";
+                            com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "property_transition";
                             com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "اضافة";
-                            com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = ExpenseTransitionID;
+                            com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = PropertyTransitionID;
                             com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                             com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                             com.ExecuteNonQuery();
 
-                            printExpense(Convert.ToInt32(ExpenseTransitionID));
+                            printProperty(Convert.ToInt32(PropertyTransitionID));
                             clear();
                         }
                         else
@@ -172,34 +172,22 @@ namespace MainSystem
         private void loadBranch()
         {
             dbconnection.Open();
-            string query = "";
-            if (UserControl.userType == 16)
-            {
-                query = "select * from expense_main where MainExpense_ID=16";
-            }
-            else
-            {
-                query = "select * from expense_main";
-            }
+            string query = "select * from property_main";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
             comMain.DataSource = dt;
-            comMain.DisplayMember = dt.Columns["MainExpense_Name"].ToString();
-            comMain.ValueMember = dt.Columns["MainExpense_ID"].ToString();
+            comMain.DisplayMember = dt.Columns["MainProperty_Name"].ToString();
+            comMain.ValueMember = dt.Columns["MainProperty_ID"].ToString();
             comMain.SelectedIndex = -1;
-            
-            if (UserControl.userType == 3 || UserControl.userType == 16)
+
+            if (UserControl.userType == 27)
             {
                 query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + "";
             }
-            //else if (UserControl.userType == 7)
-            //{
-            //    query = "select * from bank where Bank_Type='خزينة مصروفات' and bank.Branch_ID=" + transitionbranchID;
-            //}
-            else /*if(UserControl.userType == 1)*/
+            else
             {
-                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and MainBank_Name='خزينة عقارات'";
             }
             da = new MySqlDataAdapter(query, dbconnection);
             dt = new DataTable();
@@ -213,11 +201,11 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        void printExpense(int ExpenseTransitionID)
+        void printProperty(int ExpenseTransitionID)
         {
-            Print_Expense_Report f = new Print_Expense_Report();
-            f.PrintInvoice(ExpenseTransitionID, comMain.Text, comSub.Text, comBank.Text, txtPullMoney.Text, txtClient.Text, txtDescrip.Text);
-            f.ShowDialog();
+            //Print_Expense_Report f = new Print_Expense_Report();
+            //f.PrintInvoice(ExpenseTransitionID, comMain.Text, comSub.Text, comBank.Text, txtPullMoney.Text, txtClient.Text, txtDescrip.Text);
+            //f.ShowDialog();
         }
     }
 }
