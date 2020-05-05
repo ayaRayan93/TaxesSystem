@@ -219,7 +219,7 @@ namespace MainSystem
                         com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
                         com.Parameters.Add("@SupplierBank_ID", MySqlDbType.Int16, 11).Value = comBankSupplier.SelectedValue;
                         com.Parameters.Add("@SupplierBank_Name", MySqlDbType.VarChar, 255).Value = comBankSupplier.Text;
-                        com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value =dateEditPaid.DateTime.Date;
+                        com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = dateEditPaid.DateTime.Date;
                         //com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                         com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                         com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
