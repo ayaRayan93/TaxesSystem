@@ -1367,7 +1367,8 @@ namespace MainSystem
       
     }
 
-    public static class connection
+    public static class 
+        connection
     {
         static string supString = File.ReadAllText("IP_Address.txt");//'35.232.25.153'
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));

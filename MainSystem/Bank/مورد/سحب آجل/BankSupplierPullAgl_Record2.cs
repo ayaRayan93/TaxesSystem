@@ -445,24 +445,40 @@ namespace MainSystem
                         com.Parameters.Add("@Supplier_ID", MySqlDbType.Int16, 11).Value = comSupplier.SelectedValue;
                         com.Parameters.Add("@Supplier_Name", MySqlDbType.VarChar, 255).Value = comSupplier.Text;
                         com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
-                        com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
-                        com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
-                        com.Parameters.Add("@SupplierBank_ID", MySqlDbType.Int16, 11).Value = comBankSupplier.SelectedValue;
-                        com.Parameters.Add("@SupplierBank_Name", MySqlDbType.VarChar, 255).Value = comBankSupplier.Text;
+                        if (PaymentMethod == "ايداع")
+                        {
+                            com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = null;
+                            com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = null;
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
+                            com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
+                        }
+                        if (PaymentMethod == "شيك")
+                        {
+                            com.Parameters.Add("@SupplierBank_ID", MySqlDbType.Int16, 11).Value = null;
+                            com.Parameters.Add("@SupplierBank_Name", MySqlDbType.VarChar, 255).Value = null;
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@SupplierBank_ID", MySqlDbType.Int16, 11).Value = comBankSupplier.SelectedValue;
+                            com.Parameters.Add("@SupplierBank_Name", MySqlDbType.VarChar, 255).Value = comBankSupplier.Text;
+                        }
                         com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = dateEditPaid.DateTime.Date;
                         //com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
                         com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                         com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
                         com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
 
-                        if (PaymentMethod != "شيك")
-                        {
-                            MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where MainBank_ID=" + cmbBank.SelectedValue, dbconnection);
-                            double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                            amount2 -= outParse;
-                            MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where MainBank_ID=" + cmbBank.SelectedValue, dbconnection);
-                            com3.ExecuteNonQuery();
-                        }
+                        //if (PaymentMethod != "شيك" )
+                        //{
+                        //    MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where MainBank_ID=" + cmbBank.SelectedValue, dbconnection);
+                        //    double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                        //    amount2 -= outParse;
+                        //    MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where MainBank_ID=" + cmbBank.SelectedValue, dbconnection);
+                        //    com3.ExecuteNonQuery();
+                        //}
 
                         if (dateEdit1.Text != "")
                         {
@@ -1249,6 +1265,24 @@ namespace MainSystem
                 {
                     item.Text = "";
                 }
+            }
+            foreach (Control item in this.panSupplier.Controls)
+            {
+
+                if (item is ComboBox)
+                {
+                    item.Text = "";
+                }
+           
+            }
+            foreach (Control item in this.panOwner.Controls)
+            {
+
+                if (item is ComboBox)
+                {
+                    item.Text = "";
+                }
+
             }
         }
         public XtraTabPage getTabPage(string text)
