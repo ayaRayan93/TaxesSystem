@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -173,7 +172,7 @@
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
-            this.btnReport.LabelText = "طباعة السدادات";
+            this.btnReport.LabelText = "طباعة";
             this.btnReport.Location = new System.Drawing.Point(721, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
@@ -423,14 +422,14 @@
             this.comPaymentMethod.Size = new System.Drawing.Size(137, 24);
             this.comPaymentMethod.TabIndex = 14;
             // 
-            // BillsTransitions_PaymentType_Report
+            // BillPayType_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 600);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
-            this.Name = "BillsTransitions_PaymentType_Report";
+            this.Name = "BillPayType_Report";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bills_Transitions_Report";
             this.Load += new System.EventHandler(this.Bills_Transitions_Report_Load);

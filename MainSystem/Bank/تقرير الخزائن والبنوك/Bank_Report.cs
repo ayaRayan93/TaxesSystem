@@ -359,18 +359,18 @@ namespace MainSystem
                         {
                             DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(selRows[i]));
                             
-                            string query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
+                            string query = "delete from bank_main where MainBank_ID=" + selRow[0].ToString();
                             MySqlCommand comand = new MySqlCommand(query, conn);
+                            comand.ExecuteNonQuery();
+
+                            query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
+                            comand = new MySqlCommand(query, conn);
                             comand.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                            comand.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "bank";
+                            comand.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "bank_main";
                             comand.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "حذف";
                             comand.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = selRow[0].ToString();
                             comand.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                             comand.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
-                            comand.ExecuteNonQuery();
-
-                            query = "delete from bank where Bank_ID=" + selRow[0].ToString();
-                            comand = new MySqlCommand(query, conn);
                             comand.ExecuteNonQuery();
                         }
                         conn.Close();

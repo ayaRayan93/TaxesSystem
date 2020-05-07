@@ -280,11 +280,25 @@ namespace MainSystem
                             comand.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = textBox.Text;
                             comand.ExecuteNonQuery();
 
-                            MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + selRow["Bank_ID"].ToString(), conn);
-                            double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                            amount2 += Convert.ToDouble(selRow["المبلغ"].ToString());
-                            MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + selRow["Bank_ID"].ToString(), conn);
-                            com3.ExecuteNonQuery();
+                            if (selRow["طريقة الدفع"].ToString() != "فيزا")
+                            {
+                                MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + selRow["Bank_ID"].ToString(), conn);
+                                double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                                amount2 += Convert.ToDouble(selRow["المبلغ"].ToString());
+                                MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + selRow["Bank_ID"].ToString(), conn);
+                                com3.ExecuteNonQuery();
+                            }
+                            else
+                            {
+                                MySqlCommand com2 = new MySqlCommand("select bank.Bank_ID from bank inner join bank_visa on bank.Bank_ID=bank_visa.Bank_ID where Visa_ID=" + selRow["Bank_ID"].ToString(), conn);
+                                string BankVisaId = com2.ExecuteScalar().ToString();
+
+                                com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + BankVisaId, conn);
+                                double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                                amount2 += Convert.ToDouble(selRow["المبلغ"].ToString());
+                                MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + BankVisaId, conn);
+                                com3.ExecuteNonQuery();
+                            }
 
                             deleteExpense(selRow, textBox.Text);
                         }
