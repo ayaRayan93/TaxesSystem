@@ -125,6 +125,15 @@ namespace MainSystem
                 PaymentMethod = "نقدى";
                 labNumber.Visible = false;
                 txtCheckNumber.Visible = false;
+                if (r.Checked)
+                {
+                    panSupplier.Visible = false;
+                }
+                else
+                {
+                    panSupplier.Visible = true;
+                }
+
                 loaded = false;
                 string query = "select * from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where Branch_ID=" + transitionbranchID + " and MainBank_Type='خزينة'";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -250,13 +259,17 @@ namespace MainSystem
                 {
                     PaymentMethod = "ايداع";
                     labNumber.Text = "رقم الايداع";
+                    label12.Text = "تاريخ الايداع";
                     labNumber.Visible = true;
                     txtCheckNumber.Visible = true;
+                    panOwner.Visible = false;
                 }
                 else
                 {
                     labNumber.Visible = false;
                     txtCheckNumber.Visible = false;
+                    panOwner.Visible = true;
+                    label12.Text = "تاريخ الاستلام";
                 }
             }
             catch (Exception ex)
@@ -323,7 +336,7 @@ namespace MainSystem
                 {
                     loaded = false;
                     dbconnection.Open();
-                    string query = "select distinct SupplierAccountName from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and bank_main.MainBank_ID= " + comBankSupplier.SelectedValue + " and Bank_Name=" + comSupBankAccountNum.Text+ " and Supplier_ID is null ";
+                    string query = "select distinct SupplierAccountName from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type = 'حساب بنكى' and Branch_ID is null and bank_main.MainBank_ID= " + cmbBank.SelectedValue + " and Bank_Name=" + comAccountNumber.Text+ " and Supplier_ID is null ";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -394,19 +407,19 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "");
+                    check = (cmbBank.Text != "" && txtPullMoney.Text != "" && dateEditPaid.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = (/*comSupplier.Text != "" &&*/ cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (/*comSupplier.Text != "" &&*/ cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && dateEditPaid.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "تحويل بنكى")
                 {
-                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEditPaid.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "ايداع")
                 {
-                    check = (comSupplier.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "" && comBankSupplier.Text != "" );
+                    check = (comSupplier.Text != ""  && txtPullMoney.Text != "" && dateEditPaid.Text != "" && txtCheckNumber.Text != "" && comBankSupplier.Text != "" );
                 }
 
                 if (check)
@@ -444,10 +457,10 @@ namespace MainSystem
 
                         if (PaymentMethod != "شيك")
                         {
-                            MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                            MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where MainBank_ID=" + cmbBank.SelectedValue, dbconnection);
                             double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
                             amount2 -= outParse;
-                            MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                            MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where MainBank_ID=" + cmbBank.SelectedValue, dbconnection);
                             com3.ExecuteNonQuery();
                         }
 

@@ -32,6 +32,7 @@ namespace MainSystem
 
         private void Bank_Record_Load(object sender, EventArgs e)
         {
+
         }
 
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
