@@ -363,6 +363,40 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void navBarItem292_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlPurchases.Visible)
+                    xtraTabControlPurchases.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases,"تسجيل سداد");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlPurchases.TabPages.Add("تسجيل سداد");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "تسجيل سداد");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
+
+                BankSupplierPullAgl_Record2 objForm = new BankSupplierPullAgl_Record2( xtraTabControlPurchases);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void navBarItemSupplierBillsTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
