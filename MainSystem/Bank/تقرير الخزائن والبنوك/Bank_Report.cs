@@ -125,10 +125,11 @@ namespace MainSystem
             try
             {
                 DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-
+              
                 if (MainTabPageUpdateBank.ImageOptions.Image == null)
                 {
-                    if (selRow[0].ToString() != "")
+                    
+                    if (selRow.Row[0].ToString() != "")
                     {
                         MainTabPageUpdateBank.Name = "tabPageUpdateBank";
                         MainTabPageUpdateBank.Text = "تعديل بنك";
@@ -137,16 +138,16 @@ namespace MainSystem
                         panelUpdateBank.Dock = DockStyle.Fill;
                         
                         panelUpdateBank.Controls.Clear();
-                        Bank_Update form = new Bank_Update(selRow);
-                        form.Size = new Size(1059, 638);
-                        form.TopLevel = false;
-                        form.FormBorderStyle = FormBorderStyle.None;
-                        form.Dock = DockStyle.Fill;
-                        panelUpdateBank.Controls.Add(form);
-                        MainTabPageUpdateBank.Controls.Add(panelUpdateBank);
-                        MainTabControlBank.TabPages.Add(MainTabPageUpdateBank);
-                        form.Show();
-                        MainTabControlBank.SelectedTabPage = MainTabPageUpdateBank;
+                        //Bank_Update form = new Bank_Update(selRow);
+                        //form.Size = new Size(1059, 638);
+                        //form.TopLevel = false;
+                        //form.FormBorderStyle = FormBorderStyle.None;
+                        //form.Dock = DockStyle.Fill;
+                        //panelUpdateBank.Controls.Add(form);
+                        //MainTabPageUpdateBank.Controls.Add(panelUpdateBank);
+                        //MainTabControlBank.TabPages.Add(MainTabPageUpdateBank);
+                        //form.Show();
+                        //MainTabControlBank.SelectedTabPage = MainTabPageUpdateBank;
                     }
                     else
                     {
@@ -164,15 +165,15 @@ namespace MainSystem
                     {
                         if (selRow[0].ToString() != "")
                         {
-                            panelUpdateBank.Controls.Clear();
-                            MainTabPageUpdateBank.ImageOptions.Image = null;
-                            Bank_Update form = new Bank_Update(selRow);
-                            form.Size = new Size(1059, 638);
-                            form.TopLevel = false;
-                            form.FormBorderStyle = FormBorderStyle.None;
-                            form.Dock = DockStyle.Fill;
-                            panelUpdateBank.Controls.Add(form);
-                            form.Show();
+                            //panelUpdateBank.Controls.Clear();
+                            //MainTabPageUpdateBank.ImageOptions.Image = null;
+                            //Bank_Update form = new Bank_Update(selRow);
+                            //form.Size = new Size(1059, 638);
+                            //form.TopLevel = false;
+                            //form.FormBorderStyle = FormBorderStyle.None;
+                            //form.Dock = DockStyle.Fill;
+                            //panelUpdateBank.Controls.Add(form);
+                            //form.Show();
 
                             MainTabControlBank.SelectedTabPage = MainTabPageUpdateBank;
                         }

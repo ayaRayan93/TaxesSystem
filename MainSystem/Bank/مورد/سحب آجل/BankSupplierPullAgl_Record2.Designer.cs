@@ -34,6 +34,22 @@
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panContent = new System.Windows.Forms.Panel();
+            this.panSupplier = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comSupBankAccountNum = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comSupplierAccountName = new System.Windows.Forms.ComboBox();
+            this.comBankSupplier = new System.Windows.Forms.ComboBox();
+            this.panOwner = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comAccountName = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cmbBank = new System.Windows.Forms.ComboBox();
+            this.comAccountNumber = new System.Windows.Forms.ComboBox();
             this.dateEditPaid = new DevExpress.XtraEditors.DateEdit();
             this.label12 = new System.Windows.Forms.Label();
             this.labNumber = new System.Windows.Forms.Label();
@@ -44,19 +60,9 @@
             this.txtCurrency = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtDescrip = new System.Windows.Forms.TextBox();
-            this.comAccountNumber = new System.Windows.Forms.ComboBox();
-            this.cmbBank = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.comBankSupplier = new System.Windows.Forms.ComboBox();
-            this.comSupplierAccountName = new System.Windows.Forms.ComboBox();
             this.txtPullMoney = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comSupBankAccountNum = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.radDeposit = new System.Windows.Forms.RadioButton();
             this.radBankAccount = new System.Windows.Forms.RadioButton();
@@ -114,15 +120,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.radCash = new System.Windows.Forms.RadioButton();
             this.comSupplier = new System.Windows.Forms.ComboBox();
-            this.comAccountName = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panContent.SuspendLayout();
+            this.panSupplier.SuspendLayout();
+            this.panOwner.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditPaid.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditPaid.Properties)).BeginInit();
             this.panCheak.SuspendLayout();
@@ -217,10 +221,8 @@
             // panContent
             // 
             this.panContent.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panContent.Controls.Add(this.label38);
-            this.panContent.Controls.Add(this.label37);
-            this.panContent.Controls.Add(this.comAccountName);
-            this.panContent.Controls.Add(this.label7);
+            this.panContent.Controls.Add(this.panSupplier);
+            this.panContent.Controls.Add(this.panOwner);
             this.panContent.Controls.Add(this.dateEditPaid);
             this.panContent.Controls.Add(this.label12);
             this.panContent.Controls.Add(this.labNumber);
@@ -229,24 +231,196 @@
             this.panContent.Controls.Add(this.txtCurrency);
             this.panContent.Controls.Add(this.label11);
             this.panContent.Controls.Add(this.txtDescrip);
-            this.panContent.Controls.Add(this.comAccountNumber);
-            this.panContent.Controls.Add(this.cmbBank);
-            this.panContent.Controls.Add(this.label10);
-            this.panContent.Controls.Add(this.comBankSupplier);
-            this.panContent.Controls.Add(this.comSupplierAccountName);
             this.panContent.Controls.Add(this.txtPullMoney);
-            this.panContent.Controls.Add(this.label9);
-            this.panContent.Controls.Add(this.label1);
-            this.panContent.Controls.Add(this.comSupBankAccountNum);
-            this.panContent.Controls.Add(this.label2);
             this.panContent.Controls.Add(this.label3);
             this.panContent.Controls.Add(this.label4);
-            this.panContent.Controls.Add(this.label6);
             this.panContent.Location = new System.Drawing.Point(470, 138);
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(632, 411);
             this.panContent.TabIndex = 134;
             this.panContent.Visible = false;
+            // 
+            // panSupplier
+            // 
+            this.panSupplier.Controls.Add(this.label9);
+            this.panSupplier.Controls.Add(this.label38);
+            this.panSupplier.Controls.Add(this.label6);
+            this.panSupplier.Controls.Add(this.comSupBankAccountNum);
+            this.panSupplier.Controls.Add(this.label1);
+            this.panSupplier.Controls.Add(this.comSupplierAccountName);
+            this.panSupplier.Controls.Add(this.comBankSupplier);
+            this.panSupplier.Location = new System.Drawing.Point(24, 11);
+            this.panSupplier.Name = "panSupplier";
+            this.panSupplier.Size = new System.Drawing.Size(278, 135);
+            this.panSupplier.TabIndex = 135;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(168, 105);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(103, 19);
+            this.label9.TabIndex = 130;
+            this.label9.Text = "اسم حساب المورد";
+            // 
+            // label38
+            // 
+            this.label38.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.label38.Location = new System.Drawing.Point(98, 4);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(43, 19);
+            this.label38.TabIndex = 142;
+            this.label38.Text = "المورد";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(168, 72);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 19);
+            this.label6.TabIndex = 103;
+            this.label6.Text = "رقم حساب المورد";
+            // 
+            // comSupBankAccountNum
+            // 
+            this.comSupBankAccountNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupBankAccountNum.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comSupBankAccountNum.FormattingEnabled = true;
+            this.comSupBankAccountNum.Location = new System.Drawing.Point(12, 68);
+            this.comSupBankAccountNum.Name = "comSupBankAccountNum";
+            this.comSupBankAccountNum.Size = new System.Drawing.Size(152, 27);
+            this.comSupBankAccountNum.TabIndex = 127;
+            this.comSupBankAccountNum.SelectedValueChanged += new System.EventHandler(this.comSupBankAccountNum_SelectedValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(168, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 19);
+            this.label1.TabIndex = 98;
+            this.label1.Text = "بنك مورد";
+            // 
+            // comSupplierAccountName
+            // 
+            this.comSupplierAccountName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSupplierAccountName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comSupplierAccountName.FormattingEnabled = true;
+            this.comSupplierAccountName.Location = new System.Drawing.Point(12, 101);
+            this.comSupplierAccountName.Name = "comSupplierAccountName";
+            this.comSupplierAccountName.Size = new System.Drawing.Size(152, 27);
+            this.comSupplierAccountName.TabIndex = 131;
+            // 
+            // comBankSupplier
+            // 
+            this.comBankSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comBankSupplier.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comBankSupplier.FormattingEnabled = true;
+            this.comBankSupplier.Location = new System.Drawing.Point(12, 35);
+            this.comBankSupplier.Name = "comBankSupplier";
+            this.comBankSupplier.Size = new System.Drawing.Size(152, 27);
+            this.comBankSupplier.TabIndex = 92;
+            this.comBankSupplier.SelectedValueChanged += new System.EventHandler(this.comBankSupplier_SelectedValueChanged);
+            // 
+            // panOwner
+            // 
+            this.panOwner.Controls.Add(this.label7);
+            this.panOwner.Controls.Add(this.label37);
+            this.panOwner.Controls.Add(this.label2);
+            this.panOwner.Controls.Add(this.comAccountName);
+            this.panOwner.Controls.Add(this.label10);
+            this.panOwner.Controls.Add(this.cmbBank);
+            this.panOwner.Controls.Add(this.comAccountNumber);
+            this.panOwner.Location = new System.Drawing.Point(333, 11);
+            this.panOwner.Name = "panOwner";
+            this.panOwner.Size = new System.Drawing.Size(276, 135);
+            this.panOwner.TabIndex = 135;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(177, 103);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 19);
+            this.label7.TabIndex = 139;
+            this.label7.Text = "اسم الحساب";
+            // 
+            // label37
+            // 
+            this.label37.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.label37.Location = new System.Drawing.Point(84, 8);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(47, 19);
+            this.label37.TabIndex = 141;
+            this.label37.Text = "الشركة";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(176, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 19);
+            this.label2.TabIndex = 99;
+            this.label2.Text = "البنك/الخزينة";
+            // 
+            // comAccountName
+            // 
+            this.comAccountName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comAccountName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comAccountName.FormattingEnabled = true;
+            this.comAccountName.Location = new System.Drawing.Point(21, 103);
+            this.comAccountName.Name = "comAccountName";
+            this.comAccountName.Size = new System.Drawing.Size(152, 27);
+            this.comAccountName.TabIndex = 140;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(176, 69);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 19);
+            this.label10.TabIndex = 132;
+            this.label10.Text = "رقم الحساب";
+            // 
+            // cmbBank
+            // 
+            this.cmbBank.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmbBank.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(20, 36);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(152, 27);
+            this.cmbBank.TabIndex = 91;
+            this.cmbBank.SelectedValueChanged += new System.EventHandler(this.cmbBank_SelectedValueChanged);
+            // 
+            // comAccountNumber
+            // 
+            this.comAccountNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comAccountNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comAccountNumber.FormattingEnabled = true;
+            this.comAccountNumber.Location = new System.Drawing.Point(20, 69);
+            this.comAccountNumber.Name = "comAccountNumber";
+            this.comAccountNumber.Size = new System.Drawing.Size(152, 27);
+            this.comAccountNumber.TabIndex = 133;
+            this.comAccountNumber.SelectedIndexChanged += new System.EventHandler(this.comAccountNumber_SelectedIndexChanged);
             // 
             // dateEditPaid
             // 
@@ -289,7 +463,7 @@
             // 
             this.panCheak.Controls.Add(this.dateEdit1);
             this.panCheak.Controls.Add(this.label5);
-            this.panCheak.Location = new System.Drawing.Point(24, 334);
+            this.panCheak.Location = new System.Drawing.Point(49, 334);
             this.panCheak.Name = "panCheak";
             this.panCheak.Size = new System.Drawing.Size(544, 52);
             this.panCheak.TabIndex = 136;
@@ -360,60 +534,6 @@
             this.txtDescrip.Size = new System.Drawing.Size(417, 61);
             this.txtDescrip.TabIndex = 94;
             // 
-            // comAccountNumber
-            // 
-            this.comAccountNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comAccountNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comAccountNumber.FormattingEnabled = true;
-            this.comAccountNumber.Location = new System.Drawing.Point(350, 81);
-            this.comAccountNumber.Name = "comAccountNumber";
-            this.comAccountNumber.Size = new System.Drawing.Size(152, 27);
-            this.comAccountNumber.TabIndex = 133;
-            this.comAccountNumber.SelectedIndexChanged += new System.EventHandler(this.comAccountNumber_SelectedIndexChanged);
-            // 
-            // cmbBank
-            // 
-            this.cmbBank.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbBank.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(350, 48);
-            this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(152, 27);
-            this.cmbBank.TabIndex = 91;
-            this.cmbBank.SelectedValueChanged += new System.EventHandler(this.cmbBank_SelectedValueChanged);
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(506, 81);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 19);
-            this.label10.TabIndex = 132;
-            this.label10.Text = "رقم الحساب";
-            // 
-            // comBankSupplier
-            // 
-            this.comBankSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comBankSupplier.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comBankSupplier.FormattingEnabled = true;
-            this.comBankSupplier.Location = new System.Drawing.Point(31, 47);
-            this.comBankSupplier.Name = "comBankSupplier";
-            this.comBankSupplier.Size = new System.Drawing.Size(152, 27);
-            this.comBankSupplier.TabIndex = 92;
-            this.comBankSupplier.SelectedValueChanged += new System.EventHandler(this.comBankSupplier_SelectedValueChanged);
-            // 
-            // comSupplierAccountName
-            // 
-            this.comSupplierAccountName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comSupplierAccountName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comSupplierAccountName.FormattingEnabled = true;
-            this.comSupplierAccountName.Location = new System.Drawing.Point(31, 113);
-            this.comSupplierAccountName.Name = "comSupplierAccountName";
-            this.comSupplierAccountName.Size = new System.Drawing.Size(152, 27);
-            this.comSupplierAccountName.TabIndex = 131;
-            // 
             // txtPullMoney
             // 
             this.txtPullMoney.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -422,50 +542,6 @@
             this.txtPullMoney.Name = "txtPullMoney";
             this.txtPullMoney.Size = new System.Drawing.Size(233, 26);
             this.txtPullMoney.TabIndex = 93;
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(187, 117);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(103, 19);
-            this.label9.TabIndex = 130;
-            this.label9.Text = "اسم حساب المورد";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(187, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 19);
-            this.label1.TabIndex = 98;
-            this.label1.Text = "بنك مورد";
-            // 
-            // comSupBankAccountNum
-            // 
-            this.comSupBankAccountNum.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comSupBankAccountNum.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comSupBankAccountNum.FormattingEnabled = true;
-            this.comSupBankAccountNum.Location = new System.Drawing.Point(31, 80);
-            this.comSupBankAccountNum.Name = "comSupBankAccountNum";
-            this.comSupBankAccountNum.Size = new System.Drawing.Size(152, 27);
-            this.comSupBankAccountNum.TabIndex = 127;
-            this.comSupBankAccountNum.SelectedValueChanged += new System.EventHandler(this.comSupBankAccountNum_SelectedValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(506, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 19);
-            this.label2.TabIndex = 99;
-            this.label2.Text = "البنك/الخزينة";
             // 
             // label3
             // 
@@ -488,17 +564,6 @@
             this.label4.Size = new System.Drawing.Size(38, 19);
             this.label4.TabIndex = 101;
             this.label4.Text = "البيان";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(187, 84);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(101, 19);
-            this.label6.TabIndex = 103;
-            this.label6.Text = "رقم حساب المورد";
             // 
             // panel4
             // 
@@ -706,7 +771,7 @@
             this.label26.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.Location = new System.Drawing.Point(132, 287);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(38, 19);
+            this.label26.Size = new System.Drawing.Size(37, 19);
             this.label26.TabIndex = 137;
             this.label26.Text = "0.25";
             // 
@@ -717,7 +782,7 @@
             this.label27.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.Location = new System.Drawing.Point(132, 263);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(30, 19);
+            this.label27.Size = new System.Drawing.Size(29, 19);
             this.label27.TabIndex = 136;
             this.label27.Text = "0.5";
             // 
@@ -827,7 +892,7 @@
             this.label23.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(318, 289);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(38, 19);
+            this.label23.Size = new System.Drawing.Size(37, 19);
             this.label23.TabIndex = 126;
             this.label23.Text = "0.25";
             // 
@@ -838,7 +903,7 @@
             this.label17.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(318, 265);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(30, 19);
+            this.label17.Size = new System.Drawing.Size(29, 19);
             this.label17.TabIndex = 125;
             this.label17.Text = "0.5";
             // 
@@ -936,6 +1001,7 @@
             this.rQ.Name = "rQ";
             this.rQ.Size = new System.Drawing.Size(96, 22);
             this.rQ.TabIndex = 46;
+            this.rQ.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RestMoney_KeyDown);
             // 
             // r1
             // 
@@ -944,6 +1010,7 @@
             this.r1.Name = "r1";
             this.r1.Size = new System.Drawing.Size(96, 22);
             this.r1.TabIndex = 45;
+            this.r1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RestMoney_KeyDown);
             // 
             // RestMoney
             // 
@@ -962,6 +1029,7 @@
             this.rH.Name = "rH";
             this.rH.Size = new System.Drawing.Size(96, 22);
             this.rH.TabIndex = 43;
+            this.rH.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RestMoney_KeyDown);
             // 
             // r5
             // 
@@ -970,6 +1038,7 @@
             this.r5.Name = "r5";
             this.r5.Size = new System.Drawing.Size(96, 22);
             this.r5.TabIndex = 42;
+            this.r5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RestMoney_KeyDown);
             // 
             // r10
             // 
@@ -978,6 +1047,7 @@
             this.r10.Name = "r10";
             this.r10.Size = new System.Drawing.Size(96, 22);
             this.r10.TabIndex = 41;
+            this.r10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RestMoney_KeyDown);
             // 
             // r20
             // 
@@ -986,6 +1056,7 @@
             this.r20.Name = "r20";
             this.r20.Size = new System.Drawing.Size(96, 22);
             this.r20.TabIndex = 40;
+            this.r20.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RestMoney_KeyDown);
             // 
             // r50
             // 
@@ -994,6 +1065,7 @@
             this.r50.Name = "r50";
             this.r50.Size = new System.Drawing.Size(96, 22);
             this.r50.TabIndex = 39;
+            this.r50.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RestMoney_KeyDown);
             // 
             // r100
             // 
@@ -1002,6 +1074,7 @@
             this.r100.Name = "r100";
             this.r100.Size = new System.Drawing.Size(96, 22);
             this.r100.TabIndex = 38;
+            this.r100.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RestMoney_KeyDown);
             // 
             // r200
             // 
@@ -1010,6 +1083,7 @@
             this.r200.Name = "r200";
             this.r200.Size = new System.Drawing.Size(96, 22);
             this.r200.TabIndex = 37;
+            this.r200.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RestMoney_KeyDown);
             // 
             // tQ
             // 
@@ -1018,6 +1092,7 @@
             this.tQ.Name = "tQ";
             this.tQ.Size = new System.Drawing.Size(97, 22);
             this.tQ.TabIndex = 36;
+            this.tQ.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaidMoney_KeyDown);
             // 
             // t1
             // 
@@ -1026,6 +1101,7 @@
             this.t1.Name = "t1";
             this.t1.Size = new System.Drawing.Size(97, 22);
             this.t1.TabIndex = 35;
+            this.t1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaidMoney_KeyDown);
             // 
             // txtPaidRest
             // 
@@ -1054,6 +1130,7 @@
             this.tH.Name = "tH";
             this.tH.Size = new System.Drawing.Size(97, 22);
             this.tH.TabIndex = 32;
+            this.tH.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaidMoney_KeyDown);
             // 
             // t5
             // 
@@ -1062,6 +1139,7 @@
             this.t5.Name = "t5";
             this.t5.Size = new System.Drawing.Size(97, 22);
             this.t5.TabIndex = 31;
+            this.t5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaidMoney_KeyDown);
             // 
             // t10
             // 
@@ -1070,6 +1148,7 @@
             this.t10.Name = "t10";
             this.t10.Size = new System.Drawing.Size(97, 22);
             this.t10.TabIndex = 30;
+            this.t10.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaidMoney_KeyDown);
             // 
             // t20
             // 
@@ -1078,6 +1157,7 @@
             this.t20.Name = "t20";
             this.t20.Size = new System.Drawing.Size(97, 22);
             this.t20.TabIndex = 29;
+            this.t20.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaidMoney_KeyDown);
             // 
             // t50
             // 
@@ -1086,6 +1166,7 @@
             this.t50.Name = "t50";
             this.t50.Size = new System.Drawing.Size(97, 22);
             this.t50.TabIndex = 28;
+            this.t50.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaidMoney_KeyDown);
             // 
             // t100
             // 
@@ -1094,6 +1175,7 @@
             this.t100.Name = "t100";
             this.t100.Size = new System.Drawing.Size(97, 22);
             this.t100.TabIndex = 27;
+            this.t100.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaidMoney_KeyDown);
             // 
             // t200
             // 
@@ -1102,6 +1184,7 @@
             this.t200.Name = "t200";
             this.t200.Size = new System.Drawing.Size(97, 22);
             this.t200.TabIndex = 26;
+            this.t200.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PaidMoney_KeyDown);
             // 
             // label8
             // 
@@ -1141,51 +1224,6 @@
             this.comSupplier.TabIndex = 84;
             this.comSupplier.SelectedValueChanged += new System.EventHandler(this.comSupplier_SelectedValueChanged);
             // 
-            // comAccountName
-            // 
-            this.comAccountName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comAccountName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comAccountName.FormattingEnabled = true;
-            this.comAccountName.Location = new System.Drawing.Point(351, 115);
-            this.comAccountName.Name = "comAccountName";
-            this.comAccountName.Size = new System.Drawing.Size(152, 27);
-            this.comAccountName.TabIndex = 140;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(507, 115);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 19);
-            this.label7.TabIndex = 139;
-            this.label7.Text = "اسم الحساب";
-            // 
-            // label37
-            // 
-            this.label37.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label37.Location = new System.Drawing.Point(446, 16);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(47, 19);
-            this.label37.TabIndex = 141;
-            this.label37.Text = "الشركة";
-            // 
-            // label38
-            // 
-            this.label38.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label38.Location = new System.Drawing.Point(117, 16);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(43, 19);
-            this.label38.TabIndex = 142;
-            this.label38.Text = "المورد";
-            // 
             // BankSupplierPullAgl_Record2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1202,6 +1240,10 @@
             this.panel2.PerformLayout();
             this.panContent.ResumeLayout(false);
             this.panContent.PerformLayout();
+            this.panSupplier.ResumeLayout(false);
+            this.panSupplier.PerformLayout();
+            this.panOwner.ResumeLayout(false);
+            this.panOwner.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditPaid.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditPaid.Properties)).EndInit();
             this.panCheak.ResumeLayout(false);
@@ -1308,5 +1350,7 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.ComboBox comAccountName;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panSupplier;
+        private System.Windows.Forms.Panel panOwner;
     }
 }
