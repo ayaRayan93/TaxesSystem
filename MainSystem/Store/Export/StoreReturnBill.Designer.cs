@@ -148,7 +148,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.45361F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(934, 794);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(934, 749);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // gridControl1
@@ -158,7 +158,7 @@
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(928, 199);
+            this.gridControl1.Size = new System.Drawing.Size(928, 176);
             this.gridControl1.TabIndex = 236;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -185,11 +185,11 @@
             // gridControl2
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Location = new System.Drawing.Point(3, 468);
+            this.gridControl2.Location = new System.Drawing.Point(3, 445);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
             this.gridControl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl2.Size = new System.Drawing.Size(928, 187);
+            this.gridControl2.Size = new System.Drawing.Size(928, 165);
             this.gridControl2.TabIndex = 235;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -300,7 +300,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel3.Controls.Add(this.btnCreateReturnBill, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 751);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 706);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel3.RowCount = 1;
@@ -590,7 +590,7 @@
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.txtCode);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 385);
+            this.panel2.Location = new System.Drawing.Point(0, 362);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(934, 80);
@@ -740,7 +740,7 @@
             this.panel3.Controls.Add(this.txtClientName);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 658);
+            this.panel3.Location = new System.Drawing.Point(0, 613);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(934, 90);
@@ -1083,7 +1083,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 794);
+            this.ClientSize = new System.Drawing.Size(934, 749);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "StoreReturnBill";
             this.Text = "StoreReturnBill";

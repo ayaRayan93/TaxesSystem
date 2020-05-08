@@ -148,6 +148,7 @@ namespace MainSystem
                                 ConfirmEmp = dr["Employee_Name"].ToString();
 
                                 connectionReader3.Open();
+                                Delegate_Name = "";
                                 string q1 = "SELECT distinct delegate.Delegate_Name FROM customer_return_bill INNER JOIN customer_return_bill_details ON customer_return_bill_details.CustomerReturnBill_ID = customer_return_bill.CustomerReturnBill_ID INNER JOIN delegate ON delegate.Delegate_ID = customer_return_bill_details.Delegate_ID where customer_return_bill.CustomerReturnBill_ID=" + ID;
                                 MySqlCommand c1 = new MySqlCommand(q1, connectionReader3);
                                 MySqlDataReader dr1 = c1.ExecuteReader();
