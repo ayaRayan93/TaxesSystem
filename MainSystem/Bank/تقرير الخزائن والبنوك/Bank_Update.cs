@@ -332,17 +332,18 @@ namespace MainSystem
                                     command.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                                     command.ExecuteNonQuery();
                                     //////////////////////
-                                    setEmployee();
+                                  
                                     if (cmbType.Text == "خزينة")
                                     {
-                                        for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
-                                        {
-                                            query = "insert into bank_employee (Bank_ID,Employee_ID) values (@Bank_ID,@Employee_ID)";
-                                            command = new MySqlCommand(query, dbconnection);
-                                            command.Parameters.AddWithValue("@Bank_ID", BankID);
-                                            command.Parameters.AddWithValue("@Employee_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
-                                            command.ExecuteNonQuery();
-                                        }
+                                       // setEmployee();
+                                        //for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
+                                        //{
+                                        //    query = "insert into bank_employee (Bank_ID,Employee_ID) values (@Bank_ID,@Employee_ID)";
+                                        //    command = new MySqlCommand(query, dbconnection);
+                                        //    command.Parameters.AddWithValue("@Bank_ID", BankID);
+                                        //    command.Parameters.AddWithValue("@Employee_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
+                                        //    command.ExecuteNonQuery();
+                                        //}
 
                                         query = "update categories_money set a200=@a200,a100=@a100,a50=@a50,a20=@a20,a10=@a10,a5=@a5,a1=@a1,aH=@aH,aQ=@aQ ,Bank_Name=@Bank_Name where Bank_ID=" + BankID;
                                         command = new MySqlCommand(query, dbconnection);
@@ -370,54 +371,54 @@ namespace MainSystem
                                         }
                                     }
 
-                                    dbconnection.Close();
-                                    cmbType.SelectedIndex = -1;
-                                    cmbMain.SelectedIndex = -1;
-                                    txtName_AccountNum.Text = "";
-                                    comBranch.SelectedIndex = -1;
-                                    txtStock.Text = "";
-                                    dateEdit1.Text = "";
-                                    txtInformation.Text = "";
-                                    txtAccountType.Text = "";
+                                    //dbconnection.Close();
+                                    //cmbType.SelectedIndex = -1;
+                                    //cmbMain.SelectedIndex = -1;
+                                    //txtName_AccountNum.Text = "";
+                                    //comBranch.SelectedIndex = -1;
+                                    //txtStock.Text = "";
+                                    //dateEdit1.Text = "";
+                                    //txtInformation.Text = "";
+                                    //txtAccountType.Text = "";
 
-                                    layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelBranch.Text = "";
-                                    layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelName.Text = "";
-                                    layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelStock.Text = "";
-                                    layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelDate.Text = "";
-                                    layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelInfo.Text = "";
-                                    layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelAccountType.Text = "";
-                                    layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    //layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    //labelBank.Text = "";
-                                    //layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    //labelID.Text = "";
-                                    layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelBranch.Text = "";
+                                    //layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelName.Text = "";
+                                    //layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelStock.Text = "";
+                                    //layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelDate.Text = "";
+                                    //layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelInfo.Text = "";
+                                    //layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelAccountType.Text = "";
+                                    //layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    ////layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    ////labelBank.Text = "";
+                                    ////layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    ////labelID.Text = "";
+                                    //layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
-                                    comBankUsers.SelectedIndex = -1;
-                                    int cont = checkedListBoxControlUser.ItemCount;
-                                    for (int i = 0; i < cont; i++)
-                                    {
-                                        checkedListBoxControlUser.Items.RemoveAt(0);
-                                    }
-                                    cont = checkedListBoxControlUserID.ItemCount;
-                                    for (int i = 0; i < cont; i++)
-                                    {
-                                        checkedListBoxControlUserID.Items.RemoveAt(0);
-                                    }
-                                    cont = checkedListBoxControlVisaID.ItemCount;
-                                    for (int i = 0; i < cont; i++)
-                                    {
-                                        checkedListBoxControlVisaID.Items.RemoveAt(0);
-                                    }
-                                    groupBoxEmployee.Visible = false;
-                                    groupBoxVisa.Visible = false;
-                                    groupBoxCategories.Visible = false;
+                                    //comBankUsers.SelectedIndex = -1;
+                                    //int cont = checkedListBoxControlUser.ItemCount;
+                                    //for (int i = 0; i < cont; i++)
+                                    //{
+                                    //    checkedListBoxControlUser.Items.RemoveAt(0);
+                                    //}
+                                    //cont = checkedListBoxControlUserID.ItemCount;
+                                    //for (int i = 0; i < cont; i++)
+                                    //{
+                                    //    checkedListBoxControlUserID.Items.RemoveAt(0);
+                                    //}
+                                    //cont = checkedListBoxControlVisaID.ItemCount;
+                                    //for (int i = 0; i < cont; i++)
+                                    //{
+                                    //    checkedListBoxControlVisaID.Items.RemoveAt(0);
+                                    //}
+                                    //groupBoxEmployee.Visible = false;
+                                    //groupBoxVisa.Visible = false;
+                                    //groupBoxCategories.Visible = false;
 
                                     t200.Text = "0";
                                     t100.Text = "0";
@@ -435,7 +436,7 @@ namespace MainSystem
                                     for (int i = 0; i < arrOFPhaatPlus.Length; i++)
                                         arrOFPhaatPlus[i] = 0;
 
-                                    xtraTabPage.ImageOptions.Image = null;
+                                    //xtraTabPage.ImageOptions.Image = null;
                                 }
                                 else
                                 {
@@ -505,19 +506,19 @@ namespace MainSystem
                 //comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
                 //comBranch.SelectedIndex = -1;
 
-                string query = "select Employee_ID,Employee_Name from employee where employee.Employee_ID Not in(" + "select bank_employee.Employee_ID from bank_employee " + ")";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                comBankUsers.DataSource = dt;
-                comBankUsers.DisplayMember = dt.Columns["Employee_Name"].ToString();
-                comBankUsers.ValueMember = dt.Columns["Employee_ID"].ToString();
-                comBankUsers.SelectedIndex = -1;
-                comBankUsers.Text = "";
+                //string query = "select Employee_ID,Employee_Name from employee where employee.Employee_ID Not in(" + "select bank_employee.Employee_ID from bank_employee " + ")";
+                //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                //DataTable dt = new DataTable();
+                //da.Fill(dt);
+                //comBankUsers.DataSource = dt;
+                //comBankUsers.DisplayMember = dt.Columns["Employee_Name"].ToString();
+                //comBankUsers.ValueMember = dt.Columns["Employee_ID"].ToString();
+                //comBankUsers.SelectedIndex = -1;
+                //comBankUsers.Text = "";
 
-                groupBoxEmployee.Visible = true;
-                    groupBoxCategories.Visible = true;
-                    groupBoxVisa.Visible = false;
+                //groupBoxEmployee.Visible = true;
+                //    groupBoxCategories.Visible = true;
+                //    groupBoxVisa.Visible = false;
                 }
                 else if (cmbType.Text == "حساب بنكى")
                 {
@@ -556,9 +557,9 @@ namespace MainSystem
                     //comSupplier.SelectedIndex = -1;
                     //comSupplier.Text = "";
 
-                    groupBoxEmployee.Visible = false;
-                    groupBoxCategories.Visible = false;
-                    groupBoxVisa.Visible = true;
+                    //groupBoxEmployee.Visible = false;
+                    //groupBoxCategories.Visible = false;
+                    //groupBoxVisa.Visible = true;
                 }
             
         }
