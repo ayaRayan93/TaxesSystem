@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.txtAccountName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.comBranch = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -123,7 +124,6 @@
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtAccountName = new System.Windows.Forms.TextBox();
             this.layoutControlItemAccountName = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -235,6 +235,13 @@
             this.dataLayoutControl1.TabIndex = 1;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
             // 
+            // txtAccountName
+            // 
+            this.txtAccountName.Location = new System.Drawing.Point(31, 230);
+            this.txtAccountName.Name = "txtAccountName";
+            this.txtAccountName.Size = new System.Drawing.Size(360, 25);
+            this.txtAccountName.TabIndex = 56;
+            // 
             // label9
             // 
             this.label9.BackColor = System.Drawing.Color.White;
@@ -248,6 +255,7 @@
             // 
             // comBranch
             // 
+            this.comBranch.Enabled = false;
             this.comBranch.FormattingEnabled = true;
             this.comBranch.Location = new System.Drawing.Point(31, 84);
             this.comBranch.Name = "comBranch";
@@ -264,6 +272,7 @@
             // 
             // comSupplier
             // 
+            this.comSupplier.Enabled = false;
             this.comSupplier.FormattingEnabled = true;
             this.comSupplier.Location = new System.Drawing.Point(31, 269);
             this.comSupplier.Name = "comSupplier";
@@ -865,6 +874,7 @@
             // 
             // cmbMain
             // 
+            this.cmbMain.Enabled = false;
             this.cmbMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cmbMain.FormattingEnabled = true;
             this.cmbMain.Location = new System.Drawing.Point(31, 31);
@@ -886,6 +896,7 @@
             // 
             // cmbType
             // 
+            this.cmbType.Enabled = false;
             this.cmbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Items.AddRange(new object[] {
@@ -1362,13 +1373,6 @@
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
             // 
-            // txtAccountName
-            // 
-            this.txtAccountName.Location = new System.Drawing.Point(31, 230);
-            this.txtAccountName.Name = "txtAccountName";
-            this.txtAccountName.Size = new System.Drawing.Size(360, 25);
-            this.txtAccountName.TabIndex = 56;
-            // 
             // layoutControlItemAccountName
             // 
             this.layoutControlItemAccountName.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1403,7 +1407,7 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(492, 10);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // Bank_Record
+            // Bank_Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1411,7 +1415,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 10F);
             this.MaximizeBox = false;
-            this.Name = "Bank_Record";
+            this.Name = "Bank_Update";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Bank_Record_Load);
