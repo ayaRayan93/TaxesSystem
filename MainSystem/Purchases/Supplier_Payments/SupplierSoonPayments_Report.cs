@@ -153,30 +153,52 @@ namespace MainSystem
 
         public void search(int supplierId)
         {
-            DataSet sourceDataSet = new DataSet();
-            MySqlDataAdapter adapterPerm = null;
-            DateTime today = DateTime.Today;
-            DateTime start = new DateTime(today.Year, today.Month, today.Day);
-            DateTime end = start.AddMonths(1);
-            if (supplierId == 0)
+            //DataSet sourceDataSet = new DataSet();
+            //MySqlDataAdapter adapterPerm = null;
+            //DateTime today = DateTime.Today;
+            //DateTime start = new DateTime(today.Year, today.Month, today.Day);
+            //DateTime end = start.AddMonths(1);
+            //if (supplierId == 0)
+            //{
+            //    string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Supplier_ID,supplier.Supplier_Name as 'المورد',supplier_transitions.Bank_ID,supplier_transitions.Bank_Name as 'الخزينة',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Date as 'التاريخ',supplier_transitions.Payment_Method as 'طريقة الدفع',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك',supplier_transitions.Operation_Number as 'رقم العملية',supplier_transitions.Data as 'البيان',Paid as 'الحالة' FROM supplier_transitions inner join supplier on supplier.Supplier_ID=supplier_transitions.Supplier_ID where supplier_transitions.Transition='سداد' and (supplier_transitions.Paid='لا' or supplier_transitions.Paid='تحت التحصيل') and supplier_transitions.Error=0 and Date(supplier_transitions.Payday) >= '" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "' and Date(supplier_transitions.Payday) <= '" + end.Date.ToString("yyyy-MM-dd") + "' order by supplier_transitions.Date";
+            //    adapterPerm = new MySqlDataAdapter(query, dbconnection);
+            //}
+            //else
+            //{
+            //    string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Supplier_ID,supplier.Supplier_Name as 'المورد',supplier_transitions.Bank_ID,supplier_transitions.Bank_Name as 'الخزينة',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Date as 'التاريخ',supplier_transitions.Payment_Method as 'طريقة الدفع',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك',supplier_transitions.Operation_Number as 'رقم العملية',supplier_transitions.Data as 'البيان',Paid as 'الحالة' FROM supplier_transitions inner join supplier on supplier.Supplier_ID=supplier_transitions.Supplier_ID where supplier_transitions.Transition='سداد' and (supplier_transitions.Paid='لا' or supplier_transitions.Paid='تحت التحصيل') and supplier_transitions.Error=0 and Date(supplier_transitions.Payday) >= '" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "' and Date(supplier_transitions.Payday) <= '" + end.Date.ToString("yyyy-MM-dd") + "' and supplier_transitions.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " order by supplier_transitions.Date";
+            //    adapterPerm = new MySqlDataAdapter(query, dbconnection);
+            //}
+            //adapterPerm.Fill(sourceDataSet);
+            //gridControl1.DataSource = sourceDataSet.Tables[0];
+            //gridView1.Columns[0].Visible = false;
+            //gridView1.Columns["Bank_ID"].Visible = false;
+            //gridView1.Columns["Supplier_ID"].Visible = false;
+
+            //if (gridView1.IsLastVisibleRow)
+            //{
+            //    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+            //}
+            DateTime date = dateTimeFrom.Value;
+            string d = date.ToString("yyyy-MM-dd ");
+            d += "00:00:00";
+            DateTime date2 = dateTimeTo.Value;
+            string d2 = date2.ToString("yyyy-MM-dd ");
+            d2 += "23:59:59";
+            if (supplierId != 0)
             {
-                string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Supplier_ID,supplier.Supplier_Name as 'المورد',supplier_transitions.Bank_ID,supplier_transitions.Bank_Name as 'الخزينة',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Date as 'التاريخ',supplier_transitions.Payment_Method as 'طريقة الدفع',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك',supplier_transitions.Operation_Number as 'رقم العملية',supplier_transitions.Data as 'البيان',Paid as 'الحالة' FROM supplier_transitions inner join supplier on supplier.Supplier_ID=supplier_transitions.Supplier_ID where supplier_transitions.Transition='سداد' and (supplier_transitions.Paid='لا' or supplier_transitions.Paid='تحت التحصيل') and supplier_transitions.Error=0 and Date(supplier_transitions.Payday) >= '" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "' and Date(supplier_transitions.Payday) <= '" + end.Date.ToString("yyyy-MM-dd") + "' order by supplier_transitions.Date";
-                adapterPerm = new MySqlDataAdapter(query, dbconnection);
+                string query = "SELECT Supplier_Name as 'المورد',  Bank_Name as 'البنك', SupplierBank_Name as 'اسم الحساب', Supplier_BankAccount_Number as 'رقم الحساب', Date as 'تاريخ بدء التعامل', Data as 'بيان', Amount as 'المبلغ',Payment_Method as'طريقة الدفع', Check_Number as 'رقم الشيك', PayDay as 'تاريخ الاستحقاق', Employee_Name as 'الموظف', Currency as 'العملة' FROM supplier_transitions where Supplier_ID=" + supplierId+ " and Date between '" + d + "' and '" + d2 + "'";
+                MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+                gridControl1.DataSource = dt;
             }
             else
             {
-                string query = "SELECT supplier_transitions.SupplierTransition_ID as 'التسلسل',supplier_transitions.Supplier_ID,supplier.Supplier_Name as 'المورد',supplier_transitions.Bank_ID,supplier_transitions.Bank_Name as 'الخزينة',supplier_transitions.Amount as 'المبلغ',supplier_transitions.Date as 'التاريخ',supplier_transitions.Payment_Method as 'طريقة الدفع',supplier_transitions.Payday as 'تاريخ الاستحقاق',supplier_transitions.Check_Number as 'رقم الشيك',supplier_transitions.Operation_Number as 'رقم العملية',supplier_transitions.Data as 'البيان',Paid as 'الحالة' FROM supplier_transitions inner join supplier on supplier.Supplier_ID=supplier_transitions.Supplier_ID where supplier_transitions.Transition='سداد' and (supplier_transitions.Paid='لا' or supplier_transitions.Paid='تحت التحصيل') and supplier_transitions.Error=0 and Date(supplier_transitions.Payday) >= '" + DateTime.Now.Date.ToString("yyyy-MM-dd") + "' and Date(supplier_transitions.Payday) <= '" + end.Date.ToString("yyyy-MM-dd") + "' and supplier_transitions.Supplier_ID=" + comSupplier.SelectedValue.ToString() + " order by supplier_transitions.Date";
-                adapterPerm = new MySqlDataAdapter(query, dbconnection);
-            }
-            adapterPerm.Fill(sourceDataSet);
-            gridControl1.DataSource = sourceDataSet.Tables[0];
-            gridView1.Columns[0].Visible = false;
-            gridView1.Columns["Bank_ID"].Visible = false;
-            gridView1.Columns["Supplier_ID"].Visible = false;
-
-            if (gridView1.IsLastVisibleRow)
-            {
-                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                string query = "SELECT Supplier_Name as 'المورد',  Bank_Name as 'البنك', SupplierBank_Name as 'اسم الحساب', Supplier_BankAccount_Number as 'رقم الحساب', Date as 'تاريخ بدء التعامل', Data as 'بيان', Amount as 'المبلغ',Payment_Method as'طريقة الدفع', Check_Number as 'رقم الشيك', PayDay as 'تاريخ الاستحقاق', Employee_Name as 'الموظف', Currency as 'العملة' FROM supplier_transitions where Date between '" + d + "' and '" + d2 + "'";
+                MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+                gridControl1.DataSource = dt;
             }
         }
 

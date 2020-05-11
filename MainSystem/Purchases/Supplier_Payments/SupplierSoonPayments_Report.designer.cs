@@ -38,6 +38,10 @@
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimeTo = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeFrom = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -52,11 +56,11 @@
             this.btnDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDisplay.Font = new System.Drawing.Font("Tahoma", 10F);
             this.btnDisplay.ForeColor = System.Drawing.Color.White;
-            this.btnDisplay.Location = new System.Drawing.Point(264, 18);
+            this.btnDisplay.Location = new System.Drawing.Point(61, 16);
             this.btnDisplay.Name = "btnDisplay";
             this.btnDisplay.Size = new System.Drawing.Size(100, 35);
             this.btnDisplay.TabIndex = 7;
-            this.btnDisplay.Text = "عرض الكل";
+            this.btnDisplay.Text = "بحث";
             this.btnDisplay.UseVisualStyleBackColor = false;
             this.btnDisplay.Click += new System.EventHandler(this.btnDisplay_Click);
             // 
@@ -65,7 +69,7 @@
             this.comSupplier.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comSupplier.Font = new System.Drawing.Font("Tahoma", 12F);
             this.comSupplier.FormattingEnabled = true;
-            this.comSupplier.Location = new System.Drawing.Point(555, 24);
+            this.comSupplier.Location = new System.Drawing.Point(671, 24);
             this.comSupplier.Name = "comSupplier";
             this.comSupplier.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comSupplier.Size = new System.Drawing.Size(150, 27);
@@ -76,7 +80,7 @@
             // 
             this.txtSupplierID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtSupplierID.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtSupplierID.Location = new System.Drawing.Point(499, 24);
+            this.txtSupplierID.Location = new System.Drawing.Point(615, 24);
             this.txtSupplierID.Name = "txtSupplierID";
             this.txtSupplierID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtSupplierID.Size = new System.Drawing.Size(50, 27);
@@ -88,7 +92,7 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.label16.Location = new System.Drawing.Point(720, 28);
+            this.label16.Location = new System.Drawing.Point(836, 28);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(54, 19);
             this.label16.TabIndex = 204;
@@ -135,6 +139,7 @@
             this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Enabled = false;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::MainSystem.Properties.Resources.File_32;
@@ -191,6 +196,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.dateTimeTo);
+            this.panel1.Controls.Add(this.dateTimeFrom);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.btnDisplay);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.txtSupplierID);
@@ -200,6 +209,48 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(965, 74);
             this.panel1.TabIndex = 216;
+            // 
+            // dateTimeTo
+            // 
+            this.dateTimeTo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeTo.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeTo.Location = new System.Drawing.Point(256, 45);
+            this.dateTimeTo.Name = "dateTimeTo";
+            this.dateTimeTo.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeTo.TabIndex = 206;
+            // 
+            // dateTimeFrom
+            // 
+            this.dateTimeFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimeFrom.CustomFormat = "yyyy/MM/dd";
+            this.dateTimeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeFrom.Location = new System.Drawing.Point(256, 9);
+            this.dateTimeFrom.Name = "dateTimeFrom";
+            this.dateTimeFrom.Size = new System.Drawing.Size(200, 20);
+            this.dateTimeFrom.TabIndex = 207;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(471, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 16);
+            this.label2.TabIndex = 208;
+            this.label2.Text = "من";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(470, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 16);
+            this.label3.TabIndex = 209;
+            this.label3.Text = "الي";
             // 
             // SupplierSoonPayments_Report
             // 
@@ -234,6 +285,10 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
+        private System.Windows.Forms.DateTimePicker dateTimeTo;
+        private System.Windows.Forms.DateTimePicker dateTimeFrom;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
