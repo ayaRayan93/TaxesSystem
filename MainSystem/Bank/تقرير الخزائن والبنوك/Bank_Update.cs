@@ -15,7 +15,7 @@ namespace MainSystem
 {
     public partial class Bank_Update : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnectionr;
         XtraTabPage xtraTabPage;
         int[] arrOFPhaatPlus;
         int[] arrPaidMoneyPlus;
@@ -27,6 +27,7 @@ namespace MainSystem
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            dbconnectionr = new MySqlConnection(connection.connectionString);
 
             arrOFPhaatPlus = new int[9];
             arrPaidMoneyPlus = new int[9];
@@ -39,8 +40,9 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
+                dbconnectionr.Open();
                 string query = "select * from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID left join supplier on supplier.Supplier_ID=bank.Supplier_ID where Bank_ID=" + BankID;
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                MySqlCommand com = new MySqlCommand(query, dbconnectionr);
                 MySqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
@@ -62,9 +64,10 @@ namespace MainSystem
             }
             catch (Exception ex)
             {
-               // MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnectionr.Close();
         }
 
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
@@ -562,22 +565,22 @@ namespace MainSystem
 
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                xtraTabPage = getTabPage("tabPageAddBank");
-                if (!IsClear())
-                {
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                }
-                else
-                {
-                    xtraTabPage.ImageOptions.Image = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //try
+            //{
+            //    xtraTabPage = getTabPage("tabPageAddBank");
+            //    if (!IsClear())
+            //    {
+            //        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+            //    }
+            //    else
+            //    {
+            //        xtraTabPage.ImageOptions.Image = null;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         //clear function
