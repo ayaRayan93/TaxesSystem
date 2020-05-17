@@ -411,8 +411,7 @@ namespace MainSystem
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
                                 int TypeCoding_Method = (int)com.ExecuteScalar();
                                 dbconnection.Close();
-                                if (TypeCoding_Method == 2)
-                                {
+
                                     string query2f = "select * from groupo where Factory_ID=" + comFactory.SelectedValue.ToString();
                                     MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
                                     DataTable dt2f = new DataTable();
@@ -422,7 +421,6 @@ namespace MainSystem
                                     comGroup.ValueMember = dt2f.Columns["Group_ID"].ToString();
                                     comGroup.Text = "";
                                     txtGroup.Text = "";
-                                }
 
                                 groupFlage = true;
 

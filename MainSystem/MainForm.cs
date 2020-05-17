@@ -95,7 +95,7 @@ namespace MainSystem
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageCustomerService);
                 xtraTabControlMainContainer.TabPages.Remove(xtraTabPageRequest);
 
-                var DailyTimeBackup = "18:00:00";
+                var DailyTimeBackup = "16:30:00";
                 var timePartsBackup = DailyTimeBackup.Split(new char[1] { ':' });
 
                 var dateNowBackup = DateTime.Now;
@@ -1363,12 +1363,9 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-      
     }
 
-    public static class 
-        connection
+    public static class connection
     {
         static string supString = File.ReadAllText("IP_Address.txt");//'35.232.25.153'
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
