@@ -160,23 +160,31 @@ namespace MainSystem
 
         public void search(int supplierId)
         {
-            DataSet sourceDataSet = new DataSet();
-            MySqlDataAdapter adapterPerm = null;
-            if (supplierId == 0)
+            //DataSet sourceDataSet = new DataSet();
+            //MySqlDataAdapter adapterPerm = null;
+            //if (supplierId == 0)
+            //{
+            //    adapterPerm = new MySqlDataAdapter("SELECT supplier_rest_money.ID,supplier.Supplier_Name as 'المورد',supplier_rest_money.Money as 'المتبقى' FROM supplier_rest_money INNER JOIN supplier ON supplier.Supplier_ID = supplier_rest_money.Supplier_ID", dbconnection);
+            //}
+            //else
+            //{
+            //    adapterPerm = new MySqlDataAdapter("SELECT supplier_rest_money.ID,supplier.Supplier_Name as 'المورد',supplier_rest_money.Money as 'المتبقى' FROM supplier_rest_money INNER JOIN supplier ON supplier.Supplier_ID = supplier_rest_money.Supplier_ID where supplier_rest_money.Supplier_ID=" + comSupplier.SelectedValue.ToString(), dbconnection);
+            //}
+            //adapterPerm.Fill(sourceDataSet);
+            //gridControl1.DataSource = sourceDataSet.Tables[0];
+            //gridView1.Columns[0].Visible = false;
+
+            //if (gridView1.IsLastVisibleRow)
+            //{
+            //    gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+            //}
+            if (supplierId != 0)
             {
-                adapterPerm = new MySqlDataAdapter("SELECT supplier_rest_money.ID,supplier.Supplier_Name as 'المورد',supplier_rest_money.Money as 'المتبقى' FROM supplier_rest_money INNER JOIN supplier ON supplier.Supplier_ID = supplier_rest_money.Supplier_ID", dbconnection);
-            }
-            else
-            {
-                adapterPerm = new MySqlDataAdapter("SELECT supplier_rest_money.ID,supplier.Supplier_Name as 'المورد',supplier_rest_money.Money as 'المتبقى' FROM supplier_rest_money INNER JOIN supplier ON supplier.Supplier_ID = supplier_rest_money.Supplier_ID where supplier_rest_money.Supplier_ID=" + comSupplier.SelectedValue.ToString(), dbconnection);
-            }
-            adapterPerm.Fill(sourceDataSet);
-            gridControl1.DataSource = sourceDataSet.Tables[0];
-            gridView1.Columns[0].Visible = false;
-            
-            if (gridView1.IsLastVisibleRow)
-            {
-                gridView1.FocusedRowHandle = gridView1.RowCount - 1;
+                string query = "SELECT Supplier_Name as 'المورد',  Bank_Name as 'البنك', SupplierBank_Name as 'اسم الحساب', Supplier_BankAccount_Number as 'رقم الحساب', Date as 'تاريخ بدء التعامل', Data as 'بيان', Amount as 'المبلغ',Payment_Method as'طريقة الدفع', Check_Number as 'رقم الشيك', PayDay as 'تاريخ الاستحقاق', Employee_Name as 'الموظف', Currency as 'العملة' FROM supplier_transitions where Supplier_ID=" + supplierId;
+                MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
+                DataTable dt = new DataTable();
+                ad.Fill(dt);
+                gridControl1.DataSource = dt;
             }
         }
 

@@ -35,6 +35,8 @@ namespace MainSystem
 
         public static GridControl gridcontrol;
 
+        int BankID = 0;
+
         public Bank_Report()
         {
             InitializeComponent();
@@ -51,6 +53,9 @@ namespace MainSystem
             panelPrintingBank = new Panel();
 
             gridcontrol = gridControl1;
+
+            gridView1.MasterRowExpanded += GridView1_MasterRowExpanded;
+            gridView1.OptionsBehavior.Editable  = false;
         }
 
         private void Bank_Report_Load(object sender, EventArgs e)
@@ -124,12 +129,10 @@ namespace MainSystem
         {
             try
             {
-                DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-              
                 if (MainTabPageUpdateBank.ImageOptions.Image == null)
                 {
                     
-                    if (selRow.Row[0].ToString() != "")
+                    if (BankID!=0)
                     {
                         MainTabPageUpdateBank.Name = "tabPageUpdateBank";
                         MainTabPageUpdateBank.Text = "تعديل بنك";
@@ -138,16 +141,16 @@ namespace MainSystem
                         panelUpdateBank.Dock = DockStyle.Fill;
                         
                         panelUpdateBank.Controls.Clear();
-                        //Bank_Update form = new Bank_Update(selRow);
-                        //form.Size = new Size(1059, 638);
-                        //form.TopLevel = false;
-                        //form.FormBorderStyle = FormBorderStyle.None;
-                        //form.Dock = DockStyle.Fill;
-                        //panelUpdateBank.Controls.Add(form);
-                        //MainTabPageUpdateBank.Controls.Add(panelUpdateBank);
-                        //MainTabControlBank.TabPages.Add(MainTabPageUpdateBank);
-                        //form.Show();
-                        //MainTabControlBank.SelectedTabPage = MainTabPageUpdateBank;
+                        Bank_Update form = new Bank_Update(BankID);
+                        form.Size = new Size(1059, 638);
+                        form.TopLevel = false;
+                        form.FormBorderStyle = FormBorderStyle.None;
+                        form.Dock = DockStyle.Fill;
+                        panelUpdateBank.Controls.Add(form);
+                        MainTabPageUpdateBank.Controls.Add(panelUpdateBank);
+                        MainTabControlBank.TabPages.Add(MainTabPageUpdateBank);
+                        form.Show();
+                        MainTabControlBank.SelectedTabPage = MainTabPageUpdateBank;
                     }
                     else
                     {
@@ -161,27 +164,7 @@ namespace MainSystem
                         MainTabControlBank.SelectedTabPage = MainTabPageUpdateBank;
                         return;
                     }
-                    else
-                    {
-                        if (selRow[0].ToString() != "")
-                        {
-                            //panelUpdateBank.Controls.Clear();
-                            //MainTabPageUpdateBank.ImageOptions.Image = null;
-                            //Bank_Update form = new Bank_Update(selRow);
-                            //form.Size = new Size(1059, 638);
-                            //form.TopLevel = false;
-                            //form.FormBorderStyle = FormBorderStyle.None;
-                            //form.Dock = DockStyle.Fill;
-                            //panelUpdateBank.Controls.Add(form);
-                            //form.Show();
-
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateBank;
-                        }
-                        else
-                        {
-                            MessageBox.Show("يجب ان تختار عنصر");
-                        }
-                    }
+                
                 }
             }
             catch (Exception ex)
@@ -267,6 +250,20 @@ namespace MainSystem
             }
         }
 
+        private void GridView1_MasterRowExpanded(object sender, DevExpress.XtraGrid.Views.Grid.CustomMasterRowEventArgs e)
+        {
+            GridView master = sender as GridView;
+            GridView detail = master.GetDetailView(e.RowHandle, e.RelationIndex) as GridView;
+            detail.Click += new EventHandler(detail_Click);
+        }
+
+        void detail_Click(object sender, EventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            var value = gridView.GetRowCellValue(gridView.FocusedRowHandle,"التسلسل");
+            BankID = Convert.ToInt16(value);
+        }
+
         /*private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
         {
             try
@@ -304,6 +301,7 @@ namespace MainSystem
 
             DataColumn keyColumn = sourceDataSet.Tables["bank_main"].Columns["التسلسل"];
             DataColumn foreignKeyColumn = sourceDataSet.Tables["bank"].Columns["ID"];
+          
             sourceDataSet.Relations.Add("البنوك", keyColumn, foreignKeyColumn);
 
             try

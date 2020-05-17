@@ -15,18 +15,19 @@ namespace MainSystem
 {
     public partial class Bank_Update : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnectionr;
         XtraTabPage xtraTabPage;
         int[] arrOFPhaatPlus;
         int[] arrPaidMoneyPlus;
         bool flag = false;
-        int BankID;
+        int BankID=0;
         
 
         public Bank_Update(int BankID)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
+            dbconnectionr = new MySqlConnection(connection.connectionString);
 
             arrOFPhaatPlus = new int[9];
             arrPaidMoneyPlus = new int[9];
@@ -39,12 +40,25 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                string query = "select * from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID where Bank_ID="+BankID;
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
+                dbconnectionr.Open();
+                string query = "select * from bank_main inner join bank on bank.MainBank_ID=bank_main.MainBank_ID left join supplier on supplier.Supplier_ID=bank.Supplier_ID where Bank_ID=" + BankID;
+                MySqlCommand com = new MySqlCommand(query, dbconnectionr);
                 MySqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-
+                    cmbType.Text = dr["MainBank_Type"].ToString();
+                    cmbMain.Text = dr["MainBank_Name"].ToString();
+                   // cmbMain.SelectedValue = dr["MainBank_ID"].ToString();
+                    txtName_AccountNum.Text = dr["Bank_Name"].ToString();
+                    comBranch.Text= dr["Branch_Name"].ToString();
+                    //comBranch.SelectedValue= dr["Branch_Name"].ToString();
+                    dateEdit1.Text= dr["Start_Date"].ToString();
+                    txtInformation.Text= dr["Bank_Info"].ToString();
+                    txtStock.Text= dr["Initial_Balance"].ToString();
+                    txtAccountName.Text= dr["SupplierAccountName"].ToString();
+                    txtAccountType.Text = dr["BankAccount_Type"].ToString();
+                    comSupplier.Text= dr["Supplier_Name"].ToString();
+                 // comSupplier.SelectedValue= dr["supplier.Supplier_ID"].ToString();
                 }
                 dr.Close();
             }
@@ -53,6 +67,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
+            dbconnectionr.Close();
         }
 
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
@@ -271,19 +286,10 @@ namespace MainSystem
                     if (check)
                     {
                         string query = "";
-                        if (cmbType.Text == "خزينة")
-                        {
-                            query = "select Bank_Name from bank where Branch_ID=" + comBranch.SelectedValue.ToString() + " and Bank_Name='" + txtName_AccountNum.Text + "'";
-                        }
-                        else if (cmbType.Text == "حساب بنكى")
-                        {
-                            query = "select Bank_Name from bank where Bank_Name='" + txtName_AccountNum.Text + "'";
-                        }
-
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+                       
                         dbconnection.Open();
 
-                        if (com.ExecuteScalar() == null)
+                        if (BankID!= 0)
                         {
                             double stock = 0;
                             if (double.TryParse(txtStock.Text, out stock))
@@ -292,81 +298,66 @@ namespace MainSystem
                                 if (Int32.TryParse(t200.Text, out tt200) && Int32.TryParse(t100.Text, out tt100) && Int32.TryParse(t50.Text, out tt50) && Int32.TryParse(t20.Text, out tt20) && Int32.TryParse(t10.Text, out tt10) && Int32.TryParse(t5.Text, out tt5) && Int32.TryParse(t1.Text, out tt1) && Int32.TryParse(tH.Text, out ttH) && Int32.TryParse(tQ.Text, out ttQ))
                                 {
                                     MySqlCommand command = dbconnection.CreateCommand();
-                                    command.CommandText = "INSERT INTO bank (MainBank_ID,Bank_Name,Branch_ID,Branch_Name,Initial_Balance,Bank_Stock,Start_Date,Bank_Info,BankAccount_Type,Supplier_ID,SupplierAccountName) VALUES (?MainBank_ID,?Bank_Name,?Branch_ID,?Branch_Name,?Initial_Balance,?Bank_Stock,?Start_Date,?Bank_Info,?BankAccount_Type,?Supplier_ID,?SupplierAccountName)";
+                                    command.CommandText = "update bank set Bank_Name=?Bank_Name,Initial_Balance=?Initial_Balance,Start_Date=?Start_Date,Bank_Info=?Bank_Info,BankAccount_Type=?BankAccount_Type,SupplierAccountName=?SupplierAccountName where Bank_ID="+ BankID;
 
                                     if (cmbType.Text == "خزينة")
                                     {
                                         command.Parameters.AddWithValue("?Bank_Name", txtName_AccountNum.Text);
-                                        command.Parameters.AddWithValue("?Branch_ID", comBranch.SelectedValue.ToString());
-                                        command.Parameters.AddWithValue("?Branch_Name", comBranch.Text);
+                                      
                                         command.Parameters.AddWithValue("?BankAccount_Type", null);
                                         command.Parameters.AddWithValue("?Supplier_ID", null);
                                     }
                                     else if (cmbType.Text == "حساب بنكى")
                                     {
                                         command.Parameters.AddWithValue("?Bank_Name", txtName_AccountNum.Text);
-                                        command.Parameters.AddWithValue("?Branch_ID", null);
-                                        command.Parameters.AddWithValue("?Branch_Name", null);
+                                       
                                         command.Parameters.AddWithValue("?BankAccount_Type", txtAccountType.Text);
-                                        if (comSupplier.SelectedValue != null)
-                                        {
-                                            command.Parameters.AddWithValue("?Supplier_ID", comSupplier.SelectedValue.ToString());
-                                        }
-                                        else
-                                        {
-                                            command.Parameters.AddWithValue("?Supplier_ID", null);
-                                        }
+                                       
                                     }
-
-                                    command.Parameters.AddWithValue("?MainBank_ID", cmbMain.SelectedValue.ToString());
+                                    
                                     command.Parameters.AddWithValue("?Initial_Balance", stock);
-                                    command.Parameters.AddWithValue("?Bank_Stock", stock);
                                     command.Parameters.AddWithValue("?Start_Date", dateEdit1.DateTime.Date);
                                     command.Parameters.AddWithValue("?Bank_Info", txtInformation.Text);
                                     command.Parameters.AddWithValue("?SupplierAccountName", txtAccountName.Text);
                                     command.ExecuteNonQuery();
 
                                     //////////record adding/////////////
-                                    query = "select Bank_ID from bank order by Bank_ID desc limit 1";
-                                    com = new MySqlCommand(query, dbconnection);
-                                    string BankID = com.ExecuteScalar().ToString();
-
                                     query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
-                                    com = new MySqlCommand(query, dbconnection);
-                                    com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                                    com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "bank";
-                                    com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "اضافة";
-                                    com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = BankID;
-                                    com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-                                    com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
-                                    com.ExecuteNonQuery();
+                                    command = new MySqlCommand(query, dbconnection);
+                                    command.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
+                                    command.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "bank";
+                                    command.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "تعديل";
+                                    command.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = BankID;
+                                    command.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
+                                    command.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
+                                    command.ExecuteNonQuery();
                                     //////////////////////
-
+                                  
                                     if (cmbType.Text == "خزينة")
                                     {
-                                        for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
-                                        {
-                                            query = "insert into bank_employee (Bank_ID,Employee_ID) values (@Bank_ID,@Employee_ID)";
-                                            command = new MySqlCommand(query, dbconnection);
-                                            command.Parameters.AddWithValue("@Bank_ID", BankID);
-                                            command.Parameters.AddWithValue("@Employee_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
-                                            command.ExecuteNonQuery();
-                                        }
+                                       // setEmployee();
+                                        //for (int i = 0; i < checkedListBoxControlUserID.ItemCount; i++)
+                                        //{
+                                        //    query = "insert into bank_employee (Bank_ID,Employee_ID) values (@Bank_ID,@Employee_ID)";
+                                        //    command = new MySqlCommand(query, dbconnection);
+                                        //    command.Parameters.AddWithValue("@Bank_ID", BankID);
+                                        //    command.Parameters.AddWithValue("@Employee_ID", checkedListBoxControlUserID.Items[i].Value.ToString());
+                                        //    command.ExecuteNonQuery();
+                                        //}
 
-                                        query = "insert into categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,Bank_ID,Bank_Name) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@Bank_ID,@Bank_Name)";
-                                        com = new MySqlCommand(query, dbconnection);
-                                        com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = t200.Text;
-                                        com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = t100.Text;
-                                        com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = t50.Text;
-                                        com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = t20.Text;
-                                        com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = t10.Text;
-                                        com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = t5.Text;
-                                        com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = t1.Text;
-                                        com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = tH.Text;
-                                        com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = tQ.Text;
-                                        com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = BankID;
-                                        com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = txtName_AccountNum.Text;
-                                        com.ExecuteNonQuery();
+                                        query = "update categories_money set a200=@a200,a100=@a100,a50=@a50,a20=@a20,a10=@a10,a5=@a5,a1=@a1,aH=@aH,aQ=@aQ ,Bank_Name=@Bank_Name where Bank_ID=" + BankID;
+                                        command = new MySqlCommand(query, dbconnection);
+                                        command.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = t200.Text;
+                                        command.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = t100.Text;
+                                        command.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = t50.Text;
+                                        command.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = t20.Text;
+                                        command.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = t10.Text;
+                                        command.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = t5.Text;
+                                        command.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = t1.Text;
+                                        command.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = tH.Text;
+                                        command.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = tQ.Text;
+                                        command.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = txtName_AccountNum.Text;
+                                        command.ExecuteNonQuery();
                                     }
                                     else if (cmbType.Text == "حساب بنكى")
                                     {
@@ -380,54 +371,54 @@ namespace MainSystem
                                         }
                                     }
 
-                                    dbconnection.Close();
-                                    cmbType.SelectedIndex = -1;
-                                    cmbMain.SelectedIndex = -1;
-                                    txtName_AccountNum.Text = "";
-                                    comBranch.SelectedIndex = -1;
-                                    txtStock.Text = "";
-                                    dateEdit1.Text = "";
-                                    txtInformation.Text = "";
-                                    txtAccountType.Text = "";
+                                    //dbconnection.Close();
+                                    //cmbType.SelectedIndex = -1;
+                                    //cmbMain.SelectedIndex = -1;
+                                    //txtName_AccountNum.Text = "";
+                                    //comBranch.SelectedIndex = -1;
+                                    //txtStock.Text = "";
+                                    //dateEdit1.Text = "";
+                                    //txtInformation.Text = "";
+                                    //txtAccountType.Text = "";
 
-                                    layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelBranch.Text = "";
-                                    layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelName.Text = "";
-                                    layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelStock.Text = "";
-                                    layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelDate.Text = "";
-                                    layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelInfo.Text = "";
-                                    layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    labelAccountType.Text = "";
-                                    layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    //layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    //labelBank.Text = "";
-                                    //layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                                    //labelID.Text = "";
-                                    layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelBranch.Text = "";
+                                    //layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelName.Text = "";
+                                    //layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelStock.Text = "";
+                                    //layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelDate.Text = "";
+                                    //layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelInfo.Text = "";
+                                    //layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    //labelAccountType.Text = "";
+                                    //layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    ////layoutControlItemBank.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    ////labelBank.Text = "";
+                                    ////layoutControlItemID.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                                    ////labelID.Text = "";
+                                    //layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
-                                    comBankUsers.SelectedIndex = -1;
-                                    int cont = checkedListBoxControlUser.ItemCount;
-                                    for (int i = 0; i < cont; i++)
-                                    {
-                                        checkedListBoxControlUser.Items.RemoveAt(0);
-                                    }
-                                    cont = checkedListBoxControlUserID.ItemCount;
-                                    for (int i = 0; i < cont; i++)
-                                    {
-                                        checkedListBoxControlUserID.Items.RemoveAt(0);
-                                    }
-                                    cont = checkedListBoxControlVisaID.ItemCount;
-                                    for (int i = 0; i < cont; i++)
-                                    {
-                                        checkedListBoxControlVisaID.Items.RemoveAt(0);
-                                    }
-                                    groupBoxEmployee.Visible = false;
-                                    groupBoxVisa.Visible = false;
-                                    groupBoxCategories.Visible = false;
+                                    //comBankUsers.SelectedIndex = -1;
+                                    //int cont = checkedListBoxControlUser.ItemCount;
+                                    //for (int i = 0; i < cont; i++)
+                                    //{
+                                    //    checkedListBoxControlUser.Items.RemoveAt(0);
+                                    //}
+                                    //cont = checkedListBoxControlUserID.ItemCount;
+                                    //for (int i = 0; i < cont; i++)
+                                    //{
+                                    //    checkedListBoxControlUserID.Items.RemoveAt(0);
+                                    //}
+                                    //cont = checkedListBoxControlVisaID.ItemCount;
+                                    //for (int i = 0; i < cont; i++)
+                                    //{
+                                    //    checkedListBoxControlVisaID.Items.RemoveAt(0);
+                                    //}
+                                    //groupBoxEmployee.Visible = false;
+                                    //groupBoxVisa.Visible = false;
+                                    //groupBoxCategories.Visible = false;
 
                                     t200.Text = "0";
                                     t100.Text = "0";
@@ -445,7 +436,7 @@ namespace MainSystem
                                     for (int i = 0; i < arrOFPhaatPlus.Length; i++)
                                         arrOFPhaatPlus[i] = 0;
 
-                                    xtraTabPage.ImageOptions.Image = null;
+                                    //xtraTabPage.ImageOptions.Image = null;
                                 }
                                 else
                                 {
@@ -477,118 +468,120 @@ namespace MainSystem
 
         private void cmbType_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cmbType.Text == "خزينة")
-            {
-                layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelBranch.Text = "*";
-                layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelName.Text = "*";
-                layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelStock.Text = "*";
-                layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDate.Text = "*";
-                layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelInfo.Text = "";
-                layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelAccountType.Text = "";
-                layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+           
+                if (cmbType.Text == "خزينة")
+                {
+                    layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelBranch.Text = "*";
+                    layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelName.Text = "*";
+                    layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelStock.Text = "*";
+                    layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelDate.Text = "*";
+                    layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelInfo.Text = "";
+                    layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                    labelAccountType.Text = "";
+                    layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
-                layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                    layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
-                string query = "select * from bank_main where MainBank_Type='خزينة'";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbMain.DataSource = dt;
-                cmbMain.DisplayMember = dt.Columns["MainBank_Name"].ToString();
-                cmbMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
-                cmbMain.SelectedIndex = -1;
-                cmbMain.Text = "";
+                //string query = "select * from bank_main where MainBank_Type='خزينة'";
+                //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                //DataTable dt = new DataTable();
+                //da.Fill(dt);
+                //cmbMain.DataSource = dt;
+                //cmbMain.DisplayMember = dt.Columns["MainBank_Name"].ToString();
+                //cmbMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
+                //cmbMain.SelectedIndex = -1;
+                //cmbMain.Text = "";
 
-                query = "SELECT Branch_Name,Branch_ID FROM branch";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comBranch.DataSource = dt;
-                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-                comBranch.SelectedIndex = -1;
+                //query = "SELECT Branch_Name,Branch_ID FROM branch";
+                //da = new MySqlDataAdapter(query, dbconnection);
+                //dt = new DataTable();
+                //da.Fill(dt);
+                //comBranch.DataSource = dt;
+                //comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
+                //comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
+                //comBranch.SelectedIndex = -1;
 
-                query = "select Employee_ID,Employee_Name from employee where employee.Employee_ID Not in(" + "select bank_employee.Employee_ID from bank_employee " + ")";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comBankUsers.DataSource = dt;
-                comBankUsers.DisplayMember = dt.Columns["Employee_Name"].ToString();
-                comBankUsers.ValueMember = dt.Columns["Employee_ID"].ToString();
-                comBankUsers.SelectedIndex = -1;
-                comBankUsers.Text = "";
+                //string query = "select Employee_ID,Employee_Name from employee where employee.Employee_ID Not in(" + "select bank_employee.Employee_ID from bank_employee " + ")";
+                //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                //DataTable dt = new DataTable();
+                //da.Fill(dt);
+                //comBankUsers.DataSource = dt;
+                //comBankUsers.DisplayMember = dt.Columns["Employee_Name"].ToString();
+                //comBankUsers.ValueMember = dt.Columns["Employee_ID"].ToString();
+                //comBankUsers.SelectedIndex = -1;
+                //comBankUsers.Text = "";
 
-                groupBoxEmployee.Visible = true;
-                groupBoxCategories.Visible = true;
-                groupBoxVisa.Visible = false;
-            }
-            else if (cmbType.Text == "حساب بنكى")
-            {
-                layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                labelBranch.Text = "";
-                layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelName.Text = "*";
-                layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelStock.Text = "*";
-                layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelDate.Text = "*";
-                layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelInfo.Text = "";
-                layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelAccountType.Text = "*";
-                layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                //groupBoxEmployee.Visible = true;
+                //    groupBoxCategories.Visible = true;
+                //    groupBoxVisa.Visible = false;
+                }
+                else if (cmbType.Text == "حساب بنكى")
+                {
+                    layoutControlItemBranch.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                    labelBranch.Text = "";
+                    layoutControlItemName_AccountNum.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelName.Text = "*";
+                    layoutControlItemStock.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelStock.Text = "*";
+                    layoutControlItemDate.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelDate.Text = "*";
+                    layoutControlItemInformation.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelInfo.Text = "";
+                    layoutControlItemAccountType.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    labelAccountType.Text = "*";
+                    layoutControlItem28.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                    layoutControlItemAccountName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
 
-                string query = "select * from bank_main where MainBank_Type='حساب بنكى'";
-                MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cmbMain.DataSource = dt;
-                cmbMain.DisplayMember = dt.Columns["MainBank_Name"].ToString();
-                cmbMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
-                cmbMain.SelectedIndex = -1;
-                cmbMain.Text = "";
+                    //string query = "select * from bank_main where MainBank_Type='حساب بنكى'";
+                    //MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    //DataTable dt = new DataTable();
+                    //da.Fill(dt);
+                    //cmbMain.DataSource = dt;
+                    //cmbMain.DisplayMember = dt.Columns["MainBank_Name"].ToString();
+                    //cmbMain.ValueMember = dt.Columns["MainBank_ID"].ToString();
+                    //cmbMain.SelectedIndex = -1;
+                    //cmbMain.Text = "";
 
-                query = "select * from supplier";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comSupplier.DataSource = dt;
-                comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
-                comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
-                comSupplier.SelectedIndex = -1;
-                comSupplier.Text = "";
+                    //query = "select * from supplier";
+                    //da = new MySqlDataAdapter(query, dbconnection);
+                    //dt = new DataTable();
+                    //da.Fill(dt);
+                    //comSupplier.DataSource = dt;
+                    //comSupplier.DisplayMember = dt.Columns["Supplier_Name"].ToString();
+                    //comSupplier.ValueMember = dt.Columns["Supplier_ID"].ToString();
+                    //comSupplier.SelectedIndex = -1;
+                    //comSupplier.Text = "";
 
-                groupBoxEmployee.Visible = false;
-                groupBoxCategories.Visible = false;
-                groupBoxVisa.Visible = true;
-            }
+                    //groupBoxEmployee.Visible = false;
+                    //groupBoxCategories.Visible = false;
+                    //groupBoxVisa.Visible = true;
+                }
+            
         }
 
         private void txtBox_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                xtraTabPage = getTabPage("tabPageAddBank");
-                if (!IsClear())
-                {
-                    xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
-                }
-                else
-                {
-                    xtraTabPage.ImageOptions.Image = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //try
+            //{
+            //    xtraTabPage = getTabPage("tabPageAddBank");
+            //    if (!IsClear())
+            //    {
+            //        xtraTabPage.ImageOptions.Image = Properties.Resources.unsave;
+            //    }
+            //    else
+            //    {
+            //        xtraTabPage.ImageOptions.Image = null;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         //clear function
@@ -758,6 +751,23 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        
+        public void setEmployee()
+        {
+            string query = "select * from bank_employee inner join employee on bank_employee.Employee_ID=employee.Employee_ID where Bank_ID=" + BankID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                checkedListBoxControlUserID.Items.Add(dr["employee.Employee_ID"].ToString());
+                checkedListBoxControlUser.Items.Add(dr["Employee_Name"].ToString());
+            }
+            dr.Close();
+
+            query = "delete bank_employee where  Bank_ID=" + BankID;
+            com = new MySqlCommand(query, dbconnection);
+            com.ExecuteNonQuery();
         }
     }
 }
