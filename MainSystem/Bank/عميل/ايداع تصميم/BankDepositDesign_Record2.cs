@@ -76,16 +76,7 @@ namespace MainSystem
                 comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
                 comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
                 comDelegate.Text = "";
-
-                query = "select * from employee where Department_ID=26";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comEngDesign.DataSource = dt;
-                comEngDesign.DisplayMember = dt.Columns["Employee_Name"].ToString();
-                comEngDesign.ValueMember = dt.Columns["Employee_ID"].ToString();
-                comEngDesign.Text = "";
-
+                
                 panelContent.Visible = false;
             }
             catch (Exception ex)
@@ -432,19 +423,19 @@ namespace MainSystem
                 bool check = false;
                 if (PaymentMethod == "نقدى")
                 {
-                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "")/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
+                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "")/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
                 }
                 else if (PaymentMethod == "شيك")
                 {
-                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                 }
                 else if (PaymentMethod == "فيزا")
                 {
-                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtOperationNumber.Text != "");
+                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && txtOperationNumber.Text != "");
                 }
 
                 if (check)
@@ -716,18 +707,15 @@ namespace MainSystem
                         if (ch.Checked)
                         {
 
-                            txtSpaceBath.Enabled = true;
                             txtNoItemBath.Enabled = true;
                             txtCostBath.Enabled = true;
-                            txtSpaceBath.Focus();
+                            txtNoItemBath.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "حمام";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpaceBath.Enabled = false;
-                            txtSpaceBath.Text = "";
                             txtNoItemBath.Enabled = false;
                             txtNoItemBath.Text = "";
                             txtCostBath.Enabled = false;
@@ -743,19 +731,15 @@ namespace MainSystem
                     case "مطبخ":
                         if (ch.Checked)
                         {
-
-                            txtSpaceKitchen.Enabled = true;
                             txtNoItemKitchen.Enabled = true;
                             txtCostKitchen.Enabled = true;
-                            txtSpaceKitchen.Focus();
+                            txtNoItemKitchen.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "مطبخ";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpaceKitchen.Enabled = false;
-                            txtSpaceKitchen.Text = "";
                             txtNoItemKitchen.Enabled = false;
                             txtNoItemKitchen.Text = "";
                             txtCostKitchen.Enabled = false;
@@ -771,18 +755,15 @@ namespace MainSystem
                     case "صالة":
                         if (ch.Checked)
                         {
-                            txtSpaceHall.Enabled = true;
                             txtNoItemHall.Enabled = true;
                             txtCostHall.Enabled = true;
-                            txtSpaceHall.Focus();
+                            txtNoItemHall.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "صالة";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpaceHall.Enabled = false;
-                            txtSpaceHall.Text = "";
                             txtNoItemHall.Enabled = false;
                             txtNoItemHall.Text = "";
                             txtCostHall.Enabled = false;
@@ -798,19 +779,15 @@ namespace MainSystem
                     case "غرفة":
                         if (ch.Checked)
                         {
-
-                            txtSpaceRoom.Enabled = true;
                             txtNoItemRoom.Enabled = true;
                             txtCostRoom.Enabled = true;
-                            txtSpaceRoom.Focus();
+                            txtNoItemRoom.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "غرفة";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpaceRoom.Enabled = false;
-                            txtSpaceRoom.Text = "";
                             txtNoItemRoom.Enabled = false;
                             txtNoItemRoom.Text = "";
                             txtCostRoom.Enabled = false;
@@ -826,18 +803,15 @@ namespace MainSystem
                     case "اخري":
                         if (ch.Checked)
                         {
-                            txtSpaceOther.Enabled = true;
                             txtNoItemOther.Enabled = true;
                             txtCostOther.Enabled = true;
-                            txtSpaceOther.Focus();
+                            txtNoItemOther.Focus();
                             DesignItem designItem = new DesignItem();
                             designItem.DesignLocation = "اخري";
                             listDesignItems.Add(designItem);
                         }
                         else
                         {
-                            txtSpaceOther.Enabled = false;
-                            txtSpaceOther.Text = "";
                             txtNoItemOther.Enabled = false;
                             txtNoItemOther.Text = "";
                             txtCostOther.Enabled = false;
@@ -860,105 +834,6 @@ namespace MainSystem
 
         private void txtSpace_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    double re = 0;
-                    TextBox txtbox = (TextBox)sender;
-                    switch (txtbox.Name)
-                    {
-                        case "txtSpaceBath":
-
-                            if (!double.TryParse(txtSpaceBath.Text, out re))
-                            {
-                                MessageBox.Show("ادخل قيمة صحيحة");
-
-                                txtSpaceBath.Text = "";
-                                txtSpaceBath.Focus();
-                            }
-                            else
-                            {
-                                DesignItem designItem = getDesignItem("حمام");
-                                designItem.Space = re;
-                                txtNoItemBath.Focus();
-
-                            }
-                            break;
-                        case "txtSpaceKitchen":
-                            re = 0;
-                            if (!double.TryParse(txtSpaceKitchen.Text, out re))
-                            {
-                                MessageBox.Show("ادخل قيمة صحيحة");
-
-                                txtSpaceKitchen.Text = "";
-                                txtSpaceKitchen.Focus();
-                            }
-                            else
-                            {
-                                DesignItem designItem = getDesignItem("مطبخ");
-                                designItem.Space = re;
-                                txtNoItemKitchen.Focus();
-                            
-                            }
-                            break;
-                        case "txtSpaceHall":
-                            re = 0;
-                            if (!double.TryParse(txtSpaceHall.Text, out re))
-                            {
-                                MessageBox.Show("ادخل قيمة صحيحة");
-
-                                txtSpaceBath.Text = "";
-                                txtSpaceBath.Focus();
-                            }
-                            else
-                            {
-                                DesignItem designItem = getDesignItem("صالة");
-                                designItem.Space = re;
-                                txtNoItemHall.Focus();
-                            }
-                            break;
-                        case "txtSpaceRoom":
-                            re = 0;
-                            if (!double.TryParse(txtSpaceRoom.Text, out re))
-                            {
-                                MessageBox.Show("ادخل قيمة صحيحة");
-
-                                txtSpaceRoom.Text = "";
-                                txtSpaceRoom.Focus();
-                            }
-                            else
-                            {
-                                DesignItem designItem = getDesignItem("غرفة");
-                                designItem.Space = re;
-                                txtNoItemRoom.Focus();
-
-                            }
-                            break;
-                        case "txtSpaceOther":
-                            re = 0;
-                            if (!double.TryParse(txtSpaceOther.Text, out re))
-                            {
-                                MessageBox.Show("ادخل قيمة صحيحة");
-
-                                txtSpaceOther.Text = "";
-                                txtSpaceOther.Focus();
-                            }
-                            else
-                            {
-                                DesignItem designItem = getDesignItem("اخري");
-                                designItem.Space = re;
-                                txtNoItemOther.Focus();
-                            }
-                            break;
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         private void txtNoItem_KeyDown(object sender, KeyEventArgs e)
@@ -1217,11 +1092,11 @@ namespace MainSystem
             Print_Design_Report f = new Print_Design_Report();
             if (comClient.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, txtSpaceBath.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtSpaceKitchen.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtSpaceHall.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtSpaceRoom.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtSpaceOther.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
+                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + comClient.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comDelegate.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
             }
             else if (comEng.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, txtSpaceBath.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtSpaceKitchen.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtSpaceHall.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtSpaceRoom.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtSpaceOther.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
+                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + comEng.SelectedValue.ToString(), Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtOperationNumber.Text, txtDescrip.Text, UserControl.EmpName, comDelegate.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)
@@ -1232,7 +1107,7 @@ namespace MainSystem
         public int addCustomerDesign()
         {
             //,BranchBillNumber,BranchName
-            string query = "INSERT INTO customer_design(Branch_ID,Branch_Name,Customer_Name,Customer_ID,Client_Name,Client_ID,Engineer_Name,Engineer_ID,Delegate_ID,Delegate_Name,Date,PaidMoney) VALUES(@Branch_ID,@Branch_Name,@Customer_Name,@Customer_ID,@Client_Name,@Client_ID,@Engineer_Name,@Engineer_ID,@Delegate_ID,@Delegate_Name,@Date,@PaidMoney)";
+            string query = "INSERT INTO customer_design(Branch_ID,Branch_Name,Customer_Name,Customer_ID,Client_Name,Client_ID,Delegate_ID,Delegate_Name,Date,PaidMoney) VALUES(@Branch_ID,@Branch_Name,@Customer_Name,@Customer_ID,@Client_Name,@Client_ID,@Delegate_ID,@Delegate_Name,@Date,@PaidMoney)";
             MySqlCommand com = new MySqlCommand(query, dbconnection);
             com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
             com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
@@ -1256,8 +1131,6 @@ namespace MainSystem
                 com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = null;
                 com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
             }
-            com.Parameters.Add("@Engineer_Name", MySqlDbType.VarChar, 255).Value = comEngDesign.Text;
-            com.Parameters.Add("@Engineer_ID", MySqlDbType.Int16, 11).Value = comEngDesign.SelectedValue;
             com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = comDelegate.Text;
             com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = comDelegate.SelectedValue;
             com.Parameters.Add("@Date", MySqlDbType.Date).Value = DateTime.Now.Date;

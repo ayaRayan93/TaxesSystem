@@ -13,7 +13,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(DateTime dateNow, int customerDesignID, string billNum, string transitionID, string branchName, string clientName, double paidMoney, string paymentMethod, string bank, string checkNumber, string payday, string description, string bankUserName, string engDesign, string DelegateName, int qq200, int qq100, int qq50, int qq20, int qq10, int qq5, int qq1, int qqH, int qqQ, int rr200, int rr100, int rr50, int rr20, int rr10, int rr5, int rr1, int rrH, int rrQ)
+        public void InitData(DateTime dateNow, int customerDesignID, string billNum, string transitionID, string branchName, string clientName, double paidMoney, string paymentMethod, string bank, string checkNumber, string payday, string description, string bankUserName, string DelegateName, int qq200, int qq100, int qq50, int qq20, int qq10, int qq5, int qq1, int qqH, int qqQ, int rr200, int rr100, int rr50, int rr20, int rr10, int rr5, int rr1, int rrH, int rrQ)
         {
             DesignNum.Value = customerDesignID;
             TransitionID.Value = transitionID;
@@ -31,7 +31,7 @@ namespace MainSystem
             OperationNumber.Value = "";
             BankUserName.Value = bankUserName;
             Delegate_Name.Value = DelegateName;
-            EngDesign.Value = engDesign;
+            EngDesign.Value = "";
             q200.Value = qq200;
             q100.Value = qq100;
             q50.Value = qq50;

@@ -57,11 +57,6 @@ namespace MainSystem
             this.dateEdit1.Properties.EditFormat.FormatString = "yyyy/MM/dd";
             this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dateEdit1.Properties.Mask.EditMask = "yyyy/MM/dd";
-
-            comBranchName.Visible = false;
-            txtBranchBillNumber.Visible = false;
-            label8.Visible = false;
-            label9.Visible = false;
         }
 
         private void BankDepositAgl_Record_Load(object sender, EventArgs e)
@@ -84,16 +79,7 @@ namespace MainSystem
                 comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
                 comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
                 comDelegate.Text = "";
-
-                query = "select * from employee where Department_ID=26";
-                da = new MySqlDataAdapter(query, dbconnection);
-                dt = new DataTable();
-                da.Fill(dt);
-                comEngDesign.DataSource = dt;
-                comEngDesign.DisplayMember = dt.Columns["Employee_Name"].ToString();
-                comEngDesign.ValueMember = dt.Columns["Employee_ID"].ToString();
-                comEngDesign.Text = "";
-
+                
                 panelContent.Visible = false;
             }
             catch (Exception ex)
@@ -127,8 +113,6 @@ namespace MainSystem
 
                             comDelegate.Text = dr["Delegate_Name"].ToString();
                             comDelegate.SelectedValue = dr["Delegate_ID"].ToString();
-                            comEngDesign.Text = dr["Engineer_Name"].ToString();
-                            comEngDesign.SelectedValue = dr["Engineer_ID"].ToString();
 
                             txtPaidMoney.Text = dr["PaidMoney"].ToString();
 
@@ -136,7 +120,6 @@ namespace MainSystem
                             panel3.Visible = true;
                             panel4.Visible = true;
                             panelContent.Visible = true;
-                            radDesignCancel.Enabled = true;
                         }
                         else
                         {
@@ -150,22 +133,11 @@ namespace MainSystem
                                     panel3.Visible = false;
                                     panel4.Visible = false;
                                     panelContent.Visible = false;
-                                    radDesignCancel.Enabled = false;
                                 }
                                 else
                                 {
                                     clear();
                                 }
-                            }
-                            else if (designstatus == "الغاء التصميم")
-                            {
-                                MessageBox.Show("هذا التصميم تم الغاءه وسحبه من قبل");
-                                panel3.Visible = false;
-                                panel4.Visible = false;
-                                panelContent.Visible = false;
-                                btnAdd.Enabled = false;
-                                btnAdd.LabelText = "حفظ";
-                                radDesignCancel.Enabled = true;
                             }
                         }
                     }
@@ -374,31 +346,6 @@ namespace MainSystem
             dbconnection.Close();
         }
         
-        private void radConfirmDesign_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (radConfirmBill.Checked)
-                {
-                    comBranchName.Visible = true;
-                    txtBranchBillNumber.Visible = true;
-                    label8.Visible = true;
-                    label9.Visible = true;
-                }
-                else
-                {
-                    comBranchName.Visible = false;
-                    txtBranchBillNumber.Visible = false;
-                    label8.Visible = false;
-                    label9.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -408,15 +355,15 @@ namespace MainSystem
                     bool check = false;
                     if (PaymentMethod == "نقدى")
                     {
-                        check = ( comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "")/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
+                        check = ( comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "")/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
                     }
                     else if (PaymentMethod == "شيك")
                     {
-                        check = ( comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                        check = ( comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                     }
                     else if (PaymentMethod == "حساب بنكى")
                     {
-                        check = ( comDelegate.Text != "" && comEngDesign.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                        check = ( comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                     }
 
                     if (check)
@@ -432,22 +379,6 @@ namespace MainSystem
                         double outParse;
                         if (double.TryParse(txtPaidMoney.Text, out outParse))
                         {
-                            //string opNumString = null;
-                            //if (txtOperationNumber.Text != "")
-                            //{
-                            //    int OpNum = 0;
-                            //    if (int.TryParse(txtOperationNumber.Text, out OpNum))
-                            //    {
-                            //        opNumString = txtOperationNumber.Text;
-                            //    }
-                            //    else
-                            //    {
-                            //        MessageBox.Show("رقم العملية يجب ان يكون عدد");
-                            //        dbconnection.Close();
-                            //        return;
-                            //    }
-                            //}
-
                             dbconnection.Open();
 
                             updateCustomerDesign();
@@ -491,25 +422,13 @@ namespace MainSystem
                             com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
 
                             com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPaidMoney.Text;
-                            if (PaymentMethod != "فيزا")
-                            {
+                            
                                 MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                                 double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
                                 amount2 -= outParse;
                                 MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                                 com3.ExecuteNonQuery();
-                            }
-                            else
-                            {
-                                MySqlCommand com2 = new MySqlCommand("select bank.Bank_ID from bank inner join bank_visa on bank.Bank_ID=bank_visa.Bank_ID where Visa_ID=" + cmbBank.SelectedValue, dbconnection);
-                                string BankVisaId = com2.ExecuteScalar().ToString();
-
-                                com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + BankVisaId, dbconnection);
-                                double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                                amount2 -= outParse;
-                                MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + BankVisaId, dbconnection);
-                                com3.ExecuteNonQuery();
-                            }
+                            
 
                             if (dateEdit1.Text != "")
                             {
@@ -1220,8 +1139,6 @@ namespace MainSystem
                     item.Text = "";
                 }
             }
-            radDesignCancel.Checked = false;
-            radConfirmBill.Checked = false;
         }
 
         public XtraTabPage getTabPage(string text)
@@ -1269,11 +1186,11 @@ namespace MainSystem
             Print_PullDesign_Report f = new Print_PullDesign_Report();
             if (comClient.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + txtClientID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + txtClientID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             else if (comEng.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + txtCustomerID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comEngDesign.Text, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + txtCustomerID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)
@@ -1284,25 +1201,13 @@ namespace MainSystem
 
         public void updateCustomerDesign()
         {
-            if (radDesignCancel.Checked)
-            {
-                string query = "update customer_design set Design_Status=@Design_Status,Branch_ID=@Branch_ID,Branch_Name=@Branch_Name where CustomerDesign_ID=" + txtDesignNum.Text;
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                com.Parameters.Add("@Design_Status", MySqlDbType.VarChar, 255).Value = "الغاء التصميم";
-                com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
-                com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
-                com.ExecuteNonQuery();
-            }
-            else
-            {
-                string query = "update customer_design set Design_Status=@Design_Status,BranchBillNumber=@BranchBillNumber,Branch_ID=@Branch_ID,Branch_Name=@Branch_Name where CustomerDesign_ID=" + txtDesignNum.Text;
-                MySqlCommand com = new MySqlCommand(query, dbconnection);
-                com.Parameters.Add("@Design_Status", MySqlDbType.VarChar, 255).Value = "اتمام فاتورة";
-                com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
-                com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value =comBranchName.Text;
-                com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBranchBillNumber.Text;
-                com.ExecuteNonQuery();
-            }
+            string query = "update customer_design set Design_Status=@Design_Status,BranchBillNumber=@BranchBillNumber,Branch_ID=@Branch_ID,Branch_Name=@Branch_Name where CustomerDesign_ID=" + txtDesignNum.Text;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            com.Parameters.Add("@Design_Status", MySqlDbType.VarChar, 255).Value = "اتمام فاتورة";
+            com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
+            com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value =comBranchName.Text;
+            com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBranchBillNumber.Text;
+            com.ExecuteNonQuery();
         }
     }
 }

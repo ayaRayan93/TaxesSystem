@@ -6,14 +6,14 @@ using DevExpress.XtraReports.UI;
 
 namespace MainSystem
 {
-    public partial class DesignPrint : DevExpress.XtraReports.UI.XtraReport
+    public partial class DesignPrint_Copy : DevExpress.XtraReports.UI.XtraReport
     {
-        public DesignPrint()
+        public DesignPrint_Copy()
         {
             InitializeComponent();
         }
 
-        public void InitData(DateTime dateNow, int customerDesignID, string transitionID, string branchName, string clientName, double paidMoney, string paymentMethod, string bank, string checkNumber, string payday, string operationNumber, string description, string bankUserName, string DelegateName, string bathroomNum, string bathroomPrice, string bathroomTotal, string kitchenNum, string kitchenPrice, string kitchenTotal, string hallNum, string hallPrice, string hallTotal, string roomNum, string roomPrice, string roomTotal, string otherNum, string otherPrice, string otherTotal)
+        public void InitData(DateTime dateNow, int customerDesignID, string transitionID, string branchName, string clientName, double paidMoney, string paymentMethod, string bank, string checkNumber, string payday, string operationNumber, string description, string bankUserName, string engDesign, string DelegateName, string bathroomCm, string bathroomNum, string bathroomPrice, string bathroomTotal, string kitchenCm, string kitchenNum, string kitchenPrice, string kitchenTotal, string hallCm, string hallNum, string hallPrice, string hallTotal, string roomCm, string roomNum, string roomPrice, string roomTotal, string otherCm, string otherNum, string otherPrice, string otherTotal)
         {
             DesignNum.Value = customerDesignID;
             TransitionID.Value = transitionID;
@@ -30,25 +30,25 @@ namespace MainSystem
             OperationNumber.Value = operationNumber;
             BankUserName.Value = bankUserName;
             Delegate_Name.Value = DelegateName;
-            EngDesign.Value = "";
+            EngDesign.Value = engDesign;
 
-            BathroomCm.Value = "";
+            BathroomCm.Value = bathroomCm;
             BathroomNum.Value = bathroomNum;
             BathroomPrice.Value = bathroomPrice;
             BathroomTotal.Value = bathroomTotal;
-            KitchenCm.Value = "";
+            KitchenCm.Value = kitchenCm;
             KitchenNum.Value = kitchenNum;
             KitchenPrice.Value = kitchenPrice;
             KitchenTotal.Value = kitchenTotal;
-            HallCm.Value = "";
+            HallCm.Value = hallCm;
             HallNum.Value = hallNum;
             HallPrice.Value = hallPrice;
             HallTotal.Value = hallTotal;
-            RoomCm.Value = "";
+            RoomCm.Value = roomCm;
             RoomNum.Value = roomNum;
             RoomPrice.Value = roomPrice;
             RoomTotal.Value = roomTotal;
-            OtherCm.Value = "";
+            OtherCm.Value = otherCm;
             OtherNum.Value = otherNum;
             OtherPrice.Value = otherPrice;
             OtherTotal.Value = otherTotal;

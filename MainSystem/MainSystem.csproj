@@ -320,6 +320,12 @@
     <Compile Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record2.Designer.cs">
       <DependentUpon>BankDepositDesign_Record2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\DesignPrint_Copy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\DesignPrint_Copy.Designer.cs">
+      <DependentUpon>DesignPrint_Copy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bank\عميل\ايداع تصميم\DesignPrint.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3421,6 +3427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record2.resx">
       <DependentUpon>BankDepositDesign_Record2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\ايداع تصميم\DesignPrint_Copy.resx">
+      <DependentUpon>DesignPrint_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\عميل\ايداع تصميم\DesignPrint.resx">
       <DependentUpon>DesignPrint.cs</DependentUpon>
