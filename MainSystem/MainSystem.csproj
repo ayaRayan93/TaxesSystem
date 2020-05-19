@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\Laptop Market\Desktop\v2.16\</PublishUrl>
+    <PublishUrl>D:\التكويد\version2.18\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>305</ApplicationRevision>
+    <ApplicationRevision>308</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -319,6 +319,12 @@
     </Compile>
     <Compile Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record2.Designer.cs">
       <DependentUpon>BankDepositDesign_Record2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\DesignPrint_Copy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Bank\عميل\ايداع تصميم\DesignPrint_Copy.Designer.cs">
+      <DependentUpon>DesignPrint_Copy.cs</DependentUpon>
     </Compile>
     <Compile Include="Bank\عميل\ايداع تصميم\DesignPrint.cs">
       <SubType>Component</SubType>
@@ -3421,6 +3427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\عميل\ايداع تصميم\BankDepositDesign_Record2.resx">
       <DependentUpon>BankDepositDesign_Record2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bank\عميل\ايداع تصميم\DesignPrint_Copy.resx">
+      <DependentUpon>DesignPrint_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bank\عميل\ايداع تصميم\DesignPrint.resx">
       <DependentUpon>DesignPrint.cs</DependentUpon>

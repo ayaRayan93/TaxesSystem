@@ -129,8 +129,6 @@ namespace MainSystem
         {
             try
             {
-                DataRowView selRow = (DataRowView)(((GridView)gridControl1.MainView).GetRow(((GridView)gridControl1.MainView).GetSelectedRows()[0]));
-             
                 if (MainTabPageUpdateBank.ImageOptions.Image == null)
                 {
                     
@@ -166,27 +164,7 @@ namespace MainSystem
                         MainTabControlBank.SelectedTabPage = MainTabPageUpdateBank;
                         return;
                     }
-                    else
-                    {
-                        if (selRow[0].ToString() != "")
-                        {
-                            //panelUpdateBank.Controls.Clear();
-                            //MainTabPageUpdateBank.ImageOptions.Image = null;
-                            //Bank_Update form = new Bank_Update(selRow);
-                            //form.Size = new Size(1059, 638);
-                            //form.TopLevel = false;
-                            //form.FormBorderStyle = FormBorderStyle.None;
-                            //form.Dock = DockStyle.Fill;
-                            //panelUpdateBank.Controls.Add(form);
-                            //form.Show();
-
-                            MainTabControlBank.SelectedTabPage = MainTabPageUpdateBank;
-                        }
-                        else
-                        {
-                            MessageBox.Show("يجب ان تختار عنصر");
-                        }
-                    }
+                
                 }
             }
             catch (Exception ex)

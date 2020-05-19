@@ -100,12 +100,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.radioButtonSafe = new System.Windows.Forms.RadioButton();
             this.radioButtonBank = new System.Windows.Forms.RadioButton();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comDelegate = new System.Windows.Forms.ComboBox();
-            this.comEngDesign = new System.Windows.Forms.ComboBox();
             this.txtClientID = new System.Windows.Forms.TextBox();
             this.comClient = new System.Windows.Forms.ComboBox();
             this.labelName = new System.Windows.Forms.Label();
@@ -138,18 +136,12 @@
             this.txtNoItemOther = new System.Windows.Forms.TextBox();
             this.txtNoItemKitchen = new System.Windows.Forms.TextBox();
             this.txtNoItemBath = new System.Windows.Forms.TextBox();
-            this.txtSpaceHall = new System.Windows.Forms.TextBox();
-            this.txtSpaceRoom = new System.Windows.Forms.TextBox();
-            this.txtSpaceOther = new System.Windows.Forms.TextBox();
-            this.txtSpaceKitchen = new System.Windows.Forms.TextBox();
-            this.txtSpaceBath = new System.Windows.Forms.TextBox();
             this.chBKitchen = new System.Windows.Forms.CheckBox();
             this.chkBLiving = new System.Windows.Forms.CheckBox();
             this.chBRoom = new System.Windows.Forms.CheckBox();
             this.chBOther = new System.Windows.Forms.CheckBox();
             this.chBpath = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabNavigationPage2 = new DevExpress.XtraBars.Navigation.TabNavigationPage();
@@ -1025,17 +1017,6 @@
             this.radioButtonBank.UseVisualStyleBackColor = false;
             this.radioButtonBank.CheckedChanged += new System.EventHandler(this.radioButtonBank_CheckedChanged);
             // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(322, 173);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 19);
-            this.label5.TabIndex = 116;
-            this.label5.Text = "مهندس التصميم";
-            // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -1079,17 +1060,6 @@
             this.comDelegate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comDelegate.Size = new System.Drawing.Size(211, 27);
             this.comDelegate.TabIndex = 98;
-            // 
-            // comEngDesign
-            // 
-            this.comEngDesign.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comEngDesign.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comEngDesign.FormattingEnabled = true;
-            this.comEngDesign.Location = new System.Drawing.Point(104, 170);
-            this.comEngDesign.Name = "comEngDesign";
-            this.comEngDesign.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comEngDesign.Size = new System.Drawing.Size(211, 27);
-            this.comEngDesign.TabIndex = 97;
             // 
             // txtClientID
             // 
@@ -1277,7 +1247,6 @@
             this.panel5.Controls.Add(this.txtTotalBath);
             this.panel5.Controls.Add(this.label7);
             this.panel5.Controls.Add(this.comDelegate);
-            this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.panel2);
             this.panel5.Controls.Add(this.label4);
             this.panel5.Controls.Add(this.label1);
@@ -1293,24 +1262,17 @@
             this.panel5.Controls.Add(this.txtCostKitchen);
             this.panel5.Controls.Add(this.txtClientID);
             this.panel5.Controls.Add(this.txtCostBath);
-            this.panel5.Controls.Add(this.comEngDesign);
             this.panel5.Controls.Add(this.txtNoItemHall);
             this.panel5.Controls.Add(this.txtNoItemRoom);
             this.panel5.Controls.Add(this.txtNoItemOther);
             this.panel5.Controls.Add(this.txtNoItemKitchen);
             this.panel5.Controls.Add(this.txtNoItemBath);
-            this.panel5.Controls.Add(this.txtSpaceHall);
-            this.panel5.Controls.Add(this.txtSpaceRoom);
-            this.panel5.Controls.Add(this.txtSpaceOther);
-            this.panel5.Controls.Add(this.txtSpaceKitchen);
-            this.panel5.Controls.Add(this.txtSpaceBath);
             this.panel5.Controls.Add(this.chBKitchen);
             this.panel5.Controls.Add(this.chkBLiving);
             this.panel5.Controls.Add(this.chBRoom);
             this.panel5.Controls.Add(this.chBOther);
             this.panel5.Controls.Add(this.chBpath);
             this.panel5.Controls.Add(this.label10);
-            this.panel5.Controls.Add(this.label9);
             this.panel5.Controls.Add(this.label8);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1324,7 +1286,7 @@
             this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(246, 561);
+            this.label11.Location = new System.Drawing.Point(329, 561);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(47, 19);
             this.label11.TabIndex = 31;
@@ -1335,7 +1297,7 @@
             this.txtTotal.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTotal.Enabled = false;
             this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(163, 558);
+            this.txtTotal.Location = new System.Drawing.Point(246, 558);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTotal.Size = new System.Drawing.Size(66, 26);
@@ -1347,7 +1309,7 @@
             this.txtTotalHall.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTotalHall.Enabled = false;
             this.txtTotalHall.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalHall.Location = new System.Drawing.Point(163, 405);
+            this.txtTotalHall.Location = new System.Drawing.Point(246, 405);
             this.txtTotalHall.Name = "txtTotalHall";
             this.txtTotalHall.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTotalHall.Size = new System.Drawing.Size(66, 26);
@@ -1359,7 +1321,7 @@
             this.txtTotalRoom.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTotalRoom.Enabled = false;
             this.txtTotalRoom.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalRoom.Location = new System.Drawing.Point(163, 440);
+            this.txtTotalRoom.Location = new System.Drawing.Point(246, 440);
             this.txtTotalRoom.Name = "txtTotalRoom";
             this.txtTotalRoom.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTotalRoom.Size = new System.Drawing.Size(66, 26);
@@ -1371,7 +1333,7 @@
             this.txtTotalOther.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTotalOther.Enabled = false;
             this.txtTotalOther.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalOther.Location = new System.Drawing.Point(163, 478);
+            this.txtTotalOther.Location = new System.Drawing.Point(246, 478);
             this.txtTotalOther.Name = "txtTotalOther";
             this.txtTotalOther.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTotalOther.Size = new System.Drawing.Size(66, 26);
@@ -1383,7 +1345,7 @@
             this.txtTotalKitchen.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTotalKitchen.Enabled = false;
             this.txtTotalKitchen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalKitchen.Location = new System.Drawing.Point(163, 366);
+            this.txtTotalKitchen.Location = new System.Drawing.Point(246, 366);
             this.txtTotalKitchen.Name = "txtTotalKitchen";
             this.txtTotalKitchen.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTotalKitchen.Size = new System.Drawing.Size(66, 26);
@@ -1395,7 +1357,7 @@
             this.txtTotalBath.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtTotalBath.Enabled = false;
             this.txtTotalBath.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalBath.Location = new System.Drawing.Point(163, 323);
+            this.txtTotalBath.Location = new System.Drawing.Point(246, 323);
             this.txtTotalBath.Name = "txtTotalBath";
             this.txtTotalBath.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtTotalBath.Size = new System.Drawing.Size(66, 26);
@@ -1407,7 +1369,7 @@
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(174, 274);
+            this.label7.Location = new System.Drawing.Point(257, 274);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 19);
             this.label7.TabIndex = 1;
@@ -1418,7 +1380,7 @@
             this.txtCostHall.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCostHall.Enabled = false;
             this.txtCostHall.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCostHall.Location = new System.Drawing.Point(305, 405);
+            this.txtCostHall.Location = new System.Drawing.Point(388, 405);
             this.txtCostHall.Name = "txtCostHall";
             this.txtCostHall.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtCostHall.Size = new System.Drawing.Size(66, 26);
@@ -1430,7 +1392,7 @@
             this.txtCostRoom.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCostRoom.Enabled = false;
             this.txtCostRoom.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCostRoom.Location = new System.Drawing.Point(305, 440);
+            this.txtCostRoom.Location = new System.Drawing.Point(388, 440);
             this.txtCostRoom.Name = "txtCostRoom";
             this.txtCostRoom.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtCostRoom.Size = new System.Drawing.Size(66, 26);
@@ -1442,7 +1404,7 @@
             this.txtCostOther.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCostOther.Enabled = false;
             this.txtCostOther.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCostOther.Location = new System.Drawing.Point(305, 478);
+            this.txtCostOther.Location = new System.Drawing.Point(388, 478);
             this.txtCostOther.Name = "txtCostOther";
             this.txtCostOther.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtCostOther.Size = new System.Drawing.Size(66, 26);
@@ -1454,7 +1416,7 @@
             this.txtCostKitchen.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCostKitchen.Enabled = false;
             this.txtCostKitchen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCostKitchen.Location = new System.Drawing.Point(305, 366);
+            this.txtCostKitchen.Location = new System.Drawing.Point(388, 366);
             this.txtCostKitchen.Name = "txtCostKitchen";
             this.txtCostKitchen.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtCostKitchen.Size = new System.Drawing.Size(66, 26);
@@ -1466,7 +1428,7 @@
             this.txtCostBath.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCostBath.Enabled = false;
             this.txtCostBath.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCostBath.Location = new System.Drawing.Point(305, 323);
+            this.txtCostBath.Location = new System.Drawing.Point(388, 323);
             this.txtCostBath.Name = "txtCostBath";
             this.txtCostBath.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtCostBath.Size = new System.Drawing.Size(66, 26);
@@ -1478,7 +1440,7 @@
             this.txtNoItemHall.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNoItemHall.Enabled = false;
             this.txtNoItemHall.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoItemHall.Location = new System.Drawing.Point(451, 406);
+            this.txtNoItemHall.Location = new System.Drawing.Point(534, 406);
             this.txtNoItemHall.Name = "txtNoItemHall";
             this.txtNoItemHall.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtNoItemHall.Size = new System.Drawing.Size(66, 26);
@@ -1490,7 +1452,7 @@
             this.txtNoItemRoom.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNoItemRoom.Enabled = false;
             this.txtNoItemRoom.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoItemRoom.Location = new System.Drawing.Point(451, 441);
+            this.txtNoItemRoom.Location = new System.Drawing.Point(534, 441);
             this.txtNoItemRoom.Name = "txtNoItemRoom";
             this.txtNoItemRoom.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtNoItemRoom.Size = new System.Drawing.Size(66, 26);
@@ -1502,7 +1464,7 @@
             this.txtNoItemOther.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNoItemOther.Enabled = false;
             this.txtNoItemOther.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoItemOther.Location = new System.Drawing.Point(451, 479);
+            this.txtNoItemOther.Location = new System.Drawing.Point(534, 479);
             this.txtNoItemOther.Name = "txtNoItemOther";
             this.txtNoItemOther.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtNoItemOther.Size = new System.Drawing.Size(66, 26);
@@ -1514,7 +1476,7 @@
             this.txtNoItemKitchen.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNoItemKitchen.Enabled = false;
             this.txtNoItemKitchen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoItemKitchen.Location = new System.Drawing.Point(451, 367);
+            this.txtNoItemKitchen.Location = new System.Drawing.Point(534, 367);
             this.txtNoItemKitchen.Name = "txtNoItemKitchen";
             this.txtNoItemKitchen.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtNoItemKitchen.Size = new System.Drawing.Size(66, 26);
@@ -1526,72 +1488,12 @@
             this.txtNoItemBath.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNoItemBath.Enabled = false;
             this.txtNoItemBath.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoItemBath.Location = new System.Drawing.Point(451, 324);
+            this.txtNoItemBath.Location = new System.Drawing.Point(534, 324);
             this.txtNoItemBath.Name = "txtNoItemBath";
             this.txtNoItemBath.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtNoItemBath.Size = new System.Drawing.Size(66, 26);
             this.txtNoItemBath.TabIndex = 15;
             this.txtNoItemBath.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoItem_KeyDown);
-            // 
-            // txtSpaceHall
-            // 
-            this.txtSpaceHall.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSpaceHall.Enabled = false;
-            this.txtSpaceHall.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSpaceHall.Location = new System.Drawing.Point(591, 408);
-            this.txtSpaceHall.Name = "txtSpaceHall";
-            this.txtSpaceHall.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtSpaceHall.Size = new System.Drawing.Size(66, 26);
-            this.txtSpaceHall.TabIndex = 14;
-            this.txtSpaceHall.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
-            // 
-            // txtSpaceRoom
-            // 
-            this.txtSpaceRoom.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSpaceRoom.Enabled = false;
-            this.txtSpaceRoom.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSpaceRoom.Location = new System.Drawing.Point(591, 443);
-            this.txtSpaceRoom.Name = "txtSpaceRoom";
-            this.txtSpaceRoom.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtSpaceRoom.Size = new System.Drawing.Size(66, 26);
-            this.txtSpaceRoom.TabIndex = 13;
-            this.txtSpaceRoom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
-            // 
-            // txtSpaceOther
-            // 
-            this.txtSpaceOther.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSpaceOther.Enabled = false;
-            this.txtSpaceOther.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSpaceOther.Location = new System.Drawing.Point(591, 481);
-            this.txtSpaceOther.Name = "txtSpaceOther";
-            this.txtSpaceOther.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtSpaceOther.Size = new System.Drawing.Size(66, 26);
-            this.txtSpaceOther.TabIndex = 12;
-            this.txtSpaceOther.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
-            // 
-            // txtSpaceKitchen
-            // 
-            this.txtSpaceKitchen.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSpaceKitchen.Enabled = false;
-            this.txtSpaceKitchen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSpaceKitchen.Location = new System.Drawing.Point(591, 369);
-            this.txtSpaceKitchen.Name = "txtSpaceKitchen";
-            this.txtSpaceKitchen.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtSpaceKitchen.Size = new System.Drawing.Size(66, 26);
-            this.txtSpaceKitchen.TabIndex = 11;
-            this.txtSpaceKitchen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
-            // 
-            // txtSpaceBath
-            // 
-            this.txtSpaceBath.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSpaceBath.Enabled = false;
-            this.txtSpaceBath.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSpaceBath.Location = new System.Drawing.Point(591, 326);
-            this.txtSpaceBath.Name = "txtSpaceBath";
-            this.txtSpaceBath.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtSpaceBath.Size = new System.Drawing.Size(66, 26);
-            this.txtSpaceBath.TabIndex = 10;
-            this.txtSpaceBath.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpace_KeyDown);
             // 
             // chBKitchen
             // 
@@ -1599,7 +1501,7 @@
             this.chBKitchen.AutoSize = true;
             this.chBKitchen.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chBKitchen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBKitchen.Location = new System.Drawing.Point(721, 369);
+            this.chBKitchen.Location = new System.Drawing.Point(685, 369);
             this.chBKitchen.Name = "chBKitchen";
             this.chBKitchen.Size = new System.Drawing.Size(55, 23);
             this.chBKitchen.TabIndex = 9;
@@ -1613,7 +1515,7 @@
             this.chkBLiving.AutoSize = true;
             this.chkBLiving.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkBLiving.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkBLiving.Location = new System.Drawing.Point(721, 408);
+            this.chkBLiving.Location = new System.Drawing.Point(685, 408);
             this.chkBLiving.Name = "chkBLiving";
             this.chkBLiving.Size = new System.Drawing.Size(55, 23);
             this.chkBLiving.TabIndex = 8;
@@ -1627,7 +1529,7 @@
             this.chBRoom.AutoSize = true;
             this.chBRoom.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chBRoom.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBRoom.Location = new System.Drawing.Point(721, 443);
+            this.chBRoom.Location = new System.Drawing.Point(685, 443);
             this.chBRoom.Name = "chBRoom";
             this.chBRoom.Size = new System.Drawing.Size(54, 23);
             this.chBRoom.TabIndex = 7;
@@ -1641,7 +1543,7 @@
             this.chBOther.AutoSize = true;
             this.chBOther.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chBOther.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBOther.Location = new System.Drawing.Point(720, 481);
+            this.chBOther.Location = new System.Drawing.Point(684, 481);
             this.chBOther.Name = "chBOther";
             this.chBOther.Size = new System.Drawing.Size(57, 23);
             this.chBOther.TabIndex = 6;
@@ -1655,7 +1557,7 @@
             this.chBpath.AutoSize = true;
             this.chBpath.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chBpath.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chBpath.Location = new System.Drawing.Point(723, 326);
+            this.chBpath.Location = new System.Drawing.Point(687, 326);
             this.chBpath.Name = "chBpath";
             this.chBpath.Size = new System.Drawing.Size(51, 23);
             this.chBpath.TabIndex = 5;
@@ -1668,29 +1570,18 @@
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(447, 275);
+            this.label10.Location = new System.Drawing.Point(530, 275);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(74, 19);
             this.label10.TabIndex = 4;
             this.label10.Text = "عدد الوحدات";
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(598, 277);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 19);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "المساحة";
             // 
             // label8
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(304, 274);
+            this.label8.Location = new System.Drawing.Point(387, 274);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(69, 19);
             this.label8.TabIndex = 2;
@@ -1701,7 +1592,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(708, 277);
+            this.label6.Location = new System.Drawing.Point(672, 277);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 19);
             this.label6.TabIndex = 0;
@@ -1759,7 +1650,6 @@
         private System.Windows.Forms.TextBox txtCustomerID;
         private System.Windows.Forms.ComboBox comEng;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comEngDesign;
         private System.Windows.Forms.TextBox txtClientID;
         private System.Windows.Forms.ComboBox comClient;
         private System.Windows.Forms.Label labelName;
@@ -1782,7 +1672,6 @@
         private System.Windows.Forms.Label labelDescrip;
         private System.Windows.Forms.Label labelPaidMoney;
         private System.Windows.Forms.Label labType;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -1856,18 +1745,12 @@
         private System.Windows.Forms.TextBox txtNoItemOther;
         private System.Windows.Forms.TextBox txtNoItemKitchen;
         private System.Windows.Forms.TextBox txtNoItemBath;
-        private System.Windows.Forms.TextBox txtSpaceHall;
-        private System.Windows.Forms.TextBox txtSpaceRoom;
-        private System.Windows.Forms.TextBox txtSpaceOther;
-        private System.Windows.Forms.TextBox txtSpaceKitchen;
-        private System.Windows.Forms.TextBox txtSpaceBath;
         private System.Windows.Forms.CheckBox chBKitchen;
         private System.Windows.Forms.CheckBox chkBLiving;
         private System.Windows.Forms.CheckBox chBRoom;
         private System.Windows.Forms.CheckBox chBOther;
         private System.Windows.Forms.CheckBox chBpath;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;

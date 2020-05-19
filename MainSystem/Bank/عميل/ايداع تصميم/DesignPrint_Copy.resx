@@ -117,18 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel28.Text" xml:space="preserve">
-    <value>هذه الخدمة عبارة عن تقديم تصميمات هندسية للوحدات السكنية أو المساحات المختلفة المطلوب تصميمها لديكم - 
- التصميم يتناول الشكل وتوزيع منتاجتنا في المساحة المطلوب تصميمها فقط - 
-في حالة شراء كامل المنتجات والأجهزة والعناصر الموجودة داخل التصميم، يتم خصم 50 %من قيمة التصميم - 
- يتم التصميم بنا ًء على رسم هندسي مرفق بكامل الأبعاد وكل التفاصيل الهندسية من فتحات ومناسيب وأي تفاصيل أو عناصر معمارية أخرى لازمة لإنهاء التصميم، ويتم التوقيع عليه من صاحب - 
-التعاقد ويقدم هذا الرسم الهندسي من طرفكم لمندوبنا  
-يتم تسليم التصميمات للوحدات المراد تصميمها بعد أربعة أيام عمل كاملة من تاريخ سداد التعاقد - 
-للعميل الحق في طلب تعديل واحد فقط على التصميم الأول، وفي حالة التعديل الثاني يتم دفع قيمة تصميم جديد - 
-هذه الخدمة تخص الوحدات السكنية فقط وفي حالة المشروعات أو الأماكن العامة يرجى التواصل مع قسم التصميمات عن طريق مندوبينا في المعارض - 
-هذه الخدمة لا تشمل رفع مقاسات بالموقع أو إشراف على التنفيذ من طرفنا - 
-لا يجوز إلغاء التعاقد بأي حال أو الاستبدال بأيٍ من منتجاتنا - </value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrPictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -148,6 +136,15 @@
         iiZ0fTqHRRWObEIPf6CkQimg4i+dWcApOmb6Z66x5S/jk0UNGTP50bXrU5/6kGwpQnet/ep3G7t4QhnO
         1BGettyiixXMnGPoro/M9Cee9wsmOTs+gPSCIQAAAABJRU5ErkJggg==
 </value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>فى حالة فقدان هذا الايصال يصبح المبلغ لاغى - 
+ فى حالة تنفيذ التصميم يخصم قيمة التصميم من فاتورة المبيعات - 
+فى حالة ارتجاع الفاتورة لا يسترد قيمة التصميم - 
+حد اقصى 2 تعديل على التصميم الواحد - 
+يتم استلام التصميم بعد 4 ايام عمل من تاريخ الدفع - 
+التصميم خاص بمنتجاتنا فقط - 
+التصميم سارى على الوحدات السكنية فى حال المشروعات يتم التواصل مع قسم التسويق - </value>
   </data>
   <data name="xrPictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

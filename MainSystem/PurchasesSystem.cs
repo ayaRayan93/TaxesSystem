@@ -307,11 +307,11 @@ namespace MainSystem
                 if (!xtraTabControlPurchases.Visible)
                     xtraTabControlPurchases.Visible = true;
                 //عرض سدادات الموردين
-                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض تحصيلات الموردين");
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlPurchases, "سدادات الموردين");
                 if (xtraTabPage == null)
                 {
-                    xtraTabControlPurchases.TabPages.Add("عرض تحصيلات الموردين");
-                    xtraTabPage = getTabPage(xtraTabControlPurchases, "عرض تحصيلات الموردين");
+                    xtraTabControlPurchases.TabPages.Add("سدادات الموردين");
+                    xtraTabPage = getTabPage(xtraTabControlPurchases, "سدادات الموردين");
                 }
 
                 xtraTabPage.Controls.Clear();
