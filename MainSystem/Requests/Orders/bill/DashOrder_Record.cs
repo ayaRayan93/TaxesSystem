@@ -407,22 +407,28 @@ namespace MainSystem
                                 txtFactory.Text = comFactory.SelectedValue.ToString();
                                 dbconnection.Close();
                                 dbconnection.Open();
-                                string query = "select TypeCoding_Method from type";
+                                string query = "select type.Type_ID from type inner join type_factory on type.Type_ID=type_factory.Type_ID where Factory_ID=" + comFactory.SelectedValue.ToString()+ " and TypeCoding_Method=1";
                                 MySqlCommand com = new MySqlCommand(query, dbconnection);
-                                int TypeCoding_Method = (int)com.ExecuteScalar();
-                                dbconnection.Close();
-                                if (TypeCoding_Method == 2)
+                                MySqlDataReader dr = com.ExecuteReader();
+                                string str="";
+                                while (dr.Read())
                                 {
-                                    string query2f = "select * from groupo where Factory_ID=" + comFactory.SelectedValue.ToString();
-                                    MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
-                                    DataTable dt2f = new DataTable();
-                                    da2f.Fill(dt2f);
-                                    comGroup.DataSource = dt2f;
-                                    comGroup.DisplayMember = dt2f.Columns["Group_Name"].ToString();
-                                    comGroup.ValueMember = dt2f.Columns["Group_ID"].ToString();
-                                    comGroup.Text = "";
-                                    txtGroup.Text = "";
+                                    str +="-"+ dr[0].ToString()+",";
                                 }
+                                str += comFactory.SelectedValue.ToString();
+                                dr.Close();
+                                dbconnection.Close();
+                             
+                                string query2f = "select * from groupo where Factory_ID in (" + str+")";
+                                MySqlDataAdapter da2f = new MySqlDataAdapter(query2f, dbconnection);
+                                DataTable dt2f = new DataTable();
+                                da2f.Fill(dt2f);
+                                comGroup.DataSource = dt2f;
+                                comGroup.DisplayMember = dt2f.Columns["Group_Name"].ToString();
+                                comGroup.ValueMember = dt2f.Columns["Group_ID"].ToString();
+                                comGroup.Text = "";
+                                txtGroup.Text = "";
+                                
 
                                 groupFlage = true;
 

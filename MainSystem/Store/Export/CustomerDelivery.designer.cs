@@ -327,7 +327,7 @@
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.txtCode);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.groupBox3.Location = new System.Drawing.Point(3, 389);
+            this.groupBox3.Location = new System.Drawing.Point(3, 371);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.groupBox3.Size = new System.Drawing.Size(990, 61);
@@ -472,7 +472,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(996, 785);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(996, 749);
             this.tableLayoutPanel1.TabIndex = 237;
             // 
             // tableLayoutPanel2
@@ -482,11 +482,11 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 452F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 453F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 737);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 701);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
@@ -507,10 +507,10 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "حفظ";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(453, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(454, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(94, 45);
+            this.bunifuTileButton1.Size = new System.Drawing.Size(93, 45);
             this.bunifuTileButton1.TabIndex = 1;
             this.bunifuTileButton1.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -571,7 +571,7 @@
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label10.Location = new System.Drawing.Point(205, 8);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 18);
+            this.label10.Size = new System.Drawing.Size(37, 18);
             this.label10.TabIndex = 198;
             this.label10.Text = "الفرع";
             // 
@@ -658,7 +658,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 183);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(990, 200);
+            this.gridControl1.Size = new System.Drawing.Size(990, 182);
             this.gridControl1.TabIndex = 231;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -687,10 +687,10 @@
             // gridControl2
             // 
             this.gridControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl2.Location = new System.Drawing.Point(3, 461);
+            this.gridControl2.Location = new System.Drawing.Point(3, 443);
             this.gridControl2.MainView = this.gridView2;
             this.gridControl2.Name = "gridControl2";
-            this.gridControl2.Size = new System.Drawing.Size(990, 200);
+            this.gridControl2.Size = new System.Drawing.Size(990, 182);
             this.gridControl2.TabIndex = 232;
             this.gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -794,7 +794,7 @@
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.txtStoreKeeper);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 664);
+            this.panel3.Location = new System.Drawing.Point(0, 628);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(996, 70);
@@ -893,7 +893,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(996, 785);
+            this.ClientSize = new System.Drawing.Size(996, 749);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.Name = "CustomerDelivery";

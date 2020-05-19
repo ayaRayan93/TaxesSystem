@@ -294,7 +294,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(996, 785);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(996, 749);
             this.tableLayoutPanel1.TabIndex = 237;
             // 
             // tableLayoutPanel2
@@ -304,11 +304,11 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.6085F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.84746F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.45763F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 454F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 456F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.bunifuTileButton1, 2, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 738);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 702);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel2.RowCount = 1;
@@ -329,7 +329,7 @@
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;
             this.bunifuTileButton1.LabelText = "طباعة";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(456, 0);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(457, 0);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(0);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(93, 44);
@@ -393,7 +393,7 @@
             this.label10.Font = new System.Drawing.Font("Neo Sans Arabic", 11F);
             this.label10.Location = new System.Drawing.Point(205, 8);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(38, 18);
+            this.label10.Size = new System.Drawing.Size(37, 18);
             this.label10.TabIndex = 198;
             this.label10.Text = "الفرع";
             // 
@@ -482,7 +482,7 @@
             this.gridControl1.Location = new System.Drawing.Point(3, 183);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(990, 549);
+            this.gridControl1.Size = new System.Drawing.Size(990, 513);
             this.gridControl1.TabIndex = 231;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -519,7 +519,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(996, 785);
+            this.ClientSize = new System.Drawing.Size(996, 749);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.Name = "CustomerDeliveryDraft";
