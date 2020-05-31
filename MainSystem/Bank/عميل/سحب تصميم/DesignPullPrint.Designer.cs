@@ -32,6 +32,15 @@
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
+            this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
@@ -59,49 +68,6 @@
             this.xrLabel33 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel31 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
-            this.Branch_Name = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Client_Name = new DevExpress.XtraReports.Parameters.Parameter();
-            this.TransitionID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PaidMoney = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PaymentMethod = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Bank = new DevExpress.XtraReports.Parameters.Parameter();
-            this.CheckNumber = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Payday = new DevExpress.XtraReports.Parameters.Parameter();
-            this.OperationNumber = new DevExpress.XtraReports.Parameters.Parameter();
-            this.BankUserName = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q200 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q100 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q50 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q20 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q10 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q5 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.q1 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.qH = new DevExpress.XtraReports.Parameters.Parameter();
-            this.qQ = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Description = new DevExpress.XtraReports.Parameters.Parameter();
-            this.r1 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.r10 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.r100 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.r20 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.r200 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.r5 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.r50 = new DevExpress.XtraReports.Parameters.Parameter();
-            this.rH = new DevExpress.XtraReports.Parameters.Parameter();
-            this.rQ = new DevExpress.XtraReports.Parameters.Parameter();
-            this.Delegate_Name = new DevExpress.XtraReports.Parameters.Parameter();
-            this.EngDesign = new DevExpress.XtraReports.Parameters.Parameter();
-            this.DesignNum = new DevExpress.XtraReports.Parameters.Parameter();
-            this.BillNum = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrPanel1 = new DevExpress.XtraReports.UI.XRPanel();
-            this.xrLabel30 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel26 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrLabel25 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -137,6 +103,37 @@
             this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Branch_Name = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Client_Name = new DevExpress.XtraReports.Parameters.Parameter();
+            this.TransitionID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.DateNow = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PaidMoney = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PaymentMethod = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Bank = new DevExpress.XtraReports.Parameters.Parameter();
+            this.CheckNumber = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Payday = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OperationNumber = new DevExpress.XtraReports.Parameters.Parameter();
+            this.BankUserName = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Description = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Delegate_Name = new DevExpress.XtraReports.Parameters.Parameter();
+            this.EngDesign = new DevExpress.XtraReports.Parameters.Parameter();
+            this.DesignNum = new DevExpress.XtraReports.Parameters.Parameter();
+            this.BillNum = new DevExpress.XtraReports.Parameters.Parameter();
+            this.BathroomTotal = new DevExpress.XtraReports.Parameters.Parameter();
+            this.BathroomPrice = new DevExpress.XtraReports.Parameters.Parameter();
+            this.BathroomNum = new DevExpress.XtraReports.Parameters.Parameter();
+            this.KitchenTotal = new DevExpress.XtraReports.Parameters.Parameter();
+            this.KitchenPrice = new DevExpress.XtraReports.Parameters.Parameter();
+            this.KitchenNum = new DevExpress.XtraReports.Parameters.Parameter();
+            this.HallTotal = new DevExpress.XtraReports.Parameters.Parameter();
+            this.HallPrice = new DevExpress.XtraReports.Parameters.Parameter();
+            this.HallNum = new DevExpress.XtraReports.Parameters.Parameter();
+            this.RoomTotal = new DevExpress.XtraReports.Parameters.Parameter();
+            this.RoomPrice = new DevExpress.XtraReports.Parameters.Parameter();
+            this.RoomNum = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OtherTotal = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OtherPrice = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OtherNum = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -170,6 +167,115 @@
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLine3
+            // 
+            this.xrLine3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 189.1664F);
+            this.xrLine3.Name = "xrLine3";
+            this.xrLine3.SizeF = new System.Drawing.SizeF(801F, 5F);
+            // 
+            // xrPanel1
+            // 
+            this.xrPanel1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrPanel1.BorderWidth = 2F;
+            this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel30});
+            this.xrPanel1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 9.999974F);
+            this.xrPanel1.Name = "xrPanel1";
+            this.xrPanel1.SizeF = new System.Drawing.SizeF(800.9999F, 179.1664F);
+            this.xrPanel1.StylePriority.UseBorders = false;
+            this.xrPanel1.StylePriority.UseBorderWidth = false;
+            // 
+            // xrLabel30
+            // 
+            this.xrLabel30.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel30.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrLabel30.Multiline = true;
+            this.xrLabel30.Name = "xrLabel30";
+            this.xrLabel30.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 2, 0, 100F);
+            this.xrLabel30.SizeF = new System.Drawing.SizeF(800.9999F, 23F);
+            this.xrLabel30.StylePriority.UseBorders = false;
+            this.xrLabel30.StylePriority.UseFont = false;
+            this.xrLabel30.StylePriority.UsePadding = false;
+            this.xrLabel30.StylePriority.UseTextAlignment = false;
+            this.xrLabel30.Text = "عميلنا العزيز اكتمالا لثقتكم بنا وجب علينا التنبيه على بعض النقاط الهامة ";
+            this.xrLabel30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            // 
+            // xrLabel27
+            // 
+            this.xrLabel27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(164.8088F, 194.1662F);
+            this.xrLabel27.Multiline = true;
+            this.xrLabel27.Name = "xrLabel27";
+            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100F);
+            this.xrLabel27.SizeF = new System.Drawing.SizeF(636.1912F, 17.00002F);
+            this.xrLabel27.StylePriority.UseFont = false;
+            this.xrLabel27.StylePriority.UsePadding = false;
+            this.xrLabel27.StylePriority.UseTextAlignment = false;
+            this.xrLabel27.Text = "خدمة العملاء:01226771010 - إدارة المخازن:01226774022 / 01226774040 - فاكس:0882082" +
+    "704 - المعرض:0882082702";
+            this.xrLabel27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            // 
+            // xrLabel26
+            // 
+            this.xrLabel26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(125.0034F, 194.1662F);
+            this.xrLabel26.Multiline = true;
+            this.xrLabel26.Name = "xrLabel26";
+            this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel26.SizeF = new System.Drawing.SizeF(39.80542F, 17.00002F);
+            this.xrLabel26.StylePriority.UseFont = false;
+            this.xrLabel26.StylePriority.UseTextAlignment = false;
+            this.xrLabel26.Text = "19078";
+            this.xrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrPictureBox3
+            // 
+            this.xrPictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox3.Image")));
+            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(107.2934F, 194.1662F);
+            this.xrPictureBox3.Name = "xrPictureBox3";
+            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(17.70999F, 17.00001F);
+            // 
+            // xrPictureBox2
+            // 
+            this.xrPictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox2.Image")));
+            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(6.357829E-05F, 194.1662F);
+            this.xrPictureBox2.Name = "xrPictureBox2";
+            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(17.71F, 17F);
+            // 
+            // xrLabel25
+            // 
+            this.xrLabel25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(17.71007F, 194.1664F);
+            this.xrLabel25.Multiline = true;
+            this.xrLabel25.Name = "xrLabel25";
+            this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel25.SizeF = new System.Drawing.SizeF(89.58335F, 16.99988F);
+            this.xrLabel25.StylePriority.UseFont = false;
+            this.xrLabel25.StylePriority.UseTextAlignment = false;
+            this.xrLabel25.Text = "/AlDoctorGroup";
+            this.xrLabel25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrLabel28
+            // 
+            this.xrLabel28.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.xrLabel28.LocationFloat = new DevExpress.Utils.PointFloat(0.0001831055F, 32.49986F);
+            this.xrLabel28.Multiline = true;
+            this.xrLabel28.Name = "xrLabel28";
+            this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 5, 100F);
+            this.xrLabel28.SizeF = new System.Drawing.SizeF(800.9998F, 156.6665F);
+            this.xrLabel28.StylePriority.UseBorders = false;
+            this.xrLabel28.StylePriority.UseFont = false;
+            this.xrLabel28.StylePriority.UseForeColor = false;
+            this.xrLabel28.StylePriority.UsePadding = false;
+            this.xrLabel28.StylePriority.UseTextAlignment = false;
+            this.xrLabel28.Text = resources.GetString("xrLabel28.Text");
+            this.xrLabel28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // ReportHeader
             // 
@@ -502,328 +608,6 @@
             this.xrLabel34.StylePriority.UseTextAlignment = false;
             this.xrLabel34.Text = ":فاتـــــــــورة";
             this.xrLabel34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
-            // Branch_Name
-            // 
-            this.Branch_Name.Description = "Branch_Name";
-            this.Branch_Name.Name = "Branch_Name";
-            // 
-            // Client_Name
-            // 
-            this.Client_Name.Description = "Client_Name";
-            this.Client_Name.Name = "Client_Name";
-            // 
-            // TransitionID
-            // 
-            this.TransitionID.Description = "TransitionID";
-            this.TransitionID.Name = "TransitionID";
-            this.TransitionID.Type = typeof(int);
-            this.TransitionID.ValueInfo = "0";
-            // 
-            // DateNow
-            // 
-            this.DateNow.Description = "dateNow";
-            this.DateNow.Name = "DateNow";
-            this.DateNow.Type = typeof(System.DateTime);
-            // 
-            // PaidMoney
-            // 
-            this.PaidMoney.Description = "PaidMoney";
-            this.PaidMoney.Name = "PaidMoney";
-            this.PaidMoney.Type = typeof(decimal);
-            this.PaidMoney.ValueInfo = "0";
-            // 
-            // PaymentMethod
-            // 
-            this.PaymentMethod.Description = "PaymentMethod";
-            this.PaymentMethod.Name = "PaymentMethod";
-            // 
-            // Bank
-            // 
-            this.Bank.Description = "bank";
-            this.Bank.Name = "Bank";
-            // 
-            // CheckNumber
-            // 
-            this.CheckNumber.Description = "CheckNumber";
-            this.CheckNumber.Name = "CheckNumber";
-            // 
-            // Payday
-            // 
-            this.Payday.Description = "Payday";
-            this.Payday.Name = "Payday";
-            // 
-            // OperationNumber
-            // 
-            this.OperationNumber.Description = "OperationNumber";
-            this.OperationNumber.Name = "OperationNumber";
-            // 
-            // BankUserName
-            // 
-            this.BankUserName.Description = "BankUserName";
-            this.BankUserName.Name = "BankUserName";
-            // 
-            // q200
-            // 
-            this.q200.Description = "q200";
-            this.q200.Name = "q200";
-            this.q200.Type = typeof(int);
-            this.q200.ValueInfo = "0";
-            // 
-            // q100
-            // 
-            this.q100.Description = "q100";
-            this.q100.Name = "q100";
-            this.q100.Type = typeof(int);
-            this.q100.ValueInfo = "0";
-            // 
-            // q50
-            // 
-            this.q50.Description = "q50";
-            this.q50.Name = "q50";
-            this.q50.Type = typeof(int);
-            this.q50.ValueInfo = "0";
-            // 
-            // q20
-            // 
-            this.q20.Description = "q20";
-            this.q20.Name = "q20";
-            this.q20.Type = typeof(int);
-            this.q20.ValueInfo = "0";
-            // 
-            // q10
-            // 
-            this.q10.Description = "q10";
-            this.q10.Name = "q10";
-            this.q10.Type = typeof(int);
-            this.q10.ValueInfo = "0";
-            // 
-            // q5
-            // 
-            this.q5.Description = "q5";
-            this.q5.Name = "q5";
-            this.q5.Type = typeof(int);
-            this.q5.ValueInfo = "0";
-            // 
-            // q1
-            // 
-            this.q1.Description = "q1";
-            this.q1.Name = "q1";
-            this.q1.Type = typeof(int);
-            this.q1.ValueInfo = "0";
-            // 
-            // qH
-            // 
-            this.qH.Description = "qH";
-            this.qH.Name = "qH";
-            this.qH.Type = typeof(int);
-            this.qH.ValueInfo = "0";
-            // 
-            // qQ
-            // 
-            this.qQ.Description = "qQ";
-            this.qQ.Name = "qQ";
-            this.qQ.Type = typeof(int);
-            this.qQ.ValueInfo = "0";
-            // 
-            // Description
-            // 
-            this.Description.Description = "Description";
-            this.Description.Name = "Description";
-            // 
-            // r1
-            // 
-            this.r1.Description = "r1";
-            this.r1.Name = "r1";
-            this.r1.Type = typeof(int);
-            this.r1.ValueInfo = "0";
-            // 
-            // r10
-            // 
-            this.r10.Description = "r10";
-            this.r10.Name = "r10";
-            this.r10.Type = typeof(int);
-            this.r10.ValueInfo = "0";
-            // 
-            // r100
-            // 
-            this.r100.Description = "r100";
-            this.r100.Name = "r100";
-            this.r100.Type = typeof(int);
-            this.r100.ValueInfo = "0";
-            // 
-            // r20
-            // 
-            this.r20.Description = "r20";
-            this.r20.Name = "r20";
-            this.r20.Type = typeof(int);
-            this.r20.ValueInfo = "0";
-            // 
-            // r200
-            // 
-            this.r200.Description = "r200";
-            this.r200.Name = "r200";
-            this.r200.Type = typeof(int);
-            this.r200.ValueInfo = "0";
-            // 
-            // r5
-            // 
-            this.r5.Description = "r5";
-            this.r5.Name = "r5";
-            this.r5.Type = typeof(int);
-            this.r5.ValueInfo = "0";
-            // 
-            // r50
-            // 
-            this.r50.Description = "r50";
-            this.r50.Name = "r50";
-            this.r50.Type = typeof(int);
-            this.r50.ValueInfo = "0";
-            // 
-            // rH
-            // 
-            this.rH.Description = "rH";
-            this.rH.Name = "rH";
-            this.rH.Type = typeof(int);
-            this.rH.ValueInfo = "0";
-            // 
-            // rQ
-            // 
-            this.rQ.Description = "rQ";
-            this.rQ.Name = "rQ";
-            this.rQ.Type = typeof(int);
-            this.rQ.ValueInfo = "0";
-            // 
-            // Delegate_Name
-            // 
-            this.Delegate_Name.Description = "Delegate_Name";
-            this.Delegate_Name.Name = "Delegate_Name";
-            // 
-            // EngDesign
-            // 
-            this.EngDesign.Description = "EngDesign";
-            this.EngDesign.Name = "EngDesign";
-            // 
-            // DesignNum
-            // 
-            this.DesignNum.Description = "DesignNum";
-            this.DesignNum.Name = "DesignNum";
-            this.DesignNum.Type = typeof(int);
-            this.DesignNum.ValueInfo = "0";
-            // 
-            // BillNum
-            // 
-            this.BillNum.Description = "BillNum";
-            this.BillNum.Name = "BillNum";
-            // 
-            // xrLine3
-            // 
-            this.xrLine3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 189.1664F);
-            this.xrLine3.Name = "xrLine3";
-            this.xrLine3.SizeF = new System.Drawing.SizeF(801F, 5F);
-            // 
-            // xrPanel1
-            // 
-            this.xrPanel1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrPanel1.BorderWidth = 2F;
-            this.xrPanel1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel30});
-            this.xrPanel1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 9.999974F);
-            this.xrPanel1.Name = "xrPanel1";
-            this.xrPanel1.SizeF = new System.Drawing.SizeF(800.9999F, 179.1664F);
-            this.xrPanel1.StylePriority.UseBorders = false;
-            this.xrPanel1.StylePriority.UseBorderWidth = false;
-            // 
-            // xrLabel30
-            // 
-            this.xrLabel30.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrLabel30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel30.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrLabel30.Multiline = true;
-            this.xrLabel30.Name = "xrLabel30";
-            this.xrLabel30.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 2, 0, 100F);
-            this.xrLabel30.SizeF = new System.Drawing.SizeF(800.9999F, 23F);
-            this.xrLabel30.StylePriority.UseBorders = false;
-            this.xrLabel30.StylePriority.UseFont = false;
-            this.xrLabel30.StylePriority.UsePadding = false;
-            this.xrLabel30.StylePriority.UseTextAlignment = false;
-            this.xrLabel30.Text = "عميلنا العزيز اكتمالا لثقتكم بنا وجب علينا التنبيه على بعض النقاط الهامة ";
-            this.xrLabel30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
-            // xrLabel27
-            // 
-            this.xrLabel27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(164.8088F, 194.1662F);
-            this.xrLabel27.Multiline = true;
-            this.xrLabel27.Name = "xrLabel27";
-            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(1, 1, 0, 0, 100F);
-            this.xrLabel27.SizeF = new System.Drawing.SizeF(636.1912F, 17.00002F);
-            this.xrLabel27.StylePriority.UseFont = false;
-            this.xrLabel27.StylePriority.UsePadding = false;
-            this.xrLabel27.StylePriority.UseTextAlignment = false;
-            this.xrLabel27.Text = "خدمة العملاء:01226771010 - إدارة المخازن:01226774022 / 01226774040 - فاكس:0882082" +
-    "704 - المعرض:0882082702";
-            this.xrLabel27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            // 
-            // xrLabel26
-            // 
-            this.xrLabel26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(125.0034F, 194.1662F);
-            this.xrLabel26.Multiline = true;
-            this.xrLabel26.Name = "xrLabel26";
-            this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel26.SizeF = new System.Drawing.SizeF(39.80542F, 17.00002F);
-            this.xrLabel26.StylePriority.UseFont = false;
-            this.xrLabel26.StylePriority.UseTextAlignment = false;
-            this.xrLabel26.Text = "19078";
-            this.xrLabel26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // xrPictureBox3
-            // 
-            this.xrPictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox3.Image")));
-            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(107.2934F, 194.1662F);
-            this.xrPictureBox3.Name = "xrPictureBox3";
-            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(17.70999F, 17.00001F);
-            // 
-            // xrPictureBox2
-            // 
-            this.xrPictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox2.Image")));
-            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(6.357829E-05F, 194.1662F);
-            this.xrPictureBox2.Name = "xrPictureBox2";
-            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(17.71F, 17F);
-            // 
-            // xrLabel25
-            // 
-            this.xrLabel25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(17.71007F, 194.1664F);
-            this.xrLabel25.Multiline = true;
-            this.xrLabel25.Name = "xrLabel25";
-            this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel25.SizeF = new System.Drawing.SizeF(89.58335F, 16.99988F);
-            this.xrLabel25.StylePriority.UseFont = false;
-            this.xrLabel25.StylePriority.UseTextAlignment = false;
-            this.xrLabel25.Text = "/AlDoctorGroup";
-            this.xrLabel25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // xrLabel28
-            // 
-            this.xrLabel28.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrLabel28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel28.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.xrLabel28.LocationFloat = new DevExpress.Utils.PointFloat(0.0001831055F, 32.49986F);
-            this.xrLabel28.Multiline = true;
-            this.xrLabel28.Name = "xrLabel28";
-            this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 5, 100F);
-            this.xrLabel28.SizeF = new System.Drawing.SizeF(800.9998F, 156.6665F);
-            this.xrLabel28.StylePriority.UseBorders = false;
-            this.xrLabel28.StylePriority.UseFont = false;
-            this.xrLabel28.StylePriority.UseForeColor = false;
-            this.xrLabel28.StylePriority.UsePadding = false;
-            this.xrLabel28.StylePriority.UseTextAlignment = false;
-            this.xrLabel28.Text = resources.GetString("xrLabel28.Text");
-            this.xrLabel28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // xrTable1
             // 
@@ -1250,6 +1034,168 @@
             this.xrTableCell41.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell41.Weight = 1.999999270555388D;
             // 
+            // Branch_Name
+            // 
+            this.Branch_Name.Description = "Branch_Name";
+            this.Branch_Name.Name = "Branch_Name";
+            // 
+            // Client_Name
+            // 
+            this.Client_Name.Description = "Client_Name";
+            this.Client_Name.Name = "Client_Name";
+            // 
+            // TransitionID
+            // 
+            this.TransitionID.Description = "TransitionID";
+            this.TransitionID.Name = "TransitionID";
+            this.TransitionID.Type = typeof(int);
+            this.TransitionID.ValueInfo = "0";
+            // 
+            // DateNow
+            // 
+            this.DateNow.Description = "dateNow";
+            this.DateNow.Name = "DateNow";
+            this.DateNow.Type = typeof(System.DateTime);
+            // 
+            // PaidMoney
+            // 
+            this.PaidMoney.Description = "PaidMoney";
+            this.PaidMoney.Name = "PaidMoney";
+            this.PaidMoney.Type = typeof(decimal);
+            this.PaidMoney.ValueInfo = "0";
+            // 
+            // PaymentMethod
+            // 
+            this.PaymentMethod.Description = "PaymentMethod";
+            this.PaymentMethod.Name = "PaymentMethod";
+            // 
+            // Bank
+            // 
+            this.Bank.Description = "bank";
+            this.Bank.Name = "Bank";
+            // 
+            // CheckNumber
+            // 
+            this.CheckNumber.Description = "CheckNumber";
+            this.CheckNumber.Name = "CheckNumber";
+            // 
+            // Payday
+            // 
+            this.Payday.Description = "Payday";
+            this.Payday.Name = "Payday";
+            // 
+            // OperationNumber
+            // 
+            this.OperationNumber.Description = "OperationNumber";
+            this.OperationNumber.Name = "OperationNumber";
+            // 
+            // BankUserName
+            // 
+            this.BankUserName.Description = "BankUserName";
+            this.BankUserName.Name = "BankUserName";
+            // 
+            // Description
+            // 
+            this.Description.Description = "Description";
+            this.Description.Name = "Description";
+            // 
+            // Delegate_Name
+            // 
+            this.Delegate_Name.Description = "Delegate_Name";
+            this.Delegate_Name.Name = "Delegate_Name";
+            // 
+            // EngDesign
+            // 
+            this.EngDesign.Description = "EngDesign";
+            this.EngDesign.Name = "EngDesign";
+            // 
+            // DesignNum
+            // 
+            this.DesignNum.Description = "DesignNum";
+            this.DesignNum.Name = "DesignNum";
+            this.DesignNum.Type = typeof(int);
+            this.DesignNum.ValueInfo = "0";
+            // 
+            // BillNum
+            // 
+            this.BillNum.Description = "BillNum";
+            this.BillNum.Name = "BillNum";
+            // 
+            // BathroomTotal
+            // 
+            this.BathroomTotal.Name = "BathroomTotal";
+            this.BathroomTotal.Visible = false;
+            // 
+            // BathroomPrice
+            // 
+            this.BathroomPrice.Name = "BathroomPrice";
+            this.BathroomPrice.Visible = false;
+            // 
+            // BathroomNum
+            // 
+            this.BathroomNum.Name = "BathroomNum";
+            this.BathroomNum.Visible = false;
+            // 
+            // KitchenTotal
+            // 
+            this.KitchenTotal.Name = "KitchenTotal";
+            this.KitchenTotal.Visible = false;
+            // 
+            // KitchenPrice
+            // 
+            this.KitchenPrice.Name = "KitchenPrice";
+            this.KitchenPrice.Visible = false;
+            // 
+            // KitchenNum
+            // 
+            this.KitchenNum.Name = "KitchenNum";
+            this.KitchenNum.Visible = false;
+            // 
+            // HallTotal
+            // 
+            this.HallTotal.Name = "HallTotal";
+            this.HallTotal.Visible = false;
+            // 
+            // HallPrice
+            // 
+            this.HallPrice.Name = "HallPrice";
+            this.HallPrice.Visible = false;
+            // 
+            // HallNum
+            // 
+            this.HallNum.Name = "HallNum";
+            this.HallNum.Visible = false;
+            // 
+            // RoomTotal
+            // 
+            this.RoomTotal.Name = "RoomTotal";
+            this.RoomTotal.Visible = false;
+            // 
+            // RoomPrice
+            // 
+            this.RoomPrice.Name = "RoomPrice";
+            this.RoomPrice.Visible = false;
+            // 
+            // RoomNum
+            // 
+            this.RoomNum.Name = "RoomNum";
+            this.RoomNum.Visible = false;
+            // 
+            // OtherTotal
+            // 
+            this.OtherTotal.Name = "OtherTotal";
+            this.OtherTotal.Visible = false;
+            // 
+            // OtherPrice
+            // 
+            this.OtherPrice.Name = "OtherPrice";
+            this.OtherPrice.Visible = false;
+            // 
+            // OtherNum
+            // 
+            this.OtherNum.Name = "OtherNum";
+            this.OtherNum.Visible = false;
+            // 
             // DesignPullPrint
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1272,29 +1218,26 @@
             this.Payday,
             this.OperationNumber,
             this.BankUserName,
-            this.q200,
-            this.q100,
-            this.q50,
-            this.q20,
-            this.q10,
-            this.q5,
-            this.q1,
-            this.qH,
-            this.qQ,
             this.Description,
-            this.r1,
-            this.r10,
-            this.r100,
-            this.r20,
-            this.r200,
-            this.r5,
-            this.r50,
-            this.rH,
-            this.rQ,
             this.Delegate_Name,
             this.EngDesign,
             this.DesignNum,
-            this.BillNum});
+            this.BillNum,
+            this.BathroomTotal,
+            this.BathroomPrice,
+            this.BathroomNum,
+            this.KitchenTotal,
+            this.KitchenPrice,
+            this.KitchenNum,
+            this.HallTotal,
+            this.HallPrice,
+            this.HallNum,
+            this.RoomTotal,
+            this.RoomPrice,
+            this.RoomNum,
+            this.OtherTotal,
+            this.OtherPrice,
+            this.OtherNum});
             this.Version = "18.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
@@ -1335,27 +1278,9 @@
         private DevExpress.XtraReports.Parameters.Parameter OperationNumber;
         private DevExpress.XtraReports.Parameters.Parameter BankUserName;
         private DevExpress.XtraReports.UI.XRLabel xrLabel15;
-        private DevExpress.XtraReports.Parameters.Parameter q200;
-        private DevExpress.XtraReports.Parameters.Parameter q100;
-        private DevExpress.XtraReports.Parameters.Parameter q50;
-        private DevExpress.XtraReports.Parameters.Parameter q20;
-        private DevExpress.XtraReports.Parameters.Parameter q10;
-        private DevExpress.XtraReports.Parameters.Parameter q5;
-        private DevExpress.XtraReports.Parameters.Parameter q1;
-        private DevExpress.XtraReports.Parameters.Parameter qH;
-        private DevExpress.XtraReports.Parameters.Parameter qQ;
         private DevExpress.XtraReports.Parameters.Parameter Description;
         private DevExpress.XtraReports.UI.XRLine xrLine1;
         private DevExpress.XtraReports.UI.XRLine xrLine2;
-        private DevExpress.XtraReports.Parameters.Parameter r1;
-        private DevExpress.XtraReports.Parameters.Parameter r10;
-        private DevExpress.XtraReports.Parameters.Parameter r100;
-        private DevExpress.XtraReports.Parameters.Parameter r20;
-        private DevExpress.XtraReports.Parameters.Parameter r200;
-        private DevExpress.XtraReports.Parameters.Parameter r5;
-        private DevExpress.XtraReports.Parameters.Parameter r50;
-        private DevExpress.XtraReports.Parameters.Parameter rH;
-        private DevExpress.XtraReports.Parameters.Parameter rQ;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;
@@ -1412,5 +1337,20 @@
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow7;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell41;
+        private DevExpress.XtraReports.Parameters.Parameter BathroomTotal;
+        private DevExpress.XtraReports.Parameters.Parameter BathroomPrice;
+        private DevExpress.XtraReports.Parameters.Parameter BathroomNum;
+        private DevExpress.XtraReports.Parameters.Parameter KitchenTotal;
+        private DevExpress.XtraReports.Parameters.Parameter KitchenPrice;
+        private DevExpress.XtraReports.Parameters.Parameter KitchenNum;
+        private DevExpress.XtraReports.Parameters.Parameter HallTotal;
+        private DevExpress.XtraReports.Parameters.Parameter HallPrice;
+        private DevExpress.XtraReports.Parameters.Parameter HallNum;
+        private DevExpress.XtraReports.Parameters.Parameter RoomTotal;
+        private DevExpress.XtraReports.Parameters.Parameter RoomPrice;
+        private DevExpress.XtraReports.Parameters.Parameter RoomNum;
+        private DevExpress.XtraReports.Parameters.Parameter OtherTotal;
+        private DevExpress.XtraReports.Parameters.Parameter OtherPrice;
+        private DevExpress.XtraReports.Parameters.Parameter OtherNum;
     }
 }

@@ -14,10 +14,8 @@ namespace MainSystem
 {
     public partial class BankPullDesign_Record : Form
     {
-        MySqlConnection dbconnection;
+        MySqlConnection dbconnection, dbconnectionr;
         bool flag = false;
-        //int branchID = 0;
-        //string branchName = "";
         string PaymentMethod = "";
         int[] arrOFPhaat; //count of each catagory value of money in store
         int[] arrRestMoney;
@@ -27,16 +25,17 @@ namespace MainSystem
         bool flagCategoriesSuccess = false;
         XtraTabControl tabControlBank;
         int transitionbranchID = 0;
+        List<DesignItem> listDesignItems;
 
-        public BankPullDesign_Record()//BankDepositAgl_Report form, XtraTabControl MainTabControlBank)
+        public BankPullDesign_Record()
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
-            // tabControlBank = MainTabControlBank;
+            dbconnectionr = new MySqlConnection(connection.connectionString);
             arrOFPhaat = new int[9];
             arrPaidMoney = new int[9];
             arrRestMoney = new int[9];
-
+            listDesignItems = new List<DesignItem>();
             if (UserControl.userType == 1)
             {
                 cmbBank.AutoCompleteMode = AutoCompleteMode.Suggest;
@@ -58,18 +57,12 @@ namespace MainSystem
             this.dateEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dateEdit1.Properties.Mask.EditMask = "yyyy/MM/dd";
         }
-
         private void BankDepositAgl_Record_Load(object sender, EventArgs e)
         {
             try
             {
                 transitionbranchID = UserControl.EmpBranchID;
-                //branchID = UserControl.UserBranch(dbconnection);
-                dbconnection.Open();
-                //string query = "select Branch_Name from branch where Branch_ID=" + transitionbranchID;
-                //MySqlCommand com = new MySqlCommand(query, dbconnection);
-                //branchName = com.ExecuteScalar().ToString();
-                
+                dbconnection.Open();             
                 comBranchName.Text = UserControl.EmpBranchName;
                 string query = "select * from delegate where Branch_ID=" + transitionbranchID;
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
@@ -78,8 +71,7 @@ namespace MainSystem
                 comDelegate.DataSource = dt;
                 comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
                 comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
-                comDelegate.Text = "";
-                
+                comDelegate.Text = "";               
                 panelContent.Visible = false;
             }
             catch (Exception ex)
@@ -88,7 +80,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void txtDesignNum_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -120,6 +111,7 @@ namespace MainSystem
                             panel3.Visible = true;
                             panel4.Visible = true;
                             panelContent.Visible = true;
+                            setDesignDetails(Convert.ToInt16(txtDesignNum.Text));
                         }
                         else
                         {
@@ -151,7 +143,359 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+        //private void checkBox_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        CheckBox ch = (CheckBox)sender;
+        //        switch (ch.Text)
+        //        {
+        //            case "حمام":
+        //                if (ch.Checked)
+        //                {
+        //                    txtNoItemBath.Enabled = true;
+        //                    txtCostBath.Enabled = true;
+        //                    txtNoItemBath.Focus();
+        //                    DesignItem designItem = new DesignItem();
+        //                    designItem.DesignLocation = "حمام";
+        //                    listDesignItems.Add(designItem);
+        //                }
+        //                else
+        //                {
+        //                    txtNoItemBath.Enabled = false;
+        //                    txtNoItemBath.Text = "";
+        //                    txtCostBath.Enabled = false;
+        //                    txtCostBath.Text = "";
+        //                    txtTotalBath.Text = "0";
 
+        //                    calTotal();
+
+        //                    DesignItem designItem = getDesignItem("حمام");
+        //                    listDesignItems.Remove(designItem);
+        //                }
+        //                break;
+        //            case "مطبخ":
+        //                if (ch.Checked)
+        //                {
+        //                    txtNoItemKitchen.Enabled = true;
+        //                    txtCostKitchen.Enabled = true;
+        //                    txtNoItemKitchen.Focus();
+        //                    DesignItem designItem = new DesignItem();
+        //                    designItem.DesignLocation = "مطبخ";
+        //                    listDesignItems.Add(designItem);
+        //                }
+        //                else
+        //                {
+        //                    txtNoItemKitchen.Enabled = false;
+        //                    txtNoItemKitchen.Text = "";
+        //                    txtCostKitchen.Enabled = false;
+        //                    txtCostKitchen.Text = "";
+        //                    txtTotalKitchen.Text = "0";
+
+        //                    calTotal();
+
+        //                    DesignItem designItem = getDesignItem("مطبخ");
+        //                    listDesignItems.Remove(designItem);
+        //                }
+        //                break;
+        //            case "صالة":
+        //                if (ch.Checked)
+        //                {
+        //                    txtNoItemHall.Enabled = true;
+        //                    txtCostHall.Enabled = true;
+        //                    txtNoItemHall.Focus();
+        //                    DesignItem designItem = new DesignItem();
+        //                    designItem.DesignLocation = "صالة";
+        //                    listDesignItems.Add(designItem);
+        //                }
+        //                else
+        //                {
+        //                    txtNoItemHall.Enabled = false;
+        //                    txtNoItemHall.Text = "";
+        //                    txtCostHall.Enabled = false;
+        //                    txtCostHall.Text = "";
+        //                    txtTotalHall.Text = "0";
+
+        //                    calTotal();
+
+        //                    DesignItem designItem = getDesignItem("صالة");
+        //                    listDesignItems.Remove(designItem);
+        //                }
+        //                break;
+        //            case "غرفة":
+        //                if (ch.Checked)
+        //                {
+        //                    txtNoItemRoom.Enabled = true;
+        //                    txtCostRoom.Enabled = true;
+        //                    txtNoItemRoom.Focus();
+        //                    DesignItem designItem = new DesignItem();
+        //                    designItem.DesignLocation = "غرفة";
+        //                    listDesignItems.Add(designItem);
+        //                }
+        //                else
+        //                {
+        //                    txtNoItemRoom.Enabled = false;
+        //                    txtNoItemRoom.Text = "";
+        //                    txtCostRoom.Enabled = false;
+        //                    txtCostRoom.Text = "";
+        //                    txtTotalRoom.Text = "0";
+
+        //                    calTotal();
+
+        //                    DesignItem designItem = getDesignItem("غرفة");
+        //                    listDesignItems.Remove(designItem);
+        //                }
+        //                break;
+        //            case "اخري":
+        //                if (ch.Checked)
+        //                {
+        //                    txtNoItemOther.Enabled = true;
+        //                    txtCostOther.Enabled = true;
+        //                    txtNoItemOther.Focus();
+        //                    DesignItem designItem = new DesignItem();
+        //                    designItem.DesignLocation = "اخري";
+        //                    listDesignItems.Add(designItem);
+        //                }
+        //                else
+        //                {
+        //                    txtNoItemOther.Enabled = false;
+        //                    txtNoItemOther.Text = "";
+        //                    txtCostOther.Enabled = false;
+        //                    txtCostOther.Text = "";
+        //                    txtTotalOther.Text = "0";
+
+        //                    calTotal();
+
+        //                    DesignItem designItem = getDesignItem("اخري");
+        //                    listDesignItems.Remove(designItem);
+        //                }
+        //                break;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
+        private void txtNoItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    int re = 0;
+                    TextBox txtbox = (TextBox)sender;
+                    switch (txtbox.Name)
+                    {
+                        case "txtNoItemBath":
+
+                            if (!int.TryParse(txtNoItemBath.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItemBath.Text = "";
+                                txtNoItemBath.Focus();
+                            }
+                            else
+                            {
+                                txtCostBath.Focus();
+                                DesignItem designItem = getDesignItem("حمام");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                        case "txtNoItemKitchen":
+
+                            if (!int.TryParse(txtNoItemKitchen.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItemKitchen.Text = "";
+                                txtNoItemKitchen.Focus();
+                            }
+                            else
+                            {
+                                txtCostKitchen.Focus();
+                                DesignItem designItem = getDesignItem("مطبخ");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                        case "txtNoItemHall":
+
+                            if (!int.TryParse(txtNoItemHall.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItemHall.Text = "";
+                                txtNoItemHall.Focus();
+                            }
+                            else
+                            {
+                                txtCostHall.Focus();
+                                DesignItem designItem = getDesignItem("صالة");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                        case "txtNoItemRoom":
+
+                            if (!int.TryParse(txtNoItemRoom.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItemRoom.Text = "";
+                                txtNoItemRoom.Focus();
+                            }
+                            else
+                            {
+                                txtCostRoom.Focus();
+                                DesignItem designItem = getDesignItem("غرفة");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                        case "txtNoItemOther":
+
+                            if (!int.TryParse(txtNoItemOther.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItemOther.Text = "";
+                                txtNoItemOther.Focus();
+                            }
+                            else
+                            {
+                                txtCostOther.Focus();
+                                DesignItem designItem = getDesignItem("اخري");
+                                designItem.NoItems = re;
+                            }
+                            break;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void txtCost_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    double re = 0;
+                    double totalrow = 0;
+                    double total = 0;
+                    TextBox txtbox = (TextBox)sender;
+                    switch (txtbox.Name)
+                    {
+                        case "txtCostBath":
+
+                            if (!double.TryParse(txtCostBath.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtCostBath.Text = "";
+                                txtCostBath.Focus();
+                            }
+                            else
+                            {
+                                txtTotalBath.Text = (re * (Convert.ToInt16(txtNoItemBath.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalBath.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("حمام");
+                                designItem.ItemCost = re;
+                                designItem.Total = re * (Convert.ToInt16(txtNoItemBath.Text));
+                            }
+                            break;
+                        case "txtCostKitchen":
+
+                            if (!double.TryParse(txtCostKitchen.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItemKitchen.Text = "";
+                                txtNoItemKitchen.Focus();
+                            }
+                            else
+                            {
+                                txtTotalKitchen.Text = (re * (Convert.ToInt16(txtNoItemKitchen.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalKitchen.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("مطبخ");
+                                designItem.ItemCost = re;
+                                designItem.Total = re * (Convert.ToInt16(txtNoItemKitchen.Text));
+                            }
+                            break;
+                        case "txtCostHall":
+
+                            if (!double.TryParse(txtCostHall.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItemHall.Text = "";
+                                txtNoItemHall.Focus();
+                            }
+                            else
+                            {
+                                txtTotalHall.Text = (re * (Convert.ToInt16(txtNoItemHall.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalHall.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("صالة");
+                                designItem.ItemCost = re;
+                                designItem.Total = re * (Convert.ToInt16(txtNoItemHall.Text));
+                            }
+                            break;
+                        case "txtCostRoom":
+
+                            if (!double.TryParse(txtCostRoom.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItemRoom.Text = "";
+                                txtNoItemRoom.Focus();
+                            }
+                            else
+                            {
+                                txtTotalRoom.Text = (re * (Convert.ToInt16(txtNoItemRoom.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalRoom.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("غرفة");
+                                designItem.ItemCost = re;
+                                designItem.Total = re * (Convert.ToInt16(txtNoItemRoom.Text));
+                            }
+                            break;
+                        case "txtCostOther":
+
+                            if (!double.TryParse(txtCostOther.Text, out re))
+                            {
+                                MessageBox.Show("ادخل قيمة صحيحة");
+
+                                txtNoItemOther.Text = "";
+                                txtNoItemOther.Focus();
+                            }
+                            else
+                            {
+                                txtTotalOther.Text = (re * (Convert.ToInt16(txtNoItemOther.Text))).ToString();
+                                totalrow = Convert.ToDouble(txtTotalOther.Text);
+                                total = Convert.ToDouble(txtTotal.Text) + totalrow;
+                                calTotal();
+                                DesignItem designItem = getDesignItem("اخري");
+                                designItem.ItemCost = re;
+                                designItem.Total = (re * (Convert.ToInt16(txtNoItemOther.Text)));
+                            }
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void radioButtonSafe_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -225,7 +569,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void radCash_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -254,7 +597,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void radCredit_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -284,7 +626,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void radioButtonBank_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -313,7 +654,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void radBankAccount_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -344,204 +684,194 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
-        }
-        
+        }     
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                if (btnAdd.LabelText == "حفظ")
-                {
-                    bool check = false;
-                    if (PaymentMethod == "نقدى")
+                if (txtBranchBillNumber.Text != "")
+                  {
+                    if (CheckBillNumber())
                     {
-                        check = ( comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "")/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
-                    }
-                    else if (PaymentMethod == "شيك")
-                    {
-                        check = ( comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
-                    }
-                    else if (PaymentMethod == "حساب بنكى")
-                    {
-                        check = ( comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
-                    }
-
-                    if (check)
-                    {
-                        if (!flagCategoriesSuccess)
+                        bool check = false;
+                        if (PaymentMethod == "نقدى")
                         {
-                            if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
-                            {
-                                return;
-                            }
+                            check = (comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "")/*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "");
+                        }
+                        else if (PaymentMethod == "شيك")
+                        {
+                            check = (comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                        }
+                        else if (PaymentMethod == "حساب بنكى")
+                        {
+                            check = (comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
                         }
 
-                        double outParse;
-                        if (double.TryParse(txtPaidMoney.Text, out outParse))
+                        if (check)
                         {
-                            dbconnection.Open();
-
-                            updateCustomerDesign();
-
-                            string query = "insert into transitions (TransitionBranch_ID,TransitionBranch_Name,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Customer_ID,Customer_Name,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Type,Error,Employee_ID,Employee_Name,Delegate_ID,Delegate_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Type,@Error,@Employee_ID,@Employee_Name,@Delegate_ID,@Delegate_Name)";
-                            MySqlCommand com = new MySqlCommand(query, dbconnection);
-
-                            com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب تصميم";
-                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "كاش";                        
-                            com.Parameters.Add("@TransitionBranch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
-                            com.Parameters.Add("@TransitionBranch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
-                            com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
-                            com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
-                            com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = txtDesignNum.Text;
-                            com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
-                            com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
-                            com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
-                            com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-                            if (comClient.Text != "")
+                            if (!flagCategoriesSuccess)
                             {
-                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = txtClientID.Text;
-                                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = comClient.Text;
+                                if (MessageBox.Show("لم يتم ادخال الفئات..هل تريد الاستمرار؟", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                                {
+                                    return;
+                                }
                             }
-                            else
-                            {
-                                com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
-                                com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = null;
-                            }
-                            if (comEng.Text != "")
-                            {
-                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = txtCustomerID.Text;
-                                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comEng.Text;
-                            }
-                            else
-                            {
-                                com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
-                                com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = null;
-                            }
-                            //com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
-                            com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
-                            com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
 
-                            com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPaidMoney.Text;
-                            
+                            double outParse;
+                            if (double.TryParse(txtPaidMoney.Text, out outParse))
+                            {
+                                dbconnection.Open();
+
+                                updateCustomerDesign();
+
+                                string query = "insert into transitions (TransitionBranch_ID,TransitionBranch_Name,Branch_ID,Branch_Name,Bill_Number,Client_ID,Client_Name,Customer_ID,Customer_Name,Transition,Payment_Method,Bank_ID,Bank_Name,Date,Amount,Data,PayDay,Check_Number,Type,Error,Employee_ID,Employee_Name,Delegate_ID,Delegate_Name) values(@TransitionBranch_ID,@TransitionBranch_Name,@Branch_ID,@Branch_Name,@Bill_Number,@Client_ID,@Client_Name,@Customer_ID,@Customer_Name,@Transition,@Payment_Method,@Bank_ID,@Bank_Name,@Date,@Amount,@Data,@PayDay,@Check_Number,@Type,@Error,@Employee_ID,@Employee_Name,@Delegate_ID,@Delegate_Name)";
+                                MySqlCommand com = new MySqlCommand(query, dbconnection);
+
+                                com.Parameters.Add("@Transition", MySqlDbType.VarChar, 255).Value = "سحب تصميم";
+                                com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "كاش";
+                                com.Parameters.Add("@TransitionBranch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
+                                com.Parameters.Add("@TransitionBranch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
+                                com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
+                                com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpBranchName;
+                                com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11).Value = txtDesignNum.Text;
+                                com.Parameters.Add("@Payment_Method", MySqlDbType.VarChar, 255).Value = PaymentMethod;
+                                com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = cmbBank.SelectedValue;
+                                com.Parameters.Add("@Bank_Name", MySqlDbType.VarChar, 255).Value = cmbBank.Text;
+                                com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
+                                if (comClient.Text != "")
+                                {
+                                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = txtClientID.Text;
+                                    com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = comClient.Text;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Client_ID", MySqlDbType.Int16, 11).Value = null;
+                                    com.Parameters.Add("@Client_Name", MySqlDbType.VarChar, 255).Value = null;
+                                }
+                                if (comEng.Text != "")
+                                {
+                                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = txtCustomerID.Text;
+                                    com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = comEng.Text;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11).Value = null;
+                                    com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255).Value = null;
+                                }
+                                //com.Parameters.Add("@Operation_Number", MySqlDbType.Int16, 11).Value = opNumString;
+                                com.Parameters.Add("@Data", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
+                                com.Parameters.Add("@Error", MySqlDbType.Int16, 11).Value = 0;
+
+                                com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPaidMoney.Text;
+
                                 MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                                 double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
                                 amount2 -= outParse;
                                 MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
                                 com3.ExecuteNonQuery();
-                            
 
-                            if (dateEdit1.Text != "")
-                            {
-                                com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
+
+                                if (dateEdit1.Text != "")
+                                {
+                                    com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = dateEdit1.DateTime.Date;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = null;
+                                }
+
+                                if (txtCheckNumber.Text != "")
+                                {
+                                    com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = txtCheckNumber.Text;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
+                                }
+                                com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
+                                com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpName;
+                                if (comDelegate.SelectedValue != null && comDelegate.Text != "")
+                                {
+                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = comDelegate.SelectedValue.ToString();
+                                    com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = comDelegate.Text;
+                                }
+                                else
+                                {
+                                    com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = null;
+                                    com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = null;
+                                }
+                                com.ExecuteNonQuery();
+
+                                //////////record adding/////////////
+                                query = "select Transition_ID from transitions order by Transition_ID desc limit 1";
+                                com = new MySqlCommand(query, dbconnection);
+                                TransitionID = com.ExecuteScalar().ToString();
+
+                                query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
+                                com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "transitions";
+                                com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "اضافة";
+                                com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = TransitionID;
+                                com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
+                                com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
+                                com.ExecuteNonQuery();
+
+                                //////////insert categories/////////
+                                query = "insert into transition_categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,r200,r100,r50,r20,r10,r5,r1,rH,rQ,Transition_ID) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@r200,@r100,@r50,@r20,@r10,@r5,@r1,@rH,@rQ,@Transition_ID)";
+                                com = new MySqlCommand(query, dbconnection);
+                                com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];
+                                com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1];
+                                com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2];
+                                com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3];
+                                com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4];
+                                com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5];
+                                com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6];
+                                com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7];
+                                com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8];
+                                com.Parameters.Add("@r200", MySqlDbType.Int16, 11).Value = arrRestMoney[0];
+                                com.Parameters.Add("@r100", MySqlDbType.Int16, 11).Value = arrRestMoney[1];
+                                com.Parameters.Add("@r50", MySqlDbType.Int16, 11).Value = arrRestMoney[2];
+                                com.Parameters.Add("@r20", MySqlDbType.Int16, 11).Value = arrRestMoney[3];
+                                com.Parameters.Add("@r10", MySqlDbType.Int16, 11).Value = arrRestMoney[4];
+                                com.Parameters.Add("@r5", MySqlDbType.Int16, 11).Value = arrRestMoney[5];
+                                com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
+                                com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
+                                com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
+                                com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt32(TransitionID);
+                                com.ExecuteNonQuery();
+                                flagCategoriesSuccess = false;
+
+                                dbconnection.Close();
+
+                                //IncreaseClientPaied();
+
+                                //print bill
+                                printCategoriesBill(Convert.ToInt16(txtDesignNum.Text));
+
+                                clear();
                             }
                             else
                             {
-                                com.Parameters.Add("@PayDay", MySqlDbType.Date, 0).Value = null;
+                                MessageBox.Show("المبلغ المدفوع يجب ان يكون عدد");
+                                dbconnection.Close();
+                                return;
                             }
-
-                            if (txtCheckNumber.Text != "")
-                            {
-                                com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = txtCheckNumber.Text;
-                            }
-                            else
-                            {
-                                com.Parameters.Add("@Check_Number", MySqlDbType.VarChar, 255).Value = null;
-                            }
-                            com.Parameters.Add("@Employee_ID", MySqlDbType.Int16, 11).Value = UserControl.EmpID;
-                            com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar, 255).Value = UserControl.EmpName;
-                            if (comDelegate.SelectedValue != null && comDelegate.Text != "")
-                            {
-                                com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = comDelegate.SelectedValue.ToString();
-                                com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = comDelegate.Text;
-                            }
-                            else
-                            {
-                                com.Parameters.Add("@Delegate_ID", MySqlDbType.Int16, 11).Value = null;
-                                com.Parameters.Add("@Delegate_Name", MySqlDbType.VarChar, 255).Value = null;
-                            }
-                            com.ExecuteNonQuery();
-
-                            //////////record adding/////////////
-                            query = "select Transition_ID from transitions order by Transition_ID desc limit 1";
-                            com = new MySqlCommand(query, dbconnection);
-                            TransitionID = com.ExecuteScalar().ToString();
-
-                            query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                            com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "transitions";
-                            com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "اضافة";
-                            com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = TransitionID;
-                            com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-                            com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
-                            com.ExecuteNonQuery();
-
-                            //////////insert categories/////////
-                            query = "insert into transition_categories_money (a200,a100,a50,a20,a10,a5,a1,aH,aQ,r200,r100,r50,r20,r10,r5,r1,rH,rQ,Transition_ID) values(@a200,@a100,@a50,@a20,@a10,@a5,@a1,@aH,@aQ,@r200,@r100,@r50,@r20,@r10,@r5,@r1,@rH,@rQ,@Transition_ID)";
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@a200", MySqlDbType.Int16, 11).Value = arrPaidMoney[0];
-                            com.Parameters.Add("@a100", MySqlDbType.Int16, 11).Value = arrPaidMoney[1];
-                            com.Parameters.Add("@a50", MySqlDbType.Int16, 11).Value = arrPaidMoney[2];
-                            com.Parameters.Add("@a20", MySqlDbType.Int16, 11).Value = arrPaidMoney[3];
-                            com.Parameters.Add("@a10", MySqlDbType.Int16, 11).Value = arrPaidMoney[4];
-                            com.Parameters.Add("@a5", MySqlDbType.Int16, 11).Value = arrPaidMoney[5];
-                            com.Parameters.Add("@a1", MySqlDbType.Int16, 11).Value = arrPaidMoney[6];
-                            com.Parameters.Add("@aH", MySqlDbType.Int16, 11).Value = arrPaidMoney[7];
-                            com.Parameters.Add("@aQ", MySqlDbType.Int16, 11).Value = arrPaidMoney[8];
-                            com.Parameters.Add("@r200", MySqlDbType.Int16, 11).Value = arrRestMoney[0];
-                            com.Parameters.Add("@r100", MySqlDbType.Int16, 11).Value = arrRestMoney[1];
-                            com.Parameters.Add("@r50", MySqlDbType.Int16, 11).Value = arrRestMoney[2];
-                            com.Parameters.Add("@r20", MySqlDbType.Int16, 11).Value = arrRestMoney[3];
-                            com.Parameters.Add("@r10", MySqlDbType.Int16, 11).Value = arrRestMoney[4];
-                            com.Parameters.Add("@r5", MySqlDbType.Int16, 11).Value = arrRestMoney[5];
-                            com.Parameters.Add("@r1", MySqlDbType.Int16, 11).Value = arrRestMoney[6];
-                            com.Parameters.Add("@rH", MySqlDbType.Int16, 11).Value = arrRestMoney[7];
-                            com.Parameters.Add("@rQ", MySqlDbType.Int16, 11).Value = arrRestMoney[8];
-                            com.Parameters.Add("@Transition_ID", MySqlDbType.Int16, 11).Value = Convert.ToInt32(TransitionID);
-                            com.ExecuteNonQuery();
-                            flagCategoriesSuccess = false;
-                            
-                            dbconnection.Close();
-
-                            //IncreaseClientPaied();
-
-                            //print bill
-                            printCategoriesBill(Convert.ToInt16(txtDesignNum.Text));
-
-                            clear();
                         }
                         else
                         {
-                            MessageBox.Show("المبلغ المدفوع يجب ان يكون عدد");
-                            dbconnection.Close();
-                            return;
+                            MessageBox.Show("برجاء ادخال جميع البيانات المطلوبة");
                         }
+                    
                     }
                     else
                     {
-                        MessageBox.Show("برجاء ادخال جميع البيانات المطلوبة");
+                        MessageBox.Show("رقم الفاتوة غير صحيح");
                     }
                 }
                 else
                 {
-                    if (txtBranchBillNumber.Text != "")
-                    {
-                        dbconnection.Open();
-                        string query = "update customer_design set Design_Status=@Design_Status,BranchBillNumber=@BranchBillNumber,Branch_ID=@Branch_ID,Branch_Name=@Branch_Name where CustomerDesign_ID=" + txtDesignNum.Text;
-                        MySqlCommand com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@Design_Status", MySqlDbType.VarChar, 255).Value = "اتمام فاتورة";
-                        com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
-                        com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value = comBranchName.Text;
-                        com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBranchBillNumber.Text;
-                        com.ExecuteNonQuery();
-
-                        MessageBox.Show("تم");
-                        clear();
-                    }
-                    else
-                    {
-                        MessageBox.Show("يجب ادخال رقم الفاتورة");
-                    }
+                    MessageBox.Show("يجب ادخال رقم الفاتورة");
                 }
             }
             catch (Exception ex)
@@ -550,7 +880,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void PaidMoney_KeyDown(object sender, KeyEventArgs e)
         {
             double totalPaid = 0;
@@ -817,7 +1146,6 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
-
         private void RestMoney_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -1140,7 +1468,6 @@ namespace MainSystem
                 }
             }
         }
-
         public XtraTabPage getTabPage(string text)
         {
             for (int i = 0; i < tabControlBank.TabPages.Count; i++)
@@ -1150,7 +1477,6 @@ namespace MainSystem
                 }
             return null;
         }
-
         public bool IsClear()
         {
             bool flag5 = false;
@@ -1180,17 +1506,16 @@ namespace MainSystem
 
             return flag5;
         }
-
         void printCategoriesBill(int customerDesignID)
         {
             Print_PullDesign_Report f = new Print_PullDesign_Report();
             if (comClient.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + txtClientID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comClient.Text + " " + txtClientID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comDelegate.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
             }
             else if (comEng.Text != "")
             {
-                f.PrintInvoice(DateTime.Now, customerDesignID, comBranchName.Text + " " + txtBranchBillNumber.Text, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + txtCustomerID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text, txtDescrip.Text, UserControl.EmpName, comDelegate.Text, arrPaidMoney[0], arrPaidMoney[1], arrPaidMoney[2], arrPaidMoney[3], arrPaidMoney[4], arrPaidMoney[5], arrPaidMoney[6], arrPaidMoney[7], arrPaidMoney[8], arrRestMoney[0], arrRestMoney[1], arrRestMoney[2], arrRestMoney[3], arrRestMoney[4], arrRestMoney[5], arrRestMoney[6], arrRestMoney[7], arrRestMoney[8]);
+                f.PrintInvoice(DateTime.Now, customerDesignID, TransitionID, UserControl.EmpBranchName, comEng.Text + " " + txtCustomerID.Text, Convert.ToDouble(txtPaidMoney.Text), PaymentMethod, cmbBank.Text, txtCheckNumber.Text, dateEdit1.Text,  txtDescrip.Text, UserControl.EmpName, comDelegate.Text, txtNoItemBath.Text, txtCostBath.Text, txtTotalBath.Text, txtNoItemKitchen.Text, txtCostKitchen.Text, txtTotalKitchen.Text, txtNoItemHall.Text, txtCostHall.Text, txtTotalHall.Text, txtNoItemRoom.Text, txtCostRoom.Text, txtTotalRoom.Text, txtNoItemOther.Text, txtCostOther.Text, txtTotalOther.Text);
             }
             f.ShowDialog();
             for (int i = 0; i < arrPaidMoney.Length; i++)
@@ -1198,7 +1523,6 @@ namespace MainSystem
             for (int i = 0; i < arrRestMoney.Length; i++)
                 arrRestMoney[i] = arrPaidMoney[i] = 0;
         }
-
         public void updateCustomerDesign()
         {
             string query = "update customer_design set Design_Status=@Design_Status,BranchBillNumber=@BranchBillNumber,Branch_ID=@Branch_ID,Branch_Name=@Branch_Name where CustomerDesign_ID=" + txtDesignNum.Text;
@@ -1206,8 +1530,146 @@ namespace MainSystem
             com.Parameters.Add("@Design_Status", MySqlDbType.VarChar, 255).Value = "اتمام فاتورة";
             com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
             com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255).Value =comBranchName.Text;
-            com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = txtBranchBillNumber.Text;
+            com.Parameters.Add("@BranchBillNumber", MySqlDbType.Int16, 11).Value = Convert.ToInt16(txtBranchBillNumber.Text);
             com.ExecuteNonQuery();
+        }
+        public void setDesignDetails(int CustomerDesignID)
+        {
+            dbconnectionr.Open();
+            string query = "select * from customer_design_details where CustomerDesignID=" + CustomerDesignID;
+            MySqlCommand com = new MySqlCommand(query, dbconnectionr);
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                switch (dr[2].ToString())
+                {
+                    case "حمام":
+                        chBpath.Checked = true;
+                        txtNoItemBath.Text = dr[4].ToString();
+                        txtCostBath.Text = dr[5].ToString();
+                        txtTotalBath.Text = dr[6].ToString();
+                        calTotal();
+
+                        DesignItem designItem = new DesignItem();
+                        designItem.DesignLocation = "حمام";
+                        designItem.NoItems =Convert.ToInt16(dr[4].ToString());
+                        designItem.ItemCost = Convert.ToDouble(dr[5].ToString());
+                        designItem.Total = Convert.ToDouble(dr[6].ToString());
+                        listDesignItems.Add(designItem);
+                       
+                        break;
+                    case "مطبخ":
+                        chBKitchen.Checked = true;
+                        txtNoItemKitchen.Text = dr[4].ToString();
+                        txtCostKitchen.Text = dr[5].ToString();
+                        txtTotalKitchen.Text = dr[6].ToString();
+                        calTotal();
+
+                        designItem = new DesignItem();
+                        designItem.DesignLocation = "مطبخ";
+                        designItem.NoItems = Convert.ToInt16(dr[4].ToString());
+                        designItem.ItemCost = Convert.ToDouble(dr[5].ToString());
+                        designItem.Total = Convert.ToDouble(dr[6].ToString());
+                        listDesignItems.Add(designItem);
+                        break;
+                    case "صالة":
+                        chkBLiving.Checked = true;
+                        txtNoItemHall.Text = dr[4].ToString();
+                        txtCostHall.Text = dr[5].ToString();
+                        txtTotalHall.Text = dr[6].ToString();
+                        calTotal();
+
+                        designItem = new DesignItem();
+                        designItem.DesignLocation = "صالة";
+                        designItem.NoItems = Convert.ToInt16(dr[4].ToString());
+                        designItem.ItemCost = Convert.ToDouble(dr[5].ToString());
+                        designItem.Total = Convert.ToDouble(dr[6].ToString());
+                        listDesignItems.Add(designItem);
+                        break;
+                    case "غرفة":
+                        chBRoom.Checked = true;
+                        txtNoItemRoom.Text = dr[4].ToString();
+                        txtCostRoom.Text = dr[5].ToString();
+                        txtTotalRoom.Text = dr[6].ToString();
+                        calTotal();
+
+                        designItem = new DesignItem();
+                        designItem.DesignLocation = "غرفة";
+                        designItem.NoItems = Convert.ToInt16(dr[4].ToString());
+                        designItem.ItemCost = Convert.ToDouble(dr[5].ToString());
+                        designItem.Total = Convert.ToDouble(dr[6].ToString());
+                        listDesignItems.Add(designItem);
+                        break;
+                    case "اخري":
+                        chBOther.Checked = true;
+                        txtNoItemOther.Text = dr[4].ToString();
+                        txtCostOther.Text = dr[5].ToString();
+                        txtTotalOther.Text = dr[6].ToString();
+                        calTotal();
+
+                        designItem = new DesignItem();
+                        designItem.DesignLocation = "اخري";
+                        designItem.NoItems = Convert.ToInt16(dr[4].ToString());
+                        designItem.ItemCost = Convert.ToDouble(dr[5].ToString());
+                        designItem.Total = Convert.ToDouble(dr[6].ToString());
+                        listDesignItems.Add(designItem);
+                        break;
+
+                }
+            }
+            dr.Close();
+            dbconnectionr.Close();
+        }
+        public void calTotal()
+        {
+            double total1 = Convert.ToDouble(txtTotalBath.Text);
+            double total2 = Convert.ToDouble(txtTotalKitchen.Text);
+            double total3 = Convert.ToDouble(txtTotalHall.Text);
+            double total4 = Convert.ToDouble(txtTotalRoom.Text);
+            double total5 = Convert.ToDouble(txtTotalOther.Text);
+
+            double total = total1 + total2 + total3 + total4 + total5;
+            txtTotal.Text = total.ToString();
+            txtPaidMoney.Text = total.ToString();
+        }
+        public DesignItem getDesignItem(string DesignLocation)
+        {
+            foreach (DesignItem item in listDesignItems)
+            {
+                if (item.DesignLocation == DesignLocation)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+        public bool CheckBillNumber()
+        {
+            
+            dbconnection.Open();
+            string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber="+txtBranchBillNumber.Text+" and Branch_Name='"+comBranchName.Text+"'";
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            if (com.ExecuteScalar() != null)
+            {
+                dbconnection.Close();
+                return true;
+            }
+            else
+            {
+                dbconnection.Close();
+                return false;
+            }
+
+          
+        }
+        public class DesignItem
+        {
+
+            public string DesignLocation { get; set; }
+            public double Space { get; set; }
+            public int NoItems { get; set; }
+            public double ItemCost { get; set; }
+            public double Total { get; set; }
         }
     }
 }

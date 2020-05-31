@@ -831,11 +831,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void txtSpace_KeyDown(object sender, KeyEventArgs e)
-        {
-        }
-
         private void txtNoItem_KeyDown(object sender, KeyEventArgs e)
         {
             try
