@@ -16,6 +16,7 @@ namespace MainSystem
     {
         MySqlConnection dbconnection;
         bool loaded = false;
+        bool loaded2 = false;
         XtraTabControl tabControlProperty;
         int transitionbranchID = 0;
 
@@ -33,6 +34,9 @@ namespace MainSystem
 
             comSub.AutoCompleteMode = AutoCompleteMode.Suggest;
             comSub.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            comDetails.AutoCompleteMode = AutoCompleteMode.Suggest;
+            comDetails.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void BankPullExpense_Record_Load(object sender, EventArgs e)
@@ -58,6 +62,7 @@ namespace MainSystem
             {
                 try
                 {
+                    loaded2 = false;
                     string query = "select * from property_sub where MainProperty_ID=" + comMain.SelectedValue.ToString();
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
@@ -66,6 +71,31 @@ namespace MainSystem
                     comSub.DisplayMember = dt.Columns["SubProperty_Name"].ToString();
                     comSub.ValueMember = dt.Columns["SubProperty_ID"].ToString();
                     comSub.SelectedIndex = -1;
+
+                    comDetails.DataSource = null;
+                    loaded2 = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void comSub_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded && loaded2)
+            {
+                try
+                {
+                    string query = "select * from property_details where SubProperty_ID=" + comSub.SelectedValue.ToString();
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comDetails.DataSource = dt;
+                    comDetails.DisplayMember = dt.Columns["DetailsProperty_Name"].ToString();
+                    comDetails.ValueMember = dt.Columns["DetailsProperty_ID"].ToString();
+                    comDetails.SelectedIndex = -1;
                 }
                 catch (Exception ex)
                 {
@@ -78,7 +108,7 @@ namespace MainSystem
         {
             try
             {
-                if (comMain.Text != "" && comSub.Text != "" && comBank.Text != "" && txtPullMoney.Text != "")
+                if (comMain.Text != "" && comSub.Text != "" && comDetails.Text != "" && comBank.Text != "" && txtPullMoney.Text != "")
                 {
                     double outParse;
                     if (double.TryParse(txtPullMoney.Text, out outParse))
@@ -89,12 +119,12 @@ namespace MainSystem
 
                         if ((amount2 - outParse) >= 0)
                         {
-                            string query = "insert into property_transition (Branch_ID,Depositor_Name,Bank_ID,Date,Amount,Description,SubProperty_ID,Type,Employee_ID) values(@Branch_ID,@Depositor_Name,@Bank_ID,@Date,@Amount,@Description,@SubProperty_ID,@Type,@Employee_ID)";
+                            string query = "insert into property_transition (Branch_ID,Depositor_Name,Bank_ID,Date,Amount,Description,DetailsProperty_ID,Type,Employee_ID) values(@Branch_ID,@Depositor_Name,@Bank_ID,@Date,@Amount,@Description,@DetailsProperty_ID,@Type,@Employee_ID)";
                             MySqlCommand com = new MySqlCommand(query, dbconnection);
 
                             com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "صرف";
                             com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
-                            com.Parameters.Add("@SubProperty_ID", MySqlDbType.Int16, 11).Value = comSub.SelectedValue.ToString();
+                            com.Parameters.Add("@DetailsProperty_ID", MySqlDbType.Int16, 11).Value = comDetails.SelectedValue.ToString();
                             com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = comBank.SelectedValue;
                             com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                             com.Parameters.Add("@Depositor_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
