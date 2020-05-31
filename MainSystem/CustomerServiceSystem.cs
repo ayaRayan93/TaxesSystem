@@ -131,6 +131,29 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+        private void navBarItem89_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            if (!xtraTabControlCustomerService.Visible)
+                xtraTabControlCustomerService.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlCustomerService, "استبيانات العملاء");
+            if (xtraTabPage == null)
+            {
+                xtraTabControlCustomerService.TabPages.Add("استبيانات العملاء");
+                xtraTabPage = getTabPage(xtraTabControlCustomerService, "استبيانات العملاء");
+            }
+
+            xtraTabPage.Controls.Clear();
+            xtraTabControlCustomerService.SelectedTabPage = xtraTabPage;
+
+            CustomerSurvaryReport objForm = new CustomerSurvaryReport(this);
+
+            objForm.TopLevel = false;
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
     }
 
 }

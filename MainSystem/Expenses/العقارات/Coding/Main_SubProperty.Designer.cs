@@ -35,6 +35,8 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPageSub = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPageMain = new DevExpress.XtraTab.XtraTabPage();
+            this.btnDetails = new System.Windows.Forms.Button();
+            this.xtraTabPageDetails = new DevExpress.XtraTab.XtraTabPage();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -59,16 +61,18 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.btnSub, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnMain, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnDetails, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnMain, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnSub, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(953, 37);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
@@ -78,11 +82,11 @@
             this.btnSub.BackColor = System.Drawing.Color.Gainsboro;
             this.btnSub.FlatAppearance.BorderSize = 0;
             this.btnSub.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnSub.Location = new System.Drawing.Point(383, 4);
+            this.btnSub.Location = new System.Drawing.Point(423, 4);
             this.btnSub.Name = "btnSub";
-            this.btnSub.Size = new System.Drawing.Size(90, 30);
+            this.btnSub.Size = new System.Drawing.Size(110, 30);
             this.btnSub.TabIndex = 0;
-            this.btnSub.Text = "نوع المصروف";
+            this.btnSub.Text = "المصروف الرئيسى";
             this.btnSub.UseVisualStyleBackColor = false;
             this.btnSub.Click += new System.EventHandler(this.btnArea_Click);
             // 
@@ -92,7 +96,7 @@
             this.btnMain.BackColor = System.Drawing.Color.White;
             this.btnMain.FlatAppearance.BorderSize = 0;
             this.btnMain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnMain.Location = new System.Drawing.Point(479, 4);
+            this.btnMain.Location = new System.Drawing.Point(539, 4);
             this.btnMain.Name = "btnMain";
             this.btnMain.Size = new System.Drawing.Size(90, 30);
             this.btnMain.TabIndex = 1;
@@ -112,7 +116,8 @@
             this.xtraTabControl1.TabIndex = 2;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPageSub,
-            this.xtraTabPageMain});
+            this.xtraTabPageMain,
+            this.xtraTabPageDetails});
             this.xtraTabControl1.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControl1_SelectedPageChanged);
             // 
             // xtraTabPageSub
@@ -124,6 +129,25 @@
             // 
             this.xtraTabPageMain.Name = "xtraTabPageMain";
             this.xtraTabPageMain.Size = new System.Drawing.Size(951, 672);
+            // 
+            // btnDetails
+            // 
+            this.btnDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDetails.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnDetails.FlatAppearance.BorderSize = 0;
+            this.btnDetails.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnDetails.Location = new System.Drawing.Point(303, 4);
+            this.btnDetails.Name = "btnDetails";
+            this.btnDetails.Size = new System.Drawing.Size(110, 30);
+            this.btnDetails.TabIndex = 2;
+            this.btnDetails.Text = "المصروف الفرعى";
+            this.btnDetails.UseVisualStyleBackColor = false;
+            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
+            // 
+            // xtraTabPageDetails
+            // 
+            this.xtraTabPageDetails.Name = "xtraTabPageDetails";
+            this.xtraTabPageDetails.Size = new System.Drawing.Size(951, 672);
             // 
             // Main_SubProperty
             // 
@@ -152,5 +176,7 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPageMain;
         private System.Windows.Forms.Button btnSub;
         private System.Windows.Forms.Button btnMain;
+        private System.Windows.Forms.Button btnDetails;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPageDetails;
     }
 }

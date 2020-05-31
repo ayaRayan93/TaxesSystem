@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version2.18\</PublishUrl>
+    <PublishUrl>D:\التكويد\version2.20\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>308</ApplicationRevision>
+    <ApplicationRevision>310</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -375,6 +375,12 @@
       <DependentUpon>CarExpensesReport2.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerServiceSystem.cs" />
+    <Compile Include="CustomerService\CustomerSurvaryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerService\CustomerSurvaryReport.Designer.cs">
+      <DependentUpon>CustomerSurvaryReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerService\CustomerDeliveredBills.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,12 @@
     </Compile>
     <Compile Include="Expenses\العقارات\Coding\Main_SubProperty.Designer.cs">
       <DependentUpon>Main_SubProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Coding\DetailsProperty_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Coding\DetailsProperty_Report.designer.cs">
+      <DependentUpon>DetailsProperty_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\العقارات\Coding\SubProperty_Report.cs">
       <SubType>Form</SubType>
@@ -3455,6 +3467,9 @@
     <EmbeddedResource Include="CarExpensesReport2.resx">
       <DependentUpon>CarExpensesReport2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomerService\CustomerSurvaryReport.resx">
+      <DependentUpon>CustomerSurvaryReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\CustomerDeliveredBills.resx">
       <DependentUpon>CustomerDeliveredBills.cs</DependentUpon>
     </EmbeddedResource>
@@ -3466,6 +3481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Coding\Main_SubProperty.resx">
       <DependentUpon>Main_SubProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Coding\DetailsProperty_Report.resx">
+      <DependentUpon>DetailsProperty_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Coding\SubProperty_Report.resx">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>

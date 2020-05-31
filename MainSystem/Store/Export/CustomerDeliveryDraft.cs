@@ -316,6 +316,8 @@ namespace MainSystem
                     string query1 = "update customer_bill set RecivedFlag='Draft' where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
                     MySqlCommand com1 = new MySqlCommand(query1, dbconnection);
                     com1.ExecuteNonQuery();
+                    UserControl.ItemRecord("customer_bill_Draft_Print", "print"+ txtBranchID.Text, Convert.ToInt16(txtPermBillNumber.Text), DateTime.Now, "", dbconnection);
+
                 }
                 else
                 {
