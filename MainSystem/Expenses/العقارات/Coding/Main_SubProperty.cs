@@ -14,29 +14,40 @@ namespace MainSystem
 {
     public partial class Main_SubProperty : DevExpress.XtraEditors.XtraForm
     {
-        public static SubProperty_Report SubReport;
-        Panel panelSubReport;
         public static MainProperty_Report MainReport;
         Panel panelMainReport;
+        public static SubProperty_Report SubReport;
+        Panel panelSubReport;
+        public static DetailsProperty_Report DetailsReport;
+        Panel panelDetailsReport;
 
         public Main_SubProperty(XtraTabControl TabControlExpenses)
         {
             InitializeComponent();
-            panelSubReport = new Panel();
             panelMainReport = new Panel();
+            panelSubReport = new Panel();
+            panelDetailsReport = new Panel();
         }
 
         private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
-            if(xtraTabControl1.SelectedTabPage == xtraTabPageSub)
+            if (xtraTabControl1.SelectedTabPage == xtraTabPageDetails)
+            {
+                btnDetails.BackColor = Color.White;
+                btnSub.BackColor = Color.Gainsboro;
+                btnMain.BackColor = Color.Gainsboro;
+            }
+            if (xtraTabControl1.SelectedTabPage == xtraTabPageSub)
             {
                 btnSub.BackColor = Color.White;
                 btnMain.BackColor = Color.Gainsboro;
+                btnDetails.BackColor = Color.Gainsboro;
             }
             if (xtraTabControl1.SelectedTabPage == xtraTabPageMain)
             {
                 btnMain.BackColor = Color.White;
                 btnSub.BackColor = Color.Gainsboro;
+                btnDetails.BackColor = Color.Gainsboro;
             }
         }
 
@@ -83,6 +94,31 @@ namespace MainSystem
                 xtraTabPageMain.Controls.Add(panelMainReport);
                 MainReport.Show();
                 xtraTabControl1.SelectedTabPage = xtraTabPageMain;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                panelDetailsReport.Name = "panelDetailsReport";
+                panelDetailsReport.Dock = DockStyle.Fill;
+
+                DetailsReport = new DetailsProperty_Report();
+                DetailsReport.Size = new Size(1109, 660);
+                DetailsReport.TopLevel = false;
+                DetailsReport.FormBorderStyle = FormBorderStyle.None;
+                DetailsReport.Dock = DockStyle.Fill;
+
+                panelDetailsReport.Controls.Clear();
+                panelDetailsReport.Controls.Add(DetailsReport);
+                xtraTabPageDetails.Controls.Add(panelDetailsReport);
+                DetailsReport.Show();
+                xtraTabControl1.SelectedTabPage = xtraTabPageDetails;
             }
             catch (Exception ex)
             {
