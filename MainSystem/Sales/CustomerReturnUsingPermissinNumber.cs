@@ -255,7 +255,6 @@ namespace MainSystem
                     bool flag = false;
                     while (dr.Read())
                     {
-
                         if (dr[0].ToString() != "")
                         {
                             com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);

@@ -1,6 +1,6 @@
 ﻿namespace MainSystem.CustomerService
 {
-    partial class CustomerDeliveredBills
+    partial class CustomerSurvaryReport
     {
         /// <summary>
         /// Required designer variable.
@@ -74,13 +74,13 @@
             this.tLPanProductsContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tLPanProductsContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tLPanProductsContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tLPanProductsContainer.Size = new System.Drawing.Size(820, 579);
+            this.tLPanProductsContainer.Size = new System.Drawing.Size(810, 579);
             this.tLPanProductsContainer.TabIndex = 3;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(47, 0);
+            this.label6.Location = new System.Drawing.Point(46, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 13);
             this.label6.TabIndex = 7;
@@ -104,7 +104,7 @@
             this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(820, 60);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(810, 60);
             this.tableLayoutPanel4.TabIndex = 9;
             // 
             // btnReport
@@ -121,10 +121,10 @@
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 18;
             this.btnReport.LabelText = "تقرير";
-            this.btnReport.Location = new System.Drawing.Point(372, 4);
+            this.btnReport.Location = new System.Drawing.Point(368, 4);
             this.btnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(76, 52);
+            this.btnReport.Size = new System.Drawing.Size(75, 52);
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
@@ -138,7 +138,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dataGridView1.Size = new System.Drawing.Size(820, 359);
+            this.dataGridView1.Size = new System.Drawing.Size(810, 359);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -179,7 +179,7 @@
             this.panelControl1.Controls.Add(this.label3);
             this.panelControl1.Controls.Add(this.btnNewChooes);
             this.panelControl1.Controls.Add(this.btnSearch);
-            this.panelControl1.Location = new System.Drawing.Point(51, 23);
+            this.panelControl1.Location = new System.Drawing.Point(46, 23);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.panelControl1.Name = "panelControl1";
             this.tLPanProductsContainer.SetRowSpan(this.panelControl1, 2);
@@ -337,7 +337,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(820, 579);
+            this.ClientSize = new System.Drawing.Size(810, 579);
             this.Controls.Add(this.tLPanProductsContainer);
             this.Name = "CustomerDeliveredBills";
             this.Text = "CustomerDeliveredBills";
