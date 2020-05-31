@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class SubProperty_Report
+    partial class DetailsProperty_Report
     {
         /// <summary>
         /// Required designer variable.
@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.btndisplayAll = new System.Windows.Forms.Button();
-            this.comSub = new System.Windows.Forms.ComboBox();
+            this.comDetails = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnAddNewSub = new System.Windows.Forms.Button();
+            this.btnAddNewDetails = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panelUpdateSub = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.comMainUpdate = new System.Windows.Forms.ComboBox();
+            this.comSubUpdate = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnUpdateSub = new System.Windows.Forms.Button();
-            this.txtSubNameUpdate = new System.Windows.Forms.TextBox();
+            this.btnUpdateDetails = new System.Windows.Forms.Button();
+            this.txtDetailsNameUpdate = new System.Windows.Forms.TextBox();
             this.panelAddSub = new System.Windows.Forms.Panel();
-            this.comMainAdd = new System.Windows.Forms.ComboBox();
+            this.comSubAdd = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnAddSub = new System.Windows.Forms.Button();
-            this.txtSubNameAdd = new System.Windows.Forms.TextBox();
+            this.btnAddDetails = new System.Windows.Forms.Button();
+            this.txtDetailsNameAdd = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -76,15 +76,15 @@
             this.btndisplayAll.UseVisualStyleBackColor = false;
             this.btndisplayAll.Click += new System.EventHandler(this.btndisplayAll_Click);
             // 
-            // comSub
+            // comDetails
             // 
-            this.comSub.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comSub.FormattingEnabled = true;
-            this.comSub.Location = new System.Drawing.Point(364, 3);
-            this.comSub.Name = "comSub";
-            this.comSub.Size = new System.Drawing.Size(174, 24);
-            this.comSub.TabIndex = 2;
-            this.comSub.SelectedValueChanged += new System.EventHandler(this.comMain_SelectedValueChanged);
+            this.comDetails.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comDetails.FormattingEnabled = true;
+            this.comDetails.Location = new System.Drawing.Point(364, 3);
+            this.comDetails.Name = "comDetails";
+            this.comDetails.Size = new System.Drawing.Size(174, 24);
+            this.comDetails.TabIndex = 2;
+            this.comDetails.SelectedValueChanged += new System.EventHandler(this.comMain_SelectedValueChanged);
             // 
             // label1
             // 
@@ -96,23 +96,23 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 17);
             this.label1.TabIndex = 3;
-            this.label1.Text = "المصروف الرئيسى";
+            this.label1.Text = "المصروف الفرعى";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnAddNewSub
+            // btnAddNewDetails
             // 
-            this.btnAddNewSub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddNewSub.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAddNewSub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddNewSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.btnAddNewSub.ForeColor = System.Drawing.Color.White;
-            this.btnAddNewSub.Location = new System.Drawing.Point(469, 4);
-            this.btnAddNewSub.Name = "btnAddNewSub";
-            this.btnAddNewSub.Size = new System.Drawing.Size(171, 32);
-            this.btnAddNewSub.TabIndex = 12;
-            this.btnAddNewSub.Text = "اضافة مصروف رئيسى جديد ";
-            this.btnAddNewSub.UseVisualStyleBackColor = false;
-            this.btnAddNewSub.Click += new System.EventHandler(this.btnAddNewMain_Click);
+            this.btnAddNewDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddNewDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAddNewDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddNewDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.btnAddNewDetails.ForeColor = System.Drawing.Color.White;
+            this.btnAddNewDetails.Location = new System.Drawing.Point(469, 4);
+            this.btnAddNewDetails.Name = "btnAddNewDetails";
+            this.btnAddNewDetails.Size = new System.Drawing.Size(171, 32);
+            this.btnAddNewDetails.TabIndex = 12;
+            this.btnAddNewDetails.Text = "اضافة مصروف فرعى جديد ";
+            this.btnAddNewDetails.UseVisualStyleBackColor = false;
+            this.btnAddNewDetails.Click += new System.EventHandler(this.btnAddNewMain_Click);
             // 
             // btnUpdate
             // 
@@ -172,10 +172,10 @@
             this.panelUpdateSub.AutoScroll = true;
             this.panelUpdateSub.BackColor = System.Drawing.Color.White;
             this.panelUpdateSub.Controls.Add(this.label2);
-            this.panelUpdateSub.Controls.Add(this.comMainUpdate);
+            this.panelUpdateSub.Controls.Add(this.comSubUpdate);
             this.panelUpdateSub.Controls.Add(this.label3);
-            this.panelUpdateSub.Controls.Add(this.btnUpdateSub);
-            this.panelUpdateSub.Controls.Add(this.txtSubNameUpdate);
+            this.panelUpdateSub.Controls.Add(this.btnUpdateDetails);
+            this.panelUpdateSub.Controls.Add(this.txtDetailsNameUpdate);
             this.panelUpdateSub.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelUpdateSub.Location = new System.Drawing.Point(3, 3);
             this.panelUpdateSub.Name = "panelUpdateSub";
@@ -189,19 +189,19 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label2.Location = new System.Drawing.Point(259, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(114, 17);
+            this.label2.Size = new System.Drawing.Size(105, 17);
             this.label2.TabIndex = 15;
-            this.label2.Text = "المصروف الرئيسى";
+            this.label2.Text = "المصروف الفرعى";
             // 
-            // comMainUpdate
+            // comSubUpdate
             // 
-            this.comMainUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comMainUpdate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comMainUpdate.FormattingEnabled = true;
-            this.comMainUpdate.Location = new System.Drawing.Point(103, 48);
-            this.comMainUpdate.Name = "comMainUpdate";
-            this.comMainUpdate.Size = new System.Drawing.Size(150, 24);
-            this.comMainUpdate.TabIndex = 13;
+            this.comSubUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSubUpdate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comSubUpdate.FormattingEnabled = true;
+            this.comSubUpdate.Location = new System.Drawing.Point(103, 48);
+            this.comSubUpdate.Name = "comSubUpdate";
+            this.comSubUpdate.Size = new System.Drawing.Size(150, 24);
+            this.comSubUpdate.TabIndex = 13;
             // 
             // label3
             // 
@@ -210,43 +210,43 @@
             this.label3.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label3.Location = new System.Drawing.Point(259, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 17);
+            this.label3.Size = new System.Drawing.Size(114, 17);
             this.label3.TabIndex = 14;
-            this.label3.Text = "العقار";
+            this.label3.Text = "المصروف الرئيسى";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnUpdateSub
+            // btnUpdateDetails
             // 
-            this.btnUpdateSub.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnUpdateSub.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnUpdateSub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdateSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.btnUpdateSub.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateSub.Location = new System.Drawing.Point(138, 87);
-            this.btnUpdateSub.Name = "btnUpdateSub";
-            this.btnUpdateSub.Size = new System.Drawing.Size(80, 30);
-            this.btnUpdateSub.TabIndex = 10;
-            this.btnUpdateSub.Text = "تعديل";
-            this.btnUpdateSub.UseVisualStyleBackColor = false;
-            this.btnUpdateSub.Click += new System.EventHandler(this.btnUpdateMain_Click);
+            this.btnUpdateDetails.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnUpdateDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnUpdateDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.btnUpdateDetails.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateDetails.Location = new System.Drawing.Point(138, 87);
+            this.btnUpdateDetails.Name = "btnUpdateDetails";
+            this.btnUpdateDetails.Size = new System.Drawing.Size(80, 30);
+            this.btnUpdateDetails.TabIndex = 10;
+            this.btnUpdateDetails.Text = "تعديل";
+            this.btnUpdateDetails.UseVisualStyleBackColor = false;
+            this.btnUpdateDetails.Click += new System.EventHandler(this.btnUpdateMain_Click);
             // 
-            // txtSubNameUpdate
+            // txtDetailsNameUpdate
             // 
-            this.txtSubNameUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSubNameUpdate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtSubNameUpdate.Location = new System.Drawing.Point(103, 18);
-            this.txtSubNameUpdate.Name = "txtSubNameUpdate";
-            this.txtSubNameUpdate.Size = new System.Drawing.Size(150, 24);
-            this.txtSubNameUpdate.TabIndex = 4;
+            this.txtDetailsNameUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDetailsNameUpdate.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtDetailsNameUpdate.Location = new System.Drawing.Point(103, 18);
+            this.txtDetailsNameUpdate.Name = "txtDetailsNameUpdate";
+            this.txtDetailsNameUpdate.Size = new System.Drawing.Size(150, 24);
+            this.txtDetailsNameUpdate.TabIndex = 4;
             // 
             // panelAddSub
             // 
             this.panelAddSub.AutoScroll = true;
             this.panelAddSub.BackColor = System.Drawing.Color.White;
-            this.panelAddSub.Controls.Add(this.comMainAdd);
+            this.panelAddSub.Controls.Add(this.comSubAdd);
             this.panelAddSub.Controls.Add(this.label6);
-            this.panelAddSub.Controls.Add(this.btnAddSub);
-            this.panelAddSub.Controls.Add(this.txtSubNameAdd);
+            this.panelAddSub.Controls.Add(this.btnAddDetails);
+            this.panelAddSub.Controls.Add(this.txtDetailsNameAdd);
             this.panelAddSub.Controls.Add(this.label5);
             this.panelAddSub.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelAddSub.Location = new System.Drawing.Point(469, 3);
@@ -254,15 +254,15 @@
             this.panelAddSub.Size = new System.Drawing.Size(459, 138);
             this.panelAddSub.TabIndex = 0;
             // 
-            // comMainAdd
+            // comSubAdd
             // 
-            this.comMainAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.comMainAdd.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.comMainAdd.FormattingEnabled = true;
-            this.comMainAdd.Location = new System.Drawing.Point(92, 48);
-            this.comMainAdd.Name = "comMainAdd";
-            this.comMainAdd.Size = new System.Drawing.Size(150, 24);
-            this.comMainAdd.TabIndex = 11;
+            this.comSubAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.comSubAdd.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.comSubAdd.FormattingEnabled = true;
+            this.comSubAdd.Location = new System.Drawing.Point(92, 48);
+            this.comSubAdd.Name = "comSubAdd";
+            this.comSubAdd.Size = new System.Drawing.Size(150, 24);
+            this.comSubAdd.TabIndex = 11;
             // 
             // label6
             // 
@@ -271,34 +271,34 @@
             this.label6.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label6.Location = new System.Drawing.Point(248, 52);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 17);
+            this.label6.Size = new System.Drawing.Size(114, 17);
             this.label6.TabIndex = 12;
-            this.label6.Text = "العقار";
+            this.label6.Text = "المصروف الرئيسى";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnAddSub
+            // btnAddDetails
             // 
-            this.btnAddSub.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAddSub.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAddSub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.btnAddSub.ForeColor = System.Drawing.Color.White;
-            this.btnAddSub.Location = new System.Drawing.Point(127, 87);
-            this.btnAddSub.Name = "btnAddSub";
-            this.btnAddSub.Size = new System.Drawing.Size(80, 30);
-            this.btnAddSub.TabIndex = 10;
-            this.btnAddSub.Text = "اضافه";
-            this.btnAddSub.UseVisualStyleBackColor = false;
-            this.btnAddSub.Click += new System.EventHandler(this.btnAddMain_Click);
+            this.btnAddDetails.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnAddDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAddDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.btnAddDetails.ForeColor = System.Drawing.Color.White;
+            this.btnAddDetails.Location = new System.Drawing.Point(127, 87);
+            this.btnAddDetails.Name = "btnAddDetails";
+            this.btnAddDetails.Size = new System.Drawing.Size(80, 30);
+            this.btnAddDetails.TabIndex = 10;
+            this.btnAddDetails.Text = "اضافه";
+            this.btnAddDetails.UseVisualStyleBackColor = false;
+            this.btnAddDetails.Click += new System.EventHandler(this.btnAddMain_Click);
             // 
-            // txtSubNameAdd
+            // txtDetailsNameAdd
             // 
-            this.txtSubNameAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtSubNameAdd.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtSubNameAdd.Location = new System.Drawing.Point(92, 18);
-            this.txtSubNameAdd.Name = "txtSubNameAdd";
-            this.txtSubNameAdd.Size = new System.Drawing.Size(150, 24);
-            this.txtSubNameAdd.TabIndex = 4;
+            this.txtDetailsNameAdd.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtDetailsNameAdd.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtDetailsNameAdd.Location = new System.Drawing.Point(92, 18);
+            this.txtDetailsNameAdd.Name = "txtDetailsNameAdd";
+            this.txtDetailsNameAdd.Size = new System.Drawing.Size(150, 24);
+            this.txtDetailsNameAdd.TabIndex = 4;
             // 
             // label5
             // 
@@ -307,9 +307,9 @@
             this.label5.Font = new System.Drawing.Font("Tahoma", 10F);
             this.label5.Location = new System.Drawing.Point(248, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(114, 17);
+            this.label5.Size = new System.Drawing.Size(105, 17);
             this.label5.TabIndex = 5;
-            this.label5.Text = "المصروف الرئيسى";
+            this.label5.Text = "المصروف الفرعى";
             // 
             // tableLayoutPanel4
             // 
@@ -320,7 +320,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.comSub, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.comDetails, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.btndisplayAll, 4, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -338,7 +338,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Controls.Add(this.btnUpdate, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnAddNewSub, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnAddNewDetails, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 557);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -377,13 +377,13 @@
             this.gridView1.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gridView1_RowCellClick);
             this.gridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView1_KeyDown);
             // 
-            // SubProperty_Report
+            // DetailsProperty_Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 749);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "SubProperty_Report";
+            this.Name = "DetailsProperty_Report";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -404,27 +404,27 @@
         #endregion
 
         private System.Windows.Forms.Button btndisplayAll;
-        private System.Windows.Forms.ComboBox comSub;
+        private System.Windows.Forms.ComboBox comDetails;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAddNewSub;
+        private System.Windows.Forms.Button btnAddNewDetails;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button btnAddSub;
-        private System.Windows.Forms.TextBox txtSubNameAdd;
+        private System.Windows.Forms.Button btnAddDetails;
+        private System.Windows.Forms.TextBox txtDetailsNameAdd;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnUpdateSub;
-        private System.Windows.Forms.TextBox txtSubNameUpdate;
+        private System.Windows.Forms.Button btnUpdateDetails;
+        private System.Windows.Forms.TextBox txtDetailsNameUpdate;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.Panel panelUpdateSub;
         private System.Windows.Forms.Panel panelAddSub;
-        private System.Windows.Forms.ComboBox comMainAdd;
+        private System.Windows.Forms.ComboBox comSubAdd;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comMainUpdate;
+        private System.Windows.Forms.ComboBox comSubUpdate;
         private System.Windows.Forms.Label label3;
     }
 }

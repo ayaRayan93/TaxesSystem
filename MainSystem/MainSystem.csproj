@@ -399,6 +399,12 @@
     <Compile Include="Expenses\العقارات\Coding\Main_SubProperty.Designer.cs">
       <DependentUpon>Main_SubProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\العقارات\Coding\DetailsProperty_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Coding\DetailsProperty_Report.designer.cs">
+      <DependentUpon>DetailsProperty_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\العقارات\Coding\SubProperty_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3466,6 +3472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Coding\Main_SubProperty.resx">
       <DependentUpon>Main_SubProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Coding\DetailsProperty_Report.resx">
+      <DependentUpon>DetailsProperty_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Coding\SubProperty_Report.resx">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
