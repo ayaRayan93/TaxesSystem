@@ -258,7 +258,7 @@ namespace MainSystem
                 subQuery += " and customer_bill.Branch_ID=" + txtBranchID.Text;
 
 
-            string xQuery = "select CustomerBill_ID from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID ";
+            string xQuery = "select distinct CustomerBill_ID from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID ";
             MySqlCommand com = new MySqlCommand(xQuery, dbconnection);
             MySqlDataReader dr = com.ExecuteReader();
             string str1 = "";

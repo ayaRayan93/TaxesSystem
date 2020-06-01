@@ -35,8 +35,6 @@
             this.dataGridView1 = new DevExpress.XtraGrid.GridControl();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.txtBranch = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.comBranch = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimeTo = new System.Windows.Forms.DateTimePicker();
@@ -169,8 +167,6 @@
             // 
             this.panelControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl1.Controls.Add(this.txtBranch);
-            this.panelControl1.Controls.Add(this.label4);
             this.panelControl1.Controls.Add(this.comBranch);
             this.panelControl1.Controls.Add(this.label5);
             this.panelControl1.Controls.Add(this.dateTimeTo);
@@ -186,27 +182,6 @@
             this.panelControl1.Size = new System.Drawing.Size(719, 114);
             this.panelControl1.TabIndex = 13;
             // 
-            // txtBranch
-            // 
-            this.txtBranch.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBranch.Location = new System.Drawing.Point(465, 62);
-            this.txtBranch.Name = "txtBranch";
-            this.txtBranch.Size = new System.Drawing.Size(100, 25);
-            this.txtBranch.TabIndex = 199;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(568, 68);
-            this.label4.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 17);
-            this.label4.TabIndex = 198;
-            this.label4.Text = "رقم الفاتورة";
-            // 
             // comBranch
             // 
             this.comBranch.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -215,7 +190,7 @@
             this.comBranch.BackColor = System.Drawing.Color.White;
             this.comBranch.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comBranch.FormattingEnabled = true;
-            this.comBranch.Location = new System.Drawing.Point(433, 34);
+            this.comBranch.Location = new System.Drawing.Point(433, 47);
             this.comBranch.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.comBranch.Name = "comBranch";
             this.comBranch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -227,8 +202,8 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(591, 34);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(591, 50);
             this.label5.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(33, 17);
@@ -333,13 +308,13 @@
             this.btnSearch.TextFont = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // CustomerDeliveredBills
+            // CustomerSurvaryReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 579);
             this.Controls.Add(this.tLPanProductsContainer);
-            this.Name = "CustomerDeliveredBills";
+            this.Name = "CustomerSurvaryReport";
             this.Text = "CustomerDeliveredBills";
             this.Load += new System.EventHandler(this.CustomerDeliveredBills_Load);
             this.tLPanProductsContainer.ResumeLayout(false);
@@ -363,8 +338,6 @@
         private DevExpress.XtraGrid.GridControl dataGridView1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private System.Windows.Forms.TextBox txtBranch;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimeTo;

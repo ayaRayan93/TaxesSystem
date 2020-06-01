@@ -135,7 +135,6 @@ namespace MainSystem
 
             loaded = true;
         }
-
         public XtraTabPage getTabPage(string text)
         {
             for (int i = 0; i < tabControlCustomerService.TabPages.Count; i++)
@@ -144,30 +143,27 @@ namespace MainSystem
                     return tabControlCustomerService.TabPages[i];
                 }
             return null;
-        }
-        
+        }     
         private void radFaceBook_CheckedChanged(object sender, EventArgs e)
         {
             CommunicationWay = "FaceBook";
             txtCommunication.Text = "";
         }
-
         private void radInstagram_CheckedChanged(object sender, EventArgs e)
         {
             CommunicationWay = "Instagram";
             txtCommunication.Text = "";
         }
-
         private void radWhatsApp_CheckedChanged(object sender, EventArgs e)
         {
             CommunicationWay = "WhatsApp";
             txtCommunication.Text = txtPhone.Text;
         }
-
         private void radEmail_CheckedChanged(object sender, EventArgs e)
         {
             CommunicationWay = "Email";
             txtCommunication.Text = "";
         }
+
     }
 }
