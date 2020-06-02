@@ -23,6 +23,7 @@ namespace MainSystem
         XtraTabControl xtraTabControlProperty;
         DataRowView row1 = null;
         bool loaded = false;
+        bool loaded2 = false;
 
         public SubPropertyTransitions_Report(XtraTabControl XtraTabControlProperty)
         {
@@ -68,6 +69,7 @@ namespace MainSystem
                 {
                     if (comMain.SelectedValue != null)
                     {
+                        loaded2 = false;
                         string query = "select * from property_sub where MainProperty_ID=" + comMain.SelectedValue.ToString();
                         MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                         DataTable dt = new DataTable();
@@ -76,13 +78,45 @@ namespace MainSystem
                         comSub.DisplayMember = dt.Columns["SubProperty_Name"].ToString();
                         comSub.ValueMember = dt.Columns["SubProperty_ID"].ToString();
                         comSub.SelectedIndex = -1;
+                        comDetails.DataSource = null;
+                        loaded2 = true;
                     }
                     else
                     {
                         comSub.DataSource = null;
+                        comDetails.DataSource = null;
                     }
                 }
                 catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void comSub_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (loaded && loaded2)
+            {
+                try
+                {
+                    if (comSub.SelectedValue != null)
+                    {
+                        string query = "select * from property_details where SubProperty_ID=" + comSub.SelectedValue.ToString();
+                        MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        comDetails.DataSource = dt;
+                        comDetails.DisplayMember = dt.Columns["DetailsProperty_Name"].ToString();
+                        comDetails.ValueMember = dt.Columns["DetailsProperty_ID"].ToString();
+                        comDetails.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        comDetails.DataSource = null;
+                    }
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
@@ -143,9 +177,10 @@ namespace MainSystem
             
             double totalProperty = 0;
             string qSub = "";
+            string qDetails = "";
             string qSafe = "";
             
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT property_transition.PropertyTransition_ID as 'التسلسل',property_transition.Date as 'التاريخ',property_main.MainProperty_Name as 'العقار',property_sub.SubProperty_Name as 'نوع المصروف',bank.Bank_Name as 'الخزينة',property_transition.Amount as 'المبلغ',employee.Employee_Name as 'الموظف',property_transition.Depositor_Name as 'المستلم',property_transition.Description as 'البيان' FROM property_transition left JOIN property_sub ON property_sub.SubProperty_ID = property_transition.SubProperty_ID left JOIN property_main ON property_main.MainProperty_ID = property_sub.MainProperty_ID INNER JOIN branch ON branch.Branch_ID = property_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = property_transition.Bank_ID INNER JOIN employee ON property_transition.Employee_ID = employee.Employee_ID where PropertyTransition_ID=0", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT property_transition.PropertyTransition_ID as 'التسلسل',property_transition.Date as 'التاريخ',property_main.MainProperty_Name as 'العقار',property_sub.SubProperty_Name as 'المصروف الرئيسى',property_details.DetailsProperty_Name as 'المصروف الفرعى',bank.Bank_Name as 'الخزينة',property_transition.Amount as 'المبلغ',employee.Employee_Name as 'الموظف',property_transition.Depositor_Name as 'المستلم',property_transition.Description as 'البيان' FROM property_transition left JOIN property_details ON property_details.DetailsProperty_ID = property_transition.DetailsProperty_ID left JOIN property_sub ON property_sub.SubProperty_ID = property_details.SubProperty_ID left JOIN property_main ON property_main.MainProperty_ID = property_sub.MainProperty_ID INNER JOIN branch ON branch.Branch_ID = property_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = property_transition.Bank_ID INNER JOIN employee ON property_transition.Employee_ID = employee.Employee_ID where PropertyTransition_ID=0", conn);
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
             gridControl1.DataSource = sourceDataSet.Tables[0];
@@ -159,6 +194,15 @@ namespace MainSystem
                 qSub = comSub.SelectedValue.ToString();
             }
 
+            if (comDetails.SelectedValue == null && comDetails.Text == "")
+            {
+                qDetails = "select DetailsProperty_ID from property_details";
+            }
+            else
+            {
+                qDetails = comDetails.SelectedValue.ToString();
+            }
+
             if (comSafe.SelectedValue == null && comSafe.Text == "")
             {
                 //qSafe = "select Bank_ID from bank";
@@ -169,7 +213,7 @@ namespace MainSystem
                 qSafe = comSafe.SelectedValue.ToString();
             }
 
-            string query = "SELECT property_transition.PropertyTransition_ID as 'التسلسل',property_transition.Date as 'التاريخ',property_main.MainProperty_Name as 'العقار',property_sub.SubProperty_Name as 'نوع المصروف',property_transition.Depositor_Name as 'المستلم',bank.Bank_Name as 'الخزينة',property_transition.Amount as 'المبلغ',property_transition.Description as 'البيان',employee.Employee_Name as 'الموظف' FROM property_transition left JOIN property_sub ON property_transition.SubProperty_ID=property_sub.SubProperty_ID left JOIN property_main ON property_sub.MainProperty_ID=property_main.MainProperty_ID INNER JOIN branch ON branch.Branch_ID = property_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = property_transition.Bank_ID INNER JOIN employee ON property_transition.Employee_ID = employee.Employee_ID where property_sub.MainProperty_ID=" + comMain.SelectedValue.ToString() + " and property_transition.SubProperty_ID in(" + qSub + ") and property_transition.Bank_ID in(" + qSafe + ") and property_transition.Error=0 and date(property_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by property_transition.Date";
+            string query = "SELECT property_transition.PropertyTransition_ID as 'التسلسل',property_transition.Date as 'التاريخ',property_main.MainProperty_Name as 'العقار',property_sub.SubProperty_Name as 'المصروف الرئيسى',property_details.DetailsProperty_Name as 'المصروف الفرعى',property_transition.Depositor_Name as 'المستلم',bank.Bank_Name as 'الخزينة',property_transition.Amount as 'المبلغ',property_transition.Description as 'البيان',employee.Employee_Name as 'الموظف' FROM property_transition left JOIN property_details ON property_details.DetailsProperty_ID = property_transition.DetailsProperty_ID left JOIN property_sub ON property_details.SubProperty_ID=property_sub.SubProperty_ID left JOIN property_main ON property_sub.MainProperty_ID=property_main.MainProperty_ID INNER JOIN branch ON branch.Branch_ID = property_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = property_transition.Bank_ID INNER JOIN employee ON property_transition.Employee_ID = employee.Employee_ID where property_sub.MainProperty_ID=" + comMain.SelectedValue.ToString() + " and property_sub.SubProperty_ID in(" + qSub + ") and property_transition.DetailsProperty_ID in(" + qDetails + ") and property_transition.Bank_ID in(" + qSafe + ") and property_transition.Error=0 and date(property_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by property_transition.Date";
             MySqlCommand comand = new MySqlCommand(query, conn);
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
@@ -180,7 +224,8 @@ namespace MainSystem
                 {
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التسلسل"], dr["التسلسل"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["العقار"], dr["العقار"].ToString());
-                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["نوع المصروف"], dr["نوع المصروف"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المصروف الرئيسى"], dr["المصروف الرئيسى"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المصروف الفرعى"], dr["المصروف الفرعى"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المستلم"], dr["المستلم"].ToString());
                    
