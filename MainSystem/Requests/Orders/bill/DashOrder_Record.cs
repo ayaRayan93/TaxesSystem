@@ -907,7 +907,7 @@ namespace MainSystem
         {
             try
             {
-                if (addFlage && row1 != null && txtTotalMeters.Text != "" && txtBalat.Text != "" && txtCarton.Text != "" && txtEmployee.Text != "" && comStore.SelectedValue != null && comFactory.SelectedValue != null)
+                if (addFlage && row1 != null && (txtTotalMeters.Text != "" || txtBalat.Text != "" || txtCarton.Text != "") && txtEmployee.Text != "" && comStore.SelectedValue != null && comFactory.SelectedValue != null)
                 {
                     double total;
                     int balate , cartons_balate = 0;
