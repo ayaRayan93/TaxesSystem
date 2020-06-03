@@ -15,6 +15,7 @@ using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
 using DevExpress.XtraGrid.Views.Grid;
 using MainSystem.Reports.sales;
+using MainSystem.Accounting;
 
 namespace MainSystem
 {
@@ -402,6 +403,40 @@ namespace MainSystem
             objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
+        }
+        private void navBarItem90_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+                if (!xtraTabControlAccounting.Visible)
+                    xtraTabControlAccounting.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlAccounting, "(مبيعات مندوب (شركة/مجموعة");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlAccounting.TabPages.Add("(مبيعات مندوب (شركة/مجموعة");
+                    xtraTabPage = getTabPage(xtraTabControlAccounting, "(مبيعات مندوب (شركة/مجموعة");
+                }
+
+                xtraTabPage.Controls.Clear();
+                xtraTabControlAccounting.SelectedTabPage = xtraTabPage;
+
+                DelegateSalesForCompanyGroup objForm = new DelegateSalesForCompanyGroup(this);
+
+                objForm.TopLevel = false;
+                xtraTabPage.Controls.Add(objForm);
+                objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objForm.Dock = DockStyle.Fill;
+                //objForm.DisplayAtaqm();
+                objForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

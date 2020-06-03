@@ -11,14 +11,14 @@ using DevExpress.XtraEditors;
 using MySql.Data.MySqlClient;
 using DevExpress.XtraGrid.Columns;
 
-namespace MainSystem
+namespace MainSystem.Accounting
 {
-    public partial class DelegateSalesForCompany : DevExpress.XtraEditors.XtraForm
+    public partial class DelegateSalesForCompanyGroup : DevExpress.XtraEditors.XtraForm
     {
         private MySqlConnection dbconnection, dbconnection1;
         bool loaded = false;
         MainForm MainForm;
-        public DelegateSalesForCompany(MainForm MainForm)
+        public DelegateSalesForCompanyGroup(MainForm MainForm)
         {
             try
             {
@@ -301,7 +301,7 @@ namespace MainSystem
                     dv.Sort = "Factory_Name";
                     _Table = dv.ToTable();
                     GridControl1.DataSource = _Table;
-
+                    
 
                     CalTotal(_Table);
                 }
@@ -310,9 +310,9 @@ namespace MainSystem
                     MessageBox.Show("اختار الفرع والمندوب");
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("اختار الفرع");
+                MessageBox.Show(ex.Message);
             }
             dbconnection.Close();
         }
@@ -388,7 +388,7 @@ namespace MainSystem
             //}
             //else if (txtDelegateID.Text != "")
             //{
-                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,FORMAT(sum(product_bill.PriceAD*Quantity),2) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID  inner join factory on data.Factory_ID=factory.Factory_ID where CustomerBill_ID in (" + customerBill_ids + ") " + subQuery + " and delegate.Delegate_ID=" + txtDelegateID.Text + " group by Factory_Name ";
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,Group_Name,FORMAT(sum(product_bill.PriceAD*Quantity),2) from product_bill inner join delegate on delegate.Delegate_ID=product_bill.Delegate_ID inner join data on data.Data_ID=product_bill.Data_ID  inner join factory on data.Factory_ID=factory.Factory_ID inner JOIN groupo on data.Group_ID=groupo.Group_ID where CustomerBill_ID in (" + customerBill_ids + ") " + subQuery + " and delegate.Delegate_ID=" + txtDelegateID.Text + " group by Factory_Name ";
             //}
             //else
             //{
@@ -408,20 +408,22 @@ namespace MainSystem
                     row["Delegate_Name"] = dr[1].ToString();
                 if (dr[2].ToString() != "")
                     row["Factory_Name"] = dr[2].ToString();
-
                 if (dr[3].ToString() != "")
-                    row["TotalSales"] = dr[3].ToString();
+                    row["Group_Name"] = dr[3].ToString();
+
+                if (dr[4].ToString() != "")
+                    row["TotalSales"] = dr[4].ToString();
                 else
                     row["TotalSales"] = 0;
-                if (dr[3].ToString() != "")
-                    row["Safaya"] = dr[3].ToString();
+                if (dr[4].ToString() != "")
+                    row["Safaya"] = dr[4].ToString();
                 else
                     row["Safaya"] = 0;
 
-                    row["PercentageDelegate"] = getDelegateProfit(dr[2].ToString());
+                    row["PercentageDelegate"] = getDelegateProfit(dr[2].ToString(), dr[3].ToString());
                
 
-                row["DelegateProfit"] = getDelegateProfit(dr[2].ToString()) * Convert.ToDouble(row["Safaya"]);
+                row["DelegateProfit"] = getDelegateProfit(dr[2].ToString(), dr[3].ToString()) * Convert.ToDouble(row["Safaya"]);
                 _Table.Rows.Add(row);
             }
             dr.Close();
@@ -438,7 +440,7 @@ namespace MainSystem
             //else if (txtDelegateID.Text != "")
             //{
                 //query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,sum(TotalAD) from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID inner join factory on data.Factory_ID=factory.Factory_ID where customer_return_bill.CustomerReturnBill_ID in (" + CustomerReturnBill_IDs + ")  " + subQuery + " group by factory.Factory_ID";
-                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,FORMAT(sum(TotalAD),2) from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID  inner join factory on data.Factory_ID=factory.Factory_ID where customer_return_bill.Branch_BillNumber in (" + CustomerReturnBill_IDs + ") and  customer_return_bill.Branch_ID=" + txtBranchID.Text + " " + subQuery + " group by factory.Factory_ID";
+                query = "select delegate.Delegate_ID,Delegate_Name,Factory_Name,Group_Name,FORMAT(sum(TotalAD),2) from customer_return_bill inner join customer_return_bill_details on customer_return_bill.CustomerReturnBill_ID=customer_return_bill_details.CustomerReturnBill_ID inner join delegate on delegate.Delegate_ID=customer_return_bill_details.Delegate_ID inner join data on data.Data_ID=customer_return_bill_details.Data_ID  inner join factory on data.Factory_ID=factory.Factory_ID inner JOIN groupo on data.Group_ID=groupo.Group_ID where customer_return_bill.Branch_BillNumber in (" + CustomerReturnBill_IDs + ") and  customer_return_bill.Branch_ID=" + txtBranchID.Text + " " + subQuery + " group by factory.Factory_ID";
 
             //}
             //else
@@ -457,20 +459,20 @@ namespace MainSystem
                 {
                     if (txtFactory.Text == "")
                     {
-                        if (item[2].ToString() == dr[2].ToString())
+                        if (item[2].ToString() == dr[2].ToString()&& item[3].ToString() == dr[3].ToString())
                         {
-                            if (dr[3].ToString() != "")
+                            if (dr[4].ToString() != "")
                             {
-                                item["TotalReturn"] = dr[3].ToString();
-                                item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
+                                item["TotalReturn"] = dr[4].ToString();
+                                item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[4].ToString())).ToString();
                             }
                             else
                             {
                                 item["TotalReturn"] = 0;
                                 item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - 0);
                             }
-                            item["PercentageDelegate"] =getDelegateProfit(dr[2].ToString());
-                            item["DelegateProfit"] = getDelegateProfit(dr[2].ToString()) * Convert.ToDouble(item["Safaya"]);
+                            item["PercentageDelegate"] =getDelegateProfit(dr[2].ToString(), dr[3].ToString());
+                            item["DelegateProfit"] = getDelegateProfit(dr[2].ToString(), dr[3].ToString()) * Convert.ToDouble(item["Safaya"]);
 
                             flag = false;
                         }
@@ -479,18 +481,18 @@ namespace MainSystem
                     {
                         if (item[0].ToString() == dr[0].ToString())
                         {
-                            if (dr[3].ToString() != "")
+                            if (dr[4].ToString() != "")
                             {
-                                item["TotalReturn"] = dr[3].ToString();
-                                item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[3].ToString())).ToString();
+                                item["TotalReturn"] = dr[4].ToString();
+                                item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - Convert.ToDouble(dr[4].ToString())).ToString();
                             }
                             else
                             {
                                 item["TotalReturn"] = 0;
                                 item["Safaya"] = (Convert.ToDouble(item["TotalSales"].ToString()) - 0);
                             }
-                            item["PercentageDelegate"] = getDelegateProfit(dr[2].ToString());
-                            item["DelegateProfit"] = getDelegateProfit(dr[2].ToString()) * Convert.ToDouble(item["Safaya"]);
+                            item["PercentageDelegate"] = getDelegateProfit(dr[2].ToString(), dr[3].ToString());
+                            item["DelegateProfit"] = getDelegateProfit(dr[2].ToString(), dr[3].ToString()) * Convert.ToDouble(item["Safaya"]);
 
                             flag = false;
                         }
@@ -500,11 +502,11 @@ namespace MainSystem
                 if (flag)
                 {
                     DataRow row = temp.NewRow();
-                    if (dr[3].ToString() != "")
+                    if (dr[4].ToString() != "")
                     {
-                        row["TotalReturn"] = dr[3].ToString();
-                        if(dr[3].ToString()!="")
-                            row["Safaya"] = -Convert.ToDouble(dr[3].ToString());
+                        row["TotalReturn"] = dr[4].ToString();
+                        if(dr[4].ToString()!="")
+                            row["Safaya"] = -Convert.ToDouble(dr[4].ToString());
                     }
                     else
                     {
@@ -514,12 +516,13 @@ namespace MainSystem
                     row["Delegate_ID"] = dr[0].ToString();
                     row["Delegate_Name"] = dr[1].ToString();
                     row["Factory_Name"] = dr[2].ToString();
-                    row["PercentageDelegate"] =getDelegateProfit(dr[2].ToString());
+                    row["Group_Name"] = dr[3].ToString();
+                    row["PercentageDelegate"] =getDelegateProfit(dr[2].ToString(), dr[3].ToString());
                     double x = Convert.ToDouble(row["Safaya"]);
-                    double y = getDelegateProfit(dr[2].ToString());
+                    double y = getDelegateProfit(dr[2].ToString(), dr[3].ToString());
                     string cc = dr[2].ToString();
                     double z = x * y;
-                    row["DelegateProfit"] = getDelegateProfit(dr[2].ToString()) * Convert.ToDouble(row["Safaya"]);
+                    row["DelegateProfit"] = getDelegateProfit(dr[2].ToString(), dr[3].ToString()) * Convert.ToDouble(row["Safaya"]);
 
                     temp.Rows.Add(row);
                 }
@@ -540,6 +543,7 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("Delegate_ID", typeof(int)));
             _Table.Columns.Add(new DataColumn("Delegate_Name", typeof(string)));
             _Table.Columns.Add(new DataColumn("Factory_Name", typeof(string)));
+            _Table.Columns.Add(new DataColumn("Group_Name", typeof(string)));
             _Table.Columns.Add(new DataColumn("TotalSales", typeof(string)));
             _Table.Columns.Add(new DataColumn("TotalReturn", typeof(string)));
             _Table.Columns.Add(new DataColumn("Safaya", typeof(decimal)));
@@ -552,7 +556,7 @@ namespace MainSystem
             try
             {
                 dataX d = new dataX(dateTimeFrom.Text, dateTimeTo.Text, comDelegate.Text, comFactory.Text);
-                MainForm.displayDelegateReport2(GridControl1,"",d);
+              //  MainForm.displayDelegateReport2(GridControl1,"",d);
             }
             catch (Exception ex)
             {
@@ -580,11 +584,11 @@ namespace MainSystem
 
         }
 
-        public double getDelegateProfit(string factoryName)
+        public double getDelegateProfit(string factoryName,string groupName)
         {
             dbconnection1.Close();
             dbconnection1.Open();
-            string query = "select max(PercentageDelegate) from Data inner join sellprice on sellprice.Data_ID=data.Data_ID inner join factory on factory.Factory_ID=data.Factory_ID where Factory_Name='" + factoryName+"'";
+            string query = "select max(PercentageDelegate) from Data inner join sellprice on sellprice.Data_ID=data.Data_ID inner join factory on factory.Factory_ID=data.Factory_ID inner join groupo on groupo.Group_ID=data.Group_ID where Factory_Name='" + factoryName+"' and Group_Name='"+groupName+"'";
             MySqlCommand com = new MySqlCommand(query, dbconnection1);
             double d =Convert.ToDouble(com.ExecuteScalar());
             dbconnection1.Close();

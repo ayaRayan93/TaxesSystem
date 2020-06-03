@@ -113,6 +113,16 @@ namespace MainSystem.CustomerService
                     returnCustomerBill_ID += dr[0].ToString() + ",";
                 }
                 dr.Close();
+
+                query = "SELECT CustomerBill_ID FROM customer_service_survey";
+                com = new MySqlCommand(query, dbconnection);
+                dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    returnCustomerBill_ID += dr[0].ToString() + ",";
+                }
+                dr.Close();
+
                 returnCustomerBill_ID += "0";
                 if (comBranch.Text != "")
                 {

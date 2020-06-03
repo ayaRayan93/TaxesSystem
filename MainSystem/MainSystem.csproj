@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version2.21\</PublishUrl>
+    <PublishUrl>D:\التكويد\version2.23\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>311</ApplicationRevision>
+    <ApplicationRevision>313</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -199,6 +199,12 @@
     </Compile>
     <Compile Include="Accounting\DelegateLeastBills.Designer.cs">
       <DependentUpon>DelegateLeastBills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\DelegateSalesForCompanyGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Accounting\DelegateSalesForCompanyGroup.Designer.cs">
+      <DependentUpon>DelegateSalesForCompanyGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Accounting\DelegateSalesForCompanyAgel.cs">
       <SubType>Form</SubType>
@@ -3379,6 +3385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\DelegateLeastBills.resx">
       <DependentUpon>DelegateLeastBills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Accounting\DelegateSalesForCompanyGroup.resx">
+      <DependentUpon>DelegateSalesForCompanyGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounting\DelegateSalesForCompanyAgel.resx">
       <DependentUpon>DelegateSalesForCompanyAgel.cs</DependentUpon>
