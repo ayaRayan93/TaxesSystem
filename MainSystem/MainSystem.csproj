@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version2.23\</PublishUrl>
+    <PublishUrl>D:\التكويد\version2.24\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>313</ApplicationRevision>
+    <ApplicationRevision>314</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -381,6 +381,12 @@
       <DependentUpon>CarExpensesReport2.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerServiceSystem.cs" />
+    <Compile Include="CustomerService\CustomerComplain\ComplainRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerService\CustomerComplain\ComplainRecord.Designer.cs">
+      <DependentUpon>ComplainRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerService\CustomerSurvaryReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,12 @@
     </Compile>
     <Compile Include="CustomerService\displayCustomerBill.Designer.cs">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerService\CustomerComplain\Form2ComplainDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerService\CustomerComplain\Form2ComplainDetails.designer.cs">
+      <DependentUpon>Form2ComplainDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\العقارات\Coding\MainProperty_Report.cs">
       <SubType>Form</SubType>
@@ -1221,6 +1233,12 @@
     </Compile>
     <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition.designer.cs">
       <DependentUpon>Print_AglTransition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping\Recording\CarShipping_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\Recording\CarShipping_Record.designer.cs">
+      <DependentUpon>CarShipping_Record.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Export\CustomerDeliveryDraft.cs">
       <SubType>Form</SubType>
@@ -3482,6 +3500,9 @@
     <EmbeddedResource Include="CarExpensesReport2.resx">
       <DependentUpon>CarExpensesReport2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomerService\CustomerComplain\ComplainRecord.resx">
+      <DependentUpon>ComplainRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\CustomerSurvaryReport.resx">
       <DependentUpon>CustomerSurvaryReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -3490,6 +3511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\displayCustomerBill.resx">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerService\CustomerComplain\Form2ComplainDetails.resx">
+      <DependentUpon>Form2ComplainDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Coding\MainProperty_Report.resx">
       <DependentUpon>MainProperty_Report.cs</DependentUpon>
@@ -3772,6 +3796,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Sales Report\تفاصيل الاصناف المباعة\SalesProductsBillsDetails_Report.resx">
       <DependentUpon>SalesProductsBillsDetails_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\Recording\CarShipping_Record.resx">
+      <DependentUpon>CarShipping_Record.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\CustomerDeliveryDraft.resx">
       <DependentUpon>CustomerDeliveryDraft.cs</DependentUpon>

@@ -44,7 +44,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                string query = "select * from cars";
+                string query = "select * from cars where Type=1";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -106,139 +106,145 @@ namespace MainSystem
                 dbconnection.Open();
                 if (txtAddress.Text != "" && txtNolone.Text != "")
                 {
-                    string query = "insert into car_Income (meter_reading,Car_ID,Address,NoCarton,NoSets,NoDocks,NoColumns,NoCompinations,NoPanio,Nolon,Gate,Taateg,Safay,Date,Note,NoShaors,NoUnits,NoKhlats,NoSma3at,NoA3watStalice,NoShetat) values (@meter_reading,@Car_ID,@Address,@NoCarton,@NoSets,@NoDocks,@NoColumns,@NoCompinations,@NoPanio,@Nolon,@Gate,@Taateg,@Safay,@Date,@Note,@NoShaors,@NoUnits,@NoKhlats,@NoSma3at,@NoA3watStalice,@NoShetat)";
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    if (dataGridView1.RowCount > 0)
+                    {
+                        string query = "insert into car_Income (meter_reading,Car_ID,Address,NoCarton,NoSets,NoDocks,NoColumns,NoCompinations,NoPanio,Nolon,Gate,Taateg,Safay,Date,Note,NoShaors,NoUnits,NoKhlats,NoSma3at,NoA3watStalice,NoShetat) values (@meter_reading,@Car_ID,@Address,@NoCarton,@NoSets,@NoDocks,@NoColumns,@NoCompinations,@NoPanio,@Nolon,@Gate,@Taateg,@Safay,@Date,@Note,@NoShaors,@NoUnits,@NoKhlats,@NoSma3at,@NoA3watStalice,@NoShetat)";
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
 
-                    com.Parameters.Add("@Date", MySqlDbType.Date);
-                    com.Parameters["@Date"].Value =dateTimePicker1.Value.Date;
-                    com.Parameters.Add("@Car_ID", MySqlDbType.Int16);
-                    com.Parameters["@Car_ID"].Value = comCarNumber.SelectedValue;
-                    com.Parameters.Add("@Address", MySqlDbType.VarChar);
-                    com.Parameters["@Address"].Value = txtAddress.Text;
-                    com.Parameters.Add("@NoCarton", MySqlDbType.Double);
-                    com.Parameters["@NoCarton"].Value = txtNoCarton.Text;
-                    com.Parameters.Add("@NoSets", MySqlDbType.Double);
-                    com.Parameters["@NoSets"].Value = txtNoSets.Text;
-                    com.Parameters.Add("@NoDocks", MySqlDbType.Double);
-                    com.Parameters["@NoDocks"].Value = txtNoDocks.Text;
-                    com.Parameters.Add("@NoColumns", MySqlDbType.Double);
-                    com.Parameters["@NoColumns"].Value = txtNoColumns.Text;
-                    com.Parameters.Add("@NoCompinations", MySqlDbType.Double);
-                    com.Parameters["@NoCompinations"].Value = txtNoComp.Text;
-                    com.Parameters.Add("@NoPanio", MySqlDbType.Double);
-                    com.Parameters["@NoPanio"].Value = txtNoPanio.Text;
-
-                    com.Parameters.Add("@NoShaors", MySqlDbType.Int16);
-                    com.Parameters["@NoShaors"].Value = txtNoShaors.Text;
-                    com.Parameters.Add("@NoUnits", MySqlDbType.Int16);
-                    com.Parameters["@NoUnits"].Value = txtNoUnits.Text;
-                    com.Parameters.Add("@NoKhlats", MySqlDbType.Int16);
-                    com.Parameters["@NoKhlats"].Value = txtNoKhlats.Text;
-                    com.Parameters.Add("@NoSma3at", MySqlDbType.Int16);
-                    com.Parameters["@NoSma3at"].Value = txtNoSma3at.Text;
-                    com.Parameters.Add("@NoA3watStalice", MySqlDbType.Int16);
-                    com.Parameters["@NoA3watStalice"].Value = txtNoA3watStalice.Text;
-                    com.Parameters.Add("@NoShetat", MySqlDbType.Int16);
-                    com.Parameters["@NoShetat"].Value = txtNoShetat.Text;
-
-                    com.Parameters.Add("@Nolon", MySqlDbType.Double);
-                    com.Parameters["@Nolon"].Value = txtNolone.Text;
-                    com.Parameters.Add("@Gate", MySqlDbType.Double);
-                    com.Parameters["@Gate"].Value = getGateValue();
-                    com.Parameters.Add("@Taateg", MySqlDbType.Double);
-                    com.Parameters["@Taateg"].Value = getTaategValue();
-                    com.Parameters.Add("@Safay", MySqlDbType.Double);
-                    com.Parameters["@Safay"].Value = getSafayValue();
-                    if (txtNote.Text != "")
-                    {
-                        com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                        com.Parameters["@Note"].Value = txtNote.Text;
-                    }
-                    else
-                    {
-                        com.Parameters.Add("@Note", MySqlDbType.VarChar);
-                        com.Parameters["@Note"].Value = null;
-                    }
-                    com.Parameters.Add("@meter_reading", MySqlDbType.Decimal);
-                    com.Parameters["@meter_reading"].Value = txtMeterNow.Text;
-                    com.ExecuteNonQuery();
-
-                    double totalSafay=0, totalGate=0;
-                    query = "select TotalSafay,TotalGate from Total_Revenue_Of_CarIncom where Car_ID= " + comCarNumber.SelectedValue + "";
-                    com = new MySqlCommand(query,dbconnection);
-                    MySqlDataReader dr = com.ExecuteReader();
-                    bool flag = false;
-                    while (dr.Read())
-                    {
-                        totalSafay =Convert.ToDouble(dr["TotalSafay"].ToString());
-                        if(dr["TotalGate"].ToString()!="")
-                        totalGate = Convert.ToDouble(dr["TotalGate"].ToString());
-                        flag = true;
-                    }
-                    totalSafay += getSafayValue();
-                    totalGate += getGateValue();
-                    dr.Close();
-                    if (flag)
-                    {
-                        query = "update Total_Revenue_Of_CarIncom set TotalSafay=" + totalSafay + ",TotalGate=" + totalGate + " where Car_ID= " + comCarNumber.SelectedValue;
-                        com = new MySqlCommand(query, dbconnection);
-                        com.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        query = "insert into  Total_Revenue_Of_CarIncom  (TotalSafay,TotalGate, Car_ID) values(@TotalSafay,@TotalGate,@Car_ID)";
-                        com = new MySqlCommand(query, dbconnection);
-                        com.Parameters.Add("@TotalSafay", MySqlDbType.Double);
-                        com.Parameters["@TotalSafay"].Value = totalSafay;
-                        com.Parameters.Add("@TotalGate", MySqlDbType.Double);
-                        com.Parameters["@TotalGate"].Value = totalGate;
+                        com.Parameters.Add("@Date", MySqlDbType.Date);
+                        com.Parameters["@Date"].Value = dateTimePicker1.Value.Date;
                         com.Parameters.Add("@Car_ID", MySqlDbType.Int16);
                         com.Parameters["@Car_ID"].Value = comCarNumber.SelectedValue;
+                        com.Parameters.Add("@Address", MySqlDbType.VarChar);
+                        com.Parameters["@Address"].Value = txtAddress.Text;
+                        com.Parameters.Add("@NoCarton", MySqlDbType.Double);
+                        com.Parameters["@NoCarton"].Value = txtNoCarton.Text;
+                        com.Parameters.Add("@NoSets", MySqlDbType.Double);
+                        com.Parameters["@NoSets"].Value = txtNoSets.Text;
+                        com.Parameters.Add("@NoDocks", MySqlDbType.Double);
+                        com.Parameters["@NoDocks"].Value = txtNoDocks.Text;
+                        com.Parameters.Add("@NoColumns", MySqlDbType.Double);
+                        com.Parameters["@NoColumns"].Value = txtNoColumns.Text;
+                        com.Parameters.Add("@NoCompinations", MySqlDbType.Double);
+                        com.Parameters["@NoCompinations"].Value = txtNoComp.Text;
+                        com.Parameters.Add("@NoPanio", MySqlDbType.Double);
+                        com.Parameters["@NoPanio"].Value = txtNoPanio.Text;
+
+                        com.Parameters.Add("@NoShaors", MySqlDbType.Int16);
+                        com.Parameters["@NoShaors"].Value = txtNoShaors.Text;
+                        com.Parameters.Add("@NoUnits", MySqlDbType.Int16);
+                        com.Parameters["@NoUnits"].Value = txtNoUnits.Text;
+                        com.Parameters.Add("@NoKhlats", MySqlDbType.Int16);
+                        com.Parameters["@NoKhlats"].Value = txtNoKhlats.Text;
+                        com.Parameters.Add("@NoSma3at", MySqlDbType.Int16);
+                        com.Parameters["@NoSma3at"].Value = txtNoSma3at.Text;
+                        com.Parameters.Add("@NoA3watStalice", MySqlDbType.Int16);
+                        com.Parameters["@NoA3watStalice"].Value = txtNoA3watStalice.Text;
+                        com.Parameters.Add("@NoShetat", MySqlDbType.Int16);
+                        com.Parameters["@NoShetat"].Value = txtNoShetat.Text;
+
+                        com.Parameters.Add("@Nolon", MySqlDbType.Double);
+                        com.Parameters["@Nolon"].Value = txtNolone.Text;
+                        com.Parameters.Add("@Gate", MySqlDbType.Double);
+                        com.Parameters["@Gate"].Value = getGateValue();
+                        com.Parameters.Add("@Taateg", MySqlDbType.Double);
+                        com.Parameters["@Taateg"].Value = getTaategValue();
+                        com.Parameters.Add("@Safay", MySqlDbType.Double);
+                        com.Parameters["@Safay"].Value = getSafayValue();
+                        if (txtNote.Text != "")
+                        {
+                            com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                            com.Parameters["@Note"].Value = txtNote.Text;
+                        }
+                        else
+                        {
+                            com.Parameters.Add("@Note", MySqlDbType.VarChar);
+                            com.Parameters["@Note"].Value = null;
+                        }
+                        com.Parameters.Add("@meter_reading", MySqlDbType.Decimal);
+                        com.Parameters["@meter_reading"].Value = txtMeterNow.Text;
                         com.ExecuteNonQuery();
-                    }
+
+                        double totalSafay = 0, totalGate = 0;
+                        query = "select TotalSafay,TotalGate from Total_Revenue_Of_CarIncom where Car_ID= " + comCarNumber.SelectedValue + "";
+                        com = new MySqlCommand(query, dbconnection);
+                        MySqlDataReader dr = com.ExecuteReader();
+                        bool flag = false;
+                        while (dr.Read())
+                        {
+                            totalSafay = Convert.ToDouble(dr["TotalSafay"].ToString());
+                            if (dr["TotalGate"].ToString() != "")
+                                totalGate = Convert.ToDouble(dr["TotalGate"].ToString());
+                            flag = true;
+                        }
+                        totalSafay += getSafayValue();
+                        totalGate += getGateValue();
+                        dr.Close();
+                        if (flag)
+                        {
+                            query = "update Total_Revenue_Of_CarIncom set TotalSafay=" + totalSafay + ",TotalGate=" + totalGate + " where Car_ID= " + comCarNumber.SelectedValue;
+                            com = new MySqlCommand(query, dbconnection);
+                            com.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            query = "insert into  Total_Revenue_Of_CarIncom  (TotalSafay,TotalGate, Car_ID) values(@TotalSafay,@TotalGate,@Car_ID)";
+                            com = new MySqlCommand(query, dbconnection);
+                            com.Parameters.Add("@TotalSafay", MySqlDbType.Double);
+                            com.Parameters["@TotalSafay"].Value = totalSafay;
+                            com.Parameters.Add("@TotalGate", MySqlDbType.Double);
+                            com.Parameters["@TotalGate"].Value = totalGate;
+                            com.Parameters.Add("@Car_ID", MySqlDbType.Int16);
+                            com.Parameters["@Car_ID"].Value = comCarNumber.SelectedValue;
+                            com.ExecuteNonQuery();
+                        }
 
 
-                    query = "select Car_Income_ID from Car_Income order by Car_Income_ID Desc limit 1";
-                    com = new MySqlCommand(query,dbconnection);
-                    int id=0;
-                    if (com.ExecuteScalar() != null)
-                    {
-                        id = Convert.ToInt32(com.ExecuteScalar());
+                        query = "select Car_Income_ID from Car_Income order by Car_Income_ID Desc limit 1";
+                        com = new MySqlCommand(query, dbconnection);
+                        int id = 0;
+                        if (com.ExecuteScalar() != null)
+                        {
+                            id = Convert.ToInt32(com.ExecuteScalar());
+                        }
+                        else
+                        {
+                            MessageBox.Show("error :(");
+                            dbconnection.Close();
+                            return;
+                        }
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            if (id > 0)
+                            {
+                                query = "insert into Car_Permission (Car_Income_ID,Permission_Number) values (@Car_Income_ID,@Permission_Number)";
+                                com = new MySqlCommand(query, dbconnection);
+
+                                com.Parameters.Add("@Car_Income_ID", MySqlDbType.Int16);
+                                com.Parameters["@Car_Income_ID"].Value = id;
+                                com.Parameters.Add("@Permission_Number", MySqlDbType.VarChar);
+                                com.Parameters["@Permission_Number"].Value = row.Cells[0].Value;
+                                com.ExecuteNonQuery();
+                            }
+                        }
+
+                        //update bank
+                        query = "select Bank_Stock from bank where Bank_ID=13";
+                        com = new MySqlCommand(query, dbconnection);
+                        double bankMoney = Convert.ToDouble(com.ExecuteScalar());
+                        bankMoney += getGateValue() + getSafayValue();
+                        query = "update bank  set Bank_Stock=" + bankMoney + " where  Bank_ID=13";
+                        com = new MySqlCommand(query, dbconnection);
+                        com.ExecuteNonQuery();
+                        MessageBox.Show("ADD Success");
+                        carIncomes.displayData();
+                        clear();
+
                     }
                     else
                     {
-                        MessageBox.Show("error :(");
-                        dbconnection.Close();
-                        return;
+                        MessageBox.Show("ادخل رقم اذن واحد علي الاقل");
                     }
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        if (id > 0)
-                        {
-                            query = "insert into Car_Permission (Car_Income_ID,Permission_Number) values (@Car_Income_ID,@Permission_Number)";
-                            com = new MySqlCommand(query, dbconnection);
-
-                            com.Parameters.Add("@Car_Income_ID", MySqlDbType.Int16);
-                            com.Parameters["@Car_Income_ID"].Value = id;
-                            com.Parameters.Add("@Permission_Number", MySqlDbType.VarChar);
-                            com.Parameters["@Permission_Number"].Value = row.Cells[0].Value;
-                            com.ExecuteNonQuery();
-                        }
-                    }
-
-                    //update bank
-                    query = "select Bank_Stock from bank where Bank_ID=13";
-                    com = new MySqlCommand(query, dbconnection);
-                    double bankMoney = Convert.ToDouble(com.ExecuteScalar());
-                    bankMoney += getGateValue() + getSafayValue();
-                    query = "update bank  set Bank_Stock="+ bankMoney + " where  Bank_ID=13";
-                    com = new MySqlCommand(query, dbconnection);
-                    com.ExecuteNonQuery();
-                    MessageBox.Show("ADD Success");
-                    carIncomes.displayData();
-                    clear();
-
-                   
                 }
                 else
                 {

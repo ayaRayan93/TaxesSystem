@@ -39,7 +39,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                string query = "select * from cars";
+                string query = "select * from cars where Type=1";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
