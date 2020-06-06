@@ -152,11 +152,11 @@ namespace MainSystem
                     List<Item_SubExpensesTransitions> bi = new List<Item_SubExpensesTransitions>();
                     for (int i = 0; i < gridView1.RowCount; i++)
                     {
-                        Item_SubExpensesTransitions item = new Item_SubExpensesTransitions() { ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التسلسل"])), MainExpenses = gridView1.GetRowCellDisplayText(i, gridView1.Columns["العقار"]), SubExpenses = gridView1.GetRowCellDisplayText(i, gridView1.Columns["نوع المصروف"]), Depesitor = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المستلم"]), Date = Convert.ToDateTime(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التاريخ"])).ToString("yyyy-MM-dd"), Money = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["المبلغ"])), Safe = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الخزينة"]), Employee = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الموظف"]), Description = gridView1.GetRowCellDisplayText(i, gridView1.Columns["البيان"]) };
+                        Item_SubExpensesTransitions item = new Item_SubExpensesTransitions() { ID = Convert.ToInt32(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التسلسل"])), MainExpenses = gridView1.GetRowCellDisplayText(i, gridView1.Columns["العقار"]), SubExpenses = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المصروف الرئيسى"]), DetailsProperty = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المصروف الفرعى"]), Depesitor = gridView1.GetRowCellDisplayText(i, gridView1.Columns["المستلم"]), Date = Convert.ToDateTime(gridView1.GetRowCellDisplayText(i, gridView1.Columns["التاريخ"])).ToString("yyyy-MM-dd"), Money = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["المبلغ"])), Safe = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الخزينة"]), Employee = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الموظف"]), Description = gridView1.GetRowCellDisplayText(i, gridView1.Columns["البيان"]) };
                         bi.Add(item);
                     }
                     Report_SubExpensesTransitions f = new Report_SubExpensesTransitions();
-                    f.PrintInvoice(comMain.Text, comSub.Text, comSafe.Text, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, bi);
+                    f.PrintInvoice2(comMain.Text, comSub.Text, comDetails.Text, comSafe.Text, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, bi);
                     f.ShowDialog();
                 }
                 catch (Exception ex)

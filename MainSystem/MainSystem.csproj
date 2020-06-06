@@ -453,6 +453,12 @@
     <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Property_Transitions_Report.designer.cs">
       <DependentUpon>Property_Transitions_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\Print_SubPropertyTransitions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\Print_SubPropertyTransitions.designer.cs">
+      <DependentUpon>Print_SubPropertyTransitions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\SubPropertyTransitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3523,6 +3529,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Property_Transitions_Report.resx">
       <DependentUpon>Property_Transitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\Print_SubPropertyTransitions.resx">
+      <DependentUpon>Print_SubPropertyTransitions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\SubPropertyTransitions_Report.resx">
       <DependentUpon>SubPropertyTransitions_Report.cs</DependentUpon>
