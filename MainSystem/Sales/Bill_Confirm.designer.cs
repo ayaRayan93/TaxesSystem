@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             this.labTotalBillPriceAD = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radByClient = new System.Windows.Forms.RadioButton();
-            this.radFromStore = new System.Windows.Forms.RadioButton();
             this.comBranch = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -51,14 +48,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnDetails = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnConfirm = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.labTotalDiscount = new System.Windows.Forms.Label();
             this.labTotalBillPriceBD = new System.Windows.Forms.Label();
             this.btnAddItem = new Bunifu.Framework.UI.BunifuTileButton();
-            this.labelDate = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -74,7 +69,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtClientPhone = new System.Windows.Forms.TextBox();
             this.txtCustomerPhone = new System.Windows.Forms.TextBox();
-            this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -100,50 +94,6 @@
             this.labTotalBillPriceAD.Size = new System.Drawing.Size(0, 17);
             this.labTotalBillPriceAD.TabIndex = 93;
             this.labTotalBillPriceAD.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.radByClient);
-            this.groupBox2.Controls.Add(this.radFromStore);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Enabled = false;
-            this.groupBox2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox2.Size = new System.Drawing.Size(100, 128);
-            this.groupBox2.TabIndex = 148;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "طريقة الاستلام";
-            // 
-            // radByClient
-            // 
-            this.radByClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radByClient.AutoSize = true;
-            this.radByClient.Checked = true;
-            this.radByClient.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radByClient.Location = new System.Drawing.Point(25, 69);
-            this.radByClient.Name = "radByClient";
-            this.radByClient.Size = new System.Drawing.Size(61, 20);
-            this.radByClient.TabIndex = 98;
-            this.radByClient.TabStop = true;
-            this.radByClient.Text = "العميل";
-            this.radByClient.UseVisualStyleBackColor = true;
-            this.radByClient.CheckedChanged += new System.EventHandler(this.radRecivedType_CheckedChanged);
-            // 
-            // radFromStore
-            // 
-            this.radFromStore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.radFromStore.AutoSize = true;
-            this.radFromStore.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radFromStore.Location = new System.Drawing.Point(25, 33);
-            this.radFromStore.Name = "radFromStore";
-            this.radFromStore.Size = new System.Drawing.Size(58, 20);
-            this.radFromStore.TabIndex = 99;
-            this.radFromStore.Text = "شحن";
-            this.radFromStore.UseVisualStyleBackColor = true;
-            this.radFromStore.CheckedChanged += new System.EventHandler(this.radRecivedType_CheckedChanged);
             // 
             // comBranch
             // 
@@ -174,10 +124,10 @@
             this.groupBox1.Controls.Add(this.rdbSoon);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(109, 3);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox1.Size = new System.Drawing.Size(97, 128);
+            this.groupBox1.Size = new System.Drawing.Size(99, 128);
             this.groupBox1.TabIndex = 146;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "طريقة الدفع";
@@ -187,7 +137,7 @@
             this.rdbCash.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdbCash.AutoSize = true;
             this.rdbCash.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbCash.Location = new System.Drawing.Point(24, 33);
+            this.rdbCash.Location = new System.Drawing.Point(26, 33);
             this.rdbCash.Name = "rdbCash";
             this.rdbCash.Size = new System.Drawing.Size(52, 20);
             this.rdbCash.TabIndex = 98;
@@ -200,7 +150,7 @@
             this.rdbSoon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdbSoon.AutoSize = true;
             this.rdbSoon.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbSoon.Location = new System.Drawing.Point(27, 69);
+            this.rdbSoon.Location = new System.Drawing.Point(29, 69);
             this.rdbSoon.Name = "rdbSoon";
             this.rdbSoon.Size = new System.Drawing.Size(47, 20);
             this.rdbSoon.TabIndex = 99;
@@ -213,7 +163,7 @@
             this.labelEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelEng.AutoSize = true;
             this.labelEng.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelEng.Location = new System.Drawing.Point(253, 27);
+            this.labelEng.Location = new System.Drawing.Point(229, 28);
             this.labelEng.Name = "labelEng";
             this.labelEng.Size = new System.Drawing.Size(119, 17);
             this.labelEng.TabIndex = 143;
@@ -225,7 +175,7 @@
             this.comEngCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comEngCon.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comEngCon.FormattingEnabled = true;
-            this.comEngCon.Location = new System.Drawing.Point(99, 23);
+            this.comEngCon.Location = new System.Drawing.Point(75, 24);
             this.comEngCon.Name = "comEngCon";
             this.comEngCon.Size = new System.Drawing.Size(150, 24);
             this.comEngCon.TabIndex = 142;
@@ -237,7 +187,7 @@
             this.radClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radClient.AutoSize = true;
             this.radClient.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radClient.Location = new System.Drawing.Point(266, 2);
+            this.radClient.Location = new System.Drawing.Point(242, 3);
             this.radClient.Name = "radClient";
             this.radClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radClient.Size = new System.Drawing.Size(58, 21);
@@ -252,7 +202,7 @@
             this.radEng.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radEng.AutoSize = true;
             this.radEng.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radEng.Location = new System.Drawing.Point(189, 2);
+            this.radEng.Location = new System.Drawing.Point(165, 3);
             this.radEng.Name = "radEng";
             this.radEng.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radEng.Size = new System.Drawing.Size(71, 21);
@@ -267,7 +217,7 @@
             this.radCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radCon.AutoSize = true;
             this.radCon.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radCon.Location = new System.Drawing.Point(124, 2);
+            this.radCon.Location = new System.Drawing.Point(100, 3);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.radCon.Size = new System.Drawing.Size(59, 21);
@@ -282,7 +232,7 @@
             this.labelClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelClient.AutoSize = true;
             this.labelClient.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelClient.Location = new System.Drawing.Point(292, 79);
+            this.labelClient.Location = new System.Drawing.Point(268, 80);
             this.labelClient.Name = "labelClient";
             this.labelClient.Size = new System.Drawing.Size(40, 17);
             this.labelClient.TabIndex = 136;
@@ -294,7 +244,7 @@
             this.comClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comClient.Font = new System.Drawing.Font("Tahoma", 10F);
             this.comClient.FormattingEnabled = true;
-            this.comClient.Location = new System.Drawing.Point(99, 75);
+            this.comClient.Location = new System.Drawing.Point(75, 76);
             this.comClient.Name = "comClient";
             this.comClient.Size = new System.Drawing.Size(150, 24);
             this.comClient.TabIndex = 135;
@@ -337,11 +287,11 @@
             // 
             // gridView1
             // 
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
             this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.gridView1.Appearance.Row.Options.UseFont = true;
             this.gridView1.Appearance.Row.Options.UseForeColor = true;
@@ -399,12 +349,10 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 1F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker1, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnDetails, 5, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnConfirm, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 7, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnAddItem, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.labelDate, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.ForeColor = System.Drawing.Color.White;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 599);
@@ -415,19 +363,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1037, 59);
             this.tableLayoutPanel3.TabIndex = 154;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(803, 3);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.RightToLeftLayout = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(159, 23);
-            this.dateTimePicker1.TabIndex = 97;
-            this.dateTimePicker1.Value = new System.DateTime(2019, 8, 5, 0, 0, 0, 0);
-            this.dateTimePicker1.Visible = false;
-            // 
             // btnDetails
             // 
             this.btnDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
@@ -435,7 +370,7 @@
             this.btnDetails.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnDetails.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDetails.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDetails.ForeColor = System.Drawing.Color.White;
             this.btnDetails.Image = global::MainSystem.Properties.Resources.Delete_32;
             this.btnDetails.ImagePosition = 1;
@@ -456,7 +391,7 @@
             this.btnConfirm.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfirm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnConfirm.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.White;
             this.btnConfirm.Image = global::MainSystem.Properties.Resources.Save_32;
             this.btnConfirm.ImagePosition = 1;
@@ -514,7 +449,7 @@
             this.btnAddItem.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnAddItem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddItem.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddItem.ForeColor = System.Drawing.Color.White;
             this.btnAddItem.Image = global::MainSystem.Properties.Resources.File_32;
             this.btnAddItem.ImagePosition = 1;
@@ -528,30 +463,15 @@
             this.btnAddItem.TabIndex = 96;
             this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
-            // labelDate
-            // 
-            this.labelDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDate.AutoSize = true;
-            this.labelDate.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDate.ForeColor = System.Drawing.Color.Snow;
-            this.labelDate.Location = new System.Drawing.Point(968, 0);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(56, 36);
-            this.labelDate.TabIndex = 98;
-            this.labelDate.Text = "تاريخ الاستلام";
-            this.labelDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelDate.Visible = false;
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Controls.Add(this.groupBox1, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.groupBox2, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel4, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -568,9 +488,9 @@
             // 
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(626, 3);
+            this.panel2.Location = new System.Drawing.Point(574, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(408, 128);
+            this.panel2.Size = new System.Drawing.Size(460, 128);
             this.panel2.TabIndex = 150;
             // 
             // panel3
@@ -584,7 +504,7 @@
             this.panel3.Controls.Add(this.txtBillNo);
             this.panel3.Controls.Add(this.comBranch);
             this.panel3.Controls.Add(this.label6);
-            this.panel3.Location = new System.Drawing.Point(23, 3);
+            this.panel3.Location = new System.Drawing.Point(48, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(363, 121);
             this.panel3.TabIndex = 157;
@@ -624,10 +544,10 @@
             this.checkBoxAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxAdd.AutoSize = true;
             this.checkBoxAdd.BackColor = System.Drawing.Color.Gainsboro;
-            this.checkBoxAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxAdd.Location = new System.Drawing.Point(128, 45);
+            this.checkBoxAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxAdd.Location = new System.Drawing.Point(129, 45);
             this.checkBoxAdd.Name = "checkBoxAdd";
-            this.checkBoxAdd.Size = new System.Drawing.Size(62, 20);
+            this.checkBoxAdd.Size = new System.Drawing.Size(61, 20);
             this.checkBoxAdd.TabIndex = 153;
             this.checkBoxAdd.Text = "+اخرى";
             this.checkBoxAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -645,28 +565,18 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.txtClientID);
-            this.panel4.Controls.Add(this.txtCustomerID);
-            this.panel4.Controls.Add(this.labelEng);
-            this.panel4.Controls.Add(this.radDealer);
-            this.panel4.Controls.Add(this.radClient);
-            this.panel4.Controls.Add(this.comEngCon);
-            this.panel4.Controls.Add(this.radEng);
-            this.panel4.Controls.Add(this.comClient);
-            this.panel4.Controls.Add(this.radCon);
-            this.panel4.Controls.Add(this.labelClient);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(212, 3);
+            this.panel4.Location = new System.Drawing.Point(108, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(408, 128);
+            this.panel4.Size = new System.Drawing.Size(460, 128);
             this.panel4.TabIndex = 147;
             // 
             // txtClientID
             // 
             this.txtClientID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtClientID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtClientID.Location = new System.Drawing.Point(43, 75);
+            this.txtClientID.Location = new System.Drawing.Point(19, 76);
             this.txtClientID.Name = "txtClientID";
             this.txtClientID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtClientID.Size = new System.Drawing.Size(50, 24);
@@ -678,7 +588,7 @@
             // 
             this.txtCustomerID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomerID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCustomerID.Location = new System.Drawing.Point(43, 23);
+            this.txtCustomerID.Location = new System.Drawing.Point(19, 24);
             this.txtCustomerID.Name = "txtCustomerID";
             this.txtCustomerID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCustomerID.Size = new System.Drawing.Size(50, 24);
@@ -691,7 +601,7 @@
             this.radDealer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radDealer.AutoSize = true;
             this.radDealer.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.radDealer.Location = new System.Drawing.Point(69, 2);
+            this.radDealer.Location = new System.Drawing.Point(45, 3);
             this.radDealer.Name = "radDealer";
             this.radDealer.Size = new System.Drawing.Size(49, 21);
             this.radDealer.TabIndex = 144;
@@ -702,9 +612,19 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.radClient);
+            this.panel5.Controls.Add(this.txtClientID);
+            this.panel5.Controls.Add(this.txtCustomerID);
+            this.panel5.Controls.Add(this.labelEng);
+            this.panel5.Controls.Add(this.labelClient);
+            this.panel5.Controls.Add(this.radDealer);
+            this.panel5.Controls.Add(this.radCon);
+            this.panel5.Controls.Add(this.comEngCon);
+            this.panel5.Controls.Add(this.comClient);
+            this.panel5.Controls.Add(this.radEng);
             this.panel5.Controls.Add(this.txtClientPhone);
             this.panel5.Controls.Add(this.txtCustomerPhone);
-            this.panel5.Location = new System.Drawing.Point(24, 0);
+            this.panel5.Location = new System.Drawing.Point(47, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(358, 128);
             this.panel5.TabIndex = 147;
@@ -742,8 +662,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -751,7 +669,6 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -761,7 +678,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBranchID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControlBills)).EndInit();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.ResumeLayout(false);
@@ -770,9 +686,6 @@
 
         #endregion
         private System.Windows.Forms.Label labTotalBillPriceAD;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radByClient;
-        private System.Windows.Forms.RadioButton radFromStore;
         private System.Windows.Forms.ComboBox comBranch;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -809,8 +722,6 @@
         private System.Windows.Forms.TextBox txtCustomerID;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.TextBox txtClientPhone;
         private System.Windows.Forms.TextBox txtCustomerPhone;
         private System.Windows.Forms.Label label1;

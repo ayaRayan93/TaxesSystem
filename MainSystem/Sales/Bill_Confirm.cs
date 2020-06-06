@@ -97,10 +97,7 @@ namespace MainSystem
                 string qb = "select Branch_Name from branch where Branch_ID=" + EmpBranchId;
                 MySqlCommand cqb = new MySqlCommand(qb, dbconnection);
                 EmpBranchName = cqb.ExecuteScalar().ToString();
-
-                dateTimePicker1.Visible = true;
-                labelDate.Visible = true;
-
+                
                 if (UserControl.userType == 6 || UserControl.userType == 16)
                 {
                     rdbSoon.Enabled = false;
@@ -317,30 +314,7 @@ namespace MainSystem
                 dbconnection.Close();
             }
         }
-        //recived type checked
-        private void radRecivedType_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                RadioButton radio = (RadioButton)sender;
-                if (radio.Text == "العميل")
-                {
-                    RecivedType = "العميل";
-                    dateTimePicker1.Visible = true;
-                    labelDate.Visible = true;
-                }
-                else if (radio.Text == "شحن")
-                {
-                    RecivedType = "شحن";
-                    dateTimePicker1.Visible = false;
-                    labelDate.Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+
         private void txtBillNo_KeyDown(object sender, KeyEventArgs e)
         {
             MySqlDataReader dataReader = null;
@@ -807,16 +781,8 @@ namespace MainSystem
                         com.Parameters["@Employee_ID"].Value = UserControl.EmpID;
                         com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar);
                         com.Parameters["@Employee_Name"].Value = UserControl.EmpName;
-                        if (RecivedType == "العميل")
-                        {
-                            com.Parameters.Add("@Shipped_Date", MySqlDbType.DateTime);
-                            com.Parameters["@Shipped_Date"].Value = dateTimePicker1.Value;
-                        }
-                        else
-                        {
-                            com.Parameters.Add("@Shipped_Date", MySqlDbType.DateTime);
-                            com.Parameters["@Shipped_Date"].Value = null;
-                        }
+                        com.Parameters.Add("@Shipped_Date", MySqlDbType.DateTime);
+                        com.Parameters["@Shipped_Date"].Value = null;
                         com.ExecuteNonQuery();
 
                         query = "select CustomerBill_ID from customer_bill order by CustomerBill_ID desc limit 1";
