@@ -690,7 +690,7 @@ namespace MainSystem
                         com.Parameters.Add("@Store_ID", MySqlDbType.Int16);
                         com.Parameters["@Store_ID"].Value = Convert.ToInt32(txtStore.Text);
                         com.Parameters.Add("@TypeItem", MySqlDbType.VarChar);
-                        com.Parameters["@TypeItem"].Value = row1[1].ToString();
+                        com.Parameters["@TypeItem"].Value ="بند";
                         com.ExecuteNonQuery();
 
                         ReturnPermissionClass returnPermissionClass = new ReturnPermissionClass();

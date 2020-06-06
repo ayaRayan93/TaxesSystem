@@ -1,6 +1,6 @@
 ﻿namespace MainSystem
 {
-    partial class Car_Record
+    partial class CarShipping_Record
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Car_Record));
             this.txtCarNumber = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,9 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtMeterReading = new System.Windows.Forms.TextBox();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl();
-            this.radPrivateCar = new System.Windows.Forms.RadioButton();
-            this.radCompanyCar = new System.Windows.Forms.RadioButton();
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panContent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +57,7 @@
             this.txtCarNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCarNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCarNumber.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCarNumber.Location = new System.Drawing.Point(422, 139);
+            this.txtCarNumber.Location = new System.Drawing.Point(439, 95);
             this.txtCarNumber.Name = "txtCarNumber";
             this.txtCarNumber.Size = new System.Drawing.Size(176, 24);
             this.txtCarNumber.TabIndex = 0;
@@ -71,7 +70,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(602, 142);
+            this.label1.Location = new System.Drawing.Point(619, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 17);
             this.label1.TabIndex = 1;
@@ -83,7 +82,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(599, 220);
+            this.label3.Location = new System.Drawing.Point(616, 176);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 17);
             this.label3.TabIndex = 5;
@@ -94,7 +93,7 @@
             this.txtCarValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCarValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCarValue.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCarValue.Location = new System.Drawing.Point(422, 216);
+            this.txtCarValue.Location = new System.Drawing.Point(439, 172);
             this.txtCarValue.Name = "txtCarValue";
             this.txtCarValue.Size = new System.Drawing.Size(176, 24);
             this.txtCarValue.TabIndex = 2;
@@ -104,8 +103,6 @@
             // panContent
             // 
             this.panContent.BackColor = System.Drawing.Color.White;
-            this.panContent.Controls.Add(this.radCompanyCar);
-            this.panContent.Controls.Add(this.radPrivateCar);
             this.panContent.Controls.Add(this.tableLayoutPanel2);
             this.panContent.Controls.Add(this.label7);
             this.panContent.Controls.Add(this.txtPremiumDepreciation);
@@ -172,7 +169,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(309, 259);
+            this.label7.Location = new System.Drawing.Point(326, 215);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 17);
             this.label7.TabIndex = 29;
@@ -183,7 +180,7 @@
             this.txtPremiumDepreciation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPremiumDepreciation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPremiumDepreciation.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPremiumDepreciation.Location = new System.Drawing.Point(132, 256);
+            this.txtPremiumDepreciation.Location = new System.Drawing.Point(149, 212);
             this.txtPremiumDepreciation.Name = "txtPremiumDepreciation";
             this.txtPremiumDepreciation.Size = new System.Drawing.Size(176, 24);
             this.txtPremiumDepreciation.TabIndex = 6;
@@ -196,7 +193,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(599, 257);
+            this.label8.Location = new System.Drawing.Point(616, 213);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 17);
             this.label8.TabIndex = 27;
@@ -207,7 +204,7 @@
             this.txtDepreciationPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDepreciationPeriod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDepreciationPeriod.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDepreciationPeriod.Location = new System.Drawing.Point(422, 252);
+            this.txtDepreciationPeriod.Location = new System.Drawing.Point(439, 208);
             this.txtDepreciationPeriod.Name = "txtDepreciationPeriod";
             this.txtDepreciationPeriod.Size = new System.Drawing.Size(176, 24);
             this.txtDepreciationPeriod.TabIndex = 3;
@@ -220,7 +217,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(599, 181);
+            this.label4.Location = new System.Drawing.Point(616, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 17);
             this.label4.TabIndex = 24;
@@ -231,7 +228,7 @@
             this.txtCarCapacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCarCapacity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCarCapacity.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCarCapacity.Location = new System.Drawing.Point(132, 139);
+            this.txtCarCapacity.Location = new System.Drawing.Point(149, 95);
             this.txtCarCapacity.Name = "txtCarCapacity";
             this.txtCarCapacity.Size = new System.Drawing.Size(176, 24);
             this.txtCarCapacity.TabIndex = 4;
@@ -243,7 +240,7 @@
             this.txtOpenning_Account.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOpenning_Account.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOpenning_Account.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtOpenning_Account.Location = new System.Drawing.Point(422, 178);
+            this.txtOpenning_Account.Location = new System.Drawing.Point(439, 134);
             this.txtOpenning_Account.Name = "txtOpenning_Account";
             this.txtOpenning_Account.Size = new System.Drawing.Size(176, 24);
             this.txtOpenning_Account.TabIndex = 1;
@@ -256,7 +253,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(312, 142);
+            this.label5.Location = new System.Drawing.Point(329, 98);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 17);
             this.label5.TabIndex = 20;
@@ -268,7 +265,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(311, 181);
+            this.label6.Location = new System.Drawing.Point(328, 137);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 17);
             this.label6.TabIndex = 23;
@@ -279,7 +276,7 @@
             this.txtMeterReading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMeterReading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMeterReading.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtMeterReading.Location = new System.Drawing.Point(132, 178);
+            this.txtMeterReading.Location = new System.Drawing.Point(149, 134);
             this.txtMeterReading.Name = "txtMeterReading";
             this.txtMeterReading.Size = new System.Drawing.Size(176, 24);
             this.txtMeterReading.TabIndex = 5;
@@ -292,32 +289,6 @@
             this.bunifuDragControl1.Horizontal = true;
             this.bunifuDragControl1.TargetControl = null;
             this.bunifuDragControl1.Vertical = true;
-            // 
-            // radPrivateCar
-            // 
-            this.radPrivateCar.AutoSize = true;
-            this.radPrivateCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radPrivateCar.Location = new System.Drawing.Point(265, 77);
-            this.radPrivateCar.Name = "radPrivateCar";
-            this.radPrivateCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radPrivateCar.Size = new System.Drawing.Size(59, 23);
-            this.radPrivateCar.TabIndex = 40;
-            this.radPrivateCar.TabStop = true;
-            this.radPrivateCar.Text = "خاصة";
-            this.radPrivateCar.UseVisualStyleBackColor = true;
-            // 
-            // radCompanyCar
-            // 
-            this.radCompanyCar.AutoSize = true;
-            this.radCompanyCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCompanyCar.Location = new System.Drawing.Point(400, 77);
-            this.radCompanyCar.Name = "radCompanyCar";
-            this.radCompanyCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCompanyCar.Size = new System.Drawing.Size(96, 23);
-            this.radCompanyCar.TabIndex = 41;
-            this.radCompanyCar.TabStop = true;
-            this.radCompanyCar.Text = "عربية الشركة";
-            this.radCompanyCar.UseVisualStyleBackColor = true;
             // 
             // Car_Record
             // 
@@ -357,8 +328,6 @@
         private System.Windows.Forms.TextBox txtDepreciationPeriod;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
-        private System.Windows.Forms.RadioButton radCompanyCar;
-        private System.Windows.Forms.RadioButton radPrivateCar;
     }
 }
 

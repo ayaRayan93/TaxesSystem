@@ -47,7 +47,7 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 displayCarDrivers();
-                string query = "select Driver_ID,Driver_Name from drivers";
+                string query = "select Driver_ID,Driver_Name from drivers where Type="+getCarType(CarId);
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -118,7 +118,7 @@ namespace MainSystem
                     if (dialogResult == DialogResult.Yes)
                     {
                         
-                        string query = "delete from driver_car where Driver_ID=" + carDrivers[0].ToString()+" and Car_ID";
+                        string query = "delete from driver_car where Driver_ID=" + carDrivers[0].ToString()+" ";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
                         displayCarDrivers();
@@ -167,6 +167,12 @@ namespace MainSystem
             return null;
         }
 
-    
+        public int getCarType(int CarID)
+        {
+            string query = "select Type from cars where Car_ID="+CarID;
+            MySqlCommand com = new MySqlCommand(query, dbconnection);
+            int type = Convert.ToInt16(com.ExecuteScalar());
+            return type;
+        }
     }
 }

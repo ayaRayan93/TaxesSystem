@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class Car_Record : Form
+    public partial class CarShipping_Record : Form
     {
         MySqlConnection dbconnection;
         Cars cars;
         XtraTabControl xtraTabControlCarsContent;
-        public Car_Record(Cars cars, XtraTabControl xtraTabControlCarsContent)
+        public CarShipping_Record(Cars cars, XtraTabControl xtraTabControlCarsContent)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace MainSystem
                 {
                     if (txtCarNumber.Text != "")
                     {
-                        string qeury = "insert into cars (Car_Number,Car_Capacity,meter_reading,Openning_Account,Car_Value,DepreciationPeriod,PremiumDepreciation,Type)values(@Car_Number,@Car_Capacity,@meter_reading,@Openning_Account,@Car_Value,@DepreciationPeriod,@PremiumDepreciation,@Type)";
+                        string qeury = "insert into cars (Car_Number,Car_Capacity,meter_reading,Openning_Account,Car_Value,DepreciationPeriod,PremiumDepreciation)values(@Car_Number,@Car_Capacity,@meter_reading,@Openning_Account,@Car_Value,@DepreciationPeriod,@PremiumDepreciation)";
                         com = new MySqlCommand(qeury, dbconnection);
                         com.Parameters.Add("@Car_Number", MySqlDbType.VarChar, 255);
                         com.Parameters["@Car_Number"].Value = txtCarNumber.Text;
@@ -64,15 +64,7 @@ namespace MainSystem
                         com.Parameters["@DepreciationPeriod"].Value = Convert.ToDouble(txtDepreciationPeriod.Text);
                         com.Parameters.Add("@PremiumDepreciation", MySqlDbType.Double);
                         com.Parameters["@PremiumDepreciation"].Value = Convert.ToDouble(txtPremiumDepreciation.Text);
-                        com.Parameters.Add("@Type", MySqlDbType.Int32);
-                        if (radCompanyCar.Checked)
-                        {
-                            com.Parameters["@Type"].Value = 1;
-                        }
-                        else
-                        {
-                            com.Parameters["@Type"].Value = 2;
-                        }
+
                         com.ExecuteNonQuery();
 
                         MessageBox.Show("add success");

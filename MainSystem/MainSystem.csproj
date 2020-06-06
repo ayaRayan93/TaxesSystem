@@ -1234,6 +1234,12 @@
     <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition.designer.cs">
       <DependentUpon>Print_AglTransition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shipping\Recording\CarShipping_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\Recording\CarShipping_Record.designer.cs">
+      <DependentUpon>CarShipping_Record.cs</DependentUpon>
+    </Compile>
     <Compile Include="Store\Export\CustomerDeliveryDraft.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3790,6 +3796,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sales\Sales Report\تفاصيل الاصناف المباعة\SalesProductsBillsDetails_Report.resx">
       <DependentUpon>SalesProductsBillsDetails_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\Recording\CarShipping_Record.resx">
+      <DependentUpon>CarShipping_Record.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\CustomerDeliveryDraft.resx">
       <DependentUpon>CustomerDeliveryDraft.cs</DependentUpon>
