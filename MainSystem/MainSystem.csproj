@@ -381,6 +381,12 @@
       <DependentUpon>CarExpensesReport2.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerServiceSystem.cs" />
+    <Compile Include="CustomerService\CustomerComplain\ComplainRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerService\CustomerComplain\ComplainRecord.Designer.cs">
+      <DependentUpon>ComplainRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomerService\CustomerSurvaryReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,12 @@
     </Compile>
     <Compile Include="CustomerService\displayCustomerBill.Designer.cs">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerService\CustomerComplain\Form2ComplainDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerService\CustomerComplain\Form2ComplainDetails.designer.cs">
+      <DependentUpon>Form2ComplainDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\العقارات\Coding\MainProperty_Report.cs">
       <SubType>Form</SubType>
@@ -3476,6 +3488,9 @@
     <EmbeddedResource Include="CarExpensesReport2.resx">
       <DependentUpon>CarExpensesReport2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomerService\CustomerComplain\ComplainRecord.resx">
+      <DependentUpon>ComplainRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\CustomerSurvaryReport.resx">
       <DependentUpon>CustomerSurvaryReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -3484,6 +3499,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\displayCustomerBill.resx">
       <DependentUpon>displayCustomerBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerService\CustomerComplain\Form2ComplainDetails.resx">
+      <DependentUpon>Form2ComplainDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Coding\MainProperty_Report.resx">
       <DependentUpon>MainProperty_Report.cs</DependentUpon>
