@@ -19,7 +19,7 @@ namespace CustomerServiceSearchPhone
         {
             this.data = data;
             InitializeComponent();
-            dbconnection = new MySqlConnection(connection.connectionString);
+        //    dbconnection = new MySqlConnection(connection.connectionString);
         }
 
         private void Form2ComplainDetails_Load(object sender, EventArgs e)
