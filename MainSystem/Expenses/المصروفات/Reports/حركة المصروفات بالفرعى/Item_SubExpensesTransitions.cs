@@ -12,6 +12,7 @@ namespace MainSystem
         public string Date { get; set; }
         public string MainExpenses { get; set; }
         public string SubExpenses { get; set; }
+        public string DetailsProperty { get; set; }
         public string Safe { get; set; }
         public double Money { get; set; }
         public string Employee { get; set; }
