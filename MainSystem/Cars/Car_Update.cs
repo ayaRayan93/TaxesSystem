@@ -45,7 +45,7 @@ namespace MainSystem
 
                 if (txtCarNumber.Text != "")
                 {
-                    string qeury = "update  cars set Car_Number=@Car_Number,Car_Capacity=@Car_Capacity,meter_reading=@meter_reading,Openning_Account=@Openning_Account,Car_Value=@Car_Value,DepreciationPeriod=@DepreciationPeriod,PremiumDepreciation=@PremiumDepreciation where Car_ID=" + row1["car_id"].ToString();
+                    string qeury = "update  cars set Car_Number=@Car_Number,Car_Capacity=@Car_Capacity,meter_reading=@meter_reading,Openning_Account=@Openning_Account,Car_Value=@Car_Value,DepreciationPeriod=@DepreciationPeriod,PremiumDepreciation=@PremiumDepreciation,Type=@Type where Car_ID=" + row1["car_id"].ToString();
                     MySqlCommand com = new MySqlCommand(qeury, dbconnection);
                     com.Parameters.Add("@Car_Number", MySqlDbType.VarChar, 255);
                     com.Parameters["@Car_Number"].Value = txtCarNumber.Text;
@@ -61,6 +61,15 @@ namespace MainSystem
                     com.Parameters["@DepreciationPeriod"].Value = Convert.ToDouble(txtDepreciationPeriod.Text);
                     com.Parameters.Add("@PremiumDepreciation", MySqlDbType.Double);
                     com.Parameters["@PremiumDepreciation"].Value = Convert.ToDouble(txtPremiumDepreciation.Text);
+                    com.Parameters.Add("@Type", MySqlDbType.Int16);
+                    if (radCompanyCar.Checked)
+                    {
+                        com.Parameters["@Type"].Value = 1;
+                    }
+                    else
+                    {
+                        com.Parameters["@Type"].Value = 2;
+                    }
 
                     com.ExecuteNonQuery();
                     cars.DisplayCars();

@@ -96,7 +96,7 @@ namespace MainSystem
             try
             {
                 dbconnection.Open();
-                string qeury = "update drivers set Driver_Name=@Driver_Name,Driver_Phone=@Driver_Phone,Driver_Address=@Driver_Address ,Driver_BairthDate=@Driver_BairthDate,Driver_License=@Driver_License,Driver_NationalID=@Driver_NationalID,Driver_StartWorkDate=@Driver_StartWorkDate where Driver_ID="+DriverRow[0].ToString();
+                string qeury = "update drivers set Driver_Name=@Driver_Name,Driver_Phone=@Driver_Phone,Driver_Address=@Driver_Address ,Driver_BairthDate=@Driver_BairthDate,Driver_License=@Driver_License,Driver_NationalID=@Driver_NationalID,Driver_StartWorkDate=@Driver_StartWorkDate,Type=@Type where Driver_ID=" + DriverRow[0].ToString();
                 MySqlCommand com = new MySqlCommand(qeury, dbconnection);
                 com.Parameters.Add("@Driver_Name", MySqlDbType.VarChar, 255);
                 com.Parameters["@Driver_Name"].Value = txtDriverName.Text;
@@ -113,6 +113,15 @@ namespace MainSystem
                 com.Parameters["@Driver_NationalID"].Value = txtNationalID.Text;
                 com.Parameters.Add("@Driver_StartWorkDate", MySqlDbType.Date);
                 com.Parameters["@Driver_StartWorkDate"].Value = dTPWorkStartDate.Value.Date;
+                com.Parameters.Add("@Type", MySqlDbType.Int16);
+                if (radCompanyCar.Checked)
+                {
+                    com.Parameters["@Type"].Value = 1;
+                }
+                else
+                {
+                    com.Parameters["@Type"].Value = 2;
+                }
 
                 com.ExecuteNonQuery();
                 MessageBox.Show("update success");

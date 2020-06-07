@@ -84,6 +84,7 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             try
@@ -311,8 +312,8 @@ namespace MainSystem
                     XtraReport1 report = new XtraReport1();
                     ReportPrintTool printTool = new ReportPrintTool(DeliveryPermissionReport);
                     // Invoke the Print dialog.
-                    printTool.PrintDialog();
-               
+                   // printTool.PrintDialog();
+                    printTool.Print();
                     string query1 = "update customer_bill set RecivedFlag='Draft' where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
                     MySqlCommand com1 = new MySqlCommand(query1, dbconnection);
                     com1.ExecuteNonQuery();
