@@ -48,6 +48,8 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.radCompanyCar = new System.Windows.Forms.RadioButton();
+            this.radPrivateCar = new System.Windows.Forms.RadioButton();
             this.panContent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +58,8 @@
             // 
             this.panContent.BackColor = System.Drawing.Color.White;
             this.panContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panContent.Controls.Add(this.radCompanyCar);
+            this.panContent.Controls.Add(this.radPrivateCar);
             this.panContent.Controls.Add(this.tableLayoutPanel2);
             this.panContent.Controls.Add(this.dTPWorkStartDate);
             this.panContent.Controls.Add(this.dTPBirthDate);
@@ -120,7 +124,7 @@
             // 
             this.dTPWorkStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dTPWorkStartDate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dTPWorkStartDate.Location = new System.Drawing.Point(213, 152);
+            this.dTPWorkStartDate.Location = new System.Drawing.Point(163, 195);
             this.dTPWorkStartDate.Name = "dTPWorkStartDate";
             this.dTPWorkStartDate.Size = new System.Drawing.Size(176, 24);
             this.dTPWorkStartDate.TabIndex = 6;
@@ -131,7 +135,7 @@
             // 
             this.dTPBirthDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dTPBirthDate.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.dTPBirthDate.Location = new System.Drawing.Point(213, 113);
+            this.dTPBirthDate.Location = new System.Drawing.Point(163, 156);
             this.dTPBirthDate.Name = "dTPBirthDate";
             this.dTPBirthDate.Size = new System.Drawing.Size(176, 24);
             this.dTPBirthDate.TabIndex = 5;
@@ -144,9 +148,9 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label6.Location = new System.Drawing.Point(702, 118);
+            this.label6.Location = new System.Drawing.Point(652, 161);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 17);
+            this.label6.Size = new System.Drawing.Size(72, 17);
             this.label6.TabIndex = 51;
             this.label6.Text = "رقم البطاقة";
             // 
@@ -155,7 +159,7 @@
             this.txtNationalID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNationalID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNationalID.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtNationalID.Location = new System.Drawing.Point(525, 114);
+            this.txtNationalID.Location = new System.Drawing.Point(475, 157);
             this.txtNationalID.Name = "txtNationalID";
             this.txtNationalID.Size = new System.Drawing.Size(176, 24);
             this.txtNationalID.TabIndex = 1;
@@ -168,9 +172,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label1.Location = new System.Drawing.Point(390, 154);
+            this.label1.Location = new System.Drawing.Point(340, 197);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 17);
+            this.label1.Size = new System.Drawing.Size(106, 17);
             this.label1.TabIndex = 50;
             this.label1.Text = "تاريخ استلام العمل";
             // 
@@ -180,9 +184,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label4.Location = new System.Drawing.Point(390, 76);
+            this.label4.Location = new System.Drawing.Point(340, 119);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 17);
+            this.label4.Size = new System.Drawing.Size(71, 17);
             this.label4.TabIndex = 49;
             this.label4.Text = "بيان الرخصة";
             // 
@@ -191,7 +195,7 @@
             this.txtLicese.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLicese.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLicese.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtLicese.Location = new System.Drawing.Point(213, 74);
+            this.txtLicese.Location = new System.Drawing.Point(163, 117);
             this.txtLicese.Name = "txtLicese";
             this.txtLicese.Size = new System.Drawing.Size(176, 24);
             this.txtLicese.TabIndex = 4;
@@ -204,7 +208,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label5.Location = new System.Drawing.Point(392, 115);
+            this.label5.Location = new System.Drawing.Point(342, 158);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 17);
             this.label5.TabIndex = 48;
@@ -216,9 +220,9 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label8.Location = new System.Drawing.Point(702, 194);
+            this.label8.Location = new System.Drawing.Point(652, 237);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 17);
+            this.label8.Size = new System.Drawing.Size(48, 17);
             this.label8.TabIndex = 47;
             this.label8.Text = "العنوان";
             // 
@@ -227,7 +231,7 @@
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAddress.Location = new System.Drawing.Point(525, 190);
+            this.txtAddress.Location = new System.Drawing.Point(475, 233);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(176, 24);
             this.txtAddress.TabIndex = 3;
@@ -240,9 +244,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label3.Location = new System.Drawing.Point(702, 156);
+            this.label3.Location = new System.Drawing.Point(652, 199);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 17);
+            this.label3.Size = new System.Drawing.Size(48, 17);
             this.label3.TabIndex = 44;
             this.label3.Text = "التلفون";
             // 
@@ -251,7 +255,7 @@
             this.txtDriverName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDriverName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDriverName.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtDriverName.Location = new System.Drawing.Point(525, 76);
+            this.txtDriverName.Location = new System.Drawing.Point(475, 119);
             this.txtDriverName.Name = "txtDriverName";
             this.txtDriverName.Size = new System.Drawing.Size(176, 24);
             this.txtDriverName.TabIndex = 0;
@@ -263,7 +267,7 @@
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhone.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPhone.Location = new System.Drawing.Point(525, 152);
+            this.txtPhone.Location = new System.Drawing.Point(475, 195);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(176, 24);
             this.txtPhone.TabIndex = 2;
@@ -276,9 +280,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.label2.Location = new System.Drawing.Point(704, 80);
+            this.label2.Location = new System.Drawing.Point(654, 123);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 17);
+            this.label2.Size = new System.Drawing.Size(70, 17);
             this.label2.TabIndex = 41;
             this.label2.Text = "أسم السائق";
             // 
@@ -288,6 +292,32 @@
             this.bunifuDragControl1.Horizontal = true;
             this.bunifuDragControl1.TargetControl = null;
             this.bunifuDragControl1.Vertical = true;
+            // 
+            // radCompanyCar
+            // 
+            this.radCompanyCar.AutoSize = true;
+            this.radCompanyCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCompanyCar.Location = new System.Drawing.Point(445, 52);
+            this.radCompanyCar.Name = "radCompanyCar";
+            this.radCompanyCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radCompanyCar.Size = new System.Drawing.Size(92, 23);
+            this.radCompanyCar.TabIndex = 54;
+            this.radCompanyCar.TabStop = true;
+            this.radCompanyCar.Text = "سائق الشركة";
+            this.radCompanyCar.UseVisualStyleBackColor = true;
+            // 
+            // radPrivateCar
+            // 
+            this.radPrivateCar.AutoSize = true;
+            this.radPrivateCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radPrivateCar.Location = new System.Drawing.Point(310, 52);
+            this.radPrivateCar.Name = "radPrivateCar";
+            this.radPrivateCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radPrivateCar.Size = new System.Drawing.Size(59, 23);
+            this.radPrivateCar.TabIndex = 53;
+            this.radPrivateCar.TabStop = true;
+            this.radPrivateCar.Text = "خاصة";
+            this.radPrivateCar.UseVisualStyleBackColor = true;
             // 
             // Driver_Update
             // 
@@ -328,6 +358,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Bunifu.Framework.UI.BunifuTileButton btnAdd;
+        private System.Windows.Forms.RadioButton radCompanyCar;
+        private System.Windows.Forms.RadioButton radPrivateCar;
     }
 }
 

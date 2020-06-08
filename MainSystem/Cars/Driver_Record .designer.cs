@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Driver_Record));
             this.txtDriverName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.panContent = new System.Windows.Forms.Panel();
+            this.radCompanyCar = new System.Windows.Forms.RadioButton();
+            this.radPrivateCar = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.dTPWorkStartDate = new System.Windows.Forms.DateTimePicker();
@@ -46,9 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl();
-            this.radCompanyCar = new System.Windows.Forms.RadioButton();
-            this.radPrivateCar = new System.Windows.Forms.RadioButton();
+            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panContent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +128,32 @@
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(831, 422);
             this.panContent.TabIndex = 7;
+            // 
+            // radCompanyCar
+            // 
+            this.radCompanyCar.AutoSize = true;
+            this.radCompanyCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCompanyCar.Location = new System.Drawing.Point(479, 61);
+            this.radCompanyCar.Name = "radCompanyCar";
+            this.radCompanyCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radCompanyCar.Size = new System.Drawing.Size(92, 23);
+            this.radCompanyCar.TabIndex = 43;
+            this.radCompanyCar.TabStop = true;
+            this.radCompanyCar.Text = "سائق الشركة";
+            this.radCompanyCar.UseVisualStyleBackColor = true;
+            // 
+            // radPrivateCar
+            // 
+            this.radPrivateCar.AutoSize = true;
+            this.radPrivateCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radPrivateCar.Location = new System.Drawing.Point(344, 61);
+            this.radPrivateCar.Name = "radPrivateCar";
+            this.radPrivateCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radPrivateCar.Size = new System.Drawing.Size(59, 23);
+            this.radPrivateCar.TabIndex = 42;
+            this.radPrivateCar.TabStop = true;
+            this.radPrivateCar.Text = "خاصة";
+            this.radPrivateCar.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
@@ -291,32 +318,6 @@
             this.bunifuDragControl1.Horizontal = true;
             this.bunifuDragControl1.TargetControl = null;
             this.bunifuDragControl1.Vertical = true;
-            // 
-            // radCompanyCar
-            // 
-            this.radCompanyCar.AutoSize = true;
-            this.radCompanyCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCompanyCar.Location = new System.Drawing.Point(479, 61);
-            this.radCompanyCar.Name = "radCompanyCar";
-            this.radCompanyCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCompanyCar.Size = new System.Drawing.Size(96, 23);
-            this.radCompanyCar.TabIndex = 43;
-            this.radCompanyCar.TabStop = true;
-            this.radCompanyCar.Text = "عربية الشركة";
-            this.radCompanyCar.UseVisualStyleBackColor = true;
-            // 
-            // radPrivateCar
-            // 
-            this.radPrivateCar.AutoSize = true;
-            this.radPrivateCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radPrivateCar.Location = new System.Drawing.Point(344, 61);
-            this.radPrivateCar.Name = "radPrivateCar";
-            this.radPrivateCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radPrivateCar.Size = new System.Drawing.Size(59, 23);
-            this.radPrivateCar.TabIndex = 42;
-            this.radPrivateCar.TabStop = true;
-            this.radPrivateCar.Text = "خاصة";
-            this.radPrivateCar.UseVisualStyleBackColor = true;
             // 
             // Driver_Record
             // 
