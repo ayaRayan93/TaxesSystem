@@ -1375,7 +1375,5 @@ namespace MainSystem
         //public static string connectionString = "SERVER=197.50.31.80;DATABASE=newschematest;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
         //public static string connectionString = "SERVER=localhost;DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8";
     }
-
-
 }
 

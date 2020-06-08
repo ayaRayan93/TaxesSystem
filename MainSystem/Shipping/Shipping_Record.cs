@@ -21,16 +21,13 @@ namespace MainSystem
         XtraTabPage xtraTabPage;
         bool loaded = false;
         DataRow row1;
+        int id = 0;
 
         public Shipping_Record()
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             
-            //comClient.AutoCompleteMode = AutoCompleteMode.Suggest;
-            //comClient.AutoCompleteSource = AutoCompleteSource.ListItems;
-            //comBranch.AutoCompleteMode = AutoCompleteMode.Suggest;
-            //comBranch.AutoCompleteSource = AutoCompleteSource.ListItems;
             comArea.AutoCompleteMode = AutoCompleteMode.Suggest;
             comArea.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -52,14 +49,14 @@ namespace MainSystem
                 comArea.ValueMember = dt.Columns["Area_ID"].ToString();
                 comArea.Text = "";
 
-                query = "select * from branch";
+                query = "select * from delegate";
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
-                comBranch.DataSource = dt;
-                comBranch.DisplayMember = dt.Columns["Branch_Name"].ToString();
-                comBranch.ValueMember = dt.Columns["Branch_ID"].ToString();
-                comBranch.SelectedIndex = -1;
+                comDelegate.DataSource = dt;
+                comDelegate.DisplayMember = dt.Columns["Delegate_Name"].ToString();
+                comDelegate.ValueMember = dt.Columns["Delegate_ID"].ToString();
+                comDelegate.SelectedIndex = -1;
 
                 search();
 
@@ -97,7 +94,7 @@ namespace MainSystem
                         txtPhone.Text = "";
                         txtAddress.Text = "";
                     }
-
+                    
                     query = "SELECT Address FROM shipping where Customer_ID=" + comClient.SelectedValue.ToString();
                     com = new MySqlCommand(query, dbconnection);
                     dr = com.ExecuteReader();
@@ -128,23 +125,13 @@ namespace MainSystem
         {
             try
             {
-                if (comClient.Text != "" && txtPhone.Text != "" && comBranch.Text != "" && txtBillNumber.Text != "" && txtAddress.Text != "" && comArea.Text != "")
+                if (comClient.Text != "" && txtPhone.Text != "" && txtAddress.Text != "" && comArea.Text != "")
                 {
                     int billNum = 0;
-                    if (int.TryParse(txtBillNumber.Text, out billNum))
-                    { }
-                    else
-                    {
-                        MessageBox.Show("رقم الفاتورة يجب ان يكون عدد");
-                        dbconnection.Close();
-                        return;
-                    }
+                    
                     dbconnection.Open();
-                    string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + txtBillNumber.Text+" and Branch_ID="+comBranch.SelectedValue;
-                    MySqlCommand com1 = new MySqlCommand(query, dbconnection);
-                    int id =Convert.ToInt32(com1.ExecuteScalar());
-
-                    query = "insert into shipping (CustomerBill_ID,Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Area_ID,Area_Name,Date,Description) values(@CustomerBill_ID,@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Area_ID,@Area_Name,@Date,@Description)";
+                    
+                    string query = "insert into shipping (CustomerBill_ID,Customer_ID,Customer_Name,Phone,Bill_Number,Branch_ID,Branch_Name,Address,Area_ID,Area_Name,Date,Description) values(@CustomerBill_ID,@Customer_ID,@Customer_Name,@Phone,@Bill_Number,@Branch_ID,@Branch_Name,@Address,@Area_ID,@Area_Name,@Date,@Description)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
                     com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11);
                     com.Parameters["@CustomerBill_ID"].Value = id;
@@ -157,9 +144,9 @@ namespace MainSystem
                     com.Parameters.Add("@Bill_Number", MySqlDbType.Int16, 11);
                     com.Parameters["@Bill_Number"].Value = billNum;
                     com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11);
-                    com.Parameters["@Branch_ID"].Value = comBranch.SelectedValue.ToString();
-                    com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Branch_Name"].Value = comBranch.Text;
+                    com.Parameters["@Branch_ID"].Value = UserControl.EmpBranchID;
+                    //com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar, 255);
+                    //com.Parameters["@Branch_Name"].Value = comBranch.Text;
                     com.Parameters.Add("@Address", MySqlDbType.VarChar, 255);
                     com.Parameters["@Address"].Value = txtAddress.Text;
                     com.Parameters.Add("@Area_ID", MySqlDbType.Int16, 11);
@@ -167,12 +154,12 @@ namespace MainSystem
                     com.Parameters.Add("@Area_Name", MySqlDbType.VarChar, 255);
                     com.Parameters["@Area_Name"].Value = comArea.Text;
                     com.Parameters.Add("@Description", MySqlDbType.VarChar, 255);
-                    com.Parameters["@Description"].Value = txtDescription.Text;
+                    com.Parameters["@Description"].Value = "";
                     com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = dateTimePicker1.Value;
                     com.ExecuteNonQuery();
 
-                    query = "update customer_bill set Shipped=1 where CustomerBill_ID=" + id;
+                    query = "update customer_bill set Shipped=1 and RecivedType='شحن' where CustomerBill_ID=" + id;
                     com = new MySqlCommand(query, dbconnection);
                     com.ExecuteNonQuery();
 
@@ -186,7 +173,6 @@ namespace MainSystem
                     radContractor.Checked = false;
                     radDealer.Checked = false;
                     comClient.SelectedIndex = -1;
-                    comBranch.SelectedIndex = -1;
                     checkedListBoxControlAddress.Items.Clear();
                     loaded = true;
                     xtraTabPage.ImageOptions.Image = null;
@@ -250,26 +236,42 @@ namespace MainSystem
                 if (loaded)
                 {
                     row1 = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
-                    comBranch.SelectedValue = row1["Branch_ID"].ToString();
-                    if (row1["فاتورة رقم"].ToString() != "")
+
+                    dbconnection.Open();
+                    string query = "select CustomerBill_ID from customer_bill where Branch_BillNumber=" + row1["فاتورة رقم"].ToString() + " and Branch_ID=" + UserControl.EmpBranchID;
+                    MySqlCommand com1 = new MySqlCommand(query, dbconnection);
+                    id = Convert.ToInt32(com1.ExecuteScalar());
+
+                    query = "select customer_bill.Bill_Date,product_bill.Delegate_ID from customer_bill inner join product_bill on product_bill.CustomerBill_ID=customer_bill.CustomerBill_ID where customer_bill.CustomerBill_ID=" + id + " order by product_bill.ProductBill_ID desc limit 1";
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    MySqlDataReader dr = com.ExecuteReader();
+                    if (dr.HasRows)
                     {
-                        txtBillNumber.Text = row1["فاتورة رقم"].ToString();
+                        while (dr.Read())
+                        {
+                            dateTimePicker2.Text = dr["Bill_Date"].ToString();
+                            comDelegate.SelectedValue = dr["Delegate_ID"].ToString();
+                        }
+                        dr.Close();
                     }
                     else
                     {
-                        txtBillNumber.Text = "";
+                        dateTimePicker2.Value = DateTime.Now.Date;
+                        comDelegate.SelectedIndex = -1;
                     }
+
                     if (row1["Client_ID"].ToString() != "")
                     {
                         loaded = false;
                         radClient.Checked = true;
                         loaded = true;
+                        dbconnection.Close();
                         comClient.SelectedValue = row1["Client_ID"].ToString();
                     }
                     else if(row1["Customer_ID"].ToString() != "")
                     {
-                        dbconnection.Open();
-                        string query = "select Customer_Type from customer where Customer_ID=" + row1["Customer_ID"].ToString();
+                        //dbconnection.Open();
+                        query = "select Customer_Type from customer where Customer_ID=" + row1["Customer_ID"].ToString();
                         MySqlCommand comm = new MySqlCommand(query, dbconnection);
                         string customerType = comm.ExecuteScalar().ToString();
                         dbconnection.Close();
@@ -325,13 +327,12 @@ namespace MainSystem
         public void search()
         {
             //customer_bill.CustomerBill_ID NOT IN (SELECT shipping.CustomerBill_ID FROM shipping)
-            string query = "SELECT customer_bill.CustomerBill_ID,customer_bill.Branch_BillNumber as 'فاتورة رقم',customer_bill.Branch_Name as 'الفرع',customer_bill.Client_Name as 'العميل',customer_bill.Customer_Name as 'المهندس/المقاول/التاجر',customer_bill.Branch_ID,customer_bill.Customer_ID,customer_bill.Client_ID FROM customer_bill where customer_bill.Shipped=0 and customer_bill.RecivedType='شحن' and ((customer_bill.Paid_Status='1' and customer_bill.Type_Buy='كاش') or customer_bill.Type_Buy='آجل')";
+            string query = "SELECT customer_bill.CustomerBill_ID,customer_bill.Branch_BillNumber as 'فاتورة رقم',customer_bill.Branch_Name as 'الفرع',customer_bill.Client_Name as 'العميل',customer_bill.Customer_Name as 'المهندس/المقاول/التاجر',customer_bill.Customer_ID,customer_bill.Client_ID FROM customer_bill where customer_bill.Shipped=0 and customer_bill.RecivedFlag='Draft' and ((customer_bill.Paid_Status='1' and customer_bill.Type_Buy='كاش') or customer_bill.Type_Buy='آجل') and customer_bill.Branch_ID=" + UserControl.EmpBranchID;
             MySqlDataAdapter adabter = new MySqlDataAdapter(query, dbconnection);
             DataTable dTable = new DataTable();
             adabter.Fill(dTable);
             gridControl1.DataSource = dTable;
 
-            gridView1.Columns["Branch_ID"].Visible = false;
             gridView1.Columns["Customer_ID"].Visible = false;
             gridView1.Columns["Client_ID"].Visible = false;
             gridView1.Columns["CustomerBill_ID"].Visible = false;
