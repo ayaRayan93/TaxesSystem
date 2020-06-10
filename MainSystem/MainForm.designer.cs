@@ -3997,7 +3997,7 @@
             // 
             // navBarControlShippingReport
             // 
-            this.navBarControlShippingReport.ActiveGroup = this.navBarGroupReportShipping;
+            this.navBarControlShippingReport.ActiveGroup = this.navBarGroupShippingRecord;
             this.navBarControlShippingReport.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControlShippingReport.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControlShippingReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4050,7 +4050,6 @@
             this.navBarGroupReportShipping.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupReportShipping.Appearance.Options.UseFont = true;
             this.navBarGroupReportShipping.Caption = "تقارير";
-            this.navBarGroupReportShipping.Expanded = true;
             this.navBarGroupReportShipping.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPermissionsReport)});
             this.navBarGroupReportShipping.Name = "navBarGroupReportShipping";
@@ -4068,6 +4067,7 @@
             this.navBarGroupShippingRecord.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupShippingRecord.Appearance.Options.UseFont = true;
             this.navBarGroupShippingRecord.Caption = "تسجيل شحنة";
+            this.navBarGroupShippingRecord.Expanded = true;
             this.navBarGroupShippingRecord.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemShipping_Record)});
             this.navBarGroupShippingRecord.Name = "navBarGroupShippingRecord";
@@ -4088,6 +4088,7 @@
             this.navBarGroup41.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDisplayWantedShippingBills)});
             this.navBarGroup41.Name = "navBarGroup41";
+            this.navBarGroup41.Visible = false;
             // 
             // navBarItemDisplayWantedShippingBills
             // 
