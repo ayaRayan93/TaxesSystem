@@ -41,7 +41,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.txtMoney = new System.Windows.Forms.TextBox();
-            this.cmbBank = new System.Windows.Forms.ComboBox();
+            this.comBank = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
@@ -49,12 +49,12 @@
             this.checkedListBoxControlAddress = new DevExpress.XtraEditors.CheckedListBoxControl();
             this.label2 = new System.Windows.Forms.Label();
             this.txtReceivedClient = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerBill = new System.Windows.Forms.DateTimePicker();
             this.comDelegate = new System.Windows.Forms.ComboBox();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.label18 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerReceived = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -260,7 +260,7 @@
             this.layoutControl1.Controls.Add(this.panel2);
             this.layoutControl1.Controls.Add(this.label7);
             this.layoutControl1.Controls.Add(this.txtMoney);
-            this.layoutControl1.Controls.Add(this.cmbBank);
+            this.layoutControl1.Controls.Add(this.comBank);
             this.layoutControl1.Controls.Add(this.label6);
             this.layoutControl1.Controls.Add(this.label4);
             this.layoutControl1.Controls.Add(this.txtQuantity);
@@ -268,11 +268,11 @@
             this.layoutControl1.Controls.Add(this.checkedListBoxControlAddress);
             this.layoutControl1.Controls.Add(this.label2);
             this.layoutControl1.Controls.Add(this.txtReceivedClient);
-            this.layoutControl1.Controls.Add(this.dateTimePicker2);
+            this.layoutControl1.Controls.Add(this.dateTimePickerBill);
             this.layoutControl1.Controls.Add(this.comDelegate);
             this.layoutControl1.Controls.Add(this.gridControl1);
             this.layoutControl1.Controls.Add(this.label18);
-            this.layoutControl1.Controls.Add(this.dateTimePicker1);
+            this.layoutControl1.Controls.Add(this.dateTimePickerReceived);
             this.layoutControl1.Controls.Add(this.label15);
             this.layoutControl1.Controls.Add(this.label11);
             this.layoutControl1.Controls.Add(this.label5);
@@ -320,14 +320,14 @@
             this.txtMoney.Size = new System.Drawing.Size(408, 25);
             this.txtMoney.TabIndex = 84;
             // 
-            // cmbBank
+            // comBank
             // 
-            this.cmbBank.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(559, 590);
-            this.cmbBank.Name = "cmbBank";
-            this.cmbBank.Size = new System.Drawing.Size(408, 24);
-            this.cmbBank.TabIndex = 83;
+            this.comBank.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.comBank.FormattingEnabled = true;
+            this.comBank.Location = new System.Drawing.Point(559, 590);
+            this.comBank.Name = "comBank";
+            this.comBank.Size = new System.Drawing.Size(408, 24);
+            this.comBank.TabIndex = 83;
             // 
             // label6
             // 
@@ -388,17 +388,17 @@
             this.txtReceivedClient.Size = new System.Drawing.Size(407, 25);
             this.txtReceivedClient.TabIndex = 77;
             // 
-            // dateTimePicker2
+            // dateTimePickerBill
             // 
-            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker2.Enabled = false;
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(559, 474);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.RightToLeftLayout = true;
-            this.dateTimePicker2.Size = new System.Drawing.Size(408, 22);
-            this.dateTimePicker2.TabIndex = 76;
+            this.dateTimePickerBill.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerBill.Enabled = false;
+            this.dateTimePickerBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.dateTimePickerBill.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerBill.Location = new System.Drawing.Point(559, 474);
+            this.dateTimePickerBill.Name = "dateTimePickerBill";
+            this.dateTimePickerBill.RightToLeftLayout = true;
+            this.dateTimePickerBill.Size = new System.Drawing.Size(408, 22);
+            this.dateTimePickerBill.TabIndex = 76;
             // 
             // comDelegate
             // 
@@ -446,17 +446,17 @@
             this.label18.Size = new System.Drawing.Size(20, 25);
             this.label18.TabIndex = 73;
             // 
-            // dateTimePicker1
+            // dateTimePickerReceived
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(559, 532);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.RightToLeftLayout = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(408, 22);
-            this.dateTimePicker1.TabIndex = 72;
-            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 7, 0, 0, 0, 0);
+            this.dateTimePickerReceived.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dateTimePickerReceived.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.dateTimePickerReceived.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerReceived.Location = new System.Drawing.Point(559, 532);
+            this.dateTimePickerReceived.Name = "dateTimePickerReceived";
+            this.dateTimePickerReceived.RightToLeftLayout = true;
+            this.dateTimePickerReceived.Size = new System.Drawing.Size(408, 22);
+            this.dateTimePickerReceived.TabIndex = 72;
+            this.dateTimePickerReceived.Value = new System.DateTime(2019, 1, 7, 0, 0, 0, 0);
             // 
             // label15
             // 
@@ -717,7 +717,7 @@
             this.layoutControlItem8.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.layoutControlItem8.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem8.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem8.Control = this.dateTimePicker2;
+            this.layoutControlItem8.Control = this.dateTimePickerBill;
             this.layoutControlItem8.Location = new System.Drawing.Point(557, 472);
             this.layoutControlItem8.MaxSize = new System.Drawing.Size(0, 29);
             this.layoutControlItem8.MinSize = new System.Drawing.Size(126, 29);
@@ -824,7 +824,7 @@
             this.layoutControlItem25.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.layoutControlItem25.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem25.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem25.Control = this.cmbBank;
+            this.layoutControlItem25.Control = this.comBank;
             this.layoutControlItem25.Location = new System.Drawing.Point(557, 588);
             this.layoutControlItem25.MaxSize = new System.Drawing.Size(0, 29);
             this.layoutControlItem25.MinSize = new System.Drawing.Size(121, 29);
@@ -877,7 +877,7 @@
             this.layoutControlItem32.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
             this.layoutControlItem32.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem32.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem32.Control = this.dateTimePicker1;
+            this.layoutControlItem32.Control = this.dateTimePickerReceived;
             this.layoutControlItem32.Location = new System.Drawing.Point(557, 530);
             this.layoutControlItem32.MaxSize = new System.Drawing.Size(0, 29);
             this.layoutControlItem32.MinSize = new System.Drawing.Size(126, 29);
@@ -1059,7 +1059,7 @@
         private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControlAddress;
         private System.Windows.Forms.Label label15;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerReceived;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem32;
         private System.Windows.Forms.Label label18;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
@@ -1070,13 +1070,13 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtReceivedClient;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerBill;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtMoney;
-        private System.Windows.Forms.ComboBox cmbBank;
+        private System.Windows.Forms.ComboBox comBank;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtQuantity;

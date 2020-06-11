@@ -1234,6 +1234,18 @@
     <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition.designer.cs">
       <DependentUpon>Print_AglTransition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shipping\WareHouse\Print_ShipWarehous_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\WareHouse\Print_ShipWarehous_Report.designer.cs">
+      <DependentUpon>Print_ShipWarehous_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping\WareHouse\Print_ShippingWareHouse.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Shipping\WareHouse\Print_ShippingWareHouse.designer.cs">
+      <DependentUpon>Print_ShippingWareHouse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shipping\Recording\CarShipping_Record.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2813,10 +2825,10 @@
     <Compile Include="Shipping\Permission_Report.designer.cs">
       <DependentUpon>Permission_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Shipping\Area_Report.cs">
+    <Compile Include="Shipping\Zone_Area Coding\Area_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Shipping\Area_Report.designer.cs">
+    <Compile Include="Shipping\Zone_Area Coding\Area_Report.designer.cs">
       <DependentUpon>Area_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Shipping\shippingOrganize\MakeShipping.cs">
@@ -2844,22 +2856,22 @@
     <Compile Include="Shipping\shippingOrganize\StorePermNums.Designer.cs">
       <DependentUpon>StorePermNums.cs</DependentUpon>
     </Compile>
-    <Compile Include="Shipping\Shipping_Record.cs">
+    <Compile Include="Shipping\WareHouse\Shipping_Record.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Shipping\Shipping_Record.designer.cs">
+    <Compile Include="Shipping\WareHouse\Shipping_Record.designer.cs">
       <DependentUpon>Shipping_Record.cs</DependentUpon>
     </Compile>
-    <Compile Include="Shipping\Zone_Area.cs">
+    <Compile Include="Shipping\Zone_Area Coding\Zone_Area.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Shipping\Zone_Area.Designer.cs">
+    <Compile Include="Shipping\Zone_Area Coding\Zone_Area.Designer.cs">
       <DependentUpon>Zone_Area.cs</DependentUpon>
     </Compile>
-    <Compile Include="Shipping\Zone_Report.cs">
+    <Compile Include="Shipping\Zone_Area Coding\Zone_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Shipping\Zone_Report.designer.cs">
+    <Compile Include="Shipping\Zone_Area Coding\Zone_Report.designer.cs">
       <DependentUpon>Zone_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="ExpensesSystem.cs" />
@@ -3797,6 +3809,12 @@
     <EmbeddedResource Include="Sales\Sales Report\تفاصيل الاصناف المباعة\SalesProductsBillsDetails_Report.resx">
       <DependentUpon>SalesProductsBillsDetails_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\WareHouse\Print_ShipWarehous_Report.resx">
+      <DependentUpon>Print_ShipWarehous_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\WareHouse\Print_ShippingWareHouse.resx">
+      <DependentUpon>Print_ShippingWareHouse.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Recording\CarShipping_Record.resx">
       <DependentUpon>CarShipping_Record.cs</DependentUpon>
     </EmbeddedResource>
@@ -4691,7 +4709,7 @@
     <EmbeddedResource Include="Shipping\Permission_Report.resx">
       <DependentUpon>Permission_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Shipping\Area_Report.resx">
+    <EmbeddedResource Include="Shipping\Zone_Area Coding\Area_Report.resx">
       <DependentUpon>Area_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\shippingOrganize\MakeShipping.resx">
@@ -4706,13 +4724,13 @@
     <EmbeddedResource Include="Shipping\shippingOrganize\StorePermNums.resx">
       <DependentUpon>StorePermNums.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Shipping\Shipping_Record.resx">
+    <EmbeddedResource Include="Shipping\WareHouse\Shipping_Record.resx">
       <DependentUpon>Shipping_Record.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Shipping\Zone_Area.resx">
+    <EmbeddedResource Include="Shipping\Zone_Area Coding\Zone_Area.resx">
       <DependentUpon>Zone_Area.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Shipping\Zone_Report.resx">
+    <EmbeddedResource Include="Shipping\Zone_Area Coding\Zone_Report.resx">
       <DependentUpon>Zone_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Ataqm.resx">

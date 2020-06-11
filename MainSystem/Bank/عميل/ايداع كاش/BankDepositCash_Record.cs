@@ -664,7 +664,6 @@ namespace MainSystem
                             if (outParse <= restMoney)
                             {
                                 string opNumString = null;
-                                int DesignNum = 0;
 
                                 if (txtOperationNumber.Text != "")
                                 {

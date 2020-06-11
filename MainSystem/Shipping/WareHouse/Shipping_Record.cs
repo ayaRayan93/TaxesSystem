@@ -22,6 +22,7 @@ namespace MainSystem
         bool loaded = false;
         DataRow row1;
         int id = 0;
+        int ShippingID = 0;
 
         public Shipping_Record()
         {
@@ -31,7 +32,7 @@ namespace MainSystem
             comArea.AutoCompleteMode = AutoCompleteMode.Suggest;
             comArea.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            dateTimePicker1.Value = DateTime.Now;
+            dateTimePickerReceived.Value = DateTime.Now;
         }
 
         private void Shipping_Record_Load(object sender, EventArgs e)
@@ -64,17 +65,17 @@ namespace MainSystem
                 da = new MySqlDataAdapter(query, dbconnection);
                 dt = new DataTable();
                 da.Fill(dt);
-                cmbBank.DataSource = dt;
-                cmbBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
-                cmbBank.ValueMember = dt.Columns["Bank_ID"].ToString();
+                comBank.DataSource = dt;
+                comBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
+                comBank.ValueMember = dt.Columns["Bank_ID"].ToString();
                 if (UserControl.userType == 1)
                 {
-                    cmbBank.SelectedIndex = -1;
+                    comBank.SelectedIndex = -1;
                 }
                 else
                 {
-                    cmbBank.Enabled = false;
-                    cmbBank.DropDownStyle = ComboBoxStyle.DropDownList;
+                    comBank.Enabled = false;
+                    comBank.DropDownStyle = ComboBoxStyle.DropDownList;
 
                     string q = "SELECT bank.Bank_Name,bank_employee.Bank_ID FROM bank_employee INNER JOIN bank ON bank.Bank_ID = bank_employee.Bank_ID where bank_employee.Employee_ID=" + UserControl.EmpID;
                     MySqlCommand com = new MySqlCommand(q, dbconnection);
@@ -83,14 +84,14 @@ namespace MainSystem
                     {
                         while (dr.Read())
                         {
-                            cmbBank.Text = dr["Bank_Name"].ToString();
-                            cmbBank.SelectedValue = dr["Bank_ID"].ToString();
+                            comBank.Text = dr["Bank_Name"].ToString();
+                            comBank.SelectedValue = dr["Bank_ID"].ToString();
                         }
                         dr.Close();
                     }
                     else
                     {
-                        cmbBank.SelectedIndex = -1;
+                        comBank.SelectedIndex = -1;
                     }
                 }
 
@@ -129,7 +130,7 @@ namespace MainSystem
                         txtAddress.Text = "";
                     }
                     
-                    query = "SELECT Address FROM shipping where Customer_ID=" + comClient.SelectedValue.ToString();
+                    query = "SELECT distinct Address FROM shipping where Customer_ID=" + comClient.SelectedValue.ToString();
                     com = new MySqlCommand(query, dbconnection);
                     dr = com.ExecuteReader();
                     if (dr.HasRows)
@@ -159,19 +160,21 @@ namespace MainSystem
         {
             try
             {
-                if (id !=0 && txtReceivedClient.Text != "" && comClient.Text != "" && comDelegate.Text != "" && txtPhone.Text != "" && txtAddress.Text != "" && comArea.Text != "" && (txtCartons.Text != "" || txtQuantity.Text != "") && cmbBank.Text != "" && txtMoney.Text != "")
+                if (id !=0 && txtReceivedClient.Text != "" && comClient.Text != "" && comDelegate.Text != "" && txtPhone.Text != "" && txtAddress.Text != "" && comArea.Text != "" && (txtCartons.Text != "" || txtQuantity.Text != "") && comBank.Text != "" && txtMoney.Text != "")
                 {
                     double outParse;
                     if (double.TryParse(txtMoney.Text, out outParse))
                     {
                         dbconnection.Open();
 
-                        string query = "insert into shipping (CustomerBill_ID,Customer_Name,Phone,Address,Area_ID,Date,Quantity,Cartons,Bank_ID,Money) values(@CustomerBill_ID,@Customer_Name,@Phone,@Address,@Area_ID,@Date,@Quantity,@Cartons,@Bank_ID,@Money)";
+                        string query = "insert into shipping (CustomerBill_ID,Customer_ID,Recipient_Name,Phone,Address,Area_ID,Date,Quantity,Cartons,Bank_ID,Money) values(@CustomerBill_ID,@Customer_ID,@Recipient_Name,@Phone,@Address,@Area_ID,@Date,@Quantity,@Cartons,@Bank_ID,@Money)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11);
                         com.Parameters["@CustomerBill_ID"].Value = id;
-                        com.Parameters.Add("@Customer_Name", MySqlDbType.VarChar, 255);
-                        com.Parameters["@Customer_Name"].Value = txtReceivedClient.Text;
+                        com.Parameters.Add("@Customer_ID", MySqlDbType.Int16, 11);
+                        com.Parameters["@Customer_ID"].Value = comClient.SelectedValue;
+                        com.Parameters.Add("@Recipient_Name", MySqlDbType.VarChar, 255);
+                        com.Parameters["@Recipient_Name"].Value = txtReceivedClient.Text;
                         com.Parameters.Add("@Phone", MySqlDbType.VarChar, 255);
                         com.Parameters["@Phone"].Value = txtPhone.Text;
                         com.Parameters.Add("@Address", MySqlDbType.VarChar, 255);
@@ -179,7 +182,7 @@ namespace MainSystem
                         com.Parameters.Add("@Area_ID", MySqlDbType.Int16, 11);
                         com.Parameters["@Area_ID"].Value = comArea.SelectedValue.ToString();
                         com.Parameters.Add("@Date", MySqlDbType.DateTime);
-                        com.Parameters["@Date"].Value = dateTimePicker1.Value;
+                        com.Parameters["@Date"].Value = dateTimePickerReceived.Value;
                         if (txtQuantity.Text != "")
                         {
                             com.Parameters.Add("@Quantity", MySqlDbType.Decimal, 10);
@@ -201,22 +204,27 @@ namespace MainSystem
                             com.Parameters["@Cartons"].Value = null;
                         }
                         com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11);
-                        com.Parameters["@Bank_ID"].Value = cmbBank.SelectedValue.ToString();
+                        com.Parameters["@Bank_ID"].Value = comBank.SelectedValue.ToString();
                         com.Parameters.Add("@Money", MySqlDbType.Decimal, 10);
                         com.Parameters["@Money"].Value = outParse;
                         com.ExecuteNonQuery();
 
-                        query = "update customer_bill set Shipped=1 and RecivedType='شحن' where CustomerBill_ID=" + id;
+                        query = "select Shipping_ID from shipping order by Shipping_ID desc limit 1";
+                        com = new MySqlCommand(query, dbconnection);
+                        ShippingID = Convert.ToInt16(com.ExecuteScalar().ToString());
+
+                        query = "update customer_bill set Shipped=2 , RecivedType='شحن' where CustomerBill_ID=" + id;
                         com = new MySqlCommand(query, dbconnection);
                         com.ExecuteNonQuery();
 
-                        MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                        MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + comBank.SelectedValue, dbconnection);
                         double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
                         amount2 += outParse;
-                        MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + cmbBank.SelectedValue, dbconnection);
+                        MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + comBank.SelectedValue, dbconnection);
                         com3.ExecuteNonQuery();
 
-                        //MessageBox.Show("تم");
+                        printBill();
+
                         search();
                         clear();
                         dbconnection.Close();
@@ -309,13 +317,13 @@ namespace MainSystem
                     {
                         while (dr.Read())
                         {
-                            dateTimePicker2.Text = dr["Bill_Date"].ToString();
+                            dateTimePickerBill.Text = dr["Bill_Date"].ToString();
                             comDelegate.SelectedValue = dr["Delegate_ID"].ToString();
                         }
                     }
                     else
                     {
-                        dateTimePicker2.Value = DateTime.Now.Date;
+                        dateTimePickerBill.Value = DateTime.Now.Date;
                         comDelegate.SelectedIndex = -1;
                     }
                     dr.Close();
@@ -431,6 +439,13 @@ namespace MainSystem
             gridView1.Columns["CustomerBill_ID"].Visible = false;
         }
 
+        void printBill()
+        {
+            Print_ShipWarehous_Report f = new Print_ShipWarehous_Report();
+            f.PrintInvoice(ShippingID, Convert.ToInt16(row1["فاتورة رقم"].ToString()), UserControl.EmpBranchName, row1["المهندس/المقاول/التاجر"].ToString(), row1["العميل"].ToString(), txtReceivedClient.Text, comArea.Text, txtAddress.Text, txtPhone.Text, comDelegate.Text, dateTimePickerBill.Value.Date, dateTimePickerReceived.Value, txtQuantity.Text, txtCartons.Text, comBank.Text, Convert.ToDouble(txtMoney.Text));
+            f.ShowDialog();
+        }
+
         //clear function
         public void clear()
         {
@@ -439,6 +454,7 @@ namespace MainSystem
                 if (co is System.Windows.Forms.ComboBox)
                 {
                     co.Text = "";
+                    comDelegate.SelectedIndex = -1;
                 }
                 else if (co is TextBox)
                 {
@@ -446,7 +462,8 @@ namespace MainSystem
                 }
                 else if (co is DateTimePicker)
                 {
-                    dateTimePicker1.Value = DateTime.Now;
+                    dateTimePickerBill.Value = DateTime.Now;
+                    dateTimePickerReceived.Value = DateTime.Now;
                 }
             }
         }
