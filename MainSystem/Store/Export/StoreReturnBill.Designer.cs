@@ -364,7 +364,7 @@
             this.groupBox1.Location = new System.Drawing.Point(46, 1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox1.Size = new System.Drawing.Size(721, 117);
+            this.groupBox1.Size = new System.Drawing.Size(286, 117);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "الفلاتر";
@@ -521,7 +521,6 @@
             this.panBillNumber.Name = "panBillNumber";
             this.panBillNumber.Size = new System.Drawing.Size(286, 112);
             this.panBillNumber.TabIndex = 2;
-            this.panBillNumber.Visible = false;
             // 
             // txtBranchBillNum
             // 
@@ -557,6 +556,7 @@
             this.radioButtonWithOutReturnBill.TabStop = true;
             this.radioButtonWithOutReturnBill.Text = "مرتجع بدون فاتورة";
             this.radioButtonWithOutReturnBill.UseVisualStyleBackColor = true;
+            this.radioButtonWithOutReturnBill.Visible = false;
             this.radioButtonWithOutReturnBill.CheckedChanged += new System.EventHandler(this.radioButtonWithOutReturnBill_CheckedChanged);
             // 
             // radioButtonReturnBill
@@ -572,6 +572,7 @@
             this.radioButtonReturnBill.TabStop = true;
             this.radioButtonReturnBill.Text = "مرتجع بفاتورة";
             this.radioButtonReturnBill.UseVisualStyleBackColor = true;
+            this.radioButtonReturnBill.Visible = false;
             this.radioButtonReturnBill.CheckedChanged += new System.EventHandler(this.radioButtonReturnBill_CheckedChanged);
             // 
             // panel2
@@ -796,7 +797,7 @@
             this.labelEng.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEng.Location = new System.Drawing.Point(235, 34);
             this.labelEng.Name = "labelEng";
-            this.labelEng.Size = new System.Drawing.Size(108, 16);
+            this.labelEng.Size = new System.Drawing.Size(110, 16);
             this.labelEng.TabIndex = 179;
             this.labelEng.Text = "مهندس/مقاول/تاجر";
             this.labelEng.Visible = false;
@@ -835,7 +836,7 @@
             this.radDealer.Location = new System.Drawing.Point(37, 4);
             this.radDealer.Name = "radDealer";
             this.radDealer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radDealer.Size = new System.Drawing.Size(45, 20);
+            this.radDealer.Size = new System.Drawing.Size(46, 20);
             this.radDealer.TabIndex = 180;
             this.radDealer.TabStop = true;
             this.radDealer.Text = "تاجر";
@@ -865,7 +866,7 @@
             this.radCon.Location = new System.Drawing.Point(92, 4);
             this.radCon.Name = "radCon";
             this.radCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCon.Size = new System.Drawing.Size(58, 20);
+            this.radCon.Size = new System.Drawing.Size(59, 20);
             this.radCon.TabIndex = 175;
             this.radCon.TabStop = true;
             this.radCon.Text = "مقاول";
@@ -1047,7 +1048,7 @@
             this.label3.Location = new System.Drawing.Point(703, 22);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(37, 18);
+            this.label3.Size = new System.Drawing.Size(38, 18);
             this.label3.TabIndex = 8;
             this.label3.Text = "الفرع";
             // 
