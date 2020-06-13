@@ -284,8 +284,8 @@ namespace MainSystem
                 btnPOS.Checked = true;
                 btnExpenses.Enabled = true;
                 btnExpenses.Checked = true;
-                navBarGroup56.Visible = false;
-                navBarGroup57.Visible = false;
+                //navBarGroup56.Visible = false;
+                //navBarGroup57.Visible = false;
                 //navBarGroup57.Visible = false;
                 navBarGroupBillRecord.Visible = false;
                 //navBarGroupSupplierPayments.Visible = false;
