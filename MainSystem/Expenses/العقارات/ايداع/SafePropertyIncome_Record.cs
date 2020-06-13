@@ -63,7 +63,7 @@ namespace MainSystem
                         com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "ايداع";
                         com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
                         com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = comBank.SelectedValue;
-                        com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
+                        com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.Date;
                         com.Parameters.Add("@Depositor_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
                         com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                         com.Parameters.Add("@Employee_ID", MySqlDbType.Int16).Value = UserControl.EmpID;
