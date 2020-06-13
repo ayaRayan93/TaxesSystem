@@ -46,6 +46,18 @@ namespace MainSystem
             }
         }
 
+        private void radCompanyCar_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DisplayCars();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -179,7 +191,12 @@ namespace MainSystem
         //functions
         public void DisplayCars()
         {
-            string qeury = "select cars.Car_ID as 'الكود', Car_Number as 'رقم السيارة' ,Car_Capacity as 'سعة التحميل',meter_reading as 'قراءة العداد',Openning_Account as 'رصيد بداية المدة',Car_Value as 'القيمة الحالية للسيارة',DepreciationPeriod as 'فترة الاهلاك',PremiumDepreciation as 'قسط الاهلاك' from cars ";
+            int type = 2;
+            if (radCompanyCar.Checked)
+            {
+                type = 1;
+            }
+            string qeury = "select cars.Car_ID as 'الكود', Car_Number as 'رقم السيارة' ,Car_Capacity as 'سعة التحميل',meter_reading as 'قراءة العداد',Openning_Account as 'رصيد بداية المدة',Car_Value as 'القيمة الحالية للسيارة',DepreciationPeriod as 'فترة الاهلاك',PremiumDepreciation as 'قسط الاهلاك' from cars  where Type="+type;
             MySqlDataAdapter adapter = new MySqlDataAdapter(qeury, dbconnection);
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
@@ -189,6 +206,7 @@ namespace MainSystem
 
       
         }
-        
+
+    
     }
 }

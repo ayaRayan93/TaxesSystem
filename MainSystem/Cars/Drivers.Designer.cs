@@ -31,25 +31,31 @@
             this.gridControlStores = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnDelete = new Bunifu.Framework.UI.BunifuTileButton();
             this.btnReport = new Bunifu.Framework.UI.BunifuTileButton();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.radCompanyCar = new System.Windows.Forms.RadioButton();
+            this.radPrivateCar = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlStores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControlStores
             // 
             this.gridControlStores.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlStores.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControlStores.Location = new System.Drawing.Point(0, 0);
+            this.gridControlStores.Location = new System.Drawing.Point(0, 60);
             this.gridControlStores.MainView = this.gridView1;
             this.gridControlStores.Margin = new System.Windows.Forms.Padding(0);
             this.gridControlStores.Name = "gridControlStores";
             this.gridControlStores.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControlStores.Size = new System.Drawing.Size(881, 470);
+            this.gridControlStores.Size = new System.Drawing.Size(881, 363);
             this.gridControlStores.TabIndex = 6;
             this.gridControlStores.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -101,27 +107,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(881, 47);
             this.tableLayoutPanel2.TabIndex = 7;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.File_32;
-            this.btnAdd.ImagePosition = 1;
-            this.btnAdd.ImageZoom = 20;
-            this.btnAdd.LabelPosition = 18;
-            this.btnAdd.LabelText = "اضافة";
-            this.btnAdd.Location = new System.Drawing.Point(532, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(82, 39);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
@@ -142,6 +127,27 @@
             this.btnUpdate.Size = new System.Drawing.Size(82, 39);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAdd.ImagePosition = 1;
+            this.btnAdd.ImageZoom = 20;
+            this.btnAdd.LabelPosition = 18;
+            this.btnAdd.LabelText = "اضافة";
+            this.btnAdd.Location = new System.Drawing.Point(532, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(82, 39);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 
@@ -185,19 +191,78 @@
             this.btnReport.TabIndex = 3;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.gridControlStores, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(881, 423);
+            this.tableLayoutPanel1.TabIndex = 8;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panel1.Controls.Add(this.radCompanyCar);
+            this.panel1.Controls.Add(this.radPrivateCar);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(881, 60);
+            this.panel1.TabIndex = 8;
+            // 
+            // radCompanyCar
+            // 
+            this.radCompanyCar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radCompanyCar.AutoSize = true;
+            this.radCompanyCar.Checked = true;
+            this.radCompanyCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCompanyCar.Location = new System.Drawing.Point(494, 22);
+            this.radCompanyCar.Name = "radCompanyCar";
+            this.radCompanyCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radCompanyCar.Size = new System.Drawing.Size(99, 23);
+            this.radCompanyCar.TabIndex = 45;
+            this.radCompanyCar.TabStop = true;
+            this.radCompanyCar.Text = "سائقين الشركة";
+            this.radCompanyCar.UseVisualStyleBackColor = true;
+            this.radCompanyCar.CheckedChanged += new System.EventHandler(this.radCompanyCar_CheckedChanged);
+            // 
+            // radPrivateCar
+            // 
+            this.radPrivateCar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radPrivateCar.AutoSize = true;
+            this.radPrivateCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radPrivateCar.Location = new System.Drawing.Point(359, 22);
+            this.radPrivateCar.Name = "radPrivateCar";
+            this.radPrivateCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radPrivateCar.Size = new System.Drawing.Size(96, 23);
+            this.radPrivateCar.TabIndex = 44;
+            this.radPrivateCar.Text = "سائقين خاصة";
+            this.radPrivateCar.UseVisualStyleBackColor = true;
+            // 
             // Drivers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(881, 470);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Controls.Add(this.gridControlStores);
             this.Name = "Drivers";
             this.Text = "Cars";
             this.Load += new System.EventHandler(this.Cars_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlStores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -211,5 +276,9 @@
         private Bunifu.Framework.UI.BunifuTileButton btnUpdate;
         private Bunifu.Framework.UI.BunifuTileButton btnDelete;
         private Bunifu.Framework.UI.BunifuTileButton btnReport;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton radCompanyCar;
+        private System.Windows.Forms.RadioButton radPrivateCar;
     }
 }

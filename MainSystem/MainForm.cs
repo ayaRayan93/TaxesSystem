@@ -583,7 +583,7 @@ namespace MainSystem
                 //navBarGroup8.Visible = false;
                 navBarGroup9.Visible = false;
                 navBarGroup10.Visible = false;
-                navBarGroup11.Visible = false;
+                navBarGroup11.Visible = true;
                 navBarGroup13.Visible = false;
                 navBarGroup14.Visible = false;
                 navBarGroup15.Visible = false;
@@ -1371,7 +1371,7 @@ namespace MainSystem
     {
         static string supString = File.ReadAllText("IP_Address.txt");//'35.232.25.153'
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=newschematest;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
         //public static string connectionString = "SERVER=197.50.31.80;DATABASE=newschematest;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
         //public static string connectionString = "SERVER=localhost;DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8";
     }

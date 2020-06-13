@@ -50,13 +50,6 @@
             this.labTotalReturnCost = new System.Windows.Forms.Label();
             this.labRest = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type_Buy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClientCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panHeader = new System.Windows.Forms.Panel();
             this.chAgel = new System.Windows.Forms.CheckBox();
             this.chKash = new System.Windows.Forms.CheckBox();
@@ -90,6 +83,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type_Buy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClientCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BillNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Branch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReturnBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bill = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -298,6 +299,7 @@
             this.ClientCode,
             this.Client,
             this.BillNumber,
+            this.Branch,
             this.ReturnBill,
             this.Bill});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -314,46 +316,6 @@
             this.dataGridView1.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.Size = new System.Drawing.Size(970, 186);
             this.dataGridView1.TabIndex = 161;
-            // 
-            // Date
-            // 
-            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Date.HeaderText = "تاريخ";
-            this.Date.Name = "Date";
-            // 
-            // Type_Buy
-            // 
-            this.Type_Buy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Type_Buy.HeaderText = "النوع";
-            this.Type_Buy.Name = "Type_Buy";
-            // 
-            // ClientCode
-            // 
-            this.ClientCode.HeaderText = "الكود";
-            this.ClientCode.Name = "ClientCode";
-            // 
-            // Client
-            // 
-            this.Client.HeaderText = "العميل";
-            this.Client.Name = "Client";
-            // 
-            // BillNumber
-            // 
-            this.BillNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BillNumber.HeaderText = "رقم الفاتورة";
-            this.BillNumber.Name = "BillNumber";
-            // 
-            // ReturnBill
-            // 
-            this.ReturnBill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ReturnBill.HeaderText = "المرتجعات";
-            this.ReturnBill.Name = "ReturnBill";
-            // 
-            // Bill
-            // 
-            this.Bill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Bill.HeaderText = "مسحوبات";
-            this.Bill.Name = "Bill";
             // 
             // panHeader
             // 
@@ -780,6 +742,51 @@
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // Date
+            // 
+            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Date.HeaderText = "تاريخ";
+            this.Date.Name = "Date";
+            // 
+            // Type_Buy
+            // 
+            this.Type_Buy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Type_Buy.HeaderText = "النوع";
+            this.Type_Buy.Name = "Type_Buy";
+            // 
+            // ClientCode
+            // 
+            this.ClientCode.HeaderText = "الكود";
+            this.ClientCode.Name = "ClientCode";
+            // 
+            // Client
+            // 
+            this.Client.HeaderText = "العميل";
+            this.Client.Name = "Client";
+            // 
+            // BillNumber
+            // 
+            this.BillNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BillNumber.HeaderText = "رقم الفاتورة";
+            this.BillNumber.Name = "BillNumber";
+            // 
+            // Branch
+            // 
+            this.Branch.HeaderText = "الفرع";
+            this.Branch.Name = "Branch";
+            // 
+            // ReturnBill
+            // 
+            this.ReturnBill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ReturnBill.HeaderText = "المرتجعات";
+            this.ReturnBill.Name = "ReturnBill";
+            // 
+            // Bill
+            // 
+            this.Bill.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Bill.HeaderText = "مسحوبات";
+            this.Bill.Name = "Bill";
+            // 
             // AccountStatement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -840,13 +847,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label labCustomerOpenAccount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type_Buy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ClientCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Client;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BillNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
         private System.Windows.Forms.CheckBox chAgel;
         private System.Windows.Forms.CheckBox chKash;
         private Bunifu.Framework.UI.BunifuTileButton btnReportBills;
@@ -863,5 +863,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.Label labBeforBill;
         private System.Windows.Forms.Label labBeforPaid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Type_Buy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ClientCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Client;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BillNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Branch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReturnBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Bill;
     }
 }

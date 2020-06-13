@@ -56,7 +56,7 @@
             // 
             // txtDriverName
             // 
-            this.txtDriverName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDriverName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDriverName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDriverName.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtDriverName.Location = new System.Drawing.Point(501, 129);
@@ -68,7 +68,7 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
@@ -80,7 +80,7 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
@@ -92,7 +92,7 @@
             // 
             // txtPhone
             // 
-            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPhone.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhone.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtPhone.Location = new System.Drawing.Point(501, 205);
@@ -131,6 +131,7 @@
             // 
             // radCompanyCar
             // 
+            this.radCompanyCar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radCompanyCar.AutoSize = true;
             this.radCompanyCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radCompanyCar.Location = new System.Drawing.Point(479, 61);
@@ -144,6 +145,7 @@
             // 
             // radPrivateCar
             // 
+            this.radPrivateCar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radPrivateCar.AutoSize = true;
             this.radPrivateCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radPrivateCar.Location = new System.Drawing.Point(344, 61);
@@ -196,7 +198,7 @@
             // 
             // dTPWorkStartDate
             // 
-            this.dTPWorkStartDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dTPWorkStartDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dTPWorkStartDate.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dTPWorkStartDate.Location = new System.Drawing.Point(178, 209);
             this.dTPWorkStartDate.Name = "dTPWorkStartDate";
@@ -207,7 +209,7 @@
             // 
             // dTPBirthDate
             // 
-            this.dTPBirthDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dTPBirthDate.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dTPBirthDate.Font = new System.Drawing.Font("Tahoma", 10F);
             this.dTPBirthDate.Location = new System.Drawing.Point(178, 169);
             this.dTPBirthDate.Name = "dTPBirthDate";
@@ -218,7 +220,7 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
@@ -230,7 +232,7 @@
             // 
             // txtNationalID
             // 
-            this.txtNationalID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNationalID.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNationalID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNationalID.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtNationalID.Location = new System.Drawing.Point(501, 167);
@@ -242,7 +244,7 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
@@ -254,7 +256,7 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
@@ -266,7 +268,7 @@
             // 
             // txtLicese
             // 
-            this.txtLicese.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLicese.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtLicese.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLicese.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtLicese.Location = new System.Drawing.Point(178, 129);
@@ -278,7 +280,7 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
@@ -290,7 +292,7 @@
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
@@ -302,7 +304,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAddress.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtAddress.Location = new System.Drawing.Point(501, 243);

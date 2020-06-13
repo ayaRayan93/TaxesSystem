@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Car_Update));
             this.panContent = new System.Windows.Forms.Panel();
+            this.radCompanyCar = new System.Windows.Forms.RadioButton();
+            this.radPrivateCar = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdate = new Bunifu.Framework.UI.BunifuTileButton();
             this.label7 = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.radCompanyCar = new System.Windows.Forms.RadioButton();
-            this.radPrivateCar = new System.Windows.Forms.RadioButton();
             this.panContent.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +78,34 @@
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(769, 476);
             this.panContent.TabIndex = 8;
+            // 
+            // radCompanyCar
+            // 
+            this.radCompanyCar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radCompanyCar.AutoSize = true;
+            this.radCompanyCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCompanyCar.Location = new System.Drawing.Point(407, 76);
+            this.radCompanyCar.Name = "radCompanyCar";
+            this.radCompanyCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radCompanyCar.Size = new System.Drawing.Size(96, 23);
+            this.radCompanyCar.TabIndex = 48;
+            this.radCompanyCar.TabStop = true;
+            this.radCompanyCar.Text = "عربية الشركة";
+            this.radCompanyCar.UseVisualStyleBackColor = true;
+            // 
+            // radPrivateCar
+            // 
+            this.radPrivateCar.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radPrivateCar.AutoSize = true;
+            this.radPrivateCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radPrivateCar.Location = new System.Drawing.Point(272, 76);
+            this.radPrivateCar.Name = "radPrivateCar";
+            this.radPrivateCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.radPrivateCar.Size = new System.Drawing.Size(59, 23);
+            this.radPrivateCar.TabIndex = 47;
+            this.radPrivateCar.TabStop = true;
+            this.radPrivateCar.Text = "خاصة";
+            this.radPrivateCar.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
             // 
@@ -120,7 +148,7 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label7.ForeColor = System.Drawing.Color.Black;
@@ -132,7 +160,7 @@
             // 
             // txtPremiumDepreciation
             // 
-            this.txtPremiumDepreciation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPremiumDepreciation.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPremiumDepreciation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPremiumDepreciation.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtPremiumDepreciation.Location = new System.Drawing.Point(137, 274);
@@ -144,7 +172,7 @@
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label8.ForeColor = System.Drawing.Color.Black;
@@ -156,7 +184,7 @@
             // 
             // txtMeterReading
             // 
-            this.txtMeterReading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMeterReading.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtMeterReading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMeterReading.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtMeterReading.Location = new System.Drawing.Point(137, 196);
@@ -168,7 +196,7 @@
             // 
             // txtDepreciationPeriod
             // 
-            this.txtDepreciationPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDepreciationPeriod.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDepreciationPeriod.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDepreciationPeriod.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtDepreciationPeriod.Location = new System.Drawing.Point(427, 238);
@@ -180,7 +208,7 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label1.ForeColor = System.Drawing.Color.Black;
@@ -192,7 +220,7 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label4.ForeColor = System.Drawing.Color.Black;
@@ -204,7 +232,7 @@
             // 
             // txtCarValue
             // 
-            this.txtCarValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCarValue.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCarValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCarValue.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtCarValue.Location = new System.Drawing.Point(427, 199);
@@ -216,7 +244,7 @@
             // 
             // txtCarCapacity
             // 
-            this.txtCarCapacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCarCapacity.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCarCapacity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCarCapacity.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtCarCapacity.Location = new System.Drawing.Point(137, 157);
@@ -228,7 +256,7 @@
             // 
             // txtCarNumber
             // 
-            this.txtCarNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCarNumber.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCarNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCarNumber.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtCarNumber.Location = new System.Drawing.Point(427, 157);
@@ -240,7 +268,7 @@
             // 
             // txtOpenning_Account
             // 
-            this.txtOpenning_Account.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOpenning_Account.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtOpenning_Account.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtOpenning_Account.Font = new System.Drawing.Font("Tahoma", 10F);
             this.txtOpenning_Account.Location = new System.Drawing.Point(137, 235);
@@ -252,7 +280,7 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label3.ForeColor = System.Drawing.Color.Black;
@@ -264,7 +292,7 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label5.ForeColor = System.Drawing.Color.Black;
@@ -276,7 +304,7 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 10F);
             this.label6.ForeColor = System.Drawing.Color.Black;
@@ -285,32 +313,6 @@
             this.label6.Size = new System.Drawing.Size(75, 17);
             this.label6.TabIndex = 39;
             this.label6.Text = "قراءة العداد";
-            // 
-            // radCompanyCar
-            // 
-            this.radCompanyCar.AutoSize = true;
-            this.radCompanyCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCompanyCar.Location = new System.Drawing.Point(407, 76);
-            this.radCompanyCar.Name = "radCompanyCar";
-            this.radCompanyCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radCompanyCar.Size = new System.Drawing.Size(96, 23);
-            this.radCompanyCar.TabIndex = 48;
-            this.radCompanyCar.TabStop = true;
-            this.radCompanyCar.Text = "عربية الشركة";
-            this.radCompanyCar.UseVisualStyleBackColor = true;
-            // 
-            // radPrivateCar
-            // 
-            this.radPrivateCar.AutoSize = true;
-            this.radPrivateCar.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radPrivateCar.Location = new System.Drawing.Point(272, 76);
-            this.radPrivateCar.Name = "radPrivateCar";
-            this.radPrivateCar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.radPrivateCar.Size = new System.Drawing.Size(59, 23);
-            this.radPrivateCar.TabIndex = 47;
-            this.radPrivateCar.TabStop = true;
-            this.radPrivateCar.Text = "خاصة";
-            this.radPrivateCar.UseVisualStyleBackColor = true;
             // 
             // Car_Update
             // 
