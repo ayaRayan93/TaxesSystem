@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version2.27\</PublishUrl>
+    <PublishUrl>D:\التكويد\version2.29\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>317</ApplicationRevision>
+    <ApplicationRevision>319</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -665,6 +665,12 @@
     </Compile>
     <Compile Include="CustomerService\CustomerServiceAfterReceived_Report.designer.cs">
       <DependentUpon>CustomerServiceAfterReceived_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.designer.cs">
+      <DependentUpon>StoragePurchases_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="RequestsSystem.cs" />
     <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
@@ -3652,6 +3658,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Report.resx">
       <DependentUpon>SupplierBillsTransitionsDetails_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.resx">
+      <DependentUpon>StoragePurchases_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitions_ReportX.resx">
       <DependentUpon>SupplierBillsTransitions_ReportX.cs</DependentUpon>
