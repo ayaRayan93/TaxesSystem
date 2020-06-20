@@ -69,10 +69,10 @@
             this.TotalReturn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Safaya = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Factory_Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Group_Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PercentageDelegate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.DelegateProfit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-            this.Group_Name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -574,7 +574,6 @@
             this.gridView1.GridControl = this.GridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsPrint.EnableAppearanceEvenRow = true;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowIndicator = false;
             // 
             // Delegate_ID
@@ -682,6 +681,14 @@
             this.Factory_Name.Visible = true;
             this.Factory_Name.VisibleIndex = 6;
             // 
+            // Group_Name
+            // 
+            this.Group_Name.Caption = "المجموعة";
+            this.Group_Name.FieldName = "Group_Name";
+            this.Group_Name.Name = "Group_Name";
+            this.Group_Name.Visible = true;
+            this.Group_Name.VisibleIndex = 5;
+            // 
             // PercentageDelegate
             // 
             this.PercentageDelegate.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -709,14 +716,6 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "DelegateProfit", "{0:0.##}")});
             this.DelegateProfit.Visible = true;
             this.DelegateProfit.VisibleIndex = 0;
-            // 
-            // Group_Name
-            // 
-            this.Group_Name.Caption = "المجموعة";
-            this.Group_Name.FieldName = "Group_Name";
-            this.Group_Name.Name = "Group_Name";
-            this.Group_Name.Visible = true;
-            this.Group_Name.VisibleIndex = 5;
             // 
             // DelegateSalesForCompanyGroup
             // 
