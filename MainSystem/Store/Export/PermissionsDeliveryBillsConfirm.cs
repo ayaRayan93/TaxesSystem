@@ -272,9 +272,9 @@ namespace MainSystem
           
             string query = "";
             if (d == d2)
-                query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='Draft' and  case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end " + subQuery;
+                query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Bill_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='Draft' and  case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end " + subQuery;
             else
-                query = "select distinct Branch_BillNumber ,Branch_Name ,Customer_Name ,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date between '" + d + "' and '" + d2 + "' and RecivedType='العميل' and RecivedFlag='Draft' and case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end  " + subQuery;
+                query = "select distinct Branch_BillNumber ,Branch_Name ,Customer_Name ,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Bill_Date between '" + d + "' and '" + d2 + "' and RecivedType='العميل' and RecivedFlag='Draft' and case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end  " + subQuery;
 
           
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);

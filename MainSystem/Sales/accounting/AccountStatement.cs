@@ -257,8 +257,8 @@ namespace MainSystem
 
                     foreach (DataGridViewRow row1 in dataGridView1.Rows)
                     {
-                        totalBill += Convert.ToDouble(row1.Cells[6].Value);
-                        TotalReturn += Convert.ToDouble(row1.Cells[5].Value);
+                        totalBill += Convert.ToDouble(row1.Cells[7].Value);
+                        TotalReturn += Convert.ToDouble(row1.Cells[6].Value);
                         rest = totalBill - TotalReturn;
                     }
 
@@ -350,8 +350,9 @@ namespace MainSystem
                 while (dr1.Read())
                 {
                     int n = dataGridView1.Rows.Add();
-                    dataGridView1.Rows[n].Cells[6].Value = dr1["Total_CostAD"].ToString();
-                    dataGridView1.Rows[n].Cells[5].Value = "0.00";
+                    dataGridView1.Rows[n].Cells[7].Value = dr1["Total_CostAD"].ToString();
+                    dataGridView1.Rows[n].Cells[6].Value = "0.00";
+                    dataGridView1.Rows[n].Cells[5].Value = dr1["Branch_Name"].ToString();
                     dataGridView1.Rows[n].Cells[4].Value = dr1["Branch_BillNumber"].ToString();
                     dataGridView1.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
                     dataGridView1.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
@@ -378,8 +379,9 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = dataGridView1.Rows.Add();
-                dataGridView1.Rows[n].Cells[6].Value = dr["Total_CostAD"].ToString();
-                dataGridView1.Rows[n].Cells[5].Value = "0.00";
+                dataGridView1.Rows[n].Cells[7].Value = dr["Total_CostAD"].ToString();
+                dataGridView1.Rows[n].Cells[6].Value = "0.00";
+                dataGridView1.Rows[n].Cells[5].Value = dr["Branch_Name"].ToString();
                 dataGridView1.Rows[n].Cells[4].Value = dr["Branch_BillNumber"].ToString();
                 dataGridView1.Rows[n].Cells[1].Value = dr["Type_Buy"].ToString();
                 dataGridView1.Rows[n].Cells[0].Value = dr["Bill_Date"].ToString();
@@ -417,8 +419,9 @@ namespace MainSystem
                 while (dr1.Read())
                 {
                     int n = datagridview.Rows.Add();
-                    datagridview.Rows[n].Cells[6].Value = "0.00";
-                    datagridview.Rows[n].Cells[5].Value = dr1["TotalCostAD"].ToString();
+                    datagridview.Rows[n].Cells[7].Value = "0.00";
+                    datagridview.Rows[n].Cells[6].Value = dr1["TotalCostAD"].ToString();
+                    datagridview.Rows[n].Cells[5].Value = dr1["Branch_Name"].ToString();
                     datagridview.Rows[n].Cells[4].Value = dr1["Branch_BillNumber"].ToString();
                     datagridview.Rows[n].Cells[3].Value = dr1["Customer_Name"].ToString();
                     datagridview.Rows[n].Cells[2].Value = dr1["Client_ID"].ToString();
@@ -438,8 +441,9 @@ namespace MainSystem
             while (dr.Read())
             {
                 int n = datagridview.Rows.Add();
-                datagridview.Rows[n].Cells[6].Value = "0.00";
-                datagridview.Rows[n].Cells[5].Value = dr["TotalCostAD"].ToString();
+                datagridview.Rows[n].Cells[7].Value = "0.00";
+                datagridview.Rows[n].Cells[6].Value = dr["TotalCostAD"].ToString();
+                datagridview.Rows[n].Cells[5].Value = dr["Branch_Name"].ToString();
                 datagridview.Rows[n].Cells[4].Value = dr["Branch_BillNumber"].ToString();
                 datagridview.Rows[n].Cells[1].Value = dr["Type_Buy"].ToString();
                 datagridview.Rows[n].Cells[0].Value = dr["Date"].ToString();

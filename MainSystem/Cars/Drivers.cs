@@ -42,7 +42,17 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
+        private void radCompanyCar_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DisplayDrivers();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -123,7 +133,12 @@ namespace MainSystem
         //functions
         public void DisplayDrivers()
         {
-            string qeury = "select Driver_ID as 'الكود',Driver_Name as 'السائق',Driver_Phone as 'التلفون',Driver_Address as 'العنوان',Driver_BairthDate as 'تاريخ الميلاد',Driver_License as 'الرخصة',Driver_NationalID as 'الرقم القومي',Driver_StartWorkDate as 'تاريخ بدء العمل' from drivers";
+            int type = 2;
+            if (radCompanyCar.Checked)
+            {
+                type = 1;
+            }
+            string qeury = "select Driver_ID as 'الكود',Driver_Name as 'السائق',Driver_Phone as 'التلفون',Driver_Address as 'العنوان',Driver_BairthDate as 'تاريخ الميلاد',Driver_License as 'الرخصة',Driver_NationalID as 'الرقم القومي',Driver_StartWorkDate as 'تاريخ بدء العمل' from drivers where Type="+type;
             MySqlDataAdapter adapter = new MySqlDataAdapter(qeury, dbconnection);
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
@@ -132,6 +147,6 @@ namespace MainSystem
            // gridView1.Columns[0].Visible = false;
         }
 
-      
+     
     }
 }

@@ -565,22 +565,7 @@ namespace MainSystem
                     com.Parameters["@Branch_ID"].Value = EmpBranchId;
                     com.Parameters.Add("@Branch_Name", MySqlDbType.VarChar);
                     com.Parameters["@Branch_Name"].Value = branchName;
-                    //com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
-                    //com.Parameters["@CustomerBill_ID"].Value = customerBillId;
-
-                    //int storeNum = 0;
-                    //if (int.TryParse(txtStorePermission.Text, out storeNum))
-                    //{
-                    //    com.Parameters.Add("@Store_Permission_Number", MySqlDbType.Int16);
-                    //    com.Parameters["@Store_Permission_Number"].Value = storeNum;
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("اذن المخزن يجب ان يكون عدد");
-                    //    dbconnection.Close();
-                    //    return;
-                    //}
-
+                    
                     if (comCustomer.Text != "")
                     {
                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
@@ -609,23 +594,7 @@ namespace MainSystem
                         com.Parameters.Add("@Client_Name", MySqlDbType.VarChar);
                         com.Parameters["@Client_Name"].Value = null;
                     }
-                    /*query = "select customer_bill.Type_Buy from customer_bill where customer_bill.CustomerBill_ID=" + customerBillId;
-                    MySqlCommand com1 = new MySqlCommand(query, dbconnection);
-                    MySqlDataReader dr1 = com1.ExecuteReader();
-                    if (dr1.HasRows)
-                    {
-                        while (dr1.Read())
-                        {
-                            com.Parameters.Add("@Type_Buy", MySqlDbType.VarChar);
-                            com.Parameters["@Type_Buy"].Value = dr1["Type_Buy"].ToString();
-                        }
-                        dr1.Close();
-                    }
-                    else
-                    {
-                        com.Parameters.Add("@Type_Buy", MySqlDbType.VarChar);
-                        com.Parameters["@Type_Buy"].Value = null;
-                    }*/
+                    
                     com.Parameters.Add("@Date", MySqlDbType.DateTime);
                     com.Parameters["@Date"].Value = DateTime.Now;
                     com.Parameters.Add("@ReturnInfo", MySqlDbType.VarChar);
@@ -684,6 +653,10 @@ namespace MainSystem
                             string queryf = "update product_bill set Returned='" + row2.Cells["Returned"].Value + "' where CustomerBill_ID=" + row2.Cells["CustomerBill_ID"].Value + " and Data_ID=" + Convert.ToInt32(row2.Cells[0].Value) + " and Type='" + row2.Cells["ItemType"].Value + "'";
                             MySqlCommand c = new MySqlCommand(queryf, dbconnection);
                             c.ExecuteNonQuery();
+
+                            string queryf3 = "update customer_bill set ReturnedFlag='نعم' where CustomerBill_ID=" + row2.Cells["CustomerBill_ID"].Value;
+                            MySqlCommand c3 = new MySqlCommand(queryf3, dbconnection);
+                            c3.ExecuteNonQuery();
                         }
                     }
 
@@ -697,7 +670,7 @@ namespace MainSystem
                         c2.Parameters["@CustomerBill_ID"].Value = Convert.ToInt32(listBoxControlCustomerBill.Items[i].ToString());
                         c2.ExecuteNonQuery();
                     }
-
+                    
                     //IncreaseProductQuantity(id);
 
                     UserControl.ItemRecord("customer_return_bill", "اضافة", id, DateTime.Now, "", dbconnection);

@@ -27,8 +27,8 @@ namespace MainSystem
                 dbconnection = new MySqlConnection(connection.connectionString);
                 connectionReader = new MySqlConnection(connection.connectionString);
                 connectionReader2 = new MySqlConnection(connection.connectionString);
-                panBillNumber.Visible = false;
-                groupBox1.Visible = false;
+                //panBillNumber.Visible = false;
+                //groupBox1.Visible = false;
             }
             catch (Exception ex)
             {
@@ -896,13 +896,25 @@ namespace MainSystem
         }
         public void displayBill()
         {
-            string q = "select CustomerBill_ID from customer_bill where Branch_ID="+txtBranch1.Text+ " and Branch_BillNumber=" +txtBranchBillNum.Text;
+            string q = "select CustomerBill_ID,ReturnedFlag from customer_bill where Branch_ID=" + txtBranch1.Text+ " and Branch_BillNumber=" +txtBranchBillNum.Text;
             MySqlCommand com = new MySqlCommand(q, dbconnection);
-            Billid =Convert.ToInt16(com.ExecuteScalar());
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                Billid = Convert.ToInt16(dr[0].ToString());
+                if (dr[1].ToString()=="نعم")
+                {
+                    MessageBox.Show("هذه الفاتورة تم استرجاعها بالكامل");
+                    txtBranchBillNum.Text = "";
+                    return;
+                }
+            }
+            dr.Close();
+            
 
             string query = "select CustomerBill_ID,customer_bill.Customer_ID,c1.Customer_Name,Client_ID,c2.Customer_Name from customer_bill left join customer as c1 on c1.Customer_ID=customer_bill.Customer_ID left join customer as c2 on c2.Customer_ID=customer_bill.Client_ID where CustomerBill_ID=" + Billid;
             com = new MySqlCommand(query, dbconnection);            
-            MySqlDataReader dr = com.ExecuteReader();
+            dr = com.ExecuteReader();
             while (dr.Read())
             {
                 Billid = Convert.ToInt16(dr[0].ToString());

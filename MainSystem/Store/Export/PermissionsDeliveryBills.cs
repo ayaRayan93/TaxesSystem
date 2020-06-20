@@ -209,6 +209,8 @@ namespace MainSystem
             string subQuery = "";
             if (txtStoreID.Text != "")
                 subQuery = " and product_bill.Store_ID=" + txtStoreID.Text;
+            if (txtBranchID.Text != "")
+                subQuery += " and customer_bill.Branch_ID=" + txtBranchID.Text;
 
             string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
             string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
@@ -273,23 +275,23 @@ namespace MainSystem
           
             string query = "";
             if (d == d2)
-                query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and  case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end " + subQuery;
+                query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Bill_Date <= '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and  case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end " + subQuery;
             else
-                query = "select distinct Branch_BillNumber ,Branch_Name ,Customer_Name ,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date between '" + d + "' and '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end  " + subQuery;
+                query = "select distinct Branch_BillNumber ,Branch_Name ,Customer_Name ,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Bill_Date between '" + d + "' and '" + d2 + "' and RecivedType='العميل' and RecivedFlag='لا' and case when Type_Buy='كاش' then Paid_Status=1 when Type_Buy='آجل' then Type_Buy='آجل' end  " + subQuery;
 
             if (UserControl.userType == 1)
             {
                 if (d == d2)
-                    query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date <= '" + d2 + "' and RecivedType='العميل' and (RecivedFlag='لا' or RecivedFlag='Draft') " + subQuery;
+                    query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Bill_Date <= '" + d2 + "' and RecivedType='العميل' and (RecivedFlag='لا' or RecivedFlag='Draft') " + subQuery;
                 else
-                    query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Shipped_Date between '" + d + "' and '" + d2 + "' and RecivedType='العميل' and (RecivedFlag='لا' or RecivedFlag='Draft') " + subQuery;
+                    query = "select distinct Branch_BillNumber ,Branch_Name  ,Branch_ID,Customer_Name,Client_Name ,Bill_Date ,Shipped_Date  from customer_bill inner join product_bill on customer_bill.CustomerBill_ID=product_bill.CustomerBill_ID where customer_bill.CustomerBill_ID not in (" + str1 + ") and Bill_Date between '" + d + "' and '" + d2 + "' and RecivedType='العميل' and (RecivedFlag='لا' or RecivedFlag='Draft') " + subQuery;
             }
 
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
             gridControl2.DataSource = dt;
-            gridView2.Columns[2].Visible = false;
+        //    gridView2.Columns[2].Visible = false;
       
             AddUnboundColumngridView2();
             AddRepositorygridView2();

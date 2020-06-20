@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version2.24\</PublishUrl>
+    <PublishUrl>D:\التكويد\version2.29\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>314</ApplicationRevision>
+    <ApplicationRevision>319</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -666,6 +666,12 @@
     <Compile Include="CustomerService\CustomerServiceAfterReceived_Report.designer.cs">
       <DependentUpon>CustomerServiceAfterReceived_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.designer.cs">
+      <DependentUpon>StoragePurchases_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="RequestsSystem.cs" />
     <Compile Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\Print_SupplierBillsTransitionsDetails.cs">
       <SubType>Component</SubType>
@@ -1234,6 +1240,12 @@
     <Compile Include="Sales\reports\تقرير حركة فواتير الاجل\Print_AglTransition.designer.cs">
       <DependentUpon>Print_AglTransition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shipping\Recording\ShippingOperationRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shipping\Recording\ShippingOperationRecord.Designer.cs">
+      <DependentUpon>ShippingOperationRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shipping\WareHouse\Print_ShipWarehous_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1245,12 +1257,6 @@
     </Compile>
     <Compile Include="Shipping\WareHouse\Print_ShippingWareHouse.designer.cs">
       <DependentUpon>Print_ShippingWareHouse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Shipping\Recording\CarShipping_Record.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Shipping\Recording\CarShipping_Record.designer.cs">
-      <DependentUpon>CarShipping_Record.cs</DependentUpon>
     </Compile>
     <Compile Include="Store\Export\CustomerDeliveryDraft.cs">
       <SubType>Form</SubType>
@@ -3653,6 +3659,9 @@
     <EmbeddedResource Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Report.resx">
       <DependentUpon>SupplierBillsTransitionsDetails_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.resx">
+      <DependentUpon>StoragePurchases_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Supplier_Payments\SupplierBillsTransitions_ReportX.resx">
       <DependentUpon>SupplierBillsTransitions_ReportX.cs</DependentUpon>
     </EmbeddedResource>
@@ -3809,14 +3818,14 @@
     <EmbeddedResource Include="Sales\Sales Report\تفاصيل الاصناف المباعة\SalesProductsBillsDetails_Report.resx">
       <DependentUpon>SalesProductsBillsDetails_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\Recording\ShippingOperationRecord.resx">
+      <DependentUpon>ShippingOperationRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Shipping\WareHouse\Print_ShipWarehous_Report.resx">
       <DependentUpon>Print_ShipWarehous_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\WareHouse\Print_ShippingWareHouse.resx">
       <DependentUpon>Print_ShippingWareHouse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Shipping\Recording\CarShipping_Record.resx">
-      <DependentUpon>CarShipping_Record.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Store\Export\CustomerDeliveryDraft.resx">
       <DependentUpon>CustomerDeliveryDraft.cs</DependentUpon>
