@@ -596,7 +596,7 @@
             this.Delegate_Name.Name = "Delegate_Name";
             this.Delegate_Name.OptionsColumn.AllowEdit = false;
             this.Delegate_Name.Visible = true;
-            this.Delegate_Name.VisibleIndex = 6;
+            this.Delegate_Name.VisibleIndex = 5;
             // 
             // TotalSales
             // 
@@ -619,7 +619,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalSales", "{0:0.##}")});
             this.TotalSales.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
             this.TotalSales.Visible = true;
-            this.TotalSales.VisibleIndex = 4;
+            this.TotalSales.VisibleIndex = 3;
             // 
             // TotalReturn
             // 
@@ -639,7 +639,7 @@
             this.TotalReturn.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalReturn", "{0:0.##}")});
             this.TotalReturn.Visible = true;
-            this.TotalReturn.VisibleIndex = 3;
+            this.TotalReturn.VisibleIndex = 2;
             // 
             // Safaya
             // 
@@ -662,7 +662,7 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Safaya", "{0:0.##}")});
             this.Safaya.UnboundExpression = "[TotalSales] - [TotalReturn]";
             this.Safaya.Visible = true;
-            this.Safaya.VisibleIndex = 2;
+            this.Safaya.VisibleIndex = 1;
             // 
             // Factory_Name
             // 
@@ -678,7 +678,7 @@
             this.Factory_Name.FieldName = "Factory_Name";
             this.Factory_Name.Name = "Factory_Name";
             this.Factory_Name.Visible = true;
-            this.Factory_Name.VisibleIndex = 5;
+            this.Factory_Name.VisibleIndex = 4;
             // 
             // PercentageDelegate
             // 
@@ -689,8 +689,6 @@
             this.PercentageDelegate.Caption = "نسبة المندوب";
             this.PercentageDelegate.FieldName = "PercentageDelegate";
             this.PercentageDelegate.Name = "PercentageDelegate";
-            this.PercentageDelegate.Visible = true;
-            this.PercentageDelegate.VisibleIndex = 1;
             // 
             // DelegateProfit
             // 
