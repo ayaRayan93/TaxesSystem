@@ -277,6 +277,7 @@
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(97, 46);
             this.btnReport.TabIndex = 4;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // Transportation_Bill_Report
             // 

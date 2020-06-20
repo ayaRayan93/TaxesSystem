@@ -91,7 +91,29 @@ namespace MainSystem
             adapterSupplier.Fill(sourceDataSet);
             gridControl1.DataSource = sourceDataSet.Tables[0];
         }
-        
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<TransportationBill_Items> bi = new List<TransportationBill_Items>();
+
+                for (int i = 0; i < gridView1.RowCount; i++)
+                {
+                    TransportationBill_Items item = new TransportationBill_Items() { Date = Convert.ToDateTime(gridView1.GetRowCellDisplayText(i, gridView1.Columns["تاريخ التحويل"])), Bill_Number = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الفاتورة"]), Transportation_Number = Convert.ToInt16(gridView1.GetRowCellDisplayText(i, gridView1.Columns["رقم التحويل"])) };
+
+                    bi.Add(item);
+                }
+                Report_Transportation_Bill2 f = new Report_Transportation_Bill2();
+                f.PrintInvoice(comStore.Text, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, bi);
+                f.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public void clearCom()
         {
             dateTimePicker1.Value = DateTime.Now.Date;
