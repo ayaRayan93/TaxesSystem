@@ -251,9 +251,11 @@ namespace MainSystem
         public void displayBill()
         {
             DateTime date = dateTimeFrom.Value;
-            string d = date.ToString("yyyy-MM-dd hh:mm:ss");
+            // string d = date.ToString("yyyy-MM-dd hh:mm:ss");
+            string d = date.ToString("yyyy-MM-dd");
             DateTime date2 = dateTimeTo.Value;
-            string d2 = date2.ToString("yyyy-MM-dd hh:mm:ss");
+            // string d2 = date2.ToString("yyyy-MM-dd hh:mm:ss");
+            string d2 = date2.ToString("yyyy-MM-dd");
             string subQuery = "";
             if (txtStoreID.Text != "")
                 subQuery += " and product_bill.Store_ID=" + txtStoreID.Text;
