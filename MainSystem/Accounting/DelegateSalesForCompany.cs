@@ -300,7 +300,8 @@ namespace MainSystem
                     DataView dv = _Table.DefaultView;
                     dv.Sort = "Factory_Name";
                     _Table = dv.ToTable();
-                    GridControl1.DataSource = _Table;
+                    getTotalSalesForCompany(_Table);
+                 //   GridControl1.DataSource = _Table;
                     
                     CalTotal(_Table);
                 }
@@ -309,7 +310,7 @@ namespace MainSystem
                     MessageBox.Show("اختار الفرع والمندوب");
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 MessageBox.Show("اختار الفرع");
             }
@@ -757,6 +758,63 @@ namespace MainSystem
             double d = Convert.ToDouble(com.ExecuteScalar());
             dbconnection1.Close();
             return d;
+        }
+
+        public void getTotalSalesForCompany(DataTable _Table)
+        {
+            DataTable Table = new DataTable();
+            Table = peraperDataTable();
+            string Factory_Name = "";
+            double TotalSales = 0, TotalReturn = 0, Safaya = 0, DelegateProfit = 0;
+            foreach (DataRow item in _Table.Rows)
+            {
+                Factory_Name = item["Factory_Name"].ToString();
+                break;
+            }
+               
+            foreach (DataRow item in _Table.Rows)
+            {
+                if (item[2].ToString() == Factory_Name)
+                {
+                    if (item["TotalSales"].ToString() != "")
+                        TotalSales += Convert.ToDouble(item["TotalSales"].ToString());
+                    else
+                        TotalSales += 0;
+
+                    if (item["TotalReturn"].ToString() != "")
+                        TotalReturn += Convert.ToDouble(item["TotalReturn"].ToString());
+                    else
+                        TotalReturn += 0;
+                    if (item["Safaya"].ToString() != "")
+                        Safaya += Convert.ToDouble(item["Safaya"].ToString());
+                    else
+                        Safaya += 0;
+
+                    if (item["DelegateProfit"].ToString() != "")
+                        DelegateProfit += Convert.ToDouble(item["DelegateProfit"].ToString());
+                    else
+                        DelegateProfit += 0;
+
+                  Factory_Name = item["Factory_Name"].ToString();
+                }
+                else
+                {
+                    DataRow row = Table.NewRow();
+                    row["TotalSales"] = TotalSales.ToString();
+                    row["TotalReturn"] = TotalReturn.ToString();
+                    row["Safaya"] = Safaya.ToString();
+                    row["DelegateProfit"] = DelegateProfit.ToString();
+                    row["Factory_Name"] = Factory_Name.ToString();
+
+                    Table.Rows.Add(row);
+                    Factory_Name = item["Factory_Name"].ToString();
+                    TotalSales = 0;
+                    TotalReturn = 0;
+                    Safaya = 0;
+                    DelegateProfit = 0;
+                }
+            }
+            GridControl1.DataSource = Table;
         }
     }
     public class dataX

@@ -253,9 +253,11 @@ namespace MainSystem
             DateTime date = dateTimeFrom.Value;
             // string d = date.ToString("yyyy-MM-dd hh:mm:ss");
             string d = date.ToString("yyyy-MM-dd");
+            d += " 00:00:00";
             DateTime date2 = dateTimeTo.Value;
             // string d2 = date2.ToString("yyyy-MM-dd hh:mm:ss");
             string d2 = date2.ToString("yyyy-MM-dd");
+            d2 += " 23:59:59";
             string subQuery = "";
             if (txtStoreID.Text != "")
                 subQuery += " and product_bill.Store_ID=" + txtStoreID.Text;
