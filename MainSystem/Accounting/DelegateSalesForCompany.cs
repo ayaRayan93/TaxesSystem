@@ -591,7 +591,6 @@ namespace MainSystem
             txtTotalProfit.Text = totalProfit.ToString("0.00");
 
         }
-
         public DataTable getTotalSales(DataTable _Table, string customerBill_ids, string subQuery)
         {
             string query = "";
@@ -759,7 +758,6 @@ namespace MainSystem
             dbconnection1.Close();
             return d;
         }
-
         public void getTotalSalesForCompany(DataTable _Table)
         {
             DataTable Table = new DataTable();
@@ -808,10 +806,24 @@ namespace MainSystem
 
                     Table.Rows.Add(row);
                     Factory_Name = item["Factory_Name"].ToString();
-                    TotalSales = 0;
-                    TotalReturn = 0;
-                    Safaya = 0;
-                    DelegateProfit = 0;
+                    if (item["TotalSales"].ToString() != "")
+                        TotalSales = Convert.ToDouble(item["TotalSales"].ToString());
+                    else
+                        TotalSales = 0;
+
+                    if (item["TotalReturn"].ToString() != "")
+                        TotalReturn = Convert.ToDouble(item["TotalReturn"].ToString());
+                    else
+                        TotalReturn = 0;
+                    if (item["Safaya"].ToString() != "")
+                        Safaya = Convert.ToDouble(item["Safaya"].ToString());
+                    else
+                        Safaya = 0;
+
+                    if (item["DelegateProfit"].ToString() != "")
+                        DelegateProfit = Convert.ToDouble(item["DelegateProfit"].ToString());
+                    else
+                        DelegateProfit = 0;
                 }
             }
             GridControl1.DataSource = Table;
