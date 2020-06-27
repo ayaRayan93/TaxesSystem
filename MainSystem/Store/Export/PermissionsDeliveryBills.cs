@@ -34,7 +34,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void PermissionsDelivery_Load(object sender, EventArgs e)
         {
             try
@@ -67,7 +66,6 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
-
         private void newChoose_Click(object sender, EventArgs e)
         {
             try
@@ -84,14 +82,12 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
             {
                 dbconnection.Open();
                 dbconnectionr.Open();
-
                 // ShippingPermissions();
                 // CustomerDeliveryBills();
                 displayBill();
@@ -103,7 +99,6 @@ namespace MainSystem
             dbconnection.Close();
             dbconnectionr.Close();
         }
-
         private void btnPermissionDelivery_Click(object sender, EventArgs e)
         {
             try
@@ -115,9 +110,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
-    
-
         void gridView2_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
             try
@@ -131,7 +123,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -143,7 +134,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void comBranch_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -155,7 +145,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void txtStoreID_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -176,7 +165,6 @@ namespace MainSystem
                 }
             }
         }
-
         private void txtBranchID_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -198,8 +186,7 @@ namespace MainSystem
             }
         }
 
-        //functions
-     
+        //functions    
         public void CustomerDeliveryBills()
         {
             DateTime date = dateTimeFrom.Value;
@@ -251,9 +238,13 @@ namespace MainSystem
         public void displayBill()
         {
             DateTime date = dateTimeFrom.Value;
-            string d = date.ToString("yyyy-MM-dd hh:mm:ss");
+            // string d = date.ToString("yyyy-MM-dd hh:mm:ss");
+            string d = date.ToString("yyyy-MM-dd");
+            d += " 00:00:00";
             DateTime date2 = dateTimeTo.Value;
-            string d2 = date2.ToString("yyyy-MM-dd hh:mm:ss");
+            // string d2 = date2.ToString("yyyy-MM-dd hh:mm:ss");
+            string d2 = date2.ToString("yyyy-MM-dd");
+            d2 += " 23:59:59";
             string subQuery = "";
             if (txtStoreID.Text != "")
                 subQuery += " and product_bill.Store_ID=" + txtStoreID.Text;
@@ -295,8 +286,7 @@ namespace MainSystem
       
             AddUnboundColumngridView2();
             AddRepositorygridView2();
-        }
-  
+        } 
         private void gridView2_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
         {
             if (e.IsGetData)
@@ -314,7 +304,6 @@ namespace MainSystem
             gridView2.Columns["تسليم اذن"].ColumnEdit = edit;
 
         }
-
         private void btnReport_Click(object sender, EventArgs e)
         {
             try
@@ -326,7 +315,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void AddUnboundColumngridView2()
         {
             if (gridView2.Columns["تسليم اذن"] == null)

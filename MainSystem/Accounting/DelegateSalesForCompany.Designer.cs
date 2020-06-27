@@ -541,7 +541,7 @@
             this.gridView1.Appearance.Row.Options.UseTextOptions = true;
             this.gridView1.Appearance.Row.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridView1.AppearancePrint.EvenRow.BackColor = System.Drawing.Color.White;
-            this.gridView1.AppearancePrint.EvenRow.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.AppearancePrint.EvenRow.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.gridView1.AppearancePrint.EvenRow.Options.UseBackColor = true;
             this.gridView1.AppearancePrint.EvenRow.Options.UseFont = true;
             this.gridView1.AppearancePrint.EvenRow.Options.UseTextOptions = true;

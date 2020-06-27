@@ -318,7 +318,7 @@ namespace MainSystem
                     MySqlCommand com1 = new MySqlCommand(query1, dbconnection);
                     com1.ExecuteNonQuery();
                     UserControl.ItemRecord("customer_bill_Draft_Print", "print"+ txtBranchID.Text, Convert.ToInt16(txtPermBillNumber.Text), DateTime.Now, "", dbconnection);
-
+                    this.Close();
                 }
                 else
                 {

@@ -782,7 +782,7 @@ namespace MainSystem
                         com.Parameters.Add("@Employee_Name", MySqlDbType.VarChar);
                         com.Parameters["@Employee_Name"].Value = UserControl.EmpName;
                         com.Parameters.Add("@Shipped_Date", MySqlDbType.DateTime);
-                        com.Parameters["@Shipped_Date"].Value = null;
+                        com.Parameters["@Shipped_Date"].Value = DateTime.Now;
                         com.ExecuteNonQuery();
 
                         query = "select CustomerBill_ID from customer_bill order by CustomerBill_ID desc limit 1";
