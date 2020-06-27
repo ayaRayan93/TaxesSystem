@@ -46,7 +46,7 @@ namespace MainSystem
 
 
                 //query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
-                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and MainBank_Name = 'خزينة مبيعات'";
                 da = new MySqlDataAdapter(query, conn);
                 dt = new DataTable();
                 da.Fill(dt);
