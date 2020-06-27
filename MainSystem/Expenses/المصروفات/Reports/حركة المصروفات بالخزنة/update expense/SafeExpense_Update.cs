@@ -162,18 +162,14 @@ namespace MainSystem
             loaded = true;
             comMain.Text = selRow["المصروف الرئيسى"].ToString();
             comSub.Text = selRow["المصروف الفرعى"].ToString();
-
+            
             if (UserControl.userType == 3 || UserControl.userType == 16)
             {
-                query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + " and Bank_Type='خزينة'";
+                query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + "";
             }
-            else if (UserControl.userType == 7)
+            else
             {
-                query = "select * from bank where Bank_Type='خزينة مصروفات' and bank.Branch_ID=" + transitionbranchID;
-            }
-            else if(UserControl.userType == 1)
-            {
-                query = "select * from bank where Bank_Type='خزينة' or Bank_Type='خزينة مصروفات'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and MainBank_Name = 'خزينة مبيعات'";
             }
             da = new MySqlDataAdapter(query, dbconnection);
             dt = new DataTable();

@@ -50,7 +50,7 @@ namespace MainSystem
         {
             try
             {
-                if (comBank.Text != "" && txtPullMoney.Text != "")
+                if (comBank.Text != "" && txtPullMoney.Text != "" && txtDescrip.Text != "" && txtClient.Text != "")
                 {
                     double outParse;
                     if (double.TryParse(txtPullMoney.Text, out outParse))
@@ -147,7 +147,7 @@ namespace MainSystem
             //}
             else /*if (UserControl.userType == 1)*/
             {
-                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and MainBank_Name = 'خزينة مبيعات'";
             }
 
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
