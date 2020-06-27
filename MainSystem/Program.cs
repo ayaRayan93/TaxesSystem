@@ -18,7 +18,7 @@ namespace MainSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StoragePurchases_Report());
+            Application.Run(new Login());
         }
     }
 }
