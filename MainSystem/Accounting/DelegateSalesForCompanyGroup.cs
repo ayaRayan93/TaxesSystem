@@ -302,7 +302,7 @@ namespace MainSystem.Accounting
                     _Table = dv.ToTable();
                     GridControl1.DataSource = _Table;
                     
-
+                    
                     CalTotal(_Table);
                 }
                 else

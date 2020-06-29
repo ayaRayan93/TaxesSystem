@@ -170,6 +170,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(905, 38);
             this.panel2.TabIndex = 4;
+            this.panel2.Visible = false;
             // 
             // txtTotalSafay
             // 
@@ -573,7 +574,7 @@
             this.DelegateProfit});
             this.gridView1.GridControl = this.GridControl1;
             this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsPrint.EnableAppearanceEvenRow = true;
+            this.gridView1.OptionsView.ShowFooter = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowIndicator = false;
             // 

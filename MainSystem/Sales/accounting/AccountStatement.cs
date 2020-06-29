@@ -772,8 +772,8 @@ namespace MainSystem
 
                 foreach (DataGridViewRow row1 in dataGridView1.Rows)
                 {
-                    totalBill += Convert.ToDouble(row1.Cells[6].Value);
-                    TotalReturn += Convert.ToDouble(row1.Cells[5].Value);
+                    totalBill += Convert.ToDouble(row1.Cells[7].Value);
+                    TotalReturn += Convert.ToDouble(row1.Cells[6].Value);
                     rest = totalBill - TotalReturn;
                 }
 

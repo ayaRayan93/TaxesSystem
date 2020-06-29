@@ -58,7 +58,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }    
-    
         private void radioList_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -643,6 +642,7 @@ namespace MainSystem
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
             try
             {
                 if (gridView1.SelectedRowsCount>0)

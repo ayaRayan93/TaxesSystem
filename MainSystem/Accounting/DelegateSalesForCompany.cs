@@ -826,6 +826,16 @@ namespace MainSystem
                         DelegateProfit = 0;
                 }
             }
+
+            DataRow row1 = Table.NewRow();
+            row1["TotalSales"] = TotalSales.ToString();
+            row1["TotalReturn"] = TotalReturn.ToString();
+            row1["Safaya"] = Safaya.ToString();
+            row1["DelegateProfit"] = DelegateProfit.ToString();
+            row1["Factory_Name"] = Factory_Name.ToString();
+
+            Table.Rows.Add(row1);
+     
             GridControl1.DataSource = Table;
         }
     }

@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version2.31\</PublishUrl>
+    <PublishUrl>D:\التكويد\version2.34\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>322</ApplicationRevision>
+    <ApplicationRevision>325</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -617,6 +617,12 @@
     <Compile Include="DisplayImage.designer.cs">
       <DependentUpon>DisplayImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Purchases\Purchases_Price\SetPurchasesPricePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Purchases_Price\SetPurchasesPricePopup.Designer.cs">
+      <DependentUpon>SetPurchasesPricePopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Purchases\Reports\PurchasesPrice\Print_PurchasePriceDetails.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -665,6 +671,12 @@
     </Compile>
     <Compile Include="CustomerService\CustomerServiceAfterReceived_Report.designer.cs">
       <DependentUpon>CustomerServiceAfterReceived_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\Print_Items_Storage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\Print_Items_Storage.designer.cs">
+      <DependentUpon>Print_Items_Storage.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.cs">
       <SubType>Form</SubType>
@@ -3654,6 +3666,9 @@
     <EmbeddedResource Include="DisplayImage.resx">
       <DependentUpon>DisplayImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Purchases_Price\SetPurchasesPricePopup.resx">
+      <DependentUpon>SetPurchasesPricePopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Reports\PurchasesPrice\Print_PurchasePriceDetails.resx">
       <DependentUpon>Print_PurchasePriceDetails.cs</DependentUpon>
     </EmbeddedResource>
@@ -3677,6 +3692,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Reports\SupplierBillsTransitionsDetails_Report\SupplierBillsTransitionsDetails_Report.resx">
       <DependentUpon>SupplierBillsTransitionsDetails_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Reports\رصيد المخزون بسعر الشراء\Print_Items_Storage.resx">
+      <DependentUpon>Print_Items_Storage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.resx">
       <DependentUpon>StoragePurchases_Report.cs</DependentUpon>

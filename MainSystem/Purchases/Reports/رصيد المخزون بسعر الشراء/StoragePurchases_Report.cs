@@ -909,23 +909,27 @@ namespace MainSystem
             try
             {
                 double totale = 0;
-                List<Items_Storage> bi = new List<Items_Storage>();
+                double totalePur = 0;
+                List<Items_StorageWithPurshasesPrice> bi = new List<Items_StorageWithPurshasesPrice>();
 
                 for (int i = 0; i < gridView1.RowCount; i++)
                 {
                     double quantti = 0;
+                    double totalPurchases = 0;
                     if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]) != "")
                     {
                         quantti = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]));
+                        totalPurchases = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالي"]));
                     }
 
                     totale += quantti;
-                    Items_Storage item = new Items_Storage() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = quantti, Carton = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكرتنة"]) };
+                    totalePur += totalPurchases;
+                    Items_StorageWithPurshasesPrice item = new Items_StorageWithPurshasesPrice() { Code = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكود"]), Product_Type = gridView1.GetRowCellDisplayText(i, gridView1.Columns["النوع"]), Product_Name = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاسم"]), Quantity = quantti, Carton = gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكرتنة"]),Purchases_Price= gridView1.GetRowCellDisplayText(i, gridView1.Columns["سعر الشراء"]),Total= gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالي"]) };
                     bi.Add(item);
                 }
 
                 Report_Items_Storage f = new Report_Items_Storage();
-                f.PrintInvoice(comStore.Text, dateTimePicker2.Value.Date, totale, bi);
+                f.PrintInvoice(comStore.Text, dateTimePicker2.Value.Date, totale, totalePur, bi);
                 f.ShowDialog();
             }
             catch (Exception ex)
@@ -1172,16 +1176,21 @@ namespace MainSystem
                 }
 
                 double safyi = 0;
+                double safyi2 = 0;
                 for (int i = 0; i < gridView1.RowCount; i++)
                 {
                     double pricee = 0;
+                    double pricee2 = 0;
                     if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]) != "")
                     {
                         pricee = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]));
+                        pricee2 = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالي"]));
                     }
                     safyi += pricee;
+                    safyi2 += pricee2;
                 }
                 txtSafy.Text = safyi.ToString("#.00");
+                textBox1.Text = safyi2.ToString("#.00");
             }
             else
             {

@@ -29,5 +29,16 @@ namespace MainSystem
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }
+        public void PrintInvoice(string storeName, DateTime date, double TotalBillPriceAD, double TotalPurchases, List<Items_StorageWithPurshasesPrice> BillItems)
+        {
+            Print_Items_StorageWithPurchasesPrice report = new Print_Items_StorageWithPurchasesPrice();
+            foreach (DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
+            {
+                p.Visible = false;
+            }
+            report.InitData(storeName, date, TotalBillPriceAD, TotalPurchases, BillItems);
+            documentViewer1.DocumentSource = report;
+            report.CreateDocument();
+        }
     }
 }
