@@ -23,7 +23,8 @@ namespace MainSystem
         public static XtraTabPage MainTabPagePrintingTransitions;
         Panel panelPrintingTransitions;
         public static BillsTransitions_Print bankPrint;
-        
+        public static int ID;
+        public static string codef1;
         bool loaded = false;
         bool factoryFlage = false;
         bool groupFlage = false;
@@ -38,7 +39,7 @@ namespace MainSystem
         bool flag3 = false;
         bool flag4 = false;
         bool flag5 = false;
-
+        SetPurchasesPricePopup f1;
         public StoragePurchases_Report()
         {
             InitializeComponent();
@@ -48,6 +49,7 @@ namespace MainSystem
 
             MainTabPagePrintingTransitions = new XtraTabPage();
             panelPrintingTransitions = new Panel();
+            f1 = new SetPurchasesPricePopup();
         }
         private void Item_Transitions_Report_Load(object sender, EventArgs e)
         {
@@ -1356,6 +1358,33 @@ namespace MainSystem
 
             return quantity;
         }
+
+        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            try
+            {
+                if (e.Column.Name == "colالكود")
+                {
+                    dbconnection.Open();
+                    string code = e.CellValue.ToString();
+                    string query = "select Data_ID from data where Code='"+code+"'";
+                    codef1 = code;
+                    MySqlCommand com = new MySqlCommand(query,dbconnection);
+                    ID =Convert.ToInt16(com.ExecuteScalar());
+                    f1.Show();
+                    f1.Focus();
+                    SetPurchasesPricePopup.setData(f1);
+                    DataRowView row =(DataRowView)gridView1.GetRow(e.RowHandle);
+                    row[6] = 555;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
         public double searchSelectedItemBefore(string dataId, string qStore)
         {
             /*if (comStore.Text == "")

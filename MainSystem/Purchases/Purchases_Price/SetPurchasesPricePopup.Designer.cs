@@ -1,4 +1,4 @@
-﻿namespace MainSystem.Purchases.Purchases_Price
+﻿namespace MainSystem
 {
     partial class SetPurchasesPricePopup
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panContent = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.radioNormal = new System.Windows.Forms.RadioButton();
@@ -52,25 +52,21 @@
             this.radioQata3y = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
-            this.panCodeParts = new System.Windows.Forms.Panel();
-            this.txtCodePart2 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtCodePart3 = new System.Windows.Forms.TextBox();
-            this.txtCodePart1 = new System.Windows.Forms.TextBox();
-            this.txtCodePart5 = new System.Windows.Forms.TextBox();
-            this.txtCodePart4 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuTileButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.labPurchasesPrice = new System.Windows.Forms.Label();
             this.panContent.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panCodeParts.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panContent
             // 
-            this.panContent.Controls.Add(this.label19);
-            this.panContent.Controls.Add(this.labPurchasesPrice);
+            this.panContent.Controls.Add(this.tableLayoutPanel2);
             this.panContent.Controls.Add(this.panel2);
             this.panContent.Controls.Add(this.label20);
             this.panContent.Controls.Add(this.btnDelete);
@@ -88,11 +84,10 @@
             this.panContent.Controls.Add(this.radioQata3y);
             this.panContent.Controls.Add(this.label6);
             this.panContent.Controls.Add(this.txtCode);
-            this.panContent.Controls.Add(this.panCodeParts);
             this.panContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panContent.Location = new System.Drawing.Point(0, 0);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(830, 309);
+            this.panContent.Size = new System.Drawing.Size(830, 348);
             this.panContent.TabIndex = 43;
             // 
             // panel2
@@ -159,19 +154,20 @@
             this.btnDelete.TabIndex = 140;
             this.btnDelete.Text = "حذف";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeight = 25;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Value,
@@ -215,6 +211,7 @@
             this.btnNewPlus.TabIndex = 138;
             this.btnNewPlus.Text = "اضافة";
             this.btnNewPlus.UseVisualStyleBackColor = false;
+            this.btnNewPlus.Click += new System.EventHandler(this.btnNewPlus_Click);
             // 
             // label18
             // 
@@ -284,6 +281,7 @@
             this.txtPurchases.Size = new System.Drawing.Size(77, 24);
             this.txtPurchases.TabIndex = 57;
             this.txtPurchases.Text = "0";
+            this.txtPurchases.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrice_KeyDown);
             // 
             // label13
             // 
@@ -307,6 +305,7 @@
             this.txtPrice.Size = new System.Drawing.Size(98, 24);
             this.txtPrice.TabIndex = 55;
             this.txtPrice.Text = "0";
+            this.txtPrice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrice_KeyDown);
             // 
             // radioList
             // 
@@ -341,7 +340,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(677, 10);
+            this.label6.Location = new System.Drawing.Point(677, 37);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(64, 16);
@@ -352,120 +351,100 @@
             // 
             this.txtCode.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCode.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCode.Location = new System.Drawing.Point(500, 6);
+            this.txtCode.Location = new System.Drawing.Point(500, 33);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(171, 24);
             this.txtCode.TabIndex = 43;
             // 
-            // panCodeParts
+            // tableLayoutPanel2
             // 
-            this.panCodeParts.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panCodeParts.Controls.Add(this.txtCodePart2);
-            this.panCodeParts.Controls.Add(this.label11);
-            this.panCodeParts.Controls.Add(this.txtCodePart3);
-            this.panCodeParts.Controls.Add(this.txtCodePart1);
-            this.panCodeParts.Controls.Add(this.txtCodePart5);
-            this.panCodeParts.Controls.Add(this.txtCodePart4);
-            this.panCodeParts.Location = new System.Drawing.Point(415, 34);
-            this.panCodeParts.Name = "panCodeParts";
-            this.panCodeParts.Size = new System.Drawing.Size(397, 35);
-            this.panCodeParts.TabIndex = 145;
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.75F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.75F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.btnAdd, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(-9, 294);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(839, 54);
+            this.tableLayoutPanel2.TabIndex = 148;
             // 
-            // txtCodePart2
+            // btnAdd
             // 
-            this.txtCodePart2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart2.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart2.Location = new System.Drawing.Point(86, 5);
-            this.txtCodePart2.Name = "txtCodePart2";
-            this.txtCodePart2.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart2.TabIndex = 45;
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.ImagePosition = 1;
+            this.btnAdd.ImageZoom = 25;
+            this.btnAdd.LabelPosition = 18;
+            this.btnAdd.LabelText = "حفظ";
+            this.btnAdd.Location = new System.Drawing.Point(371, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(98, 46);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // label11
+            // panel1
             // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(313, 9);
-            this.label11.Name = "label11";
-            this.label11.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label11.Size = new System.Drawing.Size(64, 16);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "كود المنتج";
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.labPurchasesPrice);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(475, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(361, 48);
+            this.panel1.TabIndex = 7;
             // 
-            // txtCodePart3
+            // label1
             // 
-            this.txtCodePart3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart3.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart3.Location = new System.Drawing.Point(142, 5);
-            this.txtCodePart3.Name = "txtCodePart3";
-            this.txtCodePart3.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart3.TabIndex = 46;
-            // 
-            // txtCodePart1
-            // 
-            this.txtCodePart1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart1.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart1.Location = new System.Drawing.Point(30, 5);
-            this.txtCodePart1.Name = "txtCodePart1";
-            this.txtCodePart1.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart1.TabIndex = 47;
-            // 
-            // txtCodePart5
-            // 
-            this.txtCodePart5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart5.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart5.Location = new System.Drawing.Point(254, 5);
-            this.txtCodePart5.Name = "txtCodePart5";
-            this.txtCodePart5.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart5.TabIndex = 48;
-            // 
-            // txtCodePart4
-            // 
-            this.txtCodePart4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtCodePart4.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCodePart4.Location = new System.Drawing.Point(198, 5);
-            this.txtCodePart4.Name = "txtCodePart4";
-            this.txtCodePart4.Size = new System.Drawing.Size(50, 24);
-            this.txtCodePart4.TabIndex = 49;
-            // 
-            // label19
-            // 
-            this.label19.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label19.Location = new System.Drawing.Point(421, 264);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(78, 19);
-            this.label19.TabIndex = 147;
-            this.label19.Text = "سعر الشراء";
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(128, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 19);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "سعر الشراء";
             // 
             // labPurchasesPrice
             // 
             this.labPurchasesPrice.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labPurchasesPrice.AutoSize = true;
             this.labPurchasesPrice.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labPurchasesPrice.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labPurchasesPrice.Location = new System.Drawing.Point(350, 265);
+            this.labPurchasesPrice.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labPurchasesPrice.Location = new System.Drawing.Point(57, 10);
             this.labPurchasesPrice.Name = "labPurchasesPrice";
             this.labPurchasesPrice.Size = new System.Drawing.Size(0, 16);
-            this.labPurchasesPrice.TabIndex = 146;
+            this.labPurchasesPrice.TabIndex = 0;
             // 
             // SetPurchasesPricePopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 309);
+            this.ClientSize = new System.Drawing.Size(830, 348);
             this.Controls.Add(this.panContent);
             this.Name = "SetPurchasesPricePopup";
             this.Text = "SetPurchasesPricePopup";
+            this.Load += new System.EventHandler(this.SetPurchasesPricePopup_Load);
             this.panContent.ResumeLayout(false);
             this.panContent.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panCodeParts.ResumeLayout(false);
-            this.panCodeParts.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -495,14 +474,10 @@
         private System.Windows.Forms.RadioButton radioQata3y;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCode;
-        private System.Windows.Forms.Panel panCodeParts;
-        private System.Windows.Forms.TextBox txtCodePart2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtCodePart3;
-        private System.Windows.Forms.TextBox txtCodePart1;
-        private System.Windows.Forms.TextBox txtCodePart5;
-        private System.Windows.Forms.TextBox txtCodePart4;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private Bunifu.Framework.UI.BunifuTileButton btnAdd;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labPurchasesPrice;
     }
 }
