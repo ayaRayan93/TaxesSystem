@@ -1371,7 +1371,7 @@ namespace MainSystem
                     codef1 = code;
                     MySqlCommand com = new MySqlCommand(query,dbconnection);
                     ID =Convert.ToInt16(com.ExecuteScalar());
-                    if (f1.AcceptButton != null)
+                    if (f1.ActiveControl != null)
                     {
                         f1.Show();
                         f1.Focus();
