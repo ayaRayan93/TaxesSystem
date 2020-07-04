@@ -167,7 +167,7 @@ namespace MainSystem
                     {
                         dbconnection.Open();
 
-                        string query = "insert into shipping (CustomerBill_ID,Customer_ID,Recipient_Name,Phone,Address,Area_ID,Date,Quantity,Cartons,Bank_ID,Money) values(@CustomerBill_ID,@Customer_ID,@Recipient_Name,@Phone,@Address,@Area_ID,@Date,@Quantity,@Cartons,@Bank_ID,@Money)";
+                        string query = "insert into shipping (CustomerBill_ID,Customer_ID,Recipient_Name,Phone,Address,Area_ID,Date,Quantity,Cartons,Bank_ID,Money,WareHouse_Percentage,Safy) values(@CustomerBill_ID,@Customer_ID,@Recipient_Name,@Phone,@Address,@Area_ID,@Date,@Quantity,@Cartons,@Bank_ID,@Money,@WareHouse_Percentage,@Safy)";
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16, 11);
                         com.Parameters["@CustomerBill_ID"].Value = id;
@@ -207,6 +207,10 @@ namespace MainSystem
                         com.Parameters["@Bank_ID"].Value = comBank.SelectedValue.ToString();
                         com.Parameters.Add("@Money", MySqlDbType.Decimal, 10);
                         com.Parameters["@Money"].Value = outParse;
+                        com.Parameters.Add("@WareHouse_Percentage", MySqlDbType.Decimal, 10);
+                        //com.Parameters["@WareHouse_Percentage"].Value = percentage;
+                        com.Parameters.Add("@Safy", MySqlDbType.Decimal, 10);
+                        //com.Parameters["@Safy"].Value = outParse - percentage;
                         com.ExecuteNonQuery();
 
                         query = "select Shipping_ID from shipping order by Shipping_ID desc limit 1";

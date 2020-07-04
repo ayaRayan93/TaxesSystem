@@ -587,6 +587,24 @@
     <Compile Include="Expenses\المصروفات\ايداع\SafeExpenseIncome_Record.designer.cs">
       <DependentUpon>SafeExpenseIncome_Record.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\المصروفات\مرتد\Print_PullExpense_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مرتد\Print_PullExpense_Report.designer.cs">
+      <DependentUpon>Print_PullExpense_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مرتد\Print_PullExpense.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مرتد\Print_PullExpense.designer.cs">
+      <DependentUpon>Print_PullExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مرتد\SafeExpensePull_Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\مرتد\SafeExpensePull_Record.designer.cs">
+      <DependentUpon>SafeExpensePull_Record.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\المصروفات\مصروف\Print_Expense2.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1257,6 +1275,12 @@
     </Compile>
     <Compile Include="Shipping\Recording\ShippingOperationRecord.Designer.cs">
       <DependentUpon>ShippingOperationRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shipping\WareHouse\Print_ShippingWareHouse_Copy.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Shipping\WareHouse\Print_ShippingWareHouse_Copy.designer.cs">
+      <DependentUpon>Print_ShippingWareHouse_Copy.cs</DependentUpon>
     </Compile>
     <Compile Include="Shipping\WareHouse\Print_ShipWarehous_Report.cs">
       <SubType>Form</SubType>
@@ -3651,6 +3675,15 @@
     <EmbeddedResource Include="Expenses\المصروفات\ايداع\SafeExpenseIncome_Record.resx">
       <DependentUpon>SafeExpenseIncome_Record.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\مرتد\Print_PullExpense_Report.resx">
+      <DependentUpon>Print_PullExpense_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\مرتد\Print_PullExpense.resx">
+      <DependentUpon>Print_PullExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\مرتد\SafeExpensePull_Record.resx">
+      <DependentUpon>SafeExpensePull_Record.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\مصروف\Print_Expense2.resx">
       <DependentUpon>Print_Expense2.cs</DependentUpon>
     </EmbeddedResource>
@@ -3857,6 +3890,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\Recording\ShippingOperationRecord.resx">
       <DependentUpon>ShippingOperationRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shipping\WareHouse\Print_ShippingWareHouse_Copy.resx">
+      <DependentUpon>Print_ShippingWareHouse_Copy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shipping\WareHouse\Print_ShipWarehous_Report.resx">
       <DependentUpon>Print_ShipWarehous_Report.cs</DependentUpon>
