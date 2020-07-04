@@ -131,6 +131,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemPullExpenss_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "تسجيل مرتد مصروف");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("تسجيل مرتد مصروف");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "تسجيل مرتد مصروف");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                SafeExpensePull_Record objFormExpenses = new SafeExpensePull_Record(xtraTabControlExpenses);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemExpensesTransitionsReport_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
