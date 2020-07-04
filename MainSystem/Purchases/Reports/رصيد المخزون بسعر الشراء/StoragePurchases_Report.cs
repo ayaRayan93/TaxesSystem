@@ -1371,11 +1371,20 @@ namespace MainSystem
                     codef1 = code;
                     MySqlCommand com = new MySqlCommand(query,dbconnection);
                     ID =Convert.ToInt16(com.ExecuteScalar());
-                    f1.Show();
-                    f1.Focus();
-                    SetPurchasesPricePopup.setData(f1);
-                    DataRowView row =(DataRowView)gridView1.GetRow(e.RowHandle);
-                    row[6] = 555;
+                    if (f1.AcceptButton != null)
+                    {
+                        f1.Show();
+                        f1.Focus();
+                    }
+                    else
+                    {
+                        f1 = new SetPurchasesPricePopup();
+                        f1.Show();
+                        f1.Focus();
+                    }
+                    DataRowView row = (DataRowView)gridView1.GetRow(e.RowHandle);
+                    SetPurchasesPricePopup.setData(f1, row);
+                
                 }
             }
             catch (Exception ex)
