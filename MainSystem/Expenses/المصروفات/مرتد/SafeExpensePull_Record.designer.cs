@@ -402,8 +402,11 @@
             // 
             this.layoutControlItem5.Control = this.label5;
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 52);
+            this.layoutControlItem5.MaxSize = new System.Drawing.Size(0, 27);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(24, 27);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(1033, 27);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
