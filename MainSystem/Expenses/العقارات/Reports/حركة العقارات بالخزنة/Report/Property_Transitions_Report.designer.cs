@@ -152,8 +152,8 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.btnReport, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 5, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnPrintCopy, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnUpdate, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnUpdate, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnPrintCopy, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 543);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -283,7 +283,7 @@
             this.btnPrintCopy.ImageZoom = 25;
             this.btnPrintCopy.LabelPosition = 18;
             this.btnPrintCopy.LabelText = "طباعة نسخة";
-            this.btnPrintCopy.Location = new System.Drawing.Point(782, 4);
+            this.btnPrintCopy.Location = new System.Drawing.Point(882, 4);
             this.btnPrintCopy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPrintCopy.Name = "btnPrintCopy";
             this.btnPrintCopy.Size = new System.Drawing.Size(94, 46);
@@ -305,12 +305,11 @@
             this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 18;
             this.btnUpdate.LabelText = "تعديل";
-            this.btnUpdate.Location = new System.Drawing.Point(882, 4);
+            this.btnUpdate.Location = new System.Drawing.Point(782, 4);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(94, 46);
             this.btnUpdate.TabIndex = 6;
-            this.btnUpdate.Visible = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // tableLayoutPanel3

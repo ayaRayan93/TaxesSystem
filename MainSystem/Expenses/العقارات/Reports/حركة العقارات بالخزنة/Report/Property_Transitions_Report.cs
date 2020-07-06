@@ -299,17 +299,17 @@ namespace MainSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            /*try
+            try
             {
                 if (row1 != null)
                 {
                     if (row1["النوع"].ToString() == "صرف")
                     {
-                        mainForm.bindUpdateExpenseForm(row1, this);
+                        mainForm.bindUpdatePropertyExpenseForm(row1, this);
                     }
                     else if (row1["النوع"].ToString() == "ايداع")
                     {
-                        mainForm.bindUpdateIncomeExpenseForm(row1, this);
+                        mainForm.bindUpdatePropertyIncomeForm(row1, this);
                     }
                 }
                 else
@@ -321,7 +321,7 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-            conn.Close();*/
+            conn.Close();
         }
     }
 }

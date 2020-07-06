@@ -435,23 +435,29 @@
     <Compile Include="Expenses\العقارات\Coding\SubProperty_Report.designer.cs">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition.cs">
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Print_PropertyTransition.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition.designer.cs">
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Print_PropertyTransition.designer.cs">
       <DependentUpon>Print_PropertyTransition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition_Report.cs">
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Print_PropertyTransition_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition_Report.designer.cs">
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Print_PropertyTransition_Report.designer.cs">
       <DependentUpon>Print_PropertyTransition_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Property_Transitions_Report.cs">
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Property_Transitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Property_Transitions_Report.designer.cs">
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Property_Transitions_Report.designer.cs">
       <DependentUpon>Property_Transitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\update property\SafePropertyExpense_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\update property\SafePropertyExpense_Update.designer.cs">
+      <DependentUpon>SafePropertyExpense_Update.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\Print_SubPropertyTransitions.cs">
       <SubType>Component</SubType>
@@ -3600,14 +3606,17 @@
     <EmbeddedResource Include="Expenses\العقارات\Coding\SubProperty_Report.resx">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition.resx">
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Print_PropertyTransition.resx">
       <DependentUpon>Print_PropertyTransition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Print_PropertyTransition_Report.resx">
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Print_PropertyTransition_Report.resx">
       <DependentUpon>Print_PropertyTransition_Report.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Property_Transitions_Report.resx">
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Property_Transitions_Report.resx">
       <DependentUpon>Property_Transitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\update property\SafePropertyExpense_Update.resx">
+      <DependentUpon>SafePropertyExpense_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\Print_SubPropertyTransitions.resx">
       <DependentUpon>Print_SubPropertyTransitions.cs</DependentUpon>
