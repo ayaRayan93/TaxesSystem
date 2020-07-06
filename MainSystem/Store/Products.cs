@@ -857,8 +857,8 @@ namespace MainSystem
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
+
         private void productsWithImage()
         {
             try

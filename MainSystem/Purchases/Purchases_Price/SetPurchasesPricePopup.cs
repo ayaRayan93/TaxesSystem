@@ -336,9 +336,9 @@ namespace MainSystem
                 if(e.KeyCode==Keys.Enter)
                     labPurchasesPrice.Text = calPurchasesPrice() + ""; 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
     }
