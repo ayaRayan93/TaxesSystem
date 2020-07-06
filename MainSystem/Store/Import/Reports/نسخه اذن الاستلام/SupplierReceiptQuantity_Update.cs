@@ -54,6 +54,7 @@ namespace MainSystem
             if (txtQuantity.Text != "")
             {
                 double quantity = 0;
+                int CartonNum = 0;
                 if (double.TryParse(txtQuantity.Text, out quantity))
                 {
                     try
@@ -70,7 +71,14 @@ namespace MainSystem
 
                             if ((totalf + quantity) >= 0)
                             {
-                                query = "update supplier_permission_details set Total_Meters=" + quantity + " where Supplier_Permission_Details_ID=" + selRow["Supplier_Permission_Details_ID"].ToString();
+                                double carton = double.Parse(selRow["الكرتنة"].ToString());
+                                if (carton > 0)
+                                {
+                                    double total = quantity / carton;
+                                    CartonNum = Convert.ToInt32(total);
+                                }
+
+                                query = "update supplier_permission_details set Total_Meters=" + quantity + " and Carton_Balata=" + CartonNum + " where Supplier_Permission_Details_ID=" + selRow["Supplier_Permission_Details_ID"].ToString();
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
 
@@ -79,6 +87,7 @@ namespace MainSystem
                                 com.ExecuteNonQuery();
 
                                 UserControl.ItemRecord("storage", "تعديل", Convert.ToInt16(selRow["Data_ID"].ToString()), DateTime.Now, "اذن مخزن", dbconnection);
+
 
                                 #region MyRegion
                                 if (selRow["Factory_ID"].ToString() != "" && selRow["رقم الطلب"].ToString() != "")
@@ -136,13 +145,13 @@ namespace MainSystem
                                 dbconnection2.Close();
                                 if (supplierReceiptUpdate == null)
                                 {
-                                    permissionsReport.refreshView(rowHandel, quantity);
+                                    permissionsReport.refreshView(rowHandel, quantity, CartonNum);
                                 }
                                 else /*if (FormName == "SupplierReceiptUpdate")*/
                                 {
-                                    supplierReceiptUpdate.refreshView(rowHandel, quantity);
+                                    supplierReceiptUpdate.refreshView(rowHandel, quantity, CartonNum);
                                     
-                                    permissionsReport.refreshView(rowHandel, quantity);
+                                    permissionsReport.refreshView(rowHandel, quantity, CartonNum);
                                 }
                                 this.Close();
                             }
