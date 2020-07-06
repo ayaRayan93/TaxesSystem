@@ -1374,9 +1374,10 @@ namespace MainSystem
             }
         }
         
-        public void refreshView(int rowHandel, double quantity)
+        public void refreshView(int rowHandel, double quantity, int CartonNum)
         {
             gridView2.SetRowCellValue(rowHandel, "متر/قطعة", quantity);
+            gridView2.SetRowCellValue(rowHandel, "عدد الكراتين", CartonNum);
         }
     }
 }
