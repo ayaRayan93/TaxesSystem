@@ -20,15 +20,15 @@ namespace MainSystem
         XtraTabControl tabControlProperty;
         int transitionbranchID = 0;
         DataRowView selRow = null;
+        XtraTabControl tabControlExpense;
 
-        public SafePropertyExpense_Update(DataRowView selrow, Property_Transitions_Report PropertyTransitionsReport, XtraTabControl MainTabControlProperty, MainForm mainform)
+        public SafePropertyExpense_Update(DataRowView Selrow, Property_Transitions_Report PropertyTransitionsReport, XtraTabControl MainTabControlProperty, MainForm mainform)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
             tabControlProperty = MainTabControlProperty;
-
-            comBank.AutoCompleteMode = AutoCompleteMode.Suggest;
-            comBank.AutoCompleteSource = AutoCompleteSource.ListItems;
+            selRow = Selrow;
+            tabControlExpense = MainTabControlProperty;
         }
 
         private void BankPullExpense_Record_Load(object sender, EventArgs e)
@@ -102,57 +102,50 @@ namespace MainSystem
             {
                 if (comMain.Text != "" && comSub.Text != "" && comDetails.Text != "" && comBank.Text != "" && txtPullMoney.Text != "")
                 {
-                    double outParse;
-                    if (double.TryParse(txtPullMoney.Text, out outParse))
+                    double money;
+                    if (double.TryParse(txtPullMoney.Text, out money))
                     {
                         dbconnection.Open();
                         MySqlCommand com2 = new MySqlCommand("select Bank_Stock from bank where Bank_ID=" + comBank.SelectedValue, dbconnection);
-                        double amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                        double Bank_Stock = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                        Bank_Stock += Convert.ToDouble(selRow["مصروف"].ToString());
 
-                        if ((amount2 - outParse) >= 0)
+                        if (money > Bank_Stock)
                         {
-                            string query = "insert into property_transition (Branch_ID,Depositor_Name,Bank_ID,Date,Amount,Description,DetailsProperty_ID,Type,Employee_ID) values(@Branch_ID,@Depositor_Name,@Bank_ID,@Date,@Amount,@Description,@DetailsProperty_ID,@Type,@Employee_ID)";
-                            MySqlCommand com = new MySqlCommand(query, dbconnection);
-
-                            com.Parameters.Add("@Type", MySqlDbType.VarChar, 255).Value = "صرف";
-                            com.Parameters.Add("@Branch_ID", MySqlDbType.Int16, 11).Value = transitionbranchID;
-                            com.Parameters.Add("@DetailsProperty_ID", MySqlDbType.Int16, 11).Value = comDetails.SelectedValue.ToString();
-                            com.Parameters.Add("@Bank_ID", MySqlDbType.Int16, 11).Value = comBank.SelectedValue;
-                            com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.Date;
-                            com.Parameters.Add("@Depositor_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
-                            com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
-                            com.Parameters.Add("@Employee_ID", MySqlDbType.Int16).Value = UserControl.EmpID;
-                            com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
-                            com.ExecuteNonQuery();
-
-                            amount2 -= outParse;
-                            MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + comBank.SelectedValue, dbconnection);
-                            com3.ExecuteNonQuery();
-
-                            //////////record adding/////////////
-                            query = "select PropertyTransition_ID from property_transition order by PropertyTransition_ID desc limit 1";
-                            com = new MySqlCommand(query, dbconnection);
-                            string PropertyTransitionID = com.ExecuteScalar().ToString();
-
-                            query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
-                            com = new MySqlCommand(query, dbconnection);
-                            com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                            com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "property_transition";
-                            com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "اضافة";
-                            com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = PropertyTransitionID;
-                            com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
-                            com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
-                            com.ExecuteNonQuery();
-
-                            printProperty(Convert.ToInt32(PropertyTransitionID));
-                            clear();
-                        }
-                        else
-                        {
-                            MessageBox.Show("لا يوجد رصيد كافى");
+                            MessageBox.Show("لا يوجد ما يكفى");
                             dbconnection.Close();
                             return;
                         }
+
+                        string query = "update property_transition set Depositor_Name=@Depositor_Name,Date=@Date,Amount=@Amount,Description=@Description where PropertyTransition_ID=" + selRow["التسلسل"].ToString();
+                        MySqlCommand com = new MySqlCommand(query, dbconnection);
+
+                        com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.Date;
+                        com.Parameters.Add("@Depositor_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
+                        com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
+                        com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
+                        com.ExecuteNonQuery();
+
+                        Bank_Stock -= money;
+                        MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + Bank_Stock + " where Bank_ID=" + comBank.SelectedValue, dbconnection);
+                        com3.ExecuteNonQuery();
+
+                        //////////record adding/////////////
+
+                        query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
+                        com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
+                        com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "property_transition";
+                        com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "تعديل";
+                        com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = selRow["التسلسل"].ToString();
+                        com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
+                        com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
+                        com.ExecuteNonQuery();
+
+                        printProperty(Convert.ToInt32(selRow["التسلسل"].ToString()));
+
+                        XtraTabPage xtraTabPage = getTabPage("تعديل مصروف عقار");
+                        tabControlExpense.TabPages.Remove(xtraTabPage);
                     }
                     else
                     {
@@ -171,7 +164,17 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        //clear function
+        //function
+        public XtraTabPage getTabPage(string text)
+        {
+            for (int i = 0; i < tabControlExpense.TabPages.Count; i++)
+                if (tabControlExpense.TabPages[i].Text == text)
+                {
+                    return tabControlExpense.TabPages[i];
+                }
+            return null;
+        }
+
         public void clear()
         {
             foreach (Control co in this.panel1.Controls)
@@ -203,8 +206,10 @@ namespace MainSystem
             comMain.ValueMember = dt.Columns["MainProperty_ID"].ToString();
             comMain.SelectedIndex = -1;
 
-            comMain.Text = selRow["المصروف الرئيسى"].ToString();
-            comSub.Text = selRow["المصروف الفرعى"].ToString();
+            loaded = true;
+            comMain.Text = selRow["العقار"].ToString();
+            comSub.Text = selRow["المصروف الرئيسى"].ToString();
+            comDetails.Text = selRow["المصروف الفرعى"].ToString();
 
             if (UserControl.userType == 27)
             {
@@ -221,8 +226,13 @@ namespace MainSystem
             comBank.DisplayMember = dt.Columns["Bank_Name"].ToString();
             comBank.ValueMember = dt.Columns["Bank_ID"].ToString();
             comBank.SelectedIndex = -1;
+            comBank.Text = selRow["الخزينة"].ToString();
 
-            loaded = true;
+            txtPullMoney.Text = selRow["مصروف"].ToString();
+            txtClient.Text = selRow["المودع/المستلم"].ToString();
+            txtDescrip.Text = selRow["البيان"].ToString();
+            dateTimePicker1.Value = Convert.ToDateTime(selRow["التاريخ"].ToString());
+
             dbconnection.Close();
         }
 
