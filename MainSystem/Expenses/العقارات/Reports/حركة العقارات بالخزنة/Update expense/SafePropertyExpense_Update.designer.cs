@@ -341,6 +341,8 @@
             // 
             // comBank
             // 
+            this.comBank.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comBank.Enabled = false;
             this.comBank.FormattingEnabled = true;
             this.comBank.Location = new System.Drawing.Point(31, 83);
             this.comBank.Name = "comBank";
@@ -700,8 +702,11 @@
             // 
             this.layoutControlItem15.Control = this.label9;
             this.layoutControlItem15.Location = new System.Drawing.Point(517, 208);
+            this.layoutControlItem15.MaxSize = new System.Drawing.Size(0, 24);
+            this.layoutControlItem15.MinSize = new System.Drawing.Size(24, 24);
             this.layoutControlItem15.Name = "layoutControlItem15";
             this.layoutControlItem15.Size = new System.Drawing.Size(516, 24);
+            this.layoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
