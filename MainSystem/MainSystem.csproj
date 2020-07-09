@@ -459,6 +459,12 @@
     <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update expense\SafePropertyExpense_Update.designer.cs">
       <DependentUpon>SafePropertyExpense_Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update income\SafePropertyIncome_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update income\SafePropertyIncome_Update.designer.cs">
+      <DependentUpon>SafePropertyIncome_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\Print_SubPropertyTransitions.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3617,6 +3623,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update expense\SafePropertyExpense_Update.resx">
       <DependentUpon>SafePropertyExpense_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update income\SafePropertyIncome_Update.resx">
+      <DependentUpon>SafePropertyIncome_Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\Print_SubPropertyTransitions.resx">
       <DependentUpon>Print_SubPropertyTransitions.cs</DependentUpon>

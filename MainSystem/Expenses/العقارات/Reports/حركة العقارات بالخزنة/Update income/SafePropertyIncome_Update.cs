@@ -12,23 +12,23 @@ using System.Windows.Forms;
 
 namespace MainSystem
 {
-    public partial class SafeExpenseIncome_Update : Form
+    public partial class SafePropertyIncome_Update : Form
     {
         MySqlConnection dbconnection;
         bool loaded = false;
-        XtraTabControl tabControlExpense;
+        XtraTabControl tabControlProperty;
         int transitionbranchID = 0;
         DataRowView selRow = null;
 
-        public SafeExpenseIncome_Update(DataRowView selrow, Expenses_Transitions_Report ExpensesTransitionsReport, XtraTabControl MainTabControlExpense, MainForm mainform)
+        public SafePropertyIncome_Update(DataRowView selrow, Property_Transitions_Report ExpensesTransitionsReport, XtraTabControl MainTabControlProperty, MainForm mainform)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
-            tabControlExpense = MainTabControlExpense;
+            tabControlProperty = MainTabControlProperty;
             selRow = selrow;
         }
 
-        private void BankPullExpense_Record_Load(object sender, EventArgs e)
+        private void BankPullProperty_Record_Load(object sender, EventArgs e)
         {
             try
             {
@@ -64,9 +64,10 @@ namespace MainSystem
                         {
                             MessageBox.Show("الرصيد سيصبح اقل من الصفر");
                         }
-                        
-                        query = "update expense_transition set Depositor_Name=@Depositor_Name,Amount=@Amount,Description=@Description where ExpenseTransition_ID=" + selRow["التسلسل"].ToString();
+
+                        query = "update property_transition set Depositor_Name=@Depositor_Name,Date=@Date,Amount=@Amount,Description=@Description where PropertyTransition_ID=" + selRow["التسلسل"].ToString();
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
+                        com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.Date;
                         com.Parameters.Add("@Depositor_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
                         com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                         com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
@@ -77,21 +78,18 @@ namespace MainSystem
                         com3.ExecuteNonQuery();
 
                         //////////record adding/////////////
-                        
                         query = "insert into usercontrol (UserControl_UserID,UserControl_TableName,UserControl_Status,UserControl_RecordID,UserControl_Date,UserControl_Reason) values(@UserControl_UserID,@UserControl_TableName,@UserControl_Status,@UserControl_RecordID,@UserControl_Date,@UserControl_Reason)";
                         com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@UserControl_UserID", MySqlDbType.Int16, 11).Value = UserControl.userID;
-                        com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "expense_transition";
+                        com.Parameters.Add("@UserControl_TableName", MySqlDbType.VarChar, 255).Value = "property_transition";
                         com.Parameters.Add("@UserControl_Status", MySqlDbType.VarChar, 255).Value = "تعديل";
                         com.Parameters.Add("@UserControl_RecordID", MySqlDbType.VarChar, 255).Value = selRow["التسلسل"].ToString();
                         com.Parameters.Add("@UserControl_Date", MySqlDbType.DateTime, 0).Value = DateTime.Now;
                         com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                         com.ExecuteNonQuery();
-                        
-                        printExpense(Convert.ToInt32(selRow["التسلسل"].ToString()));
-                        
-                        XtraTabPage xtraTabPage = getTabPage("تعديل ايداع مصروف");
-                        tabControlExpense.TabPages.Remove(xtraTabPage);
+
+                        XtraTabPage xtraTabPage = getTabPage("تعديل ايداع عقار");
+                        tabControlProperty.TabPages.Remove(xtraTabPage);
                     }
                     else
                     {
@@ -110,17 +108,17 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        //clear function
+        //function
         public XtraTabPage getTabPage(string text)
         {
-            for (int i = 0; i < tabControlExpense.TabPages.Count; i++)
-                if (tabControlExpense.TabPages[i].Text == text)
+            for (int i = 0; i < tabControlProperty.TabPages.Count; i++)
+                if (tabControlProperty.TabPages[i].Text == text)
                 {
-                    return tabControlExpense.TabPages[i];
+                    return tabControlProperty.TabPages[i];
                 }
             return null;
         }
-
+        
         //functions
         private void loadBranch()
         {
@@ -128,14 +126,15 @@ namespace MainSystem
 
             string query = "";
             
-            if (UserControl.userType == 3 || UserControl.userType == 16)
+            if (UserControl.userType == 27)
             {
                 query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + "";
             }
             else
             {
-                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and MainBank_Name = 'خزينة مبيعات'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and MainBank_Name='خزينة عقارات'";
             }
+
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -153,11 +152,11 @@ namespace MainSystem
             dbconnection.Close();
         }
 
-        void printExpense(int ExpenseTransitionID)
+        void printProperty(int PropertyTransitionID)
         {
-            Print_IncomeExpense_Report_Copy f = new Print_IncomeExpense_Report_Copy();
-            f.PrintInvoice(ExpenseTransitionID, comBank.Text, txtPullMoney.Text, txtClient.Text, txtDescrip.Text, selRow["التاريخ"].ToString());
-            f.ShowDialog();
+            //Print_IncomeExpense_Report f = new Print_IncomeExpense_Report();
+            //f.PrintInvoice(ExpenseTransitionID, comBank.Text, txtPullMoney.Text, txtClient.Text, txtDescrip.Text);
+            //f.ShowDialog();
         }
     }
 }
