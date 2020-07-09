@@ -53,7 +53,7 @@ namespace MainSystem
             {
                 dbconnection.Open();
                 loadData();
-                code = prodRow[4].ToString();
+                code = prodRow["الكود"].ToString();
                 displayData(prodRow);             
                 loaded = true;
                 flag = true;
@@ -339,7 +339,6 @@ namespace MainSystem
             {
                 if (txtFactory.Text != "" && txtGroup.Text != "" && txtProduct.Text != "" && txtType.Text != "")
                 {
-
                     double carton = 0;
                     string classification, description = "";
                     if (comColour.Text != "")
@@ -352,7 +351,6 @@ namespace MainSystem
                         {
 
                         }
-
                     }
                     if (comSize.Text != "")
                     {
@@ -364,7 +362,6 @@ namespace MainSystem
                         {
 
                         }
-
                     }
                     if (comSort.Text != "")
                     {

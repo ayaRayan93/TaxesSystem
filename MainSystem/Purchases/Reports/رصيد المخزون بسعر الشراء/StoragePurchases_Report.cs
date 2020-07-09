@@ -12,6 +12,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -522,315 +523,39 @@ namespace MainSystem
             dbconnection2.Close();
             dbconnection3.Close();
         }
-        private void txtCodeSearch1_TextChanged(object sender, EventArgs e)
+        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
         {
             try
             {
-                int result = 0;
-                if (txtCodeSearch1.Text != "")
+                if (e.Column.Name == "colالكود")
                 {
-                    if (int.TryParse(txtCodeSearch1.Text, out result))
+                    dbconnection.Open();
+                    string code = e.CellValue.ToString();
+                    string query = "select Data_ID from data where Code='" + code + "'";
+                    codef1 = code;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    ID = Convert.ToInt16(com.ExecuteScalar());
+                    if (f1.ActiveControl != null)
                     {
-                        if (!flag1)
-                        {
-                            if (txtCodeSearch1.TextLength == 1)
-                            {
-                                code1 = "000" + txtCodeSearch1.Text;
-                            }
-                            else if (txtCodeSearch1.TextLength == 2)
-                            {
-                                code1 = "00" + txtCodeSearch1.Text;
-                            }
-                            else if (txtCodeSearch1.TextLength == 3)
-                            {
-                                code1 = "0" + txtCodeSearch1.Text;
-                            }
-                            else if (txtCodeSearch1.TextLength == 4)
-                            {
-                                code1 = txtCodeSearch1.Text;
-                            }
-                            else if (txtCodeSearch1.TextLength > 4)
-                            {
-                                txtCodeSearch1.Text = code1;
-                            }
-                            else if (txtCodeSearch1.TextLength == 0)
-                            {
-                                code1 = "0000";
-                            }
-                        }
+                        f1.Show();
+                        f1.Focus();
                     }
                     else
                     {
-                        flag1 = true;
-                        if (txtCodeSearch1.TextLength == 1)
-                        {
-                            txtCodeSearch1.Text = "";
-                        }
-                        else if (txtCodeSearch1.TextLength > 1)
-                        {
-                            for (int i = 0; i < txtCodeSearch1.TextLength - 1; i++)
-                            {
-                                txtCodeSearch1.Text = txtCodeSearch1.Text[i].ToString();
-                            }
-                        }
-                        MessageBox.Show("يمكنك ادخال ارقام فقط");
-                        flag1 = false;
-                        return;
+                        f1 = new SetPurchasesPricePopup();
+                        f1.Show();
+                        f1.Focus();
                     }
+                    DataRowView row = (DataRowView)gridView1.GetRow(e.RowHandle);
+                    SetPurchasesPricePopup.setData(f1, row);
+
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-        private void txtCodeSearch2_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int result = 0;
-                if (txtCodeSearch2.Text != "")
-                {
-                    if (int.TryParse(txtCodeSearch2.Text, out result))
-                    {
-                        if (!flag2)
-                        {
-                            if (txtCodeSearch2.TextLength == 1)
-                            {
-                                code2 = "000" + txtCodeSearch2.Text;
-                            }
-                            else if (txtCodeSearch2.TextLength == 2)
-                            {
-                                code2 = "00" + txtCodeSearch2.Text;
-                            }
-                            else if (txtCodeSearch2.TextLength == 3)
-                            {
-                                code2 = "0" + txtCodeSearch2.Text;
-                            }
-                            else if (txtCodeSearch2.TextLength == 4)
-                            {
-                                code2 = txtCodeSearch2.Text;
-                            }
-                            else if (txtCodeSearch2.TextLength > 4)
-                            {
-                                txtCodeSearch2.Text = code2;
-                            }
-                            else if (txtCodeSearch2.TextLength == 0)
-                            {
-                                code2 = "0000";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        flag2 = true;
-                        if (txtCodeSearch2.TextLength == 1)
-                        {
-                            txtCodeSearch2.Text = "";
-                        }
-                        else if (txtCodeSearch2.TextLength > 1)
-                        {
-                            for (int i = 0; i < txtCodeSearch2.TextLength - 1; i++)
-                            {
-                                txtCodeSearch2.Text = txtCodeSearch2.Text[i].ToString();
-                            }
-                        }
-                        MessageBox.Show("يمكنك ادخال ارقام فقط");
-                        flag2 = false;
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        private void txtCodeSearch3_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int result = 0;
-                if (txtCodeSearch3.Text != "")
-                {
-                    if (int.TryParse(txtCodeSearch3.Text, out result))
-                    {
-                        if (!flag3)
-                        {
-                            if (txtCodeSearch3.TextLength == 1)
-                            {
-                                code3 = "000" + txtCodeSearch3.Text;
-                            }
-                            else if (txtCodeSearch3.TextLength == 2)
-                            {
-                                code3 = "00" + txtCodeSearch3.Text;
-                            }
-                            else if (txtCodeSearch3.TextLength == 3)
-                            {
-                                code3 = "0" + txtCodeSearch3.Text;
-                            }
-                            else if (txtCodeSearch3.TextLength == 4)
-                            {
-                                code3 = txtCodeSearch3.Text;
-                            }
-                            else if (txtCodeSearch3.TextLength > 4)
-                            {
-                                txtCodeSearch3.Text = code3;
-                            }
-                            else if (txtCodeSearch3.TextLength == 0)
-                            {
-                                code3 = "0000";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        flag3 = true;
-                        if (txtCodeSearch3.TextLength == 1)
-                        {
-                            txtCodeSearch3.Text = "";
-                        }
-                        else if (txtCodeSearch3.TextLength > 1)
-                        {
-                            for (int i = 0; i < txtCodeSearch3.TextLength - 1; i++)
-                            {
-                                txtCodeSearch3.Text = txtCodeSearch3.Text[i].ToString();
-                            }
-                        }
-                        MessageBox.Show("يمكنك ادخال ارقام فقط");
-                        flag3 = false;
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        private void txtCodeSearch4_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int result = 0;
-                if (txtCodeSearch4.Text != "")
-                {
-                    if (int.TryParse(txtCodeSearch4.Text, out result))
-                    {
-                        if (!flag4)
-                        {
-                            if (txtCodeSearch4.TextLength == 1)
-                            {
-                                code4 = "000" + txtCodeSearch4.Text;
-                            }
-                            else if (txtCodeSearch4.TextLength == 2)
-                            {
-                                code4 = "00" + txtCodeSearch4.Text;
-                            }
-                            else if (txtCodeSearch4.TextLength == 3)
-                            {
-                                code4 = "0" + txtCodeSearch4.Text;
-                            }
-                            else if (txtCodeSearch4.TextLength == 4)
-                            {
-                                code4 = txtCodeSearch4.Text;
-                            }
-                            else if (txtCodeSearch4.TextLength > 4)
-                            {
-                                txtCodeSearch4.Text = code4;
-                            }
-                            else if (txtCodeSearch4.TextLength == 0)
-                            {
-                                code4 = "0000";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        flag4 = true;
-                        if (txtCodeSearch4.TextLength == 1)
-                        {
-                            txtCodeSearch4.Text = "";
-                        }
-                        else if (txtCodeSearch4.TextLength > 1)
-                        {
-                            for (int i = 0; i < txtCodeSearch4.TextLength - 1; i++)
-                            {
-                                txtCodeSearch4.Text = txtCodeSearch4.Text[i].ToString();
-                            }
-                        }
-                        MessageBox.Show("يمكنك ادخال ارقام فقط");
-                        flag4 = false;
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        private void txtCodeSearch5_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                int result = 0;
-                if (txtCodeSearch5.Text != "")
-                {
-                    if (int.TryParse(txtCodeSearch5.Text, out result))
-                    {
-                        if (!flag5)
-                        {
-                            if (txtCodeSearch5.TextLength == 1)
-                            {
-                                code5 = "000" + txtCodeSearch5.Text;
-                            }
-                            else if (txtCodeSearch5.TextLength == 2)
-                            {
-                                code5 = "00" + txtCodeSearch5.Text;
-                            }
-                            else if (txtCodeSearch5.TextLength == 3)
-                            {
-                                code5 = "0" + txtCodeSearch5.Text;
-                            }
-                            else if (txtCodeSearch5.TextLength == 4)
-                            {
-                                code5 = txtCodeSearch5.Text;
-                            }
-                            else if (txtCodeSearch5.TextLength > 4)
-                            {
-                                txtCodeSearch5.Text = code5;
-                            }
-                            else if (txtCodeSearch5.TextLength == 0)
-                            {
-                                code5 = "0000";
-                            }
-                        }
-                    }
-                    else
-                    {
-                        flag5 = true;
-                        if (txtCodeSearch5.TextLength == 1)
-                        {
-                            txtCodeSearch5.Text = "";
-                        }
-                        else if (txtCodeSearch5.TextLength > 1)
-                        {
-                            for (int i = 0; i < txtCodeSearch5.TextLength - 1; i++)
-                            {
-                                txtCodeSearch5.Text = txtCodeSearch5.Text[i].ToString();
-                            }
-                        }
-                        MessageBox.Show("يمكنك ادخال ارقام فقط");
-                        flag5 = false;
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            dbconnection.Close();
         }
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -895,7 +620,6 @@ namespace MainSystem
                 gridControl1.DataSource = null;
                 
                 txtSafy.Text = "0";
-                
                 searchItems();
             }
             catch (Exception ex)
@@ -1133,7 +857,8 @@ namespace MainSystem
                 dbconnection2.Open();
                 dbconnection3.Open();
 
-                string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية', Purchasing_Price as 'سعر الشراء',storage.Total_Meters as 'الاجمالي' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  left JOIN purchasing_price ON purchasing_price.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+                // string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية', Purchasing_Price as 'سعر الشراء',storage.Total_Meters as 'الاجمالي' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  left JOIN purchasing_price ON purchasing_price.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
+                string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية',Purchasing_Price as 'سعر الشراء',(sum(storage.Total_Meters)*Purchasing_Price) as 'الاجمالي' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID left JOIN purchasing_price ON purchasing_price.Data_ID = data.Data_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                 MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -1141,36 +866,38 @@ namespace MainSystem
                 gridView1.Columns["Data_ID"].Visible = false;
 
                 //date(storage.Storage_Date) between '2019-10-30' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and
-                query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
-                MySqlCommand comand = new MySqlCommand(query, dbconnection);
-                MySqlDataReader dr = comand.ExecuteReader();
-                while (dr.Read())
-                {
-                    gridView1.AddNewRow();
-                    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
-                    if (gridView1.IsNewItemRow(rowHandle))
-                    {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
+                //query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                //MySqlDataAdapter da1 = new MySqlDataAdapter(query, dbconnection);
+                //DataTable dt1 = new DataTable();
+
+                //MySqlDataReader dr = comand.ExecuteReader();
+                //while (dr.Read())
+                //{
+                //    gridView1.AddNewRow();
+                //    int rowHandle = gridView1.GetRowHandle(gridView1.DataRowCount);
+                //    if (gridView1.IsNewItemRow(rowHandle))
+                //    {
+                //        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[0], dr["Data_ID"]);
+                //        gridView1.SetRowCellValue(rowHandle, gridView1.Columns[1], dr["الكود"]);
+                //        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["النوع"], dr["النوع"]);
+                //        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاسم"], dr["الاسم"]);
+                //        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكرتنة"], dr["الكرتنة"]);
                         
-                        double quantti = 0;
-                        if (dr["الكمية"].ToString() != "")
-                        {
-                            quantti = searchSelectedItem(dr["Data_ID"].ToString());
-                            double purshasesPrice = getPurchasesPrice(dr["Data_ID"].ToString());
-                            double total = quantti * purshasesPrice;
+                //        double quantti = 0;
+                //        if (dr["الكمية"].ToString() != "")
+                //        {
+                //            quantti = searchSelectedItem(dr["Data_ID"].ToString());
+                //            double purshasesPrice = getPurchasesPrice(dr["Data_ID"].ToString());
+                //            double total = quantti * purshasesPrice;
 
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], Math.Round((Double)quantti, 2));
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["سعر الشراء"], Math.Round((Double)purshasesPrice, 2));
-                            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالي"], Math.Round((Double)total, 2));
+                //            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الكمية"], Math.Round((Double)quantti, 2));
+                //            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["سعر الشراء"], Math.Round((Double)purshasesPrice, 2));
+                //            gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الاجمالي"], Math.Round((Double)total, 2));
 
-                        }
-                    }
-                }
-                dr.Close();
+                //        }
+                //    }
+                //}
+                //dr.Close();
 
                 if (gridView1.IsLastVisibleRow)
                 {
@@ -1183,10 +910,14 @@ namespace MainSystem
                 {
                     double pricee = 0;
                     double pricee2 = 0;
+                    string g = "";
                     if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]) != "")
                     {
-                        pricee = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]));
-                        pricee2 = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالي"]));
+                        if(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]).ToString() != "")
+                            pricee = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الكمية"]));
+
+                        if (gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالي"]).ToString() != "")
+                            pricee2 = Convert.ToDouble(gridView1.GetRowCellDisplayText(i, gridView1.Columns["الاجمالي"]));
                     }
                     safyi += pricee;
                     safyi2 += pricee2;
@@ -1357,43 +1088,7 @@ namespace MainSystem
             dr.Close();
 
             return quantity;
-        }
-
-        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
-        {
-            try
-            {
-                if (e.Column.Name == "colالكود")
-                {
-                    dbconnection.Open();
-                    string code = e.CellValue.ToString();
-                    string query = "select Data_ID from data where Code='"+code+"'";
-                    codef1 = code;
-                    MySqlCommand com = new MySqlCommand(query,dbconnection);
-                    ID =Convert.ToInt16(com.ExecuteScalar());
-                    if (f1.ActiveControl != null)
-                    {
-                        f1.Show();
-                        f1.Focus();
-                    }
-                    else
-                    {
-                        f1 = new SetPurchasesPricePopup();
-                        f1.Show();
-                        f1.Focus();
-                    }
-                    DataRowView row = (DataRowView)gridView1.GetRow(e.RowHandle);
-                    SetPurchasesPricePopup.setData(f1, row);
-                
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
-
+        }    
         public double searchSelectedItemBefore(string dataId, string qStore)
         {
             /*if (comStore.Text == "")
@@ -1503,7 +1198,6 @@ namespace MainSystem
             
             return quantity;
         }
-
         public double getPurchasesPrice(string dataID)
         {
             string query = "SELECT Purchasing_Price FROM oldpurchasing_price where Data_ID="+dataID+" and oldpurchasing_price.Date <'" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' limit 1";

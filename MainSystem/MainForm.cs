@@ -459,6 +459,28 @@ namespace MainSystem
                 navBarItemCustomerDeliverReport.Visible = false;
                 navBarItem203.Visible = false;
                 navBarItemPermissionRestBill.Visible = false;
+
+                ////////////////////////////
+                btnStores.Enabled = true;
+                btnStores.Checked = true;
+                navBarGroup1.Visible = false;
+                //navBarGroup2.Visible = false;
+                navBarGroup3.Visible = false;
+                navBarGroup4.Visible = false;
+                navBarGroup5.Visible = false;
+                navBarGroup6.Visible = false;
+                navBarGroup7.Visible = false;
+                navBarGroup8.Visible = false;
+                navBarGroup9.Visible = false;
+                navBarGroup10.Visible = false;
+                navBarGroup11.Visible = false;
+                navBarGroup12.Visible = false;
+                navBarGroupProductsTicket.Visible = false;
+                navBarGroup54.Visible = false;
+
+                btnStoreRecord.Visible = false;
+                btnAtaqm.Visible = false;
+                navBarItemBranchReport2.Visible = false;
             }
             //eslam
             else if (UserControl.userType == 17)

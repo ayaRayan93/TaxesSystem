@@ -71,14 +71,17 @@ namespace MainSystem
 
                             if ((totalf + quantity) >= 0)
                             {
-                                double carton = double.Parse(selRow["الكرتنة"].ToString());
+                                string q = "select Carton from data where Data_ID=" + selRow["Data_ID"].ToString();
+                                com = new MySqlCommand(q, dbconnection);
+
+                                double carton = double.Parse(com.ExecuteScalar().ToString());
                                 if (carton > 0)
                                 {
                                     double total = quantity / carton;
                                     CartonNum = Convert.ToInt32(total);
                                 }
 
-                                query = "update supplier_permission_details set Total_Meters=" + quantity + " and Carton_Balata=" + CartonNum + " where Supplier_Permission_Details_ID=" + selRow["Supplier_Permission_Details_ID"].ToString();
+                                query = "update supplier_permission_details set Total_Meters=" + quantity + " , Carton_Balata=" + CartonNum + " where Supplier_Permission_Details_ID=" + selRow["Supplier_Permission_Details_ID"].ToString();
                                 com = new MySqlCommand(query, dbconnection);
                                 com.ExecuteNonQuery();
 

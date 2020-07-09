@@ -244,7 +244,6 @@
             this.txtCodeSearch5.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch5.TabIndex = 176;
             this.txtCodeSearch5.TabStop = false;
-            this.txtCodeSearch5.TextChanged += new System.EventHandler(this.txtCodeSearch5_TextChanged);
             this.txtCodeSearch5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodeSearch_KeyDown);
             // 
             // label13
@@ -491,7 +490,6 @@
             this.txtCodeSearch4.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch4.TabIndex = 168;
             this.txtCodeSearch4.TabStop = false;
-            this.txtCodeSearch4.TextChanged += new System.EventHandler(this.txtCodeSearch4_TextChanged);
             this.txtCodeSearch4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // comProduct
@@ -578,7 +576,6 @@
             this.txtCodeSearch2.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch2.TabIndex = 162;
             this.txtCodeSearch2.TabStop = false;
-            this.txtCodeSearch2.TextChanged += new System.EventHandler(this.txtCodeSearch2_TextChanged);
             this.txtCodeSearch2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // com
@@ -638,7 +635,6 @@
             this.txtCodeSearch3.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch3.TabIndex = 160;
             this.txtCodeSearch3.TabStop = false;
-            this.txtCodeSearch3.TextChanged += new System.EventHandler(this.txtCodeSearch3_TextChanged);
             this.txtCodeSearch3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // comType
@@ -670,7 +666,6 @@
             this.txtCodeSearch1.Size = new System.Drawing.Size(54, 24);
             this.txtCodeSearch1.TabIndex = 158;
             this.txtCodeSearch1.TabStop = false;
-            this.txtCodeSearch1.TextChanged += new System.EventHandler(this.txtCodeSearch1_TextChanged);
             this.txtCodeSearch1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBox_KeyDown);
             // 
             // label15
