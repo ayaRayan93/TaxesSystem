@@ -24,6 +24,7 @@ namespace MainSystem
     {
         public static XtraTabControl tabControlRequests;
         public static LeastQuantityReport leastQuantityReport;
+        public static BillLeastQuantityReport BillLeastQuantityReport;
         public static SpecialOrders_Report2 SpecialOrdersReport;
 
         Timer Purchasetimer = new Timer();
@@ -147,7 +148,46 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
+        private void navBarItemBillLeastQuantity_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                if (!xtraTabControlMainContainer.TabPages.Contains(xtraTabPageRequest))
+                {
+                    if (index == 0)
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(1, RequestsTP);
+                    }
+                    else
+                    {
+                        xtraTabControlMainContainer.TabPages.Insert(index, RequestsTP);
+                    }
+                    index++;
+                }
+
+                xtraTabControlMainContainer.SelectedTabPage = RequestsTP;
+
+                if (!xtraTabControlRequests.Visible)
+                    xtraTabControlRequests.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlRequests, "عرض بنود وصلت للحد الادنى");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlRequests.TabPages.Add("عرض بنود وصلت للحد الادنى");
+                    xtraTabPage = getTabPage(xtraTabControlRequests, "عرض بنود وصلت للحد الادنى");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlRequests.SelectedTabPage = xtraTabPage;
+                bindDisplayBillLeastQuantityReport(xtraTabPage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemLeastQuantity_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -407,8 +447,19 @@ namespace MainSystem
             leastQuantityReport.Show();
         }
 
+        public void bindDisplayBillLeastQuantityReport(XtraTabPage xtraTabPage)
+        {
+            BillLeastQuantityReport = new BillLeastQuantityReport(this, xtraTabControlRequests);
+            BillLeastQuantityReport.TopLevel = false;
+
+            xtraTabPage.Controls.Add(BillLeastQuantityReport);
+            BillLeastQuantityReport.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            BillLeastQuantityReport.Dock = DockStyle.Fill;
+            BillLeastQuantityReport.Show();
+        }
+
         //Products Purchase price
-        
+
         public void bindDisplayLeastQuantityForm(XtraTabPage xtraTabPage)
         {
             LeastQuantityRecord objForm = new LeastQuantityRecord(this, xtraTabControlRequests);

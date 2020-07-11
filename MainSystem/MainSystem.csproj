@@ -801,6 +801,12 @@
     <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_RecordX.designer.cs">
       <DependentUpon>SafeExpense_RecordX.cs</DependentUpon>
     </Compile>
+    <Compile Include="Requests\Least Quantity\BillLeastQuantityReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Requests\Least Quantity\BillLeastQuantityReport.designer.cs">
+      <DependentUpon>BillLeastQuantityReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Requests\Least Quantity\Print_LeastQuantity.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3791,6 +3797,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\CustomerServiceAfterReceived_Report.resx">
       <DependentUpon>CustomerServiceAfterReceived_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Requests\Least Quantity\BillLeastQuantityReport.resx">
+      <DependentUpon>BillLeastQuantityReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Requests\Least Quantity\Print_LeastQuantity.resx">
       <DependentUpon>Print_LeastQuantity.cs</DependentUpon>

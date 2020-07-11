@@ -147,7 +147,7 @@ namespace MainSystem
             //}
             else /*if (UserControl.userType == 1)*/
             {
-                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and MainBank_Name = 'خزينة مبيعات'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and (MainBank_Name = 'خزينة مبيعات' or MainBank_Name = 'خزينة حسابات')";
             }
 
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
