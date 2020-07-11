@@ -89,12 +89,13 @@ namespace MainSystem
                             return;
                         }
                         
-                        query = "update expense_transition set SubExpense_ID=@SubExpense_ID,Depositor_Name=@Depositor_Name,Amount=@Amount,Description=@Description where ExpenseTransition_ID=" + selRow["التسلسل"].ToString();
+                        query = "update expense_transition set SubExpense_ID=@SubExpense_ID,Depositor_Name=@Depositor_Name,Amount=@Amount,Description=@Description,Date=@Date where ExpenseTransition_ID=" + selRow["التسلسل"].ToString();
                         MySqlCommand com = new MySqlCommand(query, dbconnection);
                         com.Parameters.Add("@SubExpense_ID", MySqlDbType.Int16, 11).Value = comSub.SelectedValue.ToString();
                         com.Parameters.Add("@Depositor_Name", MySqlDbType.VarChar, 255).Value = txtClient.Text;
                         com.Parameters.Add("@Description", MySqlDbType.VarChar, 255).Value = txtDescrip.Text;
                         com.Parameters.Add("@Amount", MySqlDbType.Decimal, 10).Value = txtPullMoney.Text;
+                        com.Parameters.Add("@Date", MySqlDbType.DateTime, 0).Value = dateTimePicker1.Value.Date;
                         com.ExecuteNonQuery();
 
                         Bank_Stock -= money;
@@ -183,6 +184,7 @@ namespace MainSystem
             txtPullMoney.Text = selRow["مصروف"].ToString();
             txtClient.Text = selRow["المودع/المستلم"].ToString();
             txtDescrip.Text = selRow["البيان"].ToString();
+            dateTimePicker1.Value = Convert.ToDateTime(selRow["التاريخ"].ToString());
 
             dbconnection.Close();
         }

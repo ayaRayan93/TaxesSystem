@@ -70,6 +70,10 @@
             this.layoutControlItem60 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.label8 = new System.Windows.Forms.Label();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
             this.dataLayoutControl1.SuspendLayout();
@@ -94,6 +98,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -107,6 +113,8 @@
             // 
             // dataLayoutControl1
             // 
+            this.dataLayoutControl1.Controls.Add(this.label8);
+            this.dataLayoutControl1.Controls.Add(this.dateTimePicker1);
             this.dataLayoutControl1.Controls.Add(this.label7);
             this.dataLayoutControl1.Controls.Add(this.label6);
             this.dataLayoutControl1.Controls.Add(this.label5);
@@ -140,7 +148,7 @@
             this.label7.BackColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(524, 163);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(512, 48);
+            this.label7.Size = new System.Drawing.Size(512, 20);
             this.label7.TabIndex = 80;
             // 
             // label6
@@ -350,7 +358,9 @@
             this.layoutControlItemMoney,
             this.layoutControlItem60,
             this.layoutControlItem11,
-            this.layoutControlItem10});
+            this.layoutControlItem10,
+            this.layoutControlItem12,
+            this.layoutControlItem13});
             this.layoutControlGroup1.MoveFocusRightToLeft = DevExpress.Utils.DefaultBoolean.True;
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(5, 5, 5, 5);
@@ -562,7 +572,7 @@
             this.layoutControlItem11.Control = this.label7;
             this.layoutControlItem11.Location = new System.Drawing.Point(517, 156);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(516, 52);
+            this.layoutControlItem11.Size = new System.Drawing.Size(516, 24);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -574,6 +584,49 @@
             this.layoutControlItem10.Size = new System.Drawing.Size(24, 28);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(548, 187);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeftLayout = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(369, 22);
+            this.dateTimePicker1.TabIndex = 81;
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.layoutControlItem12.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.layoutControlItem12.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem12.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem12.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.layoutControlItem12.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.layoutControlItem12.Control = this.dateTimePicker1;
+            this.layoutControlItem12.Location = new System.Drawing.Point(541, 180);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(492, 28);
+            this.layoutControlItem12.Text = "التاريخ";
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(116, 24);
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(524, 187);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(20, 24);
+            this.label8.TabIndex = 82;
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.label8;
+            this.layoutControlItem13.Location = new System.Drawing.Point(517, 180);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(24, 28);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem13.TextVisible = false;
             // 
             // SafeExpense_Update
             // 
@@ -611,6 +664,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem60)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -658,6 +713,10 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private System.Windows.Forms.Label label7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
     }
 }
 

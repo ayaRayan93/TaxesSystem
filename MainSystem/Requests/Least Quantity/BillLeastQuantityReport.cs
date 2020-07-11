@@ -54,12 +54,12 @@ namespace MainSystem
                 comSort.ValueMember = dt.Columns["Sort_ID"].ToString();
                 comSort.Text = "";
 
-                //string q1, q2, q3, q4, fQuery = "";
-                //q1 = "select Type_ID from type";
-                //q2 = "select Factory_ID from factory";
-                //q3 = "select Product_ID from product";
-                //q4 = "select Group_ID from groupo";
-                //testQuantity(q1, q2, q3, q4, fQuery);
+                string q1, q2, q3, q4, fQuery = "";
+                q1 = "select Type_ID from type";
+                q2 = "select Factory_ID from factory";
+                q3 = "select Product_ID from product";
+                q4 = "select Group_ID from groupo";
+                testQuantity(q1, q2, q3, q4, fQuery);
 
                 loaded = true;
             }
@@ -326,6 +326,7 @@ namespace MainSystem
         {
             dbconnection.Open();
             dbconnection6.Open();
+
             string query = "SELECT data.Data_ID,data.Type_ID,data.Factory_ID,data.Product_ID,data.Group_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',SUM(storage.Total_Meters) as 'الكمية المتاحة','الحد الادنى','تسوية' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID where data.Data_ID=0 group by data.Data_ID";
             MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
             DataTable dt = new DataTable();
@@ -336,7 +337,18 @@ namespace MainSystem
             gridView1.Columns["Factory_ID"].Visible = false;
             gridView1.Columns["Product_ID"].Visible = false;
             gridView1.Columns["Group_ID"].Visible = false;
-            
+
+
+            /*query = "SELECT distinct concat(customer_bill.Branch_BillNumber,' ',customer_bill.Branch_Name) as 'رقم الفاتورة',customer_bill.Bill_Date as 'التاريخ',concat(customer1.Customer_Name,' ',customer_bill.Customer_ID) as 'المهندس/المقاول/التاجر',concat(customer2.Customer_Name,' ',customer_bill.Client_ID) as 'العميل',product_bill.Price as 'السعر',product_bill.Discount as 'نسبة الخصم',product_bill.PriceAD as 'بعد الخصم',product_bill.Quantity as 'الكمية' FROM customer_bill INNER JOIN transitions ON customer_bill.Branch_ID = transitions.Branch_ID AND customer_bill.Branch_BillNumber = transitions.Bill_Number left join customer as customer1 on customer1.Customer_ID=customer_bill.Customer_ID left join customer as customer2 on customer2.Customer_ID=customer_bill.Client_ID INNER JOIN product_bill ON product_bill.CustomerBill_ID = customer_bill.CustomerBill_ID inner join data on data.Data_ID=product_bill.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where transitions.Transition='ايداع' and data.Data_ID=" + dataId + " and product_bill.Store_ID=" + comStore.SelectedValue.ToString() + " and DATE(customer_bill.Bill_Date) < '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "'";
+            MySqlCommand comand = new MySqlCommand(query, dbconnection);
+            MySqlDataReader dr2 = comand.ExecuteReader();
+            while (dr2.Read())
+            {
+                totalSub += Convert.ToDouble(dr2["الكمية"].ToString());
+            }
+            dr2.Close();*/
+
+
             string q1 = "select Data_ID from storage_least_taswya";
             
             string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
