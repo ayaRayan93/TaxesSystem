@@ -431,20 +431,21 @@ namespace MainSystem
             }
             else if (UserControl.userType == 16)
             {
-                btnSales.Enabled = true;
-                btnSales.Checked = true;
-                btnBank.Enabled = true;
-                btnBank.Checked = true;
-                btnExpenses.Enabled = true;
-                btnExpenses.Checked = true;
-                navBarGroup56.Visible = false;
-                navBarGroup57.Visible = false;
-                navBarGroup42.Visible = false;
-                navBarItemSubExpensesTransitionsReport.Visible = false;
-                btnReception.Enabled = true;
-                btnReception.Checked = true;
+                //btnSales.Enabled = true;
+                //btnSales.Checked = true;
+                //btnBank.Enabled = true;
+                //btnBank.Checked = true;
+                //btnExpenses.Enabled = true;
+                //btnExpenses.Checked = true;
+                //navBarGroup56.Visible = false;
+                //navBarGroup57.Visible = false;
+                //navBarGroup42.Visible = false;
+                //navBarItemSubExpensesTransitionsReport.Visible = false;
+                //btnReception.Enabled = true;
+                //btnReception.Checked = true;
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
+                navBarGroupBillRecord.Visible = false;
                 navBarGroupReportPointSale.Visible = false;
                 pictureBoxBell.Visible = true;
                 navBarItemBillsAgleTransitionsReport.Visible = false;
