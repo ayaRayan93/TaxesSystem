@@ -726,7 +726,9 @@ namespace MainSystem
                             com.Parameters.AddWithValue("@Description", item1.Cells[1].Value);
                             com.Parameters.Add("@Date", MySqlDbType.Date);
                             com.Parameters["@Date"].Value = DateTime.Now.Date;
+
                             com.ExecuteNonQuery();
+
                         }
                     }
             

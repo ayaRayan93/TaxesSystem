@@ -880,7 +880,7 @@ namespace MainSystem
                     dt.Rows.Add(row);
                 }
                 dr.Close();
-                 //   da.Fill(dt);
+                 //da.Fill(dt);
                 gridControl1.DataSource = dt;
                 gridView1.Columns["Data_ID"].Visible = false;
 
