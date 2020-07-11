@@ -5880,7 +5880,6 @@
             this.navBarItemBillLeastQuantity.Appearance.Options.UseFont = true;
             this.navBarItemBillLeastQuantity.Caption = "بنود وصلت للحد الادنى";
             this.navBarItemBillLeastQuantity.Name = "navBarItemBillLeastQuantity";
-            this.navBarItemBillLeastQuantity.Visible = false;
             this.navBarItemBillLeastQuantity.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemBillLeastQuantity_LinkClicked);
             // 
             // navBarGroup65
