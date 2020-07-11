@@ -17,6 +17,7 @@ namespace MainSystem
         static int id = 0;
         static string code = "";
         static DataRowView mrow;
+
         public SetPurchasesPricePopup()
         {
             InitializeComponent();
@@ -196,6 +197,7 @@ namespace MainSystem
                     MessageBox.Show("تم");
                 
                     mrow[6] = Convert.ToDouble(labPurchasesPrice.Text);
+                    mrow[7] = Convert.ToDouble(mrow[6])* Convert.ToDouble(mrow[5]);
                     Clear();
                     //productsPurchasesPriceForm.displayProducts();
                 }
@@ -322,13 +324,13 @@ namespace MainSystem
             id = StoragePurchases_Report.ID;
             code = StoragePurchases_Report.codef1;
             mrow = row;
+
             f.dd();
         }
         public void dd()
         {
             txtCode.Text = code;
         }
-
         private void txtPrice_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -341,5 +343,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }
