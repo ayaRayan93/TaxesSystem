@@ -431,22 +431,23 @@ namespace MainSystem
             }
             else if (UserControl.userType == 16)
             {
-                btnSales.Enabled = true;
-                btnSales.Checked = true;
-                btnBank.Enabled = true;
-                btnBank.Checked = true;
-                btnExpenses.Enabled = true;
-                btnExpenses.Checked = true;
-                navBarGroup56.Visible = false;
-                navBarGroup57.Visible = false;
-                navBarGroup42.Visible = false;
-                navBarItemSubExpensesTransitionsReport.Visible = false;
-                btnReception.Enabled = true;
-                btnReception.Checked = true;
+                //btnSales.Enabled = true;
+                //btnSales.Checked = true;
+                //btnBank.Enabled = true;
+                //btnBank.Checked = true;
+                //btnExpenses.Enabled = true;
+                //btnExpenses.Checked = true;
+                //navBarGroup56.Visible = false;
+                //navBarGroup57.Visible = false;
+                //navBarGroup42.Visible = false;
+                //navBarItemSubExpensesTransitionsReport.Visible = false;
+                //btnReception.Enabled = true;
+                //btnReception.Checked = true;
                 btnPOS.Enabled = true;
                 btnPOS.Checked = true;
+                navBarGroupBillRecord.Visible = false;
                 navBarGroupReportPointSale.Visible = false;
-                pictureBoxBell.Visible = true;
+                //pictureBoxBell.Visible = true;
                 navBarItemBillsAgleTransitionsReport.Visible = false;
                 navBarItemTotalSales.Visible = false;
 
@@ -465,18 +466,20 @@ namespace MainSystem
                 btnStores.Checked = true;
                 navBarGroup1.Visible = false;
                 //navBarGroup2.Visible = false;
-                navBarGroup3.Visible = false;
-                navBarGroup4.Visible = false;
-                navBarGroup5.Visible = false;
+                //navBarGroup3.Visible = false;
+                //navBarGroup4.Visible = false;
+                //navBarGroup5.Visible = false;
                 navBarGroup6.Visible = false;
                 navBarGroup7.Visible = false;
                 navBarGroup8.Visible = false;
                 navBarGroup9.Visible = false;
                 navBarGroup10.Visible = false;
                 navBarGroup11.Visible = false;
-                navBarGroup12.Visible = false;
+                //navBarGroup12.Visible = false;
                 navBarGroupProductsTicket.Visible = false;
                 navBarGroup54.Visible = false;
+                navBarItemCustomerReturnBillOfPeriod.Visible = false;
+                navBarItem11.Visible = false;
 
                 btnStoreRecord.Visible = false;
                 btnAtaqm.Visible = false;
@@ -1385,7 +1388,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        
     }
 
     public static class connection

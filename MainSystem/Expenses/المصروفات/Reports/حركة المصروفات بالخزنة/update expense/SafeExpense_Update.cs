@@ -169,7 +169,7 @@ namespace MainSystem
             }
             else
             {
-                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and MainBank_Name = 'خزينة مبيعات'";
+                query = "select * from bank inner join bank_main on bank.MainBank_ID=bank_main.MainBank_ID where MainBank_Type='خزينة' and (MainBank_Name = 'خزينة مبيعات' or MainBank_Name = 'خزينة حسابات')";
             }
             da = new MySqlDataAdapter(query, dbconnection);
             dt = new DataTable();

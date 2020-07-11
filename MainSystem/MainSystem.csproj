@@ -459,6 +459,12 @@
     <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update expense\SafePropertyExpense_Update.designer.cs">
       <DependentUpon>SafePropertyExpense_Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update income\SafePropertyIncome_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update income\SafePropertyIncome_Update.designer.cs">
+      <DependentUpon>SafePropertyIncome_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\Print_SubPropertyTransitions.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -794,6 +800,12 @@
     </Compile>
     <Compile Include="Expenses\المصروفات\مصروف\SafeExpense_RecordX.designer.cs">
       <DependentUpon>SafeExpense_RecordX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Requests\Least Quantity\BillLeastQuantityReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Requests\Least Quantity\BillLeastQuantityReport.designer.cs">
+      <DependentUpon>BillLeastQuantityReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Requests\Least Quantity\Print_LeastQuantity.cs">
       <SubType>Component</SubType>
@@ -3618,6 +3630,9 @@
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update expense\SafePropertyExpense_Update.resx">
       <DependentUpon>SafePropertyExpense_Update.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Update income\SafePropertyIncome_Update.resx">
+      <DependentUpon>SafePropertyIncome_Update.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالفرعى\Print_SubPropertyTransitions.resx">
       <DependentUpon>Print_SubPropertyTransitions.cs</DependentUpon>
     </EmbeddedResource>
@@ -3782,6 +3797,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerService\CustomerServiceAfterReceived_Report.resx">
       <DependentUpon>CustomerServiceAfterReceived_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Requests\Least Quantity\BillLeastQuantityReport.resx">
+      <DependentUpon>BillLeastQuantityReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Requests\Least Quantity\Print_LeastQuantity.resx">
       <DependentUpon>Print_LeastQuantity.cs</DependentUpon>

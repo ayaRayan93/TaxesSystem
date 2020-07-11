@@ -307,10 +307,10 @@ namespace MainSystem
                     {
                         mainForm.bindUpdatePropertyExpenseForm(row1, this);
                     }
-                    //else if (row1["النوع"].ToString() == "ايداع")
-                    //{
-                    //    mainForm.bindUpdateIncomeExpenseForm(row1, this);
-                    //}
+                    else if (row1["النوع"].ToString() == "ايداع")
+                    {
+                        mainForm.bindUpdatePropertyIncomeForm(row1, this);
+                    }
                 }
                 else
                 {

@@ -142,8 +142,6 @@ namespace MainSystem
                         com.Parameters.Add("@UserControl_Reason", MySqlDbType.VarChar, 255).Value = null;
                         com.ExecuteNonQuery();
 
-                        printProperty(Convert.ToInt32(selRow["التسلسل"].ToString()));
-
                         XtraTabPage xtraTabPage = getTabPage("تعديل مصروف عقار");
                         tabControlExpense.TabPages.Remove(xtraTabPage);
                     }
