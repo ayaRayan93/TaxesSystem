@@ -452,7 +452,7 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
-
+        
         public void bindUpdatePropertyExpenseForm(DataRowView rows, Property_Transitions_Report ExpensesTransitionsReport)
         {
             if (!xtraTabControlExpenses.Visible)
@@ -470,6 +470,31 @@ namespace MainSystem
             xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
 
             SafePropertyExpense_Update objForm = new SafePropertyExpense_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        public void bindUpdatePropertyIncomeForm(DataRowView rows, Property_Transitions_Report ExpensesTransitionsReport)
+        {
+            if (!xtraTabControlExpenses.Visible)
+                xtraTabControlExpenses.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "تعديل ايداع عقار");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlExpenses.TabPages.Add("تعديل ايداع عقار");
+                xtraTabPage = getTabPage(xtraTabControlExpenses, "تعديل ايداع عقار");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+
+            SafePropertyIncome_Update objForm = new SafePropertyIncome_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
