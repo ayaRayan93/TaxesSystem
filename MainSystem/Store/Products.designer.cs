@@ -89,7 +89,7 @@
             this.tLPanProductsContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tLPanProductsContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tLPanProductsContainer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tLPanProductsContainer.Size = new System.Drawing.Size(866, 552);
+            this.tLPanProductsContainer.Size = new System.Drawing.Size(866, 617);
             this.tLPanProductsContainer.TabIndex = 1;
             // 
             // label6
@@ -118,7 +118,7 @@
             this.tableLayoutPanel4.Controls.Add(this.btnReport, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.chBoxSelectAll, 5, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 492);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 557);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -234,7 +234,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.dataGridView1.Size = new System.Drawing.Size(866, 314);
+            this.dataGridView1.Size = new System.Drawing.Size(866, 379);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -587,7 +587,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 552);
+            this.ClientSize = new System.Drawing.Size(866, 617);
             this.Controls.Add(this.tLPanProductsContainer);
             this.Name = "Products";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
