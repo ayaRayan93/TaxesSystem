@@ -38,6 +38,7 @@ namespace MainSystem
         //bool bNewPage = false;// Used to check whether we are printing a new page
         //int iHeaderHeight = 0; //Used for the header height
         #endregion
+
         public AccountStatement(MainForm mainForm)
         {
             InitializeComponent();
@@ -51,6 +52,7 @@ namespace MainSystem
             txtCustomerID.Visible = false;
             txtClientID.Visible = false;
         }
+
         //check type of customer if engineer,client or contract 
         private void radiotype_CheckedChanged(object sender, EventArgs e)
         {
@@ -85,7 +87,7 @@ namespace MainSystem
                     comClient.Visible = true;
                     txtClientID.Visible = true;
 
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q;
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q+ " order by TRIM(Customer_Name) ";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -104,7 +106,7 @@ namespace MainSystem
                     comClient.Visible = false;
                     txtClientID.Visible = false;
 
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q;
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q+ " order by TRIM(Customer_Name) ";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -150,7 +152,7 @@ namespace MainSystem
                     comClient.Visible = true;
                     txtClientID.Visible = true;
 
-                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ") "+q;
+                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ") "+q+ " order by TRIM(Customer_Name)";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -711,9 +713,9 @@ namespace MainSystem
                         item.Client = dataGridView1.Rows[i].Cells[3].Value.ToString();
                         item.ClientCode = dataGridView1.Rows[i].Cells[2].Value.ToString();
                     }
-                    item.Paid = Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value.ToString());
+                    item.Paid = Convert.ToDouble(dataGridView1.Rows[i].Cells[7].Value.ToString());
                     item.Date = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                    item.Returned = Convert.ToDouble(dataGridView1.Rows[i].Cells[5].Value.ToString());
+                    item.Returned = Convert.ToDouble(dataGridView1.Rows[i].Cells[6].Value.ToString());
                     arrTD.Add(item);
                 }
                 PrintReport pr = new PrintReport(arrTD, comClient.Text + " " + txtClientID.Text,2,Convert.ToDouble(labBeforBill.Text), Convert.ToDouble(labTotalBillCost.Text), Convert.ToDouble(labTotalReturnCost.Text), Convert.ToDouble(labRest.Text)+ Convert.ToDouble(labBeforBill.Text), dateTimeFrom.Text,dateTimeTo.Text);

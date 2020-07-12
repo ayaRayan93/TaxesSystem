@@ -62,13 +62,13 @@
             this.radClient = new System.Windows.Forms.RadioButton();
             this.labelEng = new System.Windows.Forms.Label();
             this.panFooter = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labTotalBefor = new System.Windows.Forms.Label();
             this.btnPrint = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.labBills = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labpaid = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.labTotalBefor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -366,6 +366,7 @@
             this.comEngCon.FormattingEnabled = true;
             this.comEngCon.Location = new System.Drawing.Point(269, 44);
             this.comEngCon.Name = "comEngCon";
+            this.comEngCon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comEngCon.Size = new System.Drawing.Size(173, 24);
             this.comEngCon.TabIndex = 178;
             this.comEngCon.Visible = false;
@@ -380,6 +381,7 @@
             this.comClient.FormattingEnabled = true;
             this.comClient.Location = new System.Drawing.Point(269, 75);
             this.comClient.Name = "comClient";
+            this.comClient.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comClient.Size = new System.Drawing.Size(173, 24);
             this.comClient.TabIndex = 173;
             this.comClient.Visible = false;
@@ -471,6 +473,26 @@
             this.panFooter.Size = new System.Drawing.Size(956, 94);
             this.panFooter.TabIndex = 163;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(846, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 16);
+            this.label4.TabIndex = 173;
+            this.label4.Text = "رصيد ما قبل";
+            // 
+            // labTotalBefor
+            // 
+            this.labTotalBefor.AutoSize = true;
+            this.labTotalBefor.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labTotalBefor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
+            this.labTotalBefor.Location = new System.Drawing.Point(726, 21);
+            this.labTotalBefor.Name = "labTotalBefor";
+            this.labTotalBefor.Size = new System.Drawing.Size(0, 17);
+            this.labTotalBefor.TabIndex = 172;
+            // 
             // btnPrint
             // 
             this.btnPrint.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -527,26 +549,6 @@
             this.labpaid.Name = "labpaid";
             this.labpaid.Size = new System.Drawing.Size(0, 17);
             this.labpaid.TabIndex = 167;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(846, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 16);
-            this.label4.TabIndex = 173;
-            this.label4.Text = "رصيد ما قبل";
-            // 
-            // labTotalBefor
-            // 
-            this.labTotalBefor.AutoSize = true;
-            this.labTotalBefor.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labTotalBefor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.labTotalBefor.Location = new System.Drawing.Point(726, 21);
-            this.labTotalBefor.Name = "labTotalBefor";
-            this.labTotalBefor.Size = new System.Drawing.Size(0, 17);
-            this.labTotalBefor.TabIndex = 172;
             // 
             // customerBills
             // 

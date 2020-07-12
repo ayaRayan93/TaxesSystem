@@ -203,7 +203,7 @@ namespace MainSystem
                     comClient.Visible = true;
                     txtClientID.Visible = true;
 
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' order by TRIM(Customer_Name)";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -222,7 +222,7 @@ namespace MainSystem
                     comClient.Visible = false;
                     txtClientID.Visible = false;
 
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "'";
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' order by TRIM(Customer_Name)";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -267,7 +267,7 @@ namespace MainSystem
                     comClient.Visible = true;
                     txtClientID.Visible = true;
 
-                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ")";
+                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ") order by TRIM(Customer_Name)";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
