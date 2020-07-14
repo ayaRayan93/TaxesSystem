@@ -35,22 +35,9 @@
             this.btnPrint = new Bunifu.Framework.UI.BunifuTileButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnNewChosen = new System.Windows.Forms.Button();
-            this.comColor = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.comSize = new System.Windows.Forms.ComboBox();
-            this.comGroup = new System.Windows.Forms.ComboBox();
-            this.comSort = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.comFactory = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.comProduct = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.comType = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
@@ -61,23 +48,23 @@
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridControl1.Location = new System.Drawing.Point(3, 83);
+            this.gridControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridControl1.Location = new System.Drawing.Point(3, 53);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
             this.gridControl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.gridControl1.Size = new System.Drawing.Size(878, 528);
+            this.gridControl1.Size = new System.Drawing.Size(878, 558);
             this.gridControl1.TabIndex = 83;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
-            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.HeaderPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView1.Appearance.HeaderPanel.Options.UseFont = true;
             this.gridView1.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridView1.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridView1.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridView1.Appearance.Row.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.gridView1.Appearance.Row.Options.UseFont = true;
             this.gridView1.Appearance.Row.Options.UseForeColor = true;
@@ -138,7 +125,7 @@
             this.btnPrint.color = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnPrint.colorActive = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
             this.btnPrint.ImagePosition = 1;
@@ -163,7 +150,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(884, 674);
@@ -172,62 +159,22 @@
             // panel3
             // 
             this.panel3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel3.Controls.Add(this.btnNewChosen);
-            this.panel3.Controls.Add(this.comColor);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.dateTimePicker1);
             this.panel3.Controls.Add(this.btnSearch);
-            this.panel3.Controls.Add(this.comSize);
-            this.panel3.Controls.Add(this.comGroup);
-            this.panel3.Controls.Add(this.comSort);
-            this.panel3.Controls.Add(this.label15);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.label14);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.comFactory);
-            this.panel3.Controls.Add(this.label16);
-            this.panel3.Controls.Add(this.comProduct);
-            this.panel3.Controls.Add(this.label17);
-            this.panel3.Controls.Add(this.comType);
-            this.panel3.Controls.Add(this.label18);
             this.panel3.Location = new System.Drawing.Point(74, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(736, 74);
+            this.panel3.Size = new System.Drawing.Size(736, 41);
             this.panel3.TabIndex = 175;
-            // 
-            // btnNewChosen
-            // 
-            this.btnNewChosen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewChosen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnNewChosen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewChosen.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewChosen.ForeColor = System.Drawing.Color.White;
-            this.btnNewChosen.Location = new System.Drawing.Point(8, 5);
-            this.btnNewChosen.Name = "btnNewChosen";
-            this.btnNewChosen.Size = new System.Drawing.Size(53, 56);
-            this.btnNewChosen.TabIndex = 21;
-            this.btnNewChosen.Text = "اختيار اخر";
-            this.btnNewChosen.UseVisualStyleBackColor = false;
-            this.btnNewChosen.Click += new System.EventHandler(this.btnNewChosen_Click);
-            // 
-            // comColor
-            // 
-            this.comColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comColor.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comColor.FormattingEnabled = true;
-            this.comColor.Location = new System.Drawing.Point(184, 34);
-            this.comColor.Name = "comColor";
-            this.comColor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comColor.Size = new System.Drawing.Size(100, 24);
-            this.comColor.TabIndex = 19;
-            this.comColor.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
             // 
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(67, 30);
+            this.btnSearch.Location = new System.Drawing.Point(65, 5);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(110, 30);
             this.btnSearch.TabIndex = 13;
@@ -235,167 +182,37 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // comSize
+            // label1
             // 
-            this.comSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comSize.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comSize.FormattingEnabled = true;
-            this.comSize.Location = new System.Drawing.Point(183, 5);
-            this.comSize.Name = "comSize";
-            this.comSize.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comSize.Size = new System.Drawing.Size(100, 24);
-            this.comSize.TabIndex = 18;
-            this.comSize.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(435, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 20);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "التاريخ";
             // 
-            // comGroup
+            // dateTimePicker1
             // 
-            this.comGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comGroup.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comGroup.FormattingEnabled = true;
-            this.comGroup.Location = new System.Drawing.Point(351, 5);
-            this.comGroup.Name = "comGroup";
-            this.comGroup.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comGroup.Size = new System.Drawing.Size(120, 24);
-            this.comGroup.TabIndex = 6;
-            this.comGroup.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
+            this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dateTimePicker1.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(280, 10);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.dateTimePicker1.RightToLeftLayout = true;
+            this.dateTimePicker1.Size = new System.Drawing.Size(149, 20);
+            this.dateTimePicker1.TabIndex = 15;
             // 
-            // comSort
-            // 
-            this.comSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comSort.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comSort.FormattingEnabled = true;
-            this.comSort.Location = new System.Drawing.Point(67, 5);
-            this.comSort.Name = "comSort";
-            this.comSort.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comSort.Size = new System.Drawing.Size(70, 24);
-            this.comSort.TabIndex = 17;
-            this.comSort.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label15.Location = new System.Drawing.Point(676, 37);
-            this.label15.Name = "label15";
-            this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label15.Size = new System.Drawing.Size(54, 19);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "المصنع";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label4.Location = new System.Drawing.Point(288, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 19);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "اللون";
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label14.Location = new System.Drawing.Point(475, 8);
-            this.label14.Name = "label14";
-            this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label14.Size = new System.Drawing.Size(71, 19);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "المجموعة";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label7.Location = new System.Drawing.Point(287, 8);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 19);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "المقاس";
-            // 
-            // comFactory
-            // 
-            this.comFactory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comFactory.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comFactory.FormattingEnabled = true;
-            this.comFactory.Location = new System.Drawing.Point(552, 34);
-            this.comFactory.Name = "comFactory";
-            this.comFactory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comFactory.Size = new System.Drawing.Size(120, 24);
-            this.comFactory.TabIndex = 3;
-            this.comFactory.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // label16
-            // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label16.Location = new System.Drawing.Point(141, 8);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(36, 19);
-            this.label16.TabIndex = 14;
-            this.label16.Text = "الفرز";
-            // 
-            // comProduct
-            // 
-            this.comProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comProduct.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comProduct.FormattingEnabled = true;
-            this.comProduct.Location = new System.Drawing.Point(351, 34);
-            this.comProduct.Name = "comProduct";
-            this.comProduct.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comProduct.Size = new System.Drawing.Size(120, 24);
-            this.comProduct.TabIndex = 9;
-            this.comProduct.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label17.Location = new System.Drawing.Point(683, 8);
-            this.label17.Name = "label17";
-            this.label17.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label17.Size = new System.Drawing.Size(41, 19);
-            this.label17.TabIndex = 2;
-            this.label17.Text = "النوع";
-            // 
-            // comType
-            // 
-            this.comType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comType.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.comType.FormattingEnabled = true;
-            this.comType.Location = new System.Drawing.Point(552, 5);
-            this.comType.Name = "comType";
-            this.comType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.comType.Size = new System.Drawing.Size(120, 24);
-            this.comType.TabIndex = 0;
-            this.comType.SelectedValueChanged += new System.EventHandler(this.comBox_SelectedValueChanged);
-            // 
-            // label18
-            // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Neo Sans Arabic", 12F);
-            this.label18.Location = new System.Drawing.Point(485, 37);
-            this.label18.Name = "label18";
-            this.label18.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label18.Size = new System.Drawing.Size(51, 19);
-            this.label18.TabIndex = 11;
-            this.label18.Text = "الصنف";
-            // 
-            // LeastQuantityReport
+            // BillLeastQuantityReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(884, 674);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "LeastQuantityReport";
+            this.Name = "BillLeastQuantityReport";
             this.Text = "ادارة المشتريات";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -415,24 +232,11 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button btnOpenBill;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnNewChosen;
-        private System.Windows.Forms.ComboBox comColor;
-        private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.ComboBox comSize;
-        private System.Windows.Forms.ComboBox comGroup;
-        private System.Windows.Forms.ComboBox comSort;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comFactory;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox comProduct;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox comType;
-        private System.Windows.Forms.Label label18;
         private Bunifu.Framework.UI.BunifuTileButton btnPrint;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 
