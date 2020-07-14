@@ -114,7 +114,7 @@ namespace MainSystem
                 MySqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-                    query = "SELECT distinct SUM(storage.Total_Meters) as 'الكمية المتاحة' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID =" + dr["Data_ID"].ToString() + " group by data.Data_ID";
+                    query = "SELECT distinct SUM(storage.Total_Meters) as 'الكمية المتاحة' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID =" + dr2["Data_ID"].ToString() + " group by data.Data_ID";
                     com = new MySqlCommand(query, dbconnection3);
 
                     gridView1.AddNewRow();
@@ -133,6 +133,8 @@ namespace MainSystem
 
             }
             dr2.Close();
+
+
             RepositoryItemCheckEdit repositoryCheckEdit1 = gridControl1.RepositoryItems.Add("CheckEdit") as RepositoryItemCheckEdit;
             repositoryCheckEdit1.ValueChecked = "True";
             repositoryCheckEdit1.ValueUnchecked = "False";
@@ -191,6 +193,7 @@ namespace MainSystem
                 }
                 dbconnection.Close();
                 dbconnection2.Close();
+                dbconnection3.Close();
             }
         }
 
