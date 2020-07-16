@@ -5343,6 +5343,8 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
+    <Folder Include="Expenses\العقارات\Reports\بحث برقم المصروف\" />
+    <Folder Include="Expenses\المصروفات\Reports\بحث برقم المصروف\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
