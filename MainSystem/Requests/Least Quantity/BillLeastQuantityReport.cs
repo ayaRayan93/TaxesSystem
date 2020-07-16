@@ -18,10 +18,6 @@ namespace MainSystem
         MySqlConnection dbconnection, dbconnection2, dbconnection3;
         MainForm mainForm = null;
         XtraTabControl xtraTabControlPurchases;
-        bool loaded = false;
-        bool factoryFlage = false;
-        bool groupFlage = false;
-        bool flagProduct = false;
 
         public BillLeastQuantityReport(MainForm mainform, XtraTabControl XtraTabControlPurchases)
         {
@@ -88,6 +84,7 @@ namespace MainSystem
 
         void testQuantity()
         {
+            List<string> dataId=new List<string>();
             dbconnection.Open();
             dbconnection2.Open();
             dbconnection3.Open();
@@ -114,7 +111,7 @@ namespace MainSystem
                 MySqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-                    query = "SELECT distinct SUM(storage.Total_Meters) as 'الكمية المتاحة' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID =" + dr2["Data_ID"].ToString() + " group by data.Data_ID";
+                    query = "SELECT distinct SUM(storage.Total_Meters) as 'الكمية المتاحة' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID =" + dr["Data_ID"].ToString() + " group by data.Data_ID";
                     com = new MySqlCommand(query, dbconnection3);
 
                     gridView1.AddNewRow();
@@ -130,10 +127,57 @@ namespace MainSystem
                     }
                 }
                 dr.Close();
-
             }
             dr2.Close();
 
+
+            /*query = "SELECT data.Data_ID FROM import_storage_return_supplier INNER JOIN import_storage_return ON import_storage_return_supplier.ImportStorageReturn_ID = import_storage_return.ImportStorageReturn_ID INNER JOIN import_storage_return_details ON import_storage_return_details.ImportStorageReturnSupplier_ID = import_storage_return_supplier.ImportStorageReturnSupplier_ID INNER JOIN store ON store.Store_ID = import_storage_return.Store_ID INNER JOIN supplier ON supplier.Supplier_ID = import_storage_return_supplier.Supplier_ID inner join data on data.Data_ID=import_storage_return_details.Data_ID where date(import_storage_return.Retrieval_Date) = '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "'";
+            comand = new MySqlCommand(query, dbconnection);
+            dr2 = comand.ExecuteReader();
+            while (dr2.Read())
+            {
+                string q1 = "select Data_ID from storage_least_taswya";
+
+                string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
+
+                query = "SELECT distinct data.Data_ID,data.Type_ID,data.Factory_ID,data.Product_ID,data.Group_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',least_order.Least_Quantity as 'الحد الادنى','تسوية' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ") and data.Data_ID =" + dr2["Data_ID"].ToString();
+                MySqlCommand com = new MySqlCommand(query, dbconnection2);
+                MySqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    query = "SELECT distinct SUM(storage.Total_Meters) as 'الكمية المتاحة' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID =" + dr2["Data_ID"].ToString() + " group by data.Data_ID";
+                    com = new MySqlCommand(query, dbconnection3);
+
+                    
+                }
+                dr.Close();
+            }
+            dr2.Close();
+
+
+            query = "SELECT data.Data_ID FROM taswayaa_subtract_permision INNER JOIN substorage ON substorage.PermissionNum = taswayaa_subtract_permision.PermissionNum inner join data on data.Data_ID=substorage.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID where date(taswayaa_subtract_permision.Date) = '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "'";
+            comand = new MySqlCommand(query, dbconnection);
+            dr2 = comand.ExecuteReader();
+            while (dr2.Read())
+            {
+                string q1 = "select Data_ID from storage_least_taswya";
+
+                string q2 = "SELECT order_details.Data_ID FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID where orders.Received=0";
+
+                query = "SELECT distinct data.Data_ID,data.Type_ID,data.Factory_ID,data.Product_ID,data.Group_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',least_order.Least_Quantity as 'الحد الادنى','تسوية' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN type ON type.Type_ID = data.Type_ID group by data.Data_ID having (SUM(storage.Total_Meters) <= least_order.Least_Quantity=1) and data.Data_ID not in(" + q1 + ") and data.Data_ID not in(" + q2 + ") and data.Data_ID =" + dr2["Data_ID"].ToString();
+                MySqlCommand com = new MySqlCommand(query, dbconnection2);
+                MySqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    query = "SELECT distinct SUM(storage.Total_Meters) as 'الكمية المتاحة' FROM least_order INNER JOIN data ON least_order.Data_ID = data.Data_ID INNER JOIN storage ON storage.Data_ID = data.Data_ID where data.Data_ID =" + dr2["Data_ID"].ToString() + " group by data.Data_ID";
+                    com = new MySqlCommand(query, dbconnection3);
+
+                    
+                }
+                dr.Close();
+            }
+            dr2.Close();*/
+            
 
             RepositoryItemCheckEdit repositoryCheckEdit1 = gridControl1.RepositoryItems.Add("CheckEdit") as RepositoryItemCheckEdit;
             repositoryCheckEdit1.ValueChecked = "True";
