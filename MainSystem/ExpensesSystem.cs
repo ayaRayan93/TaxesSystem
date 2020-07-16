@@ -233,6 +233,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemIncomeExpenseReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة الايداعات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("حركة الايداعات");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة الايداعات");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                IncomeExpenseTransitions_Report objFormExpenses = new IncomeExpenseTransitions_Report(xtraTabControlExpenses);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemPropertyCoding_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -390,6 +424,40 @@ namespace MainSystem
 
                 xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
                 Property_Transitions_Report objFormExpenses = new Property_Transitions_Report(xtraTabControlExpenses, this);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void navBarItemIncomePropertyReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة ايداعات العقارات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("حركة ايداعات العقارات");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة ايداعات العقارات");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                IncomePropertyTransitions_Report objFormExpenses = new IncomePropertyTransitions_Report(xtraTabControlExpenses);
                 objFormExpenses.TopLevel = false;
 
                 xtraTabPage.Controls.Add(objFormExpenses);
