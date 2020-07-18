@@ -680,6 +680,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem95 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPropertyExpenseReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -5080,7 +5082,8 @@
             this.navBarItemPurchaseQuantityReport,
             this.navBarItemPurchasePriceReport,
             this.navBarItem292,
-            this.navBarItem91});
+            this.navBarItem91,
+            this.navBarItem95});
             this.navBarControl7.Location = new System.Drawing.Point(765, 0);
             this.navBarControl7.Name = "navBarControl7";
             this.navBarControl7.OptionsNavPane.ExpandedWidth = 236;
@@ -5101,9 +5104,10 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierTypeReport),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPurchaseQuantityReport),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPurchasePriceReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem91)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem91),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem95)});
             this.navBarGroup60.Name = "navBarGroup60";
-            this.navBarGroup60.TopVisibleLinkIndex = 3;
+            this.navBarGroup60.TopVisibleLinkIndex = 4;
             // 
             // navBarItemSupplierTransitionsReport2
             // 
@@ -6476,6 +6480,18 @@
             this.navBarItem221.Caption = "عرض حسابات الموردين";
             this.navBarItem221.Name = "navBarItem221";
             // 
+            // navBarItem95
+            // navBarItemPropertyExpenseReport
+            // 
+            this.navBarItem95.Caption = "رصيد المخزون الحالي بسعر الشراء";
+            this.navBarItem95.Name = "navBarItem95";
+            this.navBarItem95.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem95_LinkClicked);
+            this.navBarItemPropertyExpenseReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemPropertyExpenseReport.Appearance.Options.UseFont = true;
+            this.navBarItemPropertyExpenseReport.Caption = "استعلام عن مصروف عقار";
+            this.navBarItemPropertyExpenseReport.Name = "navBarItemPropertyExpenseReport";
+            this.navBarItemPropertyExpenseReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPropertyExpenseReport_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -7185,6 +7201,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemBillLeastQuantity;
         private DevExpress.XtraNavBar.NavBarItem navBarItemIncomeExpenseReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemIncomePropertyReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItem95;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPropertyExpenseReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemExpenseNumReport;
     }
