@@ -679,6 +679,7 @@
             this.tileItem1 = new DevExpress.XtraEditors.TileItem();
             this.navBarItem221 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem95 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPropertyExpenseReport = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlMainContainer)).BeginInit();
             this.xtraTabControlMainContainer.SuspendLayout();
             this.xtraTabPageMain.SuspendLayout();
@@ -4645,7 +4646,8 @@
             this.navBarItemPropertyTransitionsReport,
             this.navBarItemPullExpenss,
             this.navBarItemIncomeExpenseReport,
-            this.navBarItemIncomePropertyReport});
+            this.navBarItemIncomePropertyReport,
+            this.navBarItemPropertyExpenseReport});
             this.navBarControl6.Location = new System.Drawing.Point(832, 0);
             this.navBarControl6.Name = "navBarControl6";
             this.navBarControl6.OptionsNavPane.ExpandedWidth = 169;
@@ -4666,7 +4668,8 @@
             this.navBarGroup57.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPropertyTransitionsReport),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSubPropertyTransitionsReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemIncomePropertyReport)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemIncomePropertyReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPropertyExpenseReport)});
             this.navBarGroup57.Name = "navBarGroup57";
             // 
             // navBarItemPropertyTransitionsReport
@@ -6458,10 +6461,16 @@
             this.navBarItem221.Name = "navBarItem221";
             // 
             // navBarItem95
+            // navBarItemPropertyExpenseReport
             // 
             this.navBarItem95.Caption = "رصيد المخزون الحالي بسعر الشراء";
             this.navBarItem95.Name = "navBarItem95";
             this.navBarItem95.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItem95_LinkClicked);
+            this.navBarItemPropertyExpenseReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemPropertyExpenseReport.Appearance.Options.UseFont = true;
+            this.navBarItemPropertyExpenseReport.Caption = "استعلام عن مصروف عقار";
+            this.navBarItemPropertyExpenseReport.Name = "navBarItemPropertyExpenseReport";
+            this.navBarItemPropertyExpenseReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPropertyExpenseReport_LinkClicked);
             // 
             // MainForm
             // 
@@ -7173,6 +7182,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemIncomeExpenseReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItemIncomePropertyReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItem95;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemPropertyExpenseReport;
     }
 }
 

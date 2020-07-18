@@ -260,7 +260,7 @@ namespace MainSystem
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (txtName.Text != "" && txtPhone.Text != "" && txtEmployee.Text != "" && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (txtName.Text != "" && txtPhone.Text != "" && txtEmployee.Text != "" && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "");
                 }
                 else if (PaymentMethod == "فيزا")
                 {

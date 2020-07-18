@@ -435,6 +435,12 @@
     <Compile Include="Expenses\العقارات\Coding\SubProperty_Report.designer.cs">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\العقارات\Reports\بحث برقم المصروف\PropertyNumTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\بحث برقم المصروف\PropertyNumTransitions_Report.designer.cs">
+      <DependentUpon>PropertyNumTransitions_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\العقارات\Reports\حركة الايداعات\IncomePropertyTransitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -518,6 +524,12 @@
     </Compile>
     <Compile Include="Expenses\المصروفات\Coding\SubExpenses_Report.designer.cs">
       <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\بحث برقم المصروف\ExpensesNumTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\بحث برقم المصروف\ExpensesNumTransitions_Report.designer.cs">
+      <DependentUpon>ExpensesNumTransitions_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة الايداعات\IncomeExpenseTransitions_Report.cs">
       <SubType>Form</SubType>
@@ -3648,6 +3660,9 @@
     <EmbeddedResource Include="Expenses\العقارات\Coding\SubProperty_Report.resx">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\بحث برقم المصروف\PropertyNumTransitions_Report.resx">
+      <DependentUpon>PropertyNumTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة الايداعات\IncomePropertyTransitions_Report.resx">
       <DependentUpon>IncomePropertyTransitions_Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -3689,6 +3704,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Coding\SubExpenses_Report.resx">
       <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\بحث برقم المصروف\ExpensesNumTransitions_Report.resx">
+      <DependentUpon>ExpensesNumTransitions_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة الايداعات\IncomeExpenseTransitions_Report.resx">
       <DependentUpon>IncomeExpenseTransitions_Report.cs</DependentUpon>

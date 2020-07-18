@@ -20,7 +20,7 @@ namespace MainSystem
         int transitionbranchID = 0;
         DataRowView selRow = null;
 
-        public SafePropertyIncome_Update(DataRowView selrow, Property_Transitions_Report ExpensesTransitionsReport, XtraTabControl MainTabControlProperty, MainForm mainform)
+        public SafePropertyIncome_Update(DataRowView selrow, XtraTabControl MainTabControlProperty, MainForm mainform)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);
@@ -147,6 +147,7 @@ namespace MainSystem
             txtPullMoney.Text = selRow["وارد"].ToString();
             txtClient.Text = selRow["المودع/المستلم"].ToString();
             txtDescrip.Text = selRow["البيان"].ToString();
+            dateTimePicker1.Value = Convert.ToDateTime(selRow["التاريخ"].ToString());
 
             loaded = true;
             dbconnection.Close();

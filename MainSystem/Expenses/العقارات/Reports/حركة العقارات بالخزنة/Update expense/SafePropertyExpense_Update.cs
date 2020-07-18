@@ -22,7 +22,7 @@ namespace MainSystem
         DataRowView selRow = null;
         XtraTabControl tabControlExpense;
 
-        public SafePropertyExpense_Update(DataRowView Selrow, Property_Transitions_Report PropertyTransitionsReport, XtraTabControl MainTabControlProperty, MainForm mainform)
+        public SafePropertyExpense_Update(DataRowView Selrow, XtraTabControl MainTabControlProperty, MainForm mainform)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);

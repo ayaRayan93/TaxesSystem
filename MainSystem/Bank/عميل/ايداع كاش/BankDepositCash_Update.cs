@@ -416,7 +416,7 @@ namespace MainSystem
                 }
                 else if (Transaction_Type == "حساب بنكى")
                 {
-                    check = (ID != -1 && cmbBranch.Text != "" && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (ID != -1 && cmbBranch.Text != "" && branchID != 0 && txtRestMoney.Text != "" && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "");
                 }
                 else if (Transaction_Type == "فيزا")
                 {

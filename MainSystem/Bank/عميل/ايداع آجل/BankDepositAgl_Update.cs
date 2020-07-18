@@ -373,7 +373,7 @@ namespace MainSystem
                 }
                 else if (Transaction_Type == "حساب بنكى")
                 {
-                    check = (/*txtRestMoney.Text != "" &&*/ cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (/*txtRestMoney.Text != "" &&*/ cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "");
                 }
                 else if (Transaction_Type == "فيزا")
                 {
