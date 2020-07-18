@@ -652,7 +652,7 @@ namespace MainSystem
                 xtraTabPage.Controls.Clear();
                 xtraTabControlPurchases.SelectedTabPage = xtraTabPage;
 
-                StoragePurchases_Report objForm = new StoragePurchases_Report();
+                CurrentStoragePurchases_Report objForm = new CurrentStoragePurchases_Report();
 
                 objForm.TopLevel = false;
                 xtraTabPage.Controls.Add(objForm);

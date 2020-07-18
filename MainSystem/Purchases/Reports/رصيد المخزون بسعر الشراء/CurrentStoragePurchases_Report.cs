@@ -930,7 +930,7 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("Data_ID", typeof(int)));
             _Table.Columns.Add(new DataColumn("الكود", typeof(string)));
             _Table.Columns.Add(new DataColumn("النوع", typeof(string)));
-            _Table.Columns.Add(new DataColumn("البند", typeof(string)));
+            _Table.Columns.Add(new DataColumn("الاسم", typeof(string)));
             _Table.Columns.Add(new DataColumn("الكرتنة", typeof(string)));
             _Table.Columns.Add(new DataColumn("الكمية", typeof(decimal)));
             _Table.Columns.Add(new DataColumn("سعر الشراء", typeof(decimal)));
