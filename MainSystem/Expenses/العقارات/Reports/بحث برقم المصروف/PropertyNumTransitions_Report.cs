@@ -150,7 +150,22 @@ namespace MainSystem
             {
                 try
                 {
-                    search();
+                    if (txtPropertyNum.Text != "")
+                    {
+                        int bilNum = 0;
+                        if (int.TryParse(txtPropertyNum.Text, out bilNum))
+                        {
+                            search();
+                        }
+                        else
+                        {
+                            MessageBox.Show("رقم المصروف يجب ان يكون عدد");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("يجب ادخال رقم المصروف");
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -456,23 +456,25 @@
             this.xtraTabPageExpenses = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabControlExpenses = new DevExpress.XtraTab.XtraTabControl();
             this.navBarControl6 = new DevExpress.XtraNavBar.NavBarControl();
-            this.navBarGroup57 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemPropertyTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemSubPropertyTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemIncomePropertyReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup32 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemExpensesTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemSubExpensesTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemIncomeExpenseReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemExpenseNumReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup42 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemMainSubReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemSafeExpenseIncomeRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemExpenseRecord = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPullExpenss = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup32 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItemExpensesTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemSubExpensesTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItemIncomeExpenseReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup56 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemPropertyCoding = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPropertyIncome = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemPropertyExpense = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup57 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarItemPropertyTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemSubPropertyTransitionsReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemIncomePropertyReport = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemPropertyExpenseReport = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem156 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem157 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem158 = new DevExpress.XtraNavBar.NavBarItem();
@@ -1923,7 +1925,7 @@
             // 
             // navBarControl2
             // 
-            this.navBarControl2.ActiveGroup = this.navBarGroup18;
+            this.navBarControl2.ActiveGroup = this.navBarGroup15;
             this.navBarControl2.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl2.Appearance.Background.Options.UseFont = true;
             this.navBarControl2.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -2024,7 +2026,6 @@
             this.navBarGroup18.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup18.Appearance.Options.UseFont = true;
             this.navBarGroup18.Caption = "تقارير فواتير المبيعات";
-            this.navBarGroup18.Expanded = true;
             this.navBarGroup18.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSalesTransitions),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillCopy),
@@ -2075,6 +2076,7 @@
             this.navBarGroup15.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup15.Appearance.Options.UseFont = true;
             this.navBarGroup15.Caption = "تاكيد البيع";
+            this.navBarGroup15.Expanded = true;
             this.navBarGroup15.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemConfirmBill)});
             this.navBarGroup15.Name = "navBarGroup15";
@@ -3317,7 +3319,7 @@
             // 
             // navBarControlBankReport
             // 
-            this.navBarControlBankReport.ActiveGroup = this.navBarGroupBankReport;
+            this.navBarControlBankReport.ActiveGroup = this.navBarGroupDeposit;
             this.navBarControlBankReport.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControlBankReport.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControlBankReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3367,7 +3369,6 @@
             this.navBarGroupBankReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupBankReport.Appearance.Options.UseFont = true;
             this.navBarGroupBankReport.Caption = "تقارير";
-            this.navBarGroupBankReport.Expanded = true;
             this.navBarGroupBankReport.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBankTransReport),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemBillTransPayTypeReport)});
@@ -3394,6 +3395,7 @@
             this.navBarGroupDeposit.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroupDeposit.Appearance.Options.UseFont = true;
             this.navBarGroupDeposit.Caption = "ايداع";
+            this.navBarGroupDeposit.Expanded = true;
             this.navBarGroupDeposit.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDeposCash),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDeposAgl),
@@ -4599,7 +4601,7 @@
             // 
             // navBarControl6
             // 
-            this.navBarControl6.ActiveGroup = this.navBarGroup57;
+            this.navBarControl6.ActiveGroup = this.navBarGroup42;
             this.navBarControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControl6.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControl6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4647,7 +4649,8 @@
             this.navBarItemPullExpenss,
             this.navBarItemIncomeExpenseReport,
             this.navBarItemIncomePropertyReport,
-            this.navBarItemPropertyExpenseReport});
+            this.navBarItemPropertyExpenseReport,
+            this.navBarItemExpenseNumReport});
             this.navBarControl6.Location = new System.Drawing.Point(832, 0);
             this.navBarControl6.Name = "navBarControl6";
             this.navBarControl6.OptionsNavPane.ExpandedWidth = 169;
@@ -4659,48 +4662,56 @@
             this.navBarControl6.TabIndex = 5;
             this.navBarControl6.Text = "navBarControl1";
             // 
-            // navBarGroup57
+            // navBarGroup32
             // 
-            this.navBarGroup57.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.navBarGroup57.Appearance.Options.UseFont = true;
-            this.navBarGroup57.Caption = "تقارير عقارات";
-            this.navBarGroup57.Expanded = true;
-            this.navBarGroup57.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPropertyTransitionsReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSubPropertyTransitionsReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemIncomePropertyReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPropertyExpenseReport)});
-            this.navBarGroup57.Name = "navBarGroup57";
+            this.navBarGroup32.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup32.Appearance.Options.UseFont = true;
+            this.navBarGroup32.Caption = "تقارير مصروفات";
+            this.navBarGroup32.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemExpensesTransitionsReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSubExpensesTransitionsReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemIncomeExpenseReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemExpenseNumReport)});
+            this.navBarGroup32.Name = "navBarGroup32";
             // 
-            // navBarItemPropertyTransitionsReport
+            // navBarItemExpensesTransitionsReport
             // 
-            this.navBarItemPropertyTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemPropertyTransitionsReport.Appearance.Options.UseFont = true;
-            this.navBarItemPropertyTransitionsReport.Caption = "حركة العقارات بالخزنة";
-            this.navBarItemPropertyTransitionsReport.Name = "navBarItemPropertyTransitionsReport";
-            this.navBarItemPropertyTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPropertyTransitionsReport_LinkClicked);
+            this.navBarItemExpensesTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemExpensesTransitionsReport.Appearance.Options.UseFont = true;
+            this.navBarItemExpensesTransitionsReport.Caption = "حركة المصروفات بالخزنة";
+            this.navBarItemExpensesTransitionsReport.Name = "navBarItemExpensesTransitionsReport";
+            this.navBarItemExpensesTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpensesTransitionsReport_LinkClicked);
             // 
-            // navBarItemSubPropertyTransitionsReport
+            // navBarItemSubExpensesTransitionsReport
             // 
-            this.navBarItemSubPropertyTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemSubPropertyTransitionsReport.Appearance.Options.UseFont = true;
-            this.navBarItemSubPropertyTransitionsReport.Caption = "حركة مصروفات العقارات";
-            this.navBarItemSubPropertyTransitionsReport.Name = "navBarItemSubPropertyTransitionsReport";
-            this.navBarItemSubPropertyTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSubPropertyTransitionsReport_LinkClicked);
+            this.navBarItemSubExpensesTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemSubExpensesTransitionsReport.Appearance.Options.UseFont = true;
+            this.navBarItemSubExpensesTransitionsReport.Caption = "حركة المصروفات";
+            this.navBarItemSubExpensesTransitionsReport.Name = "navBarItemSubExpensesTransitionsReport";
+            this.navBarItemSubExpensesTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSubExpensesTransitionsReport_LinkClicked);
             // 
-            // navBarItemIncomePropertyReport
+            // navBarItemIncomeExpenseReport
             // 
-            this.navBarItemIncomePropertyReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemIncomePropertyReport.Appearance.Options.UseFont = true;
-            this.navBarItemIncomePropertyReport.Caption = "حركة ايداعات العقارات";
-            this.navBarItemIncomePropertyReport.Name = "navBarItemIncomePropertyReport";
-            this.navBarItemIncomePropertyReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemIncomePropertyReport_LinkClicked);
+            this.navBarItemIncomeExpenseReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemIncomeExpenseReport.Appearance.Options.UseFont = true;
+            this.navBarItemIncomeExpenseReport.Caption = "حركة الايداعات";
+            this.navBarItemIncomeExpenseReport.Name = "navBarItemIncomeExpenseReport";
+            this.navBarItemIncomeExpenseReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemIncomeExpenseReport_LinkClicked);
+            // 
+            // navBarItemExpenseNumReport
+            // 
+            this.navBarItemExpenseNumReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemExpenseNumReport.Appearance.Options.UseFont = true;
+            this.navBarItemExpenseNumReport.Caption = "استعلام عن مصروف";
+            this.navBarItemExpenseNumReport.Name = "navBarItemExpenseNumReport";
+            this.navBarItemExpenseNumReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpenseNumReport_LinkClicked);
             // 
             // navBarGroup42
             // 
             this.navBarGroup42.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup42.Appearance.Options.UseFont = true;
             this.navBarGroup42.Caption = "مصروفات";
+            this.navBarGroup42.Expanded = true;
             this.navBarGroup42.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemMainSubReport),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSafeExpenseIncomeRecord),
@@ -4740,41 +4751,6 @@
             this.navBarItemPullExpenss.Name = "navBarItemPullExpenss";
             this.navBarItemPullExpenss.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPullExpenss_LinkClicked);
             // 
-            // navBarGroup32
-            // 
-            this.navBarGroup32.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.navBarGroup32.Appearance.Options.UseFont = true;
-            this.navBarGroup32.Caption = "تقارير مصروفات";
-            this.navBarGroup32.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemExpensesTransitionsReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSubExpensesTransitionsReport),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemIncomeExpenseReport)});
-            this.navBarGroup32.Name = "navBarGroup32";
-            // 
-            // navBarItemExpensesTransitionsReport
-            // 
-            this.navBarItemExpensesTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemExpensesTransitionsReport.Appearance.Options.UseFont = true;
-            this.navBarItemExpensesTransitionsReport.Caption = "حركة المصروفات بالخزنة";
-            this.navBarItemExpensesTransitionsReport.Name = "navBarItemExpensesTransitionsReport";
-            this.navBarItemExpensesTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemExpensesTransitionsReport_LinkClicked);
-            // 
-            // navBarItemSubExpensesTransitionsReport
-            // 
-            this.navBarItemSubExpensesTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemSubExpensesTransitionsReport.Appearance.Options.UseFont = true;
-            this.navBarItemSubExpensesTransitionsReport.Caption = "حركة المصروفات";
-            this.navBarItemSubExpensesTransitionsReport.Name = "navBarItemSubExpensesTransitionsReport";
-            this.navBarItemSubExpensesTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSubExpensesTransitionsReport_LinkClicked);
-            // 
-            // navBarItemIncomeExpenseReport
-            // 
-            this.navBarItemIncomeExpenseReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.navBarItemIncomeExpenseReport.Appearance.Options.UseFont = true;
-            this.navBarItemIncomeExpenseReport.Caption = "حركة الايداعات";
-            this.navBarItemIncomeExpenseReport.Name = "navBarItemIncomeExpenseReport";
-            this.navBarItemIncomeExpenseReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemIncomeExpenseReport_LinkClicked);
-            // 
             // navBarGroup56
             // 
             this.navBarGroup56.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -4809,6 +4785,50 @@
             this.navBarItemPropertyExpense.Caption = "تسجيل مصروف للعقارات";
             this.navBarItemPropertyExpense.Name = "navBarItemPropertyExpense";
             this.navBarItemPropertyExpense.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPropertyExpense_LinkClicked);
+            // 
+            // navBarGroup57
+            // 
+            this.navBarGroup57.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.navBarGroup57.Appearance.Options.UseFont = true;
+            this.navBarGroup57.Caption = "تقارير عقارات";
+            this.navBarGroup57.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPropertyTransitionsReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSubPropertyTransitionsReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemIncomePropertyReport),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemPropertyExpenseReport)});
+            this.navBarGroup57.Name = "navBarGroup57";
+            // 
+            // navBarItemPropertyTransitionsReport
+            // 
+            this.navBarItemPropertyTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemPropertyTransitionsReport.Appearance.Options.UseFont = true;
+            this.navBarItemPropertyTransitionsReport.Caption = "حركة العقارات بالخزنة";
+            this.navBarItemPropertyTransitionsReport.Name = "navBarItemPropertyTransitionsReport";
+            this.navBarItemPropertyTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPropertyTransitionsReport_LinkClicked);
+            // 
+            // navBarItemSubPropertyTransitionsReport
+            // 
+            this.navBarItemSubPropertyTransitionsReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemSubPropertyTransitionsReport.Appearance.Options.UseFont = true;
+            this.navBarItemSubPropertyTransitionsReport.Caption = "حركة مصروفات العقارات";
+            this.navBarItemSubPropertyTransitionsReport.Name = "navBarItemSubPropertyTransitionsReport";
+            this.navBarItemSubPropertyTransitionsReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemSubPropertyTransitionsReport_LinkClicked);
+            // 
+            // navBarItemIncomePropertyReport
+            // 
+            this.navBarItemIncomePropertyReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemIncomePropertyReport.Appearance.Options.UseFont = true;
+            this.navBarItemIncomePropertyReport.Caption = "حركة ايداعات العقارات";
+            this.navBarItemIncomePropertyReport.Name = "navBarItemIncomePropertyReport";
+            this.navBarItemIncomePropertyReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemIncomePropertyReport_LinkClicked);
+            // 
+            // navBarItemPropertyExpenseReport
+            // 
+            this.navBarItemPropertyExpenseReport.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.navBarItemPropertyExpenseReport.Appearance.Options.UseFont = true;
+            this.navBarItemPropertyExpenseReport.Caption = "استعلام عن مصروف عقار";
+            this.navBarItemPropertyExpenseReport.Name = "navBarItemPropertyExpenseReport";
+            this.navBarItemPropertyExpenseReport.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemPropertyExpenseReport_LinkClicked);
             // 
             // navBarItem156
             // 
@@ -4953,7 +4973,7 @@
             // 
             // navBarControl7
             // 
-            this.navBarControl7.ActiveGroup = this.navBarGroup60;
+            this.navBarControl7.ActiveGroup = this.navBarGroup43;
             this.navBarControl7.Appearance.Background.Font = new System.Drawing.Font("Tahoma", 10F);
             this.navBarControl7.Appearance.Background.Options.UseFont = true;
             this.navBarControl7.Appearance.Button.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -5077,7 +5097,6 @@
             this.navBarGroup60.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup60.Appearance.Options.UseFont = true;
             this.navBarGroup60.Caption = "تقارير";
-            this.navBarGroup60.Expanded = true;
             this.navBarGroup60.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierTransitionsReport2),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierBillsTransitionsReport2),
@@ -5137,6 +5156,7 @@
             this.navBarGroup43.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup43.Appearance.Options.UseFont = true;
             this.navBarGroup43.Caption = "فاتورة شراء";
+            this.navBarGroup43.Expanded = true;
             this.navBarGroup43.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemSupplierBills)});
             this.navBarGroup43.Name = "navBarGroup43";
@@ -5805,7 +5825,7 @@
             // 
             // navBarControl9
             // 
-            this.navBarControl9.ActiveGroup = this.navBarGroup67;
+            this.navBarControl9.ActiveGroup = this.navBarGroup65;
             this.navBarControl9.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.navBarControl9.Dock = System.Windows.Forms.DockStyle.Right;
             this.navBarControl9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -5870,7 +5890,6 @@
             this.navBarGroup67.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup67.Appearance.Options.UseFont = true;
             this.navBarGroup67.Caption = "تقارير الطلبيات";
-            this.navBarGroup67.Expanded = true;
             this.navBarGroup67.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemExpectedOrders2),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemRequestedOrders2),
@@ -5915,6 +5934,7 @@
             this.navBarGroup65.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.navBarGroup65.Appearance.Options.UseFont = true;
             this.navBarGroup65.Caption = "بدء طلبيات";
+            this.navBarGroup65.Expanded = true;
             this.navBarGroup65.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDashOrderReport2)});
             this.navBarGroup65.Name = "navBarGroup65";
@@ -7183,6 +7203,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemIncomePropertyReport;
         private DevExpress.XtraNavBar.NavBarItem navBarItem95;
         private DevExpress.XtraNavBar.NavBarItem navBarItemPropertyExpenseReport;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemExpenseNumReport;
     }
 }
 

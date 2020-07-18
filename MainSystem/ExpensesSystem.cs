@@ -595,5 +595,30 @@ namespace MainSystem
             objForm.Dock = DockStyle.Fill;
             objForm.Show();
         }
+
+        private void navBarItemExpenseNumReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            if (!xtraTabControlExpenses.Visible)
+                xtraTabControlExpenses.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "استعلام عن مصروف");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlExpenses.TabPages.Add("استعلام عن مصروف");
+                xtraTabPage = getTabPage(xtraTabControlExpenses, "استعلام عن مصروف");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+
+            ExpensesNumTransitions_Report objForm = new ExpensesNumTransitions_Report(xtraTabControlExpenses, this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
     }
 }

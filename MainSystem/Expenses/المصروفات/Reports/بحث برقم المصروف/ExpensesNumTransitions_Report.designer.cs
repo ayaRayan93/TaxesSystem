@@ -229,9 +229,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(607, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 20);
+            this.label3.Size = new System.Drawing.Size(84, 20);
             this.label3.TabIndex = 13;
-            this.label3.Text = "خزينة";
+            this.label3.Text = "رقم المصروف";
             // 
             // txtExpenseNum
             // 
@@ -240,6 +240,7 @@
             this.txtExpenseNum.Name = "txtExpenseNum";
             this.txtExpenseNum.Size = new System.Drawing.Size(140, 22);
             this.txtExpenseNum.TabIndex = 14;
+            this.txtExpenseNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtExpenseNum_KeyDown);
             // 
             // ExpensesNumTransitions_Report
             // 

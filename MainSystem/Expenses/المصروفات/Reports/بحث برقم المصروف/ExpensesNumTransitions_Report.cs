@@ -180,5 +180,36 @@ namespace MainSystem
             }
             conn.Close();
         }
+
+        private void txtExpenseNum_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (txtExpenseNum.Text != "")
+                    {
+                        int bilNum = 0;
+                        if (int.TryParse(txtExpenseNum.Text, out bilNum))
+                        {
+                            search();
+                        }
+                        else
+                        {
+                            MessageBox.Show("رقم المصروف يجب ان يكون عدد");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("يجب ادخال رقم المصروف");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                conn.Close();
+            }
+        }
     }
 }
