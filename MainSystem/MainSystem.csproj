@@ -435,6 +435,12 @@
     <Compile Include="Expenses\العقارات\Coding\SubProperty_Report.designer.cs">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\العقارات\Reports\بحث برقم المصروف\PropertyNumTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\بحث برقم المصروف\PropertyNumTransitions_Report.designer.cs">
+      <DependentUpon>PropertyNumTransitions_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\العقارات\Reports\حركة الايداعات\IncomePropertyTransitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3642,6 +3648,9 @@
     <EmbeddedResource Include="Expenses\العقارات\Coding\SubProperty_Report.resx">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\بحث برقم المصروف\PropertyNumTransitions_Report.resx">
+      <DependentUpon>PropertyNumTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة الايداعات\IncomePropertyTransitions_Report.resx">
       <DependentUpon>IncomePropertyTransitions_Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -5343,7 +5352,6 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
-    <Folder Include="Expenses\العقارات\Reports\بحث برقم المصروف\" />
     <Folder Include="Expenses\المصروفات\Reports\بحث برقم المصروف\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
