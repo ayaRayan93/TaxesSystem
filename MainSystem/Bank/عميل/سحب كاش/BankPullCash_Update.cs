@@ -452,7 +452,7 @@ namespace MainSystem
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (billNumber != 0 && cmbBranch.Text != "" && branchID != 0 && txtPaidMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (billNumber != 0 && cmbBranch.Text != "" && branchID != 0 && txtPaidMoney.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "");
                 }
 
                 if(check)

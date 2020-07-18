@@ -308,7 +308,7 @@ namespace MainSystem
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (txtBillNum.Text != "" && txtName.Text != "" && cmbBranch.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (txtBillNum.Text != "" && txtName.Text != "" && cmbBranch.Text != "" && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "");
                 }
 
                 if (check)

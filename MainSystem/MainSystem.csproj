@@ -525,6 +525,12 @@
     <Compile Include="Expenses\المصروفات\Coding\SubExpenses_Report.designer.cs">
       <DependentUpon>SubExpenses_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\بحث برقم المصروف\ExpensesNumTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\بحث برقم المصروف\ExpensesNumTransitions_Report.designer.cs">
+      <DependentUpon>ExpensesNumTransitions_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة الايداعات\IncomeExpenseTransitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3693,6 +3699,9 @@
     <EmbeddedResource Include="Expenses\المصروفات\Coding\SubExpenses_Report.resx">
       <DependentUpon>SubExpenses_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\بحث برقم المصروف\ExpensesNumTransitions_Report.resx">
+      <DependentUpon>ExpensesNumTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة الايداعات\IncomeExpenseTransitions_Report.resx">
       <DependentUpon>IncomeExpenseTransitions_Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -5352,7 +5361,6 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
-    <Folder Include="Expenses\المصروفات\Reports\بحث برقم المصروف\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

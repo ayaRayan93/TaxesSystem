@@ -471,7 +471,7 @@ namespace MainSystem
             }
         }
 
-        public void bindUpdateExpenseForm(DataRowView rows, Expenses_Transitions_Report ExpensesTransitionsReport)
+        public void bindUpdateExpenseForm(DataRowView rows)
         {
             if (!xtraTabControlExpenses.Visible)
                 xtraTabControlExpenses.Visible = true;
@@ -487,7 +487,7 @@ namespace MainSystem
 
             xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
 
-            SafeExpense_Update objForm = new SafeExpense_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
+            SafeExpense_Update objForm = new SafeExpense_Update(rows, xtraTabControlExpenses, this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
@@ -496,7 +496,7 @@ namespace MainSystem
             objForm.Show();
         }
 
-        public void bindUpdateIncomeExpenseForm(DataRowView rows, Expenses_Transitions_Report ExpensesTransitionsReport)
+        public void bindUpdateIncomeExpenseForm(DataRowView rows)
         {
             if (!xtraTabControlExpenses.Visible)
                 xtraTabControlExpenses.Visible = true;
@@ -512,7 +512,7 @@ namespace MainSystem
 
             xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
 
-            SafeExpenseIncome_Update objForm = new SafeExpenseIncome_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
+            SafeExpenseIncome_Update objForm = new SafeExpenseIncome_Update(rows, xtraTabControlExpenses, this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
