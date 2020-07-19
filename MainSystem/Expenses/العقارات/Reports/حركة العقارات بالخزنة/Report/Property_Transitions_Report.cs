@@ -305,11 +305,11 @@ namespace MainSystem
                 {
                     if (row1["النوع"].ToString() == "صرف")
                     {
-                        mainForm.bindUpdatePropertyExpenseForm(row1, this);
+                        mainForm.bindUpdatePropertyExpenseForm(row1);
                     }
                     else if (row1["النوع"].ToString() == "ايداع")
                     {
-                        mainForm.bindUpdatePropertyIncomeForm(row1, this);
+                        mainForm.bindUpdatePropertyIncomeForm(row1);
                     }
                 }
                 else

@@ -20,7 +20,7 @@ namespace MainSystem
         int transitionbranchID = 0;
         DataRowView selRow = null;
 
-        public SafeExpenseIncome_Update(DataRowView selrow, Expenses_Transitions_Report ExpensesTransitionsReport, XtraTabControl MainTabControlExpense, MainForm mainform)
+        public SafeExpenseIncome_Update(DataRowView selrow, XtraTabControl MainTabControlExpense, MainForm mainform)
         {
             InitializeComponent();
             dbconnection = new MySqlConnection(connection.connectionString);

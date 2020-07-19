@@ -354,7 +354,7 @@ namespace MainSystem
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (cmbIncomeType.Text != "" && txtClient.Text != "" && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (cmbIncomeType.Text != "" && txtClient.Text != "" && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "");
                 }
                 else if (PaymentMethod == "فيزا")
                 {

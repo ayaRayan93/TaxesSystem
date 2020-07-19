@@ -500,7 +500,7 @@ namespace MainSystem
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = ((comClient.Text != "" || comEng.Text != "") && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = ((comClient.Text != "" || comEng.Text != "") && cmbBank.Text != "" && txtPullMoney.Text != "" && dateEdit1.Text != "");
                 }
 
                 if (check)

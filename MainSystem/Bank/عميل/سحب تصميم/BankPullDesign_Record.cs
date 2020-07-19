@@ -704,7 +704,7 @@ namespace MainSystem
                         }
                         else if (PaymentMethod == "حساب بنكى")
                         {
-                            check = (comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                            check = (comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "");
                         }
 
                         if (check)

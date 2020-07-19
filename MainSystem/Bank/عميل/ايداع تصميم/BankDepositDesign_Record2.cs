@@ -431,7 +431,7 @@ namespace MainSystem
                 }
                 else if (PaymentMethod == "حساب بنكى")
                 {
-                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "" && txtCheckNumber.Text != "");
+                    check = (/*(radioAgel.Checked || radioCash.Checked) && */comDelegate.Text != "" && (comClient.Text != "" || comEng.Text != "") /*&& txtRestMoney.Text != "" && cmbBranch.Text != ""*/ && cmbBank.Text != "" && txtPaidMoney.Text != "" && dateEdit1.Text != "");
                 }
                 else if (PaymentMethod == "فيزا")
                 {

@@ -30,6 +30,18 @@ namespace MainSystem
             report.CreateDocument();
         }
 
+        public void PrintInvoiceIncomeExpense(string Safe, DateTime fromDate, DateTime toDate, List<Item_SubExpensesTransitions> BillItems)
+        {
+            Print_IncomeExpenseTransitions report = new Print_IncomeExpenseTransitions();
+            foreach (DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
+            {
+                p.Visible = false;
+            }
+            report.InitData(Safe, fromDate, toDate, BillItems);
+            documentViewer1.DocumentSource = report;
+            report.CreateDocument();
+        }
+
         public void PrintInvoice2(string Main, string Sub, string details, string Safe, DateTime fromDate, DateTime toDate, List<Item_SubExpensesTransitions> BillItems)
         {
             Print_SubPropertyTransitions report = new Print_SubPropertyTransitions();
@@ -38,6 +50,18 @@ namespace MainSystem
                 p.Visible = false;
             }
             report.InitData(Main, Sub, details, Safe, fromDate, toDate, BillItems);
+            documentViewer1.DocumentSource = report;
+            report.CreateDocument();
+        }
+
+        public void PrintInvoiceIncomeProperty(string Safe, DateTime fromDate, DateTime toDate, List<Item_SubExpensesTransitions> BillItems)
+        {
+            Print_IncomePropertyTransitions report = new Print_IncomePropertyTransitions();
+            foreach (DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
+            {
+                p.Visible = false;
+            }
+            report.InitData(Safe, fromDate, toDate, BillItems);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }

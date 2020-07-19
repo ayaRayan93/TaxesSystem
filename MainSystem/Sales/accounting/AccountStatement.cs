@@ -87,7 +87,7 @@ namespace MainSystem
                     comClient.Visible = true;
                     txtClientID.Visible = true;
 
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q+ " order by TRIM(Customer_Name) ";
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q+ " order by REPLACE(Customer_Name, ' ', '') ";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -106,7 +106,7 @@ namespace MainSystem
                     comClient.Visible = false;
                     txtClientID.Visible = false;
 
-                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q+ " order by TRIM(Customer_Name) ";
+                    string query = "select * from customer where Customer_Type='" + Customer_Type + "' "+q+ " order by REPLACE(Customer_Name, ' ', '') ";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -152,7 +152,7 @@ namespace MainSystem
                     comClient.Visible = true;
                     txtClientID.Visible = true;
 
-                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ") "+q+ " order by TRIM(Customer_Name)";
+                    string query = "select * from customer where Customer_ID in(select Client_ID from custmer_client where Customer_ID=" + comEngCon.SelectedValue + ") "+q+ " order by REPLACE(Customer_Name, ' ', '')";
                     MySqlDataAdapter da = new MySqlDataAdapter(query, dbconnection);
                     DataTable dt = new DataTable();
                     da.Fill(dt);

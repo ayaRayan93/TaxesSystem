@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\التكويد\version2.43\</PublishUrl>
+    <PublishUrl>D:\التكويد\version2.46\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>336</ApplicationRevision>
+    <ApplicationRevision>339</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -435,6 +435,24 @@
     <Compile Include="Expenses\العقارات\Coding\SubProperty_Report.designer.cs">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\العقارات\Reports\بحث برقم المصروف\PropertyNumTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\بحث برقم المصروف\PropertyNumTransitions_Report.designer.cs">
+      <DependentUpon>PropertyNumTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة الايداعات\IncomePropertyTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة الايداعات\IncomePropertyTransitions_Report.designer.cs">
+      <DependentUpon>IncomePropertyTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة الايداعات\Print_IncomePropertyTransitions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\العقارات\Reports\حركة الايداعات\Print_IncomePropertyTransitions.designer.cs">
+      <DependentUpon>Print_IncomePropertyTransitions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Print_PropertyTransition.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -506,6 +524,24 @@
     </Compile>
     <Compile Include="Expenses\المصروفات\Coding\SubExpenses_Report.designer.cs">
       <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\بحث برقم المصروف\ExpensesNumTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\بحث برقم المصروف\ExpensesNumTransitions_Report.designer.cs">
+      <DependentUpon>ExpensesNumTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة الايداعات\IncomeExpenseTransitions_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة الايداعات\IncomeExpenseTransitions_Report.designer.cs">
+      <DependentUpon>IncomeExpenseTransitions_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة الايداعات\Print_IncomeExpenseTransitions.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة الايداعات\Print_IncomeExpenseTransitions.designer.cs">
+      <DependentUpon>Print_IncomeExpenseTransitions.cs</DependentUpon>
     </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print income expense copy\Print_IncomeExpense_Report_Copy.cs">
       <SubType>Form</SubType>
@@ -719,6 +755,12 @@
     </Compile>
     <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\Print_Items_Storage.designer.cs">
       <DependentUpon>Print_Items_Storage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\CurrentStoragePurchases_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\CurrentStoragePurchases_Report.designer.cs">
+      <DependentUpon>CurrentStoragePurchases_Report.cs</DependentUpon>
     </Compile>
     <Compile Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.cs">
       <SubType>Form</SubType>
@@ -3630,6 +3672,15 @@
     <EmbeddedResource Include="Expenses\العقارات\Coding\SubProperty_Report.resx">
       <DependentUpon>SubProperty_Report.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\بحث برقم المصروف\PropertyNumTransitions_Report.resx">
+      <DependentUpon>PropertyNumTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة الايداعات\IncomePropertyTransitions_Report.resx">
+      <DependentUpon>IncomePropertyTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\العقارات\Reports\حركة الايداعات\Print_IncomePropertyTransitions.resx">
+      <DependentUpon>Print_IncomePropertyTransitions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Expenses\العقارات\Reports\حركة العقارات بالخزنة\Report\Print_PropertyTransition.resx">
       <DependentUpon>Print_PropertyTransition.cs</DependentUpon>
     </EmbeddedResource>
@@ -3665,6 +3716,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Coding\SubExpenses_Report.resx">
       <DependentUpon>SubExpenses_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\بحث برقم المصروف\ExpensesNumTransitions_Report.resx">
+      <DependentUpon>ExpensesNumTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة الايداعات\IncomeExpenseTransitions_Report.resx">
+      <DependentUpon>IncomeExpenseTransitions_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة الايداعات\Print_IncomeExpenseTransitions.resx">
+      <DependentUpon>Print_IncomeExpenseTransitions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print income expense copy\Print_IncomeExpense_Report_Copy.resx">
       <DependentUpon>Print_IncomeExpense_Report_Copy.cs</DependentUpon>
@@ -3770,6 +3830,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Reports\رصيد المخزون بسعر الشراء\Print_Items_Storage.resx">
       <DependentUpon>Print_Items_Storage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Purchases\Reports\رصيد المخزون بسعر الشراء\CurrentStoragePurchases_Report.resx">
+      <DependentUpon>CurrentStoragePurchases_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Purchases\Reports\رصيد المخزون بسعر الشراء\StoragePurchases_Report.resx">
       <DependentUpon>StoragePurchases_Report.cs</DependentUpon>

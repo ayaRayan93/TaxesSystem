@@ -233,6 +233,40 @@ namespace MainSystem
             }
         }
 
+        private void navBarItemIncomeExpenseReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة الايداعات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("حركة الايداعات");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة الايداعات");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                IncomeExpenseTransitions_Report objFormExpenses = new IncomeExpenseTransitions_Report(xtraTabControlExpenses);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void navBarItemPropertyCoding_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try
@@ -403,7 +437,41 @@ namespace MainSystem
             }
         }
 
-        public void bindUpdateExpenseForm(DataRowView rows, Expenses_Transitions_Report ExpensesTransitionsReport)
+        private void navBarItemIncomePropertyReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            try
+            {
+                restForeColorOfNavBarItem();
+                NavBarItem navBarItem = (NavBarItem)sender;
+                navBarItem.Appearance.ForeColor = Color.Blue;
+
+                if (!xtraTabControlExpenses.Visible)
+                    xtraTabControlExpenses.Visible = true;
+
+                XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة ايداعات العقارات");
+                if (xtraTabPage == null)
+                {
+                    xtraTabControlExpenses.TabPages.Add("حركة ايداعات العقارات");
+                    xtraTabPage = getTabPage(xtraTabControlExpenses, "حركة ايداعات العقارات");
+                }
+                xtraTabPage.Controls.Clear();
+
+                xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+                IncomePropertyTransitions_Report objFormExpenses = new IncomePropertyTransitions_Report(xtraTabControlExpenses);
+                objFormExpenses.TopLevel = false;
+
+                xtraTabPage.Controls.Add(objFormExpenses);
+                objFormExpenses.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                objFormExpenses.Dock = DockStyle.Fill;
+                objFormExpenses.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void bindUpdateExpenseForm(DataRowView rows)
         {
             if (!xtraTabControlExpenses.Visible)
                 xtraTabControlExpenses.Visible = true;
@@ -419,7 +487,7 @@ namespace MainSystem
 
             xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
 
-            SafeExpense_Update objForm = new SafeExpense_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
+            SafeExpense_Update objForm = new SafeExpense_Update(rows, xtraTabControlExpenses, this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
@@ -428,7 +496,7 @@ namespace MainSystem
             objForm.Show();
         }
 
-        public void bindUpdateIncomeExpenseForm(DataRowView rows, Expenses_Transitions_Report ExpensesTransitionsReport)
+        public void bindUpdateIncomeExpenseForm(DataRowView rows)
         {
             if (!xtraTabControlExpenses.Visible)
                 xtraTabControlExpenses.Visible = true;
@@ -444,7 +512,7 @@ namespace MainSystem
 
             xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
 
-            SafeExpenseIncome_Update objForm = new SafeExpenseIncome_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
+            SafeExpenseIncome_Update objForm = new SafeExpenseIncome_Update(rows, xtraTabControlExpenses, this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
@@ -453,7 +521,7 @@ namespace MainSystem
             objForm.Show();
         }
         
-        public void bindUpdatePropertyExpenseForm(DataRowView rows, Property_Transitions_Report ExpensesTransitionsReport)
+        public void bindUpdatePropertyExpenseForm(DataRowView rows)
         {
             if (!xtraTabControlExpenses.Visible)
                 xtraTabControlExpenses.Visible = true;
@@ -469,7 +537,7 @@ namespace MainSystem
 
             xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
 
-            SafePropertyExpense_Update objForm = new SafePropertyExpense_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
+            SafePropertyExpense_Update objForm = new SafePropertyExpense_Update(rows, xtraTabControlExpenses, this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
@@ -478,7 +546,7 @@ namespace MainSystem
             objForm.Show();
         }
 
-        public void bindUpdatePropertyIncomeForm(DataRowView rows, Property_Transitions_Report ExpensesTransitionsReport)
+        public void bindUpdatePropertyIncomeForm(DataRowView rows)
         {
             if (!xtraTabControlExpenses.Visible)
                 xtraTabControlExpenses.Visible = true;
@@ -494,7 +562,57 @@ namespace MainSystem
 
             xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
 
-            SafePropertyIncome_Update objForm = new SafePropertyIncome_Update(rows, ExpensesTransitionsReport, xtraTabControlExpenses, this);
+            SafePropertyIncome_Update objForm = new SafePropertyIncome_Update(rows, xtraTabControlExpenses, this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        private void navBarItemPropertyExpenseReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            if (!xtraTabControlExpenses.Visible)
+                xtraTabControlExpenses.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "استعلام عن مصروف عقار");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlExpenses.TabPages.Add("استعلام عن مصروف عقار");
+                xtraTabPage = getTabPage(xtraTabControlExpenses, "استعلام عن مصروف عقار");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+
+            PropertyNumTransitions_Report objForm = new PropertyNumTransitions_Report(xtraTabControlExpenses, this);
+            objForm.TopLevel = false;
+
+            xtraTabPage.Controls.Add(objForm);
+            objForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
+
+        private void navBarItemExpenseNumReport_LinkClicked(object sender, NavBarLinkEventArgs e)
+        {
+            if (!xtraTabControlExpenses.Visible)
+                xtraTabControlExpenses.Visible = true;
+
+            XtraTabPage xtraTabPage = getTabPage(xtraTabControlExpenses, "استعلام عن مصروف");
+
+            if (xtraTabPage == null)
+            {
+                xtraTabControlExpenses.TabPages.Add("استعلام عن مصروف");
+                xtraTabPage = getTabPage(xtraTabControlExpenses, "استعلام عن مصروف");
+            }
+            xtraTabPage.Controls.Clear();
+
+            xtraTabControlExpenses.SelectedTabPage = xtraTabPage;
+
+            ExpensesNumTransitions_Report objForm = new ExpensesNumTransitions_Report(xtraTabControlExpenses, this);
             objForm.TopLevel = false;
 
             xtraTabPage.Controls.Add(objForm);
