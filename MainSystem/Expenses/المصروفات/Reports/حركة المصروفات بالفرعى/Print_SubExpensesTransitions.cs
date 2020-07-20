@@ -14,7 +14,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string Main, string Sub, string Safe, DateTime fromDate, DateTime toDate, List<Item_SubExpensesTransitions> Bill_Items)
+        public void InitData(string Main, string Sub, string Safe, DateTime fromDate, DateTime toDate, string total, List<Item_SubExpensesTransitions> Bill_Items)
         {
             Main_Expense.Value = Main;
             Sub_Expense.Value = Sub;
@@ -22,6 +22,7 @@ namespace MainSystem
             FromDate.Value = fromDate;
             ToDate.Value = toDate;
             DateNow.Value = DateTime.Now;
+            Total.Value = total;
             objectDataSource1.DataSource = Bill_Items;
         }
     }
