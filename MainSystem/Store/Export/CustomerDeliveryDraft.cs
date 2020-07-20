@@ -61,6 +61,7 @@ namespace MainSystem
                 {
                     radioBtnCustomerDelivery.Checked = true;
                 }
+
                 txtPermBillNumber.Text = permissionNum;
                 txtBranchID.Text = branchID;
                 string query = "select Branch_Name from branch where Branch_ID=" + txtBranchID.Text;
