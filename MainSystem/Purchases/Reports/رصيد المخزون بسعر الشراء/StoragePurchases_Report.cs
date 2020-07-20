@@ -548,7 +548,7 @@ namespace MainSystem
                         f1.Focus();
                     }
                     DataRowView row = (DataRowView)gridView1.GetRow(e.RowHandle);
-                    SetPurchasesPricePopup.setData(f1, row);
+                    SetPurchasesPricePopup.setData(f1, row,1);
 
                 }
             }
