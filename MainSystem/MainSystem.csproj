@@ -555,6 +555,18 @@
     <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print income expense copy\Print_IncomeExpense_Copy.designer.cs">
       <DependentUpon>Print_IncomeExpense_Copy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print pull expense\PrintCopy_PullExpense.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print pull expense\PrintCopy_PullExpense.designer.cs">
+      <DependentUpon>PrintCopy_PullExpense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print pull expense\PrintCopy_PullExpense_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print pull expense\PrintCopy_PullExpense_Report.designer.cs">
+      <DependentUpon>PrintCopy_PullExpense_Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\Report\Expenses_Transitions_Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3719,6 +3731,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print income expense copy\Print_IncomeExpense_Copy.resx">
       <DependentUpon>Print_IncomeExpense_Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print pull expense\PrintCopy_PullExpense.resx">
+      <DependentUpon>PrintCopy_PullExpense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\print pull expense\PrintCopy_PullExpense_Report.resx">
+      <DependentUpon>PrintCopy_PullExpense_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expenses\المصروفات\Reports\حركة المصروفات بالخزنة\Report\Expenses_Transitions_Report.resx">
       <DependentUpon>Expenses_Transitions_Report.cs</DependentUpon>
