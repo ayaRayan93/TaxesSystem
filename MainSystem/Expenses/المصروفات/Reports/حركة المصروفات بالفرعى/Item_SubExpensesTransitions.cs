@@ -9,6 +9,7 @@ namespace MainSystem
     public class Item_SubExpensesTransitions
     {
         public int ID { get; set; }
+        public string Type { get; set; }
         public string Date { get; set; }
         public string MainExpenses { get; set; }
         public string SubExpenses { get; set; }
