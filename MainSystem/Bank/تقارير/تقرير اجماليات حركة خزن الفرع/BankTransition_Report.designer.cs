@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtPullExpense = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtTotalSub = new System.Windows.Forms.TextBox();
@@ -102,11 +104,8 @@
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtPullExpense = new System.Windows.Forms.TextBox();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label7 = new System.Windows.Forms.Label();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.label8 = new System.Windows.Forms.Label();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataLayoutControl1)).BeginInit();
@@ -210,6 +209,30 @@
             this.dataLayoutControl1.Size = new System.Drawing.Size(897, 727);
             this.dataLayoutControl1.TabIndex = 1;
             this.dataLayoutControl1.Text = "dataLayoutControl1";
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(2, 261);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(489, 25);
+            this.label8.TabIndex = 112;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(2, 290);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(893, 20);
+            this.label7.TabIndex = 111;
+            // 
+            // txtPullExpense
+            // 
+            this.txtPullExpense.Location = new System.Drawing.Point(495, 261);
+            this.txtPullExpense.Name = "txtPullExpense";
+            this.txtPullExpense.ReadOnly = true;
+            this.txtPullExpense.Size = new System.Drawing.Size(257, 25);
+            this.txtPullExpense.TabIndex = 110;
             // 
             // label6
             // 
@@ -1000,14 +1023,6 @@
             this.layoutControlItem20.Text = "ايداعات المصروفات";
             this.layoutControlItem20.TextSize = new System.Drawing.Size(140, 25);
             // 
-            // txtPullExpense
-            // 
-            this.txtPullExpense.Location = new System.Drawing.Point(495, 261);
-            this.txtPullExpense.Name = "txtPullExpense";
-            this.txtPullExpense.ReadOnly = true;
-            this.txtPullExpense.Size = new System.Drawing.Size(257, 25);
-            this.txtPullExpense.TabIndex = 110;
-            // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.AppearanceItemCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
@@ -1020,16 +1035,8 @@
             this.layoutControlItem21.Location = new System.Drawing.Point(493, 259);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(404, 29);
-            this.layoutControlItem21.Text = "مرتدات مصروفات";
+            this.layoutControlItem21.Text = "مرتدات المصروفات";
             this.layoutControlItem21.TextSize = new System.Drawing.Size(140, 25);
-            // 
-            // label7
-            // 
-            this.label7.BackColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(2, 290);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(893, 20);
-            this.label7.TabIndex = 111;
             // 
             // layoutControlItem22
             // 
@@ -1042,14 +1049,6 @@
             this.layoutControlItem22.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(2, 261);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(489, 25);
-            this.label8.TabIndex = 112;
             // 
             // layoutControlItem23
             // 
