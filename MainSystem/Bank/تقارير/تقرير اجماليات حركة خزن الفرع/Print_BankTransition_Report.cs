@@ -18,14 +18,14 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void PrintInvoice(string Safe, DateTime DateFrom, DateTime DateTo, string Sales, string Returned, string IncomeExpenses, string Expenses, string TransferTo, string TransferFrom, string TotalAdd, string TotalSub, string Safy)
+        public void PrintInvoice(string Safe, DateTime DateFrom, DateTime DateTo, string Sales, string Returned, string IncomeExpenses, string Expenses, string pullExpense, string TransferTo, string TransferFrom, string TotalAdd, string TotalSub, string Safy)
         {
             BankTransition report = new BankTransition();
             foreach(DevExpress.XtraReports.Parameters.Parameter p in report.Parameters)
             {
                 p.Visible = false;
             }
-            report.InitData(Safe, DateFrom, DateTo, Sales, Returned, IncomeExpenses, Expenses, TransferTo, TransferFrom, TotalAdd, TotalSub, Safy);
+            report.InitData(Safe, DateFrom, DateTo, Sales, Returned, IncomeExpenses, Expenses, pullExpense, TransferTo, TransferFrom, TotalAdd, TotalSub, Safy);
             documentViewer1.DocumentSource = report;
             report.CreateDocument();
         }

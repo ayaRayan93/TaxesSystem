@@ -13,7 +13,7 @@ namespace MainSystem
             InitializeComponent();
         }
 
-        public void InitData(string Safe, DateTime dateFrom, DateTime dateTo, string Sales, string Returned, string IncomeExpenses, string Expenses, string TransferTo, string TransferFrom, string TotalAdd, string TotalSub, string Safy)
+        public void InitData(string Safe, DateTime dateFrom, DateTime dateTo, string Sales, string Returned, string IncomeExpenses, string Expenses, string pullExpense, string TransferTo, string TransferFrom, string TotalAdd, string TotalSub, string Safy)
         {
             DateNow.Value = DateTime.Now;
             Safe_Name.Value = Safe;
@@ -23,6 +23,7 @@ namespace MainSystem
             Returned_Money.Value = Returned;
             IncomeExpense_Money.Value = IncomeExpenses;
             Expense_Money.Value = Expenses;
+            PullExpense.Value = pullExpense;
             TransferTo_Money.Value = TransferTo;
             TransferFrom_Money.Value = TransferFrom;
             TotalAdd_Money.Value = TotalAdd;
