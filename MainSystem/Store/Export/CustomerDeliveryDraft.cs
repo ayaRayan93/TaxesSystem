@@ -315,6 +315,7 @@ namespace MainSystem
                    
                     printTool.PrintDialog();
 
+
                    // printTool.Print();
                     string query1 = "update customer_bill set RecivedFlag='Draft' where Branch_BillNumber=" + txtPermBillNumber.Text + " and Branch_ID=" + txtBranchID.Text;
                     MySqlCommand com1 = new MySqlCommand(query1, dbconnection);

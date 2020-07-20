@@ -524,40 +524,42 @@ namespace MainSystem
             dbconnection2.Close();
             dbconnection3.Close();
         }
-        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
-        {
-            try
-            {
-                if (e.Column.Name == "colالكود")
-                {
-                    dbconnection.Open();
-                    string code = e.CellValue.ToString();
-                    string query = "select Data_ID from data where Code='" + code + "'";
-                    codef1 = code;
-                    MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    ID = Convert.ToInt16(com.ExecuteScalar());
-                    if (f1.ActiveControl != null)
-                    {
-                        f1.Show();
-                        f1.Focus();
-                    }
-                    else
-                    {
-                        f1 = new SetPurchasesPricePopup();
-                        f1.Show();
-                        f1.Focus();
-                    }
-                    DataRowView row = (DataRowView)gridView1.GetRow(e.RowHandle);
-                    SetPurchasesPricePopup.setData(f1, row);
 
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            dbconnection.Close();
-        }
+        //private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (e.Column.Name == "colالكود")
+        //        {
+        //            dbconnection.Open();
+        //            string code = e.CellValue.ToString();
+        //            string query = "select Data_ID from data where Code='" + code + "'";
+        //            codef1 = code;
+        //            MySqlCommand com = new MySqlCommand(query, dbconnection);
+        //            ID = Convert.ToInt16(com.ExecuteScalar());
+        //            if (f1.ActiveControl != null)
+        //            {
+        //                f1.Show();
+        //                f1.Focus();
+        //            }
+        //            else
+        //            {
+        //                f1 = new SetPurchasesPricePopup();
+        //                f1.Show();
+        //                f1.Focus();
+        //            }
+        //            DataRowView row = (DataRowView)gridView1.GetRow(e.RowHandle);
+        //            SetPurchasesPricePopup.setData(f1, row,2);
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    dbconnection.Close();
+        //}
+
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
         {
             if (loaded)
@@ -802,6 +804,49 @@ namespace MainSystem
                 }
             }
         }
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
+        {
+            try
+            {
+                DataRow row1 = gridView1.GetDataRow(e.RowHandle);
+                if (row1["سعر الشراء"].ToString() == "")
+                {
+                    dbconnection.Open();
+                    string code = row1["الكود"].ToString();
+                    string query = "select Data_ID from data where Code='" + code + "'";
+                    codef1 = code;
+                    MySqlCommand com = new MySqlCommand(query, dbconnection);
+                    ID = Convert.ToInt16(com.ExecuteScalar());
+                    if (f1.ActiveControl != null)
+                    {
+                        f1.Show();
+                        f1.Focus();
+                    }
+                    else
+                    {
+                        f1 = new SetPurchasesPricePopup();
+                        f1.Show();
+                        f1.Focus();
+                    }
+                    DataRowView row = (DataRowView)gridView1.GetRow(e.RowHandle);
+                    SetPurchasesPricePopup.setData(f1, row,2);
+
+                }
+                else
+                {
+                    if (f1.ActiveControl != null)
+                    {
+                        f1.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dbconnection.Close();
+        }
+
         public void searchItems()
         {
             if (comType.Text != "" && comFactory.Text != "")
@@ -860,8 +905,8 @@ namespace MainSystem
 
 
                 // string query = "select data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' - ',type.Type_Name,' - ',factory.Factory_Name,' - ',groupo.Group_Name,' ',COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية', Purchasing_Price as 'سعر الشراء',storage.Total_Meters as 'الاجمالي' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID  left JOIN purchasing_price ON purchasing_price.Data_ID = data.Data_ID LEFT JOIN storage ON storage.Data_ID = data.Data_ID where  data.Type_ID IN(" + q1 + ") and  data.Factory_ID  IN(" + q2 + ") and data.Group_ID IN (" + q4 + ") and data.Data_ID=0 group by data.Data_ID";
-                //  string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية',Purchasing_Price as 'سعر الشراء',(sum(storage.Total_Meters)*Purchasing_Price) as 'الاجمالي' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID left JOIN purchasing_price ON purchasing_price.Data_ID = data.Data_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
-                string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID   where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+                string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة',sum(storage.Total_Meters) as 'الكمية',Purchasing_Price as 'سعر الشراء',(sum(storage.Total_Meters)*Purchasing_Price) as 'الاجمالي' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID left JOIN purchasing_price ON purchasing_price.Data_ID = data.Data_ID  LEFT JOIN storage ON storage.Data_ID = data.Data_ID where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
+              //  string query = "SELECT data.Data_ID,data.Code as 'الكود',type.Type_Name as 'النوع',concat(product.Product_Name,' ',COALESCE(color.Color_Name,''),' ',data.Description,' ',groupo.Group_Name,' ',factory.Factory_Name,' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,'')) as 'الاسم',data.Carton as 'الكرتنة' FROM data LEFT JOIN color ON color.Color_ID = data.Color_ID LEFT JOIN size ON size.Size_ID = data.Size_ID LEFT JOIN sort ON sort.Sort_ID = data.Sort_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID INNER JOIN factory ON factory.Factory_ID = data.Factory_ID  INNER JOIN product ON product.Product_ID = data.Product_ID  INNER JOIN type ON type.Type_ID = data.Type_ID   where data.Type_ID IN(" + q1 + ") and data.Factory_ID IN(" + q2 + ") and data.Product_ID IN (" + q3 + ") and data.Group_ID IN (" + q4 + ") " + fQuery + " group by data.Data_ID order by SUBSTR(data.Code,1,16),color.Color_Name,data.Description,data.Sort_ID";
                 //MySqlCommand com = new MySqlCommand(query, dbconnection);
                 //MySqlDataReader dr = com.ExecuteReader();
                 MySqlDataAdapter da = new MySqlDataAdapter(query,dbconnection);
@@ -930,7 +975,7 @@ namespace MainSystem
             _Table.Columns.Add(new DataColumn("Data_ID", typeof(int)));
             _Table.Columns.Add(new DataColumn("الكود", typeof(string)));
             _Table.Columns.Add(new DataColumn("النوع", typeof(string)));
-            _Table.Columns.Add(new DataColumn("البند", typeof(string)));
+            _Table.Columns.Add(new DataColumn("الاسم", typeof(string)));
             _Table.Columns.Add(new DataColumn("الكرتنة", typeof(string)));
             _Table.Columns.Add(new DataColumn("الكمية", typeof(decimal)));
             _Table.Columns.Add(new DataColumn("سعر الشراء", typeof(decimal)));

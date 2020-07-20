@@ -144,7 +144,7 @@ namespace MainSystem
             double totalExpense = 0;
             string qSafe = "";
 
-            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Type as 'النوع',DATE_FORMAT(expense_transition.Date,'%d-%m-%Y') as 'التاريخ',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',bank.Bank_Name as 'الخزينة',expense_transition.Amount as 'وارد',expense_transition.Amount as 'مصروف',employee.Employee_Name as 'الموظف',expense_transition.Depositor_Name as 'المودع/المستلم',expense_transition.Description as 'البيان' FROM expense_transition left JOIN expense_sub ON expense_sub.SubExpense_ID = expense_transition.SubExpense_ID left JOIN expense_main ON expense_main.MainExpense_ID = expense_sub.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where ExpenseTransition_ID=0", conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter("SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Type as 'النوع',expense_transition.PullExpenseTransition_ID as 'رقم المصروف',DATE_FORMAT(expense_transition.Date,'%d-%m-%Y') as 'التاريخ',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',bank.Bank_Name as 'الخزينة',expense_transition.Amount as 'وارد',expense_transition.Amount as 'مصروف',employee.Employee_Name as 'الموظف',expense_transition.Depositor_Name as 'المودع/المستلم',expense_transition.Description as 'البيان' FROM expense_transition left JOIN expense_sub ON expense_sub.SubExpense_ID = expense_transition.SubExpense_ID left JOIN expense_main ON expense_main.MainExpense_ID = expense_sub.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where ExpenseTransition_ID=0", conn);
             DataSet sourceDataSet = new DataSet();
             adapter.Fill(sourceDataSet);
             gridControl1.DataSource = sourceDataSet.Tables[0];
@@ -166,7 +166,7 @@ namespace MainSystem
                 qSafe = comSafe.SelectedValue.ToString();
             }
             
-            string query = "SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Type as 'النوع',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',DATE_FORMAT(expense_transition.Date,'%d-%m-%Y') as 'التاريخ',expense_transition.Depositor_Name as 'المودع/المستلم',bank.Bank_Name as 'الخزينة',expense_transition.Amount as 'المبلغ',expense_transition.Description as 'البيان',employee.Employee_Name as 'الموظف' FROM expense_transition left JOIN expense_sub ON expense_transition.SubExpense_ID=expense_sub.SubExpense_ID left JOIN expense_main ON expense_sub.MainExpense_ID=expense_main.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where expense_transition.Bank_ID in(" + qSafe + ") and expense_transition.Error=0 and date(expense_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by expense_transition.Date";
+            string query = "SELECT expense_transition.ExpenseTransition_ID as 'التسلسل',expense_transition.Type as 'النوع',expense_main.MainExpense_Name as 'المصروف الرئيسى',expense_sub.SubExpense_Name as 'المصروف الفرعى',DATE_FORMAT(expense_transition.Date,'%d-%m-%Y') as 'التاريخ',expense_transition.Depositor_Name as 'المودع/المستلم',bank.Bank_Name as 'الخزينة',expense_transition.Amount as 'المبلغ',expense_transition.PullExpenseTransition_ID as 'رقم المصروف',expense_transition.Description as 'البيان',employee.Employee_Name as 'الموظف' FROM expense_transition left JOIN expense_sub ON expense_transition.SubExpense_ID=expense_sub.SubExpense_ID left JOIN expense_main ON expense_sub.MainExpense_ID=expense_main.MainExpense_ID INNER JOIN branch ON branch.Branch_ID = expense_transition.Branch_ID INNER JOIN bank ON bank.Bank_ID = expense_transition.Bank_ID INNER JOIN employee ON expense_transition.Employee_ID = employee.Employee_ID where expense_transition.Bank_ID in(" + qSafe + ") and expense_transition.Error=0 and date(expense_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' order by expense_transition.Date";
             MySqlCommand comand = new MySqlCommand(query, conn);
             MySqlDataReader dr = comand.ExecuteReader();
             while (dr.Read())
@@ -181,16 +181,17 @@ namespace MainSystem
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المصروف الفرعى"], dr["المصروف الفرعى"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["التاريخ"], dr["التاريخ"].ToString());
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["المودع/المستلم"], dr["المودع/المستلم"].ToString());
+                    gridView1.SetRowCellValue(rowHandle, gridView1.Columns["رقم المصروف"], dr["رقم المصروف"].ToString());
 
-                    if (dr["النوع"].ToString() == "ايداع")
-                    {
-                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["وارد"], dr["المبلغ"].ToString());
-                        totalIncome += Convert.ToDouble(dr["المبلغ"].ToString());
-                    }
-                    else
+                    if (dr["النوع"].ToString() == "صرف")
                     {
                         gridView1.SetRowCellValue(rowHandle, gridView1.Columns["مصروف"], dr["المبلغ"].ToString());
                         totalExpense += Convert.ToDouble(dr["المبلغ"].ToString());
+                    }
+                    else
+                    {
+                        gridView1.SetRowCellValue(rowHandle, gridView1.Columns["وارد"], dr["المبلغ"].ToString());
+                        totalIncome += Convert.ToDouble(dr["المبلغ"].ToString());
                     }
 
                     gridView1.SetRowCellValue(rowHandle, gridView1.Columns["الخزينة"], dr["الخزينة"].ToString());
@@ -269,6 +270,12 @@ namespace MainSystem
                     {
                         Print_IncomeExpense_Report_Copy f = new Print_IncomeExpense_Report_Copy();
                         f.PrintInvoice(Convert.ToInt32(row1["التسلسل"].ToString()), row1["الخزينة"].ToString(), row1["وارد"].ToString(), row1["المودع/المستلم"].ToString(), row1["البيان"].ToString(), row1["التاريخ"].ToString());
+                        f.ShowDialog();
+                    }
+                    else if (row1["النوع"].ToString() == "مرتد")
+                    {
+                        PrintCopy_PullExpense_Report f = new PrintCopy_PullExpense_Report();
+                        f.PrintInvoice(Convert.ToInt32(row1["التسلسل"].ToString()), row1["رقم المصروف"].ToString(), row1["الخزينة"].ToString(), row1["وارد"].ToString(), row1["المودع/المستلم"].ToString(), row1["البيان"].ToString(), row1["التاريخ"].ToString());
                         f.ShowDialog();
                     }
                 }

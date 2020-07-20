@@ -319,12 +319,20 @@ namespace MainSystem
             }
         }
 
-        public static void setData(SetPurchasesPricePopup f, DataRowView row)
+        public static void setData(SetPurchasesPricePopup f, DataRowView row,int flag)
         {
-            id = StoragePurchases_Report.ID;
-            code = StoragePurchases_Report.codef1;
+            if (flag == 1)
+            {
+                id = StoragePurchases_Report.ID;
+                code = StoragePurchases_Report.codef1;
+            }
+            else
+            {
+                id = CurrentStoragePurchases_Report.ID;
+                code = CurrentStoragePurchases_Report.codef1;
+            }
+            
             mrow = row;
-
             f.dd();
         }
         public void dd()
