@@ -106,6 +106,23 @@ namespace MainSystem
                     }
                     dr1.Close();
 
+                    q1 = "SELECT sum(expense_transition.Amount) as 'المبلغ' FROM expense_transition where expense_transition.Type='مرتد' and expense_transition.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(expense_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and Error=0 group by expense_transition.Branch_ID";
+                    c1 = new MySqlCommand(q1, dbconnection);
+                    dr1 = c1.ExecuteReader();
+                    if (dr1.HasRows)
+                    {
+                        while (dr1.Read())
+                        {
+                            totalSales += Convert.ToDouble(dr1["المبلغ"].ToString());
+                            txtPullExpense.Text = dr1["المبلغ"].ToString();
+                        }
+                    }
+                    else
+                    {
+                        txtPullExpense.Text = "0";
+                    }
+                    dr1.Close();
+
                     q1 = "SELECT sum(expense_transition.Amount) as 'المبلغ' FROM expense_transition where expense_transition.Type='صرف' and expense_transition.Branch_ID=" + comBranch.SelectedValue.ToString() + " and date(expense_transition.Date) between '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "' and '" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' and Error=0 group by expense_transition.Branch_ID";
                     c1 = new MySqlCommand(q1, dbconnection);
                     dr1 = c1.ExecuteReader();
@@ -192,10 +209,10 @@ namespace MainSystem
         {
             try
             {
-                if (comBranch.SelectedValue != null && comBranch.Text != "" && txtSales.Text != "" && txtReturned.Text != "" && txtIncomeExpenses.Text != "" && txtExpenses.Text != "" && txtTransferFrom.Text != "" && txtTransferTo.Text != "" && txtTotalAdd.Text != "" && txtTotalSub.Text != "" && txtSafy.Text != "")
+                if (comBranch.SelectedValue != null && comBranch.Text != "" && txtSales.Text != "" && txtReturned.Text != "" && txtIncomeExpenses.Text != "" && txtPullExpense.Text != "" && txtExpenses.Text != "" && txtTransferFrom.Text != "" && txtTransferTo.Text != "" && txtTotalAdd.Text != "" && txtTotalSub.Text != "" && txtSafy.Text != "")
                 {
                     Print_BankTransition_Report f = new Print_BankTransition_Report();
-                    f.PrintInvoice(comBranch.Text, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, txtSales.Text, txtReturned.Text, txtIncomeExpenses.Text, txtExpenses.Text, txtTransferTo.Text, txtTransferFrom.Text, txtTotalAdd.Text, txtTotalSub.Text, txtSafy.Text);
+                    f.PrintInvoice(comBranch.Text, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, txtSales.Text, txtReturned.Text, txtIncomeExpenses.Text, txtExpenses.Text, txtPullExpense.Text, txtTransferTo.Text, txtTransferFrom.Text, txtTotalAdd.Text, txtTotalSub.Text, txtSafy.Text);
                     f.ShowDialog();
                 }
             }

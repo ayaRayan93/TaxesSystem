@@ -97,11 +97,11 @@ namespace MainSystem
                             MySqlCommand com3 = new MySqlCommand("update bank set Bank_Stock=" + amount2 + " where Bank_ID=" + comBank.SelectedValue, dbconnection);
                             com3.ExecuteNonQuery();
 
-                            com2 = new MySqlCommand("select Amount from expense_transition where ExpenseTransition_ID=" + txtExpenseNum.Text, dbconnection);
-                            amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
-                            amount2 -= outParse;
-                            com3 = new MySqlCommand("update expense_transition set Amount=" + amount2 + " where ExpenseTransition_ID=" + txtExpenseNum.Text, dbconnection);
-                            com3.ExecuteNonQuery();
+                            //com2 = new MySqlCommand("select Amount from expense_transition where ExpenseTransition_ID=" + txtExpenseNum.Text, dbconnection);
+                            //amount2 = Convert.ToDouble(com2.ExecuteScalar().ToString());
+                            //amount2 -= outParse;
+                            //com3 = new MySqlCommand("update expense_transition set Amount=" + amount2 + " where ExpenseTransition_ID=" + txtExpenseNum.Text, dbconnection);
+                            //com3.ExecuteNonQuery();
 
                             //////////record adding/////////////
                             query = "select ExpenseTransition_ID from expense_transition order by ExpenseTransition_ID desc limit 1";

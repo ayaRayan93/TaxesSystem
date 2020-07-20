@@ -77,6 +77,9 @@
             this.TotalAdd_Money = new DevExpress.XtraReports.Parameters.Parameter();
             this.TotalSub_Money = new DevExpress.XtraReports.Parameters.Parameter();
             this.Safy_Money = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
+            this.PullExpense = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -121,7 +124,7 @@
             // 
             // xrLabel1
             // 
-            this.xrLabel1.Font = new System.Drawing.Font("Neo Sans Arabic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(313.1251F, 30F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -135,7 +138,7 @@
             // 
             this.xrLabel15.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[DateNow]")});
-            this.xrLabel15.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(299.5914F, 60.00001F);
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -192,13 +195,15 @@
             this.xrLabel13,
             this.xrLabel25,
             this.xrLabel26,
-            this.xrLabel10});
-            this.PageHeader.HeightF = 285.4167F;
+            this.xrLabel10,
+            this.xrLabel27,
+            this.xrLabel28});
+            this.PageHeader.HeightF = 313.5417F;
             this.PageHeader.Name = "PageHeader";
             // 
             // xrLabel4
             // 
-            this.xrLabel4.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(598.5513F, 35.00001F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -210,19 +215,19 @@
             // 
             // xrLabel6
             // 
-            this.xrLabel6.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(638.5513F, 99.99994F);
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel6.SizeF = new System.Drawing.SizeF(148.5F, 25F);
             this.xrLabel6.StylePriority.UseFont = false;
             this.xrLabel6.StylePriority.UseTextAlignment = false;
-            this.xrLabel6.Text = ": الـــمـــبـــيـــــعـــــات";
+            this.xrLabel6.Text = ": الـــمـــبـــيــــعـــــات";
             this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel7
             // 
-            this.xrLabel7.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(418.9552F, 10.00001F);
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -234,19 +239,19 @@
             // 
             // xrLabel8
             // 
-            this.xrLabel8.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(214.7834F, 99.99994F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel8.SizeF = new System.Drawing.SizeF(148.5F, 25F);
             this.xrLabel8.StylePriority.UseFont = false;
             this.xrLabel8.StylePriority.UseTextAlignment = false;
-            this.xrLabel8.Text = ": الـــمـــرتـــجـــعــــات";
+            this.xrLabel8.Text = ": الــمـــرتـــجـــعـــات";
             this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel9
             // 
-            this.xrLabel9.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(313.2834F, 35.00001F);
             this.xrLabel9.Name = "xrLabel9";
             this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -258,20 +263,20 @@
             // 
             // xrLabel11
             // 
-            this.xrLabel11.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(214.7834F, 124.9999F);
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel11.SizeF = new System.Drawing.SizeF(148.5F, 25F);
             this.xrLabel11.StylePriority.UseFont = false;
             this.xrLabel11.StylePriority.UseTextAlignment = false;
-            this.xrLabel11.Text = ": الـــمـــصــــروفــــات";
+            this.xrLabel11.Text = ": الــمـــصــــروفـــات";
             this.xrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel12
             // 
-            this.xrLabel12.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(638.5513F, 150F);
+            this.xrLabel12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(638.5511F, 174.9999F);
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel12.SizeF = new System.Drawing.SizeF(148.5F, 25F);
@@ -284,7 +289,7 @@
             // 
             this.xrLabel16.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[Safe_Name]")});
-            this.xrLabel16.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.xrLabel16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(258.9552F, 10.00001F);
             this.xrLabel16.Name = "xrLabel16";
             this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -297,8 +302,8 @@
             // 
             this.xrLabel18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[TransferFrom_Money]")});
-            this.xrLabel18.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
-            this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(14.78345F, 149.9999F);
+            this.xrLabel18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(14.78332F, 174.9998F);
             this.xrLabel18.Name = "xrLabel18";
             this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel18.SizeF = new System.Drawing.SizeF(200F, 25F);
@@ -310,7 +315,7 @@
             // 
             this.xrLabel19.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[Sales_Money]")});
-            this.xrLabel19.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.xrLabel19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(438.5513F, 100.0001F);
             this.xrLabel19.Name = "xrLabel19";
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -323,7 +328,7 @@
             // 
             this.xrLabel20.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[Returned_Money]")});
-            this.xrLabel20.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.xrLabel20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(14.78345F, 99.99994F);
             this.xrLabel20.Name = "xrLabel20";
             this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -336,7 +341,7 @@
             // 
             this.xrLabel21.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[Expense_Money]")});
-            this.xrLabel21.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.xrLabel21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(14.78345F, 124.9998F);
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -350,7 +355,7 @@
             // 
             this.xrLabel22.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[DateTo]")});
-            this.xrLabel22.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.xrLabel22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(153.2834F, 35.00001F);
             this.xrLabel22.Name = "xrLabel22";
             this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -364,7 +369,7 @@
             // 
             this.xrLabel23.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[DateFrom]")});
-            this.xrLabel23.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.xrLabel23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.xrLabel23.LocationFloat = new DevExpress.Utils.PointFloat(438.5513F, 35.00001F);
             this.xrLabel23.Name = "xrLabel23";
             this.xrLabel23.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -378,8 +383,8 @@
             // 
             this.xrLabel24.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[TransferTo_Money]")});
-            this.xrLabel24.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
-            this.xrLabel24.LocationFloat = new DevExpress.Utils.PointFloat(438.5513F, 150F);
+            this.xrLabel24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.xrLabel24.LocationFloat = new DevExpress.Utils.PointFloat(438.5512F, 174.9999F);
             this.xrLabel24.Name = "xrLabel24";
             this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel24.SizeF = new System.Drawing.SizeF(200F, 25F);
@@ -389,21 +394,21 @@
             // 
             // xrLabel14
             // 
-            this.xrLabel14.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(638.5513F, 124.9999F);
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel14.SizeF = new System.Drawing.SizeF(148.5F, 25F);
             this.xrLabel14.StylePriority.UseFont = false;
             this.xrLabel14.StylePriority.UseTextAlignment = false;
-            this.xrLabel14.Text = ": ايداعات المصروفات";
+            this.xrLabel14.Text = ": ايداعات المصروفـات";
             this.xrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel17
             // 
             this.xrLabel17.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[IncomeExpense_Money]")});
-            this.xrLabel17.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
+            this.xrLabel17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
             this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(438.5513F, 125F);
             this.xrLabel17.Name = "xrLabel17";
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -416,8 +421,8 @@
             // 
             this.xrLabel2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[TotalAdd_Money]")});
-            this.xrLabel2.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(438.5513F, 223.9583F);
+            this.xrLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(438.5512F, 249.375F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(200F, 25F);
@@ -429,8 +434,8 @@
             // 
             this.xrLabel3.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[TotalSub_Money]")});
-            this.xrLabel3.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(14.78345F, 223.9582F);
+            this.xrLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(14.78329F, 249.375F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.SizeF = new System.Drawing.SizeF(200F, 25F);
@@ -440,34 +445,34 @@
             // 
             // xrLabel5
             // 
-            this.xrLabel5.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(638.5513F, 223.9583F);
+            this.xrLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(638.5511F, 249.375F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.SizeF = new System.Drawing.SizeF(148.5F, 25F);
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
-            this.xrLabel5.Text = ": اجـمـالى الايـداعـات";
+            this.xrLabel5.Text = ": اجـمـالى الايـداعــات";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel13
             // 
-            this.xrLabel13.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(214.7834F, 223.9582F);
+            this.xrLabel13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(214.7833F, 249.375F);
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel13.SizeF = new System.Drawing.SizeF(148.5F, 25F);
             this.xrLabel13.StylePriority.UseFont = false;
             this.xrLabel13.StylePriority.UseTextAlignment = false;
-            this.xrLabel13.Text = ": اجمالى المسحوبات";
+            this.xrLabel13.Text = ": اجمالى المـسـحوبات";
             this.xrLabel13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel25
             // 
             this.xrLabel25.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[Safy_Money]")});
-            this.xrLabel25.Font = new System.Drawing.Font("Neo Sans Arabic", 11.25F);
-            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(258.9552F, 248.9583F);
+            this.xrLabel25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(258.9551F, 274.375F);
             this.xrLabel25.Name = "xrLabel25";
             this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel25.SizeF = new System.Drawing.SizeF(160F, 24.99998F);
@@ -477,8 +482,8 @@
             // 
             // xrLabel26
             // 
-            this.xrLabel26.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(418.9552F, 248.9583F);
+            this.xrLabel26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(418.9551F, 274.375F);
             this.xrLabel26.Name = "xrLabel26";
             this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel26.SizeF = new System.Drawing.SizeF(81.6666F, 24.99998F);
@@ -489,8 +494,8 @@
             // 
             // xrLabel10
             // 
-            this.xrLabel10.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(214.7834F, 150F);
+            this.xrLabel10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(214.7833F, 174.9999F);
             this.xrLabel10.Name = "xrLabel10";
             this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel10.SizeF = new System.Drawing.SizeF(148.5F, 25F);
@@ -585,6 +590,38 @@
             this.Safy_Money.Type = typeof(decimal);
             this.Safy_Money.ValueInfo = "0";
             // 
+            // xrLabel27
+            // 
+            this.xrLabel27.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Parameters].[PullExpense]")});
+            this.xrLabel27.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(438.5513F, 149.9999F);
+            this.xrLabel27.Name = "xrLabel27";
+            this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel27.SizeF = new System.Drawing.SizeF(200F, 25F);
+            this.xrLabel27.StylePriority.UseFont = false;
+            this.xrLabel27.StylePriority.UseTextAlignment = false;
+            this.xrLabel27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            // 
+            // xrLabel28
+            // 
+            this.xrLabel28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel28.LocationFloat = new DevExpress.Utils.PointFloat(638.5513F, 149.9998F);
+            this.xrLabel28.Name = "xrLabel28";
+            this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel28.SizeF = new System.Drawing.SizeF(148.5F, 25F);
+            this.xrLabel28.StylePriority.UseFont = false;
+            this.xrLabel28.StylePriority.UseTextAlignment = false;
+            this.xrLabel28.Text = ": مرتدات المصروفـات";
+            this.xrLabel28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // PullExpense
+            // 
+            this.PullExpense.Description = "PullExpense";
+            this.PullExpense.Name = "PullExpense";
+            this.PullExpense.Type = typeof(decimal);
+            this.PullExpense.ValueInfo = "0";
+            // 
             // BankTransition
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -608,7 +645,8 @@
             this.TransferFrom_Money,
             this.TotalAdd_Money,
             this.TotalSub_Money,
-            this.Safy_Money});
+            this.Safy_Money,
+            this.PullExpense});
             this.Version = "18.1";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -664,5 +702,8 @@
         private DevExpress.XtraReports.Parameters.Parameter TotalAdd_Money;
         private DevExpress.XtraReports.Parameters.Parameter TotalSub_Money;
         private DevExpress.XtraReports.Parameters.Parameter Safy_Money;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel27;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel28;
+        private DevExpress.XtraReports.Parameters.Parameter PullExpense;
     }
 }
