@@ -212,6 +212,19 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+        private void txtPrice_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                    labPurchasesPrice.Text = calPurchasesPrice() + "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         //functions
         public double calPurchasesPrice()
         {
@@ -318,7 +331,6 @@ namespace MainSystem
 
             }
         }
-
         public static void setData(SetPurchasesPricePopup f, DataRowView row,int flag)
         {
             if (flag == 1)
@@ -331,7 +343,6 @@ namespace MainSystem
                 id = CurrentStoragePurchases_Report.ID;
                 code = CurrentStoragePurchases_Report.codef1;
             }
-            
             mrow = row;
             f.dd();
         }
@@ -339,18 +350,6 @@ namespace MainSystem
         {
             txtCode.Text = code;
         }
-        private void txtPrice_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if(e.KeyCode==Keys.Enter)
-                    labPurchasesPrice.Text = calPurchasesPrice() + ""; 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
+        
     }
 }

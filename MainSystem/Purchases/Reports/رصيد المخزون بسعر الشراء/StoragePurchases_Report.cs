@@ -524,14 +524,49 @@ namespace MainSystem
             dbconnection2.Close();
             dbconnection3.Close();
         }
-        private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        //private void gridView1_RowCellClick(object sender, RowCellClickEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (e.Column.Name == "colالكود")
+        //        {
+        //            dbconnection.Open();
+        //            string code = e.CellValue.ToString();
+        //            string query = "select Data_ID from data where Code='" + code + "'";
+        //            codef1 = code;
+        //            MySqlCommand com = new MySqlCommand(query, dbconnection);
+        //            ID = Convert.ToInt16(com.ExecuteScalar());
+        //            if (f1.ActiveControl != null)
+        //            {
+        //                f1.Show();
+        //                f1.Focus();
+        //            }
+        //            else
+        //            {
+        //                f1 = new SetPurchasesPricePopup();
+        //                f1.Show();
+        //                f1.Focus();
+        //            }
+        //            DataRowView row = (DataRowView)gridView1.GetRow(e.RowHandle);
+        //            SetPurchasesPricePopup.setData(f1, row,1);
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    dbconnection.Close();
+        //}
+        private void gridView1_RowClick(object sender, RowClickEventArgs e)
         {
             try
             {
-                if (e.Column.Name == "colالكود")
+                DataRow row1 = gridView1.GetDataRow(e.RowHandle);
+                if (row1["سعر الشراء"].ToString() == "0")
                 {
                     dbconnection.Open();
-                    string code = e.CellValue.ToString();
+                    string code = row1["الكود"].ToString();
                     string query = "select Data_ID from data where Code='" + code + "'";
                     codef1 = code;
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
@@ -548,8 +583,15 @@ namespace MainSystem
                         f1.Focus();
                     }
                     DataRowView row = (DataRowView)gridView1.GetRow(e.RowHandle);
-                    SetPurchasesPricePopup.setData(f1, row,1);
+                    SetPurchasesPricePopup.setData(f1, row, 1);
 
+                }
+                else
+                {
+                    if (f1.ActiveControl != null)
+                    {
+                        f1.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -558,6 +600,8 @@ namespace MainSystem
             }
             dbconnection.Close();
         }
+
+
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
         {
             if (loaded)
@@ -1188,7 +1232,9 @@ namespace MainSystem
             dr.Close();
             
             return quantity;
-        }       
+        }
+
+      
         public double getPurchasesPrice(string dataID)
         {
             string query = "SELECT Purchasing_Price FROM oldpurchasing_price where Data_ID="+dataID+" and oldpurchasing_price.Date <'" + dateTimePicker2.Value.ToString("yyyy-MM-dd") + "' limit 1";
