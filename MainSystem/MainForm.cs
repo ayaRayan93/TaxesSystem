@@ -814,6 +814,38 @@ namespace MainSystem
                 navBarGroup42.Visible = false;
                 navBarGroup32.Visible = false;
             }
+            else if (UserControl.userType == 28)
+            {
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+                btnBank.Enabled = true;
+                btnBank.Checked = true;
+                btnExpenses.Enabled = true;
+                btnExpenses.Checked = true;
+                navBarGroup56.Visible = false;
+                navBarGroup57.Visible = false;
+                //navBarGroup42.Visible = false;
+                navBarItemSubExpensesTransitionsReport.Visible = false;
+                btnReception.Enabled = true;
+                btnReception.Checked = true;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                //navBarGroupBillRecord.Visible = false;
+                //navBarGroupReportPointSale.Visible = false;
+                pictureBoxBell.Visible = true;
+                navBarItemBillsAgleTransitionsReport.Visible = false;
+                navBarItemTotalSales.Visible = false;
+
+                navBarGroup13.Visible = false;
+                navBarGroup39.Visible = false;
+                btnTaswayAgalBills.Visible = false;
+                navBarItem153.Visible = false;
+                navBarGroup58.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+            }
             labUserName.Text = UserControl.EmpName;
         }
         static void BackupMethod()
