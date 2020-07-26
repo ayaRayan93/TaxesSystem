@@ -173,7 +173,7 @@ namespace MainSystem
         {
             dbconnection.Open();
             string query = "";
-            if (UserControl.userType == 16)
+            if (UserControl.userType == 16 || UserControl.userType == 28)
             {
                 query = "select * from expense_main where MainExpense_ID=16";
             }
