@@ -814,6 +814,38 @@ namespace MainSystem
                 navBarGroup42.Visible = false;
                 navBarGroup32.Visible = false;
             }
+            else if (UserControl.userType == 28)
+            {
+                btnSales.Enabled = true;
+                btnSales.Checked = true;
+                btnBank.Enabled = true;
+                btnBank.Checked = true;
+                btnExpenses.Enabled = true;
+                btnExpenses.Checked = true;
+                navBarGroup56.Visible = false;
+                navBarGroup57.Visible = false;
+                //navBarGroup42.Visible = false;
+                navBarItemSubExpensesTransitionsReport.Visible = false;
+                btnReception.Enabled = true;
+                btnReception.Checked = true;
+                btnPOS.Enabled = true;
+                btnPOS.Checked = true;
+                //navBarGroupBillRecord.Visible = false;
+                //navBarGroupReportPointSale.Visible = false;
+                pictureBoxBell.Visible = true;
+                navBarItemBillsAgleTransitionsReport.Visible = false;
+                navBarItemTotalSales.Visible = false;
+
+                navBarGroup13.Visible = false;
+                navBarGroup39.Visible = false;
+                btnTaswayAgalBills.Visible = false;
+                navBarItem153.Visible = false;
+                navBarGroup58.Visible = false;
+
+                navBarItemCustomerDeliverReport.Visible = false;
+                navBarItem203.Visible = false;
+                navBarItemPermissionRestBill.Visible = false;
+            }
             labUserName.Text = UserControl.EmpName;
         }
         static void BackupMethod()
@@ -1394,7 +1426,7 @@ namespace MainSystem
     {
         static string supString = File.ReadAllText("IP_Address.txt");//'35.232.25.153'
         //public static string supString = System.IO.File.ReadAllText(Path.Combine(Properties.Resources.IP_Address, @"IP_Address.txt"));
-        public static string connectionString = "SERVER=" + supString + ";DATABASE=newschematest;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";       
+        public static string connectionString = "SERVER=" + supString + ";DATABASE=cccmaindb;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";       
         //public static string connectionString = "SERVER=197.50.31.80;DATABASE=newschematest;user=root;PASSWORD=A!S#D37;CHARSET=utf8";//SslMode=none";   
         //public static string connectionString = "SERVER=localhost;DATABASE=cccmaindb;user=root;PASSWORD=root;CHARSET=utf8";
     }

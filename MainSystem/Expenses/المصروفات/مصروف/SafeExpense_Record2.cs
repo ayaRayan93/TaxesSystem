@@ -189,7 +189,7 @@ namespace MainSystem
             comMain.ValueMember = dt.Columns["MainExpense_ID"].ToString();
             comMain.SelectedIndex = -1;
             
-            if (UserControl.userType == 3 || UserControl.userType == 16)
+            if (UserControl.userType == 3 || UserControl.userType == 16 || UserControl.userType == 28)
             {
                 query = "select * from bank INNER JOIN bank_employee ON bank_employee.Bank_ID = bank.Bank_ID where bank.Branch_ID=" + transitionbranchID + " and bank_employee.Employee_ID=" + UserControl.EmpID + "";
             }
