@@ -1218,6 +1218,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void xtraTabControlMainContainer_CloseButtonClick(object sender, EventArgs e)
         {
             try
@@ -1306,6 +1307,7 @@ namespace MainSystem
                 }
             return null;
         }
+
         public bool IsTabPageSave()
         {
             for (int i = 0; i < xtraTabControlMainContainer.TabPages.Count; i++)
@@ -1342,6 +1344,7 @@ namespace MainSystem
                 }
             }
         }
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try

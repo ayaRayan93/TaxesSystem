@@ -473,7 +473,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-   
         private void comBranch1_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -488,7 +487,6 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void comStore_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -528,28 +526,16 @@ namespace MainSystem
             {
                 row = gridView1.GetDataRow(gridView1.GetRowHandle(e.RowHandle));
                 rowHandel1 = e.RowHandle;
-           
-     
-                if (radioButtonReturnBill.Checked)
+
+                txtCode.Text = row["الكود"].ToString();
+                txtCarton.Text = row["الكرتنة"].ToString();
+                txtReturnedQuantity.Text = (Convert.ToDouble(row["الكمية"].ToString()) - Convert.ToDouble(row["الكمية المرتجعة"].ToString())).ToString();
+             
+                if(Convert.ToDouble(row["الكرتنة"].ToString())!=0)
                 {
-                    txtCode.Text = row[2].ToString();
-                    txtCarton.Text = row[6].ToString();
-                    txtReturnedQuantity.Text = row[4].ToString();
+                    txtNumOfCarton.Text = (Convert.ToDouble(row["الكمية"].ToString()) / Convert.ToDouble(row["الكرتنة"].ToString())).ToString("0.00");
                 }
-                else
-                {
-                    txtCode.Text = row[1].ToString();
-                    txtCarton.Text = row[3].ToString();
-                    return;
-                }
-                try
-                {
-                    txtNumOfCarton.Text = (Convert.ToDouble(row[5].ToString()) / Convert.ToDouble(row[6].ToString())).ToString();
-                }
-                catch 
-                {
-                    txtNumOfCarton.Text ="";
-                }
+               
                 
             }
             catch (Exception ex)
@@ -613,16 +599,10 @@ namespace MainSystem
                 {
                     string query = "insert into customer_return_permission (CustomerBill_ID,Customer_ID,Client_ID,ClientReturnName,ClientRetunPhone,Date,Branch_ID,Branch_Name) values (@CustomerBill_ID,@Customer_ID,@Client_ID,@ClientReturnName,@ClientRetunPhone,@Date,@Branch_ID,@Branch_Name)";
                     MySqlCommand com = new MySqlCommand(query, dbconnection);
-                    if (radioButtonReturnBill.Checked)
-                    {
-                        com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
-                        com.Parameters["@CustomerBill_ID"].Value = Billid;
-                    }
-                    else
-                    {
-                        com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
-                        com.Parameters["@CustomerBill_ID"].Value = 0;
-                    }
+                
+                    com.Parameters.Add("@CustomerBill_ID", MySqlDbType.Int16);
+                    com.Parameters["@CustomerBill_ID"].Value = Billid;
+                   
                     if (txtCustomerID.Text != "" && txtCustomerID.Visible == true)
                     {
                         com.Parameters.Add("@Customer_ID", MySqlDbType.Int16);
@@ -960,18 +940,28 @@ namespace MainSystem
             if (dr.HasRows)
             {
                 dr.Close();
-                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'البند'";
+                DataTable dtAll = new DataTable();
+                string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))as 'الاسم'";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID, product_bill.Type  as 'الفئة', Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(TotalQuantity) as 'الكمية المسلمة',customer_return_permission_details.Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " left join customer_return_permission_details on customer_return_permission_details.Data_ID=product_bill.Data_ID where CustomerBill_ID=" + Billid + " group by product_bill.Data_ID";
+                query = "select product_bill.Data_ID, product_bill.Type  as 'الفئة', Code as'الكود'," + itemName + ",Quantity as 'الكمية',sum(TotalQuantity) as 'الكمية المرتجعة',customer_return_permission_details.Carton as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + "  inner join  customer_return_permission_details on customer_return_permission_details.Data_ID=product_bill.Data_ID inner join customer_return_permission on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID where customer_return_permission.CustomerBill_ID=" + Billid + " group by product_bill.Data_ID";
 
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
-                DataTable dt = new DataTable();
-                ad.Fill(dt);
+                DataTable dtProduct1 = new DataTable();
+                ad.Fill(dtProduct1);
+
+                query = "select product_bill.Data_ID, product_bill.Type  as 'الفئة' ,Code  as'الكود', " + itemName + " ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المرتجعة', Carton  as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid+ " and product_bill.Data_ID not in (select group_concat(Data_ID) from customer_return_permission inner join customer_return_permission_details on customer_return_permission.CustomerReturnPermission_ID=customer_return_permission_details.CustomerReturnPermission_ID where customer_return_permission.CustomerBill_ID=" + Billid + " )";
+                ad = new MySqlDataAdapter(query, dbconnection);
+                DataTable dtProduct = new DataTable();
+                ad.Fill(dtProduct);
+
+                dtAll = dtProduct.Copy();
+                dtAll.Merge(dtProduct1, true, MissingSchemaAction.Ignore);
                 gridControl1.DataSource = null;
+
                 gridView1.ClearDocument();
-                gridControl1.DataSource = dt;
+                gridControl1.DataSource = dtAll;
                 gridView1.Columns[0].Visible = false;
-                gridView1.Columns[1].Width = 200;
+               // gridView1.Columns[1].Width = 200;
             }
             else
             {
@@ -979,17 +969,17 @@ namespace MainSystem
                 DataTable dtAll = new DataTable();
                 string itemName = "concat( product.Product_Name,' ',type.Type_Name,' ',factory.Factory_Name,' ',groupo.Group_Name,' ' ,COALESCE(color.Color_Name,''),' ',COALESCE(size.Size_Value,''),' ',COALESCE(sort.Sort_Value,''),' ',COALESCE(data.Classification,''),' ',COALESCE(data.Description,''))";
                 string DataTableRelations = "INNER JOIN type ON type.Type_ID = data.Type_ID INNER JOIN product ON product.Product_ID = data.Product_ID INNER JOIN factory ON data.Factory_ID = factory.Factory_ID INNER JOIN groupo ON data.Group_ID = groupo.Group_ID LEFT outer JOIN color ON data.Color_ID = color.Color_ID LEFT outer  JOIN size ON data.Size_ID = size.Size_ID LEFT outer  JOIN sort ON data.Sort_ID = sort.Sort_ID";
-                query = "select product_bill.Data_ID, product_bill.Type  as 'الفئة' ,Code  as'الكود', " + itemName + "  as 'الاسم' ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المسلمة', Carton  as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
+                query = "select product_bill.Data_ID, product_bill.Type  as 'الفئة' ,Code  as'الكود', " + itemName + "  as 'الاسم' ,Quantity as 'الكمية', '" + 0 + " ' as 'الكمية المرتجعة', Carton  as 'الكرتنة' from product_bill inner join data on data.Data_ID=product_bill.Data_ID " + DataTableRelations + " where CustomerBill_ID=" + Billid;
                 MySqlDataAdapter ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtProduct = new DataTable();
                 ad.Fill(dtProduct);
-                query = "select sets.Set_ID as 'Data_ID', product_bill.Type  as 'الفئة',concat(sets.Set_ID,' ') as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة'," + 0 + " as 'الكرتنة' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                query = "select sets.Set_ID as 'Data_ID', product_bill.Type  as 'الفئة',concat(sets.Set_ID,' ') as 'الكود',sets.Set_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المرتجعة'," + 0 + " as 'الكرتنة' from product_bill inner join sets on sets.Set_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='طقم' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                 ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtSet = new DataTable();
                 ad.Fill(dtSet);
 
 
-                query = "select offer.Offer_ID as 'Data_ID', product_bill.Type  as 'الفئة',concat(offer.Offer_ID,' ') as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المسلمة'," + 0 + " as 'الكرتنة' from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
+                query = "select offer.Offer_ID as 'Data_ID', product_bill.Type  as 'الفئة',concat(offer.Offer_ID,' ') as 'الكود',offer.Offer_Name as 'الاسم',product_bill.Type as 'الفئة', product_bill.Quantity as 'الكمية','" + 0 + " ' as 'الكمية المرتجعة'," + 0 + " as 'الكرتنة' from product_bill inner join offer on offer.Offer_ID=product_bill.Data_ID  where product_bill.CustomerBill_ID=" + Billid + " and product_bill.Type='عرض' and (product_bill.Returned='لا' or product_bill.Returned='جزء')";
                 ad = new MySqlDataAdapter(query, dbconnection);
                 DataTable dtOffer = new DataTable();
                 ad.Fill(dtOffer);
@@ -1005,7 +995,6 @@ namespace MainSystem
                 gridView1.Columns[0].Visible = false;
             }
         }
-
         public void displayData1()
         {
             string query = "select CustomerBill_ID,Type_Buy from customer_bill where Branch_BillNumber=" + txtBranchBillNum.Text + " and Branch_ID=" + txtBranch1.Text;
@@ -1072,52 +1061,63 @@ namespace MainSystem
         }
         public void addNewRow()
         {
-            if (radioButtonReturnBill.Checked)
+            if (Convert.ToDouble(row["الكمية"].ToString()) > Convert.ToDouble(row["الكمية المرتجعة"].ToString()))
             {
-                gridView2.AddNewRow();
-
-                int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
-                if (gridView2.IsNewItemRow(rowHandle) && rowHandel1 != -1)
+              
+                if ((Convert.ToDouble(row["الكمية"].ToString())- Convert.ToDouble(row["الكمية المرتجعة"].ToString())) >= Convert.ToDouble(txtReturnedQuantity.Text))
                 {
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[2]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[3]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row[4]);
+                    gridView2.AddNewRow();
+                    int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
+                    if (gridView2.IsNewItemRow(rowHandle) && rowHandel1 != -1)
+                    {
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[2]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[3]);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], row[4]);
 
-                    double re = 0, carton = 0;
-                    if (Convert.ToDouble(txtCarton.Text) != 0)
-                        re = Convert.ToDouble(txtReturnedQuantity.Text) / Convert.ToDouble(txtCarton.Text);
-                    carton = Convert.ToDouble(txtCarton.Text);
+                        double re = 0, carton = 0;
+                        if (Convert.ToDouble(txtCarton.Text) != 0)
+                            re = Convert.ToDouble(txtReturnedQuantity.Text) / Convert.ToDouble(txtCarton.Text);
+                        carton = Convert.ToDouble(txtCarton.Text);
 
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], re + "");
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], carton + "");
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtReturnedQuantity.Text);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtReturnItemReason.Text);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], re + "");
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], carton + "");
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtReturnedQuantity.Text);
+                        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtReturnItemReason.Text);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("الكمية المرتجعة اكبر من الكمية المباعة!!");
                 }
             }
-            else
-            {
-                gridView2.AddNewRow();
-
-                int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
-                if (gridView2.IsNewItemRow(rowHandle) && rowHandel1 != -1)
-                {
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[1]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[2]);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], "");
-
-                    double re = 0, carton = 0;
-                    if (Convert.ToDouble(txtCarton.Text) != 0)
-                        re = Convert.ToDouble(txtReturnedQuantity.Text) / Convert.ToDouble(txtCarton.Text);
-                    carton = Convert.ToDouble(txtCarton.Text);
-
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], re + "");
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], carton + "");
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtReturnedQuantity.Text);
-                    gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtReturnItemReason.Text);
-                }
+            else {
+                MessageBox.Show("هذا البند تم استرجاعه بالكامل");
             }
+            //}
+            //else
+            //{
+            //    gridView2.AddNewRow();
+
+            //    int rowHandle = gridView2.GetRowHandle(gridView2.DataRowCount);
+            //    if (gridView2.IsNewItemRow(rowHandle) && rowHandel1 != -1)
+            //    {
+            //        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[0], row[0]);
+            //        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[1], row[1]);
+            //        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[2], row[2]);
+            //        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[3], "");
+
+            //        double re = 0, carton = 0;
+            //        if (Convert.ToDouble(txtCarton.Text) != 0)
+            //            re = Convert.ToDouble(txtReturnedQuantity.Text) / Convert.ToDouble(txtCarton.Text);
+            //        carton = Convert.ToDouble(txtCarton.Text);
+
+            //        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[6], re + "");
+            //        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[5], carton + "");
+            //        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[4], txtReturnedQuantity.Text);
+            //        gridView2.SetRowCellValue(rowHandle, gridView2.Columns[7], txtReturnItemReason.Text);
+            //    }
+            //}
             loaded = true;
         }
         public void clear()
