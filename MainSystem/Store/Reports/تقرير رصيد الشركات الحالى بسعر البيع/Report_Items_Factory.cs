@@ -8,9 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using MainSystem.Store.Reports.تقرير_اصناف_الشركات;
+using TaxesSystem.Store.Reports.تقرير_اصناف_الشركات;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Report_Items_Factory : DevExpress.XtraEditors.XtraForm
     {

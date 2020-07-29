@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Print_Items_Storage2
     {
@@ -611,7 +611,7 @@
             // 
             // objectDataSource2
             // 
-            this.objectDataSource2.DataSource = typeof(MainSystem.Items_Factory);
+            this.objectDataSource2.DataSource = typeof(TaxesSystem.Items_Factory);
             this.objectDataSource2.Name = "objectDataSource2";
             // 
             // xrLabel3

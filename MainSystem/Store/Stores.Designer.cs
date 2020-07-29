@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Stores
     {
@@ -87,7 +87,7 @@
             this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
@@ -108,7 +108,7 @@
             this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnDelete.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnDelete.ImagePosition = 1;
             this.btnDelete.ImageZoom = 20;
             this.btnDelete.LabelPosition = 18;
@@ -129,7 +129,7 @@
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdate.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdate.ImagePosition = 1;
             this.btnUpdate.ImageZoom = 20;
             this.btnUpdate.LabelPosition = 18;
@@ -150,7 +150,7 @@
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAdd.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAdd.ImagePosition = 1;
             this.btnAdd.ImageZoom = 20;
             this.btnAdd.LabelPosition = 18;
@@ -196,7 +196,7 @@
             this.btnStorePlaces.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnStorePlaces.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStorePlaces.ForeColor = System.Drawing.Color.White;
-            this.btnStorePlaces.Image = global::MainSystem.Properties.Resources.Flow_Chart_50px;
+            this.btnStorePlaces.Image = global::TaxesSystem.Properties.Resources.Flow_Chart_50px;
             this.btnStorePlaces.ImagePosition = 1;
             this.btnStorePlaces.ImageZoom = 25;
             this.btnStorePlaces.LabelPosition = 18;

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Offer_Collect
     {
@@ -244,7 +244,7 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnAdd.ImagePosition = 5;
             this.btnAdd.ImageZoom = 25;
             this.btnAdd.LabelPosition = 20;
@@ -264,7 +264,7 @@
             this.bunifuTileButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTileButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton1.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.bunifuTileButton1.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.bunifuTileButton1.ImagePosition = 1;
             this.bunifuTileButton1.ImageZoom = 25;
             this.bunifuTileButton1.LabelPosition = 18;

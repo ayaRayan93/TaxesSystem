@@ -16,7 +16,7 @@ using MySql.Data.MySqlClient;
 using System.IO;
 using System.Reflection;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     class POSSystem
     {

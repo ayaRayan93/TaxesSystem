@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Print_Copy_Invoice
     {
@@ -1224,7 +1224,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.Copy_Bill_Items);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.Copy_Bill_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // Print_Copy_Invoice

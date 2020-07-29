@@ -17,7 +17,7 @@ using DevExpress.XtraCharts;
 using MySql.Data.MySqlClient;
 using DevExpress.XtraCharts.Printing;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class GraphicDelegateBreak_Report : DevExpress.XtraEditors.XtraForm
     {

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SetRecord
     {
@@ -417,7 +417,7 @@
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnAdd.ImagePosition = 1;
             this.btnAdd.ImageZoom = 15;
             this.btnAdd.LabelPosition = 18;
@@ -698,7 +698,7 @@
             // 
             this.ImageProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ImageProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(122)))), ((int)(((byte)(190)))));
-            this.ImageProduct.BackgroundImage = global::MainSystem.Properties.Resources.camara;
+            this.ImageProduct.BackgroundImage = global::TaxesSystem.Properties.Resources.camara;
             this.ImageProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ImageProduct.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ImageProduct.Location = new System.Drawing.Point(167, 8);
@@ -755,7 +755,7 @@
             // 
             this.btnPut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPut.BackColor = System.Drawing.Color.Transparent;
-            this.btnPut.Image = global::MainSystem.Properties.Resources.Expand_Arrow_64px;
+            this.btnPut.Image = global::TaxesSystem.Properties.Resources.Expand_Arrow_64px;
             this.btnPut.ImageActive = null;
             this.btnPut.Location = new System.Drawing.Point(80, 10);
             this.btnPut.Name = "btnPut";
@@ -770,7 +770,7 @@
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.BackColor = System.Drawing.Color.Transparent;
-            this.btnRemove.Image = global::MainSystem.Properties.Resources.Collapse_Arrow_64px;
+            this.btnRemove.Image = global::TaxesSystem.Properties.Resources.Collapse_Arrow_64px;
             this.btnRemove.ImageActive = null;
             this.btnRemove.Location = new System.Drawing.Point(167, 10);
             this.btnRemove.Name = "btnRemove";

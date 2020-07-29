@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class EmployeeUpdate
     {
@@ -211,7 +211,7 @@
             // 
             this.ImageBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ImageBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(122)))), ((int)(((byte)(190)))));
-            this.ImageBox.BackgroundImage = global::MainSystem.Properties.Resources.camara;
+            this.ImageBox.BackgroundImage = global::TaxesSystem.Properties.Resources.camara;
             this.ImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ImageBox.Location = new System.Drawing.Point(71, 78);
             this.ImageBox.Name = "ImageBox";
@@ -274,7 +274,7 @@
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnUpdate.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnUpdate.ImagePosition = 1;
             this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 18;

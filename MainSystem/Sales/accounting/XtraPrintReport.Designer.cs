@@ -1,4 +1,4 @@
-﻿namespace MainSystem.Sales.accounting
+﻿namespace TaxesSystem.Sales.accounting
 {
     partial class XtraPrintReport
     {
@@ -756,7 +756,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.Sales.accounting.TransitionData);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.Sales.accounting.TransitionData);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrPivotGridField1

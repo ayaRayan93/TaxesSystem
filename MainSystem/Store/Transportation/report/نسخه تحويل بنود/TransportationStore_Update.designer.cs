@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class TransportationStore_Update
     {
@@ -739,7 +739,7 @@
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnSave.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnSave.ImagePosition = 1;
             this.btnSave.ImageZoom = 33;
             this.btnSave.LabelPosition = 18;

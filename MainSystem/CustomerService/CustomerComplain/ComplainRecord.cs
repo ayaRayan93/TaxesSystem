@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem.CustomerService.CustomerComplain
+namespace TaxesSystem.CustomerService.CustomerComplain
 {
     public partial class ComplainRecord : Form
     {

@@ -15,7 +15,7 @@ using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     class ReceptionSystem
     {

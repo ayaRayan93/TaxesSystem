@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraGrid;
 using DevExpress.XtraNavBar;
 using DevExpress.XtraTab;
-using MainSystem.CustomerService;
+using TaxesSystem.CustomerService;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     class CustomerServiceSystem
     {

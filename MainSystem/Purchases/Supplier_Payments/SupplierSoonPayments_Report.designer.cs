@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SupplierSoonPayments_Report
     {
@@ -142,7 +142,7 @@
             this.btnAdd.Enabled = false;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAdd.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAdd.ImagePosition = 1;
             this.btnAdd.ImageZoom = 25;
             this.btnAdd.LabelPosition = 18;

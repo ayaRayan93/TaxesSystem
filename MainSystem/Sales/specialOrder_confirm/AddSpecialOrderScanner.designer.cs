@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class AddSpecialOrderScanner
     {
@@ -225,7 +225,7 @@
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnSave.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnSave.ImagePosition = 2;
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 20;
@@ -239,7 +239,7 @@
             // 
             // labelRemoveRequestImage
             // 
-            this.labelRemoveRequestImage.Image = global::MainSystem.Properties.Resources.closeIcon;
+            this.labelRemoveRequestImage.Image = global::TaxesSystem.Properties.Resources.closeIcon;
             this.labelRemoveRequestImage.Location = new System.Drawing.Point(12, 208);
             this.labelRemoveRequestImage.Name = "labelRemoveRequestImage";
             this.labelRemoveRequestImage.Size = new System.Drawing.Size(20, 20);
@@ -248,7 +248,7 @@
             // 
             // pictureBoxProduct
             // 
-            this.pictureBoxProduct.BackgroundImage = global::MainSystem.Properties.Resources.notFound;
+            this.pictureBoxProduct.BackgroundImage = global::TaxesSystem.Properties.Resources.notFound;
             this.pictureBoxProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBoxProduct.Location = new System.Drawing.Point(12, 232);
             this.pictureBoxProduct.Name = "pictureBoxProduct";
@@ -259,7 +259,7 @@
             // 
             // pictureBoxRequest
             // 
-            this.pictureBoxRequest.BackgroundImage = global::MainSystem.Properties.Resources.notFound;
+            this.pictureBoxRequest.BackgroundImage = global::TaxesSystem.Properties.Resources.notFound;
             this.pictureBoxRequest.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBoxRequest.Location = new System.Drawing.Point(12, 12);
             this.pictureBoxRequest.Name = "pictureBoxRequest";

@@ -4,7 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class DesignPullPrint : DevExpress.XtraReports.UI.XtraReport
     {

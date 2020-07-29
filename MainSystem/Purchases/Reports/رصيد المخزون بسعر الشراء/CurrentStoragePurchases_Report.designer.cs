@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class CurrentStoragePurchases_Report
     {
@@ -686,7 +686,7 @@
             this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;

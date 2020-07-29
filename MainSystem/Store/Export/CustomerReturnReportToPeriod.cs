@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using MySql.Data.MySqlClient;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class CustomerReturnReportToPeriod : DevExpress.XtraEditors.XtraForm
     {

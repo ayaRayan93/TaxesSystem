@@ -1,17 +1,17 @@
-﻿using MainSystem;
-using MainSystem.CustomerService;
+﻿using TaxesSystem;
+using TaxesSystem.CustomerService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using System.Windows.Forms;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     static class Program
     {
         /// <summary>
-        /// The MainSystem entry point for the application.
+        /// The TaxesSystem entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()

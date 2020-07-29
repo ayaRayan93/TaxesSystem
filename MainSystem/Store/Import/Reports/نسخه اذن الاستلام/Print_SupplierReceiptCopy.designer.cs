@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Print_SupplierReceiptCopy
     {
@@ -642,7 +642,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.SupplierReceipt_Items);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.SupplierReceipt_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrLabel20

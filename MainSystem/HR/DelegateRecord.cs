@@ -11,7 +11,7 @@ using MySql.Data;
 using System.IO;
 using MySql.Data.MySqlClient;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class DelegateRecord : Form
     {

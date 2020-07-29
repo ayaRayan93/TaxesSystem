@@ -2,14 +2,14 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled tMainSystemough the following 
+// General Information about an assembly is controlled tTaxesSystemough the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MainSystem")]
+[assembly: AssemblyTitle("TaxesSystem")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MainSystem")]
+[assembly: AssemblyProduct("TaxesSystem")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

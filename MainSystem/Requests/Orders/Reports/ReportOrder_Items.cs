@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public class ReportOrder_Items
     {

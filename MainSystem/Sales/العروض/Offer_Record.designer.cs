@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Offer_Record
     {
@@ -132,7 +132,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.BackgroundImage = global::MainSystem.Properties.Resources.icons8_Collapse_Arrow_32;
+            this.btnReset.BackgroundImage = global::TaxesSystem.Properties.Resources.icons8_Collapse_Arrow_32;
             this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnReset.Location = new System.Drawing.Point(151, 3);
             this.btnReset.Name = "btnReset";
@@ -144,7 +144,7 @@
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.BackgroundImage = global::MainSystem.Properties.Resources.icons8_Expand_Arrow_32;
+            this.btnAdd.BackgroundImage = global::TaxesSystem.Properties.Resources.icons8_Expand_Arrow_32;
             this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnAdd.Location = new System.Drawing.Point(197, 3);
             this.btnAdd.Name = "btnAdd";
@@ -502,7 +502,7 @@
             this.btnCreateOffer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCreateOffer.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateOffer.ForeColor = System.Drawing.Color.White;
-            this.btnCreateOffer.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnCreateOffer.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnCreateOffer.ImagePosition = 1;
             this.btnCreateOffer.ImageZoom = 25;
             this.btnCreateOffer.LabelPosition = 18;
@@ -677,7 +677,7 @@
             // 
             this.ImageProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ImageProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(122)))), ((int)(((byte)(190)))));
-            this.ImageProduct.BackgroundImage = global::MainSystem.Properties.Resources.camara;
+            this.ImageProduct.BackgroundImage = global::TaxesSystem.Properties.Resources.camara;
             this.ImageProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ImageProduct.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ImageProduct.Location = new System.Drawing.Point(79, 6);

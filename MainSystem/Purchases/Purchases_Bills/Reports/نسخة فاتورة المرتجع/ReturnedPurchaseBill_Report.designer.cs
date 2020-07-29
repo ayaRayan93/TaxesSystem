@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class ReturnedPurchaseBill_Report
     {
@@ -221,7 +221,7 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdate.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdate.ImagePosition = 1;
             this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 18;
@@ -242,7 +242,7 @@
             this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 33;
             this.btnReport.LabelPosition = 18;
@@ -323,7 +323,7 @@
             this.btnUpdateBill.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdateBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateBill.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateBill.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdateBill.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdateBill.ImagePosition = 1;
             this.btnUpdateBill.ImageZoom = 25;
             this.btnUpdateBill.LabelPosition = 18;

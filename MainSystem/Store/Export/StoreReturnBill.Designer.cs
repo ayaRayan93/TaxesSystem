@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class StoreReturnBill
     {
@@ -317,7 +317,7 @@
             this.btnCreateReturnBill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCreateReturnBill.Font = new System.Drawing.Font("Neo Sans Arabic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateReturnBill.ForeColor = System.Drawing.Color.White;
-            this.btnCreateReturnBill.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnCreateReturnBill.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnCreateReturnBill.ImagePosition = 0;
             this.btnCreateReturnBill.ImageZoom = 0;
             this.btnCreateReturnBill.LabelPosition = 25;
@@ -661,7 +661,7 @@
             // 
             this.btnPut.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnPut.BackColor = System.Drawing.Color.Transparent;
-            this.btnPut.Image = global::MainSystem.Properties.Resources.Expand_Arrow_64px;
+            this.btnPut.Image = global::TaxesSystem.Properties.Resources.Expand_Arrow_64px;
             this.btnPut.ImageActive = null;
             this.btnPut.Location = new System.Drawing.Point(27, 14);
             this.btnPut.Name = "btnPut";
@@ -676,7 +676,7 @@
             // 
             this.btnRemove.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnRemove.BackColor = System.Drawing.Color.Transparent;
-            this.btnRemove.Image = global::MainSystem.Properties.Resources.closeIcon;
+            this.btnRemove.Image = global::TaxesSystem.Properties.Resources.closeIcon;
             this.btnRemove.ImageActive = null;
             this.btnRemove.Location = new System.Drawing.Point(93, 15);
             this.btnRemove.Name = "btnRemove";

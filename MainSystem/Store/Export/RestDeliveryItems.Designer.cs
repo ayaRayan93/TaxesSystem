@@ -1,4 +1,4 @@
-﻿namespace MainSystem.Store.Export
+﻿namespace TaxesSystem.Store.Export
 {
     partial class RestDeliveryItems
     {
@@ -314,7 +314,7 @@
             this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 18;

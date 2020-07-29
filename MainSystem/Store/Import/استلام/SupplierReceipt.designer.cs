@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SupplierReceipt
     {
@@ -615,7 +615,7 @@
             this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 33;
             this.btnReport.LabelPosition = 18;

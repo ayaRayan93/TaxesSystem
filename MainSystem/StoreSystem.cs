@@ -13,9 +13,9 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
-using MainSystem.Store.Export;
+using TaxesSystem.Store.Export;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     class StoreSystem
     {

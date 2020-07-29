@@ -14,7 +14,7 @@ using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     class ShippingSystem
     {

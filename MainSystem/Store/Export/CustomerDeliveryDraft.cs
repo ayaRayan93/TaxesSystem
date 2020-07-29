@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraRichEdit.Utils;
-using MainSystem.Store.Export;
+using TaxesSystem.Store.Export;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class CustomerDeliveryDraft : Form
     {

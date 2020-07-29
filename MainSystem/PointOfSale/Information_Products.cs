@@ -11,7 +11,7 @@ using DevExpress.XtraEditors;
 using MySql.Data.MySqlClient;
 using DevExpress.XtraTab;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Information_Products : DevExpress.XtraEditors.XtraForm
     {

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SearchRecive_Date
     {
@@ -241,7 +241,7 @@
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnPrint.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnPrint.ImagePosition = 1;
             this.btnPrint.ImageZoom = 33;
             this.btnPrint.LabelPosition = 18;

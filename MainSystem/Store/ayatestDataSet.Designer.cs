@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace MainSystem.Store {
+namespace TaxesSystem.Store {
     
     
     /// <summary>
@@ -872,7 +872,7 @@ namespace MainSystem.Store {
         }
     }
 }
-namespace MainSystem.Store.ayatestDataSetTableAdapters {
+namespace TaxesSystem.Store.ayatestDataSetTableAdapters {
     
     
     /// <summary>
@@ -999,7 +999,7 @@ namespace MainSystem.Store.ayatestDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::MainSystem.Properties.Settings.Default.dbconnection;
+            this._connection.ConnectionString = global::TaxesSystem.Properties.Settings.Default.dbconnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1163,7 +1163,7 @@ namespace MainSystem.Store.ayatestDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::MainSystem.Properties.Settings.Default.dbconnection;
+            this._connection.ConnectionString = global::TaxesSystem.Properties.Settings.Default.dbconnection;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

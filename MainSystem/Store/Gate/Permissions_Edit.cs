@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 using System.IO;
 using System.Reflection;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Permissions_Edit : Form
     {

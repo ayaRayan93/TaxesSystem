@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class DeliveryPermissionReport
     {
@@ -1152,7 +1152,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.DeliveryPermissionClass);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.DeliveryPermissionClass);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // DeliveryPermissionReport

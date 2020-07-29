@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Shipping_Record : Form
     {
@@ -415,7 +415,7 @@ namespace MainSystem
                     xtraTabPage = getTabPage("تسجيل شحنة عميل");
                     if (!IsClear())
                     {
-                        xtraTabPage.ImageOptions.Image = MainSystem.Properties.Resources.unsave;
+                        xtraTabPage.ImageOptions.Image = TaxesSystem.Properties.Resources.unsave;
                     }
                     else
                     {

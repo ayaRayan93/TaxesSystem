@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Store_Report : Form
     {
@@ -82,7 +82,7 @@ namespace MainSystem
             PageImageBrick pageImageBrick;
 
             // Define the image to display.
-            Image pageImage = MainSystem.Properties.Resources.logo_option2;
+            Image pageImage = TaxesSystem.Properties.Resources.logo_option2;
 
             // Display the PageImageBrick containing the DevExpress logo.
             pageImageBrick = brickGraphics.DrawPageImage(pageImage, new Rectangle(856, 0, 100, 80), BorderSide.None, Color.Transparent);

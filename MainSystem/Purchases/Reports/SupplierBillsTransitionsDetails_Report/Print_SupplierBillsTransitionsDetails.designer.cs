@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Print_SupplierBillsTransitionsDetails
     {
@@ -702,7 +702,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.SupplierBillsTransitionsDetails_Items);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.SupplierBillsTransitionsDetails_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrLabel1

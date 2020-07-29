@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Login_Admin
     {
@@ -34,7 +34,7 @@
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.panContent = new System.Windows.Forms.Panel();
             this.btnSignUp = new System.Windows.Forms.Panel();
-            this.txtName = new MainSystem.Custom1TextBox();
+            this.txtName = new TaxesSystem.Custom1TextBox();
             this.btnLogin = new System.Windows.Forms.Panel();
             this.panContent.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +55,7 @@
             // panClose
             // 
             this.panClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(26)))), ((int)(((byte)(59)))));
-            this.panClose.BackgroundImage = global::MainSystem.Properties.Resources.Delete_52px;
+            this.panClose.BackgroundImage = global::TaxesSystem.Properties.Resources.Delete_52px;
             this.panClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panClose.Location = new System.Drawing.Point(484, 12);
             this.panClose.Name = "panClose";
@@ -72,7 +72,7 @@
             // 
             // panContent
             // 
-            this.panContent.BackgroundImage = global::MainSystem.Properties.Resources.Sign_Up;
+            this.panContent.BackgroundImage = global::TaxesSystem.Properties.Resources.Sign_Up;
             this.panContent.Controls.Add(this.btnSignUp);
             this.panContent.Controls.Add(this.txtName);
             this.panContent.Controls.Add(this.btnLogin);
@@ -117,7 +117,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(245)))), ((int)(((byte)(252)))));
-            this.BackgroundImage = global::MainSystem.Properties.Resources.loginscreen;
+            this.BackgroundImage = global::TaxesSystem.Properties.Resources.loginscreen;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(542, 484);
             this.Controls.Add(this.panClose);

@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 
 
-namespace MainSystem
+namespace TaxesSystem
 {
     class UserControl
     {

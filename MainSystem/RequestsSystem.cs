@@ -13,9 +13,9 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
-using MainSystem.Sales.accounting;
+using TaxesSystem.Sales.accounting;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     class RequestsSystem
     {

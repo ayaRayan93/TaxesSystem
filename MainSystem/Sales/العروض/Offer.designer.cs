@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Offer
     {
@@ -252,7 +252,7 @@
             this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdate.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdate.ImagePosition = 1;
             this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 15;
@@ -273,7 +273,7 @@
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnDelete.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnDelete.ImagePosition = 1;
             this.btnDelete.ImageZoom = 25;
             this.btnDelete.LabelPosition = 15;
@@ -294,7 +294,7 @@
             this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 15;
@@ -315,7 +315,7 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAdd.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAdd.ImagePosition = 1;
             this.btnAdd.ImageZoom = 25;
             this.btnAdd.LabelPosition = 15;

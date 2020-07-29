@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem.Shipping.Recording
+namespace TaxesSystem.Shipping.Recording
 {
     public partial class ShippingOperationRecord : Form
     {

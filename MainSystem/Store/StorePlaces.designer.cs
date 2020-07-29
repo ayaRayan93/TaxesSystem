@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class StorePlaces
     {
@@ -164,7 +164,7 @@
             this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnDelete.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnDelete.ImagePosition = 1;
             this.btnDelete.ImageZoom = 20;
             this.btnDelete.LabelPosition = 18;
@@ -185,7 +185,7 @@
             this.bunifuTileButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuTileButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton1.Image = global::MainSystem.Properties.Resources.File_32;
+            this.bunifuTileButton1.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.bunifuTileButton1.ImagePosition = 1;
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;

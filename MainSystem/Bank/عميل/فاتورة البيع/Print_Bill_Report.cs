@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Print_Bill_Report : DevExpress.XtraEditors.XtraForm
     {

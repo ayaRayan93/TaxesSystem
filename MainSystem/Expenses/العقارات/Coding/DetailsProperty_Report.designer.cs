@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class DetailsProperty_Report
     {
@@ -118,7 +118,7 @@
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnUpdate.BackgroundImage = global::MainSystem.Properties.Resources.update;
+            this.btnUpdate.BackgroundImage = global::TaxesSystem.Properties.Resources.update;
             this.btnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);

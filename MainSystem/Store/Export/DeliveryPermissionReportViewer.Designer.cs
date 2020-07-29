@@ -1,4 +1,4 @@
-﻿namespace MainSystem.Store.Export
+﻿namespace TaxesSystem.Store.Export
 {
     partial class DeliveryPermissionReportViewer
     {

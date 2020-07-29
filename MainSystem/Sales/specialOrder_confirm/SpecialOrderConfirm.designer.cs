@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SpecialOrderConfirm
     {
@@ -192,7 +192,7 @@
             // repositoryItemButtonEditSOUpdate
             // 
             this.repositoryItemButtonEditSOUpdate.AutoHeight = false;
-            editorButtonImageOptions1.Image = global::MainSystem.Properties.Resources.icons8_Available_Updates_16;
+            editorButtonImageOptions1.Image = global::TaxesSystem.Properties.Resources.icons8_Available_Updates_16;
             this.repositoryItemButtonEditSOUpdate.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEditSOUpdate.Name = "repositoryItemButtonEditSOUpdate";
@@ -202,7 +202,7 @@
             // repositoryItemButtonEdit2
             // 
             this.repositoryItemButtonEdit2.AutoHeight = false;
-            editorButtonImageOptions2.Image = global::MainSystem.Properties.Resources.icons8_Download_32;
+            editorButtonImageOptions2.Image = global::TaxesSystem.Properties.Resources.icons8_Download_32;
             this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class MainForm
     {
@@ -814,7 +814,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.BackgroundImage = global::MainSystem.Properties.Resources.BackgroundBlue;
+            this.tableLayoutPanel1.BackgroundImage = global::TaxesSystem.Properties.Resources.BackgroundBlue;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
@@ -831,7 +831,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackgroundImage = global::MainSystem.Properties.Resources.Logo2;
+            this.panel2.BackgroundImage = global::TaxesSystem.Properties.Resources.Logo2;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -871,7 +871,7 @@
             this.tileItem2.AppearanceItem.Normal.BackColor = System.Drawing.Color.Transparent;
             this.tileItem2.AppearanceItem.Normal.Options.UseBackColor = true;
             this.tileItem2.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement1.ImageOptions.Image = global::MainSystem.Properties.Resources.Logo2;
+            tileItemElement1.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Logo2;
             tileItemElement1.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement1.ImageOptions.ImageScaleMode = DevExpress.XtraEditors.TileItemImageScaleMode.NoScale;
             tileItemElement1.Text = "";
@@ -899,7 +899,7 @@
             this.btnCustomerService.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCustomerService.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCustomerService.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement2.ImageOptions.Image = global::MainSystem.Properties.Resources.Customer_Support_50px;
+            tileItemElement2.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Customer_Support_50px;
             tileItemElement2.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement2.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement2.Text = "خدمة العملاء";
@@ -918,7 +918,7 @@
             this.btnPOS.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnPOS.AppearanceItem.Normal.Options.UseFont = true;
             this.btnPOS.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement3.ImageOptions.Image = global::MainSystem.Properties.Resources.POS_Terminal_50px;
+            tileItemElement3.ImageOptions.Image = global::TaxesSystem.Properties.Resources.POS_Terminal_50px;
             tileItemElement3.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement3.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement3.Text = "نقطة البيع";
@@ -937,7 +937,7 @@
             this.btnStores.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnStores.AppearanceItem.Normal.Options.UseFont = true;
             this.btnStores.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement4.ImageOptions.Image = global::MainSystem.Properties.Resources.Trolley_80px;
+            tileItemElement4.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Trolley_80px;
             tileItemElement4.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement4.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement4.Text = "المخازن";
@@ -956,7 +956,7 @@
             this.btnCars.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCars.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCars.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement5.ImageOptions.Image = global::MainSystem.Properties.Resources.Shipped_50px;
+            tileItemElement5.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Shipped_50px;
             tileItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement5.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement5.Text = "أدارة السيارات";
@@ -1008,7 +1008,7 @@
             this.btnSales.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnSales.AppearanceItem.Normal.Options.UseFont = true;
             this.btnSales.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement7.ImageOptions.Image = global::MainSystem.Properties.Resources.Cash_in_Hand_80px;
+            tileItemElement7.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Cash_in_Hand_80px;
             tileItemElement7.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement7.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement7.Text = "المبيعات";
@@ -1029,7 +1029,7 @@
             this.btnReception.AppearanceItem.Normal.Options.UseBorderColor = true;
             this.btnReception.AppearanceItem.Normal.Options.UseFont = true;
             this.btnReception.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement8.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Front_Desk_50px;
+            tileItemElement8.ImageOptions.Image = global::TaxesSystem.Properties.Resources.icons8_Front_Desk_50px;
             tileItemElement8.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement8.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement8.Text = "الاستقبال";
@@ -1048,7 +1048,7 @@
             this.btnRequests.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnRequests.AppearanceItem.Normal.Options.UseFont = true;
             this.btnRequests.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement9.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Create_48;
+            tileItemElement9.ImageOptions.Image = global::TaxesSystem.Properties.Resources.icons8_Create_48;
             tileItemElement9.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement9.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement9.Text = "الطلبيات";
@@ -1067,7 +1067,7 @@
             this.btnPurchases.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnPurchases.AppearanceItem.Normal.Options.UseFont = true;
             this.btnPurchases.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement10.ImageOptions.Image = global::MainSystem.Properties.Resources.Shopping_Cart_80px;
+            tileItemElement10.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Shopping_Cart_80px;
             tileItemElement10.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement10.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement10.Text = "المشتريات";
@@ -1095,7 +1095,7 @@
             this.btnReports.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnReports.AppearanceItem.Normal.Options.UseFont = true;
             this.btnReports.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement11.ImageOptions.Image = global::MainSystem.Properties.Resources.Total_Sales_50px;
+            tileItemElement11.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Total_Sales_50px;
             tileItemElement11.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement11.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement11.Text = "التقارير";
@@ -1113,7 +1113,7 @@
             this.btnExpenses.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnExpenses.AppearanceItem.Normal.Options.UseFont = true;
             this.btnExpenses.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement12.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Workspace_64;
+            tileItemElement12.ImageOptions.Image = global::TaxesSystem.Properties.Resources.icons8_Workspace_64;
             tileItemElement12.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement12.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement12.Text = "المصروفات/العقارات";
@@ -1132,7 +1132,7 @@
             this.btnHR.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnHR.AppearanceItem.Normal.Options.UseFont = true;
             this.btnHR.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement13.ImageOptions.Image = global::MainSystem.Properties.Resources.Conference_80px;
+            tileItemElement13.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Conference_80px;
             tileItemElement13.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement13.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement13.Text = "شئون العاملين";
@@ -1151,7 +1151,7 @@
             this.btnBank.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnBank.AppearanceItem.Normal.Options.UseFont = true;
             this.btnBank.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement14.ImageOptions.Image = global::MainSystem.Properties.Resources.Money_Bag_50px;
+            tileItemElement14.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Money_Bag_50px;
             tileItemElement14.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement14.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement14.Text = "النقدية والبنوك";
@@ -1170,7 +1170,7 @@
             this.AccountingSystem.AppearanceItem.Normal.Options.UseBackColor = true;
             this.AccountingSystem.AppearanceItem.Normal.Options.UseFont = true;
             this.AccountingSystem.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement15.ImageOptions.Image = global::MainSystem.Properties.Resources.General_Ledger_50px;
+            tileItemElement15.ImageOptions.Image = global::TaxesSystem.Properties.Resources.General_Ledger_50px;
             tileItemElement15.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement15.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement15.Text = "الحسابات";
@@ -1185,11 +1185,11 @@
             // xtraTabPageStores
             // 
             this.xtraTabPageStores.Appearance.Header.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.xtraTabPageStores.Appearance.Header.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.xtraTabPageStores.Appearance.Header.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.xtraTabPageStores.Appearance.Header.Options.UseFont = true;
             this.xtraTabPageStores.Appearance.Header.Options.UseImage = true;
             this.xtraTabPageStores.Appearance.HeaderActive.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.xtraTabPageStores.Appearance.HeaderActive.Image = global::MainSystem.Properties.Resources.Money_Bag_50px;
+            this.xtraTabPageStores.Appearance.HeaderActive.Image = global::TaxesSystem.Properties.Resources.Money_Bag_50px;
             this.xtraTabPageStores.Appearance.HeaderActive.Options.UseFont = true;
             this.xtraTabPageStores.Appearance.HeaderActive.Options.UseImage = true;
             this.xtraTabPageStores.Controls.Add(this.panStoreContent);
@@ -6290,7 +6290,7 @@
             this.pictureBoxPurchase.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxPurchase.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxPurchase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxPurchase.Image = global::MainSystem.Properties.Resources.icons8_Paste_Special_32;
+            this.pictureBoxPurchase.Image = global::TaxesSystem.Properties.Resources.icons8_Paste_Special_32;
             this.pictureBoxPurchase.ImageLocation = "";
             this.pictureBoxPurchase.Location = new System.Drawing.Point(580, 4);
             this.pictureBoxPurchase.Name = "pictureBoxPurchase";
@@ -6306,7 +6306,7 @@
             this.pictureBoxStoreExpectedOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxStoreExpectedOrder.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxStoreExpectedOrder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxStoreExpectedOrder.Image = global::MainSystem.Properties.Resources.icons8_Deliveries_32;
+            this.pictureBoxStoreExpectedOrder.Image = global::TaxesSystem.Properties.Resources.icons8_Deliveries_32;
             this.pictureBoxStoreExpectedOrder.ImageLocation = "";
             this.pictureBoxStoreExpectedOrder.Location = new System.Drawing.Point(680, 4);
             this.pictureBoxStoreExpectedOrder.Name = "pictureBoxStoreExpectedOrder";
@@ -6332,7 +6332,7 @@
             this.pictureBoxSales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxSales.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxSales.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxSales.Image = global::MainSystem.Properties.Resources.icons8_Order_History_32;
+            this.pictureBoxSales.Image = global::TaxesSystem.Properties.Resources.icons8_Order_History_32;
             this.pictureBoxSales.ImageLocation = "";
             this.pictureBoxSales.Location = new System.Drawing.Point(630, 4);
             this.pictureBoxSales.Name = "pictureBoxSales";
@@ -6363,7 +6363,7 @@
             this.pictureBoxPurchaseLeast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxPurchaseLeast.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxPurchaseLeast.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxPurchaseLeast.Image = global::MainSystem.Properties.Resources.icons8_Electricity_32;
+            this.pictureBoxPurchaseLeast.Image = global::TaxesSystem.Properties.Resources.icons8_Electricity_32;
             this.pictureBoxPurchaseLeast.ImageLocation = "";
             this.pictureBoxPurchaseLeast.Location = new System.Drawing.Point(530, 4);
             this.pictureBoxPurchaseLeast.Name = "pictureBoxPurchaseLeast";
@@ -6378,7 +6378,7 @@
             // 
             this.pictureBoxProfile.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxProfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxProfile.Image = global::MainSystem.Properties.Resources.icons8_Contacts2_32;
+            this.pictureBoxProfile.Image = global::TaxesSystem.Properties.Resources.icons8_Contacts2_32;
             this.pictureBoxProfile.ImageLocation = "";
             this.pictureBoxProfile.Location = new System.Drawing.Point(123, 4);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
@@ -6407,7 +6407,7 @@
             // 
             this.pictureBoxLogout.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxLogout.Image = global::MainSystem.Properties.Resources.Shutdown_48px;
+            this.pictureBoxLogout.Image = global::TaxesSystem.Properties.Resources.Shutdown_48px;
             this.pictureBoxLogout.ImageLocation = "";
             this.pictureBoxLogout.Location = new System.Drawing.Point(73, 4);
             this.pictureBoxLogout.Name = "pictureBoxLogout";
@@ -6422,7 +6422,7 @@
             this.pictureBoxCar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxCar.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxCar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxCar.Image = global::MainSystem.Properties.Resources.Car_Service_50px;
+            this.pictureBoxCar.Image = global::TaxesSystem.Properties.Resources.Car_Service_50px;
             this.pictureBoxCar.ImageLocation = "";
             this.pictureBoxCar.Location = new System.Drawing.Point(480, 4);
             this.pictureBoxCar.Name = "pictureBoxCar";
@@ -6437,7 +6437,7 @@
             this.pictureBoxBell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxBell.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxBell.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxBell.Image = global::MainSystem.Properties.Resources.Shopping_Cart_30px;
+            this.pictureBoxBell.Image = global::TaxesSystem.Properties.Resources.Shopping_Cart_30px;
             this.pictureBoxBell.ImageLocation = "";
             this.pictureBoxBell.Location = new System.Drawing.Point(730, 4);
             this.pictureBoxBell.Name = "pictureBoxBell";

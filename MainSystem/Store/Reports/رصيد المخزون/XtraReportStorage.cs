@@ -4,9 +4,9 @@ using System.Collections;
 using DevExpress.XtraReports.UI;
 
 using System.Collections.Generic;
-using MainSystem.Store.Reports.تقرير_اصناف_الشركات;
+using TaxesSystem.Store.Reports.تقرير_اصناف_الشركات;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class XtraReportStorage : DevExpress.XtraReports.UI.XtraReport
     {

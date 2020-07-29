@@ -14,7 +14,7 @@ using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     class CarSystem
     {
@@ -127,7 +127,7 @@ namespace MainSystem
                 MessageBox.Show(ex.Message);
             }
         }
-        //MainSystem
+        //TaxesSystem
         private void navBarItem4_LinkClicked(object sender, NavBarLinkEventArgs e)
         {
             try

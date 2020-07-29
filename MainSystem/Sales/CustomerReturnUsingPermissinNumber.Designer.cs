@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class CustomerReturnUsingPermissinNumber
     {
@@ -167,7 +167,7 @@
             this.btnCreateReturnBill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCreateReturnBill.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateReturnBill.ForeColor = System.Drawing.Color.White;
-            this.btnCreateReturnBill.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnCreateReturnBill.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnCreateReturnBill.ImagePosition = 2;
             this.btnCreateReturnBill.ImageZoom = 25;
             this.btnCreateReturnBill.LabelPosition = 20;

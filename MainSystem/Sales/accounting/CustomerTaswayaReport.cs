@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem.Sales.accounting
+namespace TaxesSystem.Sales.accounting
 {
     public partial class CustomerTaswayaReport : Form
     {

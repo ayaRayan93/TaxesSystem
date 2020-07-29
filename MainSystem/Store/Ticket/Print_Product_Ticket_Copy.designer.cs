@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Print_Product_Ticket_Copy
     {
@@ -320,7 +320,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.Ticket_Items);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.Ticket_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrPictureBox1

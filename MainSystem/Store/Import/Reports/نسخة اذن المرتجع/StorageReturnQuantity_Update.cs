@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 using DevExpress.XtraTab;
 using DevExpress.XtraGrid.Views.Grid;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class StorageReturnQuantity_Update : DevExpress.XtraEditors.XtraForm
     {

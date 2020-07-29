@@ -11,7 +11,7 @@ using DevExpress.XtraEditors;
 using MySql.Data.MySqlClient;
 using DevExpress.XtraGrid.Columns;
 
-namespace MainSystem.Accounting
+namespace TaxesSystem.Accounting
 {
     public partial class DelegateSalesForCompanyGroup : DevExpress.XtraEditors.XtraForm
     {

@@ -12,7 +12,7 @@ using System.IO;
 using MySql.Data.MySqlClient;
 using DevExpress.XtraTab;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class SalaryRecord : Form
     {

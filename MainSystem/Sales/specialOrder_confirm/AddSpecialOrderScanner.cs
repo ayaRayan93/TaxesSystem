@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 using System.IO;
 using System.Drawing.Imaging;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class AddSpecialOrderScanner : DevExpress.XtraEditors.XtraForm
     {
@@ -58,7 +58,7 @@ namespace MainSystem
                             imgProduct = (byte[])dr["Product_Picture"];
                             selectedProductImage = imgProduct;
                             layoutControlItemProductPicture.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                            labelRemoveProductImage.Image = MainSystem.Properties.Resources.closeIcon;
+                            labelRemoveProductImage.Image = TaxesSystem.Properties.Resources.closeIcon;
                             pictureBoxProduct.Image = byteArrayToImage(imgProduct);
                             pictureBoxProduct.SizeMode = PictureBoxSizeMode.StretchImage;
                         }
@@ -122,7 +122,7 @@ namespace MainSystem
             if (layoutControlItemProductPicture.Visibility == DevExpress.XtraLayout.Utils.LayoutVisibility.Never)
             {
                 layoutControlItemProductPicture.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                labelRemoveProductImage.Image = MainSystem.Properties.Resources.closeIcon;
+                labelRemoveProductImage.Image = TaxesSystem.Properties.Resources.closeIcon;
             }
             else
             {

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class StorePermNums
     {
@@ -394,7 +394,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.StorePermissionsNumbers);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.StorePermissionsNumbers);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // DriverName

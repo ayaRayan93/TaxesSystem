@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem.CustomerService
+namespace TaxesSystem.CustomerService
 {
     public partial class CustomerDeliveredBills : Form
     {

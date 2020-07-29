@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class ReturnCustomerPermissionReport
     {
@@ -601,7 +601,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.ReturnPermissionClass);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.ReturnPermissionClass);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // ReturnCustomerPermissionReport

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class BillsAglTransitions_Report
     {
@@ -434,7 +434,7 @@
             this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
@@ -539,7 +539,7 @@
             this.btnBillReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBillReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnBillReport.ForeColor = System.Drawing.Color.White;
-            this.btnBillReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnBillReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnBillReport.ImagePosition = 1;
             this.btnBillReport.ImageZoom = 20;
             this.btnBillReport.LabelPosition = 18;

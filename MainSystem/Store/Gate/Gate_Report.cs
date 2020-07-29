@@ -17,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Gate_Report : Form
     {

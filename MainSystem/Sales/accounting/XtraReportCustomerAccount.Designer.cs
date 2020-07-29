@@ -1,4 +1,4 @@
-﻿namespace MainSystem.Sales.accounting
+﻿namespace TaxesSystem.Sales.accounting
 {
     partial class XtraReportCustomerAccount
     {
@@ -808,7 +808,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.Sales.accounting.customerAccount);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.Sales.accounting.customerAccount);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // XtraReportCustomerAccount

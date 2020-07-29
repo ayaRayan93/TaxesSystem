@@ -1,4 +1,4 @@
-﻿namespace MainSystem.Sales.accounting
+﻿namespace TaxesSystem.Sales.accounting
 {
     partial class PrintReport
     {

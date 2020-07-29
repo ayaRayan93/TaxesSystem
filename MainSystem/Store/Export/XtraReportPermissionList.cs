@@ -4,7 +4,7 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 
-namespace MainSystem.Store.Export
+namespace TaxesSystem.Store.Export
 {
     public partial class XtraReportPermissionList : DevExpress.XtraReports.UI.XtraReport
     {

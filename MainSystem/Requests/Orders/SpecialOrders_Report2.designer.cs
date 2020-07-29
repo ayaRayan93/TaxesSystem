@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SpecialOrders_Report2
     {
@@ -230,7 +230,7 @@
             // repositoryItemButtonEditDownload
             // 
             this.repositoryItemButtonEditDownload.AutoHeight = false;
-            editorButtonImageOptions1.Image = global::MainSystem.Properties.Resources.icons8_Download_32;
+            editorButtonImageOptions1.Image = global::TaxesSystem.Properties.Resources.icons8_Download_32;
             this.repositoryItemButtonEditDownload.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEditDownload.Name = "repositoryItemButtonEditDownload";
@@ -264,7 +264,7 @@
             // repositoryItemButtonEditDownloadProduct
             // 
             this.repositoryItemButtonEditDownloadProduct.AutoHeight = false;
-            editorButtonImageOptions2.Image = global::MainSystem.Properties.Resources.icons8_Download_32;
+            editorButtonImageOptions2.Image = global::TaxesSystem.Properties.Resources.icons8_Download_32;
             this.repositoryItemButtonEditDownloadProduct.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEditDownloadProduct.Name = "repositoryItemButtonEditDownloadProduct";
@@ -292,7 +292,7 @@
             // repositoryItemButtonEditAddOrder
             // 
             this.repositoryItemButtonEditAddOrder.AutoHeight = false;
-            editorButtonImageOptions3.Image = global::MainSystem.Properties.Resources.icons8_Checked_32;
+            editorButtonImageOptions3.Image = global::TaxesSystem.Properties.Resources.icons8_Checked_32;
             this.repositoryItemButtonEditAddOrder.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEditAddOrder.Name = "repositoryItemButtonEditAddOrder";

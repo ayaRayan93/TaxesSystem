@@ -5,7 +5,7 @@ using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using System.Collections.Generic;
 
-namespace MainSystem.Sales.accounting
+namespace TaxesSystem.Sales.accounting
 {
     public partial class XtraPrintReportBills : DevExpress.XtraReports.UI.XtraReport
     {

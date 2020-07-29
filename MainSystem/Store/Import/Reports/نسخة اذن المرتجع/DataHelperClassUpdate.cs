@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public class DataHelperClassUpdate
     {

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Print_AglTransition
     {
@@ -667,7 +667,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.Transition_Items);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.Transition_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // Print_AglTransition

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class InformationFactory_Report
     {
@@ -158,7 +158,7 @@
             this.btnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPrint.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnPrint.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnPrint.ImagePosition = 1;
             this.btnPrint.ImageZoom = 20;
             this.btnPrint.LabelPosition = 18;

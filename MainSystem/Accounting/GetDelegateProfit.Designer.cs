@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class GetDelegateProfit
     {
@@ -230,7 +230,7 @@
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnAdd.ImagePosition = 1;
             this.btnAdd.ImageZoom = 20;
             this.btnAdd.LabelPosition = 18;
@@ -251,7 +251,7 @@
             this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 20;
             this.btnReport.LabelPosition = 18;
@@ -442,8 +442,8 @@
             // repositoryItemCheckEdit1
             // 
             this.repositoryItemCheckEdit1.AutoHeight = false;
-            this.repositoryItemCheckEdit1.ImageOptions.ImageChecked = global::MainSystem.Properties.Resources.Trolley_80px;
-            this.repositoryItemCheckEdit1.ImageOptions.ImageUnchecked = global::MainSystem.Properties.Resources.closeIcon;
+            this.repositoryItemCheckEdit1.ImageOptions.ImageChecked = global::TaxesSystem.Properties.Resources.Trolley_80px;
+            this.repositoryItemCheckEdit1.ImageOptions.ImageUnchecked = global::TaxesSystem.Properties.Resources.closeIcon;
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             // 
             // repositoryItemCheckedComboBoxEdit1

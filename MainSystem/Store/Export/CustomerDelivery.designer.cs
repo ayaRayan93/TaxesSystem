@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class CustomerDelivery
     {
@@ -354,7 +354,7 @@
             // 
             this.btnRemove.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnRemove.BackColor = System.Drawing.Color.Transparent;
-            this.btnRemove.Image = global::MainSystem.Properties.Resources.closeIcon;
+            this.btnRemove.Image = global::TaxesSystem.Properties.Resources.closeIcon;
             this.btnRemove.ImageActive = null;
             this.btnRemove.Location = new System.Drawing.Point(212, 16);
             this.btnRemove.Name = "btnRemove";
@@ -502,7 +502,7 @@
             this.bunifuTileButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuTileButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton1.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.bunifuTileButton1.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.bunifuTileButton1.ImagePosition = 1;
             this.bunifuTileButton1.ImageZoom = 20;
             this.bunifuTileButton1.LabelPosition = 18;

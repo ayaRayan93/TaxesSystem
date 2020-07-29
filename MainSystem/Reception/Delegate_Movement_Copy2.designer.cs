@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Delegate_Movement_Copy2
     {
@@ -652,7 +652,7 @@
             // btnReload
             // 
             this.btnReload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(65)))), ((int)(((byte)(146)))));
-            this.btnReload.BackgroundImage = global::MainSystem.Properties.Resources.update;
+            this.btnReload.BackgroundImage = global::TaxesSystem.Properties.Resources.update;
             this.btnReload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnReload.Location = new System.Drawing.Point(116, 3);

@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem.Store.Export
+namespace TaxesSystem.Store.Export
 {
     public partial class RestDeliveryItems : Form
     {

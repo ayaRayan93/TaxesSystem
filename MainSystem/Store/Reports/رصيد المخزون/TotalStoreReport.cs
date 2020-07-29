@@ -6,7 +6,7 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraPrinting.Preview;
 using DevExpress.XtraTab;
-using MainSystem.Store.Reports.تقرير_اصناف_الشركات;
+using TaxesSystem.Store.Reports.تقرير_اصناف_الشركات;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class TotalStoreReport : Form
     {

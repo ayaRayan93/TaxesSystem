@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Bill_Confirm
     {
@@ -372,7 +372,7 @@
             this.btnDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDetails.ForeColor = System.Drawing.Color.White;
-            this.btnDetails.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnDetails.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnDetails.ImagePosition = 1;
             this.btnDetails.ImageZoom = 25;
             this.btnDetails.LabelPosition = 18;
@@ -393,7 +393,7 @@
             this.btnConfirm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.White;
-            this.btnConfirm.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnConfirm.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnConfirm.ImagePosition = 1;
             this.btnConfirm.ImageZoom = 25;
             this.btnConfirm.LabelPosition = 18;
@@ -451,7 +451,7 @@
             this.btnAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddItem.ForeColor = System.Drawing.Color.White;
-            this.btnAddItem.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAddItem.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAddItem.ImagePosition = 1;
             this.btnAddItem.ImageZoom = 25;
             this.btnAddItem.LabelPosition = 18;

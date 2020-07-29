@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MainSystem.Properties {
+namespace TaxesSystem.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

@@ -5,7 +5,7 @@ using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using System.Collections.Generic;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Print_SupplierBill_Copy2 : DevExpress.XtraReports.UI.XtraReport
     {

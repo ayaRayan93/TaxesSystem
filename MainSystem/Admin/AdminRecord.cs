@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 using DevExpress.XtraTab;
 using System.Reflection;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class AdminRecord : Form
     {

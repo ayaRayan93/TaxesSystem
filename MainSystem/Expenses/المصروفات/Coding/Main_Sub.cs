@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraTab;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Main_Sub : DevExpress.XtraEditors.XtraForm
     {

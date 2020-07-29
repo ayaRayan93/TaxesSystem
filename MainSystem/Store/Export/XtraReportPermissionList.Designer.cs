@@ -1,4 +1,4 @@
-﻿namespace MainSystem.Store.Export
+﻿namespace TaxesSystem.Store.Export
 {
     partial class XtraReportPermissionList
     {
@@ -95,7 +95,7 @@
             // objectDataSource1
             // 
             this.objectDataSource1.DataMember = "DeliveryPermissionClassList";
-            this.objectDataSource1.DataSource = typeof(MainSystem.Store.Export.DeliveryListPermissionClass);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.Store.Export.DeliveryListPermissionClass);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrPageInfo1

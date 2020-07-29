@@ -14,7 +14,7 @@ using DevExpress.XtraPrinting.Native;
 using static DevExpress.Utils.Drawing.Helpers.NativeMethods;
 using DevExpress.XtraBars.Docking2010;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class BankDepositIncome_Print : DevExpress.XtraEditors.XtraForm
     {
@@ -98,7 +98,7 @@ namespace MainSystem
             PageImageBrick pageImageBrick;
 
             // Define the image to display.
-            Image pageImage = MainSystem.Properties.Resources.Logo;
+            Image pageImage = TaxesSystem.Properties.Resources.Logo;
 
             // Display the PageImageBrick containing the DevExpress logo.
             pageImageBrick = brickGraphics.DrawPageImage(pageImage, new Rectangle(856, 0, 100, 80), BorderSide.None, Color.Transparent);

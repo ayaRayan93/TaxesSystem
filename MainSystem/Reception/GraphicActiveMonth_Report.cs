@@ -17,7 +17,7 @@ using DevExpress.XtraCharts;
 using MySql.Data.MySqlClient;
 using DevExpress.XtraCharts.Printing;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class GraphicActiveMonth_Report : DevExpress.XtraEditors.XtraForm
     {

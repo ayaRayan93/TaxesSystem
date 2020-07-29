@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Product_Record
     {
@@ -223,7 +223,7 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             resources.ApplyResources(this.btnAdd, "btnAdd");
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnAdd.ImagePosition = 1;
             this.btnAdd.ImageZoom = 25;
             this.btnAdd.LabelPosition = 18;
@@ -372,7 +372,7 @@
             // ImageProduct
             // 
             this.ImageProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(122)))), ((int)(((byte)(190)))));
-            this.ImageProduct.BackgroundImage = global::MainSystem.Properties.Resources.camara;
+            this.ImageProduct.BackgroundImage = global::TaxesSystem.Properties.Resources.camara;
             resources.ApplyResources(this.ImageProduct, "ImageProduct");
             this.ImageProduct.Name = "ImageProduct";
             this.ImageProduct.TabStop = false;

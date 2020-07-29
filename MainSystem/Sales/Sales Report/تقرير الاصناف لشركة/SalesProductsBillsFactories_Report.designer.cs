@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SalesProductsBillsFactories_Report
     {
@@ -109,7 +109,7 @@
             this.btnBillReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBillReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnBillReport.ForeColor = System.Drawing.Color.White;
-            this.btnBillReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnBillReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnBillReport.ImagePosition = 1;
             this.btnBillReport.ImageZoom = 25;
             this.btnBillReport.LabelPosition = 18;

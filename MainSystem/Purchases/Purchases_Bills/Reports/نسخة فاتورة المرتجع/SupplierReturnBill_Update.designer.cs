@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SupplierReturnBill_Update
     {
@@ -556,7 +556,7 @@
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnSave.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnSave.ImagePosition = 1;
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 18;

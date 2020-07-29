@@ -13,10 +13,10 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraTab.ViewInfo;
 using DevExpress.XtraNavBar;
 using MySql.Data.MySqlClient;
-using MainSystem.Sales.accounting;
-using MainSystem.Reports.sales;
+using TaxesSystem.Sales.accounting;
+using TaxesSystem.Reports.sales;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     class SalesSystem
     {

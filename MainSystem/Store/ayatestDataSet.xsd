@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="dbconnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbconnection (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.MainSystem.Properties.Settings.GlobalReference.Default.dbconnection" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="dbconnection" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="dbconnection (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TaxesSystem.Properties.Settings.GlobalReference.Default.dbconnection" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="product_billTableAdapter" GeneratorDataComponentClassName="product_billTableAdapter" Name="product_bill" UserDataComponentName="product_billTableAdapter">

@@ -1,4 +1,4 @@
-﻿namespace MainSystem.CustomerService
+﻿namespace TaxesSystem.CustomerService
 {
     partial class displayCustomerBill
     {

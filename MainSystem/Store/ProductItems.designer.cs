@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     partial class ProductItems
     {
@@ -472,7 +472,7 @@ namespace MainSystem
             this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnDelete.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnDelete.ImagePosition = 1;
             this.btnDelete.ImageZoom = 25;
             this.btnDelete.LabelPosition = 18;
@@ -493,7 +493,7 @@ namespace MainSystem
             this.btnAddSort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddSort.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSort.ForeColor = System.Drawing.Color.White;
-            this.btnAddSort.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAddSort.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAddSort.ImagePosition = 1;
             this.btnAddSort.ImageZoom = 25;
             this.btnAddSort.LabelPosition = 18;
@@ -514,7 +514,7 @@ namespace MainSystem
             this.btnUpdateSort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdateSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnUpdateSort.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateSort.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdateSort.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdateSort.ImagePosition = 1;
             this.btnUpdateSort.ImageZoom = 25;
             this.btnUpdateSort.LabelPosition = 15;
@@ -695,7 +695,7 @@ namespace MainSystem
             this.btnTypeDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnTypeDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnTypeDelete.ForeColor = System.Drawing.Color.White;
-            this.btnTypeDelete.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnTypeDelete.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnTypeDelete.ImagePosition = 1;
             this.btnTypeDelete.ImageZoom = 25;
             this.btnTypeDelete.LabelPosition = 18;
@@ -716,7 +716,7 @@ namespace MainSystem
             this.btnUpdateType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdateType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnUpdateType.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateType.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdateType.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdateType.ImagePosition = 1;
             this.btnUpdateType.ImageZoom = 25;
             this.btnUpdateType.LabelPosition = 15;
@@ -737,7 +737,7 @@ namespace MainSystem
             this.btnAddType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddType.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddType.ForeColor = System.Drawing.Color.White;
-            this.btnAddType.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAddType.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAddType.ImagePosition = 1;
             this.btnAddType.ImageZoom = 25;
             this.btnAddType.LabelPosition = 18;
@@ -1133,7 +1133,7 @@ namespace MainSystem
             this.btnDeleteSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDeleteSize.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnDeleteSize.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteSize.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnDeleteSize.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnDeleteSize.ImagePosition = 1;
             this.btnDeleteSize.ImageZoom = 25;
             this.btnDeleteSize.LabelPosition = 18;
@@ -1154,7 +1154,7 @@ namespace MainSystem
             this.btnAddSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddSize.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSize.ForeColor = System.Drawing.Color.White;
-            this.btnAddSize.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAddSize.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAddSize.ImagePosition = 1;
             this.btnAddSize.ImageZoom = 25;
             this.btnAddSize.LabelPosition = 18;
@@ -1175,7 +1175,7 @@ namespace MainSystem
             this.btnSizeUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSizeUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnSizeUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnSizeUpdate.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnSizeUpdate.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnSizeUpdate.ImagePosition = 1;
             this.btnSizeUpdate.ImageZoom = 25;
             this.btnSizeUpdate.LabelPosition = 15;
@@ -1411,7 +1411,7 @@ namespace MainSystem
             this.bunifuTileButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuTileButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton1.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.bunifuTileButton1.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.bunifuTileButton1.ImagePosition = 1;
             this.bunifuTileButton1.ImageZoom = 25;
             this.bunifuTileButton1.LabelPosition = 18;
@@ -1432,7 +1432,7 @@ namespace MainSystem
             this.btnUpdateColor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdateColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnUpdateColor.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateColor.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdateColor.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdateColor.ImagePosition = 1;
             this.btnUpdateColor.ImageZoom = 25;
             this.btnUpdateColor.LabelPosition = 15;
@@ -1453,7 +1453,7 @@ namespace MainSystem
             this.bunifuTileButton2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuTileButton2.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuTileButton2.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton2.Image = global::MainSystem.Properties.Resources.File_32;
+            this.bunifuTileButton2.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.bunifuTileButton2.ImagePosition = 1;
             this.bunifuTileButton2.ImageZoom = 25;
             this.bunifuTileButton2.LabelPosition = 18;
@@ -1837,7 +1837,7 @@ namespace MainSystem
             this.btnDeleteProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDeleteProduct.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnDeleteProduct.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteProduct.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnDeleteProduct.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnDeleteProduct.ImagePosition = 1;
             this.btnDeleteProduct.ImageZoom = 25;
             this.btnDeleteProduct.LabelPosition = 18;
@@ -1858,7 +1858,7 @@ namespace MainSystem
             this.btnAddProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddProduct.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddProduct.ForeColor = System.Drawing.Color.White;
-            this.btnAddProduct.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAddProduct.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAddProduct.ImagePosition = 1;
             this.btnAddProduct.ImageZoom = 25;
             this.btnAddProduct.LabelPosition = 18;
@@ -1879,7 +1879,7 @@ namespace MainSystem
             this.bunifuTileButton3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuTileButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.bunifuTileButton3.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton3.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.bunifuTileButton3.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.bunifuTileButton3.ImagePosition = 1;
             this.bunifuTileButton3.ImageZoom = 25;
             this.bunifuTileButton3.LabelPosition = 15;
@@ -2176,7 +2176,7 @@ namespace MainSystem
             this.btnDeleteGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDeleteGroup.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnDeleteGroup.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteGroup.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnDeleteGroup.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnDeleteGroup.ImagePosition = 1;
             this.btnDeleteGroup.ImageZoom = 25;
             this.btnDeleteGroup.LabelPosition = 18;
@@ -2197,7 +2197,7 @@ namespace MainSystem
             this.btnUpdateGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdateGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnUpdateGroup.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateGroup.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdateGroup.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdateGroup.ImagePosition = 1;
             this.btnUpdateGroup.ImageZoom = 25;
             this.btnUpdateGroup.LabelPosition = 15;
@@ -2218,7 +2218,7 @@ namespace MainSystem
             this.btnAddGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddGroup.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddGroup.ForeColor = System.Drawing.Color.White;
-            this.btnAddGroup.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAddGroup.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAddGroup.ImagePosition = 1;
             this.btnAddGroup.ImageZoom = 25;
             this.btnAddGroup.LabelPosition = 18;
@@ -2319,7 +2319,7 @@ namespace MainSystem
             this.btnFactoryDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFactoryDelete.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnFactoryDelete.ForeColor = System.Drawing.Color.White;
-            this.btnFactoryDelete.Image = global::MainSystem.Properties.Resources.Delete_32;
+            this.btnFactoryDelete.Image = global::TaxesSystem.Properties.Resources.Delete_32;
             this.btnFactoryDelete.ImagePosition = 1;
             this.btnFactoryDelete.ImageZoom = 25;
             this.btnFactoryDelete.LabelPosition = 18;
@@ -2340,7 +2340,7 @@ namespace MainSystem
             this.btnAddFactory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAddFactory.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddFactory.ForeColor = System.Drawing.Color.White;
-            this.btnAddFactory.Image = global::MainSystem.Properties.Resources.File_32;
+            this.btnAddFactory.Image = global::TaxesSystem.Properties.Resources.File_32;
             this.btnAddFactory.ImagePosition = 1;
             this.btnAddFactory.ImageZoom = 25;
             this.btnAddFactory.LabelPosition = 18;
@@ -2361,7 +2361,7 @@ namespace MainSystem
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdate.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdate.ImagePosition = 1;
             this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 15;

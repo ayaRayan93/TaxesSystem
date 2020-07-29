@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class AdminControl1
     {
@@ -256,7 +256,7 @@
             this.btnStoresD2.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnStoresD2.AppearanceItem.Normal.Options.UseFont = true;
             this.btnStoresD2.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement68.ImageOptions.Image = global::MainSystem.Properties.Resources.Trolley_80px;
+            tileItemElement68.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Trolley_80px;
             tileItemElement68.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement68.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement68.Text = "المخازن";
@@ -299,7 +299,7 @@
             this.btnCodingD13.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnCodingD13.AppearanceItem.Normal.Options.UseFont = true;
             this.btnCodingD13.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement70.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Workspace_64;
+            tileItemElement70.ImageOptions.Image = global::TaxesSystem.Properties.Resources.icons8_Workspace_64;
             tileItemElement70.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement70.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement70.Text = "التكويد";
@@ -317,7 +317,7 @@
             this.btnHRD11.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnHRD11.AppearanceItem.Normal.Options.UseFont = true;
             this.btnHRD11.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement71.ImageOptions.Image = global::MainSystem.Properties.Resources.Conference_80px;
+            tileItemElement71.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Conference_80px;
             tileItemElement71.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement71.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement71.Text = "شئون العاملين";
@@ -342,7 +342,7 @@
             this.AccountingSystemD9.AppearanceItem.Normal.Options.UseBackColor = true;
             this.AccountingSystemD9.AppearanceItem.Normal.Options.UseFont = true;
             this.AccountingSystemD9.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement72.ImageOptions.Image = global::MainSystem.Properties.Resources.General_Ledger_50px;
+            tileItemElement72.ImageOptions.Image = global::TaxesSystem.Properties.Resources.General_Ledger_50px;
             tileItemElement72.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement72.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement72.Text = "الحسابات";
@@ -360,7 +360,7 @@
             this.btnBankD3.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnBankD3.AppearanceItem.Normal.Options.UseFont = true;
             this.btnBankD3.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement73.ImageOptions.Image = global::MainSystem.Properties.Resources.Money_Bag_50px;
+            tileItemElement73.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Money_Bag_50px;
             tileItemElement73.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement73.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement73.Text = "النقدية والبنوك";
@@ -377,7 +377,7 @@
             this.btnPurchasesD10.AppearanceItem.Normal.Font = new System.Drawing.Font("Neo Sans Arabic", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPurchasesD10.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnPurchasesD10.AppearanceItem.Normal.Options.UseFont = true;
-            tileItemElement74.ImageOptions.Image = global::MainSystem.Properties.Resources.Shopping_Cart_80px;
+            tileItemElement74.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Shopping_Cart_80px;
             tileItemElement74.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement74.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement74.Text = "المشتريات";

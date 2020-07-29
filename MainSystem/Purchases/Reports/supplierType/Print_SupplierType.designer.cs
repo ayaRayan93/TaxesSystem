@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Print_SupplierType
     {
@@ -817,7 +817,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.SupplierType_Items);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.SupplierType_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // TotalQuantity

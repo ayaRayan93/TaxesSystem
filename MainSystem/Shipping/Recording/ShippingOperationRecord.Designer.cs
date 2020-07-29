@@ -1,4 +1,4 @@
-﻿namespace MainSystem.Shipping.Recording
+﻿namespace TaxesSystem.Shipping.Recording
 {
     partial class ShippingOperationRecord
     {

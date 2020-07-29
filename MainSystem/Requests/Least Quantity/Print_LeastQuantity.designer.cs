@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Print_LeastQuantity
     {
@@ -448,7 +448,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.LeastQuantity_Items);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.LeastQuantity_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // Print_LeastQuantity

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SupplierReceiptQuantity_Update
     {
@@ -66,7 +66,7 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Font = new System.Drawing.Font("Neo Sans Arabic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnAdd.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnAdd.ImagePosition = 5;
             this.btnAdd.ImageZoom = 9;
             this.btnAdd.LabelPosition = 20;

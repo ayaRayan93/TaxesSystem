@@ -1,4 +1,4 @@
-﻿namespace MainSystem.CustomerService.CustomerComplain
+﻿namespace TaxesSystem.CustomerService.CustomerComplain
 {
     partial class ComplainRecord
     {
@@ -91,7 +91,7 @@
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnSave.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnSave.ImagePosition = 1;
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 18;

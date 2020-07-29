@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainSystem.Store.Export
+namespace TaxesSystem.Store.Export
 {
    public class DeliveryListPermissionClass
     {

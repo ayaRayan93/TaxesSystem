@@ -1,4 +1,4 @@
-﻿using MainSystem.Sales.accounting;
+﻿using TaxesSystem.Sales.accounting;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class customerBills : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Expenses_Transitions_Report
     {
@@ -170,7 +170,7 @@
             this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReport.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 18;
@@ -277,7 +277,7 @@
             this.btnPrintCopy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnPrintCopy.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnPrintCopy.ForeColor = System.Drawing.Color.White;
-            this.btnPrintCopy.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnPrintCopy.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnPrintCopy.ImagePosition = 1;
             this.btnPrintCopy.ImageZoom = 25;
             this.btnPrintCopy.LabelPosition = 18;
@@ -417,7 +417,7 @@
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdate.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdate.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdate.ImagePosition = 1;
             this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 18;

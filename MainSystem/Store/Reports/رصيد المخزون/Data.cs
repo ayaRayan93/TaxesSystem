@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainSystem.Store.Reports.تقرير_اصناف_الشركات
+namespace TaxesSystem.Store.Reports.تقرير_اصناف_الشركات
 {
     public class Data
     {

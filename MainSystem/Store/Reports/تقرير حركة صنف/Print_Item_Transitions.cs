@@ -5,7 +5,7 @@ using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using System.Collections.Generic;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Print_Item_Transitions : DevExpress.XtraReports.UI.XtraReport
     {

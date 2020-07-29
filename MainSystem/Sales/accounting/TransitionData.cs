@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainSystem.Sales.accounting
+namespace TaxesSystem.Sales.accounting
 {
    public class TransitionData
     {

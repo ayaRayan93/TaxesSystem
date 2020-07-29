@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class StorageTaswayaSubtractUpdate
     {
@@ -169,7 +169,7 @@
             // 
             this.btnPut.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnPut.BackColor = System.Drawing.Color.Transparent;
-            this.btnPut.Image = global::MainSystem.Properties.Resources.Expand_Arrow_64px;
+            this.btnPut.Image = global::TaxesSystem.Properties.Resources.Expand_Arrow_64px;
             this.btnPut.ImageActive = null;
             this.btnPut.Location = new System.Drawing.Point(37, 36);
             this.btnPut.Name = "btnPut";
@@ -184,7 +184,7 @@
             // 
             this.btnRemove.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnRemove.BackColor = System.Drawing.Color.Transparent;
-            this.btnRemove.Image = global::MainSystem.Properties.Resources.closeIcon;
+            this.btnRemove.Image = global::TaxesSystem.Properties.Resources.closeIcon;
             this.btnRemove.ImageActive = null;
             this.btnRemove.Location = new System.Drawing.Point(103, 37);
             this.btnRemove.Name = "btnRemove";
@@ -686,7 +686,7 @@
             this.btnReport.Enabled = false;
             this.btnReport.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Image = global::MainSystem.Properties.Resources.Print_32;
+            this.btnReport.Image = global::TaxesSystem.Properties.Resources.Print_32;
             this.btnReport.ImagePosition = 1;
             this.btnReport.ImageZoom = 25;
             this.btnReport.LabelPosition = 22;
@@ -707,7 +707,7 @@
             this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSave.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.btnSave.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.btnSave.ImagePosition = 1;
             this.btnSave.ImageZoom = 25;
             this.btnSave.LabelPosition = 21;

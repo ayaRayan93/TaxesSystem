@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class XtraReportStorage
     {
@@ -463,7 +463,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.Store.Reports.تقرير_اصناف_الشركات.Data);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.Store.Reports.تقرير_اصناف_الشركات.Data);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // XtraReportStorage

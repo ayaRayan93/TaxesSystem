@@ -17,7 +17,7 @@
 //using System.Threading.Tasks;
 //using System.Windows.Forms;
 
-//namespace MainSystem
+//namespace TaxesSystem
 //{
 //    public partial class Products_Report2Sales : Form
 //    {

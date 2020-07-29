@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class initialCodeStorage : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class SetFak
     {
@@ -438,7 +438,7 @@
             this.bunifuTileButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuTileButton1.Font = new System.Drawing.Font("Neo Sans Arabic", 9.75F);
             this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton1.Image = global::MainSystem.Properties.Resources.Save_32;
+            this.bunifuTileButton1.Image = global::TaxesSystem.Properties.Resources.Save_32;
             this.bunifuTileButton1.ImagePosition = 1;
             this.bunifuTileButton1.ImageZoom = 25;
             this.bunifuTileButton1.LabelPosition = 12;

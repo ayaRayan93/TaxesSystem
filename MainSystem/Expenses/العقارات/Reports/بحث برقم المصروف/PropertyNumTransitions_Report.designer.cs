@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class PropertyNumTransitions_Report
     {
@@ -149,7 +149,7 @@
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Image = global::MainSystem.Properties.Resources.Edit_32;
+            this.btnUpdate.Image = global::TaxesSystem.Properties.Resources.Edit_32;
             this.btnUpdate.ImagePosition = 1;
             this.btnUpdate.ImageZoom = 25;
             this.btnUpdate.LabelPosition = 18;

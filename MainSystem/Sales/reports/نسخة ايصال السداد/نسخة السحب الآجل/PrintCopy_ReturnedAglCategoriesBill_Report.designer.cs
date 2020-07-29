@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class PrintCopy_ReturnedAglCategoriesBill_Report
     {

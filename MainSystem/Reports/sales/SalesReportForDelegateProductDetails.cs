@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainSystem.Reports.sales
+namespace TaxesSystem.Reports.sales
 {
     public partial class SalesReportForDelegateProductDetails : Form
     {

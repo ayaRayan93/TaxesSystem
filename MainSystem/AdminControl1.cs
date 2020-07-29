@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 using DevExpress.XtraTreeList.Nodes;
 using DevExpress.XtraTreeList;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class AdminControl1 : DevExpress.XtraEditors.XtraForm
     {

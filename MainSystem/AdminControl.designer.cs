@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class AdminControl
     {
@@ -186,7 +186,7 @@
             this.btnReceptionD4.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnReceptionD4.AppearanceItem.Normal.Options.UseBorderColor = true;
             this.btnReceptionD4.AppearanceItem.Normal.Options.UseFont = true;
-            tileItemElement5.ImageOptions.Image = global::MainSystem.Properties.Resources.icons8_Front_Desk_50px;
+            tileItemElement5.ImageOptions.Image = global::TaxesSystem.Properties.Resources.icons8_Front_Desk_50px;
             tileItemElement5.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement5.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement5.Text = "الاستقبال";
@@ -205,7 +205,7 @@
             this.btnStoresD2.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnStoresD2.AppearanceItem.Normal.Options.UseFont = true;
             this.btnStoresD2.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement6.ImageOptions.Image = global::MainSystem.Properties.Resources.Trolley_80px;
+            tileItemElement6.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Trolley_80px;
             tileItemElement6.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement6.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement6.Text = "المخازن";
@@ -230,7 +230,7 @@
             this.AccountingSystemD9.AppearanceItem.Normal.Options.UseBackColor = true;
             this.AccountingSystemD9.AppearanceItem.Normal.Options.UseFont = true;
             this.AccountingSystemD9.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement7.ImageOptions.Image = global::MainSystem.Properties.Resources.General_Ledger_50px;
+            tileItemElement7.ImageOptions.Image = global::TaxesSystem.Properties.Resources.General_Ledger_50px;
             tileItemElement7.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement7.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement7.Text = "الحسابات";
@@ -249,7 +249,7 @@
             this.btnBankD3.AppearanceItem.Normal.Options.UseBackColor = true;
             this.btnBankD3.AppearanceItem.Normal.Options.UseFont = true;
             this.btnBankD3.BorderVisibility = DevExpress.XtraEditors.TileItemBorderVisibility.Never;
-            tileItemElement8.ImageOptions.Image = global::MainSystem.Properties.Resources.Money_Bag_50px;
+            tileItemElement8.ImageOptions.Image = global::TaxesSystem.Properties.Resources.Money_Bag_50px;
             tileItemElement8.ImageOptions.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter;
             tileItemElement8.ImageOptions.ImageToTextAlignment = DevExpress.XtraEditors.TileControlImageToTextAlignment.Top;
             tileItemElement8.Text = "النقدية والبنوك";

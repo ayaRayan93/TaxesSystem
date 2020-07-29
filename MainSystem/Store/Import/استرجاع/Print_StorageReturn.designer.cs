@@ -1,4 +1,4 @@
-﻿namespace MainSystem
+﻿namespace TaxesSystem
 {
     partial class Print_StorageReturn
     {
@@ -723,7 +723,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MainSystem.StorageReturn_Items);
+            this.objectDataSource1.DataSource = typeof(TaxesSystem.StorageReturn_Items);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // Print_StorageReturn

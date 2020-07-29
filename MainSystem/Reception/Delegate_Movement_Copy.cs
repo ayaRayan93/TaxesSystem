@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //using WMPLib;
 
-namespace MainSystem
+namespace TaxesSystem
 {
     public partial class Delegate_Movement_Copy : Form
     {
